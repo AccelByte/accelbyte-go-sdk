@@ -73,11 +73,6 @@ type PublicConsumeMyItemParams struct {
 
 	*/
 	InventoryID string
-	/*ItemID
-	  ItemID
-
-	*/
-	ItemID string
 	/*Namespace
 	  Namespace
 
@@ -159,17 +154,6 @@ func (o *PublicConsumeMyItemParams) SetInventoryID(inventoryID string) {
 	o.InventoryID = inventoryID
 }
 
-// WithItemID adds the itemID to the public consume my item params
-func (o *PublicConsumeMyItemParams) WithItemID(itemID string) *PublicConsumeMyItemParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the public consume my item params
-func (o *PublicConsumeMyItemParams) SetItemID(itemID string) {
-	o.ItemID = itemID
-}
-
 // WithNamespace adds the namespace to the public consume my item params
 func (o *PublicConsumeMyItemParams) WithNamespace(namespace string) *PublicConsumeMyItemParams {
 	o.SetNamespace(namespace)
@@ -197,11 +181,6 @@ func (o *PublicConsumeMyItemParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 	// path param inventoryId
 	if err := r.SetPathParam("inventoryId", o.InventoryID); err != nil {
-		return err
-	}
-
-	// path param itemId
-	if err := r.SetPathParam("itemId", o.ItemID); err != nil {
 		return err
 	}
 

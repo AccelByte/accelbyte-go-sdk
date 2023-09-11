@@ -58,7 +58,7 @@ func (o *PublicGetItemReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -76,7 +76,7 @@ type PublicGetItemOK struct {
 }
 
 func (o *PublicGetItemOK) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}][%d] publicGetItemOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] publicGetItemOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *PublicGetItemOK) ToJSONString() string {
@@ -129,7 +129,7 @@ type PublicGetItemBadRequest struct {
 }
 
 func (o *PublicGetItemBadRequest) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}][%d] publicGetItemBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] publicGetItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *PublicGetItemBadRequest) ToJSONString() string {
@@ -182,7 +182,7 @@ type PublicGetItemNotFound struct {
 }
 
 func (o *PublicGetItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}][%d] publicGetItemNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] publicGetItemNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *PublicGetItemNotFound) ToJSONString() string {
@@ -235,7 +235,7 @@ type PublicGetItemInternalServerError struct {
 }
 
 func (o *PublicGetItemInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}][%d] publicGetItemInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] publicGetItemInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *PublicGetItemInternalServerError) ToJSONString() string {

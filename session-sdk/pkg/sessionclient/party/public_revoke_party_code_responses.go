@@ -27,8 +27,8 @@ type PublicRevokePartyCodeReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PublicRevokePartyCodeReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewPublicRevokePartyCodeOK()
+	case 204:
+		result := NewPublicRevokePartyCodeNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,54 +74,27 @@ func (o *PublicRevokePartyCodeReader) ReadResponse(response runtime.ClientRespon
 	}
 }
 
-// NewPublicRevokePartyCodeOK creates a PublicRevokePartyCodeOK with default headers values
-func NewPublicRevokePartyCodeOK() *PublicRevokePartyCodeOK {
-	return &PublicRevokePartyCodeOK{}
+// NewPublicRevokePartyCodeNoContent creates a PublicRevokePartyCodeNoContent with default headers values
+func NewPublicRevokePartyCodeNoContent() *PublicRevokePartyCodeNoContent {
+	return &PublicRevokePartyCodeNoContent{}
 }
 
-/*PublicRevokePartyCodeOK handles this case with default header values.
+/*PublicRevokePartyCodeNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type PublicRevokePartyCodeOK struct {
-	Payload *sessionclientmodels.ApimodelsPartySessionResponse
+type PublicRevokePartyCodeNoContent struct {
 }
 
-func (o *PublicRevokePartyCodeOK) Error() string {
-	return fmt.Sprintf("[DELETE /session/v1/public/namespaces/{namespace}/parties/{partyId}/code][%d] publicRevokePartyCodeOK  %+v", 200, o.ToJSONString())
+func (o *PublicRevokePartyCodeNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /session/v1/public/namespaces/{namespace}/parties/{partyId}/code][%d] publicRevokePartyCodeNoContent ", 204)
 }
 
-func (o *PublicRevokePartyCodeOK) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicRevokePartyCodeOK) GetPayload() *sessionclientmodels.ApimodelsPartySessionResponse {
-	return o.Payload
-}
-
-func (o *PublicRevokePartyCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicRevokePartyCodeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(sessionclientmodels.ApimodelsPartySessionResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil

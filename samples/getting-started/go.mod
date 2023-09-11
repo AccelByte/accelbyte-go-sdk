@@ -2,7 +2,7 @@ module golang-application
 
 go 1.18
 
-require github.com/AccelByte/accelbyte-go-sdk v0.51.0 // Use the latest version when starting a new project
+require github.com/AccelByte/accelbyte-go-sdk v0.52.0 // Use the latest version when starting a new project
 
 require (
 	github.com/AccelByte/bloom v0.0.0-20180915202807-98c052463922 // indirect

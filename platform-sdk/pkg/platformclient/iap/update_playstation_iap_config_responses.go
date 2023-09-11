@@ -33,12 +33,6 @@ func (o *UpdatePlaystationIAPConfigReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewUpdatePlaystationIAPConfigBadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -94,59 +88,6 @@ func (o *UpdatePlaystationIAPConfigOK) readResponse(response runtime.ClientRespo
 	}
 
 	o.Payload = new(platformclientmodels.PlayStationIAPConfigInfo)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewUpdatePlaystationIAPConfigBadRequest creates a UpdatePlaystationIAPConfigBadRequest with default headers values
-func NewUpdatePlaystationIAPConfigBadRequest() *UpdatePlaystationIAPConfigBadRequest {
-	return &UpdatePlaystationIAPConfigBadRequest{}
-}
-
-/*UpdatePlaystationIAPConfigBadRequest handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39130</td><td>Invalid playstation config: [{message}]</td></tr></table>
-*/
-type UpdatePlaystationIAPConfigBadRequest struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *UpdatePlaystationIAPConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/playstation][%d] updatePlaystationIapConfigBadRequest  %+v", 400, o.ToJSONString())
-}
-
-func (o *UpdatePlaystationIAPConfigBadRequest) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *UpdatePlaystationIAPConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *UpdatePlaystationIAPConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -22,7 +22,6 @@ import (
 // Get the enum in QueryRevocationHistoriesParams
 const (
 	QueryRevocationHistoriesDLCConstant   = "DLC"
-	QueryRevocationHistoriesIAPConstant   = "IAP"
 	QueryRevocationHistoriesORDERConstant = "ORDER"
 	QueryRevocationHistoriesOTHERConstant = "OTHER"
 )

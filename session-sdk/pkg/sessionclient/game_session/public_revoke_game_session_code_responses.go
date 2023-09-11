@@ -27,8 +27,8 @@ type PublicRevokeGameSessionCodeReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PublicRevokeGameSessionCodeReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewPublicRevokeGameSessionCodeOK()
+	case 204:
+		result := NewPublicRevokeGameSessionCodeNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,54 +74,27 @@ func (o *PublicRevokeGameSessionCodeReader) ReadResponse(response runtime.Client
 	}
 }
 
-// NewPublicRevokeGameSessionCodeOK creates a PublicRevokeGameSessionCodeOK with default headers values
-func NewPublicRevokeGameSessionCodeOK() *PublicRevokeGameSessionCodeOK {
-	return &PublicRevokeGameSessionCodeOK{}
+// NewPublicRevokeGameSessionCodeNoContent creates a PublicRevokeGameSessionCodeNoContent with default headers values
+func NewPublicRevokeGameSessionCodeNoContent() *PublicRevokeGameSessionCodeNoContent {
+	return &PublicRevokeGameSessionCodeNoContent{}
 }
 
-/*PublicRevokeGameSessionCodeOK handles this case with default header values.
+/*PublicRevokeGameSessionCodeNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type PublicRevokeGameSessionCodeOK struct {
-	Payload *sessionclientmodels.ApimodelsGameSessionResponse
+type PublicRevokeGameSessionCodeNoContent struct {
 }
 
-func (o *PublicRevokeGameSessionCodeOK) Error() string {
-	return fmt.Sprintf("[DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code][%d] publicRevokeGameSessionCodeOK  %+v", 200, o.ToJSONString())
+func (o *PublicRevokeGameSessionCodeNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/code][%d] publicRevokeGameSessionCodeNoContent ", 204)
 }
 
-func (o *PublicRevokeGameSessionCodeOK) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicRevokeGameSessionCodeOK) GetPayload() *sessionclientmodels.ApimodelsGameSessionResponse {
-	return o.Payload
-}
-
-func (o *PublicRevokeGameSessionCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicRevokeGameSessionCodeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(sessionclientmodels.ApimodelsGameSessionResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil

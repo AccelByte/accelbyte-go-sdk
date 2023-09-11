@@ -31,6 +31,15 @@ type ApimodelsSaveItemToInventoryReq struct {
 	// Required: true
 	ServerCustomAttributes interface{} `json:"serverCustomAttributes"`
 
+	// slotid
+	// Required: true
+	SlotID *string `json:"slotId"`
+
+	// slotused
+	// Required: true
+	// Format: int32
+	SlotUsed *int32 `json:"slotUsed"`
+
 	// sourceitemid
 	// Required: true
 	SourceItemID *string `json:"sourceItemId"`
@@ -49,6 +58,12 @@ func (m *ApimodelsSaveItemToInventoryReq) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateQty(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSlotUsed(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSourceItemID(formats); err != nil {
@@ -70,6 +85,24 @@ func (m *ApimodelsSaveItemToInventoryReq) Validate(formats strfmt.Registry) erro
 func (m *ApimodelsSaveItemToInventoryReq) validateQty(formats strfmt.Registry) error {
 
 	if err := validate.Required("qty", "body", m.Qty); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsSaveItemToInventoryReq) validateSlotID(formats strfmt.Registry) error {
+
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsSaveItemToInventoryReq) validateSlotUsed(formats strfmt.Registry) error {
+
+	if err := validate.Required("slotUsed", "body", m.SlotUsed); err != nil {
 		return err
 	}
 

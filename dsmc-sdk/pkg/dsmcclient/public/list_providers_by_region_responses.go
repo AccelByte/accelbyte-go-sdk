@@ -15,8 +15,6 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 )
 
 // ListProvidersByRegionReader is a Reader for the ListProvidersByRegion structure.
@@ -54,7 +52,7 @@ func NewListProvidersByRegionOK() *ListProvidersByRegionOK {
   Default providers got
 */
 type ListProvidersByRegionOK struct {
-	Payload *dsmcclientmodels.ModelsDefaultProvider
+	Payload []string
 }
 
 func (o *ListProvidersByRegionOK) Error() string {
@@ -76,7 +74,7 @@ func (o *ListProvidersByRegionOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ListProvidersByRegionOK) GetPayload() *dsmcclientmodels.ModelsDefaultProvider {
+func (o *ListProvidersByRegionOK) GetPayload() []string {
 	return o.Payload
 }
 
@@ -87,10 +85,8 @@ func (o *ListProvidersByRegionOK) readResponse(response runtime.ClientResponse, 
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(dsmcclientmodels.ModelsDefaultProvider)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

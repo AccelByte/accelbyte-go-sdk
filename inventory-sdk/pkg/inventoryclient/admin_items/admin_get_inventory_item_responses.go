@@ -58,7 +58,7 @@ func (o *AdminGetInventoryItemReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -76,7 +76,7 @@ type AdminGetInventoryItemOK struct {
 }
 
 func (o *AdminGetInventoryItemOK) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}][%d] adminGetInventoryItemOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] adminGetInventoryItemOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *AdminGetInventoryItemOK) ToJSONString() string {
@@ -129,7 +129,7 @@ type AdminGetInventoryItemBadRequest struct {
 }
 
 func (o *AdminGetInventoryItemBadRequest) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}][%d] adminGetInventoryItemBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] adminGetInventoryItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *AdminGetInventoryItemBadRequest) ToJSONString() string {
@@ -182,7 +182,7 @@ type AdminGetInventoryItemNotFound struct {
 }
 
 func (o *AdminGetInventoryItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}][%d] adminGetInventoryItemNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] adminGetInventoryItemNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *AdminGetInventoryItemNotFound) ToJSONString() string {
@@ -235,7 +235,7 @@ type AdminGetInventoryItemInternalServerError struct {
 }
 
 func (o *AdminGetInventoryItemInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}][%d] adminGetInventoryItemInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[GET /inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}][%d] adminGetInventoryItemInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *AdminGetInventoryItemInternalServerError) ToJSONString() string {

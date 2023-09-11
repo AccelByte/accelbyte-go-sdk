@@ -37,6 +37,7 @@
 | `/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}` | GET | GetImagePatchDetailShort | [GetImagePatchDetailShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [GetImagePatchDetailShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [GetImagePatchDetailShort](../../samples/cli/cmd/dsmc/imageConfig/getImagePatchDetail.go) |
 | `/dsmcontroller/admin/namespaces/{namespace}/repository` | GET | GetRepositoryShort | [GetRepositoryShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [GetRepositoryShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [GetRepositoryShort](../../samples/cli/cmd/dsmc/imageConfig/getRepository.go) |
 | `/dsmcontroller/admin/repository` | POST | CreateRepositoryShort | [CreateRepositoryShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [CreateRepositoryShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [CreateRepositoryShort](../../samples/cli/cmd/dsmc/imageConfig/createRepository.go) |
+| `/dsmcontroller/namespaces/{namespace}/images` | GET | ListImagesClientShort | [ListImagesClientShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [ListImagesClientShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [ListImagesClientShort](../../samples/cli/cmd/dsmc/imageConfig/listImagesClient.go) |
 | `/dsmcontroller/namespaces/{namespace}/images/limit` | GET | ImageLimitClientShort | [ImageLimitClientShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [ImageLimitClientShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [ImageLimitClientShort](../../samples/cli/cmd/dsmc/imageConfig/imageLimitClient.go) |
 | `/dsmcontroller/namespaces/{namespace}/images/versions/{version}` | GET | ImageDetailClientShort | [ImageDetailClientShort](../../dsmc-sdk/pkg/dsmcclient/image_config/image_config_client.go) | [ImageDetailClientShort](../../services-api/pkg/service/dsmc/imageConfig.go) | [ImageDetailClientShort](../../samples/cli/cmd/dsmc/imageConfig/imageDetailClient.go) |
 
@@ -155,6 +156,7 @@
 | `models.GetImagePatchDetailResponse` | [ModelsGetImagePatchDetailResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_get_image_patch_detail_response.go) |
 | `models.ImageRecord` | [ModelsImageRecord ](../../dsmc-sdk/pkg/dsmcclientmodels/models_image_record.go) |
 | `models.ImageRecordUpdate` | [ModelsImageRecordUpdate ](../../dsmc-sdk/pkg/dsmcclientmodels/models_image_record_update.go) |
+| `models.ImageReplication` | [ModelsImageReplication ](../../dsmc-sdk/pkg/dsmcclientmodels/models_image_replication.go) |
 | `models.ImportResponse` | [ModelsImportResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_import_response.go) |
 | `models.InstanceSpec` | [ModelsInstanceSpec ](../../dsmc-sdk/pkg/dsmcclientmodels/models_instance_spec.go) |
 | `models.ListConfigResponse` | [ModelsListConfigResponse ](../../dsmc-sdk/pkg/dsmcclientmodels/models_list_config_response.go) |
@@ -188,5 +190,4 @@
 | `models.UpdatePodConfigRequest` | [ModelsUpdatePodConfigRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_pod_config_request.go) |
 | `models.UpdatePortRequest` | [ModelsUpdatePortRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_port_request.go) |
 | `models.UpdateRegionOverrideRequest` | [ModelsUpdateRegionOverrideRequest ](../../dsmc-sdk/pkg/dsmcclientmodels/models_update_region_override_request.go) |
-| `models.UploaderFlag` | [ModelsUploaderFlag ](../../dsmc-sdk/pkg/dsmcclientmodels/models_uploader_flag.go) |
 | `response.Error` | [ResponseError ](../../dsmc-sdk/pkg/dsmcclientmodels/response_error.go) |

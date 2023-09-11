@@ -22,8 +22,13 @@ import (
 // NewGetIncomingFriendRequestsParams creates a new GetIncomingFriendRequestsParams object
 // with the default values initialized.
 func NewGetIncomingFriendRequestsParams() *GetIncomingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetIncomingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetIncomingFriendRequestsParams() *GetIncomingFriendRequestsParams {
 // NewGetIncomingFriendRequestsParamsWithTimeout creates a new GetIncomingFriendRequestsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetIncomingFriendRequestsParamsWithTimeout(timeout time.Duration) *GetIncomingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetIncomingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetIncomingFriendRequestsParamsWithTimeout(timeout time.Duration) *GetIn
 // NewGetIncomingFriendRequestsParamsWithContext creates a new GetIncomingFriendRequestsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetIncomingFriendRequestsParamsWithContext(ctx context.Context) *GetIncomingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetIncomingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetIncomingFriendRequestsParamsWithContext(ctx context.Context) *GetInco
 // NewGetIncomingFriendRequestsParamsWithHTTPClient creates a new GetIncomingFriendRequestsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetIncomingFriendRequestsParamsWithHTTPClient(client *http.Client) *GetIncomingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetIncomingFriendRequestsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

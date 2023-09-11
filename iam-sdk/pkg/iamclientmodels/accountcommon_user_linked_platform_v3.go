@@ -49,6 +49,9 @@ type AccountcommonUserLinkedPlatformV3 struct {
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`
+
+	// xuid
+	Xuid string `json:"xuid,omitempty"`
 }
 
 // Validate validates this Accountcommon user linked platform V3

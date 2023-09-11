@@ -22,8 +22,13 @@ import (
 // NewGetUserFriendsWithPlatformParams creates a new GetUserFriendsWithPlatformParams object
 // with the default values initialized.
 func NewGetUserFriendsWithPlatformParams() *GetUserFriendsWithPlatformParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsWithPlatformParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetUserFriendsWithPlatformParams() *GetUserFriendsWithPlatformParams {
 // NewGetUserFriendsWithPlatformParamsWithTimeout creates a new GetUserFriendsWithPlatformParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetUserFriendsWithPlatformParamsWithTimeout(timeout time.Duration) *GetUserFriendsWithPlatformParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsWithPlatformParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetUserFriendsWithPlatformParamsWithTimeout(timeout time.Duration) *GetU
 // NewGetUserFriendsWithPlatformParamsWithContext creates a new GetUserFriendsWithPlatformParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetUserFriendsWithPlatformParamsWithContext(ctx context.Context) *GetUserFriendsWithPlatformParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsWithPlatformParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetUserFriendsWithPlatformParamsWithContext(ctx context.Context) *GetUse
 // NewGetUserFriendsWithPlatformParamsWithHTTPClient creates a new GetUserFriendsWithPlatformParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetUserFriendsWithPlatformParamsWithHTTPClient(client *http.Client) *GetUserFriendsWithPlatformParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsWithPlatformParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

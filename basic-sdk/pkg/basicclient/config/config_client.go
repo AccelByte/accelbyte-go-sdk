@@ -36,8 +36,8 @@ type ClientService interface {
 	GetConfig1Short(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, error)
 	DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, *DeleteConfig1BadRequest, *DeleteConfig1Unauthorized, *DeleteConfig1Forbidden, *DeleteConfig1NotFound, error)
 	DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, error)
-	UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error)
-	UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, error)
+	UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error)
+	UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, error)
 	GetPublisherConfig(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, *GetPublisherConfigBadRequest, *GetPublisherConfigUnauthorized, *GetPublisherConfigForbidden, *GetPublisherConfigNotFound, error)
 	GetPublisherConfigShort(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, error)
 
@@ -414,7 +414,7 @@ Other detail info:
   * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=4 (UPDATE)
   *  Returns : created config
 */
-func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error) {
+func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConfig1Params()
@@ -447,7 +447,7 @@ func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *UpdateConfig1Created:
+	case *UpdateConfig1OK:
 		return v, nil, nil, nil, nil, nil
 
 	case *UpdateConfig1BadRequest:
@@ -475,7 +475,7 @@ Other detail info:
   * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=4 (UPDATE)
   *  Returns : created config
 */
-func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1Created, error) {
+func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConfig1Params()
@@ -508,7 +508,7 @@ func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *UpdateConfig1Created:
+	case *UpdateConfig1OK:
 		return v, nil
 	case *UpdateConfig1BadRequest:
 		return nil, v

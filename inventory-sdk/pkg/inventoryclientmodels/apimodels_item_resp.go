@@ -48,6 +48,15 @@ type ApimodelsItemResp struct {
 	// Required: true
 	ServerCustomAttributes interface{} `json:"serverCustomAttributes"`
 
+	// slotid
+	// Required: true
+	SlotID *string `json:"slotId"`
+
+	// slotused
+	// Required: true
+	// Format: int32
+	SlotUsed *int32 `json:"slotUsed"`
+
 	// source
 	// Required: true
 	Source *string `json:"source"`
@@ -91,6 +100,12 @@ func (m *ApimodelsItemResp) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateQty(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSlotUsed(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSource(formats); err != nil {
@@ -161,6 +176,24 @@ func (m *ApimodelsItemResp) validateNamespace(formats strfmt.Registry) error {
 func (m *ApimodelsItemResp) validateQty(formats strfmt.Registry) error {
 
 	if err := validate.Required("qty", "body", m.Qty); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsItemResp) validateSlotID(formats strfmt.Registry) error {
+
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsItemResp) validateSlotUsed(formats strfmt.Registry) error {
+
+	if err := validate.Required("slotUsed", "body", m.SlotUsed); err != nil {
 		return err
 	}
 

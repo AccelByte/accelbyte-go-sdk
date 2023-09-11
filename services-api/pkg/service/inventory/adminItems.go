@@ -73,6 +73,29 @@ func (aaa *AdminItemsService) AdminGetInventoryItem(input *admin_items.AdminGetI
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminConsumeUserItemShort instead.
+func (aaa *AdminItemsService) AdminConsumeUserItem(input *admin_items.AdminConsumeUserItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.AdminItems.AdminConsumeUserItem(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminBulkUpdateMyItemsShort instead.
 func (aaa *AdminItemsService) AdminBulkUpdateMyItems(input *admin_items.AdminBulkUpdateMyItemsParams) ([]*inventoryclientmodels.ApimodelsUpdateItemResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -123,29 +146,6 @@ func (aaa *AdminItemsService) AdminBulkRemoveItems(input *admin_items.AdminBulkR
 		return nil, err
 	}
 	ok, badRequest, notFound, internalServerError, err := aaa.Client.AdminItems.AdminBulkRemoveItems(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if notFound != nil {
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-// Deprecated: 2022-01-10 - please use AdminConsumeUserItemShort instead.
-func (aaa *AdminItemsService) AdminConsumeUserItem(input *admin_items.AdminConsumeUserItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, notFound, internalServerError, err := aaa.Client.AdminItems.AdminConsumeUserItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -232,6 +232,31 @@ func (aaa *AdminItemsService) AdminGetInventoryItemShort(input *admin_items.Admi
 	return ok.GetPayload(), nil
 }
 
+func (aaa *AdminItemsService) AdminConsumeUserItemShort(input *admin_items.AdminConsumeUserItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminItems.AdminConsumeUserItemShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminItemsService) AdminBulkUpdateMyItemsShort(input *admin_items.AdminBulkUpdateMyItemsParams) ([]*inventoryclientmodels.ApimodelsUpdateItemResp, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -300,31 +325,6 @@ func (aaa *AdminItemsService) AdminBulkRemoveItemsShort(input *admin_items.Admin
 	}
 
 	ok, err := aaa.Client.AdminItems.AdminBulkRemoveItemsShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (aaa *AdminItemsService) AdminConsumeUserItemShort(input *admin_items.AdminConsumeUserItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.AdminItems.AdminConsumeUserItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

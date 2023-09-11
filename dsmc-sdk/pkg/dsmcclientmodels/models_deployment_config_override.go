@@ -58,12 +58,10 @@ type ModelsDeploymentConfigOverride struct {
 	Name *string `json:"name"`
 
 	// region_overrides
-	// Required: true
-	RegionOverrides map[string]ModelsPodCountConfigOverride `json:"region_overrides"`
+	RegionOverrides map[string]ModelsPodCountConfigOverride `json:"region_overrides,omitempty"`
 
 	// regions
-	// Required: true
-	Regions []string `json:"regions"`
+	Regions []string `json:"regions,omitempty"`
 
 	// session_timeout
 	// Format: int32
@@ -104,9 +102,6 @@ func (m *ModelsDeploymentConfigOverride) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRegions(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUnlimited(formats); err != nil {
@@ -188,37 +183,6 @@ func (m *ModelsDeploymentConfigOverride) validateMinCount(formats strfmt.Registr
 func (m *ModelsDeploymentConfigOverride) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsDeploymentConfigOverride) validateRegionOverrides(formats strfmt.Registry) error {
-
-	if err := validate.Required("region_overrides", "body", m.RegionOverrides); err != nil {
-		return err
-	}
-
-	for k := range m.RegionOverrides {
-
-		if err := validate.Required("region_overrides"+"."+k, "body", m.RegionOverrides[k]); err != nil {
-			return err
-		}
-		if val, ok := m.RegionOverrides[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ModelsDeploymentConfigOverride) validateRegions(formats strfmt.Registry) error {
-
-	if err := validate.Required("regions", "body", m.Regions); err != nil {
 		return err
 	}
 

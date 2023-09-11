@@ -114,7 +114,7 @@ func (aaa *ConfigService) UpdateConfig1(input *config.UpdateConfig1Params) (*bas
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.UpdateConfig1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.UpdateConfig1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -131,7 +131,7 @@ func (aaa *ConfigService) UpdateConfig1(input *config.UpdateConfig1Params) (*bas
 		return nil, err
 	}
 
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use GetPublisherConfigShort instead.
@@ -252,12 +252,12 @@ func (aaa *ConfigService) UpdateConfig1Short(input *config.UpdateConfig1Params) 
 		}
 	}
 
-	created, err := aaa.Client.Config.UpdateConfig1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.UpdateConfig1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
 
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ConfigService) GetPublisherConfigShort(input *config.GetPublisherConfigParams) (*basicclientmodels.ConfigInfo, error) {

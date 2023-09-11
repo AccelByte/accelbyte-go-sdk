@@ -22,8 +22,13 @@ import (
 // NewGetListOfFriendsParams creates a new GetListOfFriendsParams object
 // with the default values initialized.
 func NewGetListOfFriendsParams() *GetListOfFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetListOfFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetListOfFriendsParams() *GetListOfFriendsParams {
 // NewGetListOfFriendsParamsWithTimeout creates a new GetListOfFriendsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetListOfFriendsParamsWithTimeout(timeout time.Duration) *GetListOfFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetListOfFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetListOfFriendsParamsWithTimeout(timeout time.Duration) *GetListOfFrien
 // NewGetListOfFriendsParamsWithContext creates a new GetListOfFriendsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetListOfFriendsParamsWithContext(ctx context.Context) *GetListOfFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetListOfFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetListOfFriendsParamsWithContext(ctx context.Context) *GetListOfFriends
 // NewGetListOfFriendsParamsWithHTTPClient creates a new GetListOfFriendsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetListOfFriendsParamsWithHTTPClient(client *http.Client) *GetListOfFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetListOfFriendsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

@@ -32,7 +32,7 @@ type FulfillmentScriptContext struct {
 	Order *OrderSummary `json:"order,omitempty"`
 
 	// fulfillment source, default PURCHASE
-	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'EXPIRATION', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -88,7 +88,7 @@ var fulfillmentScriptContextTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "EXPIRATION", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -107,6 +107,9 @@ const (
 	// FulfillmentScriptContextSourceDLC captures enum value "DLC"
 	FulfillmentScriptContextSourceDLC string = "DLC"
 
+	// FulfillmentScriptContextSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
+	FulfillmentScriptContextSourceDLCREVOCATION string = "DLC_REVOCATION"
+
 	// FulfillmentScriptContextSourceEXPIRATION captures enum value "EXPIRATION"
 	FulfillmentScriptContextSourceEXPIRATION string = "EXPIRATION"
 
@@ -115,9 +118,6 @@ const (
 
 	// FulfillmentScriptContextSourceIAP captures enum value "IAP"
 	FulfillmentScriptContextSourceIAP string = "IAP"
-
-	// FulfillmentScriptContextSourceIAPCHARGEBACKREVERSED captures enum value "IAP_CHARGEBACK_REVERSED"
-	FulfillmentScriptContextSourceIAPCHARGEBACKREVERSED string = "IAP_CHARGEBACK_REVERSED"
 
 	// FulfillmentScriptContextSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
 	FulfillmentScriptContextSourceORDERREVOCATION string = "ORDER_REVOCATION"

@@ -22,8 +22,13 @@ import (
 // NewGetUserIncomingFriendsWithTimeParams creates a new GetUserIncomingFriendsWithTimeParams object
 // with the default values initialized.
 func NewGetUserIncomingFriendsWithTimeParams() *GetUserIncomingFriendsWithTimeParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsWithTimeParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetUserIncomingFriendsWithTimeParams() *GetUserIncomingFriendsWithTimePa
 // NewGetUserIncomingFriendsWithTimeParamsWithTimeout creates a new GetUserIncomingFriendsWithTimeParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetUserIncomingFriendsWithTimeParamsWithTimeout(timeout time.Duration) *GetUserIncomingFriendsWithTimeParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsWithTimeParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetUserIncomingFriendsWithTimeParamsWithTimeout(timeout time.Duration) *
 // NewGetUserIncomingFriendsWithTimeParamsWithContext creates a new GetUserIncomingFriendsWithTimeParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetUserIncomingFriendsWithTimeParamsWithContext(ctx context.Context) *GetUserIncomingFriendsWithTimeParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsWithTimeParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetUserIncomingFriendsWithTimeParamsWithContext(ctx context.Context) *Ge
 // NewGetUserIncomingFriendsWithTimeParamsWithHTTPClient creates a new GetUserIncomingFriendsWithTimeParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetUserIncomingFriendsWithTimeParamsWithHTTPClient(client *http.Client) *GetUserIncomingFriendsWithTimeParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsWithTimeParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

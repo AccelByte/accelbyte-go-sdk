@@ -58,7 +58,7 @@ func (o *AdminConsumeUserItemReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -76,7 +76,7 @@ type AdminConsumeUserItemOK struct {
 }
 
 func (o *AdminConsumeUserItemOK) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume][%d] adminConsumeUserItemOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume][%d] adminConsumeUserItemOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *AdminConsumeUserItemOK) ToJSONString() string {
@@ -129,7 +129,7 @@ type AdminConsumeUserItemBadRequest struct {
 }
 
 func (o *AdminConsumeUserItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume][%d] adminConsumeUserItemBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume][%d] adminConsumeUserItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *AdminConsumeUserItemBadRequest) ToJSONString() string {
@@ -182,7 +182,7 @@ type AdminConsumeUserItemNotFound struct {
 }
 
 func (o *AdminConsumeUserItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume][%d] adminConsumeUserItemNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume][%d] adminConsumeUserItemNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *AdminConsumeUserItemNotFound) ToJSONString() string {
@@ -235,7 +235,7 @@ type AdminConsumeUserItemInternalServerError struct {
 }
 
 func (o *AdminConsumeUserItemInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume][%d] adminConsumeUserItemInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume][%d] adminConsumeUserItemInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *AdminConsumeUserItemInternalServerError) ToJSONString() string {

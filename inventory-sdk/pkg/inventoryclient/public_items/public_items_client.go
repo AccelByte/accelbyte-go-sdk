@@ -30,6 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, *PublicConsumeMyItemBadRequest, *PublicConsumeMyItemNotFound, *PublicConsumeMyItemInternalServerError, error)
+	PublicConsumeMyItemShort(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, error)
 	PublicListItems(params *PublicListItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListItemsOK, *PublicListItemsBadRequest, *PublicListItemsInternalServerError, error)
 	PublicListItemsShort(params *PublicListItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListItemsOK, error)
 	PublicBulkUpdateMyItems(params *PublicBulkUpdateMyItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkUpdateMyItemsOK, *PublicBulkUpdateMyItemsBadRequest, *PublicBulkUpdateMyItemsNotFound, *PublicBulkUpdateMyItemsInternalServerError, error)
@@ -40,10 +42,117 @@ type ClientService interface {
 	PublicMoveMyItemsShort(params *PublicMoveMyItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMoveMyItemsOK, error)
 	PublicGetItem(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, *PublicGetItemBadRequest, *PublicGetItemNotFound, *PublicGetItemInternalServerError, error)
 	PublicGetItemShort(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, error)
-	PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, *PublicConsumeMyItemBadRequest, *PublicConsumeMyItemNotFound, *PublicConsumeMyItemInternalServerError, error)
-	PublicConsumeMyItemShort(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicConsumeMyItemShort instead.
+
+PublicConsumeMyItem to consume item
+
+Consume user's own item.
+*/
+func (a *Client) PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, *PublicConsumeMyItemBadRequest, *PublicConsumeMyItemNotFound, *PublicConsumeMyItemInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicConsumeMyItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicConsumeMyItem",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicConsumeMyItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicConsumeMyItemOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicConsumeMyItemBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicConsumeMyItemNotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicConsumeMyItemInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicConsumeMyItemShort to consume item
+
+Consume user's own item.
+*/
+func (a *Client) PublicConsumeMyItemShort(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicConsumeMyItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicConsumeMyItem",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicConsumeMyItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicConsumeMyItemOK:
+		return v, nil
+	case *PublicConsumeMyItemBadRequest:
+		return nil, v
+	case *PublicConsumeMyItemNotFound:
+		return nil, v
+	case *PublicConsumeMyItemInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -498,7 +607,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetItem",
 		Method:             "GET",
-		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}",
+		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -553,7 +662,7 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetItem",
 		Method:             "GET",
-		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}",
+		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -576,115 +685,6 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams, authInfo runtim
 	case *PublicGetItemNotFound:
 		return nil, v
 	case *PublicGetItemInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use PublicConsumeMyItemShort instead.
-
-PublicConsumeMyItem to consume item
-
-Consume user's own item.
-*/
-func (a *Client) PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, *PublicConsumeMyItemBadRequest, *PublicConsumeMyItemNotFound, *PublicConsumeMyItemInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicConsumeMyItemParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PublicConsumeMyItem",
-		Method:             "POST",
-		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicConsumeMyItemReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicConsumeMyItemOK:
-		return v, nil, nil, nil, nil
-
-	case *PublicConsumeMyItemBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *PublicConsumeMyItemNotFound:
-		return nil, nil, v, nil, nil
-
-	case *PublicConsumeMyItemInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-PublicConsumeMyItemShort to consume item
-
-Consume user's own item.
-*/
-func (a *Client) PublicConsumeMyItemShort(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicConsumeMyItemParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PublicConsumeMyItem",
-		Method:             "POST",
-		PathPattern:        "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicConsumeMyItemReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicConsumeMyItemOK:
-		return v, nil
-	case *PublicConsumeMyItemBadRequest:
-		return nil, v
-	case *PublicConsumeMyItemNotFound:
-		return nil, v
-	case *PublicConsumeMyItemInternalServerError:
 		return nil, v
 
 	default:

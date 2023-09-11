@@ -90,6 +90,11 @@ type PublicGetUserPlatformAccountsV3Params struct {
 
 	*/
 	Limit *int64
+	/*PlatformID
+	  Platform ID, query specific platform account
+
+	*/
+	PlatformID *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -199,6 +204,17 @@ func (o *PublicGetUserPlatformAccountsV3Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithPlatformID adds the platformID to the public get user platform accounts v3 params
+func (o *PublicGetUserPlatformAccountsV3Params) WithPlatformID(platformID *string) *PublicGetUserPlatformAccountsV3Params {
+	o.SetPlatformID(platformID)
+	return o
+}
+
+// SetPlatformID adds the platformId to the public get user platform accounts v3 params
+func (o *PublicGetUserPlatformAccountsV3Params) SetPlatformID(platformID *string) {
+	o.PlatformID = platformID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicGetUserPlatformAccountsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -259,6 +275,22 @@ func (o *PublicGetUserPlatformAccountsV3Params) WriteToRequest(r runtime.ClientR
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PlatformID != nil {
+
+		// query param platformId
+		var qrPlatformID string
+		if o.PlatformID != nil {
+			qrPlatformID = *o.PlatformID
+		}
+		qPlatformID := qrPlatformID
+		if qPlatformID != "" {
+			if err := r.SetQueryParam("platformId", qPlatformID); err != nil {
 				return err
 			}
 		}

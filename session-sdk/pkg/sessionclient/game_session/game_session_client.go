@@ -56,8 +56,8 @@ type ClientService interface {
 	UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, error)
 	GameSessionGenerateCode(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, *GameSessionGenerateCodeBadRequest, *GameSessionGenerateCodeUnauthorized, *GameSessionGenerateCodeForbidden, *GameSessionGenerateCodeNotFound, *GameSessionGenerateCodeInternalServerError, error)
 	GameSessionGenerateCodeShort(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, error)
-	PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error)
-	PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, error)
+	PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error)
+	PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, error)
 	PublicGameSessionInvite(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, *PublicGameSessionInviteNoContent, *PublicGameSessionInviteBadRequest, *PublicGameSessionInviteUnauthorized, *PublicGameSessionInviteNotFound, *PublicGameSessionInviteInternalServerError, error)
 	PublicGameSessionInviteShort(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, error)
 	JoinGameSession(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, *JoinGameSessionBadRequest, *JoinGameSessionUnauthorized, *JoinGameSessionForbidden, *JoinGameSessionNotFound, *JoinGameSessionInternalServerError, error)
@@ -1682,7 +1682,7 @@ Deprecated: 2022-08-10 - Use PublicRevokeGameSessionCodeShort instead.
 PublicRevokeGameSessionCode revoke game session code. requires namespace:{namespace}:session:game [update]
 Revoke code of the game session. Only leader can revoke a code.
 */
-func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error) {
+func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRevokeGameSessionCodeParams()
@@ -1715,7 +1715,7 @@ func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCode
 
 	switch v := result.(type) {
 
-	case *PublicRevokeGameSessionCodeOK:
+	case *PublicRevokeGameSessionCodeNoContent:
 		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicRevokeGameSessionCodeBadRequest:
@@ -1742,7 +1742,7 @@ func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCode
 PublicRevokeGameSessionCodeShort revoke game session code. requires namespace:{namespace}:session:game [update]
 Revoke code of the game session. Only leader can revoke a code.
 */
-func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeOK, error) {
+func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRevokeGameSessionCodeParams()
@@ -1775,7 +1775,7 @@ func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessio
 
 	switch v := result.(type) {
 
-	case *PublicRevokeGameSessionCodeOK:
+	case *PublicRevokeGameSessionCodeNoContent:
 		return v, nil
 	case *PublicRevokeGameSessionCodeBadRequest:
 		return nil, v

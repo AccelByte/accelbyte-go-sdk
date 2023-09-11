@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.25.0"
+    "version": "3.27.1"
   },
   "schemes": [
     "https"
@@ -85,12 +85,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -165,12 +167,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -245,12 +249,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -325,12 +331,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -405,12 +413,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -485,12 +495,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -1542,12 +1554,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -1635,12 +1649,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -1722,12 +1738,14 @@
             "type": "string"
           },
           {
+            "default": 25,
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
             "type": "integer"
           },
           {
+            "default": 0,
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
@@ -9137,11 +9155,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-25T14:15:00+00:00",
-    "gitHash": "a87dbe3f5ac23ee3beb73280d3bfab4c61310e5f",
+    "buildDate": "2023-09-03T14:49:45+00:00",
+    "gitHash": "15e2cd32d9893e6592262fa4476e35a25b8bb18a",
     "name": "justice-lobby-server",
-    "revisionID": "3.25.0",
-    "version": "3.25.0",
+    "revisionID": "3.27.1",
+    "version": "3.27.1",
     "version-justice": "3.45.0",
     "version-roles-seeding": "0.0.29"
   }

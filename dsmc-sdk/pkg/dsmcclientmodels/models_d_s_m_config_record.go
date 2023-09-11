@@ -51,8 +51,7 @@ type ModelsDSMConfigRecord struct {
 	Port int32 `json:"port"`
 
 	// ports
-	// Required: true
-	Ports map[string]int64 `json:"ports"`
+	Ports map[string]int64 `json:"ports,omitempty"`
 
 	// protocol
 	// Required: true

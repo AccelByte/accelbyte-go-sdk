@@ -27,7 +27,7 @@ type RevocationRequest struct {
 	RevokeEntries []*RevokeEntry `json:"revokeEntries,omitempty"`
 
 	// revoke source
-	// Enum: ['DLC', 'IAP', 'ORDER', 'OTHER']
+	// Enum: ['DLC', 'ORDER', 'OTHER']
 	Source string `json:"source,omitempty"`
 
 	// transaction id: DLC Order No, Order No.
@@ -48,7 +48,7 @@ var revocationRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DLC", "IAP", "ORDER", "OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DLC", "ORDER", "OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -60,9 +60,6 @@ const (
 
 	// RevocationRequestSourceDLC captures enum value "DLC"
 	RevocationRequestSourceDLC string = "DLC"
-
-	// RevocationRequestSourceIAP captures enum value "IAP"
-	RevocationRequestSourceIAP string = "IAP"
 
 	// RevocationRequestSourceORDER captures enum value "ORDER"
 	RevocationRequestSourceORDER string = "ORDER"

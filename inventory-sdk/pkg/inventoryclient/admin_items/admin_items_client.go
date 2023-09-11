@@ -34,14 +34,14 @@ type ClientService interface {
 	AdminListItemsShort(params *AdminListItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListItemsOK, error)
 	AdminGetInventoryItem(params *AdminGetInventoryItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInventoryItemOK, *AdminGetInventoryItemBadRequest, *AdminGetInventoryItemNotFound, *AdminGetInventoryItemInternalServerError, error)
 	AdminGetInventoryItemShort(params *AdminGetInventoryItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInventoryItemOK, error)
+	AdminConsumeUserItem(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, *AdminConsumeUserItemBadRequest, *AdminConsumeUserItemNotFound, *AdminConsumeUserItemInternalServerError, error)
+	AdminConsumeUserItemShort(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, error)
 	AdminBulkUpdateMyItems(params *AdminBulkUpdateMyItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateMyItemsOK, *AdminBulkUpdateMyItemsBadRequest, *AdminBulkUpdateMyItemsNotFound, *AdminBulkUpdateMyItemsInternalServerError, error)
 	AdminBulkUpdateMyItemsShort(params *AdminBulkUpdateMyItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateMyItemsOK, error)
 	AdminSaveItemToInventory(params *AdminSaveItemToInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemToInventoryOK, *AdminSaveItemToInventoryBadRequest, *AdminSaveItemToInventoryInternalServerError, error)
 	AdminSaveItemToInventoryShort(params *AdminSaveItemToInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemToInventoryOK, error)
 	AdminBulkRemoveItems(params *AdminBulkRemoveItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkRemoveItemsOK, *AdminBulkRemoveItemsBadRequest, *AdminBulkRemoveItemsNotFound, *AdminBulkRemoveItemsInternalServerError, error)
 	AdminBulkRemoveItemsShort(params *AdminBulkRemoveItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkRemoveItemsOK, error)
-	AdminConsumeUserItem(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, *AdminConsumeUserItemBadRequest, *AdminConsumeUserItemNotFound, *AdminConsumeUserItemInternalServerError, error)
-	AdminConsumeUserItemShort(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, error)
 	AdminSaveItem(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, *AdminSaveItemBadRequest, *AdminSaveItemInternalServerError, error)
 	AdminSaveItemShort(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, error)
 
@@ -184,7 +184,7 @@ func (a *Client) AdminGetInventoryItem(params *AdminGetInventoryItemParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetInventoryItem",
 		Method:             "GET",
-		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -241,7 +241,7 @@ func (a *Client) AdminGetInventoryItemShort(params *AdminGetInventoryItemParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetInventoryItem",
 		Method:             "GET",
-		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -264,6 +264,119 @@ func (a *Client) AdminGetInventoryItemShort(params *AdminGetInventoryItemParams,
 	case *AdminGetInventoryItemNotFound:
 		return nil, v
 	case *AdminGetInventoryItemInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminConsumeUserItemShort instead.
+
+AdminConsumeUserItem to consume item
+
+Consume user's own item
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
+*/
+func (a *Client) AdminConsumeUserItem(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, *AdminConsumeUserItemBadRequest, *AdminConsumeUserItemNotFound, *AdminConsumeUserItemInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminConsumeUserItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminConsumeUserItem",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminConsumeUserItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminConsumeUserItemOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminConsumeUserItemBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminConsumeUserItemNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminConsumeUserItemInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminConsumeUserItemShort to consume item
+
+Consume user's own item
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
+*/
+func (a *Client) AdminConsumeUserItemShort(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminConsumeUserItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminConsumeUserItem",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminConsumeUserItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminConsumeUserItemOK:
+		return v, nil
+	case *AdminConsumeUserItemBadRequest:
+		return nil, v
+	case *AdminConsumeUserItemNotFound:
+		return nil, v
+	case *AdminConsumeUserItemInternalServerError:
 		return nil, v
 
 	default:
@@ -614,119 +727,6 @@ func (a *Client) AdminBulkRemoveItemsShort(params *AdminBulkRemoveItemsParams, a
 	case *AdminBulkRemoveItemsNotFound:
 		return nil, v
 	case *AdminBulkRemoveItemsInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use AdminConsumeUserItemShort instead.
-
-AdminConsumeUserItem to consume item
-
-Consume user's own item
-
-Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
-*/
-func (a *Client) AdminConsumeUserItem(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, *AdminConsumeUserItemBadRequest, *AdminConsumeUserItemNotFound, *AdminConsumeUserItemInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminConsumeUserItemParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AdminConsumeUserItem",
-		Method:             "POST",
-		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminConsumeUserItemReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminConsumeUserItemOK:
-		return v, nil, nil, nil, nil
-
-	case *AdminConsumeUserItemBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *AdminConsumeUserItemNotFound:
-		return nil, nil, v, nil, nil
-
-	case *AdminConsumeUserItemInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-AdminConsumeUserItemShort to consume item
-
-Consume user's own item
-
-Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
-*/
-func (a *Client) AdminConsumeUserItemShort(params *AdminConsumeUserItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminConsumeUserItemOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminConsumeUserItemParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AdminConsumeUserItem",
-		Method:             "POST",
-		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AdminConsumeUserItemReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminConsumeUserItemOK:
-		return v, nil
-	case *AdminConsumeUserItemBadRequest:
-		return nil, v
-	case *AdminConsumeUserItemNotFound:
-		return nil, v
-	case *AdminConsumeUserItemInternalServerError:
 		return nil, v
 
 	default:

@@ -387,7 +387,9 @@ Deprecated: 2022-08-10 - Use AdminUpdateInventoryShort instead.
 AdminUpdateInventory to update inventory
 
 Updating an inventory.
-MaxSlots will be increased from existing value
+Positive value will increase MaxSlots from existing value
+Negative value will decrease MaxSlots from existing value
+Limited slots can not be changed to unlimited, vice versa
 
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
 */
@@ -445,7 +447,9 @@ func (a *Client) AdminUpdateInventory(params *AdminUpdateInventoryParams, authIn
 AdminUpdateInventoryShort to update inventory
 
 Updating an inventory.
-MaxSlots will be increased from existing value
+Positive value will increase MaxSlots from existing value
+Negative value will decrease MaxSlots from existing value
+Limited slots can not be changed to unlimited, vice versa
 
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
 */

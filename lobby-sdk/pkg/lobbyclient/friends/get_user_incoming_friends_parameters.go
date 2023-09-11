@@ -22,8 +22,13 @@ import (
 // NewGetUserIncomingFriendsParams creates a new GetUserIncomingFriendsParams object
 // with the default values initialized.
 func NewGetUserIncomingFriendsParams() *GetUserIncomingFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetUserIncomingFriendsParams() *GetUserIncomingFriendsParams {
 // NewGetUserIncomingFriendsParamsWithTimeout creates a new GetUserIncomingFriendsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetUserIncomingFriendsParamsWithTimeout(timeout time.Duration) *GetUserIncomingFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetUserIncomingFriendsParamsWithTimeout(timeout time.Duration) *GetUserI
 // NewGetUserIncomingFriendsParamsWithContext creates a new GetUserIncomingFriendsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetUserIncomingFriendsParamsWithContext(ctx context.Context) *GetUserIncomingFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetUserIncomingFriendsParamsWithContext(ctx context.Context) *GetUserInc
 // NewGetUserIncomingFriendsParamsWithHTTPClient creates a new GetUserIncomingFriendsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetUserIncomingFriendsParamsWithHTTPClient(client *http.Client) *GetUserIncomingFriendsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserIncomingFriendsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

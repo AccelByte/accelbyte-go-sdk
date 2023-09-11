@@ -9615,6 +9615,94 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin List User ID By Platform User ID\nRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026#39;\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID \n\n\u0026lt;strong\u0026gt;nintendo platform user ID\u0026lt;/strong\u0026gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1\n",
+        "operationId": "AdminListUserIDByPlatformUserIDsV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PlatformUserIDRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox",
+            "in": "query",
+            "name": "rawPID",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.UserPlatforms"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin List User ID By Platform User ID",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}": {
       "get": {
         "description": "Get User By Platform User ID\n\t\t\nThis endpoint return user information by given platform ID and platform user ID \n\n\u0026lt;strong\u0026gt;nintendo platform user ID\u0026lt;/strong\u0026gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1\n",
@@ -10015,6 +10103,67 @@
           }
         ],
         "summary": "List User By User ID",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/bulk/platforms": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER [READ]\u0026#39;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;This endpoint bulk get users\u0026#39; basic info by userId, max allowed 100 at a time\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "operationId": "AdminBulkGetUsersPlatform",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserIDsRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListBulkUserPlatformsResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10185\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin bulk get users' platform info by user Ids",
         "tags": [
           "Users"
         ]
@@ -11938,6 +12087,12 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "Platform ID, query specific platform account",
+            "in": "query",
+            "name": "platformId",
+            "type": "string"
           }
         ],
         "produces": [
@@ -16479,7 +16634,7 @@
             "default": false,
             "description": "if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox",
             "in": "query",
-            "name": "rawPUID",
+            "name": "rawPID",
             "type": "boolean",
             "x-omitempty": false
           }
@@ -18766,6 +18921,12 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "Platform ID, query specific platform account",
+            "in": "query",
+            "name": "platformId",
+            "type": "string"
           }
         ],
         "produces": [
@@ -26323,6 +26484,9 @@
         },
         "userId": {
           "type": "string"
+        },
+        "xuid": {
+          "type": "string"
         }
       },
       "required": [
@@ -28245,6 +28409,19 @@
       "required": [
         "failedBans",
         "successBans"
+      ]
+    },
+    "model.ListBulkUserPlatformsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.UserWithPlatformInfo"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "model.ListBulkUserResponse": {
@@ -30585,6 +30762,24 @@
         "resource"
       ]
     },
+    "model.UserPlatformInfo": {
+      "properties": {
+        "platformDisplayName": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "string"
+        },
+        "platformUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformDisplayName",
+        "platformId",
+        "platformUserId"
+      ]
+    },
     "model.UserPlatformMetadata": {
       "properties": {
         "metadata": {
@@ -30983,6 +31178,35 @@
       "required": [
         "code",
         "contactType"
+      ]
+    },
+    "model.UserWithPlatformInfo": {
+      "properties": {
+        "avatarUrl": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "platformInfos": {
+          "items": {
+            "$ref": "#/definitions/model.UserPlatformInfo"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "xuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformInfos",
+        "userId"
       ]
     },
     "model.ValidUserIDResponseV4": {
@@ -31848,8 +32072,8 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-28T01:11:22+00:00",
-    "gitHash": "5d0170e1a53c0015b5742ba500ab973da26845ed",
+    "buildDate": "2023-09-08T04:31:31+00:00",
+    "gitHash": "9148035342987b6a74d8e1c5f6b1d58f6514ee6d",
     "name": "justice-iam-service",
     "realm": "staging",
     "version": "7.1.0",

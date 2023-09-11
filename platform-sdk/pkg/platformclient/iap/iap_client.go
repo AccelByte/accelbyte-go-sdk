@@ -64,14 +64,10 @@ type ClientService interface {
 	DeleteOculusIAPConfigShort(params *DeleteOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusIAPConfigNoContent, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
-	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, *UpdatePlaystationIAPConfigBadRequest, error)
+	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
-	ValidateExistedPlaystationIAPConfig(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error)
-	ValidateExistedPlaystationIAPConfigShort(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error)
-	ValidatePlaystationIAPConfig(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error)
-	ValidatePlaystationIAPConfigShort(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, *UpdateSteamIAPConfigBadRequest, error)
@@ -1817,7 +1813,7 @@ Update playstation iap config. Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
   *  Returns : updated playstation iap config
 */
-func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, *UpdatePlaystationIAPConfigBadRequest, error) {
+func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdatePlaystationIAPConfigParams()
@@ -1845,19 +1841,16 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdatePlaystationIAPConfigOK:
-		return v, nil, nil
-
-	case *UpdatePlaystationIAPConfigBadRequest:
-		return nil, v, nil
+		return v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1902,8 +1895,6 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 
 	case *UpdatePlaystationIAPConfigOK:
 		return v, nil
-	case *UpdatePlaystationIAPConfigBadRequest:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2001,198 +1992,6 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 	switch v := result.(type) {
 
 	case *DeletePlaystationIAPConfigNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use ValidateExistedPlaystationIAPConfigShort instead.
-
-ValidateExistedPlaystationIAPConfig validate existed playstation iap config
-Validate playstation iap config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)
-  *  Returns : Test Results
-*/
-func (a *Client) ValidateExistedPlaystationIAPConfig(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewValidateExistedPlaystationIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "validateExistedPlaystationIAPConfig",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation/validate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ValidateExistedPlaystationIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ValidateExistedPlaystationIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-ValidateExistedPlaystationIAPConfigShort validate existed playstation iap config
-Validate playstation iap config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)
-  *  Returns : Test Results
-*/
-func (a *Client) ValidateExistedPlaystationIAPConfigShort(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewValidateExistedPlaystationIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "validateExistedPlaystationIAPConfig",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation/validate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ValidateExistedPlaystationIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ValidateExistedPlaystationIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use ValidatePlaystationIAPConfigShort instead.
-
-ValidatePlaystationIAPConfig validate playstation iap config
-Validate playstation iap config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
-  *  Returns : Test Results
-*/
-func (a *Client) ValidatePlaystationIAPConfig(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewValidatePlaystationIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "validatePlaystationIAPConfig",
-		Method:             "PUT",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation/validate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ValidatePlaystationIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ValidatePlaystationIAPConfigOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-ValidatePlaystationIAPConfigShort validate playstation iap config
-Validate playstation iap config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
-  *  Returns : Test Results
-*/
-func (a *Client) ValidatePlaystationIAPConfigShort(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewValidatePlaystationIAPConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "validatePlaystationIAPConfig",
-		Method:             "PUT",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation/validate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ValidatePlaystationIAPConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ValidatePlaystationIAPConfigOK:
 		return v, nil
 
 	default:

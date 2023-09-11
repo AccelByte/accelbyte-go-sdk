@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.1.0"
+    "version": "3.3.0"
   },
   "schemes": [
     "https"
@@ -2705,11 +2705,8 @@
           "application/json"
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/apimodels.GameSessionResponse"
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -3607,11 +3604,8 @@
           "application/json"
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/apimodels.PartySessionResponse"
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -6476,9 +6470,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-28T05:46:26+00:00",
-    "gitHash": "62b990761150576d8335961c48fb0d749a2b8067",
-    "version": "3.1.0",
+    "buildDate": "2023-09-07T03:41:57+00:00",
+    "gitHash": "1d4a0164f8f67dd57515aba1f880dd2292d11ef6",
+    "version": "3.3.0",
     "version-roles-seeding": "0.0.40"
   }
 }

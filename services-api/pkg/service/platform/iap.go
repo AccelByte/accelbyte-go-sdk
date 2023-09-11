@@ -283,10 +283,7 @@ func (aaa *IAPService) UpdatePlaystationIAPConfig(input *iap.UpdatePlaystationIA
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.UpdatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
+	ok, err := aaa.Client.IAP.UpdatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -306,34 +303,6 @@ func (aaa *IAPService) DeletePlaystationIAPConfig(input *iap.DeletePlaystationIA
 	}
 
 	return nil
-}
-
-// Deprecated: 2022-01-10 - please use ValidateExistedPlaystationIAPConfigShort instead.
-func (aaa *IAPService) ValidateExistedPlaystationIAPConfig(input *iap.ValidateExistedPlaystationIAPConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := aaa.Client.IAP.ValidateExistedPlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-// Deprecated: 2022-01-10 - please use ValidatePlaystationIAPConfigShort instead.
-func (aaa *IAPService) ValidatePlaystationIAPConfig(input *iap.ValidatePlaystationIAPConfigParams) (*platformclientmodels.TestResult, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := aaa.Client.IAP.ValidatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use GetSteamIAPConfigShort instead.
@@ -1216,56 +1185,6 @@ func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *iap.DeletePlaystat
 	}
 
 	return nil
-}
-
-func (aaa *IAPService) ValidateExistedPlaystationIAPConfigShort(input *iap.ValidateExistedPlaystationIAPConfigParams) (*platformclientmodels.TestResult, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.IAP.ValidateExistedPlaystationIAPConfigShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (aaa *IAPService) ValidatePlaystationIAPConfigShort(input *iap.ValidatePlaystationIAPConfigParams) (*platformclientmodels.TestResult, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.IAP.ValidatePlaystationIAPConfigShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 func (aaa *IAPService) GetSteamIAPConfigShort(input *iap.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {

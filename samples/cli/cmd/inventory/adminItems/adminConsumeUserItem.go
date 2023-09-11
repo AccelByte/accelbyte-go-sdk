@@ -35,13 +35,11 @@ var AdminConsumeUserItemCmd = &cobra.Command{
 			return errBody
 		}
 		inventoryId, _ := cmd.Flags().GetString("inventoryId")
-		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		input := &admin_items.AdminConsumeUserItemParams{
 			Body:        body,
 			InventoryID: inventoryId,
-			ItemID:      itemId,
 			Namespace:   namespace,
 			UserID:      userId,
 		}
@@ -63,8 +61,6 @@ func init() {
 	_ = AdminConsumeUserItemCmd.MarkFlagRequired("body")
 	AdminConsumeUserItemCmd.Flags().String("inventoryId", "", "Inventory id")
 	_ = AdminConsumeUserItemCmd.MarkFlagRequired("inventoryId")
-	AdminConsumeUserItemCmd.Flags().String("itemId", "", "Item id")
-	_ = AdminConsumeUserItemCmd.MarkFlagRequired("itemId")
 	AdminConsumeUserItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminConsumeUserItemCmd.MarkFlagRequired("namespace")
 	AdminConsumeUserItemCmd.Flags().String("userId", "", "User id")

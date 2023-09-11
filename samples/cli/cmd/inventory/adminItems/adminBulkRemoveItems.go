@@ -29,7 +29,7 @@ var AdminBulkRemoveItemsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *inventoryclientmodels.ApimodelsBulkRemoveItemsReq
+		var body []*inventoryclientmodels.ApimodelsRemoveInventoryItemReq
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

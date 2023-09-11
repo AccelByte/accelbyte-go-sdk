@@ -40,7 +40,7 @@ type CreditRequest struct {
 	Reason string `json:"reason,omitempty"`
 
 	// source, default is OTHER
-	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
 }
 
@@ -127,7 +127,7 @@ var creditRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "GIFT", "IAP", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -151,9 +151,6 @@ const (
 
 	// CreditRequestSourceIAP captures enum value "IAP"
 	CreditRequestSourceIAP string = "IAP"
-
-	// CreditRequestSourceIAPCHARGEBACKREVERSED captures enum value "IAP_CHARGEBACK_REVERSED"
-	CreditRequestSourceIAPCHARGEBACKREVERSED string = "IAP_CHARGEBACK_REVERSED"
 
 	// CreditRequestSourceOTHER captures enum value "OTHER"
 	CreditRequestSourceOTHER string = "OTHER"

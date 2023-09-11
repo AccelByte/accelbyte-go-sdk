@@ -48,7 +48,7 @@
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2023-08-27T08:01:58Z",
+            "default": "2023-09-07T08:26:27Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -56,7 +56,7 @@
             "type": "string"
           },
           {
-            "default": "2023-08-28T08:01:58Z",
+            "default": "2023-09-08T08:26:27Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",
@@ -401,7 +401,7 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2023-08-15T01:52:54+00:00",
+    "buildDate": "2023-08-29T02:00:21+00:00",
     "gitHash": "7371fa8af5fa2f4844d92883e1ccdcea58c6930b",
     "name": "analytics-game-telemetry",
     "realm": "staging",

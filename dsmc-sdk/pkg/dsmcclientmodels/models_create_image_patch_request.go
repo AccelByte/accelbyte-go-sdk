@@ -7,8 +7,6 @@
 package dsmcclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +21,10 @@ type ModelsCreateImagePatchRequest struct {
 	// artifactpath
 	// Required: true
 	ArtifactPath *string `json:"artifactPath"`
+
+	// coredumpenabled
+	// Required: true
+	CoreDumpEnabled *bool `json:"coreDumpEnabled"`
 
 	// dockerpath
 	// Required: true
@@ -49,9 +51,9 @@ type ModelsCreateImagePatchRequest struct {
 	// Required: true
 	Persistent *bool `json:"persistent"`
 
-	// uploaderflags
+	// uploaderflag
 	// Required: true
-	UploaderFlags []*ModelsUploaderFlag `json:"uploaderFlags"`
+	UploaderFlag *string `json:"uploaderFlag"`
 
 	// version
 	// Required: true
@@ -63,6 +65,9 @@ func (m *ModelsCreateImagePatchRequest) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateArtifactPath(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateCoreDumpEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateDockerPath(formats); err != nil {
@@ -83,7 +88,7 @@ func (m *ModelsCreateImagePatchRequest) Validate(formats strfmt.Registry) error 
 	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateUploaderFlags(formats); err != nil {
+	if err := m.validateUploaderFlag(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateVersion(formats); err != nil {
@@ -99,6 +104,15 @@ func (m *ModelsCreateImagePatchRequest) Validate(formats strfmt.Registry) error 
 func (m *ModelsCreateImagePatchRequest) validateArtifactPath(formats strfmt.Registry) error {
 
 	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateImagePatchRequest) validateCoreDumpEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("coreDumpEnabled", "body", m.CoreDumpEnabled); err != nil {
 		return err
 	}
 
@@ -159,26 +173,10 @@ func (m *ModelsCreateImagePatchRequest) validatePersistent(formats strfmt.Regist
 	return nil
 }
 
-func (m *ModelsCreateImagePatchRequest) validateUploaderFlags(formats strfmt.Registry) error {
+func (m *ModelsCreateImagePatchRequest) validateUploaderFlag(formats strfmt.Registry) error {
 
-	if err := validate.Required("uploaderFlags", "body", m.UploaderFlags); err != nil {
+	if err := validate.Required("uploaderFlag", "body", m.UploaderFlag); err != nil {
 		return err
-	}
-
-	for i := 0; i < len(m.UploaderFlags); i++ {
-		if swag.IsZero(m.UploaderFlags[i]) { // not required
-			continue
-		}
-
-		if m.UploaderFlags[i] != nil {
-			if err := m.UploaderFlags[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("uploaderFlags" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

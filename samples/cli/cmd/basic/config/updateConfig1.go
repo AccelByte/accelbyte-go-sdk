@@ -41,14 +41,14 @@ var UpdateConfig1Cmd = &cobra.Command{
 			ConfigKey: configKey,
 			Namespace: namespace,
 		}
-		created, errCreated := configService.UpdateConfig1Short(input)
-		if errCreated != nil {
-			logrus.Error(errCreated)
+		ok, errOK := configService.UpdateConfig1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errCreated
+			return errOK
 		}
 
-		logrus.Infof("Response CLI success: %+v", created)
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -193,32 +193,32 @@ func (aaa *PartyService) PublicGeneratePartyCode(input *party.PublicGeneratePart
 }
 
 // Deprecated: 2022-01-10 - please use PublicRevokePartyCodeShort instead.
-func (aaa *PartyService) PublicRevokePartyCode(input *party.PublicRevokePartyCodeParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
+func (aaa *PartyService) PublicRevokePartyCode(input *party.PublicRevokePartyCodeParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicRevokePartyCode(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicRevokePartyCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicPartyInviteShort instead.
@@ -585,7 +585,7 @@ func (aaa *PartyService) PublicGeneratePartyCodeShort(input *party.PublicGenerat
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PartyService) PublicRevokePartyCodeShort(input *party.PublicRevokePartyCodeParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
+func (aaa *PartyService) PublicRevokePartyCodeShort(input *party.PublicRevokePartyCodeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -602,12 +602,12 @@ func (aaa *PartyService) PublicRevokePartyCodeShort(input *party.PublicRevokePar
 		}
 	}
 
-	ok, err := aaa.Client.Party.PublicRevokePartyCodeShort(input, authInfoWriter)
+	_, err := aaa.Client.Party.PublicRevokePartyCodeShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 func (aaa *PartyService) PublicPartyInviteShort(input *party.PublicPartyInviteParams) error {

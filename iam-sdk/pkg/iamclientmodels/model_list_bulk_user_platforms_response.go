@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package platformclientmodels
+package iamclientmodels
 
 import (
 	"strconv"
@@ -15,21 +15,18 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// IAPClawbackPagingSlicedResult IAP clawback paging sliced result
+// ModelListBulkUserPlatformsResponse Model list bulk user platforms response
 //
-// swagger:model IAP clawback paging sliced result.
-type IAPClawbackPagingSlicedResult struct {
+// swagger:model Model list bulk user platforms response.
+type ModelListBulkUserPlatformsResponse struct {
 
 	// data
 	// Required: true
-	Data []*ClawbackInfo `json:"data"`
-
-	// paging
-	Paging *Paging `json:"paging,omitempty"`
+	Data []*ModelUserWithPlatformInfo `json:"data"`
 }
 
-// Validate validates this IAP clawback paging sliced result
-func (m *IAPClawbackPagingSlicedResult) Validate(formats strfmt.Registry) error {
+// Validate validates this Model list bulk user platforms response
+func (m *ModelListBulkUserPlatformsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
@@ -42,7 +39,7 @@ func (m *IAPClawbackPagingSlicedResult) Validate(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *IAPClawbackPagingSlicedResult) validateData(formats strfmt.Registry) error {
+func (m *ModelListBulkUserPlatformsResponse) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -68,7 +65,7 @@ func (m *IAPClawbackPagingSlicedResult) validateData(formats strfmt.Registry) er
 }
 
 // MarshalBinary interface implementation
-func (m *IAPClawbackPagingSlicedResult) MarshalBinary() ([]byte, error) {
+func (m *ModelListBulkUserPlatformsResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -76,8 +73,8 @@ func (m *IAPClawbackPagingSlicedResult) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *IAPClawbackPagingSlicedResult) UnmarshalBinary(b []byte) error {
-	var res IAPClawbackPagingSlicedResult
+func (m *ModelListBulkUserPlatformsResponse) UnmarshalBinary(b []byte) error {
+	var res ModelListBulkUserPlatformsResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

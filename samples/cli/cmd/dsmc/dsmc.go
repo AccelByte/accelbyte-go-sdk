@@ -88,6 +88,7 @@ func init() {
 	DsmcCmd.AddCommand(podConfig.GetAllPodConfigClientCmd)
 	DsmcCmd.AddCommand(podConfig.CreatePodConfigClientCmd)
 	DsmcCmd.AddCommand(podConfig.DeletePodConfigClientCmd)
+	DsmcCmd.AddCommand(imageConfig.ListImagesClientCmd)
 	DsmcCmd.AddCommand(imageConfig.ImageLimitClientCmd)
 	DsmcCmd.AddCommand(imageConfig.ImageDetailClientCmd)
 	DsmcCmd.AddCommand(server.ListServerClientCmd)

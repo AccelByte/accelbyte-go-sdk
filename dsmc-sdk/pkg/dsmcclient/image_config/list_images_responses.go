@@ -69,7 +69,7 @@ func NewListImagesOK() *ListImagesOK {
 
 /*ListImagesOK handles this case with default header values.
 
-  configs listed
+  images listed
 */
 type ListImagesOK struct {
 	Payload *dsmcclientmodels.ModelsListImageResponse

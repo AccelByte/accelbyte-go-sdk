@@ -22,6 +22,10 @@ type ModelsCreateImageRequest struct {
 	// Required: true
 	ArtifactPath *string `json:"artifactPath"`
 
+	// coredumpenabled
+	// Required: true
+	CoreDumpEnabled *bool `json:"coreDumpEnabled"`
+
 	// dockerpath
 	// Required: true
 	DockerPath *string `json:"dockerPath"`
@@ -55,6 +59,9 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	if err := m.validateArtifactPath(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateCoreDumpEnabled(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDockerPath(formats); err != nil {
 		res = append(res, err)
 	}
@@ -83,6 +90,15 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 func (m *ModelsCreateImageRequest) validateArtifactPath(formats strfmt.Registry) error {
 
 	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateImageRequest) validateCoreDumpEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("coreDumpEnabled", "body", m.CoreDumpEnabled); err != nil {
 		return err
 	}
 

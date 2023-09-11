@@ -22,8 +22,13 @@ import (
 // NewGetUserFriendsUpdatedParams creates a new GetUserFriendsUpdatedParams object
 // with the default values initialized.
 func NewGetUserFriendsUpdatedParams() *GetUserFriendsUpdatedParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsUpdatedParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetUserFriendsUpdatedParams() *GetUserFriendsUpdatedParams {
 // NewGetUserFriendsUpdatedParamsWithTimeout creates a new GetUserFriendsUpdatedParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetUserFriendsUpdatedParamsWithTimeout(timeout time.Duration) *GetUserFriendsUpdatedParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsUpdatedParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetUserFriendsUpdatedParamsWithTimeout(timeout time.Duration) *GetUserFr
 // NewGetUserFriendsUpdatedParamsWithContext creates a new GetUserFriendsUpdatedParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetUserFriendsUpdatedParamsWithContext(ctx context.Context) *GetUserFriendsUpdatedParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsUpdatedParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetUserFriendsUpdatedParamsWithContext(ctx context.Context) *GetUserFrie
 // NewGetUserFriendsUpdatedParamsWithHTTPClient creates a new GetUserFriendsUpdatedParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetUserFriendsUpdatedParamsWithHTTPClient(client *http.Client) *GetUserFriendsUpdatedParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetUserFriendsUpdatedParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

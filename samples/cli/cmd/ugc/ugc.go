@@ -45,6 +45,7 @@ func init() {
 	UgcCmd.AddCommand(adminContent.SingleAdminGetContentCmd)
 	UgcCmd.AddCommand(adminContent.AdminGetContentBulkCmd)
 	UgcCmd.AddCommand(adminContent.AdminSearchContentCmd)
+	UgcCmd.AddCommand(adminContent.AdminGetContentBulkByShareCodesCmd)
 	UgcCmd.AddCommand(adminContent.AdminGetUserContentByShareCodeCmd)
 	UgcCmd.AddCommand(adminContent.AdminGetSpecificContentCmd)
 	UgcCmd.AddCommand(adminContent.AdminDownloadContentPreviewCmd)

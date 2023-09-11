@@ -58,6 +58,8 @@ type ClientService interface {
 	GetRepositoryShort(params *GetRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoryOK, error)
 	CreateRepository(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, *CreateRepositoryBadRequest, *CreateRepositoryUnauthorized, *CreateRepositoryInternalServerError, error)
 	CreateRepositoryShort(params *CreateRepositoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRepositoryNoContent, error)
+	ListImagesClient(params *ListImagesClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesClientOK, *ListImagesClientBadRequest, *ListImagesClientUnauthorized, *ListImagesClientInternalServerError, error)
+	ListImagesClientShort(params *ListImagesClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesClientOK, error)
 	ImageLimitClient(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, *ImageLimitClientBadRequest, *ImageLimitClientUnauthorized, *ImageLimitClientInternalServerError, error)
 	ImageLimitClientShort(params *ImageLimitClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageLimitClientOK, error)
 	ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error)
@@ -1810,6 +1812,125 @@ func (a *Client) CreateRepositoryShort(params *CreateRepositoryParams, authInfo 
 	case *CreateRepositoryUnauthorized:
 		return nil, v
 	case *CreateRepositoryInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ListImagesClientShort instead.
+
+ListImagesClient list all ds images for client credential authorization type
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint lists all of dedicated servers images.
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) ListImagesClient(params *ListImagesClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesClientOK, *ListImagesClientBadRequest, *ListImagesClientUnauthorized, *ListImagesClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListImagesClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListImagesClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListImagesClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListImagesClientOK:
+		return v, nil, nil, nil, nil
+
+	case *ListImagesClientBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *ListImagesClientUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *ListImagesClientInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ListImagesClientShort list all ds images for client credential authorization type
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint lists all of dedicated servers images.
+
+Parameter Offset and Count is Required
+*/
+func (a *Client) ListImagesClientShort(params *ListImagesClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListImagesClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListImagesClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListImagesClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListImagesClientOK:
+		return v, nil
+	case *ListImagesClientBadRequest:
+		return nil, v
+	case *ListImagesClientUnauthorized:
+		return nil, v
+	case *ListImagesClientInternalServerError:
 		return nil, v
 
 	default:

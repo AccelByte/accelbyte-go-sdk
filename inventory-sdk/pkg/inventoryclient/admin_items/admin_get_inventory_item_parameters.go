@@ -69,16 +69,21 @@ type AdminGetInventoryItemParams struct {
 
 	*/
 	InventoryID string
-	/*ItemID
-	  ItemID
-
-	*/
-	ItemID string
 	/*Namespace
 	  Namespace
 
 	*/
 	Namespace string
+	/*SlotID
+	  slotID
+
+	*/
+	SlotID string
+	/*SourceItemID
+	  sourceItemID
+
+	*/
+	SourceItemID string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -144,17 +149,6 @@ func (o *AdminGetInventoryItemParams) SetInventoryID(inventoryID string) {
 	o.InventoryID = inventoryID
 }
 
-// WithItemID adds the itemID to the admin get inventory item params
-func (o *AdminGetInventoryItemParams) WithItemID(itemID string) *AdminGetInventoryItemParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the admin get inventory item params
-func (o *AdminGetInventoryItemParams) SetItemID(itemID string) {
-	o.ItemID = itemID
-}
-
 // WithNamespace adds the namespace to the admin get inventory item params
 func (o *AdminGetInventoryItemParams) WithNamespace(namespace string) *AdminGetInventoryItemParams {
 	o.SetNamespace(namespace)
@@ -164,6 +158,28 @@ func (o *AdminGetInventoryItemParams) WithNamespace(namespace string) *AdminGetI
 // SetNamespace adds the namespace to the admin get inventory item params
 func (o *AdminGetInventoryItemParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithSlotID adds the slotID to the admin get inventory item params
+func (o *AdminGetInventoryItemParams) WithSlotID(slotID string) *AdminGetInventoryItemParams {
+	o.SetSlotID(slotID)
+	return o
+}
+
+// SetSlotID adds the slotId to the admin get inventory item params
+func (o *AdminGetInventoryItemParams) SetSlotID(slotID string) {
+	o.SlotID = slotID
+}
+
+// WithSourceItemID adds the sourceItemID to the admin get inventory item params
+func (o *AdminGetInventoryItemParams) WithSourceItemID(sourceItemID string) *AdminGetInventoryItemParams {
+	o.SetSourceItemID(sourceItemID)
+	return o
+}
+
+// SetSourceItemID adds the sourceItemId to the admin get inventory item params
+func (o *AdminGetInventoryItemParams) SetSourceItemID(sourceItemID string) {
+	o.SourceItemID = sourceItemID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -179,13 +195,18 @@ func (o *AdminGetInventoryItemParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
-	// path param itemId
-	if err := r.SetPathParam("itemId", o.ItemID); err != nil {
+	// path param namespace
+	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
 	}
 
-	// path param namespace
-	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+	// path param slotId
+	if err := r.SetPathParam("slotId", o.SlotID); err != nil {
+		return err
+	}
+
+	// path param sourceItemId
+	if err := r.SetPathParam("sourceItemId", o.SourceItemID); err != nil {
 		return err
 	}
 

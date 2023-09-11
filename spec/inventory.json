@@ -141,12 +141,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To list all inventories",
@@ -201,12 +195,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]"
@@ -283,12 +271,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To delete inventory",
@@ -353,12 +335,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To get an inventory",
@@ -370,7 +346,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tUpdating an inventory.\n\t\t\tMaxSlots will be increased from existing value\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]\n\t\t",
+        "description": "\n\t\t\tUpdating an inventory.\n\t\t\tPositive value will increase MaxSlots from existing value\n\t\t\tNegative value will decrease MaxSlots from existing value\n\t\t\tLimited slots can not be changed to unlimited, vice versa\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]\n\t\t",
         "operationId": "AdminUpdateInventory",
         "parameters": [
           {
@@ -426,12 +402,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
@@ -546,12 +516,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To list all items",
@@ -560,12 +524,12 @@
         ]
       }
     },
-    "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items/{itemId}": {
+    "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tGetting an item info.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]\n\t\t",
+        "description": "\n\t\t\t\t\tGetting an item info.\n\n\t\t\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]\n\t\t\t\t",
         "operationId": "AdminGetInventoryItem",
         "parameters": [
           {
@@ -576,16 +540,23 @@
             "type": "string"
           },
           {
-            "description": "ItemID",
+            "description": "Namespace",
             "in": "path",
-            "name": "itemId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Namespace",
+            "description": "slotID",
             "in": "path",
-            "name": "namespace",
+            "name": "slotId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sourceItemID",
+            "in": "path",
+            "name": "sourceItemId",
             "required": true,
             "type": "string"
           }
@@ -620,12 +591,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
@@ -720,12 +685,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To list inventory configurations",
@@ -791,12 +750,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To create inventory configuration",
@@ -810,7 +763,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tDeleting an inventory configuration.\n\t\t\tIf an inventory already reference this type (i.e. STATUS is \u0026amp;#34;TIED\u0026amp;#34;), then the type cannot be deleted anymore.\n\t\t\t\n\t\t\tADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]\n\t\t",
+        "description": "\n\t\t\tDeleting an inventory configuration.\n\t\t\tIf an inventory already reference this type (i.e. STATUS is \u0026#34;TIED\u0026#34;), then the type cannot be deleted anymore.\n\t\t\t\n\t\t\tADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]\n\t\t",
         "operationId": "AdminDeleteInventoryConfiguration",
         "parameters": [
           {
@@ -855,12 +808,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]"
@@ -925,12 +872,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
@@ -1009,12 +950,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]"
@@ -1100,12 +1035,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To list itemtypes",
@@ -1171,12 +1100,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To create an itemtype",
@@ -1190,7 +1113,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tThis endpoint will delete a item type by itemtypeName in a specified namespace.\n\t\t\tIf the itemtypeName doesn\u0026amp;#39;t exist in a namespace, it\u0026amp;#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]\n\t\t",
+        "description": "\n\t\t\tThis endpoint will delete a item type by itemtypeName in a specified namespace.\n\t\t\tIf the itemtypeName doesn\u0026#39;t exist in a namespace, it\u0026#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]\n\t\t",
         "operationId": "AdminDeleteItemType",
         "parameters": [
           {
@@ -1229,12 +1152,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]"
@@ -1326,12 +1243,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To list tags",
@@ -1397,12 +1308,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To create a tag",
@@ -1416,7 +1321,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tThis endpoint will delete a tag by tagName in a specified namespace.\n\t\t\tIf the tagName doesn\u0026amp;#39;t exist in a namespace, it\u0026amp;#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]\n\t\t",
+        "description": "\n\t\t\tThis endpoint will delete a tag by tagName in a specified namespace.\n\t\t\tIf the tagName doesn\u0026#39;t exist in a namespace, it\u0026#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]\n\t\t",
         "operationId": "AdminDeleteTag",
         "parameters": [
           {
@@ -1460,12 +1365,6 @@
               "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To delete a tag",
@@ -1474,12 +1373,93 @@
         ]
       }
     },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tConsume user\u0026#39;s own item\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
+        "operationId": "AdminConsumeUserItem",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConsumeItemReq"
+            }
+          },
+          {
+            "description": "InventoryID",
+            "in": "path",
+            "name": "inventoryId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ItemResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To consume item",
+        "tags": [
+          "Admin Items"
+        ]
+      }
+    },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items": {
       "delete": {
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tBulk remove user\u0026amp;#39;s own items\u0026amp;#39;.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]\n\t\t",
+        "description": "\n\t\t\tBulk remove user\u0026#39;s own items\u0026#39;.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]\n\t\t",
         "operationId": "AdminBulkRemoveItems",
         "parameters": [
           {
@@ -1487,7 +1467,10 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apimodels.BulkRemoveItemsReq"
+              "items": {
+                "$ref": "#/definitions/apimodels.RemoveInventoryItemReq"
+              },
+              "type": "array"
             }
           },
           {
@@ -1550,12 +1533,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To bulk remove items",
@@ -1567,7 +1544,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item to specific inventory.\n\t\t\tThe item will be saved in specific user\u0026amp;#39;s inventory,\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tSaving an item to specific inventory.\n\t\t\tThe item will be saved in specific user\u0026#39;s inventory,\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminSaveItemToInventory",
         "parameters": [
           {
@@ -1629,12 +1606,6 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To save item to specific inventory",
@@ -1646,7 +1617,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tBulk Updating user\u0026amp;#39;s own items.\n\t\t\tTags will be auto-created.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
+        "description": "\n\t\t\tBulk Updating user\u0026#39;s own items.\n\t\t\tTags will be auto-created.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
         "operationId": "AdminBulkUpdateMyItems",
         "parameters": [
           {
@@ -1720,109 +1691,9 @@
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
             ],
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "To bulk update items",
-        "tags": [
-          "Admin Items"
-        ]
-      }
-    },
-    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/{itemId}/consume": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "\n\t\t\tConsume user\u0026amp;#39;s own item\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
-        "operationId": "AdminConsumeUserItem",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apimodels.ConsumeItemReq"
-            }
-          },
-          {
-            "description": "InventoryID",
-            "in": "path",
-            "name": "inventoryId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "ItemID",
-            "in": "path",
-            "name": "itemId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "userID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ItemResp"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "To consume item",
         "tags": [
           "Admin Items"
         ]
@@ -1833,7 +1704,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026amp;#39;s inventory,\n\t\t\tIf it doesn\u0026amp;#39;t exist it\u0026amp;#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminSaveItem",
         "parameters": [
           {
@@ -1883,12 +1754,6 @@
           }
         },
         "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
-            ],
-            "authorization": []
-          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
@@ -2225,12 +2090,83 @@
         ]
       }
     },
+    "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tConsume user\u0026#39;s own item.\n\t\t",
+        "operationId": "PublicConsumeMyItem",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.ConsumeItemReq"
+            }
+          },
+          {
+            "description": "InventoryID",
+            "in": "path",
+            "name": "inventoryId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ItemResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "To consume item",
+        "tags": [
+          "Public Items"
+        ]
+      }
+    },
     "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items": {
       "delete": {
         "consumes": [
           "application/json"
         ],
-        "description": "\n        \tBulk remove user\u0026amp;#39;s own items.\n    \t",
+        "description": "\n        \tBulk remove user\u0026#39;s own items.\n    \t",
         "operationId": "PublicBulkRemoveMyItems",
         "parameters": [
           {
@@ -2238,7 +2174,10 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apimodels.BulkRemoveItemsReq"
+              "items": {
+                "$ref": "#/definitions/apimodels.RemoveInventoryItemReq"
+              },
+              "type": "array"
             }
           },
           {
@@ -2302,7 +2241,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tListing all user\u0026amp;#39;s owned items in an inventory.\n\t\t\tThe response body will be in the form of standard pagination.\n\t\t",
+        "description": "\n\t\t\tListing all user\u0026#39;s owned items in an inventory.\n\t\t\tThe response body will be in the form of standard pagination.\n\t\t",
         "operationId": "PublicListItems",
         "parameters": [
           {
@@ -2406,7 +2345,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n        \tBulk Updating user\u0026amp;#39;s own items.\n    \t",
+        "description": "\n        \tBulk Updating user\u0026#39;s own items.\n    \t",
         "operationId": "PublicBulkUpdateMyItems",
         "parameters": [
           {
@@ -2543,12 +2482,12 @@
         ]
       }
     },
-    "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}": {
+    "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tGetting an user\u0026amp;#39;s owned item info.\n\t\t",
+        "description": "\n\t\t\t\t\tGetting an user\u0026#39;s owned item info.\n\t\t\t\t",
         "operationId": "PublicGetItem",
         "parameters": [
           {
@@ -2559,16 +2498,23 @@
             "type": "string"
           },
           {
-            "description": "ItemID",
+            "description": "Namespace",
             "in": "path",
-            "name": "itemId",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Namespace",
+            "description": "slotID",
             "in": "path",
-            "name": "namespace",
+            "name": "slotId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "sourceItemID",
+            "in": "path",
+            "name": "sourceItemId",
             "required": true,
             "type": "string"
           }
@@ -2612,84 +2558,6 @@
           "Public Items"
         ]
       }
-    },
-    "/inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "\n\t\t\tConsume user\u0026amp;#39;s own item.\n\t\t",
-        "operationId": "PublicConsumeMyItem",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apimodels.ConsumeItemReq"
-            }
-          },
-          {
-            "description": "InventoryID",
-            "in": "path",
-            "name": "inventoryId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "ItemID",
-            "in": "path",
-            "name": "itemId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ItemResp"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/apimodels.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "To consume item",
-        "tags": [
-          "Public Items"
-        ]
-      }
     }
   },
   "definitions": {
@@ -2698,11 +2566,14 @@
         "customAttributes": {
           "type": "object"
         },
-        "id": {
-          "type": "string"
-        },
         "serverCustomAttributes": {
           "type": "object"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
+          "type": "string"
         },
         "tags": {
           "items": {
@@ -2716,23 +2587,11 @@
       },
       "required": [
         "customAttributes",
-        "id",
         "serverCustomAttributes",
+        "slotId",
+        "sourceItemId",
         "tags",
         "type"
-      ]
-    },
-    "apimodels.BulkRemoveItemsReq": {
-      "properties": {
-        "ids": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "ids"
       ]
     },
     "apimodels.ConsumeItemReq": {
@@ -2740,10 +2599,18 @@
         "qty": {
           "format": "int32",
           "type": "integer"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
+          "type": "string"
         }
       },
       "required": [
-        "qty"
+        "qty",
+        "slotId",
+        "sourceItemId"
       ]
     },
     "apimodels.CreateInventoryConfigurationReq": {
@@ -3063,6 +2930,13 @@
         "serverCustomAttributes": {
           "type": "object"
         },
+        "slotId": {
+          "type": "string"
+        },
+        "slotUsed": {
+          "format": "int32",
+          "type": "integer"
+        },
         "source": {
           "type": "string"
         },
@@ -3095,6 +2969,8 @@
         "namespace",
         "qty",
         "serverCustomAttributes",
+        "slotId",
+        "slotUsed",
         "source",
         "sourceItemId",
         "tags",
@@ -3258,6 +3134,20 @@
         "previous"
       ]
     },
+    "apimodels.RemoveInventoryItemReq": {
+      "properties": {
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slotId",
+        "sourceItemId"
+      ]
+    },
     "apimodels.SaveItemReq": {
       "properties": {
         "customAttributes": {
@@ -3272,6 +3162,13 @@
         },
         "serverCustomAttributes": {
           "type": "object"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "slotUsed": {
+          "format": "int32",
+          "type": "integer"
         },
         "sourceItemId": {
           "type": "string"
@@ -3291,6 +3188,8 @@
         "inventoryConfigurationCode",
         "qty",
         "serverCustomAttributes",
+        "slotId",
+        "slotUsed",
         "sourceItemId",
         "tags",
         "type"
@@ -3307,6 +3206,13 @@
         },
         "serverCustomAttributes": {
           "type": "object"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "slotUsed": {
+          "format": "int32",
+          "type": "integer"
         },
         "sourceItemId": {
           "type": "string"
@@ -3325,6 +3231,8 @@
         "customAttributes",
         "qty",
         "serverCustomAttributes",
+        "slotId",
+        "slotUsed",
         "sourceItemId",
         "tags",
         "type"
@@ -3332,35 +3240,39 @@
     },
     "apimodels.TradeItem": {
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "qty": {
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "required": [
-        "id",
-        "qty"
-      ]
-    },
-    "apimodels.TradeItemResp": {
-      "properties": {
-        "itemId": {
-          "type": "string"
         },
-        "qty": {
-          "format": "int32",
-          "type": "integer"
+        "slotId": {
+          "type": "string"
         },
         "sourceItemId": {
           "type": "string"
         }
       },
       "required": [
-        "itemId",
         "qty",
+        "slotId",
+        "sourceItemId"
+      ]
+    },
+    "apimodels.TradeItemResp": {
+      "properties": {
+        "qty": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "qty",
+        "slotId",
         "sourceItemId"
       ]
     },
@@ -3380,7 +3292,10 @@
         "customAttributes": {
           "type": "object"
         },
-        "id": {
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
           "type": "string"
         },
         "tags": {
@@ -3392,7 +3307,8 @@
       },
       "required": [
         "customAttributes",
-        "id",
+        "slotId",
+        "sourceItemId",
         "tags"
       ]
     },
@@ -3401,7 +3317,10 @@
         "errorDetails": {
           "$ref": "#/definitions/apimodels.ErrorResponse"
         },
-        "id": {
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
           "type": "string"
         },
         "success": {
@@ -3410,7 +3329,8 @@
         }
       },
       "required": [
-        "id",
+        "slotId",
+        "sourceItemId",
         "success"
       ]
     }
@@ -3421,8 +3341,8 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-28T07:21:48+00:00",
-    "gitHash": "7615d05cee13469c402b39bf9431d054fdd60c9c",
+    "buildDate": "2023-09-08T07:31:28+00:00",
+    "gitHash": "bc2f38ff500a60d5fa820aa06b38eb60c0df5496",
     "name": "justice-inventory-service",
     "realm": "DEV",
     "version": "0.1.0"

@@ -18,24 +18,9 @@ import (
 // swagger:model Playstation IAP config request.
 type PlaystationIAPConfigRequest struct {
 
-	// back office server clientId
-	BackOfficeServerClientID string `json:"backOfficeServerClientId,omitempty"`
-
-	// back office server client secret
-	BackOfficeServerClientSecret string `json:"backOfficeServerClientSecret,omitempty"`
-
-	// enable PSN stream event job, will enable stream event job to sync PSN refund chargeback etc event if it's true
-	EnableStreamJob bool `json:"enableStreamJob"`
-
 	// environment
 	// Required: true
 	Environment *string `json:"environment"`
-
-	// stream name
-	StreamName string `json:"streamName,omitempty"`
-
-	// stream partner name
-	StreamPartnerName string `json:"streamPartnerName,omitempty"`
 }
 
 // Validate validates this Playstation IAP config request

@@ -42,8 +42,8 @@ type ClientService interface {
 	PublicPatchUpdatePartyShort(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, error)
 	PublicGeneratePartyCode(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, *PublicGeneratePartyCodeBadRequest, *PublicGeneratePartyCodeUnauthorized, *PublicGeneratePartyCodeForbidden, *PublicGeneratePartyCodeNotFound, *PublicGeneratePartyCodeInternalServerError, error)
 	PublicGeneratePartyCodeShort(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, error)
-	PublicRevokePartyCode(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeOK, *PublicRevokePartyCodeBadRequest, *PublicRevokePartyCodeUnauthorized, *PublicRevokePartyCodeForbidden, *PublicRevokePartyCodeNotFound, *PublicRevokePartyCodeInternalServerError, error)
-	PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeOK, error)
+	PublicRevokePartyCode(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, *PublicRevokePartyCodeBadRequest, *PublicRevokePartyCodeUnauthorized, *PublicRevokePartyCodeForbidden, *PublicRevokePartyCodeNotFound, *PublicRevokePartyCodeInternalServerError, error)
+	PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, error)
 	PublicPartyInvite(params *PublicPartyInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyInviteCreated, *PublicPartyInviteNoContent, *PublicPartyInviteBadRequest, *PublicPartyInviteUnauthorized, *PublicPartyInviteNotFound, *PublicPartyInviteInternalServerError, error)
 	PublicPartyInviteShort(params *PublicPartyInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyInviteCreated, error)
 	PublicPromotePartyLeader(params *PublicPromotePartyLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPromotePartyLeaderOK, *PublicPromotePartyLeaderBadRequest, *PublicPromotePartyLeaderUnauthorized, *PublicPromotePartyLeaderForbidden, *PublicPromotePartyLeaderNotFound, *PublicPromotePartyLeaderInternalServerError, error)
@@ -782,7 +782,7 @@ Deprecated: 2022-08-10 - Use PublicRevokePartyCodeShort instead.
 PublicRevokePartyCode revoke party code. requires namespace:{namespace}:session:party [update]
 Revoke code of the party. Only leader can revoke a code.
 */
-func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeOK, *PublicRevokePartyCodeBadRequest, *PublicRevokePartyCodeUnauthorized, *PublicRevokePartyCodeForbidden, *PublicRevokePartyCodeNotFound, *PublicRevokePartyCodeInternalServerError, error) {
+func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, *PublicRevokePartyCodeBadRequest, *PublicRevokePartyCodeUnauthorized, *PublicRevokePartyCodeForbidden, *PublicRevokePartyCodeNotFound, *PublicRevokePartyCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRevokePartyCodeParams()
@@ -815,7 +815,7 @@ func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, auth
 
 	switch v := result.(type) {
 
-	case *PublicRevokePartyCodeOK:
+	case *PublicRevokePartyCodeNoContent:
 		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicRevokePartyCodeBadRequest:
@@ -842,7 +842,7 @@ func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, auth
 PublicRevokePartyCodeShort revoke party code. requires namespace:{namespace}:session:party [update]
 Revoke code of the party. Only leader can revoke a code.
 */
-func (a *Client) PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeOK, error) {
+func (a *Client) PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRevokePartyCodeParams()
@@ -875,7 +875,7 @@ func (a *Client) PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams,
 
 	switch v := result.(type) {
 
-	case *PublicRevokePartyCodeOK:
+	case *PublicRevokePartyCodeNoContent:
 		return v, nil
 	case *PublicRevokePartyCodeBadRequest:
 		return nil, v

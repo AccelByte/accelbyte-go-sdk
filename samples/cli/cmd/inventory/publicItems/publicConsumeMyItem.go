@@ -35,12 +35,10 @@ var PublicConsumeMyItemCmd = &cobra.Command{
 			return errBody
 		}
 		inventoryId, _ := cmd.Flags().GetString("inventoryId")
-		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &public_items.PublicConsumeMyItemParams{
 			Body:        body,
 			InventoryID: inventoryId,
-			ItemID:      itemId,
 			Namespace:   namespace,
 		}
 		ok, errOK := publicItemsService.PublicConsumeMyItemShort(input)
@@ -61,8 +59,6 @@ func init() {
 	_ = PublicConsumeMyItemCmd.MarkFlagRequired("body")
 	PublicConsumeMyItemCmd.Flags().String("inventoryId", "", "Inventory id")
 	_ = PublicConsumeMyItemCmd.MarkFlagRequired("inventoryId")
-	PublicConsumeMyItemCmd.Flags().String("itemId", "", "Item id")
-	_ = PublicConsumeMyItemCmd.MarkFlagRequired("itemId")
 	PublicConsumeMyItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicConsumeMyItemCmd.MarkFlagRequired("namespace")
 }

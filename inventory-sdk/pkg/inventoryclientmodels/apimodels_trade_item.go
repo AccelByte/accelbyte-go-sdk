@@ -18,24 +18,31 @@ import (
 // swagger:model Apimodels trade item.
 type ApimodelsTradeItem struct {
 
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
 	// qty
 	// Required: true
 	// Format: int32
 	Qty *int32 `json:"qty"`
+
+	// slotid
+	// Required: true
+	SlotID *string `json:"slotId"`
+
+	// sourceitemid
+	// Required: true
+	SourceItemID *string `json:"sourceItemId"`
 }
 
 // Validate validates this Apimodels trade item
 func (m *ApimodelsTradeItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateQty(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateQty(formats); err != nil {
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSourceItemID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -45,18 +52,27 @@ func (m *ApimodelsTradeItem) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ApimodelsTradeItem) validateID(formats strfmt.Registry) error {
+func (m *ApimodelsTradeItem) validateQty(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("qty", "body", m.Qty); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *ApimodelsTradeItem) validateQty(formats strfmt.Registry) error {
+func (m *ApimodelsTradeItem) validateSlotID(formats strfmt.Registry) error {
 
-	if err := validate.Required("qty", "body", m.Qty); err != nil {
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsTradeItem) validateSourceItemID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sourceItemId", "body", m.SourceItemID); err != nil {
 		return err
 	}
 

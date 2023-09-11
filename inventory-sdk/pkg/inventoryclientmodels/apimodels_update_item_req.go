@@ -22,9 +22,13 @@ type ApimodelsUpdateItemReq struct {
 	// Required: true
 	CustomAttributes interface{} `json:"customAttributes"`
 
-	// id
+	// slotid
 	// Required: true
-	ID *string `json:"id"`
+	SlotID *string `json:"slotId"`
+
+	// sourceitemid
+	// Required: true
+	SourceItemID *string `json:"sourceItemId"`
 
 	// tags
 	// Required: true
@@ -35,7 +39,10 @@ type ApimodelsUpdateItemReq struct {
 func (m *ApimodelsUpdateItemReq) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSourceItemID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTags(formats); err != nil {
@@ -48,9 +55,18 @@ func (m *ApimodelsUpdateItemReq) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ApimodelsUpdateItemReq) validateID(formats strfmt.Registry) error {
+func (m *ApimodelsUpdateItemReq) validateSlotID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUpdateItemReq) validateSourceItemID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sourceItemId", "body", m.SourceItemID); err != nil {
 		return err
 	}
 

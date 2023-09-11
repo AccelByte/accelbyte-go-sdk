@@ -7,8 +7,6 @@
 package dsmcclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,16 +19,17 @@ import (
 type ModelsServer struct {
 
 	// allocation_events
-	// Required: true
-	AllocationEvents []*ModelsAllocationEvent `json:"allocation_events"`
+	AllocationEvents []*ModelsAllocationEvent `json:"allocation_events,omitempty"`
 
 	// allocation_id
 	// Required: true
 	AllocationID *string `json:"allocation_id"`
 
 	// alternate_ips
-	// Required: true
-	AlternateIps []string `json:"alternate_ips"`
+	AlternateIps []string `json:"alternate_ips,omitempty"`
+
+	// artifact_path
+	ArtifactPath string `json:"artifact_path,omitempty"`
 
 	// cpu_limit
 	// Required: true
@@ -43,16 +42,14 @@ type ModelsServer struct {
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// custom_attribute
-	// Required: true
-	CustomAttribute *string `json:"custom_attribute"`
+	CustomAttribute string `json:"custom_attribute,omitempty"`
 
 	// deployment
 	// Required: true
 	Deployment *string `json:"deployment"`
 
 	// deployment_override
-	// Required: true
-	DeploymentOverride *string `json:"deployment_override"`
+	DeploymentOverride string `json:"deployment_override,omitempty"`
 
 	// game_version
 	// Required: true
@@ -65,6 +62,10 @@ type ModelsServer struct {
 	// ip
 	// Required: true
 	IP *string `json:"ip"`
+
+	// is_core_dump_enabled
+	// Required: true
+	IsCoreDumpEnabled *bool `json:"is_core_dump_enabled"`
 
 	// is_override_game_version
 	// Required: true
@@ -102,8 +103,7 @@ type ModelsServer struct {
 	Port *int32 `json:"port"`
 
 	// ports
-	// Required: true
-	Ports map[string]int64 `json:"ports"`
+	Ports map[string]int64 `json:"ports,omitempty"`
 
 	// protocol
 	// Required: true
@@ -126,8 +126,7 @@ type ModelsServer struct {
 	Status *string `json:"status"`
 
 	// status_history
-	// Required: true
-	StatusHistory []*ModelsStatusHistory `json:"status_history"`
+	StatusHistory []*ModelsStatusHistory `json:"status_history,omitempty"`
 
 	// termination_reason
 	// Required: true
@@ -138,13 +137,7 @@ type ModelsServer struct {
 func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAllocationEvents(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateAllocationID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAlternateIps(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateCPULimit(formats); err != nil {
@@ -153,13 +146,7 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateCustomAttribute(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateDeployment(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateDeploymentOverride(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGameVersion(formats); err != nil {
@@ -169,6 +156,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateIP(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsCoreDumpEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsOverrideGameVersion(formats); err != nil {
@@ -210,9 +200,6 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateStatusHistory(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateTerminationReason(formats); err != nil {
 		res = append(res, err)
 	}
@@ -223,43 +210,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsServer) validateAllocationEvents(formats strfmt.Registry) error {
-
-	if err := validate.Required("allocation_events", "body", m.AllocationEvents); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AllocationEvents); i++ {
-		if swag.IsZero(m.AllocationEvents[i]) { // not required
-			continue
-		}
-
-		if m.AllocationEvents[i] != nil {
-			if err := m.AllocationEvents[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("allocation_events" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *ModelsServer) validateAllocationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("allocation_id", "body", m.AllocationID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateAlternateIps(formats strfmt.Registry) error {
-
-	if err := validate.Required("alternate_ips", "body", m.AlternateIps); err != nil {
 		return err
 	}
 
@@ -288,27 +241,9 @@ func (m *ModelsServer) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsServer) validateCustomAttribute(formats strfmt.Registry) error {
-
-	if err := validate.Required("custom_attribute", "body", m.CustomAttribute); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsServer) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateDeploymentOverride(formats strfmt.Registry) error {
-
-	if err := validate.Required("deployment_override", "body", m.DeploymentOverride); err != nil {
 		return err
 	}
 
@@ -336,6 +271,15 @@ func (m *ModelsServer) validateImageVersion(formats strfmt.Registry) error {
 func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 
 	if err := validate.Required("ip", "body", m.IP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateIsCoreDumpEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("is_core_dump_enabled", "body", m.IsCoreDumpEnabled); err != nil {
 		return err
 	}
 
@@ -458,31 +402,6 @@ func (m *ModelsServer) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateStatusHistory(formats strfmt.Registry) error {
-
-	if err := validate.Required("status_history", "body", m.StatusHistory); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.StatusHistory); i++ {
-		if swag.IsZero(m.StatusHistory[i]) { // not required
-			continue
-		}
-
-		if m.StatusHistory[i] != nil {
-			if err := m.StatusHistory[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("status_history" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

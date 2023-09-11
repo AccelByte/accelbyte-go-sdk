@@ -58,7 +58,7 @@ func (o *PublicConsumeMyItemReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -76,7 +76,7 @@ type PublicConsumeMyItemOK struct {
 }
 
 func (o *PublicConsumeMyItemOK) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume][%d] publicConsumeMyItemOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume][%d] publicConsumeMyItemOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *PublicConsumeMyItemOK) ToJSONString() string {
@@ -129,7 +129,7 @@ type PublicConsumeMyItemBadRequest struct {
 }
 
 func (o *PublicConsumeMyItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume][%d] publicConsumeMyItemBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume][%d] publicConsumeMyItemBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *PublicConsumeMyItemBadRequest) ToJSONString() string {
@@ -182,7 +182,7 @@ type PublicConsumeMyItemNotFound struct {
 }
 
 func (o *PublicConsumeMyItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume][%d] publicConsumeMyItemNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume][%d] publicConsumeMyItemNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *PublicConsumeMyItemNotFound) ToJSONString() string {
@@ -235,7 +235,7 @@ type PublicConsumeMyItemInternalServerError struct {
 }
 
 func (o *PublicConsumeMyItemInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/items/{itemId}/consume][%d] publicConsumeMyItemInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[POST /inventory/v1/public/namespaces/{namespace}/users/me/inventories/{inventoryId}/consume][%d] publicConsumeMyItemInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *PublicConsumeMyItemInternalServerError) ToJSONString() string {

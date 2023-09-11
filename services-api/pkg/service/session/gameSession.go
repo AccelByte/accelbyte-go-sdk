@@ -387,32 +387,32 @@ func (aaa *GameSessionService) GameSessionGenerateCode(input *game_session.GameS
 }
 
 // Deprecated: 2022-01-10 - please use PublicRevokeGameSessionCodeShort instead.
-func (aaa *GameSessionService) PublicRevokeGameSessionCode(input *game_session.PublicRevokeGameSessionCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) PublicRevokeGameSessionCode(input *game_session.PublicRevokeGameSessionCodeParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PublicRevokeGameSessionCode(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PublicRevokeGameSessionCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicGameSessionInviteShort instead.
@@ -934,7 +934,7 @@ func (aaa *GameSessionService) GameSessionGenerateCodeShort(input *game_session.
 	return ok.GetPayload(), nil
 }
 
-func (aaa *GameSessionService) PublicRevokeGameSessionCodeShort(input *game_session.PublicRevokeGameSessionCodeParams) (*sessionclientmodels.ApimodelsGameSessionResponse, error) {
+func (aaa *GameSessionService) PublicRevokeGameSessionCodeShort(input *game_session.PublicRevokeGameSessionCodeParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -951,12 +951,12 @@ func (aaa *GameSessionService) PublicRevokeGameSessionCodeShort(input *game_sess
 		}
 	}
 
-	ok, err := aaa.Client.GameSession.PublicRevokeGameSessionCodeShort(input, authInfoWriter)
+	_, err := aaa.Client.GameSession.PublicRevokeGameSessionCodeShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return ok.GetPayload(), nil
+	return nil
 }
 
 func (aaa *GameSessionService) PublicGameSessionInviteShort(input *game_session.PublicGameSessionInviteParams) error {

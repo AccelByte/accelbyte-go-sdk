@@ -30,6 +30,29 @@ func (aaa *PublicItemsService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use PublicConsumeMyItemShort instead.
+func (aaa *PublicItemsService) PublicConsumeMyItem(input *public_items.PublicConsumeMyItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.PublicItems.PublicConsumeMyItem(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicListItemsShort instead.
 func (aaa *PublicItemsService) PublicListItems(input *public_items.PublicListItemsParams) (*inventoryclientmodels.ApimodelsListItemResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -139,22 +162,24 @@ func (aaa *PublicItemsService) PublicGetItem(input *public_items.PublicGetItemPa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PublicConsumeMyItemShort instead.
-func (aaa *PublicItemsService) PublicConsumeMyItem(input *public_items.PublicConsumeMyItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+func (aaa *PublicItemsService) PublicConsumeMyItemShort(input *public_items.PublicConsumeMyItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
-	ok, badRequest, notFound, internalServerError, err := aaa.Client.PublicItems.PublicConsumeMyItem(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
 	}
-	if notFound != nil {
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
+
+	ok, err := aaa.Client.PublicItems.PublicConsumeMyItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -280,31 +305,6 @@ func (aaa *PublicItemsService) PublicGetItemShort(input *public_items.PublicGetI
 	}
 
 	ok, err := aaa.Client.PublicItems.PublicGetItemShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (aaa *PublicItemsService) PublicConsumeMyItemShort(input *public_items.PublicConsumeMyItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	ok, err := aaa.Client.PublicItems.PublicConsumeMyItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

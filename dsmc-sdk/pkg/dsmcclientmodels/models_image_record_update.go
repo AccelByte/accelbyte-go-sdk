@@ -26,9 +26,17 @@ type ModelsImageRecordUpdate struct {
 	// Required: true
 	Image *string `json:"image"`
 
+	// imagereplicationsmap
+	// Required: true
+	ImageReplicationsMap map[string]ModelsImageReplication `json:"imageReplicationsMap"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// patchversion
+	// Required: true
+	PatchVersion *string `json:"patchVersion"`
 
 	// persistent
 	// Required: true
@@ -50,6 +58,9 @@ func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePatchVersion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePersistent(formats); err != nil {
@@ -83,9 +94,40 @@ func (m *ModelsImageRecordUpdate) validateImage(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsImageRecordUpdate) validateImageReplicationsMap(formats strfmt.Registry) error {
+
+	if err := validate.Required("imageReplicationsMap", "body", m.ImageReplicationsMap); err != nil {
+		return err
+	}
+
+	for k := range m.ImageReplicationsMap {
+
+		if err := validate.Required("imageReplicationsMap"+"."+k, "body", m.ImageReplicationsMap[k]); err != nil {
+			return err
+		}
+		if val, ok := m.ImageReplicationsMap[k]; ok {
+			if err := val.Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsImageRecordUpdate) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsImageRecordUpdate) validatePatchVersion(formats strfmt.Registry) error {
+
+	if err := validate.Required("patchVersion", "body", m.PatchVersion); err != nil {
 		return err
 	}
 

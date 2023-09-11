@@ -67,7 +67,7 @@ type AdminBulkRemoveItemsParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *inventoryclientmodels.ApimodelsBulkRemoveItemsReq
+	Body []*inventoryclientmodels.ApimodelsRemoveInventoryItemReq
 	/*InventoryID
 	  InventoryID
 
@@ -138,13 +138,13 @@ func (o *AdminBulkRemoveItemsParams) SetHTTPClientTransport(roundTripper http.Ro
 }
 
 // WithBody adds the body to the admin bulk remove items params
-func (o *AdminBulkRemoveItemsParams) WithBody(body *inventoryclientmodels.ApimodelsBulkRemoveItemsReq) *AdminBulkRemoveItemsParams {
+func (o *AdminBulkRemoveItemsParams) WithBody(body []*inventoryclientmodels.ApimodelsRemoveInventoryItemReq) *AdminBulkRemoveItemsParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin bulk remove items params
-func (o *AdminBulkRemoveItemsParams) SetBody(body *inventoryclientmodels.ApimodelsBulkRemoveItemsReq) {
+func (o *AdminBulkRemoveItemsParams) SetBody(body []*inventoryclientmodels.ApimodelsRemoveInventoryItemReq) {
 	o.Body = body
 }
 

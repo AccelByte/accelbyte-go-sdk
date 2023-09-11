@@ -48,6 +48,8 @@ type ClientService interface {
 	AdminGetContentBulkShort(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, error)
 	AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error)
 	AdminSearchContentShort(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, error)
+	AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error)
+	AdminGetContentBulkByShareCodesShort(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, error)
 	AdminGetUserContentByShareCode(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, *AdminGetUserContentByShareCodeUnauthorized, *AdminGetUserContentByShareCodeNotFound, *AdminGetUserContentByShareCodeInternalServerError, error)
 	AdminGetUserContentByShareCodeShort(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, error)
 	AdminGetSpecificContent(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, *AdminGetSpecificContentUnauthorized, *AdminGetSpecificContentNotFound, *AdminGetSpecificContentInternalServerError, error)
@@ -1209,6 +1211,115 @@ func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authI
 	case *AdminSearchContentNotFound:
 		return nil, v
 	case *AdminSearchContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetContentBulkByShareCodesShort instead.
+
+AdminGetContentBulkByShareCodes bulk get content by content sharecodes
+Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
+Maximum sharecodes per request 100
+*/
+func (a *Client) AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkByShareCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulkByShareCodes",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkByShareCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkByShareCodesOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetContentBulkByShareCodesUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetContentBulkByShareCodesForbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetContentBulkByShareCodesInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetContentBulkByShareCodesShort bulk get content by content sharecodes
+Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
+Maximum sharecodes per request 100
+*/
+func (a *Client) AdminGetContentBulkByShareCodesShort(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkByShareCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulkByShareCodes",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkByShareCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkByShareCodesOK:
+		return v, nil
+	case *AdminGetContentBulkByShareCodesUnauthorized:
+		return nil, v
+	case *AdminGetContentBulkByShareCodesForbidden:
+		return nil, v
+	case *AdminGetContentBulkByShareCodesInternalServerError:
 		return nil, v
 
 	default:

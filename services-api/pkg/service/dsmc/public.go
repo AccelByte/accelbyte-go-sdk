@@ -59,7 +59,7 @@ func (aaa *PublicService) ListProviders(input *public.ListProvidersParams) ([]st
 }
 
 // Deprecated: 2022-01-10 - please use ListProvidersByRegionShort instead.
-func (aaa *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+func (aaa *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) ([]string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -122,7 +122,7 @@ func (aaa *PublicService) ListProvidersShort(input *public.ListProvidersParams) 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+func (aaa *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) ([]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

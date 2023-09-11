@@ -22,8 +22,13 @@ import (
 // NewGetOutgoingFriendRequestsParams creates a new GetOutgoingFriendRequestsParams object
 // with the default values initialized.
 func NewGetOutgoingFriendRequestsParams() *GetOutgoingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOutgoingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetOutgoingFriendRequestsParams() *GetOutgoingFriendRequestsParams {
 // NewGetOutgoingFriendRequestsParamsWithTimeout creates a new GetOutgoingFriendRequestsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetOutgoingFriendRequestsParamsWithTimeout(timeout time.Duration) *GetOutgoingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOutgoingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetOutgoingFriendRequestsParamsWithTimeout(timeout time.Duration) *GetOu
 // NewGetOutgoingFriendRequestsParamsWithContext creates a new GetOutgoingFriendRequestsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetOutgoingFriendRequestsParamsWithContext(ctx context.Context) *GetOutgoingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOutgoingFriendRequestsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetOutgoingFriendRequestsParamsWithContext(ctx context.Context) *GetOutg
 // NewGetOutgoingFriendRequestsParamsWithHTTPClient creates a new GetOutgoingFriendRequestsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetOutgoingFriendRequestsParamsWithHTTPClient(client *http.Client) *GetOutgoingFriendRequestsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOutgoingFriendRequestsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }

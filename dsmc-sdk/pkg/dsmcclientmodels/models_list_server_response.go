@@ -7,8 +7,6 @@
 package dsmcclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -25,8 +23,7 @@ type ModelsListServerResponse struct {
 	Paging *ModelsPagingCursor `json:"paging"`
 
 	// servers
-	// Required: true
-	Servers []*ModelsServer `json:"servers"`
+	Servers []*ModelsServer `json:"servers,omitempty"`
 }
 
 // Validate validates this Models list server response
@@ -34,9 +31,6 @@ func (m *ModelsListServerResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validatePaging(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateServers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,31 +53,6 @@ func (m *ModelsListServerResponse) validatePaging(formats strfmt.Registry) error
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *ModelsListServerResponse) validateServers(formats strfmt.Registry) error {
-
-	if err := validate.Required("servers", "body", m.Servers); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Servers); i++ {
-		if swag.IsZero(m.Servers[i]) { // not required
-			continue
-		}
-
-		if m.Servers[i] != nil {
-			if err := m.Servers[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("servers" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

@@ -40,8 +40,6 @@ type ClientService interface {
 	FulfillRewardsShort(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, error)
 	PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error)
 	PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error)
-	FulfillRewardsV2(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, *FulfillRewardsV2BadRequest, *FulfillRewardsV2NotFound, *FulfillRewardsV2Conflict, error)
-	FulfillRewardsV2Short(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -599,121 +597,6 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 	case *PublicRedeemCodeNotFound:
 		return nil, v
 	case *PublicRedeemCodeConflict:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use FulfillRewardsV2Short instead.
-
-FulfillRewardsV2 fulfill rewards
- [SERVICE COMMUNICATION ONLY] Fulfill rewards.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
-  *  Returns : fulfillment result
-*/
-func (a *Client) FulfillRewardsV2(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, *FulfillRewardsV2BadRequest, *FulfillRewardsV2NotFound, *FulfillRewardsV2Conflict, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFulfillRewardsV2Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "fulfillRewardsV2",
-		Method:             "POST",
-		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FulfillRewardsV2Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FulfillRewardsV2OK:
-		return v, nil, nil, nil, nil
-
-	case *FulfillRewardsV2BadRequest:
-		return nil, v, nil, nil, nil
-
-	case *FulfillRewardsV2NotFound:
-		return nil, nil, v, nil, nil
-
-	case *FulfillRewardsV2Conflict:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-FulfillRewardsV2Short fulfill rewards
- [SERVICE COMMUNICATION ONLY] Fulfill rewards.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
-  *  Returns : fulfillment result
-*/
-func (a *Client) FulfillRewardsV2Short(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFulfillRewardsV2Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "fulfillRewardsV2",
-		Method:             "POST",
-		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FulfillRewardsV2Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FulfillRewardsV2OK:
-		return v, nil
-	case *FulfillRewardsV2BadRequest:
-		return nil, v
-	case *FulfillRewardsV2NotFound:
-		return nil, v
-	case *FulfillRewardsV2Conflict:
 		return nil, v
 
 	default:

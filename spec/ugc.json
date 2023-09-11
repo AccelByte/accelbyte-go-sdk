@@ -1179,6 +1179,76 @@
         ]
       }
     },
+    "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.\n\t\t\t\t\t\tMaximum sharecodes per request 100",
+        "operationId": "AdminGetContentBulkByShareCodes",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GetContentBulkByShareCodesRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponse"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get content by content sharecodes",
+        "tags": [
+          "Admin Content"
+        ]
+      }
+    },
     "/ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
       "get": {
         "consumes": [
@@ -7871,6 +7941,19 @@
         "totalLikedContent"
       ]
     },
+    "models.GetContentBulkByShareCodesRequest": {
+      "properties": {
+        "shareCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "shareCodes"
+      ]
+    },
     "models.GetContentPreviewResponse": {
       "properties": {
         "preview": {
@@ -8344,8 +8427,8 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-15T01:43:35+00:00",
-    "gitHash": "4d125a02582f025f866fc9b264afada422a58383",
+    "buildDate": "2023-08-29T01:42:45+00:00",
+    "gitHash": "710192a70392e048f17e925bb2c5a95ba83fbd99",
     "name": "justice-ugc-service",
     "realm": "staging",
     "version": "2.12.0",

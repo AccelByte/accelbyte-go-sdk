@@ -26,12 +26,14 @@ var PublicGetItemCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		inventoryId, _ := cmd.Flags().GetString("inventoryId")
-		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		slotId, _ := cmd.Flags().GetString("slotId")
+		sourceItemId, _ := cmd.Flags().GetString("sourceItemId")
 		input := &public_items.PublicGetItemParams{
-			InventoryID: inventoryId,
-			ItemID:      itemId,
-			Namespace:   namespace,
+			InventoryID:  inventoryId,
+			Namespace:    namespace,
+			SlotID:       slotId,
+			SourceItemID: sourceItemId,
 		}
 		ok, errOK := publicItemsService.PublicGetItemShort(input)
 		if errOK != nil {
@@ -49,8 +51,10 @@ var PublicGetItemCmd = &cobra.Command{
 func init() {
 	PublicGetItemCmd.Flags().String("inventoryId", "", "Inventory id")
 	_ = PublicGetItemCmd.MarkFlagRequired("inventoryId")
-	PublicGetItemCmd.Flags().String("itemId", "", "Item id")
-	_ = PublicGetItemCmd.MarkFlagRequired("itemId")
 	PublicGetItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetItemCmd.MarkFlagRequired("namespace")
+	PublicGetItemCmd.Flags().String("slotId", "", "Slot id")
+	_ = PublicGetItemCmd.MarkFlagRequired("slotId")
+	PublicGetItemCmd.Flags().String("sourceItemId", "", "Source item id")
+	_ = PublicGetItemCmd.MarkFlagRequired("sourceItemId")
 }

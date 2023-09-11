@@ -31,14 +31,14 @@ var PublicRevokeGameSessionCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionId,
 		}
-		ok, errOK := gameSessionService.PublicRevokeGameSessionCodeShort(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		errNoContent := gameSessionService.PublicRevokeGameSessionCodeShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errOK
+			return errNoContent
 		}
 
-		logrus.Infof("Response CLI success: %+v", ok)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

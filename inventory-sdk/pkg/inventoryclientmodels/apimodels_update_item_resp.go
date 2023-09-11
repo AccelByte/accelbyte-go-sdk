@@ -21,9 +21,13 @@ type ApimodelsUpdateItemResp struct {
 	// errordetails
 	ErrorDetails *ApimodelsErrorResponse `json:"errorDetails,omitempty"`
 
-	// id
+	// slotid
 	// Required: true
-	ID *string `json:"id"`
+	SlotID *string `json:"slotId"`
+
+	// sourceitemid
+	// Required: true
+	SourceItemID *string `json:"sourceItemId"`
 
 	// success
 	// Required: true
@@ -34,7 +38,10 @@ type ApimodelsUpdateItemResp struct {
 func (m *ApimodelsUpdateItemResp) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSourceItemID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSuccess(formats); err != nil {
@@ -47,9 +54,18 @@ func (m *ApimodelsUpdateItemResp) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ApimodelsUpdateItemResp) validateID(formats strfmt.Registry) error {
+func (m *ApimodelsUpdateItemResp) validateSlotID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUpdateItemResp) validateSourceItemID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sourceItemId", "body", m.SourceItemID); err != nil {
 		return err
 	}
 

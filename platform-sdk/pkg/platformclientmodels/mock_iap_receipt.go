@@ -34,9 +34,6 @@ type MockIAPReceipt struct {
 	// country value from ISO countries
 	Region string `json:"region,omitempty"`
 
-	// transactionId
-	TransactionID string `json:"transactionId,omitempty"`
-
 	// The IAP type.
 	// Enum: ['APPLE', 'EPICGAMES', 'GOOGLE', 'OCULUS', 'PLAYSTATION', 'STADIA', 'STEAM', 'TWITCH', 'XBOX']
 	// Required: true

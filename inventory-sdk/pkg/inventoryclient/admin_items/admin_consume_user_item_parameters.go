@@ -73,11 +73,6 @@ type AdminConsumeUserItemParams struct {
 
 	*/
 	InventoryID string
-	/*ItemID
-	  ItemID
-
-	*/
-	ItemID string
 	/*Namespace
 	  Namespace
 
@@ -164,17 +159,6 @@ func (o *AdminConsumeUserItemParams) SetInventoryID(inventoryID string) {
 	o.InventoryID = inventoryID
 }
 
-// WithItemID adds the itemID to the admin consume user item params
-func (o *AdminConsumeUserItemParams) WithItemID(itemID string) *AdminConsumeUserItemParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the admin consume user item params
-func (o *AdminConsumeUserItemParams) SetItemID(itemID string) {
-	o.ItemID = itemID
-}
-
 // WithNamespace adds the namespace to the admin consume user item params
 func (o *AdminConsumeUserItemParams) WithNamespace(namespace string) *AdminConsumeUserItemParams {
 	o.SetNamespace(namespace)
@@ -213,11 +197,6 @@ func (o *AdminConsumeUserItemParams) WriteToRequest(r runtime.ClientRequest, reg
 
 	// path param inventoryId
 	if err := r.SetPathParam("inventoryId", o.InventoryID); err != nil {
-		return err
-	}
-
-	// path param itemId
-	if err := r.SetPathParam("itemId", o.ItemID); err != nil {
 		return err
 	}
 

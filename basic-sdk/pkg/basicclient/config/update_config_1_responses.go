@@ -27,8 +27,8 @@ type UpdateConfig1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateConfig1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewUpdateConfig1Created()
+	case 200:
+		result := NewUpdateConfig1OK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,24 +68,24 @@ func (o *UpdateConfig1Reader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewUpdateConfig1Created creates a UpdateConfig1Created with default headers values
-func NewUpdateConfig1Created() *UpdateConfig1Created {
-	return &UpdateConfig1Created{}
+// NewUpdateConfig1OK creates a UpdateConfig1OK with default headers values
+func NewUpdateConfig1OK() *UpdateConfig1OK {
+	return &UpdateConfig1OK{}
 }
 
-/*UpdateConfig1Created handles this case with default header values.
+/*UpdateConfig1OK handles this case with default header values.
 
   Successful operation
 */
-type UpdateConfig1Created struct {
+type UpdateConfig1OK struct {
 	Payload *basicclientmodels.ConfigInfo
 }
 
-func (o *UpdateConfig1Created) Error() string {
-	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/configs/{configKey}][%d] updateConfig1Created  %+v", 201, o.ToJSONString())
+func (o *UpdateConfig1OK) Error() string {
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/configs/{configKey}][%d] updateConfig1OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *UpdateConfig1Created) ToJSONString() string {
+func (o *UpdateConfig1OK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -100,11 +100,11 @@ func (o *UpdateConfig1Created) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *UpdateConfig1Created) GetPayload() *basicclientmodels.ConfigInfo {
+func (o *UpdateConfig1OK) GetPayload() *basicclientmodels.ConfigInfo {
 	return o.Payload
 }
 
-func (o *UpdateConfig1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *UpdateConfig1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

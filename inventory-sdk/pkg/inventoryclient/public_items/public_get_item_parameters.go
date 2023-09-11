@@ -69,16 +69,21 @@ type PublicGetItemParams struct {
 
 	*/
 	InventoryID string
-	/*ItemID
-	  ItemID
-
-	*/
-	ItemID string
 	/*Namespace
 	  Namespace
 
 	*/
 	Namespace string
+	/*SlotID
+	  slotID
+
+	*/
+	SlotID string
+	/*SourceItemID
+	  sourceItemID
+
+	*/
+	SourceItemID string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -144,17 +149,6 @@ func (o *PublicGetItemParams) SetInventoryID(inventoryID string) {
 	o.InventoryID = inventoryID
 }
 
-// WithItemID adds the itemID to the public get item params
-func (o *PublicGetItemParams) WithItemID(itemID string) *PublicGetItemParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the public get item params
-func (o *PublicGetItemParams) SetItemID(itemID string) {
-	o.ItemID = itemID
-}
-
 // WithNamespace adds the namespace to the public get item params
 func (o *PublicGetItemParams) WithNamespace(namespace string) *PublicGetItemParams {
 	o.SetNamespace(namespace)
@@ -164,6 +158,28 @@ func (o *PublicGetItemParams) WithNamespace(namespace string) *PublicGetItemPara
 // SetNamespace adds the namespace to the public get item params
 func (o *PublicGetItemParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithSlotID adds the slotID to the public get item params
+func (o *PublicGetItemParams) WithSlotID(slotID string) *PublicGetItemParams {
+	o.SetSlotID(slotID)
+	return o
+}
+
+// SetSlotID adds the slotId to the public get item params
+func (o *PublicGetItemParams) SetSlotID(slotID string) {
+	o.SlotID = slotID
+}
+
+// WithSourceItemID adds the sourceItemID to the public get item params
+func (o *PublicGetItemParams) WithSourceItemID(sourceItemID string) *PublicGetItemParams {
+	o.SetSourceItemID(sourceItemID)
+	return o
+}
+
+// SetSourceItemID adds the sourceItemId to the public get item params
+func (o *PublicGetItemParams) SetSourceItemID(sourceItemID string) {
+	o.SourceItemID = sourceItemID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -179,13 +195,18 @@ func (o *PublicGetItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 
-	// path param itemId
-	if err := r.SetPathParam("itemId", o.ItemID); err != nil {
+	// path param namespace
+	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
 	}
 
-	// path param namespace
-	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+	// path param slotId
+	if err := r.SetPathParam("slotId", o.SlotID); err != nil {
+		return err
+	}
+
+	// path param sourceItemId
+	if err := r.SetPathParam("sourceItemId", o.SourceItemID); err != nil {
 		return err
 	}
 

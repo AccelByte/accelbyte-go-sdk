@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/campaign"
 	"github.com/AccelByte/sample-apps/cmd/platform/catalogChanges"
 	"github.com/AccelByte/sample-apps/cmd/platform/category"
-	"github.com/AccelByte/sample-apps/cmd/platform/clawback"
 	"github.com/AccelByte/sample-apps/cmd/platform/currency"
 	"github.com/AccelByte/sample-apps/cmd/platform/dlc"
 	"github.com/AccelByte/sample-apps/cmd/platform/entitlement"
@@ -114,8 +113,6 @@ func init() {
 	PlatformCmd.AddCommand(entitlement.RevokeEntitlementsCmd)
 	PlatformCmd.AddCommand(entitlement.GetEntitlementCmd)
 	PlatformCmd.AddCommand(fulfillment.QueryFulfillmentHistoriesCmd)
-	PlatformCmd.AddCommand(clawback.QueryIAPClawbackHistoryCmd)
-	PlatformCmd.AddCommand(clawback.MockPlayStationStreamEventCmd)
 	PlatformCmd.AddCommand(iap.GetAppleIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateAppleIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteAppleIAPConfigCmd)
@@ -135,8 +132,6 @@ func init() {
 	PlatformCmd.AddCommand(iap.GetPlayStationIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdatePlaystationIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeletePlaystationIAPConfigCmd)
-	PlatformCmd.AddCommand(iap.ValidateExistedPlaystationIAPConfigCmd)
-	PlatformCmd.AddCommand(iap.ValidatePlaystationIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.GetSteamIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateSteamIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteSteamIAPConfigCmd)
@@ -468,5 +463,4 @@ func init() {
 	PlatformCmd.AddCommand(item.QueryItems1Cmd)
 	PlatformCmd.AddCommand(store.ImportStore1Cmd)
 	PlatformCmd.AddCommand(store.ExportStore1Cmd)
-	PlatformCmd.AddCommand(fulfillment.FulfillRewardsV2Cmd)
 }

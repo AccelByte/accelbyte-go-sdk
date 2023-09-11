@@ -373,6 +373,29 @@ func (aaa *ImageConfigService) CreateRepository(input *image_config.CreateReposi
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use ListImagesClientShort instead.
+func (aaa *ImageConfigService) ListImagesClient(input *image_config.ListImagesClientParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.ImageConfig.ListImagesClient(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ImageLimitClientShort instead.
 func (aaa *ImageConfigService) ImageLimitClient(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -767,6 +790,31 @@ func (aaa *ImageConfigService) CreateRepositoryShort(input *image_config.CreateR
 	}
 
 	return nil
+}
+
+func (aaa *ImageConfigService) ListImagesClientShort(input *image_config.ListImagesClientParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.ImageConfig.ListImagesClientShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ImageConfigService) ImageLimitClientShort(input *image_config.ImageLimitClientParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {

@@ -22,6 +22,14 @@ type ApimodelsConsumeItemReq struct {
 	// Required: true
 	// Format: int32
 	Qty *int32 `json:"qty"`
+
+	// slotid
+	// Required: true
+	SlotID *string `json:"slotId"`
+
+	// sourceitemid
+	// Required: true
+	SourceItemID *string `json:"sourceItemId"`
 }
 
 // Validate validates this Apimodels consume item req
@@ -29,6 +37,12 @@ func (m *ApimodelsConsumeItemReq) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateQty(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSlotID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSourceItemID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -41,6 +55,24 @@ func (m *ApimodelsConsumeItemReq) Validate(formats strfmt.Registry) error {
 func (m *ApimodelsConsumeItemReq) validateQty(formats strfmt.Registry) error {
 
 	if err := validate.Required("qty", "body", m.Qty); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsConsumeItemReq) validateSlotID(formats strfmt.Registry) error {
+
+	if err := validate.Required("slotId", "body", m.SlotID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsConsumeItemReq) validateSourceItemID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sourceItemId", "body", m.SourceItemID); err != nil {
 		return err
 	}
 

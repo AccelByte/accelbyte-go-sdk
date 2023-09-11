@@ -31,14 +31,14 @@ var PublicRevokePartyCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		ok, errOK := partyService.PublicRevokePartyCodeShort(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		errNoContent := partyService.PublicRevokePartyCodeShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errOK
+			return errNoContent
 		}
 
-		logrus.Infof("Response CLI success: %+v", ok)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

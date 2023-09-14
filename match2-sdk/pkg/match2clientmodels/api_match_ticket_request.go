@@ -31,8 +31,7 @@ type APIMatchTicketRequest struct {
 	MatchPool *string `json:"matchPool"`
 
 	// sessionid
-	// Required: true
-	SessionID *string `json:"sessionID"`
+	SessionID string `json:"sessionID,omitempty"`
 }
 
 // Validate validates this Api match ticket request
@@ -40,9 +39,6 @@ func (m *APIMatchTicketRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMatchPool(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSessionID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,15 +51,6 @@ func (m *APIMatchTicketRequest) Validate(formats strfmt.Registry) error {
 func (m *APIMatchTicketRequest) validateMatchPool(formats strfmt.Registry) error {
 
 	if err := validate.Required("matchPool", "body", m.MatchPool); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIMatchTicketRequest) validateSessionID(formats strfmt.Registry) error {
-
-	if err := validate.Required("sessionID", "body", m.SessionID); err != nil {
 		return err
 	}
 

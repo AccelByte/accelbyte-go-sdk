@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.10.1"
+    "version": "2.10.2"
   },
   "schemes": [
     "https"
@@ -1502,7 +1502,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]\n\nRequired Scope: social\n\nCreates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered plaftforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]\n\nRequired Scope: social\n\nCreates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -2599,8 +2599,7 @@
       "required": [
         "attributes",
         "latencies",
-        "matchPool",
-        "sessionID"
+        "matchPool"
       ]
     },
     "api.MatchTicketResponse": {
@@ -3179,9 +3178,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-01T01:36:38+00:00",
-    "gitHash": "a61e83623dd3507da61b2931c03b34b0341b0308",
-    "version": "2.10.1",
+    "buildDate": "2023-09-11T10:49:10+00:00",
+    "gitHash": "261997d30e1455b2e79ffb9a0b9bb965d12a1cc1",
+    "version": "2.10.2",
     "version-roles-seeding": "0.0.38"
   }
 }

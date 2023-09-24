@@ -7,9 +7,12 @@ Description:
 Resources:
   TicTacToeFunction:
     Type: 'AWS::Serverless::Function'
+    Metadata:
+      BuildMethod: go1.x
     Properties:
-      Handler: main
-      Runtime: go1.x
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures: [ arm64 ]
       CodeUri: aws-lambda
       Description: ''
       MemorySize: 512

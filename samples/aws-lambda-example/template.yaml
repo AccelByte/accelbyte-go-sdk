@@ -17,10 +17,13 @@ Globals:
 Resources:
   UserStatsFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
     Properties:
       CodeUri: UserStatsFunction
-      Handler: main.go
-      Runtime: go1.x
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures: [ arm64 ]
       MemorySize: 512
       FunctionUrlConfig: # https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html
         AuthType: NONE # Change to "AWS_IAM" based on your needs https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html

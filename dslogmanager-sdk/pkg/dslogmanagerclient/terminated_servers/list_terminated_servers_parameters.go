@@ -137,6 +137,11 @@ type ListTerminatedServersParams struct {
 
 	*/
 	SessionID *string
+	/*Source
+	  the source of the request, currently only for dsmc use with value: dsmc
+
+	*/
+	Source *string
 	/*StartDate
 	  start date on last update of the game RFC 3339
 
@@ -336,6 +341,17 @@ func (o *ListTerminatedServersParams) WithSessionID(sessionID *string) *ListTerm
 // SetSessionID adds the sessionId to the list terminated servers params
 func (o *ListTerminatedServersParams) SetSessionID(sessionID *string) {
 	o.SessionID = sessionID
+}
+
+// WithSource adds the source to the list terminated servers params
+func (o *ListTerminatedServersParams) WithSource(source *string) *ListTerminatedServersParams {
+	o.SetSource(source)
+	return o
+}
+
+// SetSource adds the source to the list terminated servers params
+func (o *ListTerminatedServersParams) SetSource(source *string) {
+	o.Source = source
 }
 
 // WithStartDate adds the startDate to the list terminated servers params
@@ -554,6 +570,22 @@ func (o *ListTerminatedServersParams) WriteToRequest(r runtime.ClientRequest, re
 		qSessionID := qrSessionID
 		if qSessionID != "" {
 			if err := r.SetQueryParam("session_id", qSessionID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Source != nil {
+
+		// query param source
+		var qrSource string
+		if o.Source != nil {
+			qrSource = *o.Source
+		}
+		qSource := qrSource
+		if qSource != "" {
+			if err := r.SetQueryParam("source", qSource); err != nil {
 				return err
 			}
 		}

@@ -66,6 +66,11 @@ type ModelsImageRecord struct {
 	// Required: true
 	Persistent *bool `json:"persistent"`
 
+	// ulimitfilesize
+	// Required: true
+	// Format: int32
+	UlimitFileSize *int32 `json:"ulimitFileSize"`
+
 	// updatedat
 	// Required: true
 	// Format: date-time
@@ -108,6 +113,9 @@ func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePersistent(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUlimitFileSize(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
@@ -249,6 +257,15 @@ func (m *ModelsImageRecord) validateNamespace(formats strfmt.Registry) error {
 func (m *ModelsImageRecord) validatePersistent(formats strfmt.Registry) error {
 
 	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsImageRecord) validateUlimitFileSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("ulimitFileSize", "body", m.UlimitFileSize); err != nil {
 		return err
 	}
 

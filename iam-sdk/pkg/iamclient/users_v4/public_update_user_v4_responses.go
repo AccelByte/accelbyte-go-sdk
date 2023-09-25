@@ -45,6 +45,12 @@ func (o *PublicUpdateUserV4Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPublicUpdateUserV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewPublicUpdateUserV4Conflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -211,6 +217,59 @@ func (o *PublicUpdateUserV4Unauthorized) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *PublicUpdateUserV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicUpdateUserV4Forbidden creates a PublicUpdateUserV4Forbidden with default headers values
+func NewPublicUpdateUserV4Forbidden() *PublicUpdateUserV4Forbidden {
+	return &PublicUpdateUserV4Forbidden{}
+}
+
+/*PublicUpdateUserV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+*/
+type PublicUpdateUserV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *PublicUpdateUserV4Forbidden) Error() string {
+	return fmt.Sprintf("[PATCH /iam/v4/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicUpdateUserV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateUserV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *PublicUpdateUserV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

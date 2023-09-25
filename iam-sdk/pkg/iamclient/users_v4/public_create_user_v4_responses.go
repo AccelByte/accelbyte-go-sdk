@@ -39,6 +39,12 @@ func (o *PublicCreateUserV4Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPublicCreateUserV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicCreateUserV4NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -158,6 +164,59 @@ func (o *PublicCreateUserV4BadRequest) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *PublicCreateUserV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicCreateUserV4Forbidden creates a PublicCreateUserV4Forbidden with default headers values
+func NewPublicCreateUserV4Forbidden() *PublicCreateUserV4Forbidden {
+	return &PublicCreateUserV4Forbidden{}
+}
+
+/*PublicCreateUserV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+*/
+type PublicCreateUserV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *PublicCreateUserV4Forbidden) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users][%d] publicCreateUserV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicCreateUserV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateUserV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *PublicCreateUserV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

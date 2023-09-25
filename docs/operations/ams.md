@@ -59,6 +59,7 @@
 ### Watchdogs Wrapper:  [Watchdogs](../../services-api/pkg/service/ams/watchdogs.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect` | GET | LocalWatchdogConnectShort | [LocalWatchdogConnectShort](../../ams-sdk/pkg/amsclient/watchdogs/watchdogs_client.go) | [LocalWatchdogConnectShort](../../services-api/pkg/service/ams/watchdogs.go) | [LocalWatchdogConnectShort](../../samples/cli/cmd/ams/watchdogs/localWatchdogConnect.go) |
 | `/ams/v1/namespaces/{namespace}/watchdogs/{watchdogID}/connect` | GET | WatchdogConnectShort | [WatchdogConnectShort](../../ams-sdk/pkg/amsclient/watchdogs/watchdogs_client.go) | [WatchdogConnectShort](../../services-api/pkg/service/ams/watchdogs.go) | [WatchdogConnectShort](../../samples/cli/cmd/ams/watchdogs/watchdogConnect.go) |
 
 
@@ -70,6 +71,7 @@
 |---|---|
 | `api.AccountCreateRequest` | [ApiAccountCreateRequest ](../../ams-sdk/pkg/amsclientmodels/api_account_create_request.go) |
 | `api.AccountCreateResponse` | [ApiAccountCreateResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_create_response.go) |
+| `api.AccountLimits` | [ApiAccountLimits ](../../ams-sdk/pkg/amsclientmodels/api_account_limits.go) |
 | `api.AccountLinkRequest` | [ApiAccountLinkRequest ](../../ams-sdk/pkg/amsclientmodels/api_account_link_request.go) |
 | `api.AccountLinkResponse` | [ApiAccountLinkResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_response.go) |
 | `api.AccountLinkTokenResponse` | [ApiAccountLinkTokenResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_token_response.go) |
@@ -99,6 +101,7 @@
 | `api.InstanceTypeDescriptionResponse` | [ApiInstanceTypeDescriptionResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_description_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
+| `api.QOSServer` | [ApiQOSServer ](../../ams-sdk/pkg/amsclientmodels/api_q_o_s_server.go) |
 | `api.ReferencingFleet` | [ApiReferencingFleet ](../../ams-sdk/pkg/amsclientmodels/api_referencing_fleet.go) |
 | `api.RegionConfig` | [ApiRegionConfig ](../../ams-sdk/pkg/amsclientmodels/api_region_config.go) |
 | `api.RegionsResponse` | [ApiRegionsResponse ](../../ams-sdk/pkg/amsclientmodels/api_regions_response.go) |

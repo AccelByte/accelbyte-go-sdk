@@ -810,9 +810,12 @@ func (aaa *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.PublicCreateUserV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.PublicCreateUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -836,9 +839,12 @@ func (aaa *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUser
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, internalServerError, err := aaa.Client.UsersV4.CreateUserFromInvitationV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.CreateUserFromInvitationV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -859,12 +865,15 @@ func (aaa *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.UsersV4.PublicUpdateUserV4(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.UsersV4.PublicUpdateUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if conflict != nil {
 		return nil, conflict

@@ -64,7 +64,7 @@ func (o *PlatformTokenRefreshV3Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /iam/v3/v3/platforms/{platformId}/token/verify returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /iam/v3/platforms/{platformId}/token/verify returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -82,7 +82,7 @@ type PlatformTokenRefreshV3OK struct {
 }
 
 func (o *PlatformTokenRefreshV3OK) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3OK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[POST /iam/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3OK  %+v", 200, o.ToJSONString())
 }
 
 func (o *PlatformTokenRefreshV3OK) ToJSONString() string {
@@ -135,7 +135,7 @@ type PlatformTokenRefreshV3BadRequest struct {
 }
 
 func (o *PlatformTokenRefreshV3BadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3BadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[POST /iam/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3BadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *PlatformTokenRefreshV3BadRequest) ToJSONString() string {
@@ -188,7 +188,7 @@ type PlatformTokenRefreshV3Unauthorized struct {
 }
 
 func (o *PlatformTokenRefreshV3Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3Unauthorized  %+v", 401, o.ToJSONString())
+	return fmt.Sprintf("[POST /iam/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3Unauthorized  %+v", 401, o.ToJSONString())
 }
 
 func (o *PlatformTokenRefreshV3Unauthorized) ToJSONString() string {
@@ -241,7 +241,7 @@ type PlatformTokenRefreshV3Forbidden struct {
 }
 
 func (o *PlatformTokenRefreshV3Forbidden) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3Forbidden  %+v", 403, o.ToJSONString())
+	return fmt.Sprintf("[POST /iam/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3Forbidden  %+v", 403, o.ToJSONString())
 }
 
 func (o *PlatformTokenRefreshV3Forbidden) ToJSONString() string {
@@ -294,7 +294,7 @@ type PlatformTokenRefreshV3ServiceUnavailable struct {
 }
 
 func (o *PlatformTokenRefreshV3ServiceUnavailable) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3ServiceUnavailable  %+v", 503, o.ToJSONString())
+	return fmt.Sprintf("[POST /iam/v3/platforms/{platformId}/token/verify][%d] platformTokenRefreshV3ServiceUnavailable  %+v", 503, o.ToJSONString())
 }
 
 func (o *PlatformTokenRefreshV3ServiceUnavailable) ToJSONString() string {

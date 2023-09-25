@@ -156,6 +156,7 @@
 | `models.PSNAppServerCredentials` | [ModelsPSNAppServerCredentials ](../../session-sdk/pkg/sessionclientmodels/models_p_s_n_app_server_credentials.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.PlatformCredentials` | [ModelsPlatformCredentials ](../../session-sdk/pkg/sessionclientmodels/models_platform_credentials.go) |
+| `models.PortConfigurationAMS` | [ModelsPortConfigurationAMS ](../../session-sdk/pkg/sessionclientmodels/models_port_configuration_a_m_s.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

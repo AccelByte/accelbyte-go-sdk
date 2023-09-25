@@ -32,8 +32,6 @@ type Client struct {
 type ClientService interface {
 	ListFulfillmentScripts(params *ListFulfillmentScriptsParams, authInfo runtime.ClientAuthInfoWriter) (*ListFulfillmentScriptsOK, error)
 	ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParams, authInfo runtime.ClientAuthInfoWriter) (*ListFulfillmentScriptsOK, error)
-	TestFulfillmentScriptEval(params *TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*TestFulfillmentScriptEvalOK, error)
-	TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*TestFulfillmentScriptEvalOK, error)
 	GetFulfillmentScript(params *GetFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*GetFulfillmentScriptOK, *GetFulfillmentScriptNotFound, error)
 	GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*GetFulfillmentScriptOK, error)
 	CreateFulfillmentScript(params *CreateFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*CreateFulfillmentScriptCreated, *CreateFulfillmentScriptConflict, error)
@@ -137,104 +135,6 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 	switch v := result.(type) {
 
 	case *ListFulfillmentScriptsOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use TestFulfillmentScriptEvalShort instead.
-
-TestFulfillmentScriptEval test eval fulfillment script
- [TEST FACILITY ONLY] Test eval fulfillment script.
-Other detail info:
-
-  * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
-*/
-func (a *Client) TestFulfillmentScriptEval(params *TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*TestFulfillmentScriptEvalOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewTestFulfillmentScriptEvalParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "testFulfillmentScriptEval",
-		Method:             "POST",
-		PathPattern:        "/platform/admin/fulfillment/scripts/tests/eval",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &TestFulfillmentScriptEvalReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *TestFulfillmentScriptEvalOK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-TestFulfillmentScriptEvalShort test eval fulfillment script
- [TEST FACILITY ONLY] Test eval fulfillment script.
-Other detail info:
-
-  * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
-*/
-func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*TestFulfillmentScriptEvalOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewTestFulfillmentScriptEvalParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "testFulfillmentScriptEval",
-		Method:             "POST",
-		PathPattern:        "/platform/admin/fulfillment/scripts/tests/eval",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &TestFulfillmentScriptEvalReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *TestFulfillmentScriptEvalOK:
 		return v, nil
 
 	default:
@@ -351,7 +251,7 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 Deprecated: 2022-08-10 - Use CreateFulfillmentScriptShort instead.
 
 CreateFulfillmentScript create fulfillment script
-Create fulfillment script.
+ [AGS Premium Feature] Create fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=1 (CREATE)
@@ -406,7 +306,7 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 
 /*
 CreateFulfillmentScriptShort create fulfillment script
-Create fulfillment script.
+ [AGS Premium Feature] Create fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=1 (CREATE)
@@ -560,7 +460,7 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 Deprecated: 2022-08-10 - Use UpdateFulfillmentScriptShort instead.
 
 UpdateFulfillmentScript update fulfillment script
-Update fulfillment script.
+ [AGS Premium Feature] Update fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=4 (UPDATE)
@@ -611,7 +511,7 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 
 /*
 UpdateFulfillmentScriptShort update fulfillment script
-Update fulfillment script.
+ [AGS Premium Feature] Update fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=4 (UPDATE)

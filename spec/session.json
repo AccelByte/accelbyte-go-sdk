@@ -3,14 +3,14 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.3.0"
+    "version": "3.7.3"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/session/apidocs"
+    "url": "https://demo.accelbyte.io/session/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -2443,7 +2443,7 @@
         "operationId": "patchUpdateGameSession",
         "parameters": [
           {
-            "description": "Update game session request",
+            "description": "Patch update game session request",
             "in": "body",
             "name": "body",
             "required": true,
@@ -5290,9 +5290,7 @@
         }
       },
       "required": [
-        "RequestedAt",
-        "Status",
-        "StatusV2"
+        "RequestedAt"
       ]
     },
     "apimodels.DeleteBulkGameSessionRequest": {
@@ -6236,6 +6234,12 @@
           },
           "type": "array"
         },
+        "ams_protocol": {
+          "items": {
+            "$ref": "#/definitions/models.PortConfigurationAMS"
+          },
+          "type": "array"
+        },
         "custom_attribute": {
           "type": "string"
         },
@@ -6297,18 +6301,12 @@
       },
       "required": [
         "custom_attribute",
-        "deployment",
-        "game_version",
         "image_version",
         "ip",
         "is_override_game_version",
         "last_update",
         "namespace",
         "pod_name",
-        "port",
-        "ports",
-        "protocol",
-        "provider",
         "region",
         "session_id",
         "source",
@@ -6400,6 +6398,20 @@
         "updatedAt"
       ]
     },
+    "models.PortConfigurationAMS": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "protocol"
+      ]
+    },
     "models.Team": {
       "properties": {
         "UserIDs": {
@@ -6466,13 +6478,13 @@
   },
   "x-docs": {
     "alias": "session",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-07T03:41:57+00:00",
-    "gitHash": "1d4a0164f8f67dd57515aba1f880dd2292d11ef6",
-    "version": "3.3.0",
+    "buildDate": "2023-09-20T03:06:39+00:00",
+    "gitHash": "041fd2b8158f309e0a733d4112cde33ff0bb371f",
+    "version": "3.7.3",
     "version-roles-seeding": "0.0.40"
   }
 }

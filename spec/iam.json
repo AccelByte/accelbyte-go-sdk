@@ -8,14 +8,14 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.1.0"
+    "version": "7.3.0"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/iam/apidocs"
+    "url": "https://demo.accelbyte.io/iam/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -47,9 +47,12 @@
         "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]": "ADMIN:NAMESPACE:{namespace}:DEVICE [READ]",
         "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]",
+        "ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]": "ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:MISC [READ]": "ADMIN:NAMESPACE:{namespace}:MISC [READ]",
+        "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]": "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]",
@@ -8122,7 +8125,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\tIn multi tenant mode, new confidential client will have default client role assigned to it. The role will have all \n\t\t\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader. \u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\t\u0026lt;b\u0026gt;Note for Multi Tenant Mode:\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\n\t\tNew Confidential Client will have Default Client Role assigned to it. The role will have all \n\t\t\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader.\u0026lt;br\u0026gt;\n\t\tHowever if \u0026lt;b\u0026gt;Game Admin\u0026lt;/b\u0026gt; create Confidential Client and the permission(s) are specified in request body, \n\t\tthen the Default Client Role will not be assigned.\u0026lt;br\u0026gt;\n\t\tBut in this case, the assigned permissions will be restricted in the Default Client Permission collection only.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt;: available client platform (optional). default value: \u0026#34;\u0026#34;\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable) \u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: SECONDS\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -8332,7 +8335,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;b\u0026gt;Note for Multi Tenant Mode:\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\n\t\t1. The assigned permission(s) should be restricted in the Default Client permission collection. \u0026lt;br\u0026gt;\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPlatform\u0026lt;/strong\u0026gt; : available client platform (optional). default value: \u0026#34;\u0026#34;.\n  \t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Playstation\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Xbox\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Steam\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Epic\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;IOS\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;GooglePlay\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Nintendo\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Oculus\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/li\u0026gt;\n        \u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twoFactorEnabled\u0026lt;/strong\u0026gt;: The flag to indicate whether 2FA validation is enable for this client. default value: false\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpiration\u0026lt;/strong\u0026gt;: a configurable expiration time for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, default value: 0 (mean fetch value from environment variable)\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthAccessTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;access_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthRefreshTokenExpirationTimeUnit\u0026lt;/strong\u0026gt;: a configurable expiration time unit for \u0026lt;strong\u0026gt;refresh_token\u0026lt;/strong\u0026gt;, will use previous value if not specified\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -8412,7 +8415,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT\u0026#39; [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code: 10303\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT\u0026#39; [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;b\u0026gt;Note for Multi Tenant Mode:\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\n1. The assigned permission(s) should be restricted in the Default Client permission collection. \u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;action code: 10303\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminAddClientPermissionsV3",
         "parameters": [
           {
@@ -8487,7 +8490,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code: 10307\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;b\u0026gt;Note for Multi Tenant Mode:\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\n\t1. The assigned permission(s) should be restricted in the Default Client permission collection. \u0026lt;br\u0026gt;\n\u0026lt;p\u0026gt;action code: 10307\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminUpdateClientPermissionV3",
         "parameters": [
           {
@@ -8636,6 +8639,197 @@
         "summary": "Delete Client Permission",
         "tags": [
           "Clients"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/countries": {
+      "get": {
+        "description": "Admin get country list:\u0026lt;br\u0026gt;\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]",
+        "operationId": "AdminGetCountryListV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "filter black list",
+            "in": "query",
+            "name": "filterBlacklist",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.CountryResponse"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get Country List",
+        "tags": [
+          "Country"
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/countries/blacklist": {
+      "get": {
+        "description": "Admin get country blacklist:\u0026lt;br\u0026gt;\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]",
+        "operationId": "AdminGetCountryBlacklistV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.CountryBlacklistResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get Country Blacklist",
+        "tags": [
+          "Country"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin update country blacklist:\u0026lt;br\u0026gt;\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]",
+        "operationId": "AdminAddCountryBlacklistV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.CountryBlacklistRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update Country Blacklist",
+        "tags": [
+          "Country"
         ]
       }
     },
@@ -10352,7 +10546,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/platforms/justice": {
       "get": {
-        "description": "This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\n\nReturns list of users ID and namespace with their Justice platform account, under a namespace. If user\ndoesn\u0026#39;t have Justice platform account, the linkedPlatforms will be empty array.\u0026#39;\n",
+        "description": "This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\n\n\u0026lt;strong\u0026gt;This endpoint requires publisher namespace.\u0026lt;/strong\u0026gt;\nReturns list of users ID and namespace with their Justice platform account, under a namespace. If user\ndoesn\u0026#39;t have Justice platform account, the linkedPlatforms will be empty array.\u0026#39;\n",
         "operationId": "AdminListUsersV3",
         "parameters": [
           {
@@ -13236,6 +13430,95 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/trustly/identity": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This endpoint ONLY accept \u0026lt;b\u0026gt;Client Token\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is utilized for specific scenarios where \u0026lt;b\u0026gt;email notifications are disabled\u0026lt;/li\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;The user\u0026#39;s email will be marked as verified\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code : 10103 \u0026lt;/p\u0026gt;",
+        "operationId": "AdminTrustlyUpdateUserIdentity",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserIdentityUpdateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update User Identity",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/verify": {
       "put": {
         "description": "\u0026lt;p\u0026gt;This endpoint force verify user. Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code: 10118\u0026lt;/p\u0026gt;\n",
@@ -15978,7 +16261,7 @@
         "consumes": [
           ""
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires authorized requests header with valid access token.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;action code : 10708\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The bloom filter uses MurmurHash3 algorithm for hashing the values\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;action code : 10708\u0026lt;/p\u0026gt;",
         "operationId": "GetRevocationListV3",
         "produces": [
           "application/json"
@@ -16333,6 +16616,75 @@
         "x-location-query": "PLACEHOLDER"
       }
     },
+    "/iam/v3/platforms/{platformId}/token/verify": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "\u0026lt;p\u0026gt;This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.\u0026lt;/p\u0026gt;\n                      \u0026lt;p\u0026gt;This endpoint can be used by game client to refresh third party token if game client got platform token not found error, for example got 404 \n                      platform token not found from IAP/DLC.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Platforms will refresh stored token:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Twitch OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Sony OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps5\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Sony OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;amazon\u0026lt;/strong\u0026gt;: The platform_token’s value is authorization code.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;awscognito\u0026lt;/strong\u0026gt;: The platform_token’s value is the aws cognito access token or id token (JWT).\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt;: The platform_token’s value is xbox XSTS token\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Snapchat OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;for specific generic oauth (OIDC)\u0026lt;/strong\u0026gt;: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t",
+        "operationId": "PlatformTokenRefreshV3",
+        "parameters": [
+          {
+            "description": "Platform Token",
+            "in": "formData",
+            "name": "platform_token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.PlatformTokenRefreshResponseV3"
+            }
+          },
+          "400": {
+            "description": "General request error",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Third Party Server timeout or unavailable",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Platform Token Validation",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ]
+      }
+    },
     "/iam/v3/public/inputValidations": {
       "get": {
         "consumes": [
@@ -16478,6 +16830,50 @@
         "summary": "Public get age restriction by country code",
         "tags": [
           "Users"
+        ]
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/countries": {
+      "get": {
+        "description": "Public get country list, will filter out countries in black list\u0026lt;br\u0026gt;\n",
+        "operationId": "PublicGetCountryListV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.CountryResponse"
+              },
+              "type": "array"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Country List",
+        "tags": [
+          "Country"
         ]
       }
     },
@@ -16939,6 +17335,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -17352,6 +17754,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10180\u003c/td\u003e\u003ctd\u003eadmin invitation not found or expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -17418,6 +17826,12 @@
           },
           "401": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18115,7 +18529,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization.\n\t\t\t\u0026lt;p\u0026gt;Unlink user\u0026#39;s account from for all third platforms. \u0026lt;/p\u0026gt;",
+        "description": "Required valid user authorization.\n\nUnlink user\u0026#39;s account from third platform in all namespaces.\n\nThis API support to handling platform group use case:\ni.e. \n1. Steam group: steam, steamopenid\n2. PSN group: ps4, ps5, psnweb\n3. XBOX group: live, xblweb\n\t\nExample: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.\n",
         "operationId": "PublicPlatformUnlinkAllV3",
         "parameters": [
           {
@@ -19908,8 +20322,9 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
+        "deprecated": true,
         "description": "\u0026lt;p\u0026gt;This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.\u0026lt;/p\u0026gt;\n                      \u0026lt;p\u0026gt;This endpoint can be used by game client to refresh third party token if game client got platform token not found error, for example got 404 \n                      platform token not found from IAP/DLC.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Platforms will refresh stored token:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Twitch OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Sony OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps5\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Sony OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;amazon\u0026lt;/strong\u0026gt;: The platform_token’s value is authorization code.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;awscognito\u0026lt;/strong\u0026gt;: The platform_token’s value is the aws cognito access token or id token (JWT).\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt;: The platform_token’s value is xbox XSTS token\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;: The platform_token’s value is the authorization code returned by Snapchat OAuth.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;for specific generic oauth (OIDC)\u0026lt;/strong\u0026gt;: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t",
-        "operationId": "PlatformTokenRefreshV3",
+        "operationId": "PlatformTokenRefreshV3Deprecate",
         "parameters": [
           {
             "description": "Platform Token",
@@ -23492,6 +23907,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -23569,6 +23990,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10180\u003c/td\u003e\u003ctd\u003eadmin invitation not found or expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -23635,6 +24062,12 @@
           },
           "401": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -27468,6 +27901,46 @@
         "ageRestriction"
       ]
     },
+    "model.CountryBlacklistRequest": {
+      "properties": {
+        "blacklist": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "blacklist"
+      ]
+    },
+    "model.CountryBlacklistResponse": {
+      "properties": {
+        "blacklist": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "blacklist"
+      ]
+    },
+    "model.CountryResponse": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ]
+    },
     "model.CountryV3Response": {
       "properties": {
         "ageRestriction": {
@@ -30570,6 +31043,20 @@
         "userIds"
       ]
     },
+    "model.UserIdentityUpdateRequestV3": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailAddress",
+        "password"
+      ]
+    },
     "model.UserInfoResponse": {
       "properties": {
         "displayName": {
@@ -32068,15 +32555,15 @@
   },
   "x-docs": {
     "alias": "iam",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-08T04:31:31+00:00",
-    "gitHash": "9148035342987b6a74d8e1c5f6b1d58f6514ee6d",
+    "buildDate": "2023-09-25T04:05:54+00:00",
+    "gitHash": "e5cb597d3dbf112de4d54a50693963ebc9f2846d",
     "name": "justice-iam-service",
-    "realm": "staging",
-    "version": "7.1.0",
+    "realm": "demo",
+    "version": "7.3.0",
     "version-roles-seeding": "0.0.3"
   }
 }

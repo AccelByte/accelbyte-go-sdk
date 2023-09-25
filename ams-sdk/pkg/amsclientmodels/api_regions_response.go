@@ -7,6 +7,8 @@
 package amsclientmodels
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,6 +20,10 @@ import (
 // swagger:model Api regions response.
 type APIRegionsResponse struct {
 
+	// qosservers
+	// Required: true
+	QosServers []*APIQOSServer `json:"qosServers"`
+
 	// regions
 	// Required: true
 	Regions []string `json:"regions"`
@@ -27,6 +33,9 @@ type APIRegionsResponse struct {
 func (m *APIRegionsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateQosServers(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateRegions(formats); err != nil {
 		res = append(res, err)
 	}
@@ -34,6 +43,31 @@ func (m *APIRegionsResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIRegionsResponse) validateQosServers(formats strfmt.Registry) error {
+
+	if err := validate.Required("qosServers", "body", m.QosServers); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.QosServers); i++ {
+		if swag.IsZero(m.QosServers[i]) { // not required
+			continue
+		}
+
+		if m.QosServers[i] != nil {
+			if err := m.QosServers[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("qosServers" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

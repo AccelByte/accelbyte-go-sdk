@@ -430,6 +430,32 @@ func (aaa *FriendsService) BulkDeleteFriends(input *friends.BulkDeleteFriendsPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use SyncNativeFriendsShort instead.
+func (aaa *FriendsService) SyncNativeFriends(input *friends.SyncNativeFriendsParams) ([]*lobbyclientmodels.ModelNativeFriendSyncResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.SyncNativeFriends(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetListOfFriendsShort instead.
 func (aaa *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -851,6 +877,31 @@ func (aaa *FriendsService) BulkDeleteFriendsShort(input *friends.BulkDeleteFrien
 	}
 
 	ok, err := aaa.Client.Friends.BulkDeleteFriendsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) SyncNativeFriendsShort(input *friends.SyncNativeFriendsParams) ([]*lobbyclientmodels.ModelNativeFriendSyncResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Friends.SyncNativeFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

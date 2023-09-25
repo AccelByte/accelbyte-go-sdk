@@ -21,6 +21,7 @@
 | `/friends/namespaces/{namespace}/me/unfriend` | POST | UserUnfriendRequestShort | [UserUnfriendRequestShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [UserUnfriendRequestShort](../../services-api/pkg/service/lobby/friends.go) | [UserUnfriendRequestShort](../../samples/cli/cmd/lobby/friends/userUnfriendRequest.go) |
 | `/friends/namespaces/{namespace}/users/{userId}/add/bulk` | POST | AddFriendsWithoutConfirmationShort | [AddFriendsWithoutConfirmationShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [AddFriendsWithoutConfirmationShort](../../services-api/pkg/service/lobby/friends.go) | [AddFriendsWithoutConfirmationShort](../../samples/cli/cmd/lobby/friends/addFriendsWithoutConfirmation.go) |
 | `/friends/namespaces/{namespace}/users/{userId}/delete/bulk` | POST | BulkDeleteFriendsShort | [BulkDeleteFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [BulkDeleteFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [BulkDeleteFriendsShort](../../samples/cli/cmd/lobby/friends/bulkDeleteFriends.go) |
+| `/friends/sync/namespaces/{namespace}/me` | PATCH | SyncNativeFriendsShort | [SyncNativeFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [SyncNativeFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [SyncNativeFriendsShort](../../samples/cli/cmd/lobby/friends/syncNativeFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}` | GET | GetListOfFriendsShort | [GetListOfFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetListOfFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [GetListOfFriendsShort](../../samples/cli/cmd/lobby/friends/getListOfFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/incoming` | GET | GetIncomingFriendRequestsShort | [GetIncomingFriendRequestsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetIncomingFriendRequestsShort](../../services-api/pkg/service/lobby/friends.go) | [GetIncomingFriendRequestsShort](../../samples/cli/cmd/lobby/friends/getIncomingFriendRequests.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/outgoing` | GET | GetOutgoingFriendRequestsShort | [GetOutgoingFriendRequestsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetOutgoingFriendRequestsShort](../../services-api/pkg/service/lobby/friends.go) | [GetOutgoingFriendRequestsShort](../../samples/cli/cmd/lobby/friends/getOutgoingFriendRequests.go) |
@@ -157,6 +158,7 @@
 | `model.CreateTopicRequestV1` | [ModelCreateTopicRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_create_topic_request_v1.go) |
 | `model.FreeFormNotificationRequest` | [ModelFreeFormNotificationRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_free_form_notification_request.go) |
 | `model.FreeFormNotificationRequestV1` | [ModelFreeFormNotificationRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_free_form_notification_request_v1.go) |
+| `model.FriendWithPlatform` | [ModelFriendWithPlatform ](../../lobby-sdk/pkg/lobbyclientmodels/model_friend_with_platform.go) |
 | `model.GetAllNotificationTemplateSlugResp` | [ModelGetAllNotificationTemplateSlugResp ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_all_notification_template_slug_resp.go) |
 | `model.GetAllNotificationTopicsResponse` | [ModelGetAllNotificationTopicsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_all_notification_topics_response.go) |
 | `model.GetFriendsResponse` | [ModelGetFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_friends_response.go) |
@@ -168,6 +170,8 @@
 | `model.LoadIncomingFriendsWithTimeResponse` | [ModelLoadIncomingFriendsWithTimeResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_load_incoming_friends_with_time_response.go) |
 | `model.LoadOutgoingFriendsWithTimeResponse` | [ModelLoadOutgoingFriendsWithTimeResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_load_outgoing_friends_with_time_response.go) |
 | `model.Localization` | [ModelLocalization ](../../lobby-sdk/pkg/lobbyclientmodels/model_localization.go) |
+| `model.NativeFriendRequest` | [ModelNativeFriendRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_friend_request.go) |
+| `model.NativeFriendSyncResponse` | [ModelNativeFriendSyncResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_friend_sync_response.go) |
 | `model.NotificationTemplateResponse` | [ModelNotificationTemplateResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_template_response.go) |
 | `model.NotificationTopicResponse` | [ModelNotificationTopicResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_topic_response.go) |
 | `model.NotificationTopicResponseV1` | [ModelNotificationTopicResponseV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_topic_response_v1.go) |

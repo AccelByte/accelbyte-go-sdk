@@ -157,6 +157,7 @@
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}` | POST | AdminAddUserRoleV3Short | [AdminAddUserRoleV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminAddUserRoleV3Short](../../services-api/pkg/service/iam/users.go) | [AdminAddUserRoleV3Short](../../samples/cli/cmd/iam/users/adminAddUserRoleV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}` | DELETE | AdminDeleteUserRoleV3Short | [AdminDeleteUserRoleV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminDeleteUserRoleV3Short](../../services-api/pkg/service/iam/users.go) | [AdminDeleteUserRoleV3Short](../../samples/cli/cmd/iam/users/adminDeleteUserRoleV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/status` | PATCH | AdminUpdateUserStatusV3Short | [AdminUpdateUserStatusV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminUpdateUserStatusV3Short](../../services-api/pkg/service/iam/users.go) | [AdminUpdateUserStatusV3Short](../../samples/cli/cmd/iam/users/adminUpdateUserStatusV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/users/{userId}/trustly/identity` | PATCH | AdminTrustlyUpdateUserIdentityShort | [AdminTrustlyUpdateUserIdentityShort](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminTrustlyUpdateUserIdentityShort](../../services-api/pkg/service/iam/users.go) | [AdminTrustlyUpdateUserIdentityShort](../../samples/cli/cmd/iam/users/adminTrustlyUpdateUserIdentity.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/verify` | PUT | AdminVerifyUserWithoutVerificationCodeV3Short | [AdminVerifyUserWithoutVerificationCodeV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminVerifyUserWithoutVerificationCodeV3Short](../../services-api/pkg/service/iam/users.go) | [AdminVerifyUserWithoutVerificationCodeV3Short](../../samples/cli/cmd/iam/users/adminVerifyUserWithoutVerificationCodeV3.go) |
 | `/iam/v3/admin/users/me` | GET | AdminGetMyUserV3Short | [AdminGetMyUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminGetMyUserV3Short](../../services-api/pkg/service/iam/users.go) | [AdminGetMyUserV3Short](../../samples/cli/cmd/iam/users/adminGetMyUserV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}` | GET | PublicGetCountryAgeRestrictionV3Short | [PublicGetCountryAgeRestrictionV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetCountryAgeRestrictionV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetCountryAgeRestrictionV3Short](../../samples/cli/cmd/iam/users/publicGetCountryAgeRestrictionV3.go) |
@@ -279,6 +280,14 @@
 | `/iam/v3/public/inputValidations` | GET | PublicGetInputValidationsShort | [PublicGetInputValidationsShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [PublicGetInputValidationsShort](../../services-api/pkg/service/iam/inputValidations.go) | [PublicGetInputValidationsShort](../../samples/cli/cmd/iam/inputValidations/publicGetInputValidations.go) |
 | `/iam/v3/public/inputValidations/{field}` | GET | PublicGetInputValidationByFieldShort | [PublicGetInputValidationByFieldShort](../../iam-sdk/pkg/iamclient/input_validations/input_validations_client.go) | [PublicGetInputValidationByFieldShort](../../services-api/pkg/service/iam/inputValidations.go) | [PublicGetInputValidationByFieldShort](../../samples/cli/cmd/iam/inputValidations/publicGetInputValidationByField.go) |
 
+### Country Wrapper:  [Country](../../services-api/pkg/service/iam/country.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v3/admin/namespaces/{namespace}/countries` | GET | AdminGetCountryListV3Short | [AdminGetCountryListV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [AdminGetCountryListV3Short](../../services-api/pkg/service/iam/country.go) | [AdminGetCountryListV3Short](../../samples/cli/cmd/iam/country/adminGetCountryListV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/countries/blacklist` | GET | AdminGetCountryBlacklistV3Short | [AdminGetCountryBlacklistV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [AdminGetCountryBlacklistV3Short](../../services-api/pkg/service/iam/country.go) | [AdminGetCountryBlacklistV3Short](../../samples/cli/cmd/iam/country/adminGetCountryBlacklistV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/countries/blacklist` | POST | AdminAddCountryBlacklistV3Short | [AdminAddCountryBlacklistV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [AdminAddCountryBlacklistV3Short](../../services-api/pkg/service/iam/country.go) | [AdminAddCountryBlacklistV3Short](../../samples/cli/cmd/iam/country/adminAddCountryBlacklistV3.go) |
+| `/iam/v3/public/namespaces/{namespace}/countries` | GET | PublicGetCountryListV3Short | [PublicGetCountryListV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [PublicGetCountryListV3Short](../../services-api/pkg/service/iam/country.go) | [PublicGetCountryListV3Short](../../samples/cli/cmd/iam/country/publicGetCountryListV3.go) |
+
 ### Third Party Credential Wrapper:  [ThirdPartyCredential](../../services-api/pkg/service/iam/thirdPartyCredential.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -315,8 +324,9 @@
 | `/iam/v3/logout` | POST | LogoutShort | [LogoutShort](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [LogoutShort](../../services-api/pkg/service/iam/oAuth20Extension.go) | [LogoutShort](../../samples/cli/cmd/iam/oAuth20Extension/logout.go) |
 | `/iam/v3/namespace/{namespace}/token/request` | POST | RequestGameTokenCodeResponseV3Short | [RequestGameTokenCodeResponseV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [RequestGameTokenCodeResponseV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [RequestGameTokenCodeResponseV3Short](../../samples/cli/cmd/iam/oAuth20Extension/requestGameTokenCodeResponseV3.go) |
 | `/iam/v3/platforms/{platformId}/authenticate` | GET | PlatformAuthenticationV3Short | [PlatformAuthenticationV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformAuthenticationV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformAuthenticationV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformAuthenticationV3.go) |
+| `/iam/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3Short | [PlatformTokenRefreshV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3.go) |
 | `/iam/v3/token/exchange` | POST | RequestGameTokenResponseV3Short | [RequestGameTokenResponseV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [RequestGameTokenResponseV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [RequestGameTokenResponseV3Short](../../samples/cli/cmd/iam/oAuth20Extension/requestGameTokenResponseV3.go) |
-| `/iam/v3/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3Short | [PlatformTokenRefreshV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3.go) |
+| [DEPRECATED] `/iam/v3/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3DeprecateShort | [PlatformTokenRefreshV3DeprecateShort](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3DeprecateShort](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3DeprecateShort](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3Deprecate.go) |
 
 ### OAuth2.0 Wrapper:  [OAuth20](../../services-api/pkg/service/iam/oAuth20.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -519,6 +529,9 @@
 | `model.Country` | [ModelCountry ](../../iam-sdk/pkg/iamclientmodels/model_country.go) |
 | `model.CountryAgeRestrictionRequest` | [ModelCountryAgeRestrictionRequest ](../../iam-sdk/pkg/iamclientmodels/model_country_age_restriction_request.go) |
 | `model.CountryAgeRestrictionV3Request` | [ModelCountryAgeRestrictionV3Request ](../../iam-sdk/pkg/iamclientmodels/model_country_age_restriction_v3_request.go) |
+| `model.CountryBlacklistRequest` | [ModelCountryBlacklistRequest ](../../iam-sdk/pkg/iamclientmodels/model_country_blacklist_request.go) |
+| `model.CountryBlacklistResponse` | [ModelCountryBlacklistResponse ](../../iam-sdk/pkg/iamclientmodels/model_country_blacklist_response.go) |
+| `model.CountryResponse` | [ModelCountryResponse ](../../iam-sdk/pkg/iamclientmodels/model_country_response.go) |
 | `model.CountryV3Response` | [ModelCountryV3Response ](../../iam-sdk/pkg/iamclientmodels/model_country_v3_response.go) |
 | `model.CreateJusticeUserResponse` | [ModelCreateJusticeUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_create_justice_user_response.go) |
 | `model.DeviceBanRequestV4` | [ModelDeviceBanRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_request_v4.go) |
@@ -646,6 +659,7 @@
 | `model.UserCreateResponseV3` | [ModelUserCreateResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_create_response_v3.go) |
 | `model.UserDeletionStatusResponse` | [ModelUserDeletionStatusResponse ](../../iam-sdk/pkg/iamclientmodels/model_user_deletion_status_response.go) |
 | `model.UserIDsRequest` | [ModelUserIDsRequest ](../../iam-sdk/pkg/iamclientmodels/model_user_i_ds_request.go) |
+| `model.UserIdentityUpdateRequestV3` | [ModelUserIdentityUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_identity_update_request_v3.go) |
 | `model.UserInfoResponse` | [ModelUserInfoResponse ](../../iam-sdk/pkg/iamclientmodels/model_user_info_response.go) |
 | `model.UserInformation` | [ModelUserInformation ](../../iam-sdk/pkg/iamclientmodels/model_user_information.go) |
 | `model.UserInvitationV3` | [ModelUserInvitationV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_invitation_v3.go) |

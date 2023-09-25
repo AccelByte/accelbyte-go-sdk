@@ -24,6 +24,9 @@ type FulfillmentResult struct {
 	// entitlement granted
 	EntitlementSummaries []*EntitlementSummary `json:"entitlementSummaries,omitempty"`
 
+	// fulfillment history id, only fulfill rewards will return this filed currently.
+	ID string `json:"id,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

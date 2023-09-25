@@ -9,6 +9,7 @@ package iam
 import (
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
+	"github.com/AccelByte/sample-apps/cmd/iam/country"
 	"github.com/AccelByte/sample-apps/cmd/iam/devicesV4"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
@@ -157,6 +158,9 @@ func init() {
 	IamCmd.AddCommand(clients.AdminUpdateClientPermissionV3Cmd)
 	IamCmd.AddCommand(clients.AdminAddClientPermissionsV3Cmd)
 	IamCmd.AddCommand(clients.AdminDeleteClientPermissionV3Cmd)
+	IamCmd.AddCommand(country.AdminGetCountryListV3Cmd)
+	IamCmd.AddCommand(country.AdminGetCountryBlacklistV3Cmd)
+	IamCmd.AddCommand(country.AdminAddCountryBlacklistV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(ssoCredential.RetrieveAllSSOLoginPlatformCredentialV3Cmd)
@@ -214,6 +218,7 @@ func init() {
 	IamCmd.AddCommand(users.AdminAddUserRoleV3Cmd)
 	IamCmd.AddCommand(users.AdminDeleteUserRoleV3Cmd)
 	IamCmd.AddCommand(users.AdminUpdateUserStatusV3Cmd)
+	IamCmd.AddCommand(users.AdminTrustlyUpdateUserIdentityCmd)
 	IamCmd.AddCommand(users.AdminVerifyUserWithoutVerificationCodeV3Cmd)
 	IamCmd.AddCommand(clients.AdminUpdateClientSecretV3Cmd)
 	IamCmd.AddCommand(roles.AdminGetRolesV3Cmd)
@@ -260,9 +265,11 @@ func init() {
 	IamCmd.AddCommand(oAuth20.TokenGrantV3Cmd)
 	IamCmd.AddCommand(oAuth20.VerifyTokenV3Cmd)
 	IamCmd.AddCommand(oAuth20Extension.PlatformAuthenticationV3Cmd)
+	IamCmd.AddCommand(oAuth20Extension.PlatformTokenRefreshV3Cmd)
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationsCmd)
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationByFieldCmd)
 	IamCmd.AddCommand(users.PublicGetCountryAgeRestrictionV3Cmd)
+	IamCmd.AddCommand(country.PublicGetCountryListV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Cmd)
 	IamCmd.AddCommand(users.PublicListUserIDByPlatformUserIDsV3Cmd)
@@ -315,7 +322,7 @@ func init() {
 	IamCmd.AddCommand(sso.LoginSSOClientCmd)
 	IamCmd.AddCommand(sso.LogoutSSOClientCmd)
 	IamCmd.AddCommand(oAuth20Extension.RequestGameTokenResponseV3Cmd)
-	IamCmd.AddCommand(oAuth20Extension.PlatformTokenRefreshV3Cmd)
+	IamCmd.AddCommand(oAuth20Extension.PlatformTokenRefreshV3DeprecateCmd)
 	IamCmd.AddCommand(devicesV4.AdminGetDevicesByUserV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetBannedDevicesV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetUserDeviceBansV4Cmd)

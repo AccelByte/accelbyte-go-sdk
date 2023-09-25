@@ -8,14 +8,14 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.12.1"
+    "version": "3.12.3"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/cloudsave/apidocs"
+    "url": "https://demo.accelbyte.io/cloudsave/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -8080,15 +8080,15 @@
   },
   "x-docs": {
     "alias": "cloudsave",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-01T02:18:41+00:00",
-    "gitHash": "90e1fcdb7685406b515ed93ae15d0c23d389a390",
+    "buildDate": "2023-09-25T03:12:01+00:00",
+    "gitHash": "2de2dcad385cc05f2d1441d34e3e243752148d50",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.12.1",
-    "version": "3.12.1",
-    "version-roles-seeding": "0.0.37"
+    "revisionID": "3.12.3",
+    "version": "3.12.3",
+    "version-roles-seeding": "0.0.46"
   }
 }

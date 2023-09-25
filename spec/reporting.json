@@ -15,7 +15,7 @@
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/reporting/apidocs"
+    "url": "https://demo.accelbyte.io/reporting/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -3227,14 +3227,14 @@
   },
   "x-docs": {
     "alias": "reporting",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-29T01:43:14+00:00",
+    "buildDate": "2023-06-19T01:17:51+00:00",
     "gitHash": "9c05e52a3f741242c5610b678322031122c923fd",
     "name": "justice-reporting-service",
-    "realm": "staging",
+    "realm": "demo",
     "version": "0.1.28",
     "version-roles-seeding": "0.0.3"
   }

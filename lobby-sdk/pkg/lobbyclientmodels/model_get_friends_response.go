@@ -22,6 +22,9 @@ type ModelGetFriendsResponse struct {
 	// Required: true
 	FriendIDs []string `json:"friendIDs"`
 
+	// friends
+	Friends []*ModelFriendWithPlatform `json:"friends,omitempty"`
+
 	// friendssincetimes
 	// Required: true
 	FriendsSinceTimes []string `json:"friendsSinceTimes"`

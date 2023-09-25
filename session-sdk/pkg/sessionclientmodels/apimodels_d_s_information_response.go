@@ -26,12 +26,10 @@ type ApimodelsDSInformationResponse struct {
 	Server *ModelsGameServer `json:"Server,omitempty"`
 
 	// status
-	// Required: true
-	Status *string `json:"Status"`
+	Status string `json:"Status,omitempty"`
 
 	// statusv2
-	// Required: true
-	StatusV2 *string `json:"StatusV2"`
+	StatusV2 string `json:"StatusV2,omitempty"`
 }
 
 // Validate validates this Apimodels DS information response
@@ -39,12 +37,6 @@ func (m *ApimodelsDSInformationResponse) Validate(formats strfmt.Registry) error
 	var res []error
 
 	if err := m.validateRequestedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateStatusV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,24 +49,6 @@ func (m *ApimodelsDSInformationResponse) Validate(formats strfmt.Registry) error
 func (m *ApimodelsDSInformationResponse) validateRequestedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("RequestedAt", "body", m.RequestedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsDSInformationResponse) validateStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("Status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsDSInformationResponse) validateStatusV2(formats strfmt.Registry) error {
-
-	if err := validate.Required("StatusV2", "body", m.StatusV2); err != nil {
 		return err
 	}
 

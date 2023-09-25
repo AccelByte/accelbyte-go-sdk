@@ -22,6 +22,9 @@ type ModelGetUserFriendsResponse struct {
 	// Required: true
 	FriendIDs []string `json:"friendIDs"`
 
+	// friends
+	Friends []*ModelFriendWithPlatform `json:"friends,omitempty"`
+
 	// paging
 	// Required: true
 	Paging *ModelPagination `json:"paging"`

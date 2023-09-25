@@ -50,10 +50,12 @@ type ClientService interface {
 	RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
 	PlatformAuthenticationV3(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
 	PlatformAuthenticationV3Short(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
-	RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
-	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
 	PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, *PlatformTokenRefreshV3BadRequest, *PlatformTokenRefreshV3Unauthorized, *PlatformTokenRefreshV3Forbidden, *PlatformTokenRefreshV3ServiceUnavailable, error)
 	PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, error)
+	RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
+	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
+	PlatformTokenRefreshV3Deprecate(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, *PlatformTokenRefreshV3DeprecateBadRequest, *PlatformTokenRefreshV3DeprecateUnauthorized, *PlatformTokenRefreshV3DeprecateForbidden, *PlatformTokenRefreshV3DeprecateServiceUnavailable, error)
+	PlatformTokenRefreshV3DeprecateShort(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1419,6 +1421,204 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 }
 
 /*
+Deprecated: 2022-08-10 - Use PlatformTokenRefreshV3Short instead.
+
+PlatformTokenRefreshV3 platform token validation
+
+
+This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.
+
+
+
+
+This endpoint can be used by game client to refresh third party token if game client got platform token not found error, for example got 404
+platform token not found from IAP/DLC.
+
+
+
+
+## Platforms will refresh stored token:
+
+
+
+
+                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+
+
+                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+
+
+                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+
+
+                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+
+
+                                              * amazon : The platform_tokenâs value is authorization code.
+
+
+                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+
+
+                                              * live : The platform_tokenâs value is xbox XSTS token
+
+
+                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+
+
+
+                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+*/
+func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, *PlatformTokenRefreshV3BadRequest, *PlatformTokenRefreshV3Unauthorized, *PlatformTokenRefreshV3Forbidden, *PlatformTokenRefreshV3ServiceUnavailable, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformTokenRefreshV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PlatformTokenRefreshV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/platforms/{platformId}/token/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformTokenRefreshV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformTokenRefreshV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PlatformTokenRefreshV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PlatformTokenRefreshV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PlatformTokenRefreshV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PlatformTokenRefreshV3ServiceUnavailable:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PlatformTokenRefreshV3Short platform token validation
+
+
+This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.
+
+
+
+
+This endpoint can be used by game client to refresh third party token if game client got platform token not found error, for example got 404
+platform token not found from IAP/DLC.
+
+
+
+
+## Platforms will refresh stored token:
+
+
+
+
+                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+
+
+                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+
+
+                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+
+
+                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+
+
+                                              * amazon : The platform_tokenâs value is authorization code.
+
+
+                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+
+
+                                              * live : The platform_tokenâs value is xbox XSTS token
+
+
+                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+
+
+
+                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+*/
+func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformTokenRefreshV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PlatformTokenRefreshV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/platforms/{platformId}/token/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformTokenRefreshV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformTokenRefreshV3OK:
+		return v, nil
+	case *PlatformTokenRefreshV3BadRequest:
+		return nil, v
+	case *PlatformTokenRefreshV3Unauthorized:
+		return nil, v
+	case *PlatformTokenRefreshV3Forbidden:
+		return nil, v
+	case *PlatformTokenRefreshV3ServiceUnavailable:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use RequestGameTokenResponseV3Short instead.
 
 RequestGameTokenResponseV3 generate game token by code
@@ -1523,9 +1723,9 @@ func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenRespons
 }
 
 /*
-Deprecated: 2022-08-10 - Use PlatformTokenRefreshV3Short instead.
+Deprecated: 2022-08-10 - Use PlatformTokenRefreshV3DeprecateShort instead.
 
-PlatformTokenRefreshV3 platform token validation
+PlatformTokenRefreshV3Deprecate platform token validation
 
 
 This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.
@@ -1571,10 +1771,10 @@ platform token not found from IAP/DLC.
 
                                               * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
-func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, *PlatformTokenRefreshV3BadRequest, *PlatformTokenRefreshV3Unauthorized, *PlatformTokenRefreshV3Forbidden, *PlatformTokenRefreshV3ServiceUnavailable, error) {
+func (a *Client) PlatformTokenRefreshV3Deprecate(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, *PlatformTokenRefreshV3DeprecateBadRequest, *PlatformTokenRefreshV3DeprecateUnauthorized, *PlatformTokenRefreshV3DeprecateForbidden, *PlatformTokenRefreshV3DeprecateServiceUnavailable, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPlatformTokenRefreshV3Params()
+		params = NewPlatformTokenRefreshV3DeprecateParams()
 	}
 
 	if params.Context == nil {
@@ -1586,14 +1786,14 @@ func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, au
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PlatformTokenRefreshV3",
+		ID:                 "PlatformTokenRefreshV3Deprecate",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/v3/platforms/{platformId}/token/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PlatformTokenRefreshV3Reader{formats: a.formats},
+		Reader:             &PlatformTokenRefreshV3DeprecateReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1604,19 +1804,19 @@ func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, au
 
 	switch v := result.(type) {
 
-	case *PlatformTokenRefreshV3OK:
+	case *PlatformTokenRefreshV3DeprecateOK:
 		return v, nil, nil, nil, nil, nil
 
-	case *PlatformTokenRefreshV3BadRequest:
+	case *PlatformTokenRefreshV3DeprecateBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *PlatformTokenRefreshV3Unauthorized:
+	case *PlatformTokenRefreshV3DeprecateUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *PlatformTokenRefreshV3Forbidden:
+	case *PlatformTokenRefreshV3DeprecateForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *PlatformTokenRefreshV3ServiceUnavailable:
+	case *PlatformTokenRefreshV3DeprecateServiceUnavailable:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -1625,7 +1825,7 @@ func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, au
 }
 
 /*
-PlatformTokenRefreshV3Short platform token validation
+PlatformTokenRefreshV3DeprecateShort platform token validation
 
 
 This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.
@@ -1671,10 +1871,10 @@ platform token not found from IAP/DLC.
 
                                               * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
-func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, error) {
+func (a *Client) PlatformTokenRefreshV3DeprecateShort(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPlatformTokenRefreshV3Params()
+		params = NewPlatformTokenRefreshV3DeprecateParams()
 	}
 
 	if params.Context == nil {
@@ -1686,14 +1886,14 @@ func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Param
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PlatformTokenRefreshV3",
+		ID:                 "PlatformTokenRefreshV3Deprecate",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/v3/platforms/{platformId}/token/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PlatformTokenRefreshV3Reader{formats: a.formats},
+		Reader:             &PlatformTokenRefreshV3DeprecateReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1704,15 +1904,15 @@ func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Param
 
 	switch v := result.(type) {
 
-	case *PlatformTokenRefreshV3OK:
+	case *PlatformTokenRefreshV3DeprecateOK:
 		return v, nil
-	case *PlatformTokenRefreshV3BadRequest:
+	case *PlatformTokenRefreshV3DeprecateBadRequest:
 		return nil, v
-	case *PlatformTokenRefreshV3Unauthorized:
+	case *PlatformTokenRefreshV3DeprecateUnauthorized:
 		return nil, v
-	case *PlatformTokenRefreshV3Forbidden:
+	case *PlatformTokenRefreshV3DeprecateForbidden:
 		return nil, v
-	case *PlatformTokenRefreshV3ServiceUnavailable:
+	case *PlatformTokenRefreshV3DeprecateServiceUnavailable:
 		return nil, v
 
 	default:

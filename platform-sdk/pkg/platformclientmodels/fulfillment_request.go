@@ -59,7 +59,7 @@ type FulfillmentRequest struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'EXPIRATION', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
 
 	// start date time
@@ -153,7 +153,7 @@ var fulfillmentRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "EXPIRATION", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -172,9 +172,6 @@ const (
 	// FulfillmentRequestSourceDLC captures enum value "DLC"
 	FulfillmentRequestSourceDLC string = "DLC"
 
-	// FulfillmentRequestSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
-	FulfillmentRequestSourceDLCREVOCATION string = "DLC_REVOCATION"
-
 	// FulfillmentRequestSourceEXPIRATION captures enum value "EXPIRATION"
 	FulfillmentRequestSourceEXPIRATION string = "EXPIRATION"
 
@@ -183,6 +180,9 @@ const (
 
 	// FulfillmentRequestSourceIAP captures enum value "IAP"
 	FulfillmentRequestSourceIAP string = "IAP"
+
+	// FulfillmentRequestSourceIAPCHARGEBACKREVERSED captures enum value "IAP_CHARGEBACK_REVERSED"
+	FulfillmentRequestSourceIAPCHARGEBACKREVERSED string = "IAP_CHARGEBACK_REVERSED"
 
 	// FulfillmentRequestSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
 	FulfillmentRequestSourceORDERREVOCATION string = "ORDER_REVOCATION"

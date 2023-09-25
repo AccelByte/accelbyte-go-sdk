@@ -46,6 +46,7 @@ func init() {
 	AmsCmd.AddCommand(servers.ServerHistoryCmd)
 	AmsCmd.AddCommand(amsInfo.InfoSupportedInstancesCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByIDCmd)
+	AmsCmd.AddCommand(watchdogs.LocalWatchdogConnectCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
 	AmsCmd.AddCommand(fleetCommander.Func1Cmd)

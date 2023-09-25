@@ -21,17 +21,18 @@ type ModelsGameServer struct {
 	// alternate_ips
 	AlternateIps []string `json:"alternate_ips,omitempty"`
 
+	// ams_protocol
+	AmsProtocol []*ModelsPortConfigurationAMS `json:"ams_protocol,omitempty"`
+
 	// custom_attribute
 	// Required: true
 	CustomAttribute *string `json:"custom_attribute"`
 
 	// deployment
-	// Required: true
-	Deployment *string `json:"deployment"`
+	Deployment string `json:"deployment,omitempty"`
 
 	// game_version
-	// Required: true
-	GameVersion *string `json:"game_version"`
+	GameVersion string `json:"game_version,omitempty"`
 
 	// image_version
 	// Required: true
@@ -59,21 +60,17 @@ type ModelsGameServer struct {
 	PodName *string `json:"pod_name"`
 
 	// port
-	// Required: true
 	// Format: int32
-	Port *int32 `json:"port"`
+	Port int32 `json:"port,omitempty"`
 
 	// ports
-	// Required: true
-	Ports map[string]int64 `json:"ports"`
+	Ports map[string]int64 `json:"ports,omitempty"`
 
 	// protocol
-	// Required: true
-	Protocol *string `json:"protocol"`
+	Protocol string `json:"protocol,omitempty"`
 
 	// provider
-	// Required: true
-	Provider *string `json:"provider"`
+	Provider string `json:"provider,omitempty"`
 
 	// region
 	// Required: true
@@ -99,12 +96,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateCustomAttribute(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateDeployment(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateGameVersion(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateImageVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -121,15 +112,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePodName(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePort(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateProtocol(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateProvider(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegion(formats); err != nil {
@@ -154,24 +136,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 func (m *ModelsGameServer) validateCustomAttribute(formats strfmt.Registry) error {
 
 	if err := validate.Required("custom_attribute", "body", m.CustomAttribute); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateDeployment(formats strfmt.Registry) error {
-
-	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateGameVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("game_version", "body", m.GameVersion); err != nil {
 		return err
 	}
 
@@ -230,33 +194,6 @@ func (m *ModelsGameServer) validateNamespace(formats strfmt.Registry) error {
 func (m *ModelsGameServer) validatePodName(formats strfmt.Registry) error {
 
 	if err := validate.Required("pod_name", "body", m.PodName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validatePort(formats strfmt.Registry) error {
-
-	if err := validate.Required("port", "body", m.Port); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateProtocol(formats strfmt.Registry) error {
-
-	if err := validate.Required("protocol", "body", m.Protocol); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateProvider(formats strfmt.Registry) error {
-
-	if err := validate.Required("provider", "body", m.Provider); err != nil {
 		return err
 	}
 

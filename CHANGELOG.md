@@ -1,3 +1,13 @@
+<a name="v0.54.0"></a>
+## [v0.54.0]
+### chore
+- **:** update match2 spec
+- **:** regenerate match2 and fix integration test
+- **samples:** migrate aws runtime
+### ci
+- **generate:** use demo_extend-sdk
+
+
 <a name="v0.53.0"></a>
 ## [v0.53.0]
 ### chore

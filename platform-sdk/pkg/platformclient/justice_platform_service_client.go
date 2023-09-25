@@ -19,6 +19,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/clawback"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/dlc"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -101,6 +102,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Campaign = campaign.New(transport, formats)
 	cli.CatalogChanges = catalog_changes.New(transport, formats)
 	cli.Category = category.New(transport, formats)
+	cli.Clawback = clawback.New(transport, formats)
 	cli.Currency = currency.New(transport, formats)
 	cli.DLC = dlc.New(transport, formats)
 	cli.Entitlement = entitlement.New(transport, formats)
@@ -198,6 +200,8 @@ type JusticePlatformService struct {
 
 	Category category.ClientService
 
+	Clawback clawback.ClientService
+
 	Currency currency.ClientService
 
 	DLC dlc.ClientService
@@ -264,6 +268,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Campaign.SetTransport(transport)
 	c.CatalogChanges.SetTransport(transport)
 	c.Category.SetTransport(transport)
+	c.Clawback.SetTransport(transport)
 	c.Currency.SetTransport(transport)
 	c.DLC.SetTransport(transport)
 	c.Entitlement.SetTransport(transport)

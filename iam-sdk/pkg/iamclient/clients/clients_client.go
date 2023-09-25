@@ -1814,8 +1814,15 @@ Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namesp
 
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-In multi tenant mode, new confidential client will have default client role assigned to it. The role will have all
+Note for Multi Tenant Mode:
+
+New Confidential Client will have Default Client Role assigned to it. The role will have all
 permissions to access all APIs that's supported by game server SDK and DS uploader.
+
+However if Game Admin create Confidential Client and the permission(s) are specified in request body,
+then the Default Client Role will not be assigned.
+
+But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
 
 action code: 10301
 
@@ -1967,8 +1974,15 @@ Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namesp
 
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-In multi tenant mode, new confidential client will have default client role assigned to it. The role will have all
+Note for Multi Tenant Mode:
+
+New Confidential Client will have Default Client Role assigned to it. The role will have all
 permissions to access all APIs that's supported by game server SDK and DS uploader.
+
+However if Game Admin create Confidential Client and the permission(s) are specified in request body,
+then the Default Client Role will not be assigned.
+
+But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
 
 action code: 10301
 
@@ -2349,6 +2363,10 @@ Deprecated: 2022-08-10 - Use AdminUpdateClientV3Short instead.
 AdminUpdateClientV3 update client
 Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
+Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
+
 
 action code: 10302
 
@@ -2481,6 +2499,10 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
 AdminUpdateClientV3Short update client
 Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
+Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
+
 
 action code: 10302
 
@@ -2614,6 +2636,10 @@ AdminUpdateClientPermissionV3 update client permissions
 Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
 
 
+ Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
+
 
 
 action code: 10307
@@ -2678,6 +2704,10 @@ AdminUpdateClientPermissionV3Short update client permissions
 Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
 
 
+ Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
+
 
 
 action code: 10307
@@ -2739,6 +2769,10 @@ AdminAddClientPermissionsV3 add client permissions
 
 Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT' [UPDATE]'
 
+
+ Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
 
 
 
@@ -2803,6 +2837,10 @@ AdminAddClientPermissionsV3Short add client permissions
 
 Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT' [UPDATE]'
 
+
+ Note for Multi Tenant Mode:
+
+1. The assigned permission(s) should be restricted in the Default Client permission collection.
 
 
 

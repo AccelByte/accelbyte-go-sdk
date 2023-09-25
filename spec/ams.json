@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.0.1"
+    "version": "1.2.1"
   },
   "schemes": [
     "https"
@@ -25,6 +25,7 @@
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]": "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
         "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
       },
@@ -1458,6 +1459,48 @@
         ]
       }
     },
+    "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect": {
+      "get": {
+        "description": "Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
+        "operationId": "LocalWatchdogConnect",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the watchdog",
+            "in": "path",
+            "name": "watchdogID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "connect a (local) watchdog to support local ds development scenarios",
+        "tags": [
+          "Watchdogs"
+        ]
+      }
+    },
     "/ams/v1/namespaces/{namespace}/servers/claim": {
       "put": {
         "consumes": [
@@ -1637,6 +1680,9 @@
     },
     "api.AccountCreateResponse": {
       "properties": {
+        "Limits": {
+          "$ref": "#/definitions/api.AccountLimits"
+        },
         "id": {
           "type": "string"
         },
@@ -1651,10 +1697,23 @@
         }
       },
       "required": [
+        "Limits",
         "id",
         "name",
         "namespaces"
       ]
+    },
+    "api.AccountLimits": {
+      "properties": {
+        "fleetCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fleetVmCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
     },
     "api.AccountLinkRequest": {
       "properties": {
@@ -1668,6 +1727,9 @@
     },
     "api.AccountLinkResponse": {
       "properties": {
+        "Limits": {
+          "$ref": "#/definitions/api.AccountLimits"
+        },
         "id": {
           "type": "string"
         },
@@ -1682,6 +1744,7 @@
         }
       },
       "required": [
+        "Limits",
         "id",
         "name",
         "namespaces"
@@ -1699,6 +1762,9 @@
     },
     "api.AccountResponse": {
       "properties": {
+        "Limits": {
+          "$ref": "#/definitions/api.AccountLimits"
+        },
         "id": {
           "type": "string"
         },
@@ -1713,6 +1779,7 @@
         }
       },
       "required": [
+        "Limits",
         "id",
         "name",
         "namespaces"
@@ -1892,6 +1959,10 @@
         "imageDeploymentProfile": {
           "$ref": "#/definitions/api.ImageDeploymentProfile"
         },
+        "isLocal": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "name": {
           "type": "string"
         },
@@ -1908,6 +1979,7 @@
         "dsHostConfiguration",
         "id",
         "imageDeploymentProfile",
+        "isLocal",
         "name",
         "regions"
       ]
@@ -2432,6 +2504,25 @@
         "protocol"
       ]
     },
+    "api.QOSServer": {
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "host",
+        "port",
+        "region"
+      ]
+    },
     "api.ReferencingFleet": {
       "properties": {
         "environment": {
@@ -2477,6 +2568,12 @@
     },
     "api.RegionsResponse": {
       "properties": {
+        "qosServers": {
+          "items": {
+            "$ref": "#/definitions/api.QOSServer"
+          },
+          "type": "array"
+        },
         "regions": {
           "items": {
             "type": "string"
@@ -2485,6 +2582,7 @@
         }
       },
       "required": [
+        "qosServers",
         "regions"
       ]
     },
@@ -2539,10 +2637,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-08-28T06:05:32+00:00",
-    "gitHash": "097af1d16471601b6da5fd4ac58c2d705836651e",
+    "buildDate": "2023-09-21T02:08:00+00:00",
+    "gitHash": "43bab62917c43ae8bdf0ec7eea8dfca83018184e",
     "name": "fleet-commander",
-    "version": "1.0.1",
-    "version-roles-seeding": "0.0.24"
+    "version": "1.2.1",
+    "version-roles-seeding": "0.0.45"
   }
 }

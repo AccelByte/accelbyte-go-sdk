@@ -18,6 +18,10 @@ import (
 // swagger:model Api account link response.
 type APIAccountLinkResponse struct {
 
+	// limits
+	// Required: true
+	Limits *APIAccountLimits `json:"Limits"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -35,6 +39,9 @@ type APIAccountLinkResponse struct {
 func (m *APIAccountLinkResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateLimits(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -48,6 +55,24 @@ func (m *APIAccountLinkResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIAccountLinkResponse) validateLimits(formats strfmt.Registry) error {
+
+	if err := validate.Required("Limits", "body", m.Limits); err != nil {
+		return err
+	}
+
+	if m.Limits != nil {
+		if err := m.Limits.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Limits")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

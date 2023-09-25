@@ -51,6 +51,11 @@ type ModelsCreateImagePatchRequest struct {
 	// Required: true
 	Persistent *bool `json:"persistent"`
 
+	// ulimitfilesize
+	// Required: true
+	// Format: int32
+	UlimitFileSize *int32 `json:"ulimitFileSize"`
+
 	// uploaderflag
 	// Required: true
 	UploaderFlag *string `json:"uploaderFlag"`
@@ -86,6 +91,9 @@ func (m *ModelsCreateImagePatchRequest) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 	if err := m.validatePersistent(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUlimitFileSize(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUploaderFlag(formats); err != nil {
@@ -167,6 +175,15 @@ func (m *ModelsCreateImagePatchRequest) validatePatchVersion(formats strfmt.Regi
 func (m *ModelsCreateImagePatchRequest) validatePersistent(formats strfmt.Registry) error {
 
 	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateImagePatchRequest) validateUlimitFileSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("ulimitFileSize", "body", m.UlimitFileSize); err != nil {
 		return err
 	}
 

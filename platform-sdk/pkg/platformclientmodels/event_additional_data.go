@@ -12,20 +12,20 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// FulfillmentScriptEvalTestResult Fulfillment script eval test result
+// EventAdditionalData Event additional data
 //
-// swagger:model Fulfillment script eval test result.
-type FulfillmentScriptEvalTestResult struct {
+// swagger:model Event additional data.
+type EventAdditionalData struct {
 
-	// errorstacktrace
-	ErrorStackTrace string `json:"errorStackTrace,omitempty"`
+	// entitlement
+	Entitlement []*AdditionalDataEntitlement `json:"entitlement,omitempty"`
 
-	// result
-	Result interface{} `json:"result,omitempty"`
+	// purpose
+	Purpose string `json:"purpose,omitempty"`
 }
 
-// Validate validates this Fulfillment script eval test result
-func (m *FulfillmentScriptEvalTestResult) Validate(formats strfmt.Registry) error {
+// Validate validates this Event additional data
+func (m *EventAdditionalData) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -35,7 +35,7 @@ func (m *FulfillmentScriptEvalTestResult) Validate(formats strfmt.Registry) erro
 }
 
 // MarshalBinary interface implementation
-func (m *FulfillmentScriptEvalTestResult) MarshalBinary() ([]byte, error) {
+func (m *EventAdditionalData) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -43,8 +43,8 @@ func (m *FulfillmentScriptEvalTestResult) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *FulfillmentScriptEvalTestResult) UnmarshalBinary(b []byte) error {
-	var res FulfillmentScriptEvalTestResult
+func (m *EventAdditionalData) UnmarshalBinary(b []byte) error {
+	var res EventAdditionalData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

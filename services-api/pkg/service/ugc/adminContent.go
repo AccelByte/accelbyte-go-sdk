@@ -344,6 +344,29 @@ func (aaa *AdminContentService) AdminDownloadContentPreview(input *admin_content
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use RollbackContentVersionShort instead.
+func (aaa *AdminContentService) RollbackContentVersion(input *admin_content.RollbackContentVersionParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.RollbackContentVersion(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpdateScreenshotsShort instead.
 func (aaa *AdminContentService) AdminUpdateScreenshots(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -420,6 +443,29 @@ func (aaa *AdminContentService) AdminDeleteContentScreenshot(input *admin_conten
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use ListContentVersionsShort instead.
+func (aaa *AdminContentService) ListContentVersions(input *admin_content.ListContentVersionsParams) (*ugcclientmodels.ModelsListContentVersionsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.ListContentVersions(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use AdminUpdateContentS3Short instead.
@@ -871,6 +917,31 @@ func (aaa *AdminContentService) AdminDownloadContentPreviewShort(input *admin_co
 	return ok.GetPayload(), nil
 }
 
+func (aaa *AdminContentService) RollbackContentVersionShort(input *admin_content.RollbackContentVersionParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContent.RollbackContentVersionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -944,6 +1015,31 @@ func (aaa *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_c
 	}
 
 	return nil
+}
+
+func (aaa *AdminContentService) ListContentVersionsShort(input *admin_content.ListContentVersionsParams) (*ugcclientmodels.ModelsListContentVersionsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContent.ListContentVersionsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {

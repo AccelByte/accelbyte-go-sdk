@@ -56,12 +56,16 @@ type ClientService interface {
 	AdminGetSpecificContentShort(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, error)
 	AdminDownloadContentPreview(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, *AdminDownloadContentPreviewUnauthorized, *AdminDownloadContentPreviewNotFound, *AdminDownloadContentPreviewInternalServerError, error)
 	AdminDownloadContentPreviewShort(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, error)
+	RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionInternalServerError, error)
+	RollbackContentVersionShort(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, error)
 	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
 	AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error)
 	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error)
 	AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error)
 	AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error)
 	AdminDeleteContentScreenshotShort(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, error)
+	ListContentVersions(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, *ListContentVersionsUnauthorized, *ListContentVersionsNotFound, *ListContentVersionsInternalServerError, error)
+	ListContentVersionsShort(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, error)
 	AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error)
 	AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error)
 	AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error)
@@ -1653,6 +1657,115 @@ func (a *Client) AdminDownloadContentPreviewShort(params *AdminDownloadContentPr
 }
 
 /*
+Deprecated: 2022-08-10 - Use RollbackContentVersionShort instead.
+
+RollbackContentVersion rollback content's payload version
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]
+Rollback content's payload to specified version.
+*/
+func (a *Client) RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackContentVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RollbackContentVersion",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/rollback/{versionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RollbackContentVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RollbackContentVersionOK:
+		return v, nil, nil, nil, nil
+
+	case *RollbackContentVersionUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *RollbackContentVersionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *RollbackContentVersionInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RollbackContentVersionShort rollback content's payload version
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]
+Rollback content's payload to specified version.
+*/
+func (a *Client) RollbackContentVersionShort(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackContentVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RollbackContentVersion",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/rollback/{versionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RollbackContentVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RollbackContentVersionOK:
+		return v, nil
+	case *RollbackContentVersionUnauthorized:
+		return nil, v
+	case *RollbackContentVersionNotFound:
+		return nil, v
+	case *RollbackContentVersionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpdateScreenshotsShort instead.
 
 AdminUpdateScreenshots update screenshot of content
@@ -1999,6 +2112,115 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 	case *AdminDeleteContentScreenshotNotFound:
 		return nil, v
 	case *AdminDeleteContentScreenshotInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ListContentVersionsShort instead.
+
+ListContentVersions list content's payload versions
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]
+Content's payload versions created when UGC is created or updated with `updateContentFile` set to true. Only list up to 10 latest versions.
+*/
+func (a *Client) ListContentVersions(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, *ListContentVersionsUnauthorized, *ListContentVersionsNotFound, *ListContentVersionsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListContentVersionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListContentVersions",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListContentVersionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListContentVersionsOK:
+		return v, nil, nil, nil, nil
+
+	case *ListContentVersionsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *ListContentVersionsNotFound:
+		return nil, nil, v, nil, nil
+
+	case *ListContentVersionsInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ListContentVersionsShort list content's payload versions
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]
+Content's payload versions created when UGC is created or updated with `updateContentFile` set to true. Only list up to 10 latest versions.
+*/
+func (a *Client) ListContentVersionsShort(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListContentVersionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListContentVersions",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListContentVersionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListContentVersionsOK:
+		return v, nil
+	case *ListContentVersionsUnauthorized:
+		return nil, v
+	case *ListContentVersionsNotFound:
+		return nil, v
+	case *ListContentVersionsInternalServerError:
 		return nil, v
 
 	default:

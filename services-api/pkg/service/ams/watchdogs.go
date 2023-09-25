@@ -29,6 +29,20 @@ func (aaa *WatchdogsService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use LocalWatchdogConnectShort instead.
+func (aaa *WatchdogsService) LocalWatchdogConnect(input *watchdogs.LocalWatchdogConnectParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Watchdogs.LocalWatchdogConnect(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use WatchdogConnectShort instead.
 func (aaa *WatchdogsService) WatchdogConnect(input *watchdogs.WatchdogConnectParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -36,6 +50,31 @@ func (aaa *WatchdogsService) WatchdogConnect(input *watchdogs.WatchdogConnectPar
 		return err
 	}
 	_, err = aaa.Client.Watchdogs.WatchdogConnect(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *WatchdogsService) LocalWatchdogConnectShort(input *watchdogs.LocalWatchdogConnectParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Watchdogs.LocalWatchdogConnectShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

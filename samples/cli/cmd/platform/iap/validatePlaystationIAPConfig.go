@@ -4,12 +4,12 @@
 
 // Code generated. DO NOT EDIT.
 
-package fulfillmentScript
+package iap
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -18,26 +18,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// TestFulfillmentScriptEvalCmd represents the TestFulfillmentScriptEval command
-var TestFulfillmentScriptEvalCmd = &cobra.Command{
-	Use:   "testFulfillmentScriptEval",
-	Short: "Test fulfillment script eval",
-	Long:  `Test fulfillment script eval`,
+// ValidatePlaystationIAPConfigCmd represents the ValidatePlaystationIAPConfig command
+var ValidatePlaystationIAPConfigCmd = &cobra.Command{
+	Use:   "validatePlaystationIAPConfig",
+	Short: "Validate playstation IAP config",
+	Long:  `Validate playstation IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		fulfillmentScriptService := &platform.FulfillmentScriptService{
+		iapService := &platform.IAPService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.FulfillmentScriptEvalTestRequest
+		var body *platformclientmodels.PlaystationIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
-		input := &fulfillment_script.TestFulfillmentScriptEvalParams{
-			Body: body,
+		input := &iap.ValidatePlaystationIAPConfigParams{
+			Body:      body,
+			Namespace: namespace,
 		}
-		ok, errOK := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
+		ok, errOK := iapService.ValidatePlaystationIAPConfigShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -51,5 +53,7 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 }
 
 func init() {
-	TestFulfillmentScriptEvalCmd.Flags().String("body", "", "Body")
+	ValidatePlaystationIAPConfigCmd.Flags().String("body", "", "Body")
+	ValidatePlaystationIAPConfigCmd.Flags().String("namespace", "", "Namespace")
+	_ = ValidatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

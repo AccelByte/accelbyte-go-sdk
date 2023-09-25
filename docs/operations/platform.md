@@ -8,7 +8,6 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/platform/admin/fulfillment/scripts` | GET | ListFulfillmentScriptsShort | [ListFulfillmentScriptsShort](../../platform-sdk/pkg/platformclient/fulfillment_script/fulfillment_script_client.go) | [ListFulfillmentScriptsShort](../../services-api/pkg/service/platform/fulfillmentScript.go) | [ListFulfillmentScriptsShort](../../samples/cli/cmd/platform/fulfillmentScript/listFulfillmentScripts.go) |
-| `/platform/admin/fulfillment/scripts/tests/eval` | POST | TestFulfillmentScriptEvalShort | [TestFulfillmentScriptEvalShort](../../platform-sdk/pkg/platformclient/fulfillment_script/fulfillment_script_client.go) | [TestFulfillmentScriptEvalShort](../../services-api/pkg/service/platform/fulfillmentScript.go) | [TestFulfillmentScriptEvalShort](../../samples/cli/cmd/platform/fulfillmentScript/testFulfillmentScriptEval.go) |
 | `/platform/admin/fulfillment/scripts/{id}` | GET | GetFulfillmentScriptShort | [GetFulfillmentScriptShort](../../platform-sdk/pkg/platformclient/fulfillment_script/fulfillment_script_client.go) | [GetFulfillmentScriptShort](../../services-api/pkg/service/platform/fulfillmentScript.go) | [GetFulfillmentScriptShort](../../samples/cli/cmd/platform/fulfillmentScript/getFulfillmentScript.go) |
 | `/platform/admin/fulfillment/scripts/{id}` | POST | CreateFulfillmentScriptShort | [CreateFulfillmentScriptShort](../../platform-sdk/pkg/platformclient/fulfillment_script/fulfillment_script_client.go) | [CreateFulfillmentScriptShort](../../services-api/pkg/service/platform/fulfillmentScript.go) | [CreateFulfillmentScriptShort](../../samples/cli/cmd/platform/fulfillmentScript/createFulfillmentScript.go) |
 | `/platform/admin/fulfillment/scripts/{id}` | DELETE | DeleteFulfillmentScriptShort | [DeleteFulfillmentScriptShort](../../platform-sdk/pkg/platformclient/fulfillment_script/fulfillment_script_client.go) | [DeleteFulfillmentScriptShort](../../services-api/pkg/service/platform/fulfillmentScript.go) | [DeleteFulfillmentScriptShort](../../samples/cli/cmd/platform/fulfillmentScript/deleteFulfillmentScript.go) |
@@ -207,6 +206,13 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code` | POST | RedeemCodeShort | [RedeemCodeShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [RedeemCodeShort](../../services-api/pkg/service/platform/fulfillment.go) | [RedeemCodeShort](../../samples/cli/cmd/platform/fulfillment/redeemCode.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards` | POST | FulfillRewardsShort | [FulfillRewardsShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [FulfillRewardsShort](../../services-api/pkg/service/platform/fulfillment.go) | [FulfillRewardsShort](../../samples/cli/cmd/platform/fulfillment/fulfillRewards.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code` | POST | PublicRedeemCodeShort | [PublicRedeemCodeShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [PublicRedeemCodeShort](../../services-api/pkg/service/platform/fulfillment.go) | [PublicRedeemCodeShort](../../samples/cli/cmd/platform/fulfillment/publicRedeemCode.go) |
+| `/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards` | POST | FulfillRewardsV2Short | [FulfillRewardsV2Short](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [FulfillRewardsV2Short](../../services-api/pkg/service/platform/fulfillment.go) | [FulfillRewardsV2Short](../../samples/cli/cmd/platform/fulfillment/fulfillRewardsV2.go) |
+
+### Clawback Wrapper:  [Clawback](../../services-api/pkg/service/platform/clawback.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/iap/clawback/histories` | GET | QueryIAPClawbackHistoryShort | [QueryIAPClawbackHistoryShort](../../platform-sdk/pkg/platformclient/clawback/clawback_client.go) | [QueryIAPClawbackHistoryShort](../../services-api/pkg/service/platform/clawback.go) | [QueryIAPClawbackHistoryShort](../../samples/cli/cmd/platform/clawback/queryIAPClawbackHistory.go) |
+| `/platform/admin/namespaces/{namespace}/iap/clawback/playstation/mock` | POST | MockPlayStationStreamEventShort | [MockPlayStationStreamEventShort](../../platform-sdk/pkg/platformclient/clawback/clawback_client.go) | [MockPlayStationStreamEventShort](../../services-api/pkg/service/platform/clawback.go) | [MockPlayStationStreamEventShort](../../samples/cli/cmd/platform/clawback/mockPlayStationStreamEvent.go) |
 
 ### IAP Wrapper:  [IAP](../../services-api/pkg/service/platform/iap.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -230,6 +236,8 @@
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | GET | GetPlayStationIAPConfigShort | [GetPlayStationIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [GetPlayStationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [GetPlayStationIAPConfigShort](../../samples/cli/cmd/platform/iap/getPlayStationIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | PUT | UpdatePlaystationIAPConfigShort | [UpdatePlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [UpdatePlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [UpdatePlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/updatePlaystationIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/playstation` | DELETE | DeletePlaystationIAPConfigShort | [DeletePlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [DeletePlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [DeletePlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/deletePlaystationIAPConfig.go) |
+| `/platform/admin/namespaces/{namespace}/iap/config/playstation/validate` | GET | ValidateExistedPlaystationIAPConfigShort | [ValidateExistedPlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [ValidateExistedPlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [ValidateExistedPlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/validateExistedPlaystationIAPConfig.go) |
+| `/platform/admin/namespaces/{namespace}/iap/config/playstation/validate` | PUT | ValidatePlaystationIAPConfigShort | [ValidatePlaystationIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [ValidatePlaystationIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [ValidatePlaystationIAPConfigShort](../../samples/cli/cmd/platform/iap/validatePlaystationIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | GET | GetSteamIAPConfigShort | [GetSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [GetSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [GetSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/getSteamIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | PUT | UpdateSteamIAPConfigShort | [UpdateSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [UpdateSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [UpdateSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/updateSteamIAPConfig.go) |
 | `/platform/admin/namespaces/{namespace}/iap/config/steam` | DELETE | DeleteSteamIAPConfigShort | [DeleteSteamIAPConfigShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [DeleteSteamIAPConfigShort](../../services-api/pkg/service/platform/iap.go) | [DeleteSteamIAPConfigShort](../../samples/cli/cmd/platform/iap/deleteSteamIAPConfig.go) |
@@ -555,6 +563,7 @@
 |---|---|
 | `AchievementInfo` | [AchievementInfo ](../../platform-sdk/pkg/platformclientmodels/achievement_info.go) |
 | `AdditionalData` | [AdditionalData ](../../platform-sdk/pkg/platformclientmodels/additional_data.go) |
+| `AdditionalDataEntitlement` | [AdditionalDataEntitlement ](../../platform-sdk/pkg/platformclientmodels/additional_data_entitlement.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |
 | `AdyenConfig` | [AdyenConfig ](../../platform-sdk/pkg/platformclientmodels/adyen_config.go) |
 | `AliPayConfig` | [AliPayConfig ](../../platform-sdk/pkg/platformclientmodels/ali_pay_config.go) |
@@ -600,7 +609,9 @@
 | `CategoryInfo` | [CategoryInfo ](../../platform-sdk/pkg/platformclientmodels/category_info.go) |
 | `CategoryUpdate` | [CategoryUpdate ](../../platform-sdk/pkg/platformclientmodels/category_update.go) |
 | `CheckoutConfig` | [CheckoutConfig ](../../platform-sdk/pkg/platformclientmodels/checkout_config.go) |
+| `ClawbackInfo` | [ClawbackInfo ](../../platform-sdk/pkg/platformclientmodels/clawback_info.go) |
 | `ClientRequestParameter` | [ClientRequestParameter ](../../platform-sdk/pkg/platformclientmodels/client_request_parameter.go) |
+| `ClientTransaction` | [ClientTransaction ](../../platform-sdk/pkg/platformclientmodels/client_transaction.go) |
 | `CodeCreate` | [CodeCreate ](../../platform-sdk/pkg/platformclientmodels/code_create.go) |
 | `CodeCreateResult` | [CodeCreateResult ](../../platform-sdk/pkg/platformclientmodels/code_create_result.go) |
 | `CodeInfo` | [CodeInfo ](../../platform-sdk/pkg/platformclientmodels/code_info.go) |
@@ -654,6 +665,7 @@
 | `EpicGamesReconcileRequest` | [EpicGamesReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_request.go) |
 | `EpicGamesReconcileResult` | [EpicGamesReconcileResult ](../../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_result.go) |
 | `ErrorEntity` | [ErrorEntity ](../../platform-sdk/pkg/platformclientmodels/error_entity.go) |
+| `EventAdditionalData` | [EventAdditionalData ](../../platform-sdk/pkg/platformclientmodels/event_additional_data.go) |
 | `EventPayload` | [EventPayload ](../../platform-sdk/pkg/platformclientmodels/event_payload.go) |
 | `ExportStoreRequest` | [ExportStoreRequest ](../../platform-sdk/pkg/platformclientmodels/export_store_request.go) |
 | `ExtensionFulfillmentSummary` | [ExtensionFulfillmentSummary ](../../platform-sdk/pkg/platformclientmodels/extension_fulfillment_summary.go) |
@@ -667,10 +679,7 @@
 | `FulfillmentItem` | [FulfillmentItem ](../../platform-sdk/pkg/platformclientmodels/fulfillment_item.go) |
 | `FulfillmentRequest` | [FulfillmentRequest ](../../platform-sdk/pkg/platformclientmodels/fulfillment_request.go) |
 | `FulfillmentResult` | [FulfillmentResult ](../../platform-sdk/pkg/platformclientmodels/fulfillment_result.go) |
-| `FulfillmentScriptContext` | [FulfillmentScriptContext ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_context.go) |
 | `FulfillmentScriptCreate` | [FulfillmentScriptCreate ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_create.go) |
-| `FulfillmentScriptEvalTestRequest` | [FulfillmentScriptEvalTestRequest ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_eval_test_request.go) |
-| `FulfillmentScriptEvalTestResult` | [FulfillmentScriptEvalTestResult ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_eval_test_result.go) |
 | `FulfillmentScriptInfo` | [FulfillmentScriptInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_info.go) |
 | `FulfillmentScriptUpdate` | [FulfillmentScriptUpdate ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_update.go) |
 | `FullAppInfo` | [FullAppInfo ](../../platform-sdk/pkg/platformclientmodels/full_app_info.go) |
@@ -686,6 +695,7 @@
 | `GrantSubscriptionDaysRequest` | [GrantSubscriptionDaysRequest ](../../platform-sdk/pkg/platformclientmodels/grant_subscription_days_request.go) |
 | `GrpcServerInfo` | [GrpcServerInfo ](../../platform-sdk/pkg/platformclientmodels/grpc_server_info.go) |
 | `HierarchicalCategoryInfo` | [HierarchicalCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/hierarchical_category_info.go) |
+| `IAPClawbackPagingSlicedResult` | [IAPClawbackPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/iap_clawback_paging_sliced_result.go) |
 | `IAPConsumeHistoryInfo` | [IAPConsumeHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/iap_consume_history_info.go) |
 | `IAPConsumeHistoryPagingSlicedResult` | [IAPConsumeHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/iap_consume_history_paging_sliced_result.go) |
 | `IAPItemConfigInfo` | [IAPItemConfigInfo ](../../platform-sdk/pkg/platformclientmodels/iap_item_config_info.go) |
@@ -867,6 +877,8 @@
 | `StoreCreate` | [StoreCreate ](../../platform-sdk/pkg/platformclientmodels/store_create.go) |
 | `StoreInfo` | [StoreInfo ](../../platform-sdk/pkg/platformclientmodels/store_info.go) |
 | `StoreUpdate` | [StoreUpdate ](../../platform-sdk/pkg/platformclientmodels/store_update.go) |
+| `StreamEvent` | [StreamEvent ](../../platform-sdk/pkg/platformclientmodels/stream_event.go) |
+| `StreamEventBody` | [StreamEventBody ](../../platform-sdk/pkg/platformclientmodels/stream_event_body.go) |
 | `StripeConfig` | [StripeConfig ](../../platform-sdk/pkg/platformclientmodels/stripe_config.go) |
 | `Subscribable` | [Subscribable ](../../platform-sdk/pkg/platformclientmodels/subscribable.go) |
 | `SubscribeRequest` | [SubscribeRequest ](../../platform-sdk/pkg/platformclientmodels/subscribe_request.go) |

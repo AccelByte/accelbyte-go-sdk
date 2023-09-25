@@ -8,14 +8,14 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.4.0"
+    "version": "3.4.1"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/dslogmanager/apidocs"
+    "url": "https://demo.accelbyte.io/dslogmanager/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -222,6 +222,12 @@
             "description": "session id of the game",
             "in": "query",
             "name": "session_id",
+            "type": "string"
+          },
+          {
+            "description": "the source of the request, currently only for dsmc use with value: dsmc",
+            "in": "query",
+            "name": "source",
             "type": "string"
           },
           {
@@ -1043,15 +1049,15 @@
   },
   "x-docs": {
     "alias": "dslogmanager",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/dslogmanager/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-01T08:09:43+00:00",
-    "gitHash": "048c613d7e5978a795f79c39eb9ee0f72a87c58d",
+    "buildDate": "2023-09-16T05:43:29+00:00",
+    "gitHash": "c45a779d57a6c1000fc0782d40c2ffd29f08b3fb",
     "name": "justice-ds-log-manager-service",
-    "revisionID": "3.4.0",
-    "version": "3.4.0",
+    "revisionID": "3.4.1",
+    "version": "3.4.1",
     "version-roles-seeding": "0.0.3"
   }
 }

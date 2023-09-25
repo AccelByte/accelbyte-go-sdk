@@ -3341,10 +3341,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-08T07:31:28+00:00",
-    "gitHash": "bc2f38ff500a60d5fa820aa06b38eb60c0df5496",
+    "buildDate": "2023-09-18T05:03:56+00:00",
+    "gitHash": "93ffcd9b8e7029bcb6390d004cb28375c9f7cc50",
     "name": "justice-inventory-service",
     "realm": "DEV",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "version-roles-seeding": "0.0.47"
   }
 }

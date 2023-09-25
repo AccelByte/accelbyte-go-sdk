@@ -30,10 +30,104 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	LocalWatchdogConnect(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error)
+	LocalWatchdogConnectShort(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error)
 	WatchdogConnect(params *WatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*WatchdogConnectOK, error)
 	WatchdogConnectShort(params *WatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*WatchdogConnectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use LocalWatchdogConnectShort instead.
+
+LocalWatchdogConnect connect a (local) watchdog to support local ds development scenarios
+Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]
+*/
+func (a *Client) LocalWatchdogConnect(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLocalWatchdogConnectParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LocalWatchdogConnect",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LocalWatchdogConnectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LocalWatchdogConnectOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+LocalWatchdogConnectShort connect a (local) watchdog to support local ds development scenarios
+Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]
+*/
+func (a *Client) LocalWatchdogConnectShort(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLocalWatchdogConnectParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LocalWatchdogConnect",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LocalWatchdogConnectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LocalWatchdogConnectOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

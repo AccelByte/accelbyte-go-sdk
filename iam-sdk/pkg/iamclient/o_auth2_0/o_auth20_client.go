@@ -2343,7 +2343,7 @@ This endpoint will return a list of revoked users and revoked tokens. List of re
 
 
 
-This endpoint requires authorized requests header with valid access token.
+This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
 
 
 
@@ -2408,7 +2408,7 @@ This endpoint will return a list of revoked users and revoked tokens. List of re
 
 
 
-This endpoint requires authorized requests header with valid access token.
+This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
 
 
 

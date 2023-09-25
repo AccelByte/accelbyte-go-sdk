@@ -39,6 +39,12 @@ func (o *CreateUserFromInvitationV4Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewCreateUserFromInvitationV4Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewCreateUserFromInvitationV4NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -152,6 +158,59 @@ func (o *CreateUserFromInvitationV4BadRequest) GetPayload() *iamclientmodels.Res
 }
 
 func (o *CreateUserFromInvitationV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateUserFromInvitationV4Forbidden creates a CreateUserFromInvitationV4Forbidden with default headers values
+func NewCreateUserFromInvitationV4Forbidden() *CreateUserFromInvitationV4Forbidden {
+	return &CreateUserFromInvitationV4Forbidden{}
+}
+
+/*CreateUserFromInvitationV4Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+*/
+type CreateUserFromInvitationV4Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *CreateUserFromInvitationV4Forbidden) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateUserFromInvitationV4Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateUserFromInvitationV4Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *CreateUserFromInvitationV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

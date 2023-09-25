@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.9.4"
+    "version": "2.9.5"
   },
   "schemes": [
     "https"
@@ -41,7 +41,7 @@
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://stage.accelbyte.io/social"
+    "url": "https://demo.accelbyte.io/social"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -8439,21 +8439,21 @@
   },
   "x-docs": {
     "alias": "social",
-    "host": "https://stage.accelbyte.io",
+    "host": "https://demo.accelbyte.io",
     "path": "/social/swagger.json"
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-09-01T07:28:14+00:00",
-    "buildID": "2.9.4",
+    "buildDate": "2023-09-11T01:12:08+00:00",
+    "buildID": "2.9.5",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "b8c094b93f",
-    "gitTag": "2.9.0",
+    "gitHash": "296e5d1559",
+    "gitTag": "2.9.5",
     "name": "justice-social-service",
-    "realm": "staging",
-    "version": "2.9.4",
+    "realm": "demo",
+    "version": "2.9.5",
     "version-roles-seeding": "0.0.12"
   }
 }

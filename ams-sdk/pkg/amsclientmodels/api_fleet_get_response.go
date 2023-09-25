@@ -40,6 +40,10 @@ type APIFleetGetResponse struct {
 	// Required: true
 	ImageDeploymentProfile *APIImageDeploymentProfile `json:"imageDeploymentProfile"`
 
+	// islocal
+	// Required: true
+	IsLocal *bool `json:"isLocal"`
+
 	// name
 	// Required: true
 	Name *string `json:"name"`
@@ -66,6 +70,9 @@ func (m *APIFleetGetResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateImageDeploymentProfile(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsLocal(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -139,6 +146,15 @@ func (m *APIFleetGetResponse) validateImageDeploymentProfile(formats strfmt.Regi
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *APIFleetGetResponse) validateIsLocal(formats strfmt.Registry) error {
+
+	if err := validate.Required("isLocal", "body", m.IsLocal); err != nil {
+		return err
 	}
 
 	return nil

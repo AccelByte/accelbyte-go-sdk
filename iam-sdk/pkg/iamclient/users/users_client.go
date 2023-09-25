@@ -256,6 +256,8 @@ type ClientService interface {
 	AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error)
 	AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, *AdminUpdateUserStatusV3InternalServerError, error)
 	AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error)
+	AdminTrustlyUpdateUserIdentity(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, *AdminTrustlyUpdateUserIdentityBadRequest, *AdminTrustlyUpdateUserIdentityUnauthorized, *AdminTrustlyUpdateUserIdentityForbidden, *AdminTrustlyUpdateUserIdentityNotFound, *AdminTrustlyUpdateUserIdentityConflict, *AdminTrustlyUpdateUserIdentityInternalServerError, error)
+	AdminTrustlyUpdateUserIdentityShort(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, error)
 	AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, *AdminVerifyUserWithoutVerificationCodeV3InternalServerError, error)
 	AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error)
 	AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, *AdminGetMyUserV3Unauthorized, *AdminGetMyUserV3InternalServerError, error)
@@ -270,7 +272,7 @@ type ClientService interface {
 	PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error)
 	PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3InternalServerError, error)
 	PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error)
-	PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error)
+	PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3Forbidden, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error)
 	PublicCreateUserV3Short(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, error)
 	CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error)
 	CheckUserAvailabilityShort(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, error)
@@ -284,11 +286,11 @@ type ClientService interface {
 	PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error)
 	GetAdminInvitationV3(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, *GetAdminInvitationV3NotFound, *GetAdminInvitationV3InternalServerError, error)
 	GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error)
-	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
+	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
 	CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error)
 	UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error)
 	UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error)
-	PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error)
+	PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Forbidden, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error)
 	PublicPartialUpdateUserV3Short(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, error)
 	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
 	PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error)
@@ -12502,6 +12504,7 @@ Deprecated: 2022-08-10 - Use AdminListUsersV3Short instead.
 AdminListUsersV3 admin list users v3
 This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
 
+ This endpoint requires publisher namespace.
 Returns list of users ID and namespace with their Justice platform account, under a namespace. If user
 doesn't have Justice platform account, the linkedPlatforms will be empty array.'
 */
@@ -12562,6 +12565,7 @@ func (a *Client) AdminListUsersV3(params *AdminListUsersV3Params, authInfo runti
 AdminListUsersV3Short admin list users v3
 This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
 
+ This endpoint requires publisher namespace.
 Returns list of users ID and namespace with their Justice platform account, under a namespace. If user
 doesn't have Justice platform account, the linkedPlatforms will be empty array.'
 */
@@ -18018,6 +18022,174 @@ func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Par
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminTrustlyUpdateUserIdentityShort instead.
+
+AdminTrustlyUpdateUserIdentity update user identity
+
+
+Required permission 'ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]'
+
+
+
+
+
+This endpoint ONLY accept Client Token
+
+
+
+
+This endpoint is utilized for specific scenarios where email notifications are disabled
+
+
+
+
+The user's email will be marked as verified
+
+
+
+
+action code : 10103
+*/
+func (a *Client) AdminTrustlyUpdateUserIdentity(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, *AdminTrustlyUpdateUserIdentityBadRequest, *AdminTrustlyUpdateUserIdentityUnauthorized, *AdminTrustlyUpdateUserIdentityForbidden, *AdminTrustlyUpdateUserIdentityNotFound, *AdminTrustlyUpdateUserIdentityConflict, *AdminTrustlyUpdateUserIdentityInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminTrustlyUpdateUserIdentityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminTrustlyUpdateUserIdentity",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/trustly/identity",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminTrustlyUpdateUserIdentityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminTrustlyUpdateUserIdentityNoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityNotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminTrustlyUpdateUserIdentityInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminTrustlyUpdateUserIdentityShort update user identity
+
+
+Required permission 'ADMIN:NAMESPACE:{namespace}:IDENTITY [UPDATE]'
+
+
+
+
+
+This endpoint ONLY accept Client Token
+
+
+
+
+This endpoint is utilized for specific scenarios where email notifications are disabled
+
+
+
+
+The user's email will be marked as verified
+
+
+
+
+action code : 10103
+*/
+func (a *Client) AdminTrustlyUpdateUserIdentityShort(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminTrustlyUpdateUserIdentityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminTrustlyUpdateUserIdentity",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/trustly/identity",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminTrustlyUpdateUserIdentityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminTrustlyUpdateUserIdentityNoContent:
+		return v, nil
+	case *AdminTrustlyUpdateUserIdentityBadRequest:
+		return nil, v
+	case *AdminTrustlyUpdateUserIdentityUnauthorized:
+		return nil, v
+	case *AdminTrustlyUpdateUserIdentityForbidden:
+		return nil, v
+	case *AdminTrustlyUpdateUserIdentityNotFound:
+		return nil, v
+	case *AdminTrustlyUpdateUserIdentityConflict:
+		return nil, v
+	case *AdminTrustlyUpdateUserIdentityInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminVerifyUserWithoutVerificationCodeV3Short instead.
 
 AdminVerifyUserWithoutVerificationCodeV3 verify user without verification code
@@ -18881,7 +19053,7 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
 */
-func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error) {
+func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3Forbidden, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicCreateUserV3Params()
@@ -18909,28 +19081,31 @@ func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicCreateUserV3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicCreateUserV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicCreateUserV3Forbidden:
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicCreateUserV3NotFound:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicCreateUserV3Conflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicCreateUserV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -18997,6 +19172,8 @@ func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authI
 	case *PublicCreateUserV3Created:
 		return v, nil
 	case *PublicCreateUserV3BadRequest:
+		return nil, v
+	case *PublicCreateUserV3Forbidden:
 		return nil, v
 	case *PublicCreateUserV3NotFound:
 		return nil, v
@@ -19727,7 +19904,7 @@ Country use ISO3166-1 alpha-2 two letter, e.g. US.
 
 Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 */
-func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error) {
+func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserFromInvitationV3Params()
@@ -19755,25 +19932,28 @@ func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateUserFromInvitationV3Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateUserFromInvitationV3Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *CreateUserFromInvitationV3NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *CreateUserFromInvitationV3InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -19825,6 +20005,8 @@ func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitatio
 	case *CreateUserFromInvitationV3Created:
 		return v, nil
 	case *CreateUserFromInvitationV3BadRequest:
+		return nil, v
+	case *CreateUserFromInvitationV3Forbidden:
 		return nil, v
 	case *CreateUserFromInvitationV3NotFound:
 		return nil, v
@@ -20093,7 +20275,7 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 action code : 10103
 */
-func (a *Client) PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error) {
+func (a *Client) PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Forbidden, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicPartialUpdateUserV3Params()
@@ -20121,28 +20303,31 @@ func (a *Client) PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicPartialUpdateUserV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicPartialUpdateUserV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicPartialUpdateUserV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicPartialUpdateUserV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicPartialUpdateUserV3Conflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicPartialUpdateUserV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -20227,6 +20412,8 @@ func (a *Client) PublicPartialUpdateUserV3Short(params *PublicPartialUpdateUserV
 	case *PublicPartialUpdateUserV3BadRequest:
 		return nil, v
 	case *PublicPartialUpdateUserV3Unauthorized:
+		return nil, v
+	case *PublicPartialUpdateUserV3Forbidden:
 		return nil, v
 	case *PublicPartialUpdateUserV3Conflict:
 		return nil, v
@@ -21691,8 +21878,15 @@ Deprecated: 2022-08-10 - Use PublicPlatformUnlinkAllV3Short instead.
 PublicPlatformUnlinkAllV3 unlink user's account from specific platform
 Required valid user authorization.
 
+Unlink user's account from third platform in all namespaces.
 
-Unlink user's account from for all third platforms.
+This API support to handling platform group use case:
+i.e.
+1. Steam group: steam, steamopenid
+2. PSN group: ps4, ps5, psnweb
+3. XBOX group: live, xblweb
+
+Example: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.
 */
 func (a *Client) PublicPlatformUnlinkAllV3(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, *PublicPlatformUnlinkAllV3BadRequest, *PublicPlatformUnlinkAllV3Unauthorized, *PublicPlatformUnlinkAllV3NotFound, *PublicPlatformUnlinkAllV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -21751,8 +21945,15 @@ func (a *Client) PublicPlatformUnlinkAllV3(params *PublicPlatformUnlinkAllV3Para
 PublicPlatformUnlinkAllV3Short unlink user's account from specific platform
 Required valid user authorization.
 
+Unlink user's account from third platform in all namespaces.
 
-Unlink user's account from for all third platforms.
+This API support to handling platform group use case:
+i.e.
+1. Steam group: steam, steamopenid
+2. PSN group: ps4, ps5, psnweb
+3. XBOX group: live, xblweb
+
+Example: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.
 */
 func (a *Client) PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, error) {
 	// TODO: Validate the params before sending

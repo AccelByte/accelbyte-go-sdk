@@ -33,8 +33,11 @@ type RewardsRequest struct {
 	Rewards []*PlatformReward `json:"rewards"`
 
 	// source
-	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'DLC_REVOCATION', 'EXPIRATION', 'GIFT', 'IAP', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'EXPIRATION', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD', 'SELL_BACK']
 	Source string `json:"source,omitempty"`
+
+	// transaction id
+	TransactionID string `json:"transactionId,omitempty"`
 }
 
 // Validate validates this Rewards request
@@ -136,7 +139,7 @@ var rewardsRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "DLC_REVOCATION", "EXPIRATION", "GIFT", "IAP", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "EXPIRATION", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "ORDER_REVOCATION", "OTHER", "PAYMENT", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REWARD", "SELL_BACK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -155,9 +158,6 @@ const (
 	// RewardsRequestSourceDLC captures enum value "DLC"
 	RewardsRequestSourceDLC string = "DLC"
 
-	// RewardsRequestSourceDLCREVOCATION captures enum value "DLC_REVOCATION"
-	RewardsRequestSourceDLCREVOCATION string = "DLC_REVOCATION"
-
 	// RewardsRequestSourceEXPIRATION captures enum value "EXPIRATION"
 	RewardsRequestSourceEXPIRATION string = "EXPIRATION"
 
@@ -166,6 +166,9 @@ const (
 
 	// RewardsRequestSourceIAP captures enum value "IAP"
 	RewardsRequestSourceIAP string = "IAP"
+
+	// RewardsRequestSourceIAPCHARGEBACKREVERSED captures enum value "IAP_CHARGEBACK_REVERSED"
+	RewardsRequestSourceIAPCHARGEBACKREVERSED string = "IAP_CHARGEBACK_REVERSED"
 
 	// RewardsRequestSourceORDERREVOCATION captures enum value "ORDER_REVOCATION"
 	RewardsRequestSourceORDERREVOCATION string = "ORDER_REVOCATION"

@@ -1,6 +1,7 @@
 <a name="v0.54.0"></a>
 ## [v0.54.0]
 ### chore
+- **:** update CHANGELOG.md and go sum getting started
 - **:** update match2 spec
 - **:** regenerate match2 and fix integration test
 - **samples:** migrate aws runtime

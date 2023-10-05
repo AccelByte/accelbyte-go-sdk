@@ -14,7 +14,7 @@ import (
 )
 
 func NewSocialClient(configRepository repository.ConfigRepository) *socialclient.JusticeSocialService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &socialclient.TransportConfig{

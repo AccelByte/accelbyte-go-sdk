@@ -14,7 +14,7 @@ import (
 )
 
 func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsaveclient.JusticeCloudsaveService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &cloudsaveclient.TransportConfig{

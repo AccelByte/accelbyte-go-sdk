@@ -14,7 +14,7 @@ import (
 )
 
 func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sessionbrowserclient.JusticeSessionbrowserService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &sessionbrowserclient.TransportConfig{

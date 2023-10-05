@@ -14,7 +14,7 @@ import (
 )
 
 func NewDslogmanagerClient(configRepository repository.ConfigRepository) *dslogmanagerclient.JusticeDslogmanagerService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &dslogmanagerclient.TransportConfig{

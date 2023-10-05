@@ -14,7 +14,7 @@ import (
 )
 
 func NewPlatformClient(configRepository repository.ConfigRepository) *platformclient.JusticePlatformService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &platformclient.TransportConfig{

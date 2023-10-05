@@ -14,7 +14,7 @@ import (
 )
 
 func NewInventoryClient(configRepository repository.ConfigRepository) *inventoryclient.JusticeInventoryService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &inventoryclient.TransportConfig{

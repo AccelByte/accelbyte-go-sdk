@@ -14,7 +14,7 @@ import (
 )
 
 func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogclient.JusticeEventlogService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &eventlogclient.TransportConfig{

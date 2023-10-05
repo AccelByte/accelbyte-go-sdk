@@ -14,7 +14,7 @@ import (
 )
 
 func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.JusticeLobbyService {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &lobbyclient.TransportConfig{

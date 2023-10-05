@@ -14,7 +14,7 @@ import (
 )
 
 func NewMatch2Client(configRepository repository.ConfigRepository) *match2client.JusticeMatch2Service {
-	baseURL := configRepository.GetJusticeBaseUrl()
+	baseURL := strings.TrimSuffix(configRepository.GetJusticeBaseUrl(), "/")
 	if len(baseURL) > 0 {
 		baseURLSplit := strings.Split(baseURL, "://")
 		httpClientConfig := &match2client.TransportConfig{

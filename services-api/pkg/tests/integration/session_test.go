@@ -20,18 +20,13 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/configuration_template"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
-	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/operations"
 	partySession "github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
 var (
 	tokenRepository2ndPlayer = auth.DefaultTokenRepositoryImpl()
-	operationService         = &session.OperationsService{
-		Client:          factory.NewSessionClient(configRepo),
-		TokenRepository: tokenRepository,
-	}
-	configService = &session.ConfigurationTemplateService{
+	configService            = &session.ConfigurationTemplateService{
 		Client:          factory.NewSessionClient(configRepo),
 		TokenRepository: tokenRepository,
 	}
@@ -101,24 +96,6 @@ var (
 		Type:              &cfgTemplateType,
 	}
 )
-
-func TestIntegrationSessionHealthCheck(t *testing.T) {
-	// Login User - Arrange
-	Init()
-
-	// CASE Health check
-	input := &operations.GetHealthcheckInfoParams{}
-	err := operationService.GetHealthcheckInfoShort(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-
-		return
-	}
-	// ESAC
-
-	// Assert
-	assert.Nil(t, err, "err should be nil")
-}
 
 func TestIntegrationConfigurationTemplate(t *testing.T) {
 	// Login User - Arrange
@@ -273,7 +250,7 @@ func TestIntegrationQueryGameSession(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	// CASE Health check
+	// CASE Query Game Session
 	input := &game_session.PublicQueryGameSessionsParams{
 		Body:      nil,
 		Namespace: integration.NamespaceTest,

@@ -890,18 +890,6 @@ err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 
 Source: [match2_test.go](../services-api/pkg/tests/integration/match2_test.go)
 
-### Health check
-
-```go
-input := &operations.GetHealthcheckInfoParams{}
-err := operationMatch2Service.GetHealthcheckInfoShort(input)
-if err != nil {
-	assert.FailNow(t, err.Error())
-
-	return
-}
-```
-
 ### Create a match rule set
 
 ```go
@@ -957,7 +945,7 @@ if errGetList != nil {
 inputCreateTicket := &match_tickets.CreateMatchTicketParams{
 	Body: &match2clientmodels.APIMatchTicketRequest{
 		MatchPool: &poolName,
-		SessionID: &sessionID,
+		SessionID: sessionID,
 	},
 	Namespace: integration.NamespaceTest,
 }
@@ -1326,18 +1314,6 @@ errDeleteSeason := seasonService.DeleteSeasonShort(&inputDeleteSeason)
 
 Source: [session_test.go](../services-api/pkg/tests/integration/session_test.go)
 
-### Health check
-
-```go
-input := &operations.GetHealthcheckInfoParams{}
-err := operationService.GetHealthcheckInfoShort(input)
-if err != nil {
-	assert.FailNow(t, err.Error())
-
-	return
-}
-```
-
 ### Create Configuration Template
 
 ```go
@@ -1445,11 +1421,14 @@ if errDeleted != nil {
 }
 ```
 
-### Health check
+### Query Game Session
 
 ```go
-input := &operations.GetHealthcheckInfoParams{}
-err := operationService.GetHealthcheckInfoShort(input)
+input := &game_session.PublicQueryGameSessionsParams{
+	Body:      nil,
+	Namespace: integration.NamespaceTest,
+}
+query, err := gameSessionService.PublicQueryGameSessionsShort(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
 

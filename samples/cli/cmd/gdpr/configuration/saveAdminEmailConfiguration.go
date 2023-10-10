@@ -4,12 +4,12 @@
 
 // Code generated. DO NOT EDIT.
 
-package dataRetrieval
+package configuration
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -23,7 +23,7 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 	Short: "Save admin email configuration",
 	Long:  `Save admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		dataRetrievalService := &gdpr.DataRetrievalService{
+		configurationService := &gdpr.ConfigurationService{
 			Client:          factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
@@ -34,11 +34,11 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &data_retrieval.SaveAdminEmailConfigurationParams{
+		input := &configuration.SaveAdminEmailConfigurationParams{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errNoContent := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
+		errNoContent := configurationService.SaveAdminEmailConfigurationShort(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
 

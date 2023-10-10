@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package data_retrieval
+package configuration
 
 import (
 	"encoding/json"

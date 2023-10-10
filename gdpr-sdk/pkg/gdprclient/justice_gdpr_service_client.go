@@ -14,6 +14,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -66,6 +67,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeGdprService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.Configuration = configuration.New(transport, formats)
 	cli.DataDeletion = data_deletion.New(transport, formats)
 	cli.DataRetrieval = data_retrieval.New(transport, formats)
 
@@ -128,6 +130,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeGdprService is a client for justice gdpr service
 type JusticeGdprService struct {
+	Configuration configuration.ClientService
+
 	DataDeletion data_deletion.ClientService
 
 	DataRetrieval data_retrieval.ClientService
@@ -139,6 +143,7 @@ type JusticeGdprService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeGdprService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Configuration.SetTransport(transport)
 	c.DataDeletion.SetTransport(transport)
 	c.DataRetrieval.SetTransport(transport)
 }

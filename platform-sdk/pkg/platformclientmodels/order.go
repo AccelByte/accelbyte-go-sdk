@@ -88,6 +88,9 @@ type Order struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// orderbundleiteminfos
+	OrderBundleItemInfos []*OrderBundleItemInfo `json:"orderBundleItemInfos,omitempty"`
+
 	// orderno
 	OrderNo string `json:"orderNo,omitempty"`
 

@@ -143,7 +143,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles [GET]
 */
 func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, *GetRolesUnauthorized, *GetRolesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -203,7 +203,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles [GET]
 */
 func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, error) {
 	// TODO: Validate the params before sending
@@ -278,7 +278,7 @@ Administrator role can be created only when at least 1 manager is specified.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles [POST]
 */
 func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, *CreateRoleBadRequest, *CreateRoleUnauthorized, *CreateRoleForbidden, error) {
 	// TODO: Validate the params before sending
@@ -356,7 +356,7 @@ Administrator role can be created only when at least 1 manager is specified.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles [POST]
 */
 func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, error) {
 	// TODO: Validate the params before sending
@@ -418,7 +418,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
 */
 func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, *GetRoleUnauthorized, *GetRoleForbidden, *GetRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -481,7 +481,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
 */
 func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, error) {
 	// TODO: Validate the params before sending
@@ -543,7 +543,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
 */
 func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, *UpdateRoleBadRequest, *UpdateRoleUnauthorized, *UpdateRoleForbidden, *UpdateRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -609,7 +609,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
 */
 func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, error) {
 	// TODO: Validate the params before sending
@@ -673,7 +673,7 @@ Required permission 'ROLE:ADMIN [DELETE]' or 'ADMIN:ROLE [DELETE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
 */
 func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, *DeleteRoleUnauthorized, *DeleteRoleForbidden, *DeleteRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -736,7 +736,7 @@ Required permission 'ROLE:ADMIN [DELETE]' or 'ADMIN:ROLE [DELETE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
 */
 func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, error) {
 	// TODO: Validate the params before sending
@@ -803,7 +803,7 @@ Admin roles has its members listed in the role.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
 */
 func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, *GetRoleAdminStatusBadRequest, *GetRoleAdminStatusUnauthorized, *GetRoleAdminStatusForbidden, *GetRoleAdminStatusNotFound, error) {
 	// TODO: Validate the params before sending
@@ -874,7 +874,7 @@ Admin roles has its members listed in the role.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
 */
 func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -948,7 +948,7 @@ Role can be set as admin role only when it has at least 1 manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
 */
 func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, *SetRoleAsAdminBadRequest, *SetRoleAsAdminUnauthorized, *SetRoleAsAdminForbidden, *SetRoleAsAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1024,7 +1024,7 @@ Role can be set as admin role only when it has at least 1 manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
 */
 func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1088,7 +1088,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
 */
 func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, *RemoveRoleAdminBadRequest, *RemoveRoleAdminUnauthorized, *RemoveRoleAdminForbidden, *RemoveRoleAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1154,7 +1154,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
 */
 func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1223,7 +1223,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
 */
 func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, *GetRoleManagersBadRequest, *GetRoleManagersUnauthorized, *GetRoleManagersForbidden, *GetRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1294,7 +1294,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
 */
 func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, error) {
 	// TODO: Validate the params before sending
@@ -1363,7 +1363,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
 */
 func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, *AddRoleManagersBadRequest, *AddRoleManagersUnauthorized, *AddRoleManagersForbidden, *AddRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1434,7 +1434,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
 */
 func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1498,7 +1498,7 @@ Required permission Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UP
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
 */
 func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, *RemoveRoleManagersBadRequest, *RemoveRoleManagersUnauthorized, *RemoveRoleManagersForbidden, *RemoveRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1564,7 +1564,7 @@ Required permission Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UP
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
 */
 func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1628,7 +1628,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
 */
 func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, *GetRoleMembersBadRequest, *GetRoleMembersUnauthorized, *GetRoleMembersForbidden, *GetRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1694,7 +1694,7 @@ Required permission 'ROLE [READ]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
 */
 func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, error) {
 	// TODO: Validate the params before sending
@@ -1768,7 +1768,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
 */
 func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, *AddRoleMembersBadRequest, *AddRoleMembersUnauthorized, *AddRoleMembersForbidden, *AddRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1844,7 +1844,7 @@ Role can only be assigned to other users by the role's manager.
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
 */
 func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1908,7 +1908,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
 */
 func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, *RemoveRoleMembersBadRequest, *RemoveRoleMembersUnauthorized, *RemoveRoleMembersForbidden, *RemoveRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1974,7 +1974,7 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
 */
 func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2076,25 +2076,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -2104,31 +2104,31 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
 */
 func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, *UpdateRolePermissionsBadRequest, *UpdateRolePermissionsUnauthorized, *UpdateRolePermissionsForbidden, *UpdateRolePermissionsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2232,25 +2232,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -2260,31 +2260,31 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
 */
 func (a *Client) UpdateRolePermissionsShort(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2386,25 +2386,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -2414,34 +2414,34 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
+                                  * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
 
 
-                                              * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
+                                  * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
 */
 func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, *AddRolePermissionBadRequest, *AddRolePermissionUnauthorized, *AddRolePermissionForbidden, *AddRolePermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2545,25 +2545,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -2573,34 +2573,34 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
+                                  * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
 
 
-                                              * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
+                                  * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
 */
 func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2664,10 +2664,10 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
 
 
-                                              * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
+                                  * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
 */
 func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, *DeleteRolePermissionBadRequest, *DeleteRolePermissionUnauthorized, *DeleteRolePermissionForbidden, *DeleteRolePermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2733,10 +2733,10 @@ Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
+                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
 
 
-                                              * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
+                                  * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
 */
 func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4740,25 +4740,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -4768,25 +4768,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, *AdminUpdateRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4891,25 +4891,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -4919,25 +4919,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5039,25 +5039,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -5067,25 +5067,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, *AdminAddRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5190,25 +5190,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -5218,25 +5218,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -6393,25 +6393,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -6421,25 +6421,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, *AdminUpdateRolePermissionsV4BadRequest, *AdminUpdateRolePermissionsV4Unauthorized, *AdminUpdateRolePermissionsV4Forbidden, *AdminUpdateRolePermissionsV4NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6541,25 +6541,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -6569,25 +6569,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, error) {
 	// TODO: Validate the params before sending
@@ -6687,25 +6687,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -6715,25 +6715,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, *AdminAddRolePermissionsV4BadRequest, *AdminAddRolePermissionsV4Unauthorized, *AdminAddRolePermissionsV4Forbidden, *AdminAddRolePermissionsV4NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6835,25 +6835,25 @@ Fields:
 
 
 
-                                              1. Seconds: 0-59 * / , -
+                                  1. Seconds: 0-59 * / , -
 
 
-                                              2. Minutes: 0-59 * / , -
+                                  2. Minutes: 0-59 * / , -
 
 
-                                              3. Hours: 0-23 * / , -
+                                  3. Hours: 0-23 * / , -
 
 
-                                              4. Day of month: 1-31 * / , - L W
+                                  4. Day of month: 1-31 * / , - L W
 
 
-                                              5. Month: 1-12 JAN-DEC * / , -
+                                  5. Month: 1-12 JAN-DEC * / , -
 
 
-                                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                                  6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                                              7. Year: 1970-2099 * / , -
+                                  7. Year: 1970-2099 * / , -
 
 
 
@@ -6863,25 +6863,25 @@ Special characters:
 
 
 
-                                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, error) {
 	// TODO: Validate the params before sending

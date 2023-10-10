@@ -52,10 +52,14 @@ type ClientService interface {
 	QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error)
 	ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
 	ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
+	GetItems(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, *GetItemsNotFound, error)
+	GetItemsShort(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, error)
 	GetItemBySku(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, *GetItemBySkuNotFound, error)
 	GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, error)
 	GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, *GetLocaleItemBySkuNotFound, error)
 	GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error)
+	GetEstimatedPrice(params *GetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*GetEstimatedPriceOK, *GetEstimatedPriceNotFound, error)
+	GetEstimatedPriceShort(params *GetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*GetEstimatedPriceOK, error)
 	GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, *GetItemIDBySkuNotFound, error)
 	GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, error)
 	GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error)
@@ -106,6 +110,8 @@ type ClientService interface {
 	PublicQueryItemsShort(params *PublicQueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryItemsOK, error)
 	PublicGetItemBySku(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error)
 	PublicGetItemBySkuShort(params *PublicGetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemBySkuOK, error)
+	PublicGetEstimatedPrice(params *PublicGetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEstimatedPriceOK, *PublicGetEstimatedPriceNotFound, error)
+	PublicGetEstimatedPriceShort(params *PublicGetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEstimatedPriceOK, error)
 	PublicBulkGetItems(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
 	PublicBulkGetItemsShort(params *PublicBulkGetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetItemsOK, error)
 	PublicValidateItemPurchaseCondition(params *PublicValidateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateItemPurchaseConditionOK, *PublicValidateItemPurchaseConditionUnprocessableEntity, error)
@@ -1797,6 +1803,113 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 }
 
 /*
+Deprecated: 2022-08-10 - Use GetItemsShort instead.
+
+GetItems get items
+This API is used to get items.
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
+  *  Returns : the list of items info
+*/
+func (a *Client) GetItems(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, *GetItemsNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItems",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemsOK:
+		return v, nil, nil
+
+	case *GetItemsNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetItemsShort get items
+This API is used to get items.
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
+  *  Returns : the list of items info
+*/
+func (a *Client) GetItemsShort(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItems",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemsOK:
+		return v, nil
+	case *GetItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetItemBySkuShort instead.
 
 GetItemBySku get item by sku
@@ -2003,6 +2116,103 @@ func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authI
 	case *GetLocaleItemBySkuOK:
 		return v, nil
 	case *GetLocaleItemBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetEstimatedPriceShort instead.
+
+GetEstimatedPrice get estimated price
+This API is used to get estimated prices of a flexible pricing bundle
+*/
+func (a *Client) GetEstimatedPrice(params *GetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*GetEstimatedPriceOK, *GetEstimatedPriceNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEstimatedPriceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEstimatedPrice",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/estimatedPrice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEstimatedPriceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEstimatedPriceOK:
+		return v, nil, nil
+
+	case *GetEstimatedPriceNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetEstimatedPriceShort get estimated price
+This API is used to get estimated prices of a flexible pricing bundle
+*/
+func (a *Client) GetEstimatedPriceShort(params *GetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*GetEstimatedPriceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEstimatedPriceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEstimatedPrice",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/estimatedPrice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEstimatedPriceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEstimatedPriceOK:
+		return v, nil
+	case *GetEstimatedPriceNotFound:
 		return nil, v
 
 	default:
@@ -5366,6 +5576,103 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams, authI
 	case *PublicGetItemBySkuOK:
 		return v, nil
 	case *PublicGetItemBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetEstimatedPriceShort instead.
+
+PublicGetEstimatedPrice get estimated price
+This API is used to get estimated prices of item
+*/
+func (a *Client) PublicGetEstimatedPrice(params *PublicGetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEstimatedPriceOK, *PublicGetEstimatedPriceNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetEstimatedPriceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetEstimatedPrice",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/estimatedPrice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetEstimatedPriceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetEstimatedPriceOK:
+		return v, nil, nil
+
+	case *PublicGetEstimatedPriceNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetEstimatedPriceShort get estimated price
+This API is used to get estimated prices of item
+*/
+func (a *Client) PublicGetEstimatedPriceShort(params *PublicGetEstimatedPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEstimatedPriceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetEstimatedPriceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetEstimatedPrice",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/estimatedPrice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetEstimatedPriceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetEstimatedPriceOK:
+		return v, nil
+	case *PublicGetEstimatedPriceNotFound:
 		return nil, v
 
 	default:

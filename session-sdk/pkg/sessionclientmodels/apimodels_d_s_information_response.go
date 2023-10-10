@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodels DS information response.
 type ApimodelsDSInformationResponse struct {
 
+	// createdat
+	// Required: true
+	CreatedAt *string `json:"CreatedAt"`
+
 	// requestedat
 	// Required: true
 	RequestedAt *string `json:"RequestedAt"`
@@ -36,6 +40,9 @@ type ApimodelsDSInformationResponse struct {
 func (m *ApimodelsDSInformationResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateRequestedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -43,6 +50,15 @@ func (m *ApimodelsDSInformationResponse) Validate(formats strfmt.Registry) error
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsDSInformationResponse) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("CreatedAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
 	return nil
 }
 

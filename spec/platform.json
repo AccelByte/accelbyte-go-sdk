@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.36.0"
+    "version": "4.37.1"
   },
   "schemes": [
     "https"
@@ -5787,7 +5787,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30175\u003c/td\u003e\u003ctd\u003eDuplicated currencyCode [{currencyCode}] in Region [{region}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30373\u003c/td\u003e\u003ctd\u003eItemType [{itemType}] is not allowed in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30381\u003c/td\u003e\u003ctd\u003eCurrency [{currency}] is not set for bundle Item [{itemId}] in region [{region}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -6247,6 +6247,82 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/items/byIds": {
+      "get": {
+        "description": "This API is used to get items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getItems",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "commas separated item ids",
+            "in": "query",
+            "name": "itemIds",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "in": "query",
+            "name": "activeOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "default is published store id",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/FullItemInfo"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get items",
+        "tags": [
+          "Item"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/items/bySku": {
       "get": {
         "description": "This API is used to get the item by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with sku\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -6409,6 +6485,75 @@
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:ITEM"
         }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/items/estimatedPrice": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to get estimated prices of a flexible pricing bundle",
+        "operationId": "getEstimatedPrice",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "commas separated item ids",
+            "in": "query",
+            "name": "itemIds",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "use published store id by default",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EstimatedPriceInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get estimated price",
+        "tags": [
+          "Item"
+        ]
       }
     },
     "/platform/admin/namespaces/{namespace}/items/itemId/bySku": {
@@ -7264,7 +7409,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30374\u003c/td\u003e\u003ctd\u003eItem sku [{sku}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30379\u003c/td\u003e\u003ctd\u003eItem sku is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30371\u003c/td\u003e\u003ctd\u003eItem maxCount not allow reduce\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30372\u003c/td\u003e\u003ctd\u003eItemType is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30175\u003c/td\u003e\u003ctd\u003eDuplicated currencyCode [{currencyCode}] in Region [{region}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30374\u003c/td\u003e\u003ctd\u003eItem sku [{sku}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30376\u003c/td\u003e\u003ctd\u003ePublisher namespace don’t allow sellback item\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30377\u003c/td\u003e\u003ctd\u003eThis item type [{itemType}] don’t allow sellback\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30378\u003c/td\u003e\u003ctd\u003eSale price don’t allow real currency [{currencyCode}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30379\u003c/td\u003e\u003ctd\u003eItem sku is not updatable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30380\u003c/td\u003e\u003ctd\u003eBox item [{itemId}] duration and end date can’t be set at the same time\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30381\u003c/td\u003e\u003ctd\u003eCurrency [{currency}] is not set for bundle Item [{itemId}] in region [{region}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -16431,7 +16576,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -22592,6 +22737,72 @@
         ]
       }
     },
+    "/platform/public/namespaces/{namespace}/items/estimatedPrice": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to get estimated prices of item",
+        "operationId": "publicGetEstimatedPrice",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "commas separated item ids",
+            "in": "query",
+            "name": "itemIds",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "use published store id by default",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/EstimatedPriceInfo"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get estimated price",
+        "tags": [
+          "Item"
+        ]
+      }
+    },
     "/platform/public/namespaces/{namespace}/items/locale/byIds": {
       "get": {
         "description": "This API is used to bulk get locale items. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store items)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store items)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -26517,7 +26728,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -28025,7 +28236,7 @@
           },
           {
             "default": true,
-            "description": "default strict mode is true",
+            "description": "default strict mode is true, if strict mode is false, will not do any validation.",
             "in": "query",
             "name": "strictMode",
             "required": false,
@@ -28290,7 +28501,7 @@
           "type": "string"
         },
         "discountedPrice": {
-          "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)",
+          "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.",
           "format": "int32",
           "type": "integer"
         },
@@ -28329,12 +28540,12 @@
           "type": "string"
         },
         "price": {
-          "description": "Price of order, should match (item_price * quantity)",
+          "description": "Price of order, should match (item_price * quantity) if item is not flexible bundle, should use flexible estimate price if item is flexible bundle",
           "format": "int32",
           "type": "integer"
         },
         "quantity": {
-          "description": "Quantity of item, min is 1",
+          "description": "Quantity of item, min is 1, and will default use 1 and ignore this quantity field if item is flexible bundle",
           "format": "int32",
           "type": "integer"
         },
@@ -28360,7 +28571,6 @@
         "currencyCode",
         "discountedPrice",
         "itemId",
-        "price",
         "quantity",
         "region"
       ],
@@ -28956,6 +29166,42 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AvailablePrice": {
+      "properties": {
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
+        },
+        "currencyNamespace": {
+          "description": "currency namespace",
+          "type": "string"
+        },
+        "discountedPrice": {
+          "description": "current available discounted price, only calc total discounted price with un-owned durable items if it's a flexible bundle item.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "price": {
+          "description": "current full price, only calc total price with un-owned durable items if it's a flexible bundle item.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "priceDetails": {
+          "description": "only have value when item is flexible bundle",
+          "items": {
+            "$ref": "#/definitions/SubItemAvailablePrice"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "currencyCode",
+        "currencyNamespace",
+        "discountedPrice",
+        "price"
+      ],
       "type": "object"
     },
     "BaseCustomConfig": {
@@ -29621,6 +29867,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "fresh": {
           "description": "fresh",
@@ -32455,6 +32706,29 @@
       ],
       "type": "object"
     },
+    "EstimatedPriceInfo": {
+      "properties": {
+        "estimatedPrices": {
+          "description": "estimated prices in different currency under region, this field maybe null or empty if have not any available price at this time, Possible reason: This item is not yet for sale, or miss set correct region currency for flexible bundle item.",
+          "items": {
+            "$ref": "#/definitions/AvailablePrice"
+          },
+          "type": "array"
+        },
+        "itemId": {
+          "description": "item Id",
+          "type": "string"
+        },
+        "region": {
+          "description": "price region",
+          "type": "string"
+        }
+      },
+      "required": [
+        "itemId"
+      ],
+      "type": "object"
+    },
     "EventAdditionalData": {
       "properties": {
         "entitlement": {
@@ -32994,6 +33268,14 @@
           ],
           "type": "string"
         },
+        "overrideBundleItemQty": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "overrideBundleItemQty",
+          "type": "object"
+        },
         "quantity": {
           "description": "quantity",
           "format": "int32",
@@ -33364,6 +33646,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "flexible": {
+          "description": "whether it supported flexible pricing",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "images": {
           "description": "images",
@@ -34304,8 +34591,16 @@
           "format": "int32",
           "type": "integer"
         },
+        "errorField": {
+          "description": "error field, exists if constraint violated exception",
+          "type": "string"
+        },
         "errorMessage": {
           "description": "error message",
+          "type": "string"
+        },
+        "errorValue": {
+          "description": "error value, exists if constraint violated exception",
           "type": "string"
         },
         "messageVariables": {
@@ -34318,8 +34613,42 @@
       },
       "type": "object"
     },
+    "ImportStoreAppInfo": {
+      "properties": {
+        "itemId": {
+          "description": "Item id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportStoreCategoryInfo": {
+      "properties": {
+        "categoryId": {
+          "description": "category id",
+          "type": "string"
+        },
+        "categoryPath": {
+          "description": "category path",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ImportStoreError": {
       "properties": {
+        "app": {
+          "$ref": "#/definitions/ImportStoreAppInfo",
+          "description": "app info"
+        },
+        "category": {
+          "$ref": "#/definitions/ImportStoreCategoryInfo",
+          "description": "category info"
+        },
         "errors": {
           "description": "errors",
           "items": {
@@ -34331,12 +34660,25 @@
           "$ref": "#/definitions/ImportStoreItemInfo",
           "description": "item info"
         },
+        "section": {
+          "$ref": "#/definitions/ImportStoreSectionInfo",
+          "description": "section info"
+        },
         "type": {
           "description": "type",
           "enum": [
-            "ITEM"
+            "APP",
+            "CATEGORY",
+            "ITEM",
+            "SECTION",
+            "STORE",
+            "VIEW"
           ],
           "type": "string"
+        },
+        "view": {
+          "$ref": "#/definitions/ImportStoreViewInfo",
+          "description": "view info"
         }
       },
       "type": "object"
@@ -34407,6 +34749,32 @@
           "description": "import result",
           "type": "boolean",
           "x-omitempty": false
+        }
+      },
+      "type": "object"
+    },
+    "ImportStoreSectionInfo": {
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "sectionId": {
+          "description": "section id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportStoreViewInfo": {
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "viewId": {
+          "description": "view id",
+          "type": "string"
         }
       },
       "type": "object"
@@ -34589,6 +34957,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "images": {
           "description": "images",
@@ -34894,6 +35267,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "fresh": {
           "description": "fresh",
@@ -35356,6 +35734,11 @@
           "type": "array",
           "uniqueItems": true
         },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "itemId": {
           "description": "Item id",
           "type": "string"
@@ -35712,6 +36095,11 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "images": {
           "description": "images",
@@ -36543,6 +36931,12 @@
         "namespace": {
           "type": "string"
         },
+        "orderBundleItemInfos": {
+          "items": {
+            "$ref": "#/definitions/OrderBundleItemInfo"
+          },
+          "type": "array"
+        },
         "orderNo": {
           "type": "string"
         },
@@ -36661,6 +37055,50 @@
       },
       "type": "object"
     },
+    "OrderBundleItemInfo": {
+      "properties": {
+        "discountedPrice": {
+          "description": "current available discounted price per item",
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "itemName": {
+          "description": "item name",
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "item sku",
+          "type": "string"
+        },
+        "price": {
+          "description": "current available price per item",
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchased": {
+          "description": "Whether the item has been purchased in this order",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "quantity": {
+          "description": "quantity",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "discountedPrice",
+        "itemId",
+        "itemName",
+        "itemSku",
+        "price"
+      ],
+      "type": "object"
+    },
     "OrderCreate": {
       "properties": {
         "currencyCode": {
@@ -36668,7 +37106,7 @@
           "type": "string"
         },
         "discountedPrice": {
-          "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)",
+          "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.",
           "format": "int32",
           "type": "integer"
         },
@@ -36689,12 +37127,12 @@
           "type": "string"
         },
         "price": {
-          "description": "Price of order, should match (item_price * quantity)",
+          "description": "Price of order, should match (item_price * quantity) if item is not flexible bundle, should use flexible estimate price if item is flexible bundle",
           "format": "int32",
           "type": "integer"
         },
         "quantity": {
-          "description": "Quantity of item, min is 1",
+          "description": "Quantity of item, min is 1, and will default use 1 and ignore this quantity field if item is flexible bundle",
           "format": "int32",
           "type": "integer"
         },
@@ -36715,7 +37153,6 @@
         "currencyCode",
         "discountedPrice",
         "itemId",
-        "price",
         "quantity"
       ],
       "type": "object"
@@ -36893,6 +37330,13 @@
         "namespace": {
           "description": "Order namespace",
           "type": "string"
+        },
+        "orderBundleItemInfos": {
+          "description": "order information of flexible bundle item price details, include item owned info.",
+          "items": {
+            "$ref": "#/definitions/OrderBundleItemInfo"
+          },
+          "type": "array"
         },
         "orderNo": {
           "description": "Order number",
@@ -39352,6 +39796,11 @@
           "type": "array",
           "uniqueItems": true
         },
+        "flexible": {
+          "description": "whether flexible pricing applied, only applied if itemType is BUNDLE",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "fresh": {
           "description": "fresh",
           "type": "boolean",
@@ -39977,7 +40426,7 @@
           "x-nullable": true
         },
         "price": {
-          "description": "price value, set to 0 if it's free",
+          "description": "price value, set to 0 if it's free, if it's -1 means it's dynamic price and need to call getEstimatedPrices endpoint to get price.",
           "format": "int32",
           "type": "integer"
         },
@@ -40052,7 +40501,7 @@
           "x-nullable": true
         },
         "price": {
-          "description": "price value, set to 0 if it's free",
+          "description": "price value, set to 0 if it's free, if it's -1 means it's dynamic price and need to call getEstimatedPrices endpoint to get price.",
           "format": "int32",
           "type": "integer"
         },
@@ -41878,6 +42327,50 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SubItemAvailablePrice": {
+      "properties": {
+        "discountedPrice": {
+          "description": "current discounted price per item",
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "itemName": {
+          "description": "item name",
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "item sku",
+          "type": "string"
+        },
+        "owned": {
+          "description": "whether owns this durable item id, consumable item is always false or null.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "price": {
+          "description": "full price per item",
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantity": {
+          "description": "quantity",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "discountedPrice",
+        "itemId",
+        "itemName",
+        "itemSku",
+        "price"
+      ],
       "type": "object"
     },
     "Subscribable": {
@@ -43825,16 +44318,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-09-25T02:46:49+00:00",
-    "buildID": "4.36.0",
+    "buildDate": "2023-10-07T11:49:46+00:00",
+    "buildID": "4.37.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "bfb52388b2",
-    "gitTag": "4.36.0",
+    "gitHash": "feef063846",
+    "gitTag": "4.37.1",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.36.0",
+    "version": "4.37.1",
     "version-roles-seeding": "0.0.43"
   }
 }

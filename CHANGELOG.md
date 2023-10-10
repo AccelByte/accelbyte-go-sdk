@@ -1,3 +1,11 @@
+<a name="v0.55.0"></a>
+## [v0.55.0]
+### test
+- **integration:** remove test health in match2 and session
+### chore
+- **sdk:** regenerate factory for the trailing slash
+
+
 <a name="v0.54.0"></a>
 ## [v0.54.0]
 ### chore

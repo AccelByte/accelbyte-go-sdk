@@ -70,7 +70,7 @@ type AdminRequestDataRetrievalParams struct {
 	*/
 	Password *string
 	/*Namespace
-	  namespace of the user
+	  namespace
 
 	*/
 	Namespace string

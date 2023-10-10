@@ -188,19 +188,19 @@ Supported `field`:
 
 
 
-                                              * displayName
+                                  * displayName
 
 
-                                              * password
+                                  * password
 
 
-                                              * username
+                                  * username
 
 
-                                              * email
+                                  * email
 
 
-                                              * avatar
+                                  * avatar
 
 
 
@@ -217,16 +217,16 @@ Supported `letterCase`:
 
 
 
-                                              * lowercase
+                                  * lowercase
 
 
-                                              * uppercase
+                                  * uppercase
 
 
-                                              * mixed: uppercase and lowercase
+                                  * mixed: uppercase and lowercase
 
 
-                                              * mixed: uppercase and/or lowercase
+                                  * mixed: uppercase and/or lowercase
 
 
 flexible special character non words with `allowAllSpecialCharacters`
@@ -240,10 +240,10 @@ Supported `specialCharacterLocation`:
 
 
 
-                                              * anywhere
+                                  * anywhere
 
 
-                                              * middle
+                                  * middle
 
 
 
@@ -331,19 +331,19 @@ Supported `field`:
 
 
 
-                                              * displayName
+                                  * displayName
 
 
-                                              * password
+                                  * password
 
 
-                                              * username
+                                  * username
 
 
-                                              * email
+                                  * email
 
 
-                                              * avatar
+                                  * avatar
 
 
 
@@ -360,16 +360,16 @@ Supported `letterCase`:
 
 
 
-                                              * lowercase
+                                  * lowercase
 
 
-                                              * uppercase
+                                  * uppercase
 
 
-                                              * mixed: uppercase and lowercase
+                                  * mixed: uppercase and lowercase
 
 
-                                              * mixed: uppercase and/or lowercase
+                                  * mixed: uppercase and/or lowercase
 
 
 flexible special character non words with `allowAllSpecialCharacters`
@@ -383,10 +383,10 @@ Supported `specialCharacterLocation`:
 
 
 
-                                              * anywhere
+                                  * anywhere
 
 
-                                              * middle
+                                  * middle
 
 
 

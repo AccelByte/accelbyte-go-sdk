@@ -445,67 +445,67 @@ Current user should be a headless account.
 
 
 
-                                              * steam
+                                  * steam
 
 
-                                              * steamopenid
+                                  * steamopenid
 
 
-                                              * facebook
+                                  * facebook
 
 
-                                              * google
+                                  * google
 
 
-                                              * oculus
+                                  * oculus
 
 
-                                              * twitch
+                                  * twitch
 
 
-                                              * discord
+                                  * discord
 
 
-                                              * android
+                                  * android
 
 
-                                              * ios
+                                  * ios
 
 
-                                              * apple
+                                  * apple
 
 
-                                              * device
+                                  * device
 
 
-                                              * justice
+                                  * justice
 
 
-                                              * epicgames
+                                  * epicgames
 
 
-                                              * ps4
+                                  * ps4
 
 
-                                              * ps5
+                                  * ps5
 
 
-                                              * nintendo
+                                  * nintendo
 
 
-                                              * awscognito
+                                  * awscognito
 
 
-                                              * live
+                                  * live
 
 
-                                              * xblweb
+                                  * xblweb
 
 
-                                              * netflix
+                                  * netflix
 
 
-                                              * snapchat
+                                  * snapchat
 */
 func (a *Client) RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending
@@ -567,67 +567,67 @@ Current user should be a headless account.
 
 
 
-                                              * steam
+                                  * steam
 
 
-                                              * steamopenid
+                                  * steamopenid
 
 
-                                              * facebook
+                                  * facebook
 
 
-                                              * google
+                                  * google
 
 
-                                              * oculus
+                                  * oculus
 
 
-                                              * twitch
+                                  * twitch
 
 
-                                              * discord
+                                  * discord
 
 
-                                              * android
+                                  * android
 
 
-                                              * ios
+                                  * ios
 
 
-                                              * apple
+                                  * apple
 
 
-                                              * device
+                                  * device
 
 
-                                              * justice
+                                  * justice
 
 
-                                              * epicgames
+                                  * epicgames
 
 
-                                              * ps4
+                                  * ps4
 
 
-                                              * ps5
+                                  * ps5
 
 
-                                              * nintendo
+                                  * nintendo
 
 
-                                              * awscognito
+                                  * awscognito
 
 
-                                              * live
+                                  * live
 
 
-                                              * xblweb
+                                  * xblweb
 
 
-                                              * netflix
+                                  * netflix
 
 
-                                              * snapchat
+                                  * snapchat
 */
 func (a *Client) RequestOneTimeLinkingCodeV3Short(params *RequestOneTimeLinkingCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestOneTimeLinkingCodeV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1000,10 +1000,10 @@ Supported methods:
 
 
 
-                                              * VerifyToken to verify token from header
+                                  * VerifyToken to verify token from header
 
 
-                                              * AddTokenToRevocationList to revoke token with TTL
+                                  * AddTokenToRevocationList to revoke token with TTL
 */
 func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1060,10 +1060,10 @@ Supported methods:
 
 
 
-                                              * VerifyToken to verify token from header
+                                  * VerifyToken to verify token from header
 
 
-                                              * AddTokenToRevocationList to revoke token with TTL
+                                  * AddTokenToRevocationList to revoke token with TTL
 */
 func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1239,41 +1239,41 @@ If already not linked with justice account and not match SSO condition, will red
 
 
 
-                                              * steamopenid
+                                  * steamopenid
 Steam login page will redirects to this endpoint after login success
 as previously defined on openID request parameter `openid.return_to` when request login to steam
 https://openid.net/specs/openid-authentication-2_0.html#anchor27
 
-                                              * ps4web
+                                  * ps4web
 PS4 login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode
 
-                                              * xblweb
+                                  * xblweb
 XBL login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * epicgames
+                                  * epicgames
 Epicgames login page will redirects to this endpoint after login success
 or an error occurred. If error, it redirects to the login page.
 
-                                              * twitch
+                                  * twitch
 Twitch login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * facebook
+                                  * facebook
 Facebook login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * google
+                                  * google
 Google login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * snapchat
+                                  * snapchat
 Snapchat login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * discord
+                                  * discord
 Discord login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 action code : 10709
@@ -1340,41 +1340,41 @@ If already not linked with justice account and not match SSO condition, will red
 
 
 
-                                              * steamopenid
+                                  * steamopenid
 Steam login page will redirects to this endpoint after login success
 as previously defined on openID request parameter `openid.return_to` when request login to steam
 https://openid.net/specs/openid-authentication-2_0.html#anchor27
 
-                                              * ps4web
+                                  * ps4web
 PS4 login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode
 
-                                              * xblweb
+                                  * xblweb
 XBL login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * epicgames
+                                  * epicgames
 Epicgames login page will redirects to this endpoint after login success
 or an error occurred. If error, it redirects to the login page.
 
-                                              * twitch
+                                  * twitch
 Twitch login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * facebook
+                                  * facebook
 Facebook login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * google
+                                  * google
 Google login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * snapchat
+                                  * snapchat
 Snapchat login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 
-                                              * discord
+                                  * discord
 Discord login page will redirects to this endpoint after login success
 as previously defined on authorize request parameter `redirect_uri`
 action code : 10709
@@ -1442,32 +1442,32 @@ platform token not found from IAP/DLC.
 
 
 
-                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                  * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                  * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * amazon : The platform_tokenâs value is authorization code.
+                                  * amazon : The platform_tokenâs value is authorization code.
 
 
-                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                  * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                              * live : The platform_tokenâs value is xbox XSTS token
+                                  * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                  * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                  * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, *PlatformTokenRefreshV3BadRequest, *PlatformTokenRefreshV3Unauthorized, *PlatformTokenRefreshV3Forbidden, *PlatformTokenRefreshV3ServiceUnavailable, error) {
 	// TODO: Validate the params before sending
@@ -1542,32 +1542,32 @@ platform token not found from IAP/DLC.
 
 
 
-                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                  * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                  * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * amazon : The platform_tokenâs value is authorization code.
+                                  * amazon : The platform_tokenâs value is authorization code.
 
 
-                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                  * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                              * live : The platform_tokenâs value is xbox XSTS token
+                                  * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                  * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                  * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1744,32 +1744,32 @@ platform token not found from IAP/DLC.
 
 
 
-                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                  * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                  * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * amazon : The platform_tokenâs value is authorization code.
+                                  * amazon : The platform_tokenâs value is authorization code.
 
 
-                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                  * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                              * live : The platform_tokenâs value is xbox XSTS token
+                                  * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                  * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                  * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PlatformTokenRefreshV3Deprecate(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, *PlatformTokenRefreshV3DeprecateBadRequest, *PlatformTokenRefreshV3DeprecateUnauthorized, *PlatformTokenRefreshV3DeprecateForbidden, *PlatformTokenRefreshV3DeprecateServiceUnavailable, error) {
 	// TODO: Validate the params before sending
@@ -1844,32 +1844,32 @@ platform token not found from IAP/DLC.
 
 
 
-                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                  * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                  * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * amazon : The platform_tokenâs value is authorization code.
+                                  * amazon : The platform_tokenâs value is authorization code.
 
 
-                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                  * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                              * live : The platform_tokenâs value is xbox XSTS token
+                                  * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                  * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                  * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PlatformTokenRefreshV3DeprecateShort(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, error) {
 	// TODO: Validate the params before sending

@@ -70,7 +70,7 @@ This is the endpoint for an admin to get devices a user ever used to login.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, *AdminGetDevicesByUserV4BadRequest, *AdminGetDevicesByUserV4Unauthorized, *AdminGetDevicesByUserV4Forbidden, *AdminGetDevicesByUserV4NotFound, *AdminGetDevicesByUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -138,7 +138,7 @@ This is the endpoint for an admin to get devices a user ever used to login.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDevicesByUserV4Short(params *AdminGetDevicesByUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDevicesByUserV4OK, error) {
 	// TODO: Validate the params before sending
@@ -203,7 +203,7 @@ This is the endpoint for an admin to get banned devices.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, *AdminGetBannedDevicesV4Unauthorized, *AdminGetBannedDevicesV4Forbidden, *AdminGetBannedDevicesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -265,7 +265,7 @@ This is the endpoint for an admin to get banned devices.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetBannedDevicesV4Short(params *AdminGetBannedDevicesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBannedDevicesV4OK, error) {
 	// TODO: Validate the params before sending
@@ -326,7 +326,7 @@ This is the endpoint for an admin to get device bans of user.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, *AdminGetUserDeviceBansV4Unauthorized, *AdminGetUserDeviceBansV4Forbidden, *AdminGetUserDeviceBansV4NotFound, *AdminGetUserDeviceBansV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -391,7 +391,7 @@ This is the endpoint for an admin to get device bans of user.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetUserDeviceBansV4Short(params *AdminGetUserDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeviceBansV4OK, error) {
 	// TODO: Validate the params before sending
@@ -454,7 +454,7 @@ This is the endpoint for an admin to ban a device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]'
 */
 func (a *Client) AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, *AdminBanDeviceV4BadRequest, *AdminBanDeviceV4Unauthorized, *AdminBanDeviceV4Forbidden, *AdminBanDeviceV4Conflict, *AdminBanDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -522,7 +522,7 @@ This is the endpoint for an admin to ban a device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [CREATE]'
 */
 func (a *Client) AdminBanDeviceV4Short(params *AdminBanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanDeviceV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -587,7 +587,7 @@ This is the endpoint for an admin to get device ban config.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, *AdminGetDeviceBanV4BadRequest, *AdminGetDeviceBanV4Unauthorized, *AdminGetDeviceBanV4Forbidden, *AdminGetDeviceBanV4NotFound, *AdminGetDeviceBanV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -655,7 +655,7 @@ This is the endpoint for an admin to get device ban config.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceBanV4Short(params *AdminGetDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBanV4OK, error) {
 	// TODO: Validate the params before sending
@@ -720,7 +720,7 @@ This is the endpoint for an admin to update a device ban config.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
 */
 func (a *Client) AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, *AdminUpdateDeviceBanV4BadRequest, *AdminUpdateDeviceBanV4Unauthorized, *AdminUpdateDeviceBanV4Forbidden, *AdminUpdateDeviceBanV4NotFound, *AdminUpdateDeviceBanV4Conflict, *AdminUpdateDeviceBanV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -791,7 +791,7 @@ This is the endpoint for an admin to update a device ban config.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
 */
 func (a *Client) AdminUpdateDeviceBanV4Short(params *AdminUpdateDeviceBanV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDeviceBanV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -858,7 +858,7 @@ This is the endpoint for an admin to generate device report.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGenerateReportV4(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, *AdminGenerateReportV4BadRequest, *AdminGenerateReportV4Unauthorized, *AdminGenerateReportV4Forbidden, *AdminGenerateReportV4NotFound, *AdminGenerateReportV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -926,7 +926,7 @@ This is the endpoint for an admin to generate device report.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGenerateReportV4Short(params *AdminGenerateReportV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateReportV4OK, error) {
 	// TODO: Validate the params before sending
@@ -991,7 +991,7 @@ This is the endpoint for an admin to get device types.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, *AdminGetDeviceTypesV4Unauthorized, *AdminGetDeviceTypesV4Forbidden, *AdminGetDeviceTypesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1053,7 +1053,7 @@ This is the endpoint for an admin to get device types.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceTypesV4Short(params *AdminGetDeviceTypesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceTypesV4OK, error) {
 	// TODO: Validate the params before sending
@@ -1114,7 +1114,7 @@ This is the endpoint for an admin to get device ban list.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, *AdminGetDeviceBansV4BadRequest, *AdminGetDeviceBansV4Unauthorized, *AdminGetDeviceBansV4Forbidden, *AdminGetDeviceBansV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1179,7 +1179,7 @@ This is the endpoint for an admin to get device ban list.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminGetDeviceBansV4Short(params *AdminGetDeviceBansV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDeviceBansV4OK, error) {
 	// TODO: Validate the params before sending
@@ -1242,7 +1242,7 @@ This is the endpoint for an admin to decrypt device id.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, *AdminDecryptDeviceV4BadRequest, *AdminDecryptDeviceV4Unauthorized, *AdminDecryptDeviceV4Forbidden, *AdminDecryptDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1307,7 +1307,7 @@ This is the endpoint for an admin to decrypt device id.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [READ]'
 */
 func (a *Client) AdminDecryptDeviceV4Short(params *AdminDecryptDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDecryptDeviceV4OK, error) {
 	// TODO: Validate the params before sending
@@ -1370,7 +1370,7 @@ This is the endpoint for an admin to unban device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
 */
 func (a *Client) AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, *AdminUnbanDeviceV4BadRequest, *AdminUnbanDeviceV4Unauthorized, *AdminUnbanDeviceV4Forbidden, *AdminUnbanDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1435,7 +1435,7 @@ This is the endpoint for an admin to unban device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:DEVICE [UPDATE]'
 */
 func (a *Client) AdminUnbanDeviceV4Short(params *AdminUnbanDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanDeviceV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1498,7 +1498,7 @@ This is the endpoint for an admin to get users that ever login on the device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER [READ]'
 */
 func (a *Client) AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, *AdminGetUsersByDeviceV4BadRequest, *AdminGetUsersByDeviceV4Unauthorized, *AdminGetUsersByDeviceV4Forbidden, *AdminGetUsersByDeviceV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1563,7 +1563,7 @@ This is the endpoint for an admin to get users that ever login on the device.
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER [READ]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER [READ]'
 */
 func (a *Client) AdminGetUsersByDeviceV4Short(params *AdminGetUsersByDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUsersByDeviceV4OK, error) {
 	// TODO: Validate the params before sending

@@ -53,7 +53,7 @@ type RegionDataItemDTO struct {
 	// Format: date-time
 	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
-	// price value, set to 0 if it's free
+	// price value, set to 0 if it's free, if it's -1 means it's dynamic price and need to call getEstimatedPrices endpoint to get price.
 	// Required: true
 	// Format: int32
 	Price *int32 `json:"price"`

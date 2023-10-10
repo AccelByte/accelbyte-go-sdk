@@ -65,6 +65,9 @@ type FullItemInfo struct {
 	// Unique: true
 	Features []string `json:"features"`
 
+	// whether it supported flexible pricing
+	Flexible bool `json:"flexible"`
+
 	// images
 	Images []*Image `json:"images,omitempty"`
 

@@ -75,7 +75,7 @@ The endpoint returns an authorization code that will be used by the IAM client t
 
 
 
-                                              *
+                                  *
 
 
 The basic header
@@ -89,7 +89,7 @@ The basic headerâs value is the base64 of the client ID and client secret. 
 
 
 
-                                              *
+                                  *
 
 
 The bearer header
@@ -110,11 +110,11 @@ Following are the responses returned by the endpoint:
 
 
 
-                                              *  Authorize success : redirects to the given URL with the following information: ?code={authorization code}&state;={state}
+                                  *  Authorize success : redirects to the given URL with the following information: ?code={authorization code}&state;={state}
 
 
 
-                                              *  Authorize failure : redirects to the given URL with the following information:?error=access_denied&error;_description=...
+                                  *  Authorize failure : redirects to the given URL with the following information:?error=access_denied&error;_description=...
 
 
 
@@ -130,16 +130,16 @@ Following are the responses returned by the endpoint:
 
 
 
-                                              *  Substitute endpoint (for: basic header style): /iam/v3/oauth/authorize [GET]
+                                  *  Substitute endpoint (for: basic header style): /iam/v3/oauth/authorize [GET]
 
 
-                                              *  Substitute endpoint (for: bearer header style):
+                                  *  Substitute endpoint (for: bearer header style):
     step1: /iam/v3/namespace/{namespace}/token/request [POST] => get code
     step2: /iam/v3/token/exchange [POST] => get token by step1's code
 
 
 
-                                              *  Note:
+                                  *  Note:
     1. V3 is standard OAuth2 flow and support PKCE
     2. Will not support implicit flow in v3.
 */
@@ -205,7 +205,7 @@ The endpoint returns an authorization code that will be used by the IAM client t
 
 
 
-                                              *
+                                  *
 
 
 The basic header
@@ -219,7 +219,7 @@ The basic headerâs value is the base64 of the client ID and client secret. 
 
 
 
-                                              *
+                                  *
 
 
 The bearer header
@@ -240,11 +240,11 @@ Following are the responses returned by the endpoint:
 
 
 
-                                              *  Authorize success : redirects to the given URL with the following information: ?code={authorization code}&state;={state}
+                                  *  Authorize success : redirects to the given URL with the following information: ?code={authorization code}&state;={state}
 
 
 
-                                              *  Authorize failure : redirects to the given URL with the following information:?error=access_denied&error;_description=...
+                                  *  Authorize failure : redirects to the given URL with the following information:?error=access_denied&error;_description=...
 
 
 
@@ -260,16 +260,16 @@ Following are the responses returned by the endpoint:
 
 
 
-                                              *  Substitute endpoint (for: basic header style): /iam/v3/oauth/authorize [GET]
+                                  *  Substitute endpoint (for: basic header style): /iam/v3/oauth/authorize [GET]
 
 
-                                              *  Substitute endpoint (for: bearer header style):
+                                  *  Substitute endpoint (for: bearer header style):
     step1: /iam/v3/namespace/{namespace}/token/request [POST] => get code
     step2: /iam/v3/token/exchange [POST] => get token by step1's code
 
 
 
-                                              *  Note:
+                                  *  Note:
     1. V3 is standard OAuth2 flow and support PKCE
     2. Will not support implicit flow in v3.
 */
@@ -349,7 +349,7 @@ Please refer to the RFC for more information about JWK (JSON Web Key): https://t
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/jwks [GET]
+                                  * Substitute endpoint: /iam/v3/oauth/jwks [GET]
 */
 func (a *Client) GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error) {
 	// TODO: Validate the params before sending
@@ -425,7 +425,7 @@ Please refer to the RFC for more information about JWK (JSON Web Key): https://t
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/jwks [GET]
+                                  * Substitute endpoint: /iam/v3/oauth/jwks [GET]
 */
 func (a *Client) GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error) {
 	// TODO: Validate the params before sending
@@ -495,7 +495,7 @@ Supported platforms:
 
 
 
-                                              1. steamopenid : Steam's user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication
+                                  1. steamopenid : Steam's user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication
 
 
 
@@ -505,7 +505,7 @@ The JWT contains user's active bans with its expiry date. List of ban types can 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/platforms/{platformId}/token [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/platforms/{platformId}/token [POST]
 */
 func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, *PlatformTokenRequestHandlerBadRequest, *PlatformTokenRequestHandlerUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -579,7 +579,7 @@ Supported platforms:
 
 
 
-                                              1. steamopenid : Steam's user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication
+                                  1. steamopenid : Steam's user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication
 
 
 
@@ -589,7 +589,7 @@ The JWT contains user's active bans with its expiry date. List of ban types can 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/platforms/{platformId}/token [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/platforms/{platformId}/token [POST]
 */
 func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, error) {
 	// TODO: Validate the params before sending
@@ -663,7 +663,7 @@ The endpoint revokes all access tokens and refresh tokens a user has prior the r
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
 */
 func (a *Client) RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, *RevokeUserUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -734,7 +734,7 @@ The endpoint revokes all access tokens and refresh tokens a user has prior the r
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
 */
 func (a *Client) RevokeUserShort(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, error) {
 	// TODO: Validate the params before sending
@@ -801,7 +801,7 @@ The bloom filter uses MurmurHash3 algorithm for hashing the values
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/revocationlist [GET]
+                                  * Substitute endpoint: /iam/v3/oauth/revocationlist [GET]
 */
 func (a *Client) GetRevocationList(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, *GetRevocationListUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -867,7 +867,7 @@ The bloom filter uses MurmurHash3 algorithm for hashing the values
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/revocationlist [GET]
+                                  * Substitute endpoint: /iam/v3/oauth/revocationlist [GET]
 */
 func (a *Client) GetRevocationListShort(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, error) {
 	// TODO: Validate the params before sending
@@ -934,7 +934,7 @@ This endpoint requires all requests to have Authorization header set with Basic 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /v3/oauth/revoke [POST]
+                                  * Substitute endpoint: /v3/oauth/revoke [POST]
 */
 func (a *Client) RevokeToken(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, *RevokeTokenBadRequest, *RevokeTokenUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1003,7 +1003,7 @@ This endpoint requires all requests to have Authorization header set with Basic 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /v3/oauth/revoke [POST]
+                                  * Substitute endpoint: /v3/oauth/revoke [POST]
 */
 func (a *Client) RevokeTokenShort(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, error) {
 	// TODO: Validate the params before sending
@@ -1082,7 +1082,7 @@ When other clients know that the userID has been revoked and the token is issued
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
 */
 func (a *Client) RevokeAUser(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, *RevokeAUserBadRequest, *RevokeAUserUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1161,7 +1161,7 @@ When other clients know that the userID has been revoked and the token is issued
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke [POST]
 */
 func (a *Client) RevokeAUserShort(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, error) {
 	// TODO: Validate the params before sending
@@ -1220,10 +1220,10 @@ TokenGrant oauth2 access token generation endpoint
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/token [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/token [POST]
 
 
-                                              * Note: difference in V3 response:
+                                  * Note: difference in V3 response:
     1. format differenceï¼Pascal case => Camel case): permissions field from Action => action, Resource => resource
 
 
@@ -1241,23 +1241,23 @@ This endpoint supports different grant types :
 
 
 
-                                              1. Grant Type == `client_credentials`:
+                                  1. Grant Type == `client_credentials`:
 
     This endpoint will check the client credentials provided through Authorization header.
 
 
-                                              2. Grant Type == `password`:
+                                  2. Grant Type == `password`:
 
     The grant type to use for authenticating a user, whether it's by email / username and password combination
 or through platform.
 
 
-                                              3. Grant Type == `refresh_token`:
+                                  3. Grant Type == `refresh_token`:
 
     Used to get a new access token for a valid refresh token.
 
 
-                                              4. Grant Type == `authorization_code`:
+                                  4. Grant Type == `authorization_code`:
 
     It generates the user token by given the authorization
 code which generated in "/authorize" API response. It should also pass
@@ -1275,19 +1275,19 @@ respective platform SDK after authenticated the user to the platform. Supported 
 
 
 
-                                              * steam - use `platform:steam` as the username and use the authentication ticket obtained
+                                  * steam - use `platform:steam` as the username and use the authentication ticket obtained
 from Steam through the Steam SDK as the password.
 
 
-                                              * ps4 - use `platform:ps4` as the username and use the authorization code
+                                  * ps4 - use `platform:ps4` as the username and use the authorization code
 obtained from the PlayStation Network through a player PS4 unit as the password.
 
 
-                                              * live - use `platform:live` as the username and use token obtained from
+                                  * live - use `platform:live` as the username and use token obtained from
 Xbox Secure Token Service (XSTS) as the password.
 
 
-                                              * oculus - use `platform:oculus` as the username and use the `user_id:nonce`
+                                  * oculus - use `platform:oculus` as the username and use the `user_id:nonce`
 as password obtained from Oculus through the Oculus SDK.
 
 
@@ -1311,7 +1311,7 @@ Following is the access tokenâs content:
 
 
 
-                                              *
+                                  *
 
 
 namespace. It is the namespace the token was generated from.
@@ -1320,7 +1320,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                              *
+                                  *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -1329,7 +1329,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                              *
+                                  *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -1338,7 +1338,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                              *
+                                  *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -1347,7 +1347,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                              *
+                                  *
 
 
 permissions. The sub or audâ permissions
@@ -1356,7 +1356,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                              *
+                                  *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -1365,7 +1365,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                              *
+                                  *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -1373,22 +1373,22 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                * 1: Email Address Verified
+                                    * 1: Email Address Verified
 
 
 
-                                                * 2: Phone Number Verified
+                                    * 2: Phone Number Verified
 
 
 
-                                                * 4: Anonymous
+                                    * 4: Anonymous
 
 
 
 
 
 
-                                              *
+                                  *
 
 
 aud. The aud is the client ID.
@@ -1397,7 +1397,7 @@ aud. The aud is the client ID.
 
 
 
-                                              *
+                                  *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -1406,7 +1406,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -1415,7 +1415,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 sub. The UserID. The sub is omitted if the token is generated from client credential
@@ -1505,10 +1505,10 @@ TokenGrantShort oauth2 access token generation endpoint
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/token [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/token [POST]
 
 
-                                              * Note: difference in V3 response:
+                                  * Note: difference in V3 response:
     1. format differenceï¼Pascal case => Camel case): permissions field from Action => action, Resource => resource
 
 
@@ -1526,23 +1526,23 @@ This endpoint supports different grant types :
 
 
 
-                                              1. Grant Type == `client_credentials`:
+                                  1. Grant Type == `client_credentials`:
 
     This endpoint will check the client credentials provided through Authorization header.
 
 
-                                              2. Grant Type == `password`:
+                                  2. Grant Type == `password`:
 
     The grant type to use for authenticating a user, whether it's by email / username and password combination
 or through platform.
 
 
-                                              3. Grant Type == `refresh_token`:
+                                  3. Grant Type == `refresh_token`:
 
     Used to get a new access token for a valid refresh token.
 
 
-                                              4. Grant Type == `authorization_code`:
+                                  4. Grant Type == `authorization_code`:
 
     It generates the user token by given the authorization
 code which generated in "/authorize" API response. It should also pass
@@ -1560,19 +1560,19 @@ respective platform SDK after authenticated the user to the platform. Supported 
 
 
 
-                                              * steam - use `platform:steam` as the username and use the authentication ticket obtained
+                                  * steam - use `platform:steam` as the username and use the authentication ticket obtained
 from Steam through the Steam SDK as the password.
 
 
-                                              * ps4 - use `platform:ps4` as the username and use the authorization code
+                                  * ps4 - use `platform:ps4` as the username and use the authorization code
 obtained from the PlayStation Network through a player PS4 unit as the password.
 
 
-                                              * live - use `platform:live` as the username and use token obtained from
+                                  * live - use `platform:live` as the username and use token obtained from
 Xbox Secure Token Service (XSTS) as the password.
 
 
-                                              * oculus - use `platform:oculus` as the username and use the `user_id:nonce`
+                                  * oculus - use `platform:oculus` as the username and use the `user_id:nonce`
 as password obtained from Oculus through the Oculus SDK.
 
 
@@ -1596,7 +1596,7 @@ Following is the access tokenâs content:
 
 
 
-                                              *
+                                  *
 
 
 namespace. It is the namespace the token was generated from.
@@ -1605,7 +1605,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                              *
+                                  *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -1614,7 +1614,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                              *
+                                  *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -1623,7 +1623,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                              *
+                                  *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -1632,7 +1632,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                              *
+                                  *
 
 
 permissions. The sub or audâ permissions
@@ -1641,7 +1641,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                              *
+                                  *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -1650,7 +1650,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                              *
+                                  *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -1658,22 +1658,22 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                * 1: Email Address Verified
+                                    * 1: Email Address Verified
 
 
 
-                                                * 2: Phone Number Verified
+                                    * 2: Phone Number Verified
 
 
 
-                                                * 4: Anonymous
+                                    * 4: Anonymous
 
 
 
 
 
 
-                                              *
+                                  *
 
 
 aud. The aud is the client ID.
@@ -1682,7 +1682,7 @@ aud. The aud is the client ID.
 
 
 
-                                              *
+                                  *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -1691,7 +1691,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -1700,7 +1700,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 sub. The UserID. The sub is omitted if the token is generated from client credential
@@ -1791,10 +1791,10 @@ This endpoint requires all requests to have Authorization header set with Basic 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/verify [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/verify [POST]
 
 
-                                              * Note: difference in V3 response:
+                                  * Note: difference in V3 response:
     1. format differenceï¼Pascal case => Camel case): permissions field from Action => action, Resource => resource
 */
 func (a *Client) VerifyToken(params *VerifyTokenParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenOK, *VerifyTokenBadRequest, error) {
@@ -1852,10 +1852,10 @@ This endpoint requires all requests to have Authorization header set with Basic 
 Endpoint migration guide
 
 
-                                              * Substitute endpoint: /iam/v3/oauth/verify [POST]
+                                  * Substitute endpoint: /iam/v3/oauth/verify [POST]
 
 
-                                              * Note: difference in V3 response:
+                                  * Note: difference in V3 response:
     1. format differenceï¼Pascal case => Camel case): permissions field from Action => action, Resource => resource
 */
 func (a *Client) VerifyTokenShort(params *VerifyTokenParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenOK, error) {

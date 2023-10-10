@@ -8,12 +8,15 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.19.1"
+    "version": "1.19.2"
   },
   "schemes": [
     "https"
   ],
   "tags": [
+    {
+      "name": "Export"
+    },
     {
       "name": "Pass"
     },
@@ -64,6 +67,51 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/seasonpass/admin/namespace/{namespace}/export": {
+      "get": {
+        "description": "This API is used to export all of season service data files with csv format.",
+        "operationId": "exportSeason",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "Export data successfully",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49143\u003c/td\u003e\u003ctd\u003eSeason [{seasonId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "export season service data",
+        "tags": [
+          "Export"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
+        }
+      }
+    },
     "/seasonpass/admin/namespaces/{namespace}/seasons": {
       "get": {
         "description": "This API is used to query seasons, seasons only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of season basic info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -5089,16 +5137,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-09-25T03:12:07+00:00",
-    "buildID": "1.19.1",
+    "buildDate": "2023-10-06T03:47:18+00:00",
+    "buildID": "1.19.2",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "283a728e02",
-    "gitTag": "1.19.1",
+    "gitHash": "ba7dac2e5e",
+    "gitTag": "1.19.2",
     "name": "justice-seasonpass-service",
     "realm": "demo",
-    "version": "1.19.1",
+    "version": "1.19.2",
     "version-roles-seeding": "0.0.3"
   }
 }

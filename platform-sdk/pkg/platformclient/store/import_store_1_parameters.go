@@ -87,7 +87,7 @@ type ImportStore1Params struct {
 	*/
 	StoreID *string
 	/*StrictMode
-	  default strict mode is true
+	  default strict mode is true, if strict mode is false, will not do any validation.
 
 	*/
 	StrictMode *bool

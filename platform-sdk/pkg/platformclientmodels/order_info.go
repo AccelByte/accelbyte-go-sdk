@@ -78,6 +78,9 @@ type OrderInfo struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// order information of flexible bundle item price details, include item owned info.
+	OrderBundleItemInfos []*OrderBundleItemInfo `json:"orderBundleItemInfos,omitempty"`
+
 	// Order number
 	// Required: true
 	OrderNo *string `json:"orderNo"`

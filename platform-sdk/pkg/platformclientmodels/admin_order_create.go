@@ -27,7 +27,7 @@ type AdminOrderCreate struct {
 	// currency namespace, if options.skipPriceValidation is true, then this is required. If current namespace is publisher namespace, then currency namespace must be publisher namespace; if current is game namespace, currency namespace must be the same game namespace or publisher namespace
 	CurrencyNamespace string `json:"currencyNamespace,omitempty"`
 
-	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)
+	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.
 	// Required: true
 	// Format: int32
 	DiscountedPrice *int32 `json:"discountedPrice"`
@@ -49,12 +49,11 @@ type AdminOrderCreate struct {
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
 	Platform string `json:"platform,omitempty"`
 
-	// Price of order, should match (item_price * quantity)
-	// Required: true
+	// Price of order, should match (item_price * quantity) if item is not flexible bundle, should use flexible estimate price if item is flexible bundle
 	// Format: int32
-	Price *int32 `json:"price"`
+	Price int32 `json:"price,omitempty"`
 
-	// Quantity of item, min is 1
+	// Quantity of item, min is 1, and will default use 1 and ignore this quantity field if item is flexible bundle
 	// Required: true
 	// Format: int32
 	Quantity *int32 `json:"quantity"`
@@ -84,9 +83,6 @@ func (m *AdminOrderCreate) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateItemID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePrice(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateQuantity(formats); err != nil {
@@ -176,15 +172,6 @@ func (m *AdminOrderCreate) validatePlatformEnum(path, location string, value str
 	if err := validate.EnumCase(path, location, value, adminOrderCreateTypePlatformPropEnum, true); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (m *AdminOrderCreate) validatePrice(formats strfmt.Registry) error {
-
-	if err := validate.Required("price", "body", m.Price); err != nil {
-		return err
-	}
-
 	return nil
 }
 

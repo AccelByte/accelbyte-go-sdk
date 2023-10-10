@@ -7,6 +7,7 @@
 package gdpr
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/gdpr/configuration"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletion"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrieval"
 	"github.com/spf13/cobra"
@@ -20,11 +21,14 @@ var GdprCmd = &cobra.Command{
 
 func init() {
 	GdprCmd.AddCommand(dataDeletion.AdminGetListDeletionDataRequestCmd)
-	GdprCmd.AddCommand(dataRetrieval.GetAdminEmailConfigurationCmd)
-	GdprCmd.AddCommand(dataRetrieval.UpdateAdminEmailConfigurationCmd)
-	GdprCmd.AddCommand(dataRetrieval.SaveAdminEmailConfigurationCmd)
-	GdprCmd.AddCommand(dataRetrieval.DeleteAdminEmailConfigurationCmd)
+	GdprCmd.AddCommand(configuration.GetAdminEmailConfigurationCmd)
+	GdprCmd.AddCommand(configuration.UpdateAdminEmailConfigurationCmd)
+	GdprCmd.AddCommand(configuration.SaveAdminEmailConfigurationCmd)
+	GdprCmd.AddCommand(configuration.DeleteAdminEmailConfigurationCmd)
 	GdprCmd.AddCommand(dataRetrieval.AdminGetListPersonalDataRequestCmd)
+	GdprCmd.AddCommand(configuration.AdminGetServicesConfigurationCmd)
+	GdprCmd.AddCommand(configuration.AdminUpdateServicesConfigurationCmd)
+	GdprCmd.AddCommand(configuration.AdminResetServicesConfigurationCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminGetUserAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminSubmitUserAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminCancelUserAccountDeletionRequestCmd)

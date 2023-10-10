@@ -293,7 +293,7 @@ func NewPublicCreateUserOrderConflict() *PublicCreateUserOrderConflict {
 
 /*PublicCreateUserOrderConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32175</td><td>Exceed item [{itemId}] max count [{maxCount}] per user</td></tr><tr><td>32176</td><td>Exceed item [{itemId}] max count [{maxCount}]</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>49183</td><td>Pass item does not match published season pass</td></tr><tr><td>49184</td><td>Tier item does not match published season tier</td></tr><tr><td>49185</td><td>Season has not started</td></tr><tr><td>49186</td><td>Pass already owned</td></tr><tr><td>49187</td><td>Exceed max tier count</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32175</td><td>Exceed item [{itemId}] max count [{maxCount}] per user</td></tr><tr><td>32176</td><td>Exceed item [{itemId}] max count [{maxCount}]</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>32178</td><td>User [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]</td></tr><tr><td>49183</td><td>Pass item does not match published season pass</td></tr><tr><td>49184</td><td>Tier item does not match published season tier</td></tr><tr><td>49185</td><td>Season has not started</td></tr><tr><td>49186</td><td>Pass already owned</td></tr><tr><td>49187</td><td>Exceed max tier count</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type PublicCreateUserOrderConflict struct {
 	Payload *platformclientmodels.ErrorEntity

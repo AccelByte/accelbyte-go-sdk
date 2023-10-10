@@ -65,7 +65,7 @@ type AdminSubmitUserAccountDeletionRequestParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the user
+	  namespace
 
 	*/
 	Namespace string

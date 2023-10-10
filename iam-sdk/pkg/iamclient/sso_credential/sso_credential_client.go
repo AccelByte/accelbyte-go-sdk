@@ -283,10 +283,10 @@ This is the API to Add SSO Platform Credential. It needs ADMIN:NAMESPACE:{namesp
 
 
 
-                                              * discourse
+                                  * discourse
 the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
 
-                                              * azure with SAML
+                                  * azure with SAML
  appId is an application identifier in IdP, in azure it's called EntityID
 acsUrl is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
 federationMetadataUrl is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
@@ -352,10 +352,10 @@ This is the API to Add SSO Platform Credential. It needs ADMIN:NAMESPACE:{namesp
 
 
 
-                                              * discourse
+                                  * discourse
 the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
 
-                                              * azure with SAML
+                                  * azure with SAML
  appId is an application identifier in IdP, in azure it's called EntityID
 acsUrl is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
 federationMetadataUrl is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship

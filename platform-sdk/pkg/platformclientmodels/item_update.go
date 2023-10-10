@@ -55,6 +55,9 @@ type ItemUpdate struct {
 	// Unique: true
 	Features []string `json:"features"`
 
+	// whether flexible pricing applied, only applied if itemType is BUNDLE
+	Flexible bool `json:"flexible"`
+
 	// images
 	Images []*Image `json:"images,omitempty"`
 

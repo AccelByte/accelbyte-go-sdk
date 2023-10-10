@@ -21,8 +21,14 @@ type ImportErrorDetails struct {
 	// Format: int32
 	ErrorCode int32 `json:"errorCode,omitempty"`
 
+	// error field, exists if constraint violated exception
+	ErrorField string `json:"errorField,omitempty"`
+
 	// error message
 	ErrorMessage string `json:"errorMessage,omitempty"`
+
+	// error value, exists if constraint violated exception
+	ErrorValue string `json:"errorValue,omitempty"`
 
 	// message variables
 	MessageVariables map[string]string `json:"messageVariables,omitempty"`

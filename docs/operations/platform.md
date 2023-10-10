@@ -27,8 +27,10 @@
 | `/platform/admin/namespaces/{namespace}/items/byAppId` | GET | GetItemByAppIdShort | [GetItemByAppIdShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetItemByAppIdShort](../../services-api/pkg/service/platform/item.go) | [GetItemByAppIdShort](../../samples/cli/cmd/platform/item/getItemByAppId.go) |
 | `/platform/admin/namespaces/{namespace}/items/byCriteria` | GET | QueryItemsShort | [QueryItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [QueryItemsShort](../../services-api/pkg/service/platform/item.go) | [QueryItemsShort](../../samples/cli/cmd/platform/item/queryItems.go) |
 | `/platform/admin/namespaces/{namespace}/items/byFeatures/basic` | GET | ListBasicItemsByFeaturesShort | [ListBasicItemsByFeaturesShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [ListBasicItemsByFeaturesShort](../../services-api/pkg/service/platform/item.go) | [ListBasicItemsByFeaturesShort](../../samples/cli/cmd/platform/item/listBasicItemsByFeatures.go) |
+| `/platform/admin/namespaces/{namespace}/items/byIds` | GET | GetItemsShort | [GetItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetItemsShort](../../services-api/pkg/service/platform/item.go) | [GetItemsShort](../../samples/cli/cmd/platform/item/getItems.go) |
 | `/platform/admin/namespaces/{namespace}/items/bySku` | GET | GetItemBySkuShort | [GetItemBySkuShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetItemBySkuShort](../../services-api/pkg/service/platform/item.go) | [GetItemBySkuShort](../../samples/cli/cmd/platform/item/getItemBySku.go) |
 | `/platform/admin/namespaces/{namespace}/items/bySku/locale` | GET | GetLocaleItemBySkuShort | [GetLocaleItemBySkuShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetLocaleItemBySkuShort](../../services-api/pkg/service/platform/item.go) | [GetLocaleItemBySkuShort](../../samples/cli/cmd/platform/item/getLocaleItemBySku.go) |
+| `/platform/admin/namespaces/{namespace}/items/estimatedPrice` | GET | GetEstimatedPriceShort | [GetEstimatedPriceShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetEstimatedPriceShort](../../services-api/pkg/service/platform/item.go) | [GetEstimatedPriceShort](../../samples/cli/cmd/platform/item/getEstimatedPrice.go) |
 | `/platform/admin/namespaces/{namespace}/items/itemId/bySku` | GET | GetItemIdBySkuShort | [GetItemIdBySkuShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetItemIdBySkuShort](../../services-api/pkg/service/platform/item.go) | [GetItemIdBySkuShort](../../samples/cli/cmd/platform/item/getItemIdBySku.go) |
 | `/platform/admin/namespaces/{namespace}/items/itemId/bySkus` | GET | GetBulkItemIdBySkusShort | [GetBulkItemIdBySkusShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [GetBulkItemIdBySkusShort](../../services-api/pkg/service/platform/item.go) | [GetBulkItemIdBySkusShort](../../samples/cli/cmd/platform/item/getBulkItemIdBySkus.go) |
 | `/platform/admin/namespaces/{namespace}/items/locale/byIds` | GET | BulkGetLocaleItemsShort | [BulkGetLocaleItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [BulkGetLocaleItemsShort](../../services-api/pkg/service/platform/item.go) | [BulkGetLocaleItemsShort](../../samples/cli/cmd/platform/item/bulkGetLocaleItems.go) |
@@ -54,6 +56,7 @@
 | `/platform/public/namespaces/{namespace}/items/byAppId` | GET | PublicGetItemByAppIdShort | [PublicGetItemByAppIdShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicGetItemByAppIdShort](../../services-api/pkg/service/platform/item.go) | [PublicGetItemByAppIdShort](../../samples/cli/cmd/platform/item/publicGetItemByAppId.go) |
 | `/platform/public/namespaces/{namespace}/items/byCriteria` | GET | PublicQueryItemsShort | [PublicQueryItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicQueryItemsShort](../../services-api/pkg/service/platform/item.go) | [PublicQueryItemsShort](../../samples/cli/cmd/platform/item/publicQueryItems.go) |
 | `/platform/public/namespaces/{namespace}/items/bySku` | GET | PublicGetItemBySkuShort | [PublicGetItemBySkuShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicGetItemBySkuShort](../../services-api/pkg/service/platform/item.go) | [PublicGetItemBySkuShort](../../samples/cli/cmd/platform/item/publicGetItemBySku.go) |
+| `/platform/public/namespaces/{namespace}/items/estimatedPrice` | GET | PublicGetEstimatedPriceShort | [PublicGetEstimatedPriceShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicGetEstimatedPriceShort](../../services-api/pkg/service/platform/item.go) | [PublicGetEstimatedPriceShort](../../samples/cli/cmd/platform/item/publicGetEstimatedPrice.go) |
 | `/platform/public/namespaces/{namespace}/items/locale/byIds` | GET | PublicBulkGetItemsShort | [PublicBulkGetItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicBulkGetItemsShort](../../services-api/pkg/service/platform/item.go) | [PublicBulkGetItemsShort](../../samples/cli/cmd/platform/item/publicBulkGetItems.go) |
 | `/platform/public/namespaces/{namespace}/items/purchase/conditions/validate` | POST | PublicValidateItemPurchaseConditionShort | [PublicValidateItemPurchaseConditionShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicValidateItemPurchaseConditionShort](../../services-api/pkg/service/platform/item.go) | [PublicValidateItemPurchaseConditionShort](../../samples/cli/cmd/platform/item/publicValidateItemPurchaseCondition.go) |
 | `/platform/public/namespaces/{namespace}/items/search` | GET | PublicSearchItemsShort | [PublicSearchItemsShort](../../platform-sdk/pkg/platformclient/item/item_client.go) | [PublicSearchItemsShort](../../services-api/pkg/service/platform/item.go) | [PublicSearchItemsShort](../../samples/cli/cmd/platform/item/publicSearchItems.go) |
@@ -578,6 +581,7 @@
 | `AppleIAPReceipt` | [AppleIAPReceipt ](../../platform-sdk/pkg/platformclientmodels/apple_iap_receipt.go) |
 | `AvailableComparison` | [AvailableComparison ](../../platform-sdk/pkg/platformclientmodels/available_comparison.go) |
 | `AvailablePredicate` | [AvailablePredicate ](../../platform-sdk/pkg/platformclientmodels/available_predicate.go) |
+| `AvailablePrice` | [AvailablePrice ](../../platform-sdk/pkg/platformclientmodels/available_price.go) |
 | `BaseCustomConfig` | [BaseCustomConfig ](../../platform-sdk/pkg/platformclientmodels/base_custom_config.go) |
 | `BaseTLSConfig` | [BaseTLSConfig ](../../platform-sdk/pkg/platformclientmodels/base_tls_config.go) |
 | `BasicCategoryInfo` | [BasicCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/basic_category_info.go) |
@@ -665,6 +669,7 @@
 | `EpicGamesReconcileRequest` | [EpicGamesReconcileRequest ](../../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_request.go) |
 | `EpicGamesReconcileResult` | [EpicGamesReconcileResult ](../../platform-sdk/pkg/platformclientmodels/epic_games_reconcile_result.go) |
 | `ErrorEntity` | [ErrorEntity ](../../platform-sdk/pkg/platformclientmodels/error_entity.go) |
+| `EstimatedPriceInfo` | [EstimatedPriceInfo ](../../platform-sdk/pkg/platformclientmodels/estimated_price_info.go) |
 | `EventAdditionalData` | [EventAdditionalData ](../../platform-sdk/pkg/platformclientmodels/event_additional_data.go) |
 | `EventPayload` | [EventPayload ](../../platform-sdk/pkg/platformclientmodels/event_payload.go) |
 | `ExportStoreRequest` | [ExportStoreRequest ](../../platform-sdk/pkg/platformclientmodels/export_store_request.go) |
@@ -707,9 +712,13 @@
 | `IAPOrderPagingSlicedResult` | [IAPOrderPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/iap_order_paging_sliced_result.go) |
 | `Image` | [Image ](../../platform-sdk/pkg/platformclientmodels/image.go) |
 | `ImportErrorDetails` | [ImportErrorDetails ](../../platform-sdk/pkg/platformclientmodels/import_error_details.go) |
+| `ImportStoreAppInfo` | [ImportStoreAppInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_app_info.go) |
+| `ImportStoreCategoryInfo` | [ImportStoreCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_category_info.go) |
 | `ImportStoreError` | [ImportStoreError ](../../platform-sdk/pkg/platformclientmodels/import_store_error.go) |
 | `ImportStoreItemInfo` | [ImportStoreItemInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_item_info.go) |
 | `ImportStoreResult` | [ImportStoreResult ](../../platform-sdk/pkg/platformclientmodels/import_store_result.go) |
+| `ImportStoreSectionInfo` | [ImportStoreSectionInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_section_info.go) |
+| `ImportStoreViewInfo` | [ImportStoreViewInfo ](../../platform-sdk/pkg/platformclientmodels/import_store_view_info.go) |
 | `InGameItemSync` | [InGameItemSync ](../../platform-sdk/pkg/platformclientmodels/in_game_item_sync.go) |
 | `InvoiceCurrencySummary` | [InvoiceCurrencySummary ](../../platform-sdk/pkg/platformclientmodels/invoice_currency_summary.go) |
 | `InvoiceSummary` | [InvoiceSummary ](../../platform-sdk/pkg/platformclientmodels/invoice_summary.go) |
@@ -750,6 +759,7 @@
 | `OculusReconcileResult` | [OculusReconcileResult ](../../platform-sdk/pkg/platformclientmodels/oculus_reconcile_result.go) |
 | `OptionBoxConfig` | [OptionBoxConfig ](../../platform-sdk/pkg/platformclientmodels/option_box_config.go) |
 | `Order` | [Order ](../../platform-sdk/pkg/platformclientmodels/order.go) |
+| `OrderBundleItemInfo` | [OrderBundleItemInfo ](../../platform-sdk/pkg/platformclientmodels/order_bundle_item_info.go) |
 | `OrderCreate` | [OrderCreate ](../../platform-sdk/pkg/platformclientmodels/order_create.go) |
 | `OrderCreationOptions` | [OrderCreationOptions ](../../platform-sdk/pkg/platformclientmodels/order_creation_options.go) |
 | `OrderGrantInfo` | [OrderGrantInfo ](../../platform-sdk/pkg/platformclientmodels/order_grant_info.go) |
@@ -880,6 +890,7 @@
 | `StreamEvent` | [StreamEvent ](../../platform-sdk/pkg/platformclientmodels/stream_event.go) |
 | `StreamEventBody` | [StreamEventBody ](../../platform-sdk/pkg/platformclientmodels/stream_event_body.go) |
 | `StripeConfig` | [StripeConfig ](../../platform-sdk/pkg/platformclientmodels/stripe_config.go) |
+| `SubItemAvailablePrice` | [SubItemAvailablePrice ](../../platform-sdk/pkg/platformclientmodels/sub_item_available_price.go) |
 | `Subscribable` | [Subscribable ](../../platform-sdk/pkg/platformclientmodels/subscribable.go) |
 | `SubscribeRequest` | [SubscribeRequest ](../../platform-sdk/pkg/platformclientmodels/subscribe_request.go) |
 | `SubscriptionActivityInfo` | [SubscriptionActivityInfo ](../../platform-sdk/pkg/platformclientmodels/subscription_activity_info.go) |

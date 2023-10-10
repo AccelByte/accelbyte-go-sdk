@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminQueryGameSessions(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, *AdminQueryGameSessionsBadRequest, *AdminQueryGameSessionsUnauthorized, *AdminQueryGameSessionsForbidden, *AdminQueryGameSessionsInternalServerError, error)
 	AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, error)
+	AdminQueryGameSessionsByAttributes(params *AdminQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsByAttributesOK, *AdminQueryGameSessionsByAttributesBadRequest, *AdminQueryGameSessionsByAttributesUnauthorized, *AdminQueryGameSessionsByAttributesForbidden, *AdminQueryGameSessionsByAttributesInternalServerError, error)
+	AdminQueryGameSessionsByAttributesShort(params *AdminQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsByAttributesOK, error)
 	AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, *AdminDeleteBulkGameSessionsBadRequest, *AdminDeleteBulkGameSessionsUnauthorized, *AdminDeleteBulkGameSessionsForbidden, *AdminDeleteBulkGameSessionsInternalServerError, error)
 	AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error)
 	AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error)
@@ -181,6 +183,142 @@ func (a *Client) AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParam
 	case *AdminQueryGameSessionsForbidden:
 		return nil, v
 	case *AdminQueryGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminQueryGameSessionsByAttributesShort instead.
+
+AdminQueryGameSessionsByAttributes query game sessions by admin
+Query game sessions by admin.
+
+By default, API will return a list of available game sessions (joinability: open).
+Session service has several DSInformation status to track DS request to DSMC:
+- NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
+- REQUESTED: DS is being requested to DSMC.
+- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+- FAILED_TO_REQUEST: DSMC fails to create the DS.
+
+query parameter "availability" to filter sessions' availability:
+all: return all sessions regardless it's full
+full: only return active sessions
+default behavior (unset or else): return only available sessions (not full)
+*/
+func (a *Client) AdminQueryGameSessionsByAttributes(params *AdminQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsByAttributesOK, *AdminQueryGameSessionsByAttributesBadRequest, *AdminQueryGameSessionsByAttributesUnauthorized, *AdminQueryGameSessionsByAttributesForbidden, *AdminQueryGameSessionsByAttributesInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryGameSessionsByAttributesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminQueryGameSessionsByAttributes",
+		Method:             "POST",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryGameSessionsByAttributesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryGameSessionsByAttributesOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminQueryGameSessionsByAttributesBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminQueryGameSessionsByAttributesUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminQueryGameSessionsByAttributesForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminQueryGameSessionsByAttributesInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminQueryGameSessionsByAttributesShort query game sessions by admin
+Query game sessions by admin.
+
+By default, API will return a list of available game sessions (joinability: open).
+Session service has several DSInformation status to track DS request to DSMC:
+- NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
+- REQUESTED: DS is being requested to DSMC.
+- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.
+- FAILED_TO_REQUEST: DSMC fails to create the DS.
+
+query parameter "availability" to filter sessions' availability:
+all: return all sessions regardless it's full
+full: only return active sessions
+default behavior (unset or else): return only available sessions (not full)
+*/
+func (a *Client) AdminQueryGameSessionsByAttributesShort(params *AdminQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsByAttributesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryGameSessionsByAttributesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminQueryGameSessionsByAttributes",
+		Method:             "POST",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryGameSessionsByAttributesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryGameSessionsByAttributesOK:
+		return v, nil
+	case *AdminQueryGameSessionsByAttributesBadRequest:
+		return nil, v
+	case *AdminQueryGameSessionsByAttributesUnauthorized:
+		return nil, v
+	case *AdminQueryGameSessionsByAttributesForbidden:
+		return nil, v
+	case *AdminQueryGameSessionsByAttributesInternalServerError:
 		return nil, v
 
 	default:

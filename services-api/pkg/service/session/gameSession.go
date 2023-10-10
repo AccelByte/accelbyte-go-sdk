@@ -56,6 +56,32 @@ func (aaa *GameSessionService) AdminQueryGameSessions(input *game_session.AdminQ
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminQueryGameSessionsByAttributesShort instead.
+func (aaa *GameSessionService) AdminQueryGameSessionsByAttributes(input *game_session.AdminQueryGameSessionsByAttributesParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameSession.AdminQueryGameSessionsByAttributes(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminDeleteBulkGameSessionsShort instead.
 func (aaa *GameSessionService) AdminDeleteBulkGameSessions(input *game_session.AdminDeleteBulkGameSessionsParams) (*sessionclientmodels.ApimodelsDeleteBulkGameSessionsAPIResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -627,6 +653,31 @@ func (aaa *GameSessionService) AdminQueryGameSessionsShort(input *game_session.A
 	}
 
 	ok, err := aaa.Client.GameSession.AdminQueryGameSessionsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) AdminQueryGameSessionsByAttributesShort(input *game_session.AdminQueryGameSessionsByAttributesParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.GameSession.AdminQueryGameSessionsByAttributesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

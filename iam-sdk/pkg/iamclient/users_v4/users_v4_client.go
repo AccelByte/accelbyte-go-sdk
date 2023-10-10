@@ -395,7 +395,17 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
+
+                                      * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
+
 
 
 action code : 10103
@@ -488,7 +498,17 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
+
+                                      * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
+
 
 
 action code : 10103
@@ -554,7 +574,7 @@ AdminUpdateUserEmailAddressV4 update a user email address
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
 
 
 
@@ -626,7 +646,7 @@ AdminUpdateUserEmailAddressV4Short update a user email address
 
 Required permission
 
-                                                                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
+                                                                                                                                                'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
 
 
 
@@ -4013,7 +4033,17 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
+
+                                      * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
+
 
 
 action code : 10103
@@ -4103,7 +4133,17 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
+
+                                      * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                                      * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
+
 
 
 action code : 10103
@@ -4170,11 +4210,7 @@ The endpoint to update my email address.
 
 
 
-It requires a verification code from
-
-                                                                                                                                                                                                /users/me/code/request
-
-with UpdateEmailAddress context.
+It requires a verification code from /users/me/code/request with UpdateEmailAddress context.
 */
 func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, *PublicUpdateUserEmailAddressV4BadRequest, *PublicUpdateUserEmailAddressV4Unauthorized, *PublicUpdateUserEmailAddressV4NotFound, *PublicUpdateUserEmailAddressV4Conflict, *PublicUpdateUserEmailAddressV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4241,11 +4277,7 @@ The endpoint to update my email address.
 
 
 
-It requires a verification code from
-
-                                                                                                                                                                                                /users/me/code/request
-
-with UpdateEmailAddress context.
+It requires a verification code from /users/me/code/request with UpdateEmailAddress context.
 */
 func (a *Client) PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -4315,13 +4347,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields:
 
 
-                                                  * displayName
+                                      * displayName
 
 
-                                                  * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                                                  * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 action code : 10124
@@ -4400,13 +4432,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields:
 
 
-                                                  * displayName
+                                      * displayName
 
 
-                                                  * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                                                  * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 action code : 10124

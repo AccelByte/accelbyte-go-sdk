@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package data_retrieval
+package configuration
 
 import (
 	"context"
@@ -67,7 +67,7 @@ type UpdateAdminEmailConfigurationParams struct {
 	/*Body*/
 	Body []string
 	/*Namespace
-	  namespace of the user
+	  namespace
 
 	*/
 	Namespace string

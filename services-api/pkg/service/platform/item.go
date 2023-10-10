@@ -244,6 +244,23 @@ func (aaa *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFea
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetItemsShort instead.
+func (aaa *ItemService) GetItems(input *item.GetItemsParams) ([]*platformclientmodels.FullItemInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.GetItems(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetItemBySkuShort instead.
 func (aaa *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -268,6 +285,23 @@ func (aaa *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams)
 		return nil, err
 	}
 	ok, notFound, err := aaa.Client.Item.GetLocaleItemBySku(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetEstimatedPriceShort instead.
+func (aaa *ItemService) GetEstimatedPrice(input *item.GetEstimatedPriceParams) (*platformclientmodels.EstimatedPriceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.GetEstimatedPrice(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -751,6 +785,23 @@ func (aaa *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetEstimatedPriceShort instead.
+func (aaa *ItemService) PublicGetEstimatedPrice(input *item.PublicGetEstimatedPriceParams) ([]*platformclientmodels.EstimatedPriceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.PublicGetEstimatedPrice(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicBulkGetItemsShort instead.
 func (aaa *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1144,6 +1195,31 @@ func (aaa *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItems
 	return ok.GetPayload(), nil
 }
 
+func (aaa *ItemService) GetItemsShort(input *item.GetItemsParams) ([]*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.GetItemsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -1187,6 +1263,31 @@ func (aaa *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPa
 	}
 
 	ok, err := aaa.Client.Item.GetLocaleItemBySkuShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) GetEstimatedPriceShort(input *item.GetEstimatedPriceParams) (*platformclientmodels.EstimatedPriceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.GetEstimatedPriceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1812,6 +1913,31 @@ func (aaa *ItemService) PublicGetItemBySkuShort(input *item.PublicGetItemBySkuPa
 	}
 
 	ok, err := aaa.Client.Item.PublicGetItemBySkuShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) PublicGetEstimatedPriceShort(input *item.PublicGetEstimatedPriceParams) ([]*platformclientmodels.EstimatedPriceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Item.PublicGetEstimatedPriceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

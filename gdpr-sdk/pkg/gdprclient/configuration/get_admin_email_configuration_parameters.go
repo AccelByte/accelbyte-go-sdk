@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package data_retrieval
+package configuration
 
 import (
 	"context"
@@ -65,7 +65,7 @@ type GetAdminEmailConfigurationParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the user
+	  namespace
 
 	*/
 	Namespace string

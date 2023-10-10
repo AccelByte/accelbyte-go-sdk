@@ -20,15 +20,27 @@ import (
 // swagger:model Import store error.
 type ImportStoreError struct {
 
+	// app info
+	App *ImportStoreAppInfo `json:"app,omitempty"`
+
+	// category info
+	Category *ImportStoreCategoryInfo `json:"category,omitempty"`
+
 	// errors
 	Errors []*ImportErrorDetails `json:"errors,omitempty"`
 
 	// item info
 	Item *ImportStoreItemInfo `json:"item,omitempty"`
 
+	// section info
+	Section *ImportStoreSectionInfo `json:"section,omitempty"`
+
 	// type
-	// Enum: ['ITEM']
+	// Enum: ['APP', 'CATEGORY', 'ITEM', 'SECTION', 'STORE', 'VIEW']
 	Type string `json:"type,omitempty"`
+
+	// view info
+	View *ImportStoreViewInfo `json:"view,omitempty"`
 }
 
 // Validate validates this Import store error
@@ -45,7 +57,7 @@ var importStoreErrorTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP", "CATEGORY", "ITEM", "SECTION", "STORE", "VIEW"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -55,8 +67,23 @@ func init() {
 
 const (
 
+	// ImportStoreErrorTypeAPP captures enum value "APP"
+	ImportStoreErrorTypeAPP string = "APP"
+
+	// ImportStoreErrorTypeCATEGORY captures enum value "CATEGORY"
+	ImportStoreErrorTypeCATEGORY string = "CATEGORY"
+
 	// ImportStoreErrorTypeITEM captures enum value "ITEM"
 	ImportStoreErrorTypeITEM string = "ITEM"
+
+	// ImportStoreErrorTypeSECTION captures enum value "SECTION"
+	ImportStoreErrorTypeSECTION string = "SECTION"
+
+	// ImportStoreErrorTypeSTORE captures enum value "STORE"
+	ImportStoreErrorTypeSTORE string = "STORE"
+
+	// ImportStoreErrorTypeVIEW captures enum value "VIEW"
+	ImportStoreErrorTypeVIEW string = "VIEW"
 )
 
 // prop value enum

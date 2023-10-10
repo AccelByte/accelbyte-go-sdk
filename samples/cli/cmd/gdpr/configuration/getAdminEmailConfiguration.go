@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package dataRetrieval
+package configuration
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -21,15 +21,15 @@ var GetAdminEmailConfigurationCmd = &cobra.Command{
 	Short: "Get admin email configuration",
 	Long:  `Get admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		dataRetrievalService := &gdpr.DataRetrievalService{
+		configurationService := &gdpr.ConfigurationService{
 			Client:          factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &data_retrieval.GetAdminEmailConfigurationParams{
+		input := &configuration.GetAdminEmailConfigurationParams{
 			Namespace: namespace,
 		}
-		ok, errOK := dataRetrievalService.GetAdminEmailConfigurationShort(input)
+		ok, errOK := configurationService.GetAdminEmailConfigurationShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 

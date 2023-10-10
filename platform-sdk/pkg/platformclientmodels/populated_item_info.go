@@ -68,6 +68,9 @@ type PopulatedItemInfo struct {
 	// Unique: true
 	Features []string `json:"features"`
 
+	// whether flexible pricing applied, only applied if itemType is BUNDLE
+	Flexible bool `json:"flexible"`
+
 	// fresh
 	Fresh bool `json:"fresh"`
 

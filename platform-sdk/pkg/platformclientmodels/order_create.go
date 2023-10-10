@@ -22,7 +22,7 @@ type OrderCreate struct {
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 
-	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity)
+	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.
 	// Required: true
 	// Format: int32
 	DiscountedPrice *int32 `json:"discountedPrice"`
@@ -37,12 +37,11 @@ type OrderCreate struct {
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
 
-	// Price of order, should match (item_price * quantity)
-	// Required: true
+	// Price of order, should match (item_price * quantity) if item is not flexible bundle, should use flexible estimate price if item is flexible bundle
 	// Format: int32
-	Price *int32 `json:"price"`
+	Price int32 `json:"price,omitempty"`
 
-	// Quantity of item, min is 1
+	// Quantity of item, min is 1, and will default use 1 and ignore this quantity field if item is flexible bundle
 	// Required: true
 	// Format: int32
 	Quantity *int32 `json:"quantity"`
@@ -68,9 +67,6 @@ func (m *OrderCreate) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateItemID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePrice(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateQuantity(formats); err != nil {
@@ -104,15 +100,6 @@ func (m *OrderCreate) validateDiscountedPrice(formats strfmt.Registry) error {
 func (m *OrderCreate) validateItemID(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *OrderCreate) validatePrice(formats strfmt.Registry) error {
-
-	if err := validate.Required("price", "body", m.Price); err != nil {
 		return err
 	}
 

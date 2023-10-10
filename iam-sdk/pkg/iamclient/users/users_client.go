@@ -13139,7 +13139,7 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
                   * User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.
 
@@ -13148,6 +13148,7 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
                   * User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address.
+
 
 
 
@@ -13241,15 +13242,16 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
-                    * User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.
-
-
-                    * User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address.
+                  * User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.
 
 
-                    * User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address.
+                  * User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address.
+
+
+                  * User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address.
+
 
 
 
@@ -13734,7 +13736,7 @@ Available contexts for use :
 
 
 
-                      1. UserAccountRegistration
+                  1. UserAccountRegistration
 
 
 a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
@@ -13744,7 +13746,7 @@ It is the default context if the Context field is empty
 
 
 
-                      2. UpdateEmailAddress
+                  2. UpdateEmailAddress
 
 
 a context type used for verify user before updating email address.(Without email address verified checking)
@@ -13753,7 +13755,7 @@ a context type used for verify user before updating email address.(Without email
 
 
 
-                      3. upgradeHeadlessAccount
+                  3. upgradeHeadlessAccount
 
 
 The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
@@ -13841,7 +13843,7 @@ Available contexts for use :
 
 
 
-                      1. UserAccountRegistration
+                  1. UserAccountRegistration
 
 
 a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
@@ -13851,7 +13853,7 @@ It is the default context if the Context field is empty
 
 
 
-                      2. UpdateEmailAddress
+                  2. UpdateEmailAddress
 
 
 a context type used for verify user before updating email address.(Without email address verified checking)
@@ -13860,7 +13862,7 @@ a context type used for verify user before updating email address.(Without email
 
 
 
-                      3. upgradeHeadlessAccount
+                  3. upgradeHeadlessAccount
 
 
 The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
@@ -14454,13 +14456,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields :
 
 
-                      * displayName
+                  * displayName
 
 
-                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                  * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                  * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 
@@ -14552,13 +14554,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields :
 
 
-                      * displayName
+                  * displayName
 
 
-                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                  * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                  * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 
@@ -14732,10 +14734,10 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [RE
 
 Notes for this endpoint:
 
-                      * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
-                      * The maximum value of the limit is 100 and the minimum value of the limit is 1.
-                      * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
-                      * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
+                  * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
+                  * The maximum value of the limit is 100 and the minimum value of the limit is 1.
+                  * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
+                  * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
 */
 func (a *Client) AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, *AdminGetUserLoginHistoriesV3Unauthorized, *AdminGetUserLoginHistoriesV3Forbidden, *AdminGetUserLoginHistoriesV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -14793,10 +14795,10 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [RE
 
 Notes for this endpoint:
 
-                          * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
-                          * The maximum value of the limit is 100 and the minimum value of the limit is 1.
-                          * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
-                          * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
+                      * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
+                      * The maximum value of the limit is 100 and the minimum value of the limit is 1.
+                      * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
+                      * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
 */
 func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error) {
 	// TODO: Validate the params before sending
@@ -15008,25 +15010,25 @@ Fields:
 
 
 
-                              1. Seconds: 0-59 * / , -
+                          1. Seconds: 0-59 * / , -
 
 
-                              2. Minutes: 0-59 * / , -
+                          2. Minutes: 0-59 * / , -
 
 
-                              3. Hours: 0-23 * / , -
+                          3. Hours: 0-23 * / , -
 
 
-                              4. Day of month: 1-31 * / , - L W
+                          4. Day of month: 1-31 * / , - L W
 
 
-                              5. Month: 1-12 JAN-DEC * / , -
+                          5. Month: 1-12 JAN-DEC * / , -
 
 
-                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                          6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                              7. Year: 1970-2099 * / , -
+                          7. Year: 1970-2099 * / , -
 
 
 
@@ -15036,25 +15038,25 @@ Special characters:
 
 
 
-                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                          1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                          2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                          3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                          4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                          5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                          6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                          7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, *AdminUpdateUserPermissionV3BadRequest, *AdminUpdateUserPermissionV3Unauthorized, *AdminUpdateUserPermissionV3Forbidden, *AdminUpdateUserPermissionV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -15153,25 +15155,25 @@ Fields:
 
 
 
-                              1. Seconds: 0-59 * / , -
+                          1. Seconds: 0-59 * / , -
 
 
-                              2. Minutes: 0-59 * / , -
+                          2. Minutes: 0-59 * / , -
 
 
-                              3. Hours: 0-23 * / , -
+                          3. Hours: 0-23 * / , -
 
 
-                              4. Day of month: 1-31 * / , - L W
+                          4. Day of month: 1-31 * / , - L W
 
 
-                              5. Month: 1-12 JAN-DEC * / , -
+                          5. Month: 1-12 JAN-DEC * / , -
 
 
-                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                          6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                              7. Year: 1970-2099 * / , -
+                          7. Year: 1970-2099 * / , -
 
 
 
@@ -15181,25 +15183,25 @@ Special characters:
 
 
 
-                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                          1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                          2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                          3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                          4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                          5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                          6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                          7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -15296,25 +15298,25 @@ Fields:
 
 
 
-                              1. Seconds: 0-59 * / , -
+                          1. Seconds: 0-59 * / , -
 
 
-                              2. Minutes: 0-59 * / , -
+                          2. Minutes: 0-59 * / , -
 
 
-                              3. Hours: 0-23 * / , -
+                          3. Hours: 0-23 * / , -
 
 
-                              4. Day of month: 1-31 * / , - L W
+                          4. Day of month: 1-31 * / , - L W
 
 
-                              5. Month: 1-12 JAN-DEC * / , -
+                          5. Month: 1-12 JAN-DEC * / , -
 
 
-                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                          6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                              7. Year: 1970-2099 * / , -
+                          7. Year: 1970-2099 * / , -
 
 
 
@@ -15324,25 +15326,25 @@ Special characters:
 
 
 
-                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                          1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                          2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                          3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                          4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                          5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                          6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                          7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, *AdminAddUserPermissionsV3BadRequest, *AdminAddUserPermissionsV3Unauthorized, *AdminAddUserPermissionsV3Forbidden, *AdminAddUserPermissionsV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -15441,25 +15443,25 @@ Fields:
 
 
 
-                              1. Seconds: 0-59 * / , -
+                          1. Seconds: 0-59 * / , -
 
 
-                              2. Minutes: 0-59 * / , -
+                          2. Minutes: 0-59 * / , -
 
 
-                              3. Hours: 0-23 * / , -
+                          3. Hours: 0-23 * / , -
 
 
-                              4. Day of month: 1-31 * / , - L W
+                          4. Day of month: 1-31 * / , - L W
 
 
-                              5. Month: 1-12 JAN-DEC * / , -
+                          5. Month: 1-12 JAN-DEC * / , -
 
 
-                              6. Day of week: 0-6 SUN-SAT * / , - L #
+                          6. Day of week: 0-6 SUN-SAT * / , - L #
 
 
-                              7. Year: 1970-2099 * / , -
+                          7. Year: 1970-2099 * / , -
 
 
 
@@ -15469,25 +15471,25 @@ Special characters:
 
 
 
-                              1. *: all values in the fields, e.g. * in seconds fields indicates every second
+                          1. *: all values in the fields, e.g. * in seconds fields indicates every second
 
 
-                              2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+                          2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
 
 
-                              3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+                          3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
 
 
-                              4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+                          4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
 
 
-                              5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+                          5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
 
 
-                              6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+                          6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
 
 
-                              7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+                          7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -16318,10 +16320,10 @@ Force linking platform account to user User Account. This endpoint intended for 
 By default, these cases are not allowed
 
 
-                              * The platform account current is linked by another account
+                          * The platform account current is linked by another account
 
 
-                              * The target account ever linked this platform's another account
+                          * The target account ever linked this platform's another account
 */
 func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountConflict, *AdminLinkPlatformAccountInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -16390,10 +16392,10 @@ Force linking platform account to user User Account. This endpoint intended for 
 By default, these cases are not allowed
 
 
-                              * The platform account current is linked by another account
+                          * The platform account current is linked by another account
 
 
-                              * The target account ever linked this platform's another account
+                          * The target account ever linked this platform's another account
 */
 func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error) {
 	// TODO: Validate the params before sending
@@ -16460,49 +16462,49 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'.
 
 
 
-                              * steam
+                          * steam
 
 
-                              * steamopenid
+                          * steamopenid
 
 
-                              * facebook
+                          * facebook
 
 
-                              * google
+                          * google
 
 
-                              * oculus
+                          * oculus
 
 
-                              * twitch
+                          * twitch
 
 
-                              * android
+                          * android
 
 
-                              * ios
+                          * ios
 
 
-                              * apple
+                          * apple
 
 
-                              * device
+                          * device
 
 
-                              * discord
+                          * discord
 
 
-                              * awscognito
+                          * awscognito
 
 
-                              * epicgames
+                          * epicgames
 
 
-                              * nintendo
+                          * nintendo
 
 
-                              * snapchat
+                          * snapchat
 
 
 
@@ -16591,49 +16593,49 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'.
 
 
 
-                              * steam
+                          * steam
 
 
-                              * steamopenid
+                          * steamopenid
 
 
-                              * facebook
+                          * facebook
 
 
-                              * google
+                          * google
 
 
-                              * oculus
+                          * oculus
 
 
-                              * twitch
+                          * twitch
 
 
-                              * android
+                          * android
 
 
-                              * ios
+                          * ios
 
 
-                              * apple
+                          * apple
 
 
-                              * device
+                          * device
 
 
-                              * discord
+                          * discord
 
 
-                              * awscognito
+                          * awscognito
 
 
-                              * epicgames
+                          * epicgames
 
 
-                              * nintendo
+                          * nintendo
 
 
-                              * snapchat
+                          * snapchat
 
 
 
@@ -16725,46 +16727,46 @@ Prerequisite: Platform client configuration need to be added to database for spe
 
 
 
-                              * steam : The ticketâs value is the authentication code returned by Steam.
+                          * steam : The ticketâs value is the authentication code returned by Steam.
 
 
-                              * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
 
 
-                              * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
 
 
-                              * google : The ticketâs value is the authorization code returned by Google OAuth
+                          * google : The ticketâs value is the authorization code returned by Google OAuth
 
 
-                              * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                              * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
 
 
-                              * android : The ticket's value is the Androidâs device ID
+                          * android : The ticket's value is the Androidâs device ID
 
 
-                              * ios : The ticket's value is the iOSâs device ID.
+                          * ios : The ticket's value is the iOSâs device ID.
 
 
-                              * apple : The ticketâs value is the authorization code returned by Apple OAuth.
+                          * apple : The ticketâs value is the authorization code returned by Apple OAuth.
 
 
-                              * device : Every device that doesânt run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
 
 
-                              * discord : The ticketâs value is the authorization code returned by Discord OAuth.
+                          * discord : The ticketâs value is the authorization code returned by Discord OAuth.
 
 
-                              * awscognito : The ticketâs value is the aws cognito access token (JWT).
+                          * awscognito : The ticketâs value is the aws cognito access token (JWT).
 
 
-                              * epicgames : The ticketâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The ticketâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                              * nintendo : The ticketâs value is the authorization code(id_token) returned by Nintendo OAuth.
+                          * nintendo : The ticketâs value is the authorization code(id_token) returned by Nintendo OAuth.
 */
 func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -16843,46 +16845,46 @@ Prerequisite: Platform client configuration need to be added to database for spe
 
 
 
-                              * steam : The ticketâs value is the authentication code returned by Steam.
+                          * steam : The ticketâs value is the authentication code returned by Steam.
 
 
-                              * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
 
 
-                              * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
 
 
-                              * google : The ticketâs value is the authorization code returned by Google OAuth
+                          * google : The ticketâs value is the authorization code returned by Google OAuth
 
 
-                              * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                              * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
 
 
-                              * android : The ticket's value is the Androidâs device ID
+                          * android : The ticket's value is the Androidâs device ID
 
 
-                              * ios : The ticket's value is the iOSâs device ID.
+                          * ios : The ticket's value is the iOSâs device ID.
 
 
-                              * apple : The ticketâs value is the authorization code returned by Apple OAuth.
+                          * apple : The ticketâs value is the authorization code returned by Apple OAuth.
 
 
-                              * device : Every device that doesânt run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
 
 
-                              * discord : The ticketâs value is the authorization code returned by Discord OAuth.
+                          * discord : The ticketâs value is the authorization code returned by Discord OAuth.
 
 
-                              * awscognito : The ticketâs value is the aws cognito access token (JWT).
+                          * awscognito : The ticketâs value is the aws cognito access token (JWT).
 
 
-                              * epicgames : The ticketâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The ticketâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                              * nintendo : The ticketâs value is the authorization code(id_token) returned by Nintendo OAuth.
+                          * nintendo : The ticketâs value is the authorization code(id_token) returned by Nintendo OAuth.
 */
 func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -16958,7 +16960,7 @@ Notes:
 
 
 
-                              * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
+                          * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
 
 
 
@@ -16968,67 +16970,67 @@ Notes:
 
 
 
-                              * steam : The platform_tokenâs value is the authentication code returned by Steam.
+                          * steam : The platform_tokenâs value is the authentication code returned by Steam.
 
 
-                              * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                              * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                              * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                          * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                              * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                              * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                          * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                              * android : The device_id is the Androidâs device ID
+                          * android : The device_id is the Androidâs device ID
 
 
-                              * ios : The device_id is the iOSâs device ID.
+                          * ios : The device_id is the iOSâs device ID.
 
 
-                              * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                          * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                              * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                              * justice : The platform_tokenâs value is the designated userâs access token.
+                          * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                              * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                              * nintendo : The platform_tokenâs value is the authorization code(id_token) returned by Nintendo OAuth.
+                          * nintendo : The platform_tokenâs value is the authorization code(id_token) returned by Nintendo OAuth.
 
 
-                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                          * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                              * live : The platform_tokenâs value is xbox XSTS token
+                          * live : The platform_tokenâs value is xbox XSTS token
 
 
-                              * xblweb : The platform_tokenâs value is code returned by xbox after login
+                          * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                              * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                          * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                          * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 */
 func (a *Client) AdminGetThirdPartyPlatformTokenLinkStatusV3(params *AdminGetThirdPartyPlatformTokenLinkStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyPlatformTokenLinkStatusV3OK, *AdminGetThirdPartyPlatformTokenLinkStatusV3BadRequest, *AdminGetThirdPartyPlatformTokenLinkStatusV3Unauthorized, *AdminGetThirdPartyPlatformTokenLinkStatusV3Forbidden, *AdminGetThirdPartyPlatformTokenLinkStatusV3NotFound, *AdminGetThirdPartyPlatformTokenLinkStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -17105,7 +17107,7 @@ Notes:
 
 
 
-                              * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
+                          * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
 
 
 
@@ -17115,67 +17117,67 @@ Notes:
 
 
 
-                              * steam : The platform_tokenâs value is the authentication code returned by Steam.
+                          * steam : The platform_tokenâs value is the authentication code returned by Steam.
 
 
-                              * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                              * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                              * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                          * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                              * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                              * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                          * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                              * android : The device_id is the Androidâs device ID
+                          * android : The device_id is the Androidâs device ID
 
 
-                              * ios : The device_id is the iOSâs device ID.
+                          * ios : The device_id is the iOSâs device ID.
 
 
-                              * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                          * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                              * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                              * justice : The platform_tokenâs value is the designated userâs access token.
+                          * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                              * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                              * nintendo : The platform_tokenâs value is the authorization code(id_token) returned by Nintendo OAuth.
+                          * nintendo : The platform_tokenâs value is the authorization code(id_token) returned by Nintendo OAuth.
 
 
-                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                          * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                              * live : The platform_tokenâs value is xbox XSTS token
+                          * live : The platform_tokenâs value is xbox XSTS token
 
 
-                              * xblweb : The platform_tokenâs value is code returned by xbox after login
+                          * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                              * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                          * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                          * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 */
 func (a *Client) AdminGetThirdPartyPlatformTokenLinkStatusV3Short(params *AdminGetThirdPartyPlatformTokenLinkStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyPlatformTokenLinkStatusV3OK, error) {
 	// TODO: Validate the params before sending
@@ -17877,7 +17879,7 @@ Disable user for Account Disable purpose fill the reason with:
 
 
 
-                              * AdminDeactivateAccount : if your disable account request comes from admin
+                          * AdminDeactivateAccount : if your disable account request comes from admin
 
 
 
@@ -17959,7 +17961,7 @@ Disable user for Account Disable purpose fill the reason with:
 
 
 
-                              * AdminDeactivateAccount : if your disable account request comes from admin
+                          * AdminDeactivateAccount : if your disable account request comes from admin
 
 
 
@@ -19036,7 +19038,7 @@ Available Authentication Types:
 
 
 
-                              1. EMAILPASSWD : an authentication type used for new user registration through email.
+                          1. EMAILPASSWD : an authentication type used for new user registration through email.
 
 
 
@@ -19119,7 +19121,7 @@ Available Authentication Types:
 
 
 
-                              1. EMAILPASSWD : an authentication type used for new user registration through email.
+                          1. EMAILPASSWD : an authentication type used for new user registration through email.
 
 
 
@@ -19323,13 +19325,13 @@ Notes:
 
 
 
-                              * This endpoint bulk get users' basic info by userId, max allowed 100 at a time
+                          * This endpoint bulk get users' basic info by userId, max allowed 100 at a time
 
 
-                              * If namespace is game, will search by game user Id, other wise will search by publisher namespace
+                          * If namespace is game, will search by game user Id, other wise will search by publisher namespace
 
 
-                              * Result will include displayName(if it exists)
+                          * Result will include displayName(if it exists)
 */
 func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -19387,13 +19389,13 @@ Notes:
 
 
 
-                              * This endpoint bulk get users' basic info by userId, max allowed 100 at a time
+                          * This endpoint bulk get users' basic info by userId, max allowed 100 at a time
 
 
-                              * If namespace is game, will search by game user Id, other wise will search by publisher namespace
+                          * If namespace is game, will search by game user Id, other wise will search by publisher namespace
 
 
-                              * Result will include displayName(if it exists)
+                          * Result will include displayName(if it exists)
 */
 func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error) {
 	// TODO: Validate the params before sending
@@ -20049,15 +20051,16 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
-                              * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
-
-
-                              * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+                          * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
 
 
-                              * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+                          * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                          * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
 
 
 Important notes:
@@ -20156,15 +20159,16 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
-                                * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
-
-
-                                * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+                          * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
 
 
-                                * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+                          * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                          * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
 
 
 Important notes:
@@ -20261,15 +20265,16 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
-                                  * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
-
-
-                                  * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+                          * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
 
 
-                                  * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+                          * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                          * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
 
 
 
@@ -20360,15 +20365,16 @@ Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 
 
 
- Several case of updating email address
+ Response body logic when user updating email address:
 
-                                    * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
-
-
-                                    * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+                          * User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.
 
 
-                                    * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+                          * User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address.
+
+
+                          * User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address.
+
 
 
 
@@ -20442,7 +20448,7 @@ Available contexts for use :
 
 
 
-                                      1.
+                          1.
 UserAccountRegistration
 
 
@@ -20453,7 +20459,7 @@ It is the default context if the Context field is empty
 
 
 
-                                      2.
+                          2.
 UpdateEmailAddress
 
 
@@ -20463,7 +20469,7 @@ a context type used for verify user before updating email address.(Without email
 
 
 
-                                      3. upgradeHeadlessAccount
+                          3. upgradeHeadlessAccount
 
 
 The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
@@ -20548,7 +20554,7 @@ Available contexts for use :
 
 
 
-                                      1.
+                          1.
 UserAccountRegistration
 
 
@@ -20559,7 +20565,7 @@ It is the default context if the Context field is empty
 
 
 
-                                      2.
+                          2.
 UpdateEmailAddress
 
 
@@ -20569,7 +20575,7 @@ a context type used for verify user before updating email address.(Without email
 
 
 
-                                      3. upgradeHeadlessAccount
+                          3. upgradeHeadlessAccount
 
 
 The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
@@ -20819,13 +20825,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields :
 
 
-                                      * displayName
+                          * displayName
 
 
-                                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                          * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                          * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 
@@ -20917,13 +20923,13 @@ This endpoint also have an ability to update user data (if the user data field i
 Supported user data fields :
 
 
-                                      * displayName
+                          * displayName
 
 
-                                      * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
+                          * dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29
 
 
-                                      * country : format ISO3166-1 alpha-2 two letter, e.g. US
+                          * country : format ISO3166-1 alpha-2 two letter, e.g. US
 
 
 
@@ -21368,70 +21374,70 @@ Platform client configuration need to be added to database for specific platform
 
 
 
-                                      * steam : The ticketâs value is the binary ticket returned by Steam.
+                          * steam : The ticketâs value is the binary ticket returned by Steam.
 
 
-                                      * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
 
 
-                                      * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
 
 
-                                      * google : The ticketâs value is the authorization code returned by Google OAuth
+                          * google : The ticketâs value is the authorization code returned by Google OAuth
 
 
-                                      * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                      * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
 
 
-                                      * android : The ticket's value is the Androidâs device ID
+                          * android : The ticket's value is the Androidâs device ID
 
 
-                                      * ios : The ticket's value is the iOSâs device ID.
+                          * ios : The ticket's value is the iOSâs device ID.
 
 
-                                      * apple : The ticketâs value is the authorization code returned by Apple OAuth.
+                          * apple : The ticketâs value is the authorization code returned by Apple OAuth.
 
 
-                                      * device : Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
+                          * device : Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
 
 
-                                      * discord : The ticketâs value is the authorization code returned by Discord OAuth.
+                          * discord : The ticketâs value is the authorization code returned by Discord OAuth.
 
 
-                                      * ps4web : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps4web : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * ps4 : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps4 : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * ps5 : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps5 : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * xblweb : The ticketâs value is the authorization code returned by XBox Live OAuth.
+                          * xblweb : The ticketâs value is the authorization code returned by XBox Live OAuth.
 
 
-                                      * live : The ticketâs value is the XSTS token.
+                          * live : The ticketâs value is the XSTS token.
 
 
-                                      * awscognito : The ticketâs value is the aws cognito access token (JWT).
+                          * awscognito : The ticketâs value is the aws cognito access token (JWT).
 
 
-                                      * epicgames : The ticketâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                          * epicgames : The ticketâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                      * nintendo : The ticketâs value is the id_token returned by Nintendo OAuth.
+                          * nintendo : The ticketâs value is the id_token returned by Nintendo OAuth.
 
 
-                                      * netflix : The ticketâs value is GAT (Gamer Access Token) returned by Netflix backend.
+                          * netflix : The ticketâs value is GAT (Gamer Access Token) returned by Netflix backend.
 
 
-                                      * snapchat : The ticketâs value is authorization code returned by Snapchat OAuth.
+                          * snapchat : The ticketâs value is authorization code returned by Snapchat OAuth.
 
 
-                                      * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                          * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 
 
 
@@ -21508,70 +21514,70 @@ Platform client configuration need to be added to database for specific platform
 
 
 
-                                      * steam : The ticketâs value is the binary ticket returned by Steam.
+                          * steam : The ticketâs value is the binary ticket returned by Steam.
 
 
-                                      * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication
 
 
-                                      * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The ticketâs value is the authorization code returned by Facebook OAuth
 
 
-                                      * google : The ticketâs value is the authorization code returned by Google OAuth
+                          * google : The ticketâs value is the authorization code returned by Google OAuth
 
 
-                                      * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The ticketâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                      * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The ticketâs value is the authorization code returned by Twitch OAuth.
 
 
-                                      * android : The ticket's value is the Androidâs device ID
+                          * android : The ticket's value is the Androidâs device ID
 
 
-                                      * ios : The ticket's value is the iOSâs device ID.
+                          * ios : The ticket's value is the iOSâs device ID.
 
 
-                                      * apple : The ticketâs value is the authorization code returned by Apple OAuth.
+                          * apple : The ticketâs value is the authorization code returned by Apple OAuth.
 
 
-                                      * device : Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
+                          * device : Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the deviceâs ID.
 
 
-                                      * discord : The ticketâs value is the authorization code returned by Discord OAuth.
+                          * discord : The ticketâs value is the authorization code returned by Discord OAuth.
 
 
-                                      * ps4web : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps4web : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * ps4 : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps4 : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * ps5 : The ticketâs value is the authorization code returned by PSN OAuth.
+                          * ps5 : The ticketâs value is the authorization code returned by PSN OAuth.
 
 
-                                      * xblweb : The ticketâs value is the authorization code returned by XBox Live OAuth.
+                          * xblweb : The ticketâs value is the authorization code returned by XBox Live OAuth.
 
 
-                                      * live : The ticketâs value is the XSTS token.
+                          * live : The ticketâs value is the XSTS token.
 
 
-                                      * awscognito : The ticketâs value is the aws cognito access token (JWT).
+                          * awscognito : The ticketâs value is the aws cognito access token (JWT).
 
 
-                                      * epicgames : The ticketâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                          * epicgames : The ticketâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                      * nintendo : The ticketâs value is the id_token returned by Nintendo OAuth.
+                          * nintendo : The ticketâs value is the id_token returned by Nintendo OAuth.
 
 
-                                      * netflix : The ticketâs value is GAT (Gamer Access Token) returned by Netflix backend.
+                          * netflix : The ticketâs value is GAT (Gamer Access Token) returned by Netflix backend.
 
 
-                                      * snapchat : The ticketâs value is authorization code returned by Snapchat OAuth.
+                          * snapchat : The ticketâs value is authorization code returned by Snapchat OAuth.
 
 
-                                      * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                          * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 
 
 
@@ -21640,46 +21646,46 @@ Required valid user authorization.
 
 
 
-                                      * steam
+                          * steam
 
 
-                                      * steamopenid
+                          * steamopenid
 
 
-                                      * facebook
+                          * facebook
 
 
-                                      * google
+                          * google
 
 
-                                      * oculus
+                          * oculus
 
 
-                                      * twitch
+                          * twitch
 
 
-                                      * android
+                          * android
 
 
-                                      * ios
+                          * ios
 
 
-                                      * apple
+                          * apple
 
 
-                                      * device
+                          * device
 
 
-                                      * discord
+                          * discord
 
 
-                                      * awscognito
+                          * awscognito
 
 
-                                      * epicgames
+                          * epicgames
 
 
-                                      * nintendo
+                          * nintendo
 
 
 
@@ -21763,46 +21769,46 @@ Required valid user authorization.
 
 
 
-                                      * steam
+                          * steam
 
 
-                                      * steamopenid
+                          * steamopenid
 
 
-                                      * facebook
+                          * facebook
 
 
-                                      * google
+                          * google
 
 
-                                      * oculus
+                          * oculus
 
 
-                                      * twitch
+                          * twitch
 
 
-                                      * android
+                          * android
 
 
-                                      * ios
+                          * ios
 
 
-                                      * apple
+                          * apple
 
 
-                                      * device
+                          * device
 
 
-                                      * discord
+                          * discord
 
 
-                                      * awscognito
+                          * awscognito
 
 
-                                      * epicgames
+                          * epicgames
 
 
-                                      * nintendo
+                          * nintendo
 
 
 
@@ -22020,70 +22026,70 @@ If current user have linked to this platform with another platform account (incl
 
 
 
-                                      * steam : The platform_tokenâs value is the binary ticket returned by Steam.
+                          * steam : The platform_tokenâs value is the binary ticket returned by Steam.
 
 
-                                      * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                                      * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                                      * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                          * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                                      * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                      * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                      * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                          * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                                      * android : The device_id is the Androidâs device ID
+                          * android : The device_id is the Androidâs device ID
 
 
-                                      * ios : The device_id is the iOSâs device ID.
+                          * ios : The device_id is the iOSâs device ID.
 
 
-                                      * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                          * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                                      * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                                      * justice : The platform_tokenâs value is the designated userâs access token.
+                          * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                                      * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                                      * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                      * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                      * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
+                          * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
 
 
-                                      * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                          * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                      * live : The platform_tokenâs value is xbox XSTS token
+                          * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                      * xblweb : The platform_tokenâs value is code returned by xbox after login
+                          * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                                      * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                          * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                                      * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                          * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
-                                      * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                          * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PublicForcePlatformLinkV3(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, *PublicForcePlatformLinkV3BadRequest, *PublicForcePlatformLinkV3Unauthorized, *PublicForcePlatformLinkV3NotFound, *PublicForcePlatformLinkV3Conflict, *PublicForcePlatformLinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -22155,70 +22161,70 @@ If current user have linked to this platform with another platform account (incl
 
 
 
-                                      * steam : The platform_tokenâs value is the binary ticket returned by Steam.
+                          * steam : The platform_tokenâs value is the binary ticket returned by Steam.
 
 
-                                      * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                          * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                                      * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                          * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                                      * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                          * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                                      * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                          * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                      * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                          * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                      * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                          * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                                      * android : The device_id is the Androidâs device ID
+                          * android : The device_id is the Androidâs device ID
 
 
-                                      * ios : The device_id is the iOSâs device ID.
+                          * ios : The device_id is the iOSâs device ID.
 
 
-                                      * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                          * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                                      * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                          * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                                      * justice : The platform_tokenâs value is the designated userâs access token.
+                          * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                                      * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
+                          * epicgames : The platform_tokenâs value is an access-token obtained from Epicgames EOS Account Service.
 
 
-                                      * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                      * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                          * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                      * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
+                          * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
 
 
-                                      * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                          * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                      * live : The platform_tokenâs value is xbox XSTS token
+                          * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                      * xblweb : The platform_tokenâs value is code returned by xbox after login
+                          * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                                      * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                          * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                                      * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                          * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
-                                      * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                          * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 */
 func (a *Client) PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -22813,10 +22819,10 @@ Notes:
 
 
 
-                                      * This endpoint retrieve the first page of the data if after and before parameters is empty
+                          * This endpoint retrieve the first page of the data if after and before parameters is empty
 
 
-                                      * The pagination is not working yet
+                          * The pagination is not working yet
 */
 func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, *PublicGetUserBanHistoryV3BadRequest, *PublicGetUserBanHistoryV3Unauthorized, *PublicGetUserBanHistoryV3Forbidden, *PublicGetUserBanHistoryV3NotFound, *PublicGetUserBanHistoryV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -22884,10 +22890,10 @@ Notes:
 
 
 
-                                      * This endpoint retrieve the first page of the data if after and before parameters is empty
+                          * This endpoint retrieve the first page of the data if after and before parameters is empty
 
 
-                                      * The pagination is not working yet
+                          * The pagination is not working yet
 */
 func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, error) {
 	// TODO: Validate the params before sending
@@ -23195,10 +23201,10 @@ Required valid user authorization.
 
 Notes for this endpoint:
 
-                                      * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
-                                      * The maximum value of the limit is 100 and the minimum value of the limit is 1.
-                                      * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
-                                      * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
+                          * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
+                          * The maximum value of the limit is 100 and the minimum value of the limit is 1.
+                          * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
+                          * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
 */
 func (a *Client) PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, *PublicGetUserLoginHistoriesV3Unauthorized, *PublicGetUserLoginHistoriesV3Forbidden, *PublicGetUserLoginHistoriesV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -23256,10 +23262,10 @@ Required valid user authorization.
 
 Notes for this endpoint:
 
-                                          * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
-                                          * The maximum value of the limit is 100 and the minimum value of the limit is 1.
-                                          * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
-                                          * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
+                              * This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.
+                              * The maximum value of the limit is 100 and the minimum value of the limit is 1.
+                              * This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.
+                              * This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.
 */
 func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error) {
 	// TODO: Validate the params before sending
@@ -23932,7 +23938,7 @@ Notes:
 
 
 
-                                              * This endpoint validate the user password by specifying the userId and password
+                                  * This endpoint validate the user password by specifying the userId and password
 */
 func (a *Client) PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, *PublicValidateUserByUserIDAndPasswordV3BadRequest, *PublicValidateUserByUserIDAndPasswordV3Unauthorized, *PublicValidateUserByUserIDAndPasswordV3Forbidden, *PublicValidateUserByUserIDAndPasswordV3NotFound, *PublicValidateUserByUserIDAndPasswordV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -24000,7 +24006,7 @@ Notes:
 
 
 
-                                              * This endpoint validate the user password by specifying the userId and password
+                                  * This endpoint validate the user password by specifying the userId and password
 */
 func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error) {
 	// TODO: Validate the params before sending

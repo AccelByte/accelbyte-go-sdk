@@ -49,6 +49,9 @@ type ItemSnapshot struct {
 	// Unique: true
 	Features []string `json:"features"`
 
+	// whether flexible pricing applied, only applied if itemType is BUNDLE
+	Flexible bool `json:"flexible"`
+
 	// Item id
 	// Required: true
 	ItemID *string `json:"itemId"`

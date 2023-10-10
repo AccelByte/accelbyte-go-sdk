@@ -7,6 +7,7 @@
 package seasonpass
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/seasonpass/export"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/pass"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/reward"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/season"
@@ -21,6 +22,7 @@ var SeasonpassCmd = &cobra.Command{
 }
 
 func init() {
+	SeasonpassCmd.AddCommand(export.ExportSeasonCmd)
 	SeasonpassCmd.AddCommand(season.QuerySeasonsCmd)
 	SeasonpassCmd.AddCommand(season.CreateSeasonCmd)
 	SeasonpassCmd.AddCommand(season.GetCurrentSeasonCmd)

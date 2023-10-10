@@ -49,7 +49,7 @@ respective platforms. Deactivated or login-banned users are unable to login.
 
 
 
-                                                  * azure
+                                      * azure
 Microsoft login page will redirects to this endpoint after login success
 as previously defined on authentication request SAML
 */
@@ -105,7 +105,7 @@ respective platforms. Deactivated or login-banned users are unable to login.
 
 
 
-                                                  * azure
+                                      * azure
 Microsoft login page will redirects to this endpoint after login success
 as previously defined on authentication request SAML
 */

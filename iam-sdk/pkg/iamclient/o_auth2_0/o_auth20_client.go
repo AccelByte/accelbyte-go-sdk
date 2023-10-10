@@ -86,7 +86,7 @@ Notes:
 
 
 
-                                              * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
+                                  * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
 
 
 
@@ -96,19 +96,19 @@ The third party platform and platform group covered for this is:
 
 
 
-                                              * (psn) ps4web
+                                  * (psn) ps4web
 
 
-                                              * (psn) ps4
+                                  * (psn) ps4
 
 
-                                              * (psn) ps5
+                                  * (psn) ps5
 
 
-                                              * xbox live
+                                  * xbox live
 
 
-                                              * steam
+                                  * steam
 */
 func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized, *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden, *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -180,7 +180,7 @@ Notes:
 
 
 
-                                              * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
+                                  * Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]
 
 
 
@@ -190,19 +190,19 @@ The third party platform and platform group covered for this is:
 
 
 
-                                              * (psn) ps4web
+                                  * (psn) ps4web
 
 
-                                              * (psn) ps4
+                                  * (psn) ps4
 
 
-                                              * (psn) ps5
+                                  * (psn) ps5
 
 
-                                              * xbox live
+                                  * xbox live
 
 
-                                              * steam
+                                  * steam
 */
 func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
@@ -423,14 +423,14 @@ Only authorization code flow supported by this endpoint, implicit flow is not su
 
 
 
-                                              * Authorize success :
+                                  * Authorize success :
 redirects to login page with the following information: ?request_id={authorization_request_id}
 
 
 
 
 
-                                              * Authorize failure :
+                                  * Authorize failure :
 redirects to the given redirect uri with the following information:
 ?error={error_code}&error;_description={error description}
 
@@ -445,37 +445,37 @@ Following are the error code based on the specification:
 
 
 
-                                              * invalid_request: The request is missing a required parameter,
+                                  * invalid_request: The request is missing a required parameter,
 includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.
 
 
 
 
 
-                                              * server_error:
+                                  * server_error:
 The authorization server encountered an unexpected condition that prevented it from fulfilling the request.
 
 
 
 
 
-                                              * unauthorized_client: The client is not authorized to request a token using this method.
+                                  * unauthorized_client: The client is not authorized to request a token using this method.
 
 
 
-                                              * access_denied: The resource owner or authorization server denied the request.
+                                  * access_denied: The resource owner or authorization server denied the request.
 
 
 
-                                              * invalid_scope: The requested scope is invalid, unknown, or malformed.
+                                  * invalid_scope: The requested scope is invalid, unknown, or malformed.
 
 
 
-                                              * unsupported_response_type: The authorization server does not support obtaining a token using this method.
+                                  * unsupported_response_type: The authorization server does not support obtaining a token using this method.
 
 
 
-                                              * temporarily_unavailable: The authorization server is currently unable to handle the request
+                                  * temporarily_unavailable: The authorization server is currently unable to handle the request
 due to a temporary overloading or maintenance of the server.
 
 
@@ -550,14 +550,14 @@ Only authorization code flow supported by this endpoint, implicit flow is not su
 
 
 
-                                              * Authorize success :
+                                  * Authorize success :
 redirects to login page with the following information: ?request_id={authorization_request_id}
 
 
 
 
 
-                                              * Authorize failure :
+                                  * Authorize failure :
 redirects to the given redirect uri with the following information:
 ?error={error_code}&error;_description={error description}
 
@@ -572,37 +572,37 @@ Following are the error code based on the specification:
 
 
 
-                                              * invalid_request: The request is missing a required parameter,
+                                  * invalid_request: The request is missing a required parameter,
 includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.
 
 
 
 
 
-                                              * server_error:
+                                  * server_error:
 The authorization server encountered an unexpected condition that prevented it from fulfilling the request.
 
 
 
 
 
-                                              * unauthorized_client: The client is not authorized to request a token using this method.
+                                  * unauthorized_client: The client is not authorized to request a token using this method.
 
 
 
-                                              * access_denied: The resource owner or authorization server denied the request.
+                                  * access_denied: The resource owner or authorization server denied the request.
 
 
 
-                                              * invalid_scope: The requested scope is invalid, unknown, or malformed.
+                                  * invalid_scope: The requested scope is invalid, unknown, or malformed.
 
 
 
-                                              * unsupported_response_type: The authorization server does not support obtaining a token using this method.
+                                  * unsupported_response_type: The authorization server does not support obtaining a token using this method.
 
 
 
-                                              * temporarily_unavailable: The authorization server is currently unable to handle the request
+                                  * temporarily_unavailable: The authorization server is currently unable to handle the request
 due to a temporary overloading or maintenance of the server.
 
 
@@ -1067,13 +1067,13 @@ Supported methods:
 
 
 
-                                              * authenticator
+                                  * authenticator
 
 
-                                              * backupCode
+                                  * backupCode
 
 
-                                              * email
+                                  * email
 */
 func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, *Change2FAMethodTooManyRequests, *Change2FAMethodInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1141,13 +1141,13 @@ Supported methods:
 
 
 
-                                              * authenticator
+                                  * authenticator
 
 
-                                              * backupCode
+                                  * backupCode
 
 
-                                              * email
+                                  * email
 */
 func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1343,22 +1343,22 @@ The third party platform and platform group covered for this is:
 
 
 
-                                              * (psn) ps4web
+                                  * (psn) ps4web
 
 
-                                              * (psn) ps4
+                                  * (psn) ps4
 
 
-                                              * (psn) ps5
+                                  * (psn) ps5
 
 
-                                              * epicgames
+                                  * epicgames
 
 
-                                              * twitch
+                                  * twitch
 
 
-                                              * awscognito
+                                  * awscognito
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1430,22 +1430,22 @@ The third party platform and platform group covered for this is:
 
 
 
-                                              * (psn) ps4web
+                                  * (psn) ps4web
 
 
-                                              * (psn) ps4
+                                  * (psn) ps4
 
 
-                                              * (psn) ps5
+                                  * (psn) ps5
 
 
-                                              * epicgames
+                                  * epicgames
 
 
-                                              * twitch
+                                  * twitch
 
 
-                                              * awscognito
+                                  * awscognito
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1506,51 +1506,51 @@ Generate url to request auth code from third party platform
 
 
 
-                                              * steamopenid
+                                  * steamopenid
 This endpoint redirects to steam login page, then redirect back to platform
 authenticate endpoint after successfully authenticating user steam.
 
-                                              * xblweb
+                                  * xblweb
 This endpoint redirects to xbox login page, then redirect back to platform
 authenticate endpoint after successfully authenticating xbox user.
 
-                                              * ps4web
+                                  * ps4web
 This endpoint redirects to psn login page, then redirect back to platform
 authenticate endpoint after successfully authenticating psn user.
 
-                                              * epicgames
+                                  * epicgames
 This endpoint redirects to Epicgames OAuth login page. then redirect to platform
 authenticate endpoint after successfully authenticating an Epicgames credential
 
-                                              * twitch
+                                  * twitch
 This endpoint redirects to twitch login page, then redirect back to platform
 authenticate endpoint after successfully authenticating twitch user.
 
-                                              * azure
+                                  * azure
 This endpoint redirects to azure login page, then redirect back to platform
 authenticate(saml) endpoint after successfully authenticating azure user.
 
-                                              * facebook
+                                  * facebook
 This endpoint redirects to facebook login page, then redirect back to platform
 authenticate endpoint after successfully authenticating facebook user.
 
-                                              * google
+                                  * google
 This endpoint redirects to google login page, then redirect back to platform
 authenticate endpoint after successfully authenticating google user.
 
-                                              * snapchat
+                                  * snapchat
 This endpoint redirects to snapchat login page, then redirect back to platform
 authenticate endpoint after successfully authenticating snapchat user.
 
-                                              * discord
+                                  * discord
 This endpoint redirects to discord login page, then redirect back to platform
 authenticate endpoint after successfully authenticating discord user.
 
-                                              * amazon
+                                  * amazon
 This endpoint redirects to amazon login page, then redirect back to platform
 authenticate endpoint after successfully authenticating amazon user.
 
-                                              * oculusweb
+                                  * oculusweb
 This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
 action code : 10702'
 */
@@ -1605,51 +1605,51 @@ Generate url to request auth code from third party platform
 
 
 
-                                              * steamopenid
+                                  * steamopenid
 This endpoint redirects to steam login page, then redirect back to platform
 authenticate endpoint after successfully authenticating user steam.
 
-                                              * xblweb
+                                  * xblweb
 This endpoint redirects to xbox login page, then redirect back to platform
 authenticate endpoint after successfully authenticating xbox user.
 
-                                              * ps4web
+                                  * ps4web
 This endpoint redirects to psn login page, then redirect back to platform
 authenticate endpoint after successfully authenticating psn user.
 
-                                              * epicgames
+                                  * epicgames
 This endpoint redirects to Epicgames OAuth login page. then redirect to platform
 authenticate endpoint after successfully authenticating an Epicgames credential
 
-                                              * twitch
+                                  * twitch
 This endpoint redirects to twitch login page, then redirect back to platform
 authenticate endpoint after successfully authenticating twitch user.
 
-                                              * azure
+                                  * azure
 This endpoint redirects to azure login page, then redirect back to platform
 authenticate(saml) endpoint after successfully authenticating azure user.
 
-                                              * facebook
+                                  * facebook
 This endpoint redirects to facebook login page, then redirect back to platform
 authenticate endpoint after successfully authenticating facebook user.
 
-                                              * google
+                                  * google
 This endpoint redirects to google login page, then redirect back to platform
 authenticate endpoint after successfully authenticating google user.
 
-                                              * snapchat
+                                  * snapchat
 This endpoint redirects to snapchat login page, then redirect back to platform
 authenticate endpoint after successfully authenticating snapchat user.
 
-                                              * discord
+                                  * discord
 This endpoint redirects to discord login page, then redirect back to platform
 authenticate endpoint after successfully authenticating discord user.
 
-                                              * amazon
+                                  * amazon
 This endpoint redirects to amazon login page, then redirect back to platform
 authenticate endpoint after successfully authenticating amazon user.
 
-                                              * oculusweb
+                                  * oculusweb
 This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
 action code : 10702'
 */
@@ -1725,74 +1725,74 @@ To remember device for 2FA, should provide cookie: device_token or header: Devic
 
 
 
-                                              * steam : The platform_tokenâs value is the binary ticket returned by Steam.
+                                  * steam : The platform_tokenâs value is the binary ticket returned by Steam.
 If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.57, then platform token should use this style: `{identity}:{ticket}`,
 
 the `{identity}` was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain `:` in this `{identity}`.
 
 
-                                              * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                                  * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                                              * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                                  * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                                              * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                                  * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                                              * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                                  * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                              * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                  * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                              * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                                  * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                                              * android : The device_id is the Androidâs device ID
+                                  * android : The device_id is the Androidâs device ID
 
 
-                                              * ios : The device_id is the iOSâs device ID.
+                                  * ios : The device_id is the iOSâs device ID.
 
 
-                                              * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                                  * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                                              * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                                  * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                                              * justice : The platform_tokenâs value is the designated userâs access token.
+                                  * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                                              * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                  * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                              * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                  * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                              * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
+                                  * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
 
 
-                                              * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                  * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                              * live : The platform_tokenâs value is xbox XSTS token
+                                  * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                              * xblweb : The platform_tokenâs value is code returned by xbox after login
+                                  * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                                              * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                                  * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                                              * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                  * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                              * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                  * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 
 
 
@@ -1813,13 +1813,13 @@ Following is the current registered account grouping:
 
 
 
-                                              * (psn) ps4web
+                                  * (psn) ps4web
 
 
-                                              * (psn) ps4
+                                  * (psn) ps4
 
 
-                                              * (psn) ps5
+                                  * (psn) ps5
 
 
 
@@ -1834,7 +1834,7 @@ Following is the access tokenâs content:
 
 
 
-                                              *
+                                  *
 
 
 namespace. It is the namespace the token was generated from.
@@ -1843,7 +1843,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                              *
+                                  *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -1852,7 +1852,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                              *
+                                  *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -1861,7 +1861,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                              *
+                                  *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -1870,7 +1870,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                              *
+                                  *
 
 
 permissions. The sub or audâ permissions
@@ -1879,7 +1879,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                              *
+                                  *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -1888,7 +1888,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                              *
+                                  *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -1896,26 +1896,26 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                * 1: Email Address Verified
+                                    * 1: Email Address Verified
 
 
 
-                                                * 2: Phone Number Verified
+                                    * 2: Phone Number Verified
 
 
 
-                                                * 4: Anonymous
+                                    * 4: Anonymous
 
 
 
-                                                * 8: Suspicious Login
+                                    * 8: Suspicious Login
 
 
 
 
 
 
-                                              *
+                                  *
 
 
 aud. The aud is the client ID.
@@ -1924,7 +1924,7 @@ aud. The aud is the client ID.
 
 
 
-                                              *
+                                  *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -1933,7 +1933,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -1942,7 +1942,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                              *
+                                  *
 
 
 sub. The UserID. The sub is omitted if the token is generated from client credential
@@ -2045,74 +2045,74 @@ To remember device for 2FA, should provide cookie: device_token or header: Devic
 
 
 
-                                                * steam : The platform_tokenâs value is the binary ticket returned by Steam.
+                                    * steam : The platform_tokenâs value is the binary ticket returned by Steam.
 If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.57, then platform token should use this style: `{identity}:{ticket}`,
 
 the `{identity}` was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain `:` in this `{identity}`.
 
 
-                                                * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
+                                    * steamopenid : Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
 
 
-                                                * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
+                                    * facebook : The platform_tokenâs value is the authorization code returned by Facebook OAuth
 
 
-                                                * google : The platform_tokenâs value is the authorization code returned by Google OAuth
+                                    * google : The platform_tokenâs value is the authorization code returned by Google OAuth
 
 
-                                                * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
+                                    * oculus : The platform_tokenâs value is a string composed of Oculus's user ID and the nonce separated by a colon (:).
 
 
-                                                * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
+                                    * twitch : The platform_tokenâs value is the authorization code returned by Twitch OAuth.
 
 
-                                                * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
+                                    * discord : The platform_tokenâs value is the authorization code returned by Discord OAuth
 
 
-                                                * android : The device_id is the Androidâs device ID
+                                    * android : The device_id is the Androidâs device ID
 
 
-                                                * ios : The device_id is the iOSâs device ID.
+                                    * ios : The device_id is the iOSâs device ID.
 
 
-                                                * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
+                                    * apple : The platform_tokenâs value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)
 
 
-                                                * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+                                    * device : Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 
 
-                                                * justice : The platform_tokenâs value is the designated userâs access token.
+                                    * justice : The platform_tokenâs value is the designated userâs access token.
 
 
-                                                * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
+                                    * epicgames : The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 
 
-                                                * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                    * ps4 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                                * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
+                                    * ps5 : The platform_tokenâs value is the authorization code returned by Sony OAuth.
 
 
-                                                * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
+                                    * nintendo : The platform_tokenâs value is the id_token returned by Nintendo OAuth.
 
 
-                                                * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
+                                    * awscognito : The platform_tokenâs value is the aws cognito access token or id token (JWT).
 
 
-                                                * live : The platform_tokenâs value is xbox XSTS token
+                                    * live : The platform_tokenâs value is xbox XSTS token
 
 
-                                                * xblweb : The platform_tokenâs value is code returned by xbox after login
+                                    * xblweb : The platform_tokenâs value is code returned by xbox after login
 
 
-                                                * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
+                                    * netflix : The platform_tokenâs value is GAT (Gamer Access Token) returned by Netflix backend
 
 
-                                                * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
+                                    * snapchat : The platform_tokenâs value is the authorization code returned by Snapchat OAuth.
 
 
 
-                                                * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
+                                    * for specific generic oauth (OIDC) : The platform_tokenâs value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.
 
 
 
@@ -2133,13 +2133,13 @@ Following is the current registered account grouping:
 
 
 
-                                                * (psn) ps4web
+                                    * (psn) ps4web
 
 
-                                                * (psn) ps4
+                                    * (psn) ps4
 
 
-                                                * (psn) ps5
+                                    * (psn) ps5
 
 
 
@@ -2154,7 +2154,7 @@ Following is the access tokenâs content:
 
 
 
-                                                *
+                                    *
 
 
 namespace. It is the namespace the token was generated from.
@@ -2163,7 +2163,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                                *
+                                    *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -2172,7 +2172,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                                *
+                                    *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -2181,7 +2181,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                                *
+                                    *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -2190,7 +2190,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                                *
+                                    *
 
 
 permissions. The sub or audâ permissions
@@ -2199,7 +2199,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                                *
+                                    *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -2208,7 +2208,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                                *
+                                    *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -2216,26 +2216,26 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                  * 1: Email Address Verified
+                                      * 1: Email Address Verified
 
 
 
-                                                  * 2: Phone Number Verified
+                                      * 2: Phone Number Verified
 
 
 
-                                                  * 4: Anonymous
+                                      * 4: Anonymous
 
 
 
-                                                  * 8: Suspicious Login
+                                      * 8: Suspicious Login
 
 
 
 
 
 
-                                                *
+                                    *
 
 
 aud. The aud is the client ID.
@@ -2244,7 +2244,7 @@ aud. The aud is the client ID.
 
 
 
-                                                *
+                                    *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -2253,7 +2253,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                                *
+                                    *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -2262,7 +2262,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                                *
+                                    *
 
 
 sub. The UserID. The sub is omitted if the token is generated from client credential
@@ -2595,7 +2595,7 @@ This endpoint supports grant type:
 
 
 
-                                                  1. Grant Type == `authorization_code`:
+                                      1. Grant Type == `authorization_code`:
 
     It generates the user token by given the authorization
 code which generated in "/iam/v3/authenticate" API response. It should also pass
@@ -2604,20 +2604,20 @@ authorization code request.
 
 
 
-                                                  2. Grant Type == `password`:
+                                      2. Grant Type == `password`:
 
     The grant type to use for authenticating a user, whether it's by email / username and password combination
 or through platform.
 
 
 
-                                                  3. Grant Type == `refresh_token`:
+                                      3. Grant Type == `refresh_token`:
 
     Used to get a new access token for a valid refresh token.
 
 
 
-                                                  4. Grant Type == `client_credentials`:
+                                      4. Grant Type == `client_credentials`:
 
     It generates a token by checking the client credentials provided through Authorization header.
 
@@ -2634,7 +2634,7 @@ Following is the access tokenâs content:
 
 
 
-                                                  *
+                                      *
 
 
 namespace. It is the namespace the token was generated from.
@@ -2643,7 +2643,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                                  *
+                                      *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -2652,7 +2652,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                                  *
+                                      *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -2661,7 +2661,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                                  *
+                                      *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -2670,7 +2670,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                                  *
+                                      *
 
 
 permissions. The sub or audâ permissions
@@ -2679,7 +2679,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                                  *
+                                      *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -2688,7 +2688,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                                  *
+                                      *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -2696,26 +2696,26 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                    * 1: Email Address Verified
+                                        * 1: Email Address Verified
 
 
 
-                                                    * 2: Phone Number Verified
+                                        * 2: Phone Number Verified
 
 
 
-                                                    * 4: Anonymous
+                                        * 4: Anonymous
 
 
 
-                                                    * 8: Suspicious Login
+                                        * 8: Suspicious Login
 
 
 
 
 
 
-                                                  *
+                                      *
 
 
 aud. The aud is the targeted resource server.
@@ -2724,7 +2724,7 @@ aud. The aud is the targeted resource server.
 
 
 
-                                                  *
+                                      *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -2733,7 +2733,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                                  *
+                                      *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -2742,7 +2742,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                                  *
+                                      *
 
 
 client_id. The UserID. The sub is omitted if the token is generated from client credential
@@ -2751,7 +2751,7 @@ client_id. The UserID. The sub is omitted if the token is generated from client 
 
 
 
-                                                  *
+                                      *
 
 
 scope. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings
@@ -2890,7 +2890,7 @@ This endpoint supports grant type:
 
 
 
-                                                  1. Grant Type == `authorization_code`:
+                                      1. Grant Type == `authorization_code`:
 
     It generates the user token by given the authorization
 code which generated in "/iam/v3/authenticate" API response. It should also pass
@@ -2899,20 +2899,20 @@ authorization code request.
 
 
 
-                                                  2. Grant Type == `password`:
+                                      2. Grant Type == `password`:
 
     The grant type to use for authenticating a user, whether it's by email / username and password combination
 or through platform.
 
 
 
-                                                  3. Grant Type == `refresh_token`:
+                                      3. Grant Type == `refresh_token`:
 
     Used to get a new access token for a valid refresh token.
 
 
 
-                                                  4. Grant Type == `client_credentials`:
+                                      4. Grant Type == `client_credentials`:
 
     It generates a token by checking the client credentials provided through Authorization header.
 
@@ -2929,7 +2929,7 @@ Following is the access tokenâs content:
 
 
 
-                                                  *
+                                      *
 
 
 namespace. It is the namespace the token was generated from.
@@ -2938,7 +2938,7 @@ namespace. It is the namespace the token was generated from.
 
 
 
-                                                  *
+                                      *
 
 
 display_name. The display name of the sub. It is empty if the token is generated from the client credential
@@ -2947,7 +2947,7 @@ display_name. The display name of the sub. It is empty if the token is generated
 
 
 
-                                                  *
+                                      *
 
 
 roles. The subâs roles. It is empty if the token is generated from the client credential
@@ -2956,7 +2956,7 @@ roles. The subâs roles. It is empty if the token is generated from the clie
 
 
 
-                                                  *
+                                      *
 
 
 namespace_roles. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
@@ -2965,7 +2965,7 @@ namespace_roles. The subâs roles scoped to namespace. Improvement from role
 
 
 
-                                                  *
+                                      *
 
 
 permissions. The sub or audâ permissions
@@ -2974,7 +2974,7 @@ permissions. The sub or audâ permissions
 
 
 
-                                                  *
+                                      *
 
 
 bans. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -2983,7 +2983,7 @@ bans. The subâs list of bans. It is used by the IAM client for validating t
 
 
 
-                                                  *
+                                      *
 
 
 jflgs. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:
@@ -2991,26 +2991,26 @@ jflgs. It stands for Justice Flags. It is a special flag used for storing additi
 
 
 
-                                                    * 1: Email Address Verified
+                                        * 1: Email Address Verified
 
 
 
-                                                    * 2: Phone Number Verified
+                                        * 2: Phone Number Verified
 
 
 
-                                                    * 4: Anonymous
+                                        * 4: Anonymous
 
 
 
-                                                    * 8: Suspicious Login
+                                        * 8: Suspicious Login
 
 
 
 
 
 
-                                                  *
+                                      *
 
 
 aud. The aud is the targeted resource server.
@@ -3019,7 +3019,7 @@ aud. The aud is the targeted resource server.
 
 
 
-                                                  *
+                                      *
 
 
 iat. The time the token issues at. It is in Epoch time format
@@ -3028,7 +3028,7 @@ iat. The time the token issues at. It is in Epoch time format
 
 
 
-                                                  *
+                                      *
 
 
 exp. The time the token expires. It is in Epoch time format
@@ -3037,7 +3037,7 @@ exp. The time the token expires. It is in Epoch time format
 
 
 
-                                                  *
+                                      *
 
 
 client_id. The UserID. The sub is omitted if the token is generated from client credential
@@ -3046,7 +3046,7 @@ client_id. The UserID. The sub is omitted if the token is generated from client 
 
 
 
-                                                  *
+                                      *
 
 
 scope. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings

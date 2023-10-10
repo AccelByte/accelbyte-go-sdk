@@ -50,6 +50,9 @@ type FulfillmentRequest struct {
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`
 
+	// overrideBundleItemQty
+	OverrideBundleItemQty map[string]int32 `json:"overrideBundleItemQty,omitempty"`
+
 	// quantity
 	// Required: true
 	// Format: int32

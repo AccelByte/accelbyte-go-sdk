@@ -482,34 +482,34 @@ Source: [gdpr_test.go](../services-api/pkg/tests/integration/gdpr_test.go)
 
 ```go
 body = append(body, email)
-input := &data_retrieval.SaveAdminEmailConfigurationParams{
+input := &configuration.SaveAdminEmailConfigurationParams{
 	Body:      body,
 	Namespace: integration.NamespaceTest,
 }
 
-err := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
+err := gdprConfigurationService.SaveAdminEmailConfigurationShort(input)
 ```
 
 ### Get admin email addresses configuration
 
 ```go
-input := &data_retrieval.GetAdminEmailConfigurationParams{
+input := &configuration.GetAdminEmailConfigurationParams{
 	Namespace: integration.NamespaceTest,
 }
 
-ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input)
+ok, err := gdprConfigurationService.GetAdminEmailConfigurationShort(input)
 ```
 
 ### Update admin email configuration
 
 ```go
 body = append(body, email)
-input := &data_retrieval.UpdateAdminEmailConfigurationParams{
+input := &configuration.UpdateAdminEmailConfigurationParams{
 	Body:      body,
 	Namespace: integration.NamespaceTest,
 }
 
-err := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
+err := gdprConfigurationService.UpdateAdminEmailConfigurationShort(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
 }
@@ -519,12 +519,12 @@ if err != nil {
 
 ```go
 emails = append(emails, email)
-input := &data_retrieval.DeleteAdminEmailConfigurationParams{
+input := &configuration.DeleteAdminEmailConfigurationParams{
 	Emails:    emails,
 	Namespace: integration.NamespaceTest,
 }
 
-err := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
+err := gdprConfigurationService.DeleteAdminEmailConfigurationShort(input)
 ```
 
 ## Group

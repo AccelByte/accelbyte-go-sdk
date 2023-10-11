@@ -3,7 +3,12 @@
 ### test
 - **integration:** remove test health in match2 and session
 ### chore
+- **docs:** regenerating common use cases
+- **integration-test:** renaming the gdpr tag
 - **sdk:** regenerate factory for the trailing slash
+- **:** update CHANGELOG.md and go sum getting started
+### docs
+- **migrations:** add migration-guide-v0.54-to-v0.55.md
 
 
 <a name="v0.54.0"></a>

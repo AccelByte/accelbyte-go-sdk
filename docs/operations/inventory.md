@@ -4,6 +4,11 @@
 
 ## Operations
 
+### Admin Chaining Operations Wrapper:  [AdminChainingOperations](../../services-api/pkg/service/inventory/adminChainingOperations.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/inventory/v1/admin/namespaces/{namespace}/chainingOperations` | POST | AdminCreateChainingOperationsShort | [AdminCreateChainingOperationsShort](../../inventory-sdk/pkg/inventoryclient/admin_chaining_operations/admin_chaining_operations_client.go) | [AdminCreateChainingOperationsShort](../../services-api/pkg/service/inventory/adminChainingOperations.go) | [AdminCreateChainingOperationsShort](../../samples/cli/cmd/inventory/adminChainingOperations/adminCreateChainingOperations.go) |
+
 ### Admin Inventories Wrapper:  [AdminInventories](../../services-api/pkg/service/inventory/adminInventories.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -85,9 +90,13 @@
 | Model Struct | Class |
 |---|---|
 | `apimodels.AdminUpdateItemReq` | [ApimodelsAdminUpdateItemReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_admin_update_item_req.go) |
+| `apimodels.ChainingOperationReq` | [ApimodelsChainingOperationReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_chaining_operation_req.go) |
+| `apimodels.ChainingOperationResp` | [ApimodelsChainingOperationResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_chaining_operation_resp.go) |
+| `apimodels.ConsumeItem` | [ApimodelsConsumeItem ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_consume_item.go) |
 | `apimodels.ConsumeItemReq` | [ApimodelsConsumeItemReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_consume_item_req.go) |
 | `apimodels.CreateInventoryConfigurationReq` | [ApimodelsCreateInventoryConfigurationReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_inventory_configuration_req.go) |
 | `apimodels.CreateInventoryReq` | [ApimodelsCreateInventoryReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_inventory_req.go) |
+| `apimodels.CreateItem` | [ApimodelsCreateItem ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_item.go) |
 | `apimodels.CreateItemTypeReq` | [ApimodelsCreateItemTypeReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_item_type_req.go) |
 | `apimodels.CreateItemTypeResp` | [ApimodelsCreateItemTypeResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_item_type_resp.go) |
 | `apimodels.CreateTagReq` | [ApimodelsCreateTagReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_tag_req.go) |
@@ -105,12 +114,15 @@
 | `apimodels.ListTagsResp` | [ApimodelsListTagsResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_list_tags_resp.go) |
 | `apimodels.MoveItemsReq` | [ApimodelsMoveItemsReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_move_items_req.go) |
 | `apimodels.MoveItemsResp` | [ApimodelsMoveItemsResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_move_items_resp.go) |
+| `apimodels.Operation` | [ApimodelsOperation ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_operation.go) |
 | `apimodels.Paging` | [ApimodelsPaging ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_paging.go) |
 | `apimodels.RemoveInventoryItemReq` | [ApimodelsRemoveInventoryItemReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_remove_inventory_item_req.go) |
+| `apimodels.RemoveItem` | [ApimodelsRemoveItem ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_remove_item.go) |
 | `apimodels.SaveItemReq` | [ApimodelsSaveItemReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_save_item_req.go) |
 | `apimodels.SaveItemToInventoryReq` | [ApimodelsSaveItemToInventoryReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_save_item_to_inventory_req.go) |
 | `apimodels.TradeItem` | [ApimodelsTradeItem ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_trade_item.go) |
 | `apimodels.TradeItemResp` | [ApimodelsTradeItemResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_trade_item_resp.go) |
 | `apimodels.UpdateInventoryReq` | [ApimodelsUpdateInventoryReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_update_inventory_req.go) |
+| `apimodels.UpdateItem` | [ApimodelsUpdateItem ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_update_item.go) |
 | `apimodels.UpdateItemReq` | [ApimodelsUpdateItemReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_update_item_req.go) |
 | `apimodels.UpdateItemResp` | [ApimodelsUpdateItemResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_update_item_resp.go) |

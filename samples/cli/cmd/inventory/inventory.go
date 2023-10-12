@@ -7,6 +7,7 @@
 package inventory
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/inventory/adminChainingOperations"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminInventories"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminInventoryConfigurations"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminItemTypes"
@@ -27,6 +28,7 @@ var InventoryCmd = &cobra.Command{
 }
 
 func init() {
+	InventoryCmd.AddCommand(adminChainingOperations.AdminCreateChainingOperationsCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminListInventoriesCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminCreateInventoryCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminGetInventoryCmd)

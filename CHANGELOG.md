@@ -1,3 +1,11 @@
+<a name="v0.55.1"></a>
+## [v0.55.1]
+### chore
+- **:** regenerate inventory service
+- **:** update CHANGELOG.md
+- **:** update inventory.json
+
+
 <a name="v0.55.0"></a>
 ## [v0.55.0]
 ### test

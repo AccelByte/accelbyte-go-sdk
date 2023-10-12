@@ -14,6 +14,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_chaining_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_inventories"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_inventory_configurations"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_item_types"
@@ -74,6 +75,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeInventoryService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.AdminChainingOperations = admin_chaining_operations.New(transport, formats)
 	cli.AdminInventories = admin_inventories.New(transport, formats)
 	cli.AdminInventoryConfigurations = admin_inventory_configurations.New(transport, formats)
 	cli.AdminItemTypes = admin_item_types.New(transport, formats)
@@ -144,6 +146,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeInventoryService is a client for justice inventory service
 type JusticeInventoryService struct {
+	AdminChainingOperations admin_chaining_operations.ClientService
+
 	AdminInventories admin_inventories.ClientService
 
 	AdminInventoryConfigurations admin_inventory_configurations.ClientService
@@ -171,6 +175,7 @@ type JusticeInventoryService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeInventoryService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AdminChainingOperations.SetTransport(transport)
 	c.AdminInventories.SetTransport(transport)
 	c.AdminInventoryConfigurations.SetTransport(transport)
 	c.AdminItemTypes.SetTransport(transport)

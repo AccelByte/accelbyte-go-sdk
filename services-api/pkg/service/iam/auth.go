@@ -204,6 +204,17 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 // Login is a custom wrapper used to login with username and password
 func (o *OAuth20Service) Login(username, password string) error {
 	scope := "commerce account social publishing analytics"
+
+	return o.LoginWithScope(username, password, scope)
+}
+
+func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
+	scope := "commerce account social publishing analytics"
+
+	return o.LoginOrRefreshWithScope(username, password, scope)
+}
+
+func (o *OAuth20Service) LoginWithScope(username, password, scope string) error {
 	codeVerifierGenerator, err := utils.CreateCodeVerifier()
 	if err != nil {
 		return err
@@ -246,7 +257,7 @@ func (o *OAuth20Service) Login(username, password string) error {
 	return nil
 }
 
-func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
+func (o *OAuth20Service) LoginOrRefreshWithScope(username, password, scope string) error {
 	session := o.GetAuthSession()
 	getToken, err := session.Token.GetToken()
 	refreshRate := session.Refresh.GetRefreshRate()
@@ -255,7 +266,7 @@ func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
 	}
 
 	if getToken.AccessToken == nil {
-		return o.Login(username, password)
+		return o.LoginWithScope(username, password, scope)
 	} else {
 		if repository.HasTokenExpired(session.Token, refreshRate) {
 			if atomic.CompareAndSwapUint32(&locker, 0, 1) {
@@ -263,7 +274,7 @@ func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
 				if !repository.HasRefreshTokenExpired(session.Token, refreshRate) {
 					auth.UserTokenRefresher(session)
 				} else {
-					return o.Login(username, password)
+					return o.LoginWithScope(username, password, scope)
 				}
 			}
 		}

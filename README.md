@@ -156,6 +156,15 @@ if err != nil {
 }
 ```
 
+You can also specify the scope you want for `LoginWithScope(...)`. With the `scope` parameter typed as `string`. By default the scope used is `commerce account social publishing analytics` (a space separated value string).
+
+```go
+err := oAuth20Service.LoginWithScope(username, password, scope)
+if err != nil {
+    return err
+}
+```
+
 ### Login Using OAuth Client (Public or Private)
 
 ```go

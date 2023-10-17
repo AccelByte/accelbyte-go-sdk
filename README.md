@@ -165,6 +165,8 @@ if err != nil {
 }
 ```
 
+:bulb: The use of a Public OAuth Client is highly discouraged! Please ensure that you both set the Client ID and Client Secret.
+
 ## Parse Access Token
 Functionality to parse the access token is available in `v0.50.0`.
 The function exist alongside the Login functionality in `OAuth20Service`. To use it, import the package

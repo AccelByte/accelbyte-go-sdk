@@ -7,6 +7,7 @@ package integration_test
 //lint:ignore SA5011 possible nil pointer dereference
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -64,6 +65,7 @@ var (
 	username            = os.Getenv("AB_USERNAME")
 	password            = os.Getenv("AB_PASSWORD")
 	clientID            = oAuth20Service.ConfigRepository.GetClientId()
+	publicClientID      = os.Getenv("PUBLIC_AB_CLIENT_ID")
 	authType            = "EMAILPASSWD"
 	country             = "US"
 	displayName         = "Go Extend SDK Test"
@@ -343,6 +345,22 @@ func TestIntegrationLoginClient(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, country)
 	t.Logf("Country name: %s", *country.CountryName)
+}
+
+func TestIntegrationLoginPublicClient(t *testing.T) {
+	// Arrange
+	var buf bytes.Buffer
+	logrus.SetOutput(&buf)
+	defer func() {
+		logrus.SetOutput(os.Stderr)
+	}()
+
+	// Act
+	err := oAuth20Service.LoginClient(&publicClientID, nil)
+	assert.NoError(t, err)
+
+	// Assert
+	assert.True(t, bytes.Contains(buf.Bytes(), []byte("The use of a Public OAuth Client is highly discouraged!")))
 }
 
 func TestIntegrationParseAccessTokenAndValidateLocally(t *testing.T) {

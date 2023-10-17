@@ -255,6 +255,26 @@ func TestIntegrationLogin(t *testing.T) {
 	assert.NotNil(t, getToken, "response should not be nil")
 }
 
+func TestIntegrationLoginWithScope(t *testing.T) {
+	t.Parallel()
+
+	// CASE Login
+	scope := "account"
+	err := oAuth20Service.LoginWithScope(username, password, scope)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
+	logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
+	// ESAC
+
+	// Assert
+	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errGetToken, "err should be nil")
+	assert.NotNil(t, getToken, "response should not be nil")
+}
+
 func TestIntegrationUser(t *testing.T) {
 	// Login User - Arrange
 	Init()

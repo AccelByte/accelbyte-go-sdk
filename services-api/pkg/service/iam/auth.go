@@ -311,6 +311,9 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	if len(*clientId) == 0 {
 		return errors.New("client not registered")
 	}
+	if len(*clientSecret) == 0 {
+		logrus.Warningln("The use of a Public OAuth Client is highly discouraged!")
+	}
 	param := &o_auth2_0.TokenGrantV3Params{
 		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}

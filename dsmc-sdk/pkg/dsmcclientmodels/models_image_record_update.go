@@ -23,8 +23,7 @@ type ModelsImageRecordUpdate struct {
 	ArtifactPath *string `json:"artifactPath"`
 
 	// coredumpenabled
-	// Required: true
-	CoreDumpEnabled *bool `json:"coreDumpEnabled"`
+	CoreDumpEnabled bool `json:"coreDumpEnabled"`
 
 	// image
 	// Required: true
@@ -58,9 +57,6 @@ func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 	if err := m.validateArtifactPath(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateCoreDumpEnabled(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateImage(formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,15 +82,6 @@ func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 func (m *ModelsImageRecordUpdate) validateArtifactPath(formats strfmt.Registry) error {
 
 	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsImageRecordUpdate) validateCoreDumpEnabled(formats strfmt.Registry) error {
-
-	if err := validate.Required("coreDumpEnabled", "body", m.CoreDumpEnabled); err != nil {
 		return err
 	}
 

@@ -1796,6 +1796,13 @@
         "summary": "A generic query to get a set of events based on the provided filters",
         "tags": [
           "Event V2"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1892,12 +1899,19 @@
         "summary": "Get events from a specific user",
         "tags": [
           "Event V2"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ]
+          }
         ]
       }
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Available Type: \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;displayname\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;dateofbirth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;country\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;language\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Requires a valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Available Type:\n\t\t\t\t* email\n\t\t\t\t* password\n\t\t\t\t* displayname\n\t\t\t\t* dateofbirth\n\t\t\t\t* country\n\t\t\t\t* language\n\n\t\tRequires valid user access token\n\t\t",
         "operationId": "GetPublicEditHistory",
         "parameters": [
           {
@@ -1982,12 +1996,15 @@
         "summary": "Get a user edit history based on the provided type",
         "tags": [
           "Event V2"
+        ],
+        "x-security": [
+          {}
         ]
       }
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Requires valid user access token",
         "operationId": "GetUserEventsV2Public",
         "parameters": [
           {
@@ -2072,6 +2089,9 @@
         "summary": "Get events from a specific user",
         "tags": [
           "Event V2"
+        ],
+        "x-security": [
+          {}
         ]
       }
     }
@@ -2481,11 +2501,11 @@
     "path": "/event/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-06-19T01:07:11+00:00",
-    "gitHash": "49597c305fc6af8884373d7bceca0cc04cb10d13",
+    "buildDate": "2023-10-20T07:18:43+00:00",
+    "gitHash": "131571969f968bb9ed5d99d5c709bf067622e29a",
     "name": "justice-event-log-service",
     "realm": "demo",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "version-roles-seeding": "0.0.3"
   }
 }

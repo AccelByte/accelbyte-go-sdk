@@ -1,3 +1,19 @@
+<a name="v0.56.0"></a>
+## [v0.56.0]
+### chore
+- **:** update inventory.json
+- **:** regenerate inventory service
+- **:** update CHANGELOG.m
+### feat
+- **auth:** add warning when using a public oauth client
+- **iam:** add login with scope
+### docs
+- **auth:** add warning about using public oauth client
+### test
+- **auth:** add test for public oauth client
+- **iam:** add test for login with scope
+
+
 <a name="v0.55.1"></a>
 ## [v0.55.1]
 ### chore

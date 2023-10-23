@@ -20,6 +20,13 @@
 |---|---|---|---|---|---|
 | `/session/v1/admin/environment-variables` | GET | AdminListEnvironmentVariablesShort | [AdminListEnvironmentVariablesShort](../../session-sdk/pkg/sessionclient/environment_variable/environment_variable_client.go) | [AdminListEnvironmentVariablesShort](../../services-api/pkg/service/session/environmentVariable.go) | [AdminListEnvironmentVariablesShort](../../samples/cli/cmd/session/environmentVariable/adminListEnvironmentVariables.go) |
 
+### Global Configuration Wrapper:  [GlobalConfiguration](../../services-api/pkg/service/session/globalConfiguration.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/global-configurations` | GET | AdminListGlobalConfigurationShort | [AdminListGlobalConfigurationShort](../../session-sdk/pkg/sessionclient/global_configuration/global_configuration_client.go) | [AdminListGlobalConfigurationShort](../../services-api/pkg/service/session/globalConfiguration.go) | [AdminListGlobalConfigurationShort](../../samples/cli/cmd/session/globalConfiguration/adminListGlobalConfiguration.go) |
+| `/session/v1/admin/global-configurations` | PUT | AdminUpdateGlobalConfigurationShort | [AdminUpdateGlobalConfigurationShort](../../session-sdk/pkg/sessionclient/global_configuration/global_configuration_client.go) | [AdminUpdateGlobalConfigurationShort](../../services-api/pkg/service/session/globalConfiguration.go) | [AdminUpdateGlobalConfigurationShort](../../samples/cli/cmd/session/globalConfiguration/adminUpdateGlobalConfiguration.go) |
+| `/session/v1/admin/global-configurations` | DELETE | AdminDeleteGlobalConfigurationShort | [AdminDeleteGlobalConfigurationShort](../../session-sdk/pkg/sessionclient/global_configuration/global_configuration_client.go) | [AdminDeleteGlobalConfigurationShort](../../services-api/pkg/service/session/globalConfiguration.go) | [AdminDeleteGlobalConfigurationShort](../../samples/cli/cmd/session/globalConfiguration/adminDeleteGlobalConfiguration.go) |
+
 ### Configuration Template Wrapper:  [ConfigurationTemplate](../../services-api/pkg/service/session/configurationTemplate.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -43,7 +50,7 @@
 | `/session/v1/admin/namespaces/{namespace}/gamesessions/bulk` | DELETE | AdminDeleteBulkGameSessionsShort | [AdminDeleteBulkGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminDeleteBulkGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [AdminDeleteBulkGameSessionsShort](../../samples/cli/cmd/session/gameSession/adminDeleteBulkGameSessions.go) |
 | `/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/status/{statusType}` | PUT | AdminUpdateGameSessionMemberShort | [AdminUpdateGameSessionMemberShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminUpdateGameSessionMemberShort](../../services-api/pkg/service/session/gameSession.go) | [AdminUpdateGameSessionMemberShort](../../samples/cli/cmd/session/gameSession/adminUpdateGameSessionMember.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesession` | POST | CreateGameSessionShort | [CreateGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [CreateGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [CreateGameSessionShort](../../samples/cli/cmd/session/gameSession/createGameSession.go) |
-| `/session/v1/public/namespaces/{namespace}/gamesessions` | POST | PublicQueryGameSessionsShort | [PublicQueryGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryGameSessionsShort](../../samples/cli/cmd/session/gameSession/publicQueryGameSessions.go) |
+| `/session/v1/public/namespaces/{namespace}/gamesessions` | POST | PublicQueryGameSessionsByAttributesShort | [PublicQueryGameSessionsByAttributesShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryGameSessionsByAttributesShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryGameSessionsByAttributesShort](../../samples/cli/cmd/session/gameSession/publicQueryGameSessionsByAttributes.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions/join/code` | POST | PublicSessionJoinCodeShort | [PublicSessionJoinCodeShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicSessionJoinCodeShort](../../services-api/pkg/service/session/gameSession.go) | [PublicSessionJoinCodeShort](../../samples/cli/cmd/session/gameSession/publicSessionJoinCode.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions/servers/{podName}` | GET | GetGameSessionByPodNameShort | [GetGameSessionByPodNameShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [GetGameSessionByPodNameShort](../../services-api/pkg/service/session/gameSession.go) | [GetGameSessionByPodNameShort](../../samples/cli/cmd/session/gameSession/getGameSessionByPodName.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}` | GET | GetGameSessionShort | [GetGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [GetGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [GetGameSessionShort](../../samples/cli/cmd/session/gameSession/getGameSession.go) |
@@ -128,6 +135,7 @@
 | `apimodels.EnvironmentVariableResponse` | [ApimodelsEnvironmentVariableResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_environment_variable_response.go) |
 | `apimodels.GameSessionQueryResponse` | [ApimodelsGameSessionQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_query_response.go) |
 | `apimodels.GameSessionResponse` | [ApimodelsGameSessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_response.go) |
+| `apimodels.GlobalConfigurationResponse` | [ApimodelsGlobalConfigurationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_global_configuration_response.go) |
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |
 | `apimodels.KickResponse` | [ApimodelsKickResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_kick_response.go) |
 | `apimodels.Pagination` | [ApimodelsPagination ](../../session-sdk/pkg/sessionclientmodels/apimodels_pagination.go) |
@@ -140,6 +148,7 @@
 | `apimodels.PlayersCurrentPlatformResponse` | [ApimodelsPlayersCurrentPlatformResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_players_current_platform_response.go) |
 | `apimodels.PromoteLeaderRequest` | [ApimodelsPromoteLeaderRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_promote_leader_request.go) |
 | `apimodels.PublicConfiguration` | [ApimodelsPublicConfiguration ](../../session-sdk/pkg/sessionclientmodels/apimodels_public_configuration.go) |
+| `apimodels.PutGlobalConfigurationRequest` | [ApimodelsPutGlobalConfigurationRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_put_global_configuration_request.go) |
 | `apimodels.PutPlatformCredentialsRequest` | [ApimodelsPutPlatformCredentialsRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_put_platform_credentials_request.go) |
 | `apimodels.RequestMember` | [ApimodelsRequestMember ](../../session-sdk/pkg/sessionclientmodels/apimodels_request_member.go) |
 | `apimodels.ResponseDeleteBulkGameSessions` | [ApimodelsResponseDeleteBulkGameSessions ](../../session-sdk/pkg/sessionclientmodels/apimodels_response_delete_bulk_game_sessions.go) |

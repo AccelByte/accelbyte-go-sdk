@@ -40,8 +40,8 @@ type ClientService interface {
 	AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, error)
 	CreateGameSession(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, *CreateGameSessionBadRequest, *CreateGameSessionUnauthorized, *CreateGameSessionForbidden, *CreateGameSessionInternalServerError, error)
 	CreateGameSessionShort(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, error)
-	PublicQueryGameSessions(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, *PublicQueryGameSessionsBadRequest, *PublicQueryGameSessionsUnauthorized, *PublicQueryGameSessionsForbidden, *PublicQueryGameSessionsInternalServerError, error)
-	PublicQueryGameSessionsShort(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, error)
+	PublicQueryGameSessionsByAttributes(params *PublicQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsByAttributesOK, *PublicQueryGameSessionsByAttributesBadRequest, *PublicQueryGameSessionsByAttributesUnauthorized, *PublicQueryGameSessionsByAttributesForbidden, *PublicQueryGameSessionsByAttributesInternalServerError, error)
+	PublicQueryGameSessionsByAttributesShort(params *PublicQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsByAttributesOK, error)
 	PublicSessionJoinCode(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, *PublicSessionJoinCodeBadRequest, *PublicSessionJoinCodeUnauthorized, *PublicSessionJoinCodeForbidden, *PublicSessionJoinCodeNotFound, *PublicSessionJoinCodeInternalServerError, error)
 	PublicSessionJoinCodeShort(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, error)
 	GetGameSessionByPodName(params *GetGameSessionByPodNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameSessionByPodNameOK, *GetGameSessionByPodNameBadRequest, *GetGameSessionByPodNameUnauthorized, *GetGameSessionByPodNameForbidden, *GetGameSessionByPodNameNotFound, *GetGameSessionByPodNameInternalServerError, error)
@@ -726,9 +726,9 @@ func (a *Client) CreateGameSessionShort(params *CreateGameSessionParams, authInf
 }
 
 /*
-Deprecated: 2022-08-10 - Use PublicQueryGameSessionsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryGameSessionsByAttributesShort instead.
 
-PublicQueryGameSessions query game sessions
+PublicQueryGameSessionsByAttributes query game sessions
 Query game sessions.
 
 By default, API will return a list of available game sessions (joinability: open).
@@ -743,10 +743,10 @@ all: return all sessions regardless it's full
 full: only return active sessions
 default behavior (unset or else): return only available sessions (not full)
 */
-func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, *PublicQueryGameSessionsBadRequest, *PublicQueryGameSessionsUnauthorized, *PublicQueryGameSessionsForbidden, *PublicQueryGameSessionsInternalServerError, error) {
+func (a *Client) PublicQueryGameSessionsByAttributes(params *PublicQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsByAttributesOK, *PublicQueryGameSessionsByAttributesBadRequest, *PublicQueryGameSessionsByAttributesUnauthorized, *PublicQueryGameSessionsByAttributesForbidden, *PublicQueryGameSessionsByAttributesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryGameSessionsParams()
+		params = NewPublicQueryGameSessionsByAttributesParams()
 	}
 
 	if params.Context == nil {
@@ -758,14 +758,14 @@ func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryGameSessions",
+		ID:                 "publicQueryGameSessionsByAttributes",
 		Method:             "POST",
 		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryGameSessionsReader{formats: a.formats},
+		Reader:             &PublicQueryGameSessionsByAttributesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -776,19 +776,19 @@ func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, 
 
 	switch v := result.(type) {
 
-	case *PublicQueryGameSessionsOK:
+	case *PublicQueryGameSessionsByAttributesOK:
 		return v, nil, nil, nil, nil, nil
 
-	case *PublicQueryGameSessionsBadRequest:
+	case *PublicQueryGameSessionsByAttributesBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *PublicQueryGameSessionsUnauthorized:
+	case *PublicQueryGameSessionsByAttributesUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *PublicQueryGameSessionsForbidden:
+	case *PublicQueryGameSessionsByAttributesForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *PublicQueryGameSessionsInternalServerError:
+	case *PublicQueryGameSessionsByAttributesInternalServerError:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -797,7 +797,7 @@ func (a *Client) PublicQueryGameSessions(params *PublicQueryGameSessionsParams, 
 }
 
 /*
-PublicQueryGameSessionsShort query game sessions
+PublicQueryGameSessionsByAttributesShort query game sessions
 Query game sessions.
 
 By default, API will return a list of available game sessions (joinability: open).
@@ -812,10 +812,10 @@ all: return all sessions regardless it's full
 full: only return active sessions
 default behavior (unset or else): return only available sessions (not full)
 */
-func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsOK, error) {
+func (a *Client) PublicQueryGameSessionsByAttributesShort(params *PublicQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionsByAttributesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryGameSessionsParams()
+		params = NewPublicQueryGameSessionsByAttributesParams()
 	}
 
 	if params.Context == nil {
@@ -827,14 +827,14 @@ func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsPar
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryGameSessions",
+		ID:                 "publicQueryGameSessionsByAttributes",
 		Method:             "POST",
 		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryGameSessionsReader{formats: a.formats},
+		Reader:             &PublicQueryGameSessionsByAttributesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -845,15 +845,15 @@ func (a *Client) PublicQueryGameSessionsShort(params *PublicQueryGameSessionsPar
 
 	switch v := result.(type) {
 
-	case *PublicQueryGameSessionsOK:
+	case *PublicQueryGameSessionsByAttributesOK:
 		return v, nil
-	case *PublicQueryGameSessionsBadRequest:
+	case *PublicQueryGameSessionsByAttributesBadRequest:
 		return nil, v
-	case *PublicQueryGameSessionsUnauthorized:
+	case *PublicQueryGameSessionsByAttributesUnauthorized:
 		return nil, v
-	case *PublicQueryGameSessionsForbidden:
+	case *PublicQueryGameSessionsByAttributesForbidden:
 		return nil, v
-	case *PublicQueryGameSessionsInternalServerError:
+	case *PublicQueryGameSessionsByAttributesInternalServerError:
 		return nil, v
 
 	default:

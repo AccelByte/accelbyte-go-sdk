@@ -30,6 +30,7 @@ var AdminSearchChannelSpecificContentCmd = &cobra.Command{
 		channelId, _ := cmd.Flags().GetString("channelId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		creator, _ := cmd.Flags().GetString("creator")
+		ishidden, _ := cmd.Flags().GetString("ishidden")
 		isofficial, _ := cmd.Flags().GetString("isofficial")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		name, _ := cmd.Flags().GetString("name")
@@ -49,6 +50,7 @@ var AdminSearchChannelSpecificContentCmd = &cobra.Command{
 			ChannelID:  channelId,
 			Namespace:  namespace,
 			Creator:    &creator,
+			Ishidden:   &ishidden,
 			Isofficial: &isofficial,
 			Limit:      &limit,
 			Name:       &name,
@@ -79,6 +81,7 @@ func init() {
 	AdminSearchChannelSpecificContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminSearchChannelSpecificContentCmd.MarkFlagRequired("namespace")
 	AdminSearchChannelSpecificContentCmd.Flags().String("creator", "", "Creator")
+	AdminSearchChannelSpecificContentCmd.Flags().String("ishidden", "", "Ishidden")
 	AdminSearchChannelSpecificContentCmd.Flags().String("isofficial", "", "Isofficial")
 	AdminSearchChannelSpecificContentCmd.Flags().Int64("limit", 20, "Limit")
 	AdminSearchChannelSpecificContentCmd.Flags().String("name", "", "Name")

@@ -387,6 +387,7 @@ func init() {
 	PlatformCmd.AddCommand(category.PublicGetChildCategoriesCmd)
 	PlatformCmd.AddCommand(category.PublicGetDescendantCategoriesCmd)
 	PlatformCmd.AddCommand(currency.PublicListCurrenciesCmd)
+	PlatformCmd.AddCommand(dlc.GeDLCDurableRewardShortMapCmd)
 	PlatformCmd.AddCommand(iap.GetIAPItemMappingCmd)
 	PlatformCmd.AddCommand(item.PublicGetItemByAppIdCmd)
 	PlatformCmd.AddCommand(item.PublicQueryItemsCmd)

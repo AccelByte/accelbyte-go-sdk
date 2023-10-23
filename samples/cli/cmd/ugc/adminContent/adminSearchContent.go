@@ -29,6 +29,7 @@ var AdminSearchContentCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		creator, _ := cmd.Flags().GetString("creator")
+		ishidden, _ := cmd.Flags().GetString("ishidden")
 		isofficial, _ := cmd.Flags().GetString("isofficial")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		name, _ := cmd.Flags().GetString("name")
@@ -47,6 +48,7 @@ var AdminSearchContentCmd = &cobra.Command{
 		input := &admin_content.AdminSearchContentParams{
 			Namespace:  namespace,
 			Creator:    &creator,
+			Ishidden:   &ishidden,
 			Isofficial: &isofficial,
 			Limit:      &limit,
 			Name:       &name,
@@ -75,6 +77,7 @@ func init() {
 	AdminSearchContentCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminSearchContentCmd.MarkFlagRequired("namespace")
 	AdminSearchContentCmd.Flags().String("creator", "", "Creator")
+	AdminSearchContentCmd.Flags().String("ishidden", "", "Ishidden")
 	AdminSearchContentCmd.Flags().String("isofficial", "", "Isofficial")
 	AdminSearchContentCmd.Flags().Int64("limit", 20, "Limit")
 	AdminSearchContentCmd.Flags().String("name", "", "Name")

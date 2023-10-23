@@ -66,8 +66,12 @@ type ClientService interface {
 	AdminDeleteContentScreenshotShort(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, error)
 	ListContentVersions(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, *ListContentVersionsUnauthorized, *ListContentVersionsNotFound, *ListContentVersionsInternalServerError, error)
 	ListContentVersionsShort(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, error)
+	AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error)
+	AdminUpdateContentS3ByShareCodeShort(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, error)
 	AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error)
 	AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error)
+	DeleteContentByShareCode(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, *DeleteContentByShareCodeUnauthorized, *DeleteContentByShareCodeNotFound, *DeleteContentByShareCodeInternalServerError, error)
+	DeleteContentByShareCodeShort(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, error)
 	AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error)
 	AdminUpdateContentDirectShort(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, error)
 	AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error)
@@ -2229,6 +2233,159 @@ func (a *Client) ListContentVersionsShort(params *ListContentVersionsParams, aut
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminUpdateContentS3ByShareCodeShort instead.
+
+AdminUpdateContentS3ByShareCode update content to s3 bucket by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+All request body are required except `payload`, `preview`, `tags`,`contentType`, `updateContentFile`, `customAttributes` and `shareCode`.
+
+`contentType` values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+
+If not specified, it will use `fileExtension` value.
+
+To update content file, set `updateContentFile` to `true` and upload the file using URL in `payloadURL.url` in response body.
+
+`shareCode` format should follows:
+
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+
+
+
+
+ NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
+*/
+func (a *Client) AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateContentS3ByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateContentS3ByShareCode",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateContentS3ByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateContentS3ByShareCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdateContentS3ByShareCodeShort update content to s3 bucket by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+All request body are required except `payload`, `preview`, `tags`,`contentType`, `updateContentFile`, `customAttributes` and `shareCode`.
+
+`contentType` values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+
+If not specified, it will use `fileExtension` value.
+
+To update content file, set `updateContentFile` to `true` and upload the file using URL in `payloadURL.url` in response body.
+
+`shareCode` format should follows:
+
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+
+
+
+
+ NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
+*/
+func (a *Client) AdminUpdateContentS3ByShareCodeShort(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateContentS3ByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateContentS3ByShareCode",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateContentS3ByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateContentS3ByShareCodeOK:
+		return v, nil
+	case *AdminUpdateContentS3ByShareCodeBadRequest:
+		return nil, v
+	case *AdminUpdateContentS3ByShareCodeUnauthorized:
+		return nil, v
+	case *AdminUpdateContentS3ByShareCodeNotFound:
+		return nil, v
+	case *AdminUpdateContentS3ByShareCodeConflict:
+		return nil, v
+	case *AdminUpdateContentS3ByShareCodeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpdateContentS3Short instead.
 
 AdminUpdateContentS3 update content to s3 bucket
@@ -2374,6 +2531,113 @@ func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, a
 	case *AdminUpdateContentS3Conflict:
 		return nil, v
 	case *AdminUpdateContentS3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteContentByShareCodeShort instead.
+
+DeleteContentByShareCode delete content by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) DeleteContentByShareCode(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, *DeleteContentByShareCodeUnauthorized, *DeleteContentByShareCodeNotFound, *DeleteContentByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteContentByShareCode",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteContentByShareCodeNoContent:
+		return v, nil, nil, nil, nil
+
+	case *DeleteContentByShareCodeUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *DeleteContentByShareCodeNotFound:
+		return nil, nil, v, nil, nil
+
+	case *DeleteContentByShareCodeInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteContentByShareCodeShort delete content by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) DeleteContentByShareCodeShort(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteContentByShareCode",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteContentByShareCodeNoContent:
+		return v, nil
+	case *DeleteContentByShareCodeUnauthorized:
+		return nil, v
+	case *DeleteContentByShareCodeNotFound:
+		return nil, v
+	case *DeleteContentByShareCodeInternalServerError:
 		return nil, v
 
 	default:

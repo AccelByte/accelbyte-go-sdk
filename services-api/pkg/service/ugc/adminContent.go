@@ -468,6 +468,35 @@ func (aaa *AdminContentService) ListContentVersions(input *admin_content.ListCon
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminUpdateContentS3ByShareCodeShort instead.
+func (aaa *AdminContentService) AdminUpdateContentS3ByShareCode(input *admin_content.AdminUpdateContentS3ByShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3ByShareCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpdateContentS3Short instead.
 func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -495,6 +524,29 @@ func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminU
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DeleteContentByShareCodeShort instead.
+func (aaa *AdminContentService) DeleteContentByShareCode(input *admin_content.DeleteContentByShareCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.DeleteContentByShareCode(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use AdminUpdateContentDirectShort instead.
@@ -1042,6 +1094,31 @@ func (aaa *AdminContentService) ListContentVersionsShort(input *admin_content.Li
 	return ok.GetPayload(), nil
 }
 
+func (aaa *AdminContentService) AdminUpdateContentS3ByShareCodeShort(input *admin_content.AdminUpdateContentS3ByShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContent.AdminUpdateContentS3ByShareCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -1065,6 +1142,31 @@ func (aaa *AdminContentService) AdminUpdateContentS3Short(input *admin_content.A
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentService) DeleteContentByShareCodeShort(input *admin_content.DeleteContentByShareCodeParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AdminContent.DeleteContentByShareCodeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {

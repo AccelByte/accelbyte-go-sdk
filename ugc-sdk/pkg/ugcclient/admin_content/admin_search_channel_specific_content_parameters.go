@@ -100,6 +100,11 @@ type AdminSearchChannelSpecificContentParams struct {
 
 	*/
 	Creator *string
+	/*Ishidden
+	  set to true to list only hidden contents, false to list only non-hidden contents
+
+	*/
+	Ishidden *string
 	/*Isofficial
 	  filter only official contents (boolean)
 
@@ -235,6 +240,17 @@ func (o *AdminSearchChannelSpecificContentParams) WithCreator(creator *string) *
 // SetCreator adds the creator to the admin search channel specific content params
 func (o *AdminSearchChannelSpecificContentParams) SetCreator(creator *string) {
 	o.Creator = creator
+}
+
+// WithIshidden adds the ishidden to the admin search channel specific content params
+func (o *AdminSearchChannelSpecificContentParams) WithIshidden(ishidden *string) *AdminSearchChannelSpecificContentParams {
+	o.SetIshidden(ishidden)
+	return o
+}
+
+// SetIshidden adds the ishidden to the admin search channel specific content params
+func (o *AdminSearchChannelSpecificContentParams) SetIshidden(ishidden *string) {
+	o.Ishidden = ishidden
 }
 
 // WithIsofficial adds the isofficial to the admin search channel specific content params
@@ -375,6 +391,22 @@ func (o *AdminSearchChannelSpecificContentParams) WriteToRequest(r runtime.Clien
 		qCreator := qrCreator
 		if qCreator != "" {
 			if err := r.SetQueryParam("creator", qCreator); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Ishidden != nil {
+
+		// query param ishidden
+		var qrIshidden string
+		if o.Ishidden != nil {
+			qrIshidden = *o.Ishidden
+		}
+		qIshidden := qrIshidden
+		if qIshidden != "" {
+			if err := r.SetQueryParam("ishidden", qIshidden); err != nil {
 				return err
 			}
 		}

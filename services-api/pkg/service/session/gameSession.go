@@ -163,13 +163,13 @@ func (aaa *GameSessionService) CreateGameSession(input *game_session.CreateGameS
 	return created.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PublicQueryGameSessionsShort instead.
-func (aaa *GameSessionService) PublicQueryGameSessions(input *game_session.PublicQueryGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
+// Deprecated: 2022-01-10 - please use PublicQueryGameSessionsByAttributesShort instead.
+func (aaa *GameSessionService) PublicQueryGameSessionsByAttributes(input *game_session.PublicQueryGameSessionsByAttributesParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameSession.PublicQueryGameSessions(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameSession.PublicQueryGameSessionsByAttributes(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -760,7 +760,7 @@ func (aaa *GameSessionService) CreateGameSessionShort(input *game_session.Create
 	return created.GetPayload(), nil
 }
 
-func (aaa *GameSessionService) PublicQueryGameSessionsShort(input *game_session.PublicQueryGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
+func (aaa *GameSessionService) PublicQueryGameSessionsByAttributesShort(input *game_session.PublicQueryGameSessionsByAttributesParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -777,7 +777,7 @@ func (aaa *GameSessionService) PublicQueryGameSessionsShort(input *game_session.
 		}
 	}
 
-	ok, err := aaa.Client.GameSession.PublicQueryGameSessionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.GameSession.PublicQueryGameSessionsByAttributesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -110,7 +110,7 @@ func NewGetDLCItemConfigNotFound() *GetDLCItemConfigNotFound {
 
 /*GetDLCItemConfigNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>DLC item config cannot be found in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39442</td><td>DLC item config cannot be found in namespace [{namespace}]</td></tr></table>
 */
 type GetDLCItemConfigNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

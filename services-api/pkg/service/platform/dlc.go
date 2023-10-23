@@ -157,6 +157,23 @@ func (aaa *DLCService) GetUserDLC(input *dlc.GetUserDLCParams) ([]*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GeDLCDurableRewardShortMapShort instead.
+func (aaa *DLCService) GeDLCDurableRewardShortMap(input *dlc.GeDLCDurableRewardShortMapParams) (*platformclientmodels.DLCConfigRewardShortInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.DLC.GeDLCDurableRewardShortMap(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use SyncEpicGameDLCShort instead.
 func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -452,6 +469,31 @@ func (aaa *DLCService) GetUserDLCShort(input *dlc.GetUserDLCParams) ([]*platform
 	}
 
 	ok, err := aaa.Client.DLC.GetUserDLCShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *DLCService) GeDLCDurableRewardShortMapShort(input *dlc.GeDLCDurableRewardShortMapParams) (*platformclientmodels.DLCConfigRewardShortInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.DLC.GeDLCDurableRewardShortMapShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

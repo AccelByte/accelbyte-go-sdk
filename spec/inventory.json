@@ -59,7 +59,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tCreate chaining Operations.\n\t\t\tThis process will run sequentially \n\t\t\t1. remove item process\n\t\t\t2. consume item process\n\t\t\t3. update item process\n\t\t\t4. create item process\n               if toSpecificInventory set as true, then inventoryId field will be mandatory, vice versa\n\t\t\t\n\t\t\tThe behavior of each process is same with current admin level endpoint\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tCreate chaining Operations.\n\t\t\tThis process will run sequentially \n\t\t\t1. remove item process\n\t\t\t2. consume item process\n\t\t\t3. update item process\n\t\t\t4. create item process\n               if toSpecificInventory set as true, then inventoryId field will be mandatory, vice versa\n\t\t\t\n\t\t\tThe behavior of each process is same with current admin level endpoint\n\n\t\t\trequestId: Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, \n\t\t\t\t\t   it will return original successful response\n\t\t\treplayed : replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminCreateChainingOperations",
         "parameters": [
           {
@@ -2690,8 +2690,7 @@
       },
       "required": [
         "message",
-        "operations",
-        "requestId"
+        "operations"
       ]
     },
     "apimodels.ChainingOperationResp": {
@@ -2702,13 +2701,16 @@
         "message": {
           "type": "string"
         },
+        "replayed": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "requestId": {
           "type": "string"
         }
       },
       "required": [
-        "message",
-        "requestId"
+        "message"
       ]
     },
     "apimodels.ConsumeItem": {
@@ -3628,8 +3630,8 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-12T04:09:01+00:00",
-    "gitHash": "64409d1ca0958ff584f6e8ca6e21994b95437fd7",
+    "buildDate": "2023-10-17T02:57:56+00:00",
+    "gitHash": "b36f05c9a60ccb266ac183be74d51879cd9e2cd1",
     "name": "justice-inventory-service",
     "realm": "staging",
     "version": "0.1.0",

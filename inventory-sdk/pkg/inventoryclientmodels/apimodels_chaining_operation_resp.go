@@ -25,9 +25,11 @@ type ApimodelsChainingOperationResp struct {
 	// Required: true
 	Message *string `json:"message"`
 
+	// replayed
+	Replayed bool `json:"replayed"`
+
 	// requestid
-	// Required: true
-	RequestID *string `json:"requestId"`
+	RequestID string `json:"requestId,omitempty"`
 }
 
 // Validate validates this Apimodels chaining operation resp
@@ -35,9 +37,6 @@ func (m *ApimodelsChainingOperationResp) Validate(formats strfmt.Registry) error
 	var res []error
 
 	if err := m.validateMessage(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRequestID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,15 +49,6 @@ func (m *ApimodelsChainingOperationResp) Validate(formats strfmt.Registry) error
 func (m *ApimodelsChainingOperationResp) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsChainingOperationResp) validateRequestID(formats strfmt.Registry) error {
-
-	if err := validate.Required("requestId", "body", m.RequestID); err != nil {
 		return err
 	}
 

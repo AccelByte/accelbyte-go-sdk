@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.14.0"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -640,6 +640,12 @@
             "type": "string"
           },
           {
+            "description": "set to true to list only hidden contents, false to list only non-hidden contents",
+            "in": "query",
+            "name": "ishidden",
+            "type": "string"
+          },
+          {
             "description": "filter only official contents (boolean)",
             "in": "query",
             "name": "isofficial",
@@ -1067,6 +1073,12 @@
             "description": "creator name",
             "in": "query",
             "name": "creator",
+            "type": "string"
+          },
+          {
+            "description": "set to true to list only hidden contents, false to list only non-hidden contents",
+            "in": "query",
+            "name": "ishidden",
             "type": "string"
           },
           {
@@ -3127,6 +3139,106 @@
         ]
       }
     },
+    "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\n\nAll request body are required except \u0026lt;code\u0026gt;payload\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;preview\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;tags\u0026lt;/code\u0026gt;,\u0026lt;code\u0026gt;contentType\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;updateContentFile\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;customAttributes\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;shareCode\u0026lt;/code\u0026gt;.\n\n\u0026lt;code\u0026gt;contentType\u0026lt;/code\u0026gt; values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.\n\nIf not specified, it will use \u0026lt;code\u0026gt;fileExtension\u0026lt;/code\u0026gt; value.\n\nTo update content file, set \u0026lt;code\u0026gt;updateContentFile\u0026lt;/code\u0026gt; to \u0026lt;code\u0026gt;true\u0026lt;/code\u0026gt; and upload the file using URL in \u0026lt;code\u0026gt;payloadURL.url\u0026lt;/code\u0026gt; in response body.\n\n\u0026lt;code\u0026gt;shareCode\u0026lt;/code\u0026gt; format should follows:\n\nMax length: 7\nAvailable characters: abcdefhkpqrstuxyz\n\n\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminUpdateContentS3ByShareCode",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminUpdateContentRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "share code",
+            "in": "path",
+            "name": "shareCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content to S3 bucket by share code",
+        "tags": [
+          "Admin Content"
+        ]
+      }
+    },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}": {
       "put": {
         "consumes": [
@@ -3222,6 +3334,83 @@
           }
         ],
         "summary": "Update content to S3 bucket",
+        "tags": [
+          "Admin Content"
+        ]
+      }
+    },
+    "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.",
+        "operationId": "DeleteContentByShareCode",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "share code",
+            "in": "path",
+            "name": "shareCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete content by share code",
         "tags": [
           "Admin Content"
         ]
@@ -4166,6 +4355,12 @@
             "type": "string"
           },
           {
+            "description": "set to true to list only hidden contents, false to list only non-hidden contents",
+            "in": "query",
+            "name": "ishidden",
+            "type": "string"
+          },
+          {
             "description": "filter only official contents (boolean)",
             "in": "query",
             "name": "isofficial",
@@ -4292,6 +4487,12 @@
             "description": "creator name",
             "in": "query",
             "name": "creator",
+            "type": "string"
+          },
+          {
+            "description": "set to true to list only hidden contents, false to list only non-hidden contents",
+            "in": "query",
+            "name": "ishidden",
             "type": "string"
           },
           {
@@ -8619,11 +8820,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-09-25T03:12:21+00:00",
-    "gitHash": "76dfa61234ce25906259ac6e273c2f3ed9fa1dc9",
+    "buildDate": "2023-10-20T06:41:14+00:00",
+    "gitHash": "c0918ee4eeeb8d83773436838c78556636555284",
     "name": "justice-ugc-service",
     "realm": "demo",
-    "version": "2.14.0",
+    "version": "2.15.0",
     "version-roles-seeding": "0.0.13"
   }
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/session/dsmcDefaultConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/session/environmentVariable"
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
+	"github.com/AccelByte/sample-apps/cmd/session/globalConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
 	"github.com/AccelByte/sample-apps/cmd/session/platformCredential"
@@ -30,6 +31,9 @@ func init() {
 	SessionCmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
 	SessionCmd.AddCommand(dsmcDefaultConfiguration.AdminGetDSMCConfigurationDefaultCmd)
 	SessionCmd.AddCommand(environmentVariable.AdminListEnvironmentVariablesCmd)
+	SessionCmd.AddCommand(globalConfiguration.AdminListGlobalConfigurationCmd)
+	SessionCmd.AddCommand(globalConfiguration.AdminUpdateGlobalConfigurationCmd)
+	SessionCmd.AddCommand(globalConfiguration.AdminDeleteGlobalConfigurationCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminGetConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminUpdateConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminCreateConfigurationAlertV1Cmd)
@@ -55,7 +59,7 @@ func init() {
 	SessionCmd.AddCommand(player.AdminQueryPlayerAttributesCmd)
 	SessionCmd.AddCommand(player.AdminGetPlayerAttributesCmd)
 	SessionCmd.AddCommand(gameSession.CreateGameSessionCmd)
-	SessionCmd.AddCommand(gameSession.PublicQueryGameSessionsCmd)
+	SessionCmd.AddCommand(gameSession.PublicQueryGameSessionsByAttributesCmd)
 	SessionCmd.AddCommand(gameSession.PublicSessionJoinCodeCmd)
 	SessionCmd.AddCommand(gameSession.GetGameSessionByPodNameCmd)
 	SessionCmd.AddCommand(gameSession.GetGameSessionCmd)

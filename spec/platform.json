@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.37.1"
+    "version": "4.38.0"
   },
   "schemes": [
     "https"
@@ -3236,7 +3236,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39341\u003c/td\u003e\u003ctd\u003eDLC item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39442\u003c/td\u003e\u003ctd\u003eDLC item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -22374,6 +22374,56 @@
         ]
       }
     },
+    "/platform/public/namespaces/{namespace}/dlc/rewards/durable/map": {
+      "get": {
+        "description": "Get dlc reward simple map, only return the sku of durable item reward\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: Authorized user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "geDLCDurableRewardShortMap",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "EPICGAMES",
+              "OCULUS",
+              "PSN",
+              "STEAM",
+              "XBOX"
+            ],
+            "in": "query",
+            "name": "dlcType",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DLCConfigRewardShortInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39442\u003c/td\u003e\u003ctd\u003eDLC item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39441\u003c/td\u003e\u003ctd\u003ePlatform dlc config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get dlc durable reward simple map",
+        "tags": [
+          "DLC"
+        ]
+      }
+    },
     "/platform/public/namespaces/{namespace}/iap/item/mapping": {
       "get": {
         "description": "Get iap item mapping.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -31452,6 +31502,32 @@
       "properties": {
         "settings": {
           "description": "settings",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DLCConfigRewardShortInfo": {
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": "reward map, key is third-party platform DLC id, value is specific item sets",
+          "type": "object"
+        },
+        "dlcType": {
+          "description": "dlc type",
+          "enum": [
+            "EPICGAMES",
+            "OCULUS",
+            "PSN",
+            "STEAM",
+            "XBOX"
+          ],
           "type": "string"
         }
       },
@@ -44318,16 +44394,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-10-07T11:49:46+00:00",
-    "buildID": "4.37.1",
+    "buildDate": "2023-10-20T07:26:31+00:00",
+    "buildID": "4.38.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "feef063846",
-    "gitTag": "4.37.1",
+    "gitHash": "ced8bd68ab",
+    "gitTag": "4.38.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.37.1",
+    "version": "4.38.0",
     "version-roles-seeding": "0.0.43"
   }
 }

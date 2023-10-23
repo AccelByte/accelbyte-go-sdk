@@ -23,8 +23,7 @@ type ModelsCreateImageRequest struct {
 	ArtifactPath *string `json:"artifactPath"`
 
 	// coredumpenabled
-	// Required: true
-	CoreDumpEnabled *bool `json:"coreDumpEnabled"`
+	CoreDumpEnabled bool `json:"coreDumpEnabled"`
 
 	// dockerpath
 	// Required: true
@@ -48,9 +47,8 @@ type ModelsCreateImageRequest struct {
 	Persistent *bool `json:"persistent"`
 
 	// ulimitfilesize
-	// Required: true
 	// Format: int32
-	UlimitFileSize *int32 `json:"ulimitFileSize"`
+	UlimitFileSize int32 `json:"ulimitFileSize,omitempty"`
 
 	// version
 	// Required: true
@@ -62,9 +60,6 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateArtifactPath(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateCoreDumpEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateDockerPath(formats); err != nil {
@@ -82,9 +77,6 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	if err := m.validatePersistent(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateUlimitFileSize(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -98,15 +90,6 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 func (m *ModelsCreateImageRequest) validateArtifactPath(formats strfmt.Registry) error {
 
 	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCreateImageRequest) validateCoreDumpEnabled(formats strfmt.Registry) error {
-
-	if err := validate.Required("coreDumpEnabled", "body", m.CoreDumpEnabled); err != nil {
 		return err
 	}
 
@@ -152,15 +135,6 @@ func (m *ModelsCreateImageRequest) validateNamespace(formats strfmt.Registry) er
 func (m *ModelsCreateImageRequest) validatePersistent(formats strfmt.Registry) error {
 
 	if err := validate.Required("persistent", "body", m.Persistent); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCreateImageRequest) validateUlimitFileSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("ulimitFileSize", "body", m.UlimitFileSize); err != nil {
 		return err
 	}
 

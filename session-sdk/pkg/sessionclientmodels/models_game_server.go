@@ -35,12 +35,10 @@ type ModelsGameServer struct {
 	GameVersion string `json:"game_version,omitempty"`
 
 	// image_version
-	// Required: true
-	ImageVersion *string `json:"image_version"`
+	ImageVersion string `json:"image_version,omitempty"`
 
 	// ip
-	// Required: true
-	IP *string `json:"ip"`
+	IP string `json:"ip,omitempty"`
 
 	// is_override_game_version
 	// Required: true
@@ -56,8 +54,7 @@ type ModelsGameServer struct {
 	Namespace *string `json:"namespace"`
 
 	// pod_name
-	// Required: true
-	PodName *string `json:"pod_name"`
+	PodName string `json:"pod_name,omitempty"`
 
 	// port
 	// Format: int32
@@ -96,12 +93,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateCustomAttribute(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateImageVersion(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateIP(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateIsOverrideGameVersion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -109,9 +100,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePodName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegion(formats); err != nil {
@@ -136,24 +124,6 @@ func (m *ModelsGameServer) Validate(formats strfmt.Registry) error {
 func (m *ModelsGameServer) validateCustomAttribute(formats strfmt.Registry) error {
 
 	if err := validate.Required("custom_attribute", "body", m.CustomAttribute); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateImageVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("image_version", "body", m.ImageVersion); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validateIP(formats strfmt.Registry) error {
-
-	if err := validate.Required("ip", "body", m.IP); err != nil {
 		return err
 	}
 
@@ -185,15 +155,6 @@ func (m *ModelsGameServer) validateLastUpdate(formats strfmt.Registry) error {
 func (m *ModelsGameServer) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameServer) validatePodName(formats strfmt.Registry) error {
-
-	if err := validate.Required("pod_name", "body", m.PodName); err != nil {
 		return err
 	}
 

@@ -17,11 +17,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// PublicQueryGameSessionsCmd represents the PublicQueryGameSessions command
-var PublicQueryGameSessionsCmd = &cobra.Command{
-	Use:   "publicQueryGameSessions",
-	Short: "Public query game sessions",
-	Long:  `Public query game sessions`,
+// PublicQueryGameSessionsByAttributesCmd represents the PublicQueryGameSessionsByAttributes command
+var PublicQueryGameSessionsByAttributesCmd = &cobra.Command{
+	Use:   "publicQueryGameSessionsByAttributes",
+	Short: "Public query game sessions by attributes",
+	Long:  `Public query game sessions by attributes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		gameSessionService := &session.GameSessionService{
 			Client:          factory.NewSessionClient(&repository.ConfigRepositoryImpl{}),
@@ -34,11 +34,11 @@ var PublicQueryGameSessionsCmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &game_session.PublicQueryGameSessionsParams{
+		input := &game_session.PublicQueryGameSessionsByAttributesParams{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, errOK := gameSessionService.PublicQueryGameSessionsShort(input)
+		ok, errOK := gameSessionService.PublicQueryGameSessionsByAttributesShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -52,8 +52,8 @@ var PublicQueryGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryGameSessionsCmd.Flags().String("body", "", "Body")
-	_ = PublicQueryGameSessionsCmd.MarkFlagRequired("body")
-	PublicQueryGameSessionsCmd.Flags().String("namespace", "", "Namespace")
-	_ = PublicQueryGameSessionsCmd.MarkFlagRequired("namespace")
+	PublicQueryGameSessionsByAttributesCmd.Flags().String("body", "", "Body")
+	_ = PublicQueryGameSessionsByAttributesCmd.MarkFlagRequired("body")
+	PublicQueryGameSessionsByAttributesCmd.Flags().String("namespace", "", "Namespace")
+	_ = PublicQueryGameSessionsByAttributesCmd.MarkFlagRequired("namespace")
 }

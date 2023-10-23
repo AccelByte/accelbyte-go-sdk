@@ -6277,14 +6277,12 @@
       },
       "required": [
         "artifactPath",
-        "coreDumpEnabled",
         "dockerPath",
         "image",
         "imageSize",
         "namespace",
         "patchVersion",
         "persistent",
-        "ulimitFileSize",
         "uploaderFlag",
         "version"
       ]
@@ -6325,13 +6323,11 @@
       },
       "required": [
         "artifactPath",
-        "coreDumpEnabled",
         "dockerPath",
         "image",
         "imageSize",
         "namespace",
         "persistent",
-        "ulimitFileSize",
         "version"
       ]
     },
@@ -6896,7 +6892,6 @@
       },
       "required": [
         "artifactPath",
-        "coreDumpEnabled",
         "createdAt",
         "dockerPath",
         "image",
@@ -6906,7 +6901,6 @@
         "modifiedBy",
         "namespace",
         "persistent",
-        "ulimitFileSize",
         "updatedAt",
         "version"
       ]
@@ -6945,7 +6939,6 @@
       },
       "required": [
         "artifactPath",
-        "coreDumpEnabled",
         "image",
         "imageReplicationsMap",
         "namespace",
@@ -7203,7 +7196,6 @@
       },
       "required": [
         "artifactPath",
-        "coreDumpEnabled",
         "createdAt",
         "dockerPath",
         "image",
@@ -7214,7 +7206,6 @@
         "namespace",
         "patchVersion",
         "persistent",
-        "ulimitFileSize",
         "updatedAt",
         "uploaderFlag",
         "version"

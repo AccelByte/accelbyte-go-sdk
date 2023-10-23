@@ -46,6 +46,8 @@ type ClientService interface {
 	GetUserDLCByPlatformShort(params *GetUserDLCByPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCByPlatformOK, error)
 	GetUserDLC(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error)
 	GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error)
+	GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, *GeDLCDurableRewardShortMapNotFound, error)
+	GeDLCDurableRewardShortMapShort(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, error)
 	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error)
 	SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
 	SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error)
@@ -902,6 +904,109 @@ func (a *Client) GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.Clie
 
 	case *GetUserDLCOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GeDLCDurableRewardShortMapShort instead.
+
+GeDLCDurableRewardShortMap get dlc durable reward simple map
+Get dlc reward simple map, only return the sku of durable item reward
+Other detail info:
+
+  * Required permission : Authorized user
+*/
+func (a *Client) GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, *GeDLCDurableRewardShortMapNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGeDLCDurableRewardShortMapParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "geDLCDurableRewardShortMap",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/dlc/rewards/durable/map",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GeDLCDurableRewardShortMapReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GeDLCDurableRewardShortMapOK:
+		return v, nil, nil
+
+	case *GeDLCDurableRewardShortMapNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GeDLCDurableRewardShortMapShort get dlc durable reward simple map
+Get dlc reward simple map, only return the sku of durable item reward
+Other detail info:
+
+  * Required permission : Authorized user
+*/
+func (a *Client) GeDLCDurableRewardShortMapShort(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGeDLCDurableRewardShortMapParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "geDLCDurableRewardShortMap",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/dlc/rewards/durable/map",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GeDLCDurableRewardShortMapReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GeDLCDurableRewardShortMapOK:
+		return v, nil
+	case *GeDLCDurableRewardShortMapNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

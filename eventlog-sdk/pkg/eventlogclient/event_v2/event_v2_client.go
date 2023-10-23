@@ -316,37 +316,15 @@ func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUser
 Deprecated: 2022-08-10 - Use GetPublicEditHistoryShort instead.
 
 GetPublicEditHistory get a user edit history based on the provided type
-
-
 Available Type:
+* email
+* password
+* displayname
+* dateofbirth
+* country
+* language
 
-
-
-
-
-
-  * email
-
-
-  * password
-
-
-  * displayname
-
-
-  * dateofbirth
-
-
-  * country
-
-
-  * language
-
-
-
-
-
-Requires a valid user access token
+Requires valid user access token
 */
 func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, *GetPublicEditHistoryBadRequest, *GetPublicEditHistoryUnauthorized, *GetPublicEditHistoryForbidden, *GetPublicEditHistoryNotFound, *GetPublicEditHistoryInternalServerError, *GetPublicEditHistoryNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -409,37 +387,15 @@ func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authIn
 
 /*
 GetPublicEditHistoryShort get a user edit history based on the provided type
-
-
 Available Type:
+* email
+* password
+* displayname
+* dateofbirth
+* country
+* language
 
-
-
-
-
-
-  * email
-
-
-  * password
-
-
-  * displayname
-
-
-  * dateofbirth
-
-
-  * country
-
-
-  * language
-
-
-
-
-
-Requires a valid user access token
+Requires valid user access token
 */
 func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -498,8 +454,6 @@ func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, a
 Deprecated: 2022-08-10 - Use GetUserEventsV2PublicShort instead.
 
 GetUserEventsV2Public get events from a specific user
-
-
 Requires valid user access token
 */
 func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, *GetUserEventsV2PublicBadRequest, *GetUserEventsV2PublicUnauthorized, *GetUserEventsV2PublicForbidden, *GetUserEventsV2PublicNotFound, *GetUserEventsV2PublicInternalServerError, *GetUserEventsV2PublicNotImplemented, error) {
@@ -563,8 +517,6 @@ func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, auth
 
 /*
 GetUserEventsV2PublicShort get events from a specific user
-
-
 Requires valid user access token
 */
 func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, error) {

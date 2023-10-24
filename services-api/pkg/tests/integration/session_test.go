@@ -251,11 +251,11 @@ func TestIntegrationQueryGameSession(t *testing.T) {
 	Init()
 
 	// CASE Query Game Session
-	input := &game_session.PublicQueryGameSessionsParams{
+	input := &game_session.PublicQueryGameSessionsByAttributesParams{
 		Body:      nil,
 		Namespace: integration.NamespaceTest,
 	}
-	query, err := gameSessionService.PublicQueryGameSessionsShort(input)
+	query, err := gameSessionService.PublicQueryGameSessionsByAttributesShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 

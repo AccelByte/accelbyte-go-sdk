@@ -4,11 +4,15 @@
 - **:** update inventory.json
 - **:** regenerate inventory service
 - **:** update CHANGELOG.m
+- **:** update CHANGELOG.md and go sum getting started
 ### feat
 - **auth:** add warning when using a public oauth client
 - **iam:** add login with scope
+### fix
+- **integration-test:** rename publicQueryGameSessions
 ### docs
 - **auth:** add warning about using public oauth client
+- **migrations:** add migration-guide-v0.55-to-v0.56.md
 ### test
 - **auth:** add test for public oauth client
 - **iam:** add test for login with scope

@@ -49,11 +49,8 @@ func (v *TokenValidator) Initialize() {
 
 func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
 	return v.impl.Validate(token, &iam.Permission{
-		Resource:        permission.Resource,
-		Action:          permission.Action,
-		ScheduledAction: permission.ScheduledAction,
-		CronSchedule:    permission.CronSchedule,
-		RangeSchedule:   permission.RangeSchedule,
+		Resource: permission.Resource,
+		Action:   permission.Action,
 	}, namespace, userId)
 }
 

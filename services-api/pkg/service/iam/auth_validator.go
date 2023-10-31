@@ -102,7 +102,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		if errVerify != nil {
 			return errVerify
 		}
-		fmt.Print("token verified")
+		fmt.Println("token verified")
 
 		if !v.hasValidPermissions(v.JwtClaims, permission, namespace, userId) {
 			return errors.New("insufficient permissions")
@@ -180,11 +180,8 @@ func (v *TokenValidator) convertToPermission(permission iamclientmodels.Accountc
 	}
 
 	return Permission{
-		Resource:        resource,
-		Action:          action,
-		ScheduledAction: int(permission.SchedAction),
-		CronSchedule:    permission.SchedCron,
-		RangeSchedule:   permission.SchedRange,
+		Resource: resource,
+		Action:   action,
 	}
 }
 
@@ -306,7 +303,7 @@ func (v *TokenValidator) getRolePermissions2(roleId string, namespace string, us
 
 	modifiedPermissions := make([]Permission, len(permissions))
 	for index, permission := range permissions {
-		modifiedResource := v.replaceResource(permission.Resource, &namespace, nil, nil, userId, false)
+		modifiedResource := v.replaceResource(permission.Resource, &namespace, userId)
 		modifiedPermissions[index] = Permission{
 			Action:   permission.Action,
 			Resource: modifiedResource,
@@ -333,10 +330,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 	modifiedResource := v.replaceResource(
 		permission.Resource,
 		namespace,
-		&tokenNamespace,
-		nil,
 		userId,
-		false,
 	)
 
 	originPermissions := claims.Permissions
@@ -395,12 +389,8 @@ func (v *TokenValidator) isUserRevoked(userId string, issuedAt int64) bool {
 	return false
 }
 
-func (v *TokenValidator) replaceResource(resource string, namespace *string, tokenNamespace *string, publisherNamespace *string, userId *string, crossAllowed bool) string {
+func (v *TokenValidator) replaceResource(resource string, namespace, userId *string) string {
 	modifiedResource := resource
-
-	if crossAllowed && tokenNamespace != nil && (publisherNamespace == tokenNamespace || publisherNamespace == namespace) {
-		modifiedResource = strings.Replace(modifiedResource, "{namespace}", *tokenNamespace, -1)
-	}
 
 	if namespace != nil {
 		modifiedResource = strings.Replace(modifiedResource, "{namespace}", *namespace, -1)

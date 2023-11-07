@@ -30,11 +30,11 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, error)
+	GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsUnauthorized, *GetUserStatCycleItemsForbidden, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, *GetUserStatCycleItemsInternalServerError, error)
 	GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, error)
-	PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, error)
+	PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsUnauthorized, *PublicListMyStatCycleItemsForbidden, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, *PublicListMyStatCycleItemsInternalServerError, error)
 	PublicListMyStatCycleItemsShort(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, error)
-	GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, error)
+	GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1Unauthorized, *GetUserStatCycleItems1Forbidden, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, *GetUserStatCycleItems1InternalServerError, error)
 	GetUserStatCycleItems1Short(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -49,7 +49,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat cycle items
 */
-func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, error) {
+func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItemsOK, *GetUserStatCycleItemsUnauthorized, *GetUserStatCycleItemsForbidden, *GetUserStatCycleItemsNotFound, *GetUserStatCycleItemsUnprocessableEntity, *GetUserStatCycleItemsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserStatCycleItemsParams()
@@ -77,22 +77,31 @@ func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserStatCycleItemsOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserStatCycleItemsUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserStatCycleItemsForbidden:
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *GetUserStatCycleItemsNotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetUserStatCycleItemsUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserStatCycleItemsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -138,9 +147,15 @@ func (a *Client) GetUserStatCycleItemsShort(params *GetUserStatCycleItemsParams,
 
 	case *GetUserStatCycleItemsOK:
 		return v, nil
+	case *GetUserStatCycleItemsUnauthorized:
+		return nil, v
+	case *GetUserStatCycleItemsForbidden:
+		return nil, v
 	case *GetUserStatCycleItemsNotFound:
 		return nil, v
 	case *GetUserStatCycleItemsUnprocessableEntity:
+		return nil, v
+	case *GetUserStatCycleItemsInternalServerError:
 		return nil, v
 
 	default:
@@ -157,7 +172,7 @@ Other detail info:
                   *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat cycle items
 */
-func (a *Client) PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, error) {
+func (a *Client) PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatCycleItemsOK, *PublicListMyStatCycleItemsUnauthorized, *PublicListMyStatCycleItemsForbidden, *PublicListMyStatCycleItemsNotFound, *PublicListMyStatCycleItemsUnprocessableEntity, *PublicListMyStatCycleItemsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicListMyStatCycleItemsParams()
@@ -185,22 +200,31 @@ func (a *Client) PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsPa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicListMyStatCycleItemsOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicListMyStatCycleItemsUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicListMyStatCycleItemsForbidden:
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicListMyStatCycleItemsNotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicListMyStatCycleItemsUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicListMyStatCycleItemsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -246,9 +270,15 @@ func (a *Client) PublicListMyStatCycleItemsShort(params *PublicListMyStatCycleIt
 
 	case *PublicListMyStatCycleItemsOK:
 		return v, nil
+	case *PublicListMyStatCycleItemsUnauthorized:
+		return nil, v
+	case *PublicListMyStatCycleItemsForbidden:
+		return nil, v
 	case *PublicListMyStatCycleItemsNotFound:
 		return nil, v
 	case *PublicListMyStatCycleItemsUnprocessableEntity:
+		return nil, v
+	case *PublicListMyStatCycleItemsInternalServerError:
 		return nil, v
 
 	default:
@@ -265,7 +295,7 @@ Other detail info:
                   *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat cycle items
 */
-func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, error) {
+func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatCycleItems1OK, *GetUserStatCycleItems1Unauthorized, *GetUserStatCycleItems1Forbidden, *GetUserStatCycleItems1NotFound, *GetUserStatCycleItems1UnprocessableEntity, *GetUserStatCycleItems1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserStatCycleItems1Params()
@@ -293,22 +323,31 @@ func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserStatCycleItems1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserStatCycleItems1Unauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetUserStatCycleItems1Forbidden:
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *GetUserStatCycleItems1NotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetUserStatCycleItems1UnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetUserStatCycleItems1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -354,9 +393,15 @@ func (a *Client) GetUserStatCycleItems1Short(params *GetUserStatCycleItems1Param
 
 	case *GetUserStatCycleItems1OK:
 		return v, nil
+	case *GetUserStatCycleItems1Unauthorized:
+		return nil, v
+	case *GetUserStatCycleItems1Forbidden:
+		return nil, v
 	case *GetUserStatCycleItems1NotFound:
 		return nil, v
 	case *GetUserStatCycleItems1UnprocessableEntity:
+		return nil, v
+	case *GetUserStatCycleItems1InternalServerError:
 		return nil, v
 
 	default:

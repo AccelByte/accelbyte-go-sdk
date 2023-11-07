@@ -9,6 +9,7 @@ package ams
 import (
 	"github.com/AccelByte/sample-apps/cmd/ams/account"
 	"github.com/AccelByte/sample-apps/cmd/ams/amsInfo"
+	"github.com/AccelByte/sample-apps/cmd/ams/amsQoS"
 	"github.com/AccelByte/sample-apps/cmd/ams/auth"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleetCommander"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleets"
@@ -36,17 +37,20 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetGetCmd)
 	AmsCmd.AddCommand(fleets.FleetUpdateCmd)
 	AmsCmd.AddCommand(fleets.FleetDeleteCmd)
+	AmsCmd.AddCommand(images.FleetArtifactSamplingRulesGetCmd)
 	AmsCmd.AddCommand(fleets.FleetServersCmd)
 	AmsCmd.AddCommand(servers.FleetServerHistoryCmd)
 	AmsCmd.AddCommand(images.ImageListCmd)
 	AmsCmd.AddCommand(images.ImageGetCmd)
 	AmsCmd.AddCommand(images.ImagePatchCmd)
+	AmsCmd.AddCommand(amsQoS.QoSRegionsUpdateCmd)
 	AmsCmd.AddCommand(amsInfo.InfoRegionsCmd)
 	AmsCmd.AddCommand(servers.FleetServerInfoCmd)
 	AmsCmd.AddCommand(servers.ServerHistoryCmd)
 	AmsCmd.AddCommand(amsInfo.InfoSupportedInstancesCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByIDCmd)
 	AmsCmd.AddCommand(watchdogs.LocalWatchdogConnectCmd)
+	AmsCmd.AddCommand(amsQoS.QoSRegionsGetCmd)
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
 	AmsCmd.AddCommand(fleetCommander.Func1Cmd)

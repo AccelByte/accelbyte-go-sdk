@@ -26,7 +26,7 @@ type DebitRequest struct {
 	Amount *int64 `json:"amount"`
 
 	// balance source, default is OTHER
-	// Enum: ['DLC_REVOCATION', 'EXPIRATION', 'IAP_REVOCATION', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT']
+	// Enum: ['DLC_REVOCATION', 'EXPIRATION', 'IAP_REVOCATION', 'ORDER_REVOCATION', 'OTHER', 'PAYMENT', 'TRADE']
 	BalanceSource string `json:"balanceSource,omitempty"`
 
 	// metadata for additional wallet transaction detail
@@ -63,7 +63,7 @@ var debitRequestTypeBalanceSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DLC_REVOCATION", "EXPIRATION", "IAP_REVOCATION", "ORDER_REVOCATION", "OTHER", "PAYMENT"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DLC_REVOCATION", "EXPIRATION", "IAP_REVOCATION", "ORDER_REVOCATION", "OTHER", "PAYMENT", "TRADE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -90,6 +90,9 @@ const (
 
 	// DebitRequestBalanceSourcePAYMENT captures enum value "PAYMENT"
 	DebitRequestBalanceSourcePAYMENT string = "PAYMENT"
+
+	// DebitRequestBalanceSourceTRADE captures enum value "TRADE"
+	DebitRequestBalanceSourceTRADE string = "TRADE"
 )
 
 // prop value enum

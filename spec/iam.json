@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.4.1"
+    "version": "7.5.0"
   },
   "schemes": [
     "https"
@@ -8644,7 +8644,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/countries": {
       "get": {
-        "description": "Admin get country list:\u0026lt;br\u0026gt;\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]",
+        "description": "Admin get country list\u0026lt;br\u0026gt;",
         "operationId": "AdminGetCountryListV3",
         "parameters": [
           {
@@ -8697,9 +8697,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -15257,7 +15254,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.\u0026lt;br\u0026gt;\n\t\tIt require a valid user token.\u0026lt;br\u0026gt;\n\t\tShould specify the target platform id and current user should already linked to this platform.\u0026lt;br\u0026gt;\n\t\tCurrent user should be a headless account.\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;justice\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps5\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;nintendo\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;awscognito\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;netflix\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.\u0026lt;br\u0026gt;\n\t\tIt requires a valid user token.\u0026lt;br\u0026gt;\n\t\tShould specify the target platform id and current user should already linked to this platform.\u0026lt;br\u0026gt;\n\t\tCurrent user should be a headless account.\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Supported platforms:\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steam\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;steamopenid\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;facebook\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;google\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oculus\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;twitch\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;discord\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;android\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ios\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;device\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;justice\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;epicgames\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps4\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;ps5\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;nintendo\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;awscognito\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;live\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;xblweb\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;netflix\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;snapchat\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "RequestOneTimeLinkingCodeV3",
         "parameters": [
           {
@@ -15439,8 +15436,8 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to request the code to generate publisher user\u0026#39;s game token.\u0026lt;br\u0026gt;\n\t\tIt require a valid user token with publisher namespace.\u0026lt;br\u0026gt;\n\t\tPath namespace should be a game namespace.\u0026lt;br\u0026gt;\n\t\tClient ID should match the target namespace.\n\t\tIt response a code and it can be consumed by \u0026lt;strong\u0026gt;/iam/v3/token/exchange\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
-        "operationId": "RequestGameTokenCodeResponseV3",
+        "description": "This endpoint is being used to request the code to exchange a new token. \n\t\tThe target new token\u0026#39;s clientId should NOT be same with current using one.\u0026lt;br\u0026gt;\n\t\tIt requires a valid user token.\u0026lt;br\u0026gt;\n\t\tPath namespace should be target namespace.\u0026lt;br\u0026gt;\n\t\tClient ID should match the target namespace.\u0026lt;br\u0026gt;\n\t\t\u0026lt;br\u0026gt;\n\t\tThe code in response can be consumed by \u0026lt;strong\u0026gt;/iam/v3/token/exchange\u0026lt;/strong\u0026gt;",
+        "operationId": "RequestTokenExchangeCodeV3",
         "parameters": [
           {
             "description": "Client ID for target namespace",
@@ -15462,9 +15459,9 @@
         ],
         "responses": {
           "200": {
-            "description": "Succeed to generate token.",
+            "description": "Succeed to request token exchange code.",
             "schema": {
-              "$ref": "#/definitions/oauthmodel.GameTokenCodeResponse"
+              "$ref": "#/definitions/oauthmodel.TargetTokenCodeResponse"
             }
           }
         },
@@ -15473,7 +15470,7 @@
             "authorization": []
           }
         ],
-        "summary": "Request code to get game token",
+        "summary": "Request code to get a new token",
         "tags": [
           "OAuth2.0 - Extension"
         ]
@@ -20278,11 +20275,11 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate publisher user\u0026#39;s game token.\u0026lt;br\u0026gt;\n\t\tIt require basic header with ClientID and Secret, it should match the ClientID when call \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;\u0026lt;br\u0026gt;\n\t\tIt required a code which can be generated from \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
-        "operationId": "RequestGameTokenResponseV3",
+        "description": "\u0026lt;p\u0026gt;This endpoint is being used to generate target token.\u0026lt;br\u0026gt;\n\t\tIt requires basic header with ClientID and Secret, it should match the ClientID when call \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;\u0026lt;br\u0026gt;\n\t\tThe code should be generated from \u0026lt;strong\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/strong\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "operationId": "RequestTargetTokenResponseV3",
         "parameters": [
           {
-            "description": "code from request game token",
+            "description": "code from request target token response",
             "in": "formData",
             "name": "code",
             "required": true,
@@ -20300,7 +20297,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Succeed to generate token.",
+            "description": "Succeed to exchange token.",
             "schema": {
               "$ref": "#/definitions/oauthmodel.TokenResponseV3"
             }
@@ -20311,7 +20308,7 @@
             "authorization": []
           }
         ],
-        "summary": "Generate game token by code",
+        "summary": "Generate target token by code",
         "tags": [
           "OAuth2.0 - Extension"
         ]
@@ -25339,7 +25336,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint is used to invite a game studio admin user with new namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\n\nRequest body details:\n- emailAddress: email address of the user to be invited\n- namespace: new namespace of the user to be created\n- namespaceDisplayName: display name of the new namespace\n\nThe invited users will also be assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "description": "This endpoint is used to invite a game studio admin user with new namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\n\nRequest body details:\n- emailAddress: email address of the user to be invited\n- namespace: new namespace of the user to be created\n- namespaceDisplayName: display name of the new namespace\n- additionalData(optional): for utm parameter data\n\nThe invited users will also be assigned with \u0026#34;User\u0026#34; role by default.\n",
         "operationId": "PublicInviteUserV4",
         "parameters": [
           {
@@ -29143,6 +29140,9 @@
     },
     "model.PublicInviteUserRequestV4": {
       "properties": {
+        "additionalData": {
+          "type": "string"
+        },
         "emailAddress": {
           "type": "string"
         },
@@ -31120,6 +31120,9 @@
     },
     "model.UserInvitationV3": {
       "properties": {
+        "additionalData": {
+          "type": "string"
+        },
         "email": {
           "type": "string"
         },
@@ -32111,16 +32114,6 @@
         "error"
       ]
     },
-    "oauthmodel.GameTokenCodeResponse": {
-      "properties": {
-        "code": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "code"
-      ]
-    },
     "oauthmodel.OneTimeLinkingCodeResponse": {
       "properties": {
         "exp": {
@@ -32176,6 +32169,16 @@
           "type": "string"
         }
       }
+    },
+    "oauthmodel.TargetTokenCodeResponse": {
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
     },
     "oauthmodel.TokenIntrospectResponse": {
       "properties": {
@@ -32559,11 +32562,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-20T07:26:36+00:00",
-    "gitHash": "4622c12a65000ffaddc663dce904723b6713744b",
+    "buildDate": "2023-11-03T08:42:57+00:00",
+    "gitHash": "7101ae84e451b85a63245efad152c7def90b9bc4",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.4.1",
-    "version-roles-seeding": "0.0.3"
+    "version": "7.5.0",
+    "version-roles-seeding": "1.0.2"
   }
 }

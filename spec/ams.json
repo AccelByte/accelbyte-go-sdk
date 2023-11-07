@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.3.0"
+    "version": "1.4.0"
   },
   "schemes": [
     "https"
@@ -17,6 +17,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
@@ -27,7 +28,8 @@
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
         "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]": "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
         "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
-        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
+        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]",
+        "NAMESPACE:{namespace}:QOS:SERVER [READ]": "NAMESPACE:{namespace}:QOS:SERVER [READ]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -710,6 +712,84 @@
         ]
       }
     },
+    "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]",
+        "operationId": "FleetArtifactSamplingRulesGet",
+        "parameters": [
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetArtifactsSampleRulesResponse"
+            }
+          },
+          "400": {
+            "description": "invalid fleet ID",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "artifact sampling rules not found for fleet",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the sampling rules for a fleet",
+        "tags": [
+          "Images"
+        ]
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers": {
       "get": {
         "consumes": [
@@ -1111,6 +1191,85 @@
         ]
       }
     },
+    "/ams/v1/admin/namespaces/{namespace}/qos/{region}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "QoSRegionsUpdate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.UpdateServerRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "region of the QoS",
+            "in": "path",
+            "name": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "record updated"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "regionial QoS record not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update the status of a QoS region",
+        "tags": [
+          "AMS QoS"
+        ]
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/regions": {
       "get": {
         "consumes": [
@@ -1134,7 +1293,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/api.RegionsResponse"
+              "$ref": "#/definitions/api.AMSRegionsResponse"
             }
           },
           "401": {
@@ -1501,6 +1660,77 @@
         ]
       }
     },
+    "/ams/v1/namespaces/{namespace}/qos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:QOS:SERVER [READ]",
+        "operationId": "QoSRegionsGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "QoS status, available value: ACTIVE, INACTIVE",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.QoSEndpointResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:QOS:SERVER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the list of available AMS QoS regions.",
+        "tags": [
+          "AMS QoS"
+        ]
+      }
+    },
     "/ams/v1/namespaces/{namespace}/servers/claim": {
       "put": {
         "consumes": [
@@ -1668,6 +1898,16 @@
     }
   },
   "definitions": {
+    "api.AMSRegionsResponse": {
+      "properties": {
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
     "api.AccountCreateRequest": {
       "properties": {
         "name": {
@@ -1785,6 +2025,36 @@
         "namespaces"
       ]
     },
+    "api.ArtifactSamplingRuleResponse": {
+      "properties": {
+        "collect": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "percentage": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "collect",
+        "percentage"
+      ]
+    },
+    "api.ArtifactTypeSamplingRulesResponse": {
+      "properties": {
+        "crashed": {
+          "$ref": "#/definitions/api.ArtifactSamplingRuleResponse"
+        },
+        "success": {
+          "$ref": "#/definitions/api.ArtifactSamplingRuleResponse"
+        }
+      },
+      "required": [
+        "crashed",
+        "success"
+      ]
+    },
     "api.AvailableInstanceTypesResponse": {
       "properties": {
         "availableInstanceTypes": {
@@ -1871,6 +2141,20 @@
         "instanceId",
         "instanceType",
         "serversPerVm"
+      ]
+    },
+    "api.FleetArtifactsSampleRulesResponse": {
+      "properties": {
+        "coredumps": {
+          "$ref": "#/definitions/api.ArtifactTypeSamplingRulesResponse"
+        },
+        "logs": {
+          "$ref": "#/definitions/api.ArtifactTypeSamplingRulesResponse"
+        }
+      },
+      "required": [
+        "coredumps",
+        "logs"
       ]
     },
     "api.FleetClaimByKeysReq": {
@@ -1986,14 +2270,6 @@
     },
     "api.FleetListItemResponse": {
       "properties": {
-        "activeDs": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "claimedDs": {
-          "format": "int32",
-          "type": "integer"
-        },
         "counts": {
           "items": {
             "$ref": "#/definitions/api.FleetRegionalServerCounts"
@@ -2021,8 +2297,6 @@
         }
       },
       "required": [
-        "activeDs",
-        "claimedDs",
         "counts",
         "id",
         "image",
@@ -2509,10 +2783,29 @@
         "protocol"
       ]
     },
-    "api.QOSServer": {
+    "api.QoSEndpointResponse": {
       "properties": {
-        "host": {
+        "servers": {
+          "items": {
+            "$ref": "#/definitions/api.QoSServer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "servers"
+      ]
+    },
+    "api.QoSServer": {
+      "properties": {
+        "alias": {
           "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "last_update": {
+          "$ref": "#/definitions/api.Time"
         },
         "port": {
           "format": "int32",
@@ -2520,12 +2813,18 @@
         },
         "region": {
           "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       },
       "required": [
-        "host",
+        "alias",
+        "ip",
+        "last_update",
         "port",
-        "region"
+        "region",
+        "status"
       ]
     },
     "api.ReferencingFleet": {
@@ -2571,23 +2870,24 @@
         "region"
       ]
     },
-    "api.RegionsResponse": {
+    "api.Time": {
       "properties": {
-        "qosServers": {
-          "items": {
-            "$ref": "#/definitions/api.QOSServer"
-          },
-          "type": "array"
+        "ext": {
+          "format": "int64",
+          "type": "integer"
         },
-        "regions": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+        "loc": {
+          "$ref": "#/definitions/time.Location"
+        },
+        "wall": {
+          "format": "integer",
+          "type": "integer"
         }
       },
       "required": [
-        "regions"
+        "ext",
+        "loc",
+        "wall"
       ]
     },
     "api.Timeout": {
@@ -2616,6 +2916,16 @@
         "unresponsive"
       ]
     },
+    "api.UpdateServerRequest": {
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
     "response.ErrorResponse": {
       "properties": {
         "errorMessage": {
@@ -2630,9 +2940,97 @@
         "traceId"
       ]
     },
+    "time.Location": {
+      "properties": {
+        "cacheEnd": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "cacheStart": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "cacheZone": {
+          "$ref": "#/definitions/time.zone"
+        },
+        "extend": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tx": {
+          "items": {
+            "$ref": "#/definitions/time.zoneTrans"
+          },
+          "type": "array"
+        },
+        "zone": {
+          "items": {
+            "$ref": "#/definitions/time.zone"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "cacheEnd",
+        "cacheStart",
+        "cacheZone",
+        "extend",
+        "name",
+        "tx",
+        "zone"
+      ]
+    },
     "time.Time": {
       "format": "date-time",
       "type": "string"
+    },
+    "time.zone": {
+      "properties": {
+        "isDST": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "offset": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "isDST",
+        "name",
+        "offset"
+      ]
+    },
+    "time.zoneTrans": {
+      "properties": {
+        "index": {
+          "format": "byte",
+          "type": "integer"
+        },
+        "isstd": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isutc": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "when": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "index",
+        "isstd",
+        "isutc",
+        "when"
+      ]
     }
   },
   "x-docs": {
@@ -2641,10 +3039,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-11T02:38:17+00:00",
-    "gitHash": "5deeffd290d51bda05a2490bec39fcd303990f49",
+    "buildDate": "2023-11-06T00:53:00+00:00",
+    "gitHash": "190a6a432c9ec2924ce8b516afb378ad76bd7bd1",
     "name": "fleet-commander",
-    "version": "1.3.0",
-    "version-roles-seeding": "0.0.45"
+    "version": "1.4.0",
+    "version-roles-seeding": "1.0.5"
   }
 }

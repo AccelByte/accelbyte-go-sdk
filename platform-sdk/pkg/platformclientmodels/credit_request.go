@@ -40,7 +40,7 @@ type CreditRequest struct {
 	Reason string `json:"reason,omitempty"`
 
 	// source, default is OTHER
-	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK']
+	// Enum: ['ACHIEVEMENT', 'CONSUME_ENTITLEMENT', 'DLC', 'GIFT', 'IAP', 'IAP_CHARGEBACK_REVERSED', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REFUND', 'REWARD', 'SELL_BACK', 'TRADE']
 	Source string `json:"source,omitempty"`
 }
 
@@ -127,7 +127,7 @@ var creditRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACHIEVEMENT", "CONSUME_ENTITLEMENT", "DLC", "GIFT", "IAP", "IAP_CHARGEBACK_REVERSED", "OTHER", "PROMOTION", "PURCHASE", "REDEEM_CODE", "REFERRAL_BONUS", "REFUND", "REWARD", "SELL_BACK", "TRADE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -178,6 +178,9 @@ const (
 
 	// CreditRequestSourceSELLBACK captures enum value "SELL_BACK"
 	CreditRequestSourceSELLBACK string = "SELL_BACK"
+
+	// CreditRequestSourceTRADE captures enum value "TRADE"
+	CreditRequestSourceTRADE string = "TRADE"
 )
 
 // prop value enum

@@ -35,6 +35,23 @@
 | `/lobby/v1/admin/config/namespaces/{namespace}/export` | GET | AdminExportConfigV1Short | [AdminExportConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminExportConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminExportConfigV1Short](../../samples/cli/cmd/lobby/config/adminExportConfigV1.go) |
 | `/lobby/v1/admin/config/namespaces/{namespace}/import` | POST | AdminImportConfigV1Short | [AdminImportConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminImportConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminImportConfigV1Short](../../samples/cli/cmd/lobby/config/adminImportConfigV1.go) |
 
+### admin Wrapper:  [Admin](../../services-api/pkg/service/lobby/admin.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/lobby/v1/admin/global-configurations` | GET | AdminGetGlobalConfigShort | [AdminGetGlobalConfigShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [AdminGetGlobalConfigShort](../../services-api/pkg/service/lobby/admin.go) | [AdminGetGlobalConfigShort](../../samples/cli/cmd/lobby/admin/adminGetGlobalConfig.go) |
+| `/lobby/v1/admin/global-configurations` | PUT | AdminUpdateGlobalConfigShort | [AdminUpdateGlobalConfigShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [AdminUpdateGlobalConfigShort](../../services-api/pkg/service/lobby/admin.go) | [AdminUpdateGlobalConfigShort](../../samples/cli/cmd/lobby/admin/adminUpdateGlobalConfig.go) |
+| `/lobby/v1/admin/global-configurations` | DELETE | AdminDeleteGlobalConfigShort | [AdminDeleteGlobalConfigShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [AdminDeleteGlobalConfigShort](../../services-api/pkg/service/lobby/admin.go) | [AdminDeleteGlobalConfigShort](../../samples/cli/cmd/lobby/admin/adminDeleteGlobalConfig.go) |
+| `/notification/namespaces/{namespace}/freeform` | POST | FreeFormNotificationShort | [FreeFormNotificationShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [FreeFormNotificationShort](../../services-api/pkg/service/lobby/admin.go) | [FreeFormNotificationShort](../../samples/cli/cmd/lobby/admin/freeFormNotification.go) |
+| `/notification/namespaces/{namespace}/templated` | POST | NotificationWithTemplateShort | [NotificationWithTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [NotificationWithTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [NotificationWithTemplateShort](../../samples/cli/cmd/lobby/admin/notificationWithTemplate.go) |
+| `/notification/namespaces/{namespace}/templates` | GET | GetGameTemplateShort | [GetGameTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetGameTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetGameTemplateShort](../../samples/cli/cmd/lobby/admin/getGameTemplate.go) |
+| `/notification/namespaces/{namespace}/templates` | POST | CreateTemplateShort | [CreateTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [CreateTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [CreateTemplateShort](../../samples/cli/cmd/lobby/admin/createTemplate.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}` | GET | GetSlugTemplateShort | [GetSlugTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetSlugTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetSlugTemplateShort](../../samples/cli/cmd/lobby/admin/getSlugTemplate.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}` | DELETE | DeleteTemplateSlugShort | [DeleteTemplateSlugShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [DeleteTemplateSlugShort](../../services-api/pkg/service/lobby/admin.go) | [DeleteTemplateSlugShort](../../samples/cli/cmd/lobby/admin/deleteTemplateSlug.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | GET | GetLocalizationTemplateShort | [GetLocalizationTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetLocalizationTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetLocalizationTemplateShort](../../samples/cli/cmd/lobby/admin/getLocalizationTemplate.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | PUT | UpdateLocalizationTemplateShort | [UpdateLocalizationTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [UpdateLocalizationTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [UpdateLocalizationTemplateShort](../../samples/cli/cmd/lobby/admin/updateLocalizationTemplate.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | DELETE | DeleteTemplateLocalizationShort | [DeleteTemplateLocalizationShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [DeleteTemplateLocalizationShort](../../services-api/pkg/service/lobby/admin.go) | [DeleteTemplateLocalizationShort](../../samples/cli/cmd/lobby/admin/deleteTemplateLocalization.go) |
+| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish` | POST | PublishTemplateShort | [PublishTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [PublishTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [PublishTemplateShort](../../samples/cli/cmd/lobby/admin/publishTemplate.go) |
+
 ### notification Wrapper:  [Notification](../../services-api/pkg/service/lobby/notification.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -126,20 +143,6 @@
 |---|---|---|---|---|---|
 | `/lobby/v1/public/presence/namespaces/{namespace}/users/presence` | GET | UsersPresenceHandlerV1Short | [UsersPresenceHandlerV1Short](../../lobby-sdk/pkg/lobbyclient/presence/presence_client.go) | [UsersPresenceHandlerV1Short](../../services-api/pkg/service/lobby/presence.go) | [UsersPresenceHandlerV1Short](../../samples/cli/cmd/lobby/presence/usersPresenceHandlerV1.go) |
 
-### admin Wrapper:  [Admin](../../services-api/pkg/service/lobby/admin.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/notification/namespaces/{namespace}/freeform` | POST | FreeFormNotificationShort | [FreeFormNotificationShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [FreeFormNotificationShort](../../services-api/pkg/service/lobby/admin.go) | [FreeFormNotificationShort](../../samples/cli/cmd/lobby/admin/freeFormNotification.go) |
-| `/notification/namespaces/{namespace}/templated` | POST | NotificationWithTemplateShort | [NotificationWithTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [NotificationWithTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [NotificationWithTemplateShort](../../samples/cli/cmd/lobby/admin/notificationWithTemplate.go) |
-| `/notification/namespaces/{namespace}/templates` | GET | GetGameTemplateShort | [GetGameTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetGameTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetGameTemplateShort](../../samples/cli/cmd/lobby/admin/getGameTemplate.go) |
-| `/notification/namespaces/{namespace}/templates` | POST | CreateTemplateShort | [CreateTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [CreateTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [CreateTemplateShort](../../samples/cli/cmd/lobby/admin/createTemplate.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}` | GET | GetSlugTemplateShort | [GetSlugTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetSlugTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetSlugTemplateShort](../../samples/cli/cmd/lobby/admin/getSlugTemplate.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}` | DELETE | DeleteTemplateSlugShort | [DeleteTemplateSlugShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [DeleteTemplateSlugShort](../../services-api/pkg/service/lobby/admin.go) | [DeleteTemplateSlugShort](../../samples/cli/cmd/lobby/admin/deleteTemplateSlug.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | GET | GetLocalizationTemplateShort | [GetLocalizationTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [GetLocalizationTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [GetLocalizationTemplateShort](../../samples/cli/cmd/lobby/admin/getLocalizationTemplate.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | PUT | UpdateLocalizationTemplateShort | [UpdateLocalizationTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [UpdateLocalizationTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [UpdateLocalizationTemplateShort](../../samples/cli/cmd/lobby/admin/updateLocalizationTemplate.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}` | DELETE | DeleteTemplateLocalizationShort | [DeleteTemplateLocalizationShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [DeleteTemplateLocalizationShort](../../services-api/pkg/service/lobby/admin.go) | [DeleteTemplateLocalizationShort](../../samples/cli/cmd/lobby/admin/deleteTemplateLocalization.go) |
-| `/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish` | POST | PublishTemplateShort | [PublishTemplateShort](../../lobby-sdk/pkg/lobbyclient/admin/admin_client.go) | [PublishTemplateShort](../../services-api/pkg/service/lobby/admin.go) | [PublishTemplateShort](../../samples/cli/cmd/lobby/admin/publishTemplate.go) |
-
 
 &nbsp;  
 
@@ -165,6 +168,7 @@
 | `model.GetUserFriendsResponse` | [ModelGetUserFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_user_friends_response.go) |
 | `model.GetUserIncomingFriendsResponse` | [ModelGetUserIncomingFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_user_incoming_friends_response.go) |
 | `model.GetUserOutgoingFriendsResponse` | [ModelGetUserOutgoingFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_user_outgoing_friends_response.go) |
+| `model.GlobalConfiguration` | [ModelGlobalConfiguration ](../../lobby-sdk/pkg/lobbyclientmodels/model_global_configuration.go) |
 | `model.IncomingFriendsWithTimeData` | [ModelIncomingFriendsWithTimeData ](../../lobby-sdk/pkg/lobbyclientmodels/model_incoming_friends_with_time_data.go) |
 | `model.ListBulkUserPlatformsResponse` | [ModelListBulkUserPlatformsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_list_bulk_user_platforms_response.go) |
 | `model.LoadIncomingFriendsWithTimeResponse` | [ModelLoadIncomingFriendsWithTimeResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_load_incoming_friends_with_time_response.go) |
@@ -179,6 +183,7 @@
 | `model.NotificationWithTemplateRequestV1` | [ModelNotificationWithTemplateRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_with_template_request_v1.go) |
 | `model.OutgoingFriendsWithTimeData` | [ModelOutgoingFriendsWithTimeData ](../../lobby-sdk/pkg/lobbyclientmodels/model_outgoing_friends_with_time_data.go) |
 | `model.Pagination` | [ModelPagination ](../../lobby-sdk/pkg/lobbyclientmodels/model_pagination.go) |
+| `model.PutGlobalConfigurationRequest` | [ModelPutGlobalConfigurationRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_put_global_configuration_request.go) |
 | `model.TemplateContent` | [ModelTemplateContent ](../../lobby-sdk/pkg/lobbyclientmodels/model_template_content.go) |
 | `model.TemplateLocalization` | [ModelTemplateLocalization ](../../lobby-sdk/pkg/lobbyclientmodels/model_template_localization.go) |
 | `model.TemplateLocalizationResponse` | [ModelTemplateLocalizationResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_template_localization_response.go) |

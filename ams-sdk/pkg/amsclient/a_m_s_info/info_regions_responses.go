@@ -72,7 +72,7 @@ func NewInfoRegionsOK() *InfoRegionsOK {
   success
 */
 type InfoRegionsOK struct {
-	Payload *amsclientmodels.APIRegionsResponse
+	Payload *amsclientmodels.APIAMSRegionsResponse
 }
 
 func (o *InfoRegionsOK) Error() string {
@@ -94,7 +94,7 @@ func (o *InfoRegionsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *InfoRegionsOK) GetPayload() *amsclientmodels.APIRegionsResponse {
+func (o *InfoRegionsOK) GetPayload() *amsclientmodels.APIAMSRegionsResponse {
 	return o.Payload
 }
 
@@ -105,7 +105,7 @@ func (o *InfoRegionsOK) readResponse(response runtime.ClientResponse, consumer r
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(amsclientmodels.APIRegionsResponse)
+	o.Payload = new(amsclientmodels.APIAMSRegionsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

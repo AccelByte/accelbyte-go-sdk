@@ -20,6 +20,9 @@ import (
 // swagger:model Model user invitation V3.
 type ModelUserInvitationV3 struct {
 
+	// additionaldata
+	AdditionalData string `json:"additionalData,omitempty"`
+
 	// email
 	// Required: true
 	Email *string `json:"email"`

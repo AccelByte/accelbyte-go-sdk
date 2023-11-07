@@ -169,6 +169,26 @@ func (aaa *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use DebitByWalletPlatformShort instead.
+func (aaa *WalletService) DebitByWalletPlatform(input *wallet.DebitByWalletPlatformParams) (*platformclientmodels.PlatformWallet, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unprocessableEntity, err := aaa.Client.Wallet.DebitByWalletPlatform(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PayWithUserWalletShort instead.
 func (aaa *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams) (*platformclientmodels.PlatformWallet, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -589,6 +609,31 @@ func (aaa *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPa
 	}
 
 	ok, err := aaa.Client.Wallet.CreditUserWalletShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) DebitByWalletPlatformShort(input *wallet.DebitByWalletPlatformParams) (*platformclientmodels.PlatformWallet, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Wallet.DebitByWalletPlatformShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

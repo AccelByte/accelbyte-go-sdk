@@ -9,17 +9,21 @@ package ugc
 import (
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminChannel"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminContent"
+	"github.com/AccelByte/sample-apps/cmd/ugc/adminContentV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminGroup"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminTag"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminType"
 	"github.com/AccelByte/sample-apps/cmd/ugc/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicChannel"
-	"github.com/AccelByte/sample-apps/cmd/ugc/publicContent"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicContentLegacy"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicContentV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicCreator"
-	"github.com/AccelByte/sample-apps/cmd/ugc/publicDownloadCount"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicDownloadCountLegacy"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicDownloadCountV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicFollow"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicGroup"
-	"github.com/AccelByte/sample-apps/cmd/ugc/publicLike"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicLikeLegacy"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicLikeV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicTag"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicType"
 	"github.com/spf13/cobra"
@@ -87,16 +91,16 @@ func init() {
 	UgcCmd.AddCommand(adminGroup.AdminDeleteGroupCmd)
 	UgcCmd.AddCommand(adminGroup.AdminGetGroupContentsCmd)
 	UgcCmd.AddCommand(anonymization.AdminDeleteAllUserStatesCmd)
-	UgcCmd.AddCommand(publicContent.SearchChannelSpecificContentCmd)
-	UgcCmd.AddCommand(publicContent.PublicSearchContentCmd)
-	UgcCmd.AddCommand(publicContent.PublicGetContentBulkCmd)
+	UgcCmd.AddCommand(publicContentLegacy.SearchChannelSpecificContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicSearchContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicGetContentBulkCmd)
 	UgcCmd.AddCommand(publicFollow.GetFollowedContentCmd)
-	UgcCmd.AddCommand(publicLike.GetLikedContentCmd)
-	UgcCmd.AddCommand(publicContent.PublicDownloadContentByShareCodeCmd)
-	UgcCmd.AddCommand(publicContent.PublicDownloadContentByContentIDCmd)
-	UgcCmd.AddCommand(publicDownloadCount.AddDownloadCountCmd)
-	UgcCmd.AddCommand(publicLike.UpdateContentLikeStatusCmd)
-	UgcCmd.AddCommand(publicContent.PublicDownloadContentPreviewCmd)
+	UgcCmd.AddCommand(publicLikeLegacy.GetLikedContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicDownloadContentByShareCodeCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicDownloadContentByContentIDCmd)
+	UgcCmd.AddCommand(publicDownloadCountLegacy.AddDownloadCountCmd)
+	UgcCmd.AddCommand(publicLikeLegacy.UpdateContentLikeStatusCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicDownloadContentPreviewCmd)
 	UgcCmd.AddCommand(publicTag.GetTagCmd)
 	UgcCmd.AddCommand(publicType.GetTypeCmd)
 	UgcCmd.AddCommand(publicCreator.PublicSearchCreatorCmd)
@@ -107,16 +111,16 @@ func init() {
 	UgcCmd.AddCommand(anonymization.DeleteAllUserChannelCmd)
 	UgcCmd.AddCommand(publicChannel.UpdateChannelCmd)
 	UgcCmd.AddCommand(publicChannel.DeleteChannelCmd)
-	UgcCmd.AddCommand(publicContent.CreateContentDirectCmd)
-	UgcCmd.AddCommand(publicContent.CreateContentS3Cmd)
-	UgcCmd.AddCommand(publicContent.UpdateContentS3Cmd)
-	UgcCmd.AddCommand(publicContent.UpdateContentDirectCmd)
-	UgcCmd.AddCommand(publicContent.DeleteContentCmd)
-	UgcCmd.AddCommand(publicContent.PublicGetUserContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.CreateContentDirectCmd)
+	UgcCmd.AddCommand(publicContentLegacy.CreateContentS3Cmd)
+	UgcCmd.AddCommand(publicContentLegacy.UpdateContentS3Cmd)
+	UgcCmd.AddCommand(publicContentLegacy.UpdateContentDirectCmd)
+	UgcCmd.AddCommand(publicContentLegacy.DeleteContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicGetUserContentCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserContentsCmd)
-	UgcCmd.AddCommand(publicContent.UpdateScreenshotsCmd)
-	UgcCmd.AddCommand(publicContent.UploadContentScreenshotCmd)
-	UgcCmd.AddCommand(publicContent.DeleteContentScreenshotCmd)
+	UgcCmd.AddCommand(publicContentLegacy.UpdateScreenshotsCmd)
+	UgcCmd.AddCommand(publicContentLegacy.UploadContentScreenshotCmd)
+	UgcCmd.AddCommand(publicContentLegacy.DeleteContentScreenshotCmd)
 	UgcCmd.AddCommand(publicFollow.UpdateUserFollowStatusCmd)
 	UgcCmd.AddCommand(publicFollow.GetPublicFollowersCmd)
 	UgcCmd.AddCommand(publicFollow.GetPublicFollowingCmd)
@@ -128,4 +132,44 @@ func init() {
 	UgcCmd.AddCommand(publicGroup.DeleteGroupCmd)
 	UgcCmd.AddCommand(publicGroup.GetGroupContentCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserStatesCmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGetContentByChannelIDV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminCreateContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminDeleteOfficialContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentFileLocationCmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGenerateOfficialContentUploadURLV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminListContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminBulkGetContentByIDsV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGetContentByShareCodeV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGetContentByContentIDV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateScreenshotsV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUploadContentScreenshotV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminDeleteContentScreenshotV2Cmd)
+	UgcCmd.AddCommand(adminGroup.AdminGetOfficialGroupContentsV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminDeleteUserContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateUserContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateUserContentFileLocationCmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGenerateUserContentUploadURLV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminGetContentByUserIDV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminUpdateContentHideStatusV2Cmd)
+	UgcCmd.AddCommand(adminGroup.AdminGetUserGroupContentsV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGetContentByChannelIDV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicListContentV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicBulkGetContentByIDV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGetContentByShareCodeV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGetContentByIDV2Cmd)
+	UgcCmd.AddCommand(publicDownloadCountV2.PublicAddDownloadCountV2Cmd)
+	UgcCmd.AddCommand(publicDownloadCountV2.PublicListContentDownloaderV2Cmd)
+	UgcCmd.AddCommand(publicLikeV2.PublicListContentLikeV2Cmd)
+	UgcCmd.AddCommand(publicLikeV2.UpdateContentLikeStatusV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicCreateContentV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicDeleteContentV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicUpdateContentV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicUpdateContentFileLocationCmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGenerateContentUploadURLV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGetContentByUserIDV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.UpdateScreenshotsV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.UploadContentScreenshotV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.DeleteContentScreenshotV2Cmd)
+	UgcCmd.AddCommand(publicGroup.PublicGetGroupContentsV2Cmd)
 }

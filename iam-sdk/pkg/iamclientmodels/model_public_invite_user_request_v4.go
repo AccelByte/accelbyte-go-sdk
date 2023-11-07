@@ -18,6 +18,9 @@ import (
 // swagger:model Model public invite user request V4.
 type ModelPublicInviteUserRequestV4 struct {
 
+	// additionaldata
+	AdditionalData string `json:"additionalData,omitempty"`
+
 	// emailaddress
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`

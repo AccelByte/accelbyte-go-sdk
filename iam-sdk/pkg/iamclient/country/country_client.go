@@ -46,9 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetCountryListV3Short instead.
 
 AdminGetCountryListV3 get country list
-Admin get country list:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]
+Admin get country list
 */
 func (a *Client) AdminGetCountryListV3(params *AdminGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryListV3OK, *AdminGetCountryListV3Unauthorized, *AdminGetCountryListV3Forbidden, *AdminGetCountryListV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -102,9 +100,7 @@ func (a *Client) AdminGetCountryListV3(params *AdminGetCountryListV3Params, auth
 
 /*
 AdminGetCountryListV3Short get country list
-Admin get country list:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]
+Admin get country list
 */
 func (a *Client) AdminGetCountryListV3Short(params *AdminGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryListV3OK, error) {
 	// TODO: Validate the params before sending

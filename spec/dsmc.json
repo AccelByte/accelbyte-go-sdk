@@ -6276,7 +6276,6 @@
         }
       },
       "required": [
-        "artifactPath",
         "dockerPath",
         "image",
         "imageSize",
@@ -6322,7 +6321,6 @@
         }
       },
       "required": [
-        "artifactPath",
         "dockerPath",
         "image",
         "imageSize",
@@ -6891,12 +6889,9 @@
         }
       },
       "required": [
-        "artifactPath",
         "createdAt",
         "dockerPath",
         "image",
-        "imageReplications",
-        "imageReplicationsMap",
         "imageSize",
         "modifiedBy",
         "namespace",
@@ -6938,9 +6933,7 @@
         }
       },
       "required": [
-        "artifactPath",
         "image",
-        "imageReplicationsMap",
         "namespace",
         "patchVersion",
         "persistent",
@@ -7195,12 +7188,9 @@
         }
       },
       "required": [
-        "artifactPath",
         "createdAt",
         "dockerPath",
         "image",
-        "imageReplications",
-        "imageReplicationsMap",
         "imageSize",
         "modifiedBy",
         "namespace",
@@ -7525,7 +7515,6 @@
         "game_version",
         "image_version",
         "ip",
-        "is_core_dump_enabled",
         "is_override_game_version",
         "job_id",
         "last_update",

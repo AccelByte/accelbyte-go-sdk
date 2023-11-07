@@ -7,11 +7,13 @@
 package session
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/session/certificate"
 	"github.com/AccelByte/sample-apps/cmd/session/configurationTemplate"
 	"github.com/AccelByte/sample-apps/cmd/session/dsmcDefaultConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/session/environmentVariable"
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
 	"github.com/AccelByte/sample-apps/cmd/session/globalConfiguration"
+	"github.com/AccelByte/sample-apps/cmd/session/maxActive"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
 	"github.com/AccelByte/sample-apps/cmd/session/platformCredential"
@@ -38,16 +40,20 @@ func init() {
 	SessionCmd.AddCommand(configurationTemplate.AdminUpdateConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminCreateConfigurationAlertV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminDeleteConfigurationAlertV1Cmd)
+	SessionCmd.AddCommand(certificate.HandleUploadXboxPFXCertificateCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminCreateConfigurationTemplateV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminGetAllConfigurationTemplatesV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminGetConfigurationTemplateV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminUpdateConfigurationTemplateV1Cmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminDeleteConfigurationTemplateV1Cmd)
+	SessionCmd.AddCommand(maxActive.AdminGetMemberActiveSessionCmd)
+	SessionCmd.AddCommand(maxActive.AdminReconcileMaxActiveSessionCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminGetDSMCConfigurationCmd)
 	SessionCmd.AddCommand(configurationTemplate.AdminSyncDSMCConfigurationCmd)
 	SessionCmd.AddCommand(gameSession.AdminQueryGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminQueryGameSessionsByAttributesCmd)
 	SessionCmd.AddCommand(gameSession.AdminDeleteBulkGameSessionsCmd)
+	SessionCmd.AddCommand(gameSession.AdminSetDSReadyCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
 	SessionCmd.AddCommand(party.AdminQueryPartiesCmd)
 	SessionCmd.AddCommand(platformCredential.AdminGetPlatformCredentialsCmd)

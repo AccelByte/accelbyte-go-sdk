@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.15.0"
+    "version": "2.16.0"
   },
   "schemes": [
     "https"
@@ -2249,7 +2249,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get contents belong to a group",
+        "summary": "(Legacy) Get contents belong to a group",
         "tags": [
           "Admin Group"
         ]
@@ -4256,7 +4256,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get contents belong to a group",
+        "summary": "(Legacy) Get contents belong to a group",
         "tags": [
           "Admin Group"
         ]
@@ -4463,7 +4463,7 @@
         ],
         "summary": "Search contents specific to a channel",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -4598,7 +4598,7 @@
         ],
         "summary": "Search contents",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -4666,7 +4666,7 @@
         ],
         "summary": "Get contents by content Ids ",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -4855,7 +4855,7 @@
         ],
         "summary": "Get liked contents",
         "tags": [
-          "Public Like"
+          "Public Like (Legacy)"
         ]
       }
     },
@@ -4919,7 +4919,7 @@
         ],
         "summary": "Get content by sharecode",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -4983,7 +4983,7 @@
         ],
         "summary": "Get user specific content",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -5053,7 +5053,7 @@
         ],
         "summary": "Add unique download count to a content",
         "tags": [
-          "Public Download Count"
+          "Public Download Count (Legacy)"
         ]
       }
     },
@@ -5125,7 +5125,7 @@
         ],
         "summary": "Update like/unlike status to a content",
         "tags": [
-          "Public Like"
+          "Public Like (Legacy)"
         ]
       }
     },
@@ -5189,7 +5189,7 @@
         ],
         "summary": "Get content preview",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6011,7 +6011,7 @@
         ],
         "summary": "Upload content to a channel",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6093,7 +6093,7 @@
         ],
         "summary": "Upload content to S3 bucket",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6188,7 +6188,7 @@
         ],
         "summary": "Update content to S3 bucket",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6266,7 +6266,7 @@
         ],
         "summary": "Delete content",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       },
       "put": {
@@ -6360,7 +6360,7 @@
         ],
         "summary": "Update content to a channel",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6503,7 +6503,7 @@
         ],
         "summary": "Get user's generated contents",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6585,7 +6585,7 @@
         ],
         "summary": "Upload screenshots for content",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       },
       "put": {
@@ -6671,7 +6671,7 @@
         ],
         "summary": "Update screenshot of content",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -6755,7 +6755,7 @@
         ],
         "summary": "Delete screenshots content",
         "tags": [
-          "Public Content"
+          "Public Content (Legacy)"
         ]
       }
     },
@@ -7518,7 +7518,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get contents belong to a group",
+        "summary": "(Legacy) Get contents belong to a group",
         "tags": [
           "Public Group"
         ]
@@ -7587,6 +7587,3302 @@
           "Anonymization"
         ]
       }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetContentByChannelIDV2",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc.\n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List contents specific to a channel",
+        "tags": [
+          "Admin Content V2"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminCreateContentV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminContentRequestV2"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminDeleteOfficialContentV2",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete official content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminUpdateOfficialContentV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminUpdateContentRequestV2"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update official content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/fileLocation": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint should be used after calling generate official content upload url endpoint to commit the changes.\nRequired permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminUpdateOfficialContentFileLocation",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateFileLocationRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content file location",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/uploadUrl": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGenerateOfficialContentUploadURLV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Generate official content upload URL",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\nRequired permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g:\n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
+        "operationId": "AdminListContentV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "filter by content name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "default value: createdTime:desc. \n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003cli\u003edownload, download:desc, download:asc\u003c/li\u003e\n\u003cli\u003elike, like:desc, like:asc\u003c/li\u003e\n\u003cli\u003ename, name:desc, name:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by content subType",
+            "in": "query",
+            "name": "subType",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "content tag",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          },
+          {
+            "description": "filter by content type",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List contents",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.\n\t\t\t\t\t\tMaximum contentId per request 100",
+        "operationId": "AdminBulkGetContentByIDsV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminGetContentBulkRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponseV2"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get content by content IDs",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetContentByShareCodeV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content sharecode",
+            "in": "path",
+            "name": "shareCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by sharecode",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetContentByContentIDV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by content ID",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/screenshots": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\tAll request body are required except for contentType field. \n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\tSupported file extensions: pjp, jpg, jpeg, jfif, bmp, png. \\n\n\t\t\t\tMaximum description length: 1024.\n\t\t\t\t",
+        "operationId": "AdminUploadContentScreenshotV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Upload screenshots for content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.\\n \n\t\t\t\t\tMaximum description length: 1024.\n\t\t\t\t\t",
+        "operationId": "AdminUpdateScreenshotsV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update screenshot of content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.\n\t\t\t\t",
+        "operationId": "AdminDeleteContentScreenshotV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "screenshot ID",
+            "in": "path",
+            "name": "screenshotId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete screenshots content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/groups/{groupId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetOfficialGroupContentsV2",
+        "parameters": [
+          {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get contents belong to a group",
+        "tags": [
+          "Admin Group"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminDeleteUserContentV2",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete user content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminUpdateUserContentV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminUpdateContentRequestV2"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update user content",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/fileLocation": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint should be used after calling generate user content upload url endpoint to commit the changes.\nRequired permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminUpdateUserContentFileLocation",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateFileLocationRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update user content file location",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/uploadUrl": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGenerateUserContentUploadURLV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Generate user content upload URL",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetContentByUserIDV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc.\n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user's generated contents",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminUpdateContentHideStatusV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.HideContentRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Hide/Unhide user's generated contents",
+        "tags": [
+          "Admin Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetUserGroupContentsV2",
+        "parameters": [
+          {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get contents belong to a group",
+        "tags": [
+          "Admin Group"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/channels/{channelId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Public user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicGetContentByChannelIDV2",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc.\n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List contents specific to a channel",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "\nFor advance tag filtering supports \u0026amp; as AND operator and | as OR operator and parentheses () for priority. e.g:\n\n\u0026lt;code\u0026gt;tags=red\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red|animal\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;animal|wild\u0026lt;/code\u0026gt;\n\u0026lt;code\u0026gt;tags=red\u0026amp;(animal|wild)\u0026lt;/code\u0026gt;\n\nThe precedence of logical operator is AND \u0026gt; OR, so if no parentheses, AND logical operator will be executed first.\n\nAllowed character for operand: alphanumeric, underscore \u0026lt;code\u0026gt;_\u0026lt;/code\u0026gt; and dash \u0026lt;code\u0026gt;-\u0026lt;/code\u0026gt;\nAllowed character for operator: \u0026lt;code\u0026gt;\u0026amp;\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;|\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;(\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;)\u0026lt;/code\u0026gt;\n\n\u0026lt;b\u0026gt;Please note that value of tags query param should be URL encoded\u0026lt;/b\u0026gt;",
+        "operationId": "PublicListContentV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "filter by content name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "default value: createdTime:desc. \n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003cli\u003edownload, download:desc, download:asc\u003c/li\u003e\n\u003cli\u003elike, like:desc, like:asc\u003c/li\u003e\n\u003cli\u003ename, name:desc, name:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by content subType",
+            "in": "query",
+            "name": "subType",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "content tag",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
+          },
+          {
+            "description": "filter by content type",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List contents",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/bulk": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Maximum requested Ids: 100.\n\t\t\tPublic user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicBulkGetContentByIDV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicGetContentBulkRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponseV2"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get contents by content Ids ",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Public user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicGetContentByShareCodeV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content sharecode",
+            "in": "path",
+            "name": "shareCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by sharecode",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/{contentId}": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Public user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicGetContentByIDV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by content ID",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/downloadcount": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Requires valid user token",
+        "operationId": "PublicAddDownloadCountV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.AddDownloadCountResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Add unique download count to a content",
+        "tags": [
+          "Public Download Count V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/downloader": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "This endpoint will only display the list of users who performed add download count from v2 endpoint.",
+        "operationId": "PublicListContentDownloaderV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc. \n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloaderResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List content downloader",
+        "tags": [
+          "Public Download Count V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/like": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "This endpoint will only display the list of users who performed like from v2 endpoint.",
+        "operationId": "PublicListContentLikeV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "maximum result of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc.\n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentLikersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve list of user that like specified content.",
+        "tags": [
+          "Public Like V2"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Requires valid user token",
+        "operationId": "UpdateContentLikeStatusV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ContentLikeRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ContentLikeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update like/unlike status to a content",
+        "tags": [
+          "Public Like V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicCreateContentV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ContentRequestV2"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create a content",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}": {
+      "delete": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicDeleteContentV2",
+        "parameters": [
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete content",
+        "tags": [
+          "Public Content V2"
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicUpdateContentV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentRequestV2"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/fileLocation": {
+      "patch": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "This endpoint should be used after calling generate upload url endpoint to commit the changes.\nRequired permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicUpdateContentFileLocation",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateFileLocationRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content file location",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/uploadUrl": {
+      "patch": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicGenerateContentUploadURLV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GenerateContentUploadURLResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Generate content upload URL",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Public user can access without token or if token specified, required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicGetContentByUserIDV2",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdTime:desc",
+            "description": "default value: createdTime:desc.\n\navailable value:\n\u003cul\u003e\n\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get content by user ID",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u0026lt;/b\u0026gt;. \n\t\t\t\tAll request body are required except for contentType field. \n\t\t\t\tcontentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.\n\t\t\t\tIf not specified, it will use fileExtension value.\n\t\t\t\tSupported file extensions: pjp, jpg, jpeg, jfif, bmp, png.\n\t\t\t\tMaximum description length: 1024.\n\t\t\t\t",
+        "operationId": "UploadContentScreenshotV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Upload screenshots for content",
+        "tags": [
+          "Public Content V2"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;. \n\t\t\t\t\tMaximum description length: 1024.\n\t\t\t\t\t",
+        "operationId": "UpdateScreenshotsV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update screenshot of content",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}": {
+      "delete": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.\n\t\t\t\t",
+        "operationId": "DeleteContentScreenshotV2",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "screenshot ID",
+            "in": "path",
+            "name": "screenshotId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete screenshots content",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "PublicGetGroupContentsV2",
+        "parameters": [
+          {
+            "description": "group ID",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "number of content per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedContentDownloadResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get contents belong to a group",
+        "tags": [
+          "Public Group"
+        ]
+      }
     }
   },
   "definitions": {
@@ -7598,6 +10894,41 @@
       },
       "required": [
         "contentId"
+      ]
+    },
+    "models.AdminContentRequestV2": {
+      "properties": {
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shareCode": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
       ]
     },
     "models.AdminGetContentBulkRequest": {
@@ -7668,6 +10999,31 @@
         "type",
         "updateContentFile"
       ]
+    },
+    "models.AdminUpdateContentRequestV2": {
+      "properties": {
+        "customAttributes": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shareCode": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
     },
     "models.ChannelRequest": {
       "properties": {
@@ -7826,6 +11182,131 @@
         "userId"
       ]
     },
+    "models.ContentDownloadResponseV2": {
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        },
+        "creatorFollowState": {
+          "$ref": "#/definitions/models.CreatorFollowState"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "downloadCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isOfficial": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "likeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "likeState": {
+          "$ref": "#/definitions/models.LikeState"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "payloadURL": {
+          "items": {
+            "$ref": "#/definitions/models.PayloadURL"
+          },
+          "type": "array"
+        },
+        "screenshots": {
+          "items": {
+            "$ref": "#/definitions/models.ScreenshotResponse"
+          },
+          "type": "array"
+        },
+        "shareCode": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "channelId",
+        "createdTime",
+        "creatorFollowState",
+        "downloadCount",
+        "id",
+        "isHidden",
+        "isOfficial",
+        "likeCount",
+        "name",
+        "namespace",
+        "shareCode",
+        "tags",
+        "userId"
+      ]
+    },
+    "models.ContentDownloaderResponse": {
+      "properties": {
+        "contentId": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "downloadedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentId",
+        "createdTime",
+        "downloadedBy",
+        "namespace"
+      ]
+    },
     "models.ContentLikeRequest": {
       "properties": {
         "likeStatus": {
@@ -7850,6 +11331,62 @@
       "required": [
         "contentId",
         "likeStatus"
+      ]
+    },
+    "models.ContentLikersResponse": {
+      "properties": {
+        "contentId": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "likedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentId",
+        "createdTime",
+        "likedBy",
+        "namespace"
+      ]
+    },
+    "models.ContentRequestV2": {
+      "properties": {
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
       ]
     },
     "models.ContentSnapshot": {
@@ -8073,6 +11610,90 @@
         "tags",
         "type",
         "updatedTime",
+        "userId"
+      ]
+    },
+    "models.CreateContentResponseV2": {
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "fileLocation": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isOfficial": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "parentNamespace": {
+          "type": "string"
+        },
+        "payloadURL": {
+          "items": {
+            "$ref": "#/definitions/models.PayloadURL"
+          },
+          "type": "array"
+        },
+        "shareCode": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "channelId",
+        "createdTime",
+        "fileLocation",
+        "id",
+        "isHidden",
+        "isOfficial",
+        "name",
+        "namespace",
+        "parentNamespace",
+        "shareCode",
+        "tags",
         "userId"
       ]
     },
@@ -8321,6 +11942,39 @@
         "totalLikedContent"
       ]
     },
+    "models.GenerateContentUploadURLRequest": {
+      "properties": {
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "fileExtension": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GenerateContentUploadURLResponse": {
+      "properties": {
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "fileLocation": {
+          "description": "S3 file location",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fileLocation",
+        "url"
+      ]
+    },
     "models.GetContentBulkByShareCodesRequest": {
       "properties": {
         "shareCodes": {
@@ -8392,6 +12046,57 @@
         "data": {
           "items": {
             "$ref": "#/definitions/models.ContentDownloadResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.PaginatedContentDownloadResponseV2": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ContentDownloadResponseV2"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.PaginatedContentDownloaderResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ContentDownloaderResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.PaginatedContentLikersResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ContentLikersResponse"
           },
           "type": "array"
         },
@@ -8692,6 +12397,125 @@
         "updateContentFile"
       ]
     },
+    "models.UpdateContentRequestV2": {
+      "properties": {
+        "customAttributes": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateContentResponseV2": {
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "contentType": {
+          "description": "S3 content type",
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "fileLocation": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isOfficial": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "parentNamespace": {
+          "type": "string"
+        },
+        "payloadURL": {
+          "items": {
+            "$ref": "#/definitions/models.PayloadURL"
+          },
+          "type": "array"
+        },
+        "shareCode": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "channelId",
+        "createdTime",
+        "fileLocation",
+        "id",
+        "isHidden",
+        "isOfficial",
+        "name",
+        "namespace",
+        "parentNamespace",
+        "shareCode",
+        "tags",
+        "userId"
+      ]
+    },
+    "models.UpdateFileLocationRequest": {
+      "properties": {
+        "fileExtension": {
+          "type": "string"
+        },
+        "fileLocation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fileLocation"
+      ]
+    },
     "models.UpdateScreenshotRequest": {
       "properties": {
         "screenshots": {
@@ -8820,11 +12644,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-20T06:41:14+00:00",
-    "gitHash": "c0918ee4eeeb8d83773436838c78556636555284",
+    "buildDate": "2023-11-03T03:21:26+00:00",
+    "gitHash": "96f72097dd962740dbaba691cac2d6979ce004d1",
     "name": "justice-ugc-service",
     "realm": "demo",
-    "version": "2.15.0",
+    "version": "2.16.0",
     "version-roles-seeding": "0.0.13"
   }
 }

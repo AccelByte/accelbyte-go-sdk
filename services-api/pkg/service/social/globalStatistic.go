@@ -36,7 +36,16 @@ func (aaa *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.Ge
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItems(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.GlobalStatistic.GetGlobalStatItems(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -50,9 +59,18 @@ func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode(input *global_sta
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -67,7 +85,16 @@ func (aaa *GlobalStatisticService) GetGlobalStatItems1(input *global_statistic.G
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.GlobalStatistic.GetGlobalStatItems1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.GlobalStatistic.GetGlobalStatItems1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -81,9 +108,18 @@ func (aaa *GlobalStatisticService) GetGlobalStatItemByStatCode1(input *global_st
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GlobalStatistic.GetGlobalStatItemByStatCode1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

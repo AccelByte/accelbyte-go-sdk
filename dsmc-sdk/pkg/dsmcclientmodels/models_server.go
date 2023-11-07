@@ -64,8 +64,7 @@ type ModelsServer struct {
 	IP *string `json:"ip"`
 
 	// is_core_dump_enabled
-	// Required: true
-	IsCoreDumpEnabled *bool `json:"is_core_dump_enabled"`
+	IsCoreDumpEnabled bool `json:"is_core_dump_enabled"`
 
 	// is_override_game_version
 	// Required: true
@@ -156,9 +155,6 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateIP(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateIsCoreDumpEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsOverrideGameVersion(formats); err != nil {
@@ -271,15 +267,6 @@ func (m *ModelsServer) validateImageVersion(formats strfmt.Registry) error {
 func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 
 	if err := validate.Required("ip", "body", m.IP); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateIsCoreDumpEnabled(formats strfmt.Registry) error {
-
-	if err := validate.Required("is_core_dump_enabled", "body", m.IsCoreDumpEnabled); err != nil {
 		return err
 	}
 

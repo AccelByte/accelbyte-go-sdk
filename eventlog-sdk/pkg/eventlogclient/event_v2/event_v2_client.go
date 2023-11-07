@@ -46,20 +46,9 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use QueryEventStreamHandlerShort instead.
 
 QueryEventStreamHandler a generic query to get a set of events based on the provided filters
-
-
 This endpoint is using POST which is somewhat unfamiliar,
 but it's logical that we have to send/post a filter (search term) in order to get the data.
-
-
-
-
 This endpoint will not return anything if you give it an empty filters in the request body.
-
-
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EVENT [READ]` and scope `"+scope+"`
 */
 func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, *QueryEventStreamHandlerBadRequest, *QueryEventStreamHandlerUnauthorized, *QueryEventStreamHandlerForbidden, *QueryEventStreamHandlerNotFound, *QueryEventStreamHandlerInternalServerError, *QueryEventStreamHandlerNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -122,20 +111,9 @@ func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, 
 
 /*
 QueryEventStreamHandlerShort a generic query to get a set of events based on the provided filters
-
-
 This endpoint is using POST which is somewhat unfamiliar,
 but it's logical that we have to send/post a filter (search term) in order to get the data.
-
-
-
-
 This endpoint will not return anything if you give it an empty filters in the request body.
-
-
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EVENT [READ]` and scope `"+scope+"`
 */
 func (a *Client) QueryEventStreamHandlerShort(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, error) {
 	// TODO: Validate the params before sending
@@ -194,7 +172,7 @@ func (a *Client) QueryEventStreamHandlerShort(params *QueryEventStreamHandlerPar
 Deprecated: 2022-08-10 - Use GetEventSpecificUserV2HandlerShort instead.
 
 GetEventSpecificUserV2Handler get events from a specific user
-Required permission `ADMIN:NAMESPACE:{namespace}:EVENT [READ]`and scope `analytics`
+Get events from a specific user
 */
 func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, *GetEventSpecificUserV2HandlerBadRequest, *GetEventSpecificUserV2HandlerUnauthorized, *GetEventSpecificUserV2HandlerForbidden, *GetEventSpecificUserV2HandlerNotFound, *GetEventSpecificUserV2HandlerInternalServerError, *GetEventSpecificUserV2HandlerNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -257,7 +235,7 @@ func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2Han
 
 /*
 GetEventSpecificUserV2HandlerShort get events from a specific user
-Required permission `ADMIN:NAMESPACE:{namespace}:EVENT [READ]`and scope `analytics`
+Get events from a specific user
 */
 func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, error) {
 	// TODO: Validate the params before sending
@@ -323,8 +301,6 @@ Available Type:
 * dateofbirth
 * country
 * language
-
-Requires valid user access token
 */
 func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, *GetPublicEditHistoryBadRequest, *GetPublicEditHistoryUnauthorized, *GetPublicEditHistoryForbidden, *GetPublicEditHistoryNotFound, *GetPublicEditHistoryInternalServerError, *GetPublicEditHistoryNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -394,8 +370,6 @@ Available Type:
 * dateofbirth
 * country
 * language
-
-Requires valid user access token
 */
 func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, error) {
 	// TODO: Validate the params before sending

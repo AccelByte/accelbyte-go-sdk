@@ -36,6 +36,12 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Required: true
 	Deployment *string `json:"deployment"`
 
+	// disablecodegeneration
+	DisableCodeGeneration bool `json:"disableCodeGeneration"`
+
+	// dsmanualsetready
+	DsManualSetReady bool `json:"dsManualSetReady"`
+
 	// dssource
 	DsSource string `json:"dsSource,omitempty"`
 

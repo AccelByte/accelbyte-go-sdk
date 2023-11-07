@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels player platform.
 type ApimodelsPlayerPlatform struct {
 
+	// crossplayenabled
+	CrossplayEnabled bool `json:"crossplayEnabled"`
+
 	// currentplatform
 	// Required: true
 	CurrentPlatform *string `json:"currentPlatform"`

@@ -52,6 +52,10 @@ type ClientService interface {
 	AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, error)
 	AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error)
 	AdminGetGroupContentsShort(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, error)
+	AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error)
+	AdminGetOfficialGroupContentsV2Short(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, error)
+	AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error)
+	AdminGetUserGroupContentsV2Short(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -601,7 +605,7 @@ func (a *Client) SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParam
 /*
 Deprecated: 2022-08-10 - Use SingleAdminGetGroupContentsShort instead.
 
-SingleAdminGetGroupContents get contents belong to a group
+SingleAdminGetGroupContents (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, *SingleAdminGetGroupContentsUnauthorized, *SingleAdminGetGroupContentsNotFound, *SingleAdminGetGroupContentsInternalServerError, error) {
@@ -655,7 +659,7 @@ func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContents
 }
 
 /*
-SingleAdminGetGroupContentsShort get contents belong to a group
+SingleAdminGetGroupContentsShort (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, error) {
@@ -1143,7 +1147,7 @@ func (a *Client) AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use AdminGetGroupContentsShort instead.
 
-AdminGetGroupContents get contents belong to a group
+AdminGetGroupContents (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error) {
@@ -1197,7 +1201,7 @@ func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, auth
 }
 
 /*
-AdminGetGroupContentsShort get contents belong to a group
+AdminGetGroupContentsShort (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, error) {
@@ -1240,6 +1244,220 @@ func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams,
 	case *AdminGetGroupContentsNotFound:
 		return nil, v
 	case *AdminGetGroupContentsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetOfficialGroupContentsV2Short instead.
+
+AdminGetOfficialGroupContentsV2 get contents belong to a group
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetOfficialGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetOfficialGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetOfficialGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetOfficialGroupContentsV2OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetOfficialGroupContentsV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetOfficialGroupContentsV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetOfficialGroupContentsV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetOfficialGroupContentsV2Short get contents belong to a group
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) AdminGetOfficialGroupContentsV2Short(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetOfficialGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetOfficialGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetOfficialGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetOfficialGroupContentsV2OK:
+		return v, nil
+	case *AdminGetOfficialGroupContentsV2Unauthorized:
+		return nil, v
+	case *AdminGetOfficialGroupContentsV2NotFound:
+		return nil, v
+	case *AdminGetOfficialGroupContentsV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetUserGroupContentsV2Short instead.
+
+AdminGetUserGroupContentsV2 get contents belong to a group
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserGroupContentsV2OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetUserGroupContentsV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetUserGroupContentsV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetUserGroupContentsV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetUserGroupContentsV2Short get contents belong to a group
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) AdminGetUserGroupContentsV2Short(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserGroupContentsV2OK:
+		return v, nil
+	case *AdminGetUserGroupContentsV2Unauthorized:
+		return nil, v
+	case *AdminGetUserGroupContentsV2NotFound:
+		return nil, v
+	case *AdminGetUserGroupContentsV2InternalServerError:
 		return nil, v
 
 	default:

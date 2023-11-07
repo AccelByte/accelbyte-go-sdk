@@ -19,8 +19,7 @@ import (
 type ModelsImageRecordUpdate struct {
 
 	// artifactpath
-	// Required: true
-	ArtifactPath *string `json:"artifactPath"`
+	ArtifactPath string `json:"artifactPath,omitempty"`
 
 	// coredumpenabled
 	CoreDumpEnabled bool `json:"coreDumpEnabled"`
@@ -30,8 +29,7 @@ type ModelsImageRecordUpdate struct {
 	Image *string `json:"image"`
 
 	// imagereplicationsmap
-	// Required: true
-	ImageReplicationsMap map[string]ModelsImageReplication `json:"imageReplicationsMap"`
+	ImageReplicationsMap map[string]ModelsImageReplication `json:"imageReplicationsMap,omitempty"`
 
 	// namespace
 	// Required: true
@@ -54,9 +52,6 @@ type ModelsImageRecordUpdate struct {
 func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateArtifactPath(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateImage(formats); err != nil {
 		res = append(res, err)
 	}
@@ -79,41 +74,10 @@ func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsImageRecordUpdate) validateArtifactPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsImageRecordUpdate) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsImageRecordUpdate) validateImageReplicationsMap(formats strfmt.Registry) error {
-
-	if err := validate.Required("imageReplicationsMap", "body", m.ImageReplicationsMap); err != nil {
-		return err
-	}
-
-	for k := range m.ImageReplicationsMap {
-
-		if err := validate.Required("imageReplicationsMap"+"."+k, "body", m.ImageReplicationsMap[k]); err != nil {
-			return err
-		}
-		if val, ok := m.ImageReplicationsMap[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

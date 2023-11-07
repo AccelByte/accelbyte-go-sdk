@@ -33,8 +33,26 @@ func (o *PublicDeleteProfileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicDeleteProfileUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicDeleteProfileForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicDeleteProfileNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicDeleteProfileInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,6 +89,112 @@ func (o *PublicDeleteProfileNoContent) readResponse(response runtime.ClientRespo
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewPublicDeleteProfileUnauthorized creates a PublicDeleteProfileUnauthorized with default headers values
+func NewPublicDeleteProfileUnauthorized() *PublicDeleteProfileUnauthorized {
+	return &PublicDeleteProfileUnauthorized{}
+}
+
+/*PublicDeleteProfileUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicDeleteProfileUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicDeleteProfileUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicDeleteProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicDeleteProfileUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicDeleteProfileUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicDeleteProfileForbidden creates a PublicDeleteProfileForbidden with default headers values
+func NewPublicDeleteProfileForbidden() *PublicDeleteProfileForbidden {
+	return &PublicDeleteProfileForbidden{}
+}
+
+/*PublicDeleteProfileForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicDeleteProfileForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicDeleteProfileForbidden) Error() string {
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicDeleteProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicDeleteProfileForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicDeleteProfileForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -113,6 +237,59 @@ func (o *PublicDeleteProfileNotFound) GetPayload() *socialclientmodels.ErrorEnti
 }
 
 func (o *PublicDeleteProfileNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicDeleteProfileInternalServerError creates a PublicDeleteProfileInternalServerError with default headers values
+func NewPublicDeleteProfileInternalServerError() *PublicDeleteProfileInternalServerError {
+	return &PublicDeleteProfileInternalServerError{}
+}
+
+/*PublicDeleteProfileInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicDeleteProfileInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicDeleteProfileInternalServerError) Error() string {
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicDeleteProfileInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicDeleteProfileInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicDeleteProfileInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

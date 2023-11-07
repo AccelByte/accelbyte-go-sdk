@@ -39,8 +39,32 @@ func (o *PublicUpdateAttributeReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicUpdateAttributeUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicUpdateAttributeForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicUpdateAttributeNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 422:
+		result := NewPublicUpdateAttributeUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicUpdateAttributeInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -162,6 +186,112 @@ func (o *PublicUpdateAttributeBadRequest) readResponse(response runtime.ClientRe
 	return nil
 }
 
+// NewPublicUpdateAttributeUnauthorized creates a PublicUpdateAttributeUnauthorized with default headers values
+func NewPublicUpdateAttributeUnauthorized() *PublicUpdateAttributeUnauthorized {
+	return &PublicUpdateAttributeUnauthorized{}
+}
+
+/*PublicUpdateAttributeUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicUpdateAttributeUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicUpdateAttributeUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicUpdateAttributeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateAttributeUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicUpdateAttributeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicUpdateAttributeForbidden creates a PublicUpdateAttributeForbidden with default headers values
+func NewPublicUpdateAttributeForbidden() *PublicUpdateAttributeForbidden {
+	return &PublicUpdateAttributeForbidden{}
+}
+
+/*PublicUpdateAttributeForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicUpdateAttributeForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicUpdateAttributeForbidden) Error() string {
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicUpdateAttributeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateAttributeForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicUpdateAttributeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicUpdateAttributeNotFound creates a PublicUpdateAttributeNotFound with default headers values
 func NewPublicUpdateAttributeNotFound() *PublicUpdateAttributeNotFound {
 	return &PublicUpdateAttributeNotFound{}
@@ -199,6 +329,112 @@ func (o *PublicUpdateAttributeNotFound) GetPayload() *socialclientmodels.ErrorEn
 }
 
 func (o *PublicUpdateAttributeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicUpdateAttributeUnprocessableEntity creates a PublicUpdateAttributeUnprocessableEntity with default headers values
+func NewPublicUpdateAttributeUnprocessableEntity() *PublicUpdateAttributeUnprocessableEntity {
+	return &PublicUpdateAttributeUnprocessableEntity{}
+}
+
+/*PublicUpdateAttributeUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type PublicUpdateAttributeUnprocessableEntity struct {
+	Payload *socialclientmodels.ValidationErrorEntity
+}
+
+func (o *PublicUpdateAttributeUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *PublicUpdateAttributeUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateAttributeUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicUpdateAttributeUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicUpdateAttributeInternalServerError creates a PublicUpdateAttributeInternalServerError with default headers values
+func NewPublicUpdateAttributeInternalServerError() *PublicUpdateAttributeInternalServerError {
+	return &PublicUpdateAttributeInternalServerError{}
+}
+
+/*PublicUpdateAttributeInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicUpdateAttributeInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicUpdateAttributeInternalServerError) Error() string {
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicUpdateAttributeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateAttributeInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicUpdateAttributeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

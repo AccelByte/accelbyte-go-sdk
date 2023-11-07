@@ -7,12 +7,9 @@
 package sessionclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ApimodelsDeleteBulkGameSessionsAPIResponse Apimodels delete bulk game sessions API response
@@ -21,62 +18,19 @@ import (
 type ApimodelsDeleteBulkGameSessionsAPIResponse struct {
 
 	// failed
-	// Required: true
-	Failed []*ApimodelsResponseDeleteBulkGameSessions `json:"failed"`
+	Failed []*ApimodelsResponseDeleteBulkGameSessions `json:"failed,omitempty"`
 
 	// success
-	// Required: true
-	Success []string `json:"success"`
+	Success []string `json:"success,omitempty"`
 }
 
 // Validate validates this Apimodels delete bulk game sessions API response
 func (m *ApimodelsDeleteBulkGameSessionsAPIResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateFailed(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSuccess(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ApimodelsDeleteBulkGameSessionsAPIResponse) validateFailed(formats strfmt.Registry) error {
-
-	if err := validate.Required("failed", "body", m.Failed); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Failed); i++ {
-		if swag.IsZero(m.Failed[i]) { // not required
-			continue
-		}
-
-		if m.Failed[i] != nil {
-			if err := m.Failed[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("failed" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ApimodelsDeleteBulkGameSessionsAPIResponse) validateSuccess(formats strfmt.Registry) error {
-
-	if err := validate.Required("success", "body", m.Success); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -38,6 +38,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/store"
 	"github.com/AccelByte/sample-apps/cmd/platform/subscription"
 	"github.com/AccelByte/sample-apps/cmd/platform/ticket"
+	"github.com/AccelByte/sample-apps/cmd/platform/tradeAction"
 	"github.com/AccelByte/sample-apps/cmd/platform/view"
 	"github.com/AccelByte/sample-apps/cmd/platform/wallet"
 	"github.com/spf13/cobra"
@@ -254,6 +255,9 @@ func init() {
 	PlatformCmd.AddCommand(ticket.DecreaseTicketSaleCmd)
 	PlatformCmd.AddCommand(ticket.GetTicketBoothIDCmd)
 	PlatformCmd.AddCommand(ticket.IncreaseTicketSaleCmd)
+	PlatformCmd.AddCommand(tradeAction.CommitCmd)
+	PlatformCmd.AddCommand(tradeAction.GetTradeHistoryByCriteriaCmd)
+	PlatformCmd.AddCommand(tradeAction.GetTradeHistoryByTransactionIdCmd)
 	PlatformCmd.AddCommand(achievementPlatform.UnlockSteamUserAchievementCmd)
 	PlatformCmd.AddCommand(achievementPlatform.GetXblUserAchievementsCmd)
 	PlatformCmd.AddCommand(achievementPlatform.UpdateXblUserAchievementCmd)
@@ -330,6 +334,7 @@ func init() {
 	PlatformCmd.AddCommand(wallet.ListUserCurrencyTransactionsCmd)
 	PlatformCmd.AddCommand(wallet.CheckWalletCmd)
 	PlatformCmd.AddCommand(wallet.CreditUserWalletCmd)
+	PlatformCmd.AddCommand(wallet.DebitByWalletPlatformCmd)
 	PlatformCmd.AddCommand(wallet.PayWithUserWalletCmd)
 	PlatformCmd.AddCommand(wallet.GetUserWalletCmd)
 	PlatformCmd.AddCommand(wallet.DebitUserWalletCmd)

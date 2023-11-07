@@ -36,6 +36,8 @@ type ClientService interface {
 	AdminQueryGameSessionsByAttributesShort(params *AdminQueryGameSessionsByAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsByAttributesOK, error)
 	AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, *AdminDeleteBulkGameSessionsBadRequest, *AdminDeleteBulkGameSessionsUnauthorized, *AdminDeleteBulkGameSessionsForbidden, *AdminDeleteBulkGameSessionsInternalServerError, error)
 	AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error)
+	AdminSetDSReady(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, *AdminSetDSReadyBadRequest, *AdminSetDSReadyUnauthorized, *AdminSetDSReadyForbidden, *AdminSetDSReadyInternalServerError, error)
+	AdminSetDSReadyShort(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, error)
 	AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error)
 	AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, error)
 	CreateGameSession(params *CreateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGameSessionCreated, *CreateGameSessionBadRequest, *CreateGameSessionUnauthorized, *CreateGameSessionForbidden, *CreateGameSessionInternalServerError, error)
@@ -431,6 +433,118 @@ func (a *Client) AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSes
 	case *AdminDeleteBulkGameSessionsForbidden:
 		return nil, v
 	case *AdminDeleteBulkGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSetDSReadyShort instead.
+
+AdminSetDSReady admin set the ds ready to accept connection
+When the session template has ds_manual_set_ready as true. Then the DS need to calls this end point in order to notify game client if the DS is ready to accept any game client connection.
+*/
+func (a *Client) AdminSetDSReady(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, *AdminSetDSReadyBadRequest, *AdminSetDSReadyUnauthorized, *AdminSetDSReadyForbidden, *AdminSetDSReadyInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSetDSReadyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSetDSReady",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/ds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSetDSReadyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSetDSReadyNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminSetDSReadyBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminSetDSReadyUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminSetDSReadyForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminSetDSReadyInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSetDSReadyShort admin set the ds ready to accept connection
+When the session template has ds_manual_set_ready as true. Then the DS need to calls this end point in order to notify game client if the DS is ready to accept any game client connection.
+*/
+func (a *Client) AdminSetDSReadyShort(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSetDSReadyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSetDSReady",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/ds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSetDSReadyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSetDSReadyNoContent:
+		return v, nil
+	case *AdminSetDSReadyBadRequest:
+		return nil, v
+	case *AdminSetDSReadyUnauthorized:
+		return nil, v
+	case *AdminSetDSReadyForbidden:
+		return nil, v
+	case *AdminSetDSReadyInternalServerError:
 		return nil, v
 
 	default:

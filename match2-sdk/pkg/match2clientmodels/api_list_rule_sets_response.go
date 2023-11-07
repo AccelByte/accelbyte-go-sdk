@@ -7,12 +7,9 @@
 package match2clientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // APIListRuleSetsResponse Api list rule sets response
@@ -21,8 +18,7 @@ import (
 type APIListRuleSetsResponse struct {
 
 	// data
-	// Required: true
-	Data []*APIMatchRuleSetNameData `json:"data"`
+	Data []*APIMatchRuleSetNameData `json:"data,omitempty"`
 
 	// pagination
 	Pagination *ModelsPagination `json:"pagination,omitempty"`
@@ -32,38 +28,9 @@ type APIListRuleSetsResponse struct {
 func (m *APIListRuleSetsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *APIListRuleSetsResponse) validateData(formats strfmt.Registry) error {
-
-	if err := validate.Required("data", "body", m.Data); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Data); i++ {
-		if swag.IsZero(m.Data[i]) { // not required
-			continue
-		}
-
-		if m.Data[i] != nil {
-			if err := m.Data[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("data" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 

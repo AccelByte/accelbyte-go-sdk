@@ -171,6 +171,29 @@ func (aaa *PublicGroupService) GetGroupContent(input *public_group.GetGroupConte
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetGroupContentsV2Short instead.
+func (aaa *PublicGroupService) PublicGetGroupContentsV2(input *public_group.PublicGetGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.PublicGetGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -314,6 +337,31 @@ func (aaa *PublicGroupService) GetGroupContentShort(input *public_group.GetGroup
 	}
 
 	ok, err := aaa.Client.PublicGroup.GetGroupContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicGroupService) PublicGetGroupContentsV2Short(input *public_group.PublicGetGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicGroup.PublicGetGroupContentsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

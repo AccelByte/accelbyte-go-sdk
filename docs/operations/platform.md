@@ -347,6 +347,7 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/currencies/{currencyCode}/transactions` | GET | ListUserCurrencyTransactionsShort | [ListUserCurrencyTransactionsShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [ListUserCurrencyTransactionsShort](../../services-api/pkg/service/platform/wallet.go) | [ListUserCurrencyTransactionsShort](../../samples/cli/cmd/platform/wallet/listUserCurrencyTransactions.go) |
 | [DEPRECATED] `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check` | GET | CheckWalletShort | [CheckWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [CheckWalletShort](../../services-api/pkg/service/platform/wallet.go) | [CheckWalletShort](../../samples/cli/cmd/platform/wallet/checkWallet.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit` | PUT | CreditUserWalletShort | [CreditUserWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [CreditUserWalletShort](../../services-api/pkg/service/platform/wallet.go) | [CreditUserWalletShort](../../samples/cli/cmd/platform/wallet/creditUserWallet.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/debitByWalletPlatform` | PUT | DebitByWalletPlatformShort | [DebitByWalletPlatformShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [DebitByWalletPlatformShort](../../services-api/pkg/service/platform/wallet.go) | [DebitByWalletPlatformShort](../../samples/cli/cmd/platform/wallet/debitByWalletPlatform.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment` | PUT | PayWithUserWalletShort | [PayWithUserWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [PayWithUserWalletShort](../../services-api/pkg/service/platform/wallet.go) | [PayWithUserWalletShort](../../samples/cli/cmd/platform/wallet/payWithUserWallet.go) |
 | [DEPRECATED] `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}` | GET | GetUserWalletShort | [GetUserWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [GetUserWalletShort](../../services-api/pkg/service/platform/wallet.go) | [GetUserWalletShort](../../samples/cli/cmd/platform/wallet/getUserWallet.go) |
 | [DEPRECATED] `/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit` | PUT | DebitUserWalletShort | [DebitUserWalletShort](../../platform-sdk/pkg/platformclient/wallet/wallet_client.go) | [DebitUserWalletShort](../../services-api/pkg/service/platform/wallet.go) | [DebitUserWalletShort](../../samples/cli/cmd/platform/wallet/debitUserWallet.go) |
@@ -460,6 +461,13 @@
 | `/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment` | PUT | IncreaseTicketSaleShort | [IncreaseTicketSaleShort](../../platform-sdk/pkg/platformclient/ticket/ticket_client.go) | [IncreaseTicketSaleShort](../../services-api/pkg/service/platform/ticket.go) | [IncreaseTicketSaleShort](../../samples/cli/cmd/platform/ticket/increaseTicketSale.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}` | POST | AcquireUserTicketShort | [AcquireUserTicketShort](../../platform-sdk/pkg/platformclient/ticket/ticket_client.go) | [AcquireUserTicketShort](../../services-api/pkg/service/platform/ticket.go) | [AcquireUserTicketShort](../../samples/cli/cmd/platform/ticket/acquireUserTicket.go) |
 
+### TradeAction Wrapper:  [TradeAction](../../services-api/pkg/service/platform/tradeAction.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/trade/commit` | POST | CommitShort | [CommitShort](../../platform-sdk/pkg/platformclient/trade_action/trade_action_client.go) | [CommitShort](../../services-api/pkg/service/platform/tradeAction.go) | [CommitShort](../../samples/cli/cmd/platform/tradeAction/commit.go) |
+| `/platform/admin/namespaces/{namespace}/trade/history/byCriteria` | GET | GetTradeHistoryByCriteriaShort | [GetTradeHistoryByCriteriaShort](../../platform-sdk/pkg/platformclient/trade_action/trade_action_client.go) | [GetTradeHistoryByCriteriaShort](../../services-api/pkg/service/platform/tradeAction.go) | [GetTradeHistoryByCriteriaShort](../../samples/cli/cmd/platform/tradeAction/getTradeHistoryByCriteria.go) |
+| `/platform/admin/namespaces/{namespace}/trade/{transactionId}` | GET | GetTradeHistoryByTransactionIdShort | [GetTradeHistoryByTransactionIdShort](../../platform-sdk/pkg/platformclient/trade_action/trade_action_client.go) | [GetTradeHistoryByTransactionIdShort](../../services-api/pkg/service/platform/tradeAction.go) | [GetTradeHistoryByTransactionIdShort](../../samples/cli/cmd/platform/tradeAction/getTradeHistoryByTransactionId.go) |
+
 ### Achievement(Platform) Wrapper:  [AchievementPlatform](../../services-api/pkg/service/platform/achievementPlatform.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -566,6 +574,8 @@
 | Model Struct | Class |
 |---|---|
 | `AchievementInfo` | [AchievementInfo ](../../platform-sdk/pkg/platformclientmodels/achievement_info.go) |
+| `Action` | [Action ](../../platform-sdk/pkg/platformclientmodels/action.go) |
+| `ActionRequest` | [ActionRequest ](../../platform-sdk/pkg/platformclientmodels/action_request.go) |
 | `AdditionalData` | [AdditionalData ](../../platform-sdk/pkg/platformclientmodels/additional_data.go) |
 | `AdditionalDataEntitlement` | [AdditionalDataEntitlement ](../../platform-sdk/pkg/platformclientmodels/additional_data_entitlement.go) |
 | `AdminOrderCreate` | [AdminOrderCreate ](../../platform-sdk/pkg/platformclientmodels/admin_order_create.go) |
@@ -626,6 +636,7 @@
 | `ConditionMatchResult` | [ConditionMatchResult ](../../platform-sdk/pkg/platformclientmodels/condition_match_result.go) |
 | `ConsumableEntitlementRevocationConfig` | [ConsumableEntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/consumable_entitlement_revocation_config.go) |
 | `ConsumeItem` | [ConsumeItem ](../../platform-sdk/pkg/platformclientmodels/consume_item.go) |
+| `CreditPayload` | [CreditPayload ](../../platform-sdk/pkg/platformclientmodels/credit_payload.go) |
 | `CreditRequest` | [CreditRequest ](../../platform-sdk/pkg/platformclientmodels/credit_request.go) |
 | `CreditResult` | [CreditResult ](../../platform-sdk/pkg/platformclientmodels/credit_result.go) |
 | `CreditRevocation` | [CreditRevocation ](../../platform-sdk/pkg/platformclientmodels/credit_revocation.go) |
@@ -643,6 +654,8 @@
 | `DLCItemConfigUpdate` | [DLCItemConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/dlc_item_config_update.go) |
 | `DLCRecord` | [DLCRecord ](../../platform-sdk/pkg/platformclientmodels/dlc_record.go) |
 | `DebitByCurrencyCodeRequest` | [DebitByCurrencyCodeRequest ](../../platform-sdk/pkg/platformclientmodels/debit_by_currency_code_request.go) |
+| `DebitByWalletPlatformRequest` | [DebitByWalletPlatformRequest ](../../platform-sdk/pkg/platformclientmodels/debit_by_wallet_platform_request.go) |
+| `DebitPayload` | [DebitPayload ](../../platform-sdk/pkg/platformclientmodels/debit_payload.go) |
 | `DebitRequest` | [DebitRequest ](../../platform-sdk/pkg/platformclientmodels/debit_request.go) |
 | `DebitResult` | [DebitResult ](../../platform-sdk/pkg/platformclientmodels/debit_result.go) |
 | `DeleteRewardConditionRequest` | [DeleteRewardConditionRequest ](../../platform-sdk/pkg/platformclientmodels/delete_reward_condition_request.go) |
@@ -679,6 +692,7 @@
 | `ExternalPaymentOrderCreate` | [ExternalPaymentOrderCreate ](../../platform-sdk/pkg/platformclientmodels/external_payment_order_create.go) |
 | `FieldValidationError` | [FieldValidationError ](../../platform-sdk/pkg/platformclientmodels/field_validation_error.go) |
 | `FixedPeriodRotationConfig` | [FixedPeriodRotationConfig ](../../platform-sdk/pkg/platformclientmodels/fixed_period_rotation_config.go) |
+| `FulFillItemPayload` | [FulFillItemPayload ](../../platform-sdk/pkg/platformclientmodels/ful_fill_item_payload.go) |
 | `FulfillCodeRequest` | [FulfillCodeRequest ](../../platform-sdk/pkg/platformclientmodels/fulfill_code_request.go) |
 | `FulfillmentError` | [FulfillmentError ](../../platform-sdk/pkg/platformclientmodels/fulfillment_error.go) |
 | `FulfillmentHistoryInfo` | [FulfillmentHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_history_info.go) |
@@ -759,6 +773,8 @@
 | `OculusIAPConfigInfo` | [OculusIAPConfigInfo ](../../platform-sdk/pkg/platformclientmodels/oculus_iap_config_info.go) |
 | `OculusIAPConfigRequest` | [OculusIAPConfigRequest ](../../platform-sdk/pkg/platformclientmodels/oculus_iap_config_request.go) |
 | `OculusReconcileResult` | [OculusReconcileResult ](../../platform-sdk/pkg/platformclientmodels/oculus_reconcile_result.go) |
+| `Operation` | [Operation ](../../platform-sdk/pkg/platformclientmodels/operation.go) |
+| `OperationRequest` | [OperationRequest ](../../platform-sdk/pkg/platformclientmodels/operation_request.go) |
 | `OptionBoxConfig` | [OptionBoxConfig ](../../platform-sdk/pkg/platformclientmodels/option_box_config.go) |
 | `Order` | [Order ](../../platform-sdk/pkg/platformclientmodels/order.go) |
 | `OrderBundleItemInfo` | [OrderBundleItemInfo ](../../platform-sdk/pkg/platformclientmodels/order_bundle_item_info.go) |
@@ -855,6 +871,7 @@
 | `RevocationResult` | [RevocationResult ](../../platform-sdk/pkg/platformclientmodels/revocation_result.go) |
 | `RevokeCurrency` | [RevokeCurrency ](../../platform-sdk/pkg/platformclientmodels/revoke_currency.go) |
 | `RevokeEntitlement` | [RevokeEntitlement ](../../platform-sdk/pkg/platformclientmodels/revoke_entitlement.go) |
+| `RevokeEntitlementPayload` | [RevokeEntitlementPayload ](../../platform-sdk/pkg/platformclientmodels/revoke_entitlement_payload.go) |
 | `RevokeEntry` | [RevokeEntry ](../../platform-sdk/pkg/platformclientmodels/revoke_entry.go) |
 | `RevokeItem` | [RevokeItem ](../../platform-sdk/pkg/platformclientmodels/revoke_item.go) |
 | `RevokeItemSummary` | [RevokeItemSummary ](../../platform-sdk/pkg/platformclientmodels/revoke_item_summary.go) |
@@ -912,6 +929,8 @@
 | `TicketSaleIncrementResult` | [TicketSaleIncrementResult ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_increment_result.go) |
 | `Time-limited balance` | [TimeLimitedBalance ](../../platform-sdk/pkg/platformclientmodels/time_limited_balance.go) |
 | `TimedOwnership` | [TimedOwnership ](../../platform-sdk/pkg/platformclientmodels/timed_ownership.go) |
+| `TradeChainActionHistoryInfo` | [TradeChainActionHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/trade_chain_action_history_info.go) |
+| `TradeChainedActionCommitRequest` | [TradeChainedActionCommitRequest ](../../platform-sdk/pkg/platformclientmodels/trade_chained_action_commit_request.go) |
 | `TradeNotification` | [TradeNotification ](../../platform-sdk/pkg/platformclientmodels/trade_notification.go) |
 | `Transaction` | [Transaction ](../../platform-sdk/pkg/platformclientmodels/transaction.go) |
 | `TransactionAmountDetails` | [TransactionAmountDetails ](../../platform-sdk/pkg/platformclientmodels/transaction_amount_details.go) |

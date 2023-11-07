@@ -162,13 +162,13 @@ func (aaa *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutPara
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use RequestGameTokenCodeResponseV3Short instead.
-func (aaa *OAuth20ExtensionService) RequestGameTokenCodeResponseV3(input *o_auth2_0_extension.RequestGameTokenCodeResponseV3Params) (*iamclientmodels.OauthmodelGameTokenCodeResponse, error) {
+// Deprecated: 2022-01-10 - please use RequestTokenExchangeCodeV3Short instead.
+func (aaa *OAuth20ExtensionService) RequestTokenExchangeCodeV3(input *o_auth2_0_extension.RequestTokenExchangeCodeV3Params) (*iamclientmodels.OauthmodelTargetTokenCodeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenCodeResponseV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20Extension.RequestTokenExchangeCodeV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -216,13 +216,13 @@ func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3(input *o_auth2_0_exte
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RequestGameTokenResponseV3Short instead.
-func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3(input *o_auth2_0_extension.RequestGameTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+// Deprecated: 2022-01-10 - please use RequestTargetTokenResponseV3Short instead.
+func (aaa *OAuth20ExtensionService) RequestTargetTokenResponseV3(input *o_auth2_0_extension.RequestTargetTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenResponseV3(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.OAuth20Extension.RequestTargetTokenResponseV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -452,7 +452,7 @@ func (aaa *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.Logou
 	return nil
 }
 
-func (aaa *OAuth20ExtensionService) RequestGameTokenCodeResponseV3Short(input *o_auth2_0_extension.RequestGameTokenCodeResponseV3Params) (*iamclientmodels.OauthmodelGameTokenCodeResponse, error) {
+func (aaa *OAuth20ExtensionService) RequestTokenExchangeCodeV3Short(input *o_auth2_0_extension.RequestTokenExchangeCodeV3Params) (*iamclientmodels.OauthmodelTargetTokenCodeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -469,7 +469,7 @@ func (aaa *OAuth20ExtensionService) RequestGameTokenCodeResponseV3Short(input *o
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenCodeResponseV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.RequestTokenExchangeCodeV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -527,7 +527,7 @@ func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3Short(input *o_auth2_0
 	return ok.GetPayload(), nil
 }
 
-func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3Short(input *o_auth2_0_extension.RequestGameTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (aaa *OAuth20ExtensionService) RequestTargetTokenResponseV3Short(input *o_auth2_0_extension.RequestTargetTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -544,7 +544,7 @@ func (aaa *OAuth20ExtensionService) RequestGameTokenResponseV3Short(input *o_aut
 		}
 	}
 
-	ok, err := aaa.Client.OAuth20Extension.RequestGameTokenResponseV3Short(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth20Extension.RequestTargetTokenResponseV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

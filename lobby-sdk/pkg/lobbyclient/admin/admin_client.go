@@ -30,6 +30,12 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminGetGlobalConfig(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, *AdminGetGlobalConfigBadRequest, *AdminGetGlobalConfigUnauthorized, *AdminGetGlobalConfigForbidden, *AdminGetGlobalConfigNotFound, *AdminGetGlobalConfigInternalServerError, error)
+	AdminGetGlobalConfigShort(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, error)
+	AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, *AdminUpdateGlobalConfigUnauthorized, *AdminUpdateGlobalConfigForbidden, error)
+	AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, error)
+	AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, *AdminDeleteGlobalConfigUnauthorized, *AdminDeleteGlobalConfigForbidden, error)
+	AdminDeleteGlobalConfigShort(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, error)
 	FreeFormNotification(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, *FreeFormNotificationBadRequest, *FreeFormNotificationUnauthorized, *FreeFormNotificationForbidden, *FreeFormNotificationNotFound, error)
 	FreeFormNotificationShort(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, error)
 	NotificationWithTemplate(params *NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*NotificationWithTemplateAccepted, *NotificationWithTemplateBadRequest, *NotificationWithTemplateUnauthorized, *NotificationWithTemplateForbidden, *NotificationWithTemplateNotFound, error)
@@ -52,6 +58,329 @@ type ClientService interface {
 	PublishTemplateShort(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetGlobalConfigShort instead.
+
+AdminGetGlobalConfig record of global configuration dsmc.
+Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]` with scope `social`
+get dsmc global configuration.
+*/
+func (a *Client) AdminGetGlobalConfig(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, *AdminGetGlobalConfigBadRequest, *AdminGetGlobalConfigUnauthorized, *AdminGetGlobalConfigForbidden, *AdminGetGlobalConfigNotFound, *AdminGetGlobalConfigInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetGlobalConfig",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetGlobalConfigOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetGlobalConfigBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetGlobalConfigUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetGlobalConfigForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetGlobalConfigNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetGlobalConfigInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetGlobalConfigShort record of global configuration dsmc.
+Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]` with scope `social`
+get dsmc global configuration.
+*/
+func (a *Client) AdminGetGlobalConfigShort(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetGlobalConfig",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetGlobalConfigOK:
+		return v, nil
+	case *AdminGetGlobalConfigBadRequest:
+		return nil, v
+	case *AdminGetGlobalConfigUnauthorized:
+		return nil, v
+	case *AdminGetGlobalConfigForbidden:
+		return nil, v
+	case *AdminGetGlobalConfigNotFound:
+		return nil, v
+	case *AdminGetGlobalConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminUpdateGlobalConfigShort instead.
+
+AdminUpdateGlobalConfig required permission : admin:namespace:{namespace}:lobby:config [update]
+Upsert global configuration data.
+*/
+func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, *AdminUpdateGlobalConfigUnauthorized, *AdminUpdateGlobalConfigForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdateGlobalConfig",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateGlobalConfigOK:
+		return v, nil, nil, nil
+
+	case *AdminUpdateGlobalConfigUnauthorized:
+		return nil, v, nil, nil
+
+	case *AdminUpdateGlobalConfigForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdateGlobalConfigShort required permission : admin:namespace:{namespace}:lobby:config [update]
+Upsert global configuration data.
+*/
+func (a *Client) AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdateGlobalConfig",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateGlobalConfigOK:
+		return v, nil
+	case *AdminUpdateGlobalConfigUnauthorized:
+		return nil, v
+	case *AdminUpdateGlobalConfigForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminDeleteGlobalConfigShort instead.
+
+AdminDeleteGlobalConfig required permission : admin:namespace:{namespace}:lobby:config [delete]
+Delete of global configuration data.
+*/
+func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, *AdminDeleteGlobalConfigUnauthorized, *AdminDeleteGlobalConfigForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeleteGlobalConfig",
+		Method:             "DELETE",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteGlobalConfigNoContent:
+		return v, nil, nil, nil
+
+	case *AdminDeleteGlobalConfigUnauthorized:
+		return nil, v, nil, nil
+
+	case *AdminDeleteGlobalConfigForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminDeleteGlobalConfigShort required permission : admin:namespace:{namespace}:lobby:config [delete]
+Delete of global configuration data.
+*/
+func (a *Client) AdminDeleteGlobalConfigShort(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteGlobalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeleteGlobalConfig",
+		Method:             "DELETE",
+		PathPattern:        "/lobby/v1/admin/global-configurations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteGlobalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteGlobalConfigNoContent:
+		return v, nil
+	case *AdminDeleteGlobalConfigUnauthorized:
+		return nil, v
+	case *AdminDeleteGlobalConfigForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

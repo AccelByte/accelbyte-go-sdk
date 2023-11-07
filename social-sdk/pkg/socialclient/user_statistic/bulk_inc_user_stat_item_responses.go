@@ -33,8 +33,32 @@ func (o *BulkIncUserStatItemReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewBulkIncUserStatItemBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewBulkIncUserStatItemUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewBulkIncUserStatItemForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewBulkIncUserStatItemUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewBulkIncUserStatItemInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -101,6 +125,165 @@ func (o *BulkIncUserStatItemOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
+// NewBulkIncUserStatItemBadRequest creates a BulkIncUserStatItemBadRequest with default headers values
+func NewBulkIncUserStatItemBadRequest() *BulkIncUserStatItemBadRequest {
+	return &BulkIncUserStatItemBadRequest{}
+}
+
+/*BulkIncUserStatItemBadRequest handles this case with default header values.
+
+  Bad request
+*/
+type BulkIncUserStatItemBadRequest struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *BulkIncUserStatItemBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/statitems/value/bulk][%d] bulkIncUserStatItemBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *BulkIncUserStatItemBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkIncUserStatItemBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *BulkIncUserStatItemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewBulkIncUserStatItemUnauthorized creates a BulkIncUserStatItemUnauthorized with default headers values
+func NewBulkIncUserStatItemUnauthorized() *BulkIncUserStatItemUnauthorized {
+	return &BulkIncUserStatItemUnauthorized{}
+}
+
+/*BulkIncUserStatItemUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type BulkIncUserStatItemUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *BulkIncUserStatItemUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/statitems/value/bulk][%d] bulkIncUserStatItemUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *BulkIncUserStatItemUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkIncUserStatItemUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *BulkIncUserStatItemUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewBulkIncUserStatItemForbidden creates a BulkIncUserStatItemForbidden with default headers values
+func NewBulkIncUserStatItemForbidden() *BulkIncUserStatItemForbidden {
+	return &BulkIncUserStatItemForbidden{}
+}
+
+/*BulkIncUserStatItemForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type BulkIncUserStatItemForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *BulkIncUserStatItemForbidden) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/statitems/value/bulk][%d] bulkIncUserStatItemForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *BulkIncUserStatItemForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkIncUserStatItemForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *BulkIncUserStatItemForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewBulkIncUserStatItemUnprocessableEntity creates a BulkIncUserStatItemUnprocessableEntity with default headers values
 func NewBulkIncUserStatItemUnprocessableEntity() *BulkIncUserStatItemUnprocessableEntity {
 	return &BulkIncUserStatItemUnprocessableEntity{}
@@ -145,6 +328,59 @@ func (o *BulkIncUserStatItemUnprocessableEntity) readResponse(response runtime.C
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewBulkIncUserStatItemInternalServerError creates a BulkIncUserStatItemInternalServerError with default headers values
+func NewBulkIncUserStatItemInternalServerError() *BulkIncUserStatItemInternalServerError {
+	return &BulkIncUserStatItemInternalServerError{}
+}
+
+/*BulkIncUserStatItemInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type BulkIncUserStatItemInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *BulkIncUserStatItemInternalServerError) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/statitems/value/bulk][%d] bulkIncUserStatItemInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *BulkIncUserStatItemInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkIncUserStatItemInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *BulkIncUserStatItemInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

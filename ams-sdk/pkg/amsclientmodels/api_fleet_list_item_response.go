@@ -20,16 +20,6 @@ import (
 // swagger:model Api fleet list item response.
 type APIFleetListItemResponse struct {
 
-	// activeds
-	// Required: true
-	// Format: int32
-	ActiveDs *int32 `json:"activeDs"`
-
-	// claimedds
-	// Required: true
-	// Format: int32
-	ClaimedDs *int32 `json:"claimedDs"`
-
 	// counts
 	// Required: true
 	Counts []*APIFleetRegionalServerCounts `json:"counts"`
@@ -59,12 +49,6 @@ type APIFleetListItemResponse struct {
 func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateActiveDs(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateClaimedDs(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCounts(formats); err != nil {
 		res = append(res, err)
 	}
@@ -87,24 +71,6 @@ func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *APIFleetListItemResponse) validateActiveDs(formats strfmt.Registry) error {
-
-	if err := validate.Required("activeDs", "body", m.ActiveDs); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIFleetListItemResponse) validateClaimedDs(formats strfmt.Registry) error {
-
-	if err := validate.Required("claimedDs", "body", m.ClaimedDs); err != nil {
-		return err
-	}
-
 	return nil
 }
 

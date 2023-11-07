@@ -7,8 +7,6 @@
 package match2clientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,8 +19,7 @@ import (
 type APIListMatchFunctionsResponse struct {
 
 	// configs
-	// Required: true
-	Configs []*APIMatchFunctionConfig `json:"configs"`
+	Configs []*APIMatchFunctionConfig `json:"configs,omitempty"`
 
 	// functions
 	// Required: true
@@ -37,9 +34,6 @@ type APIListMatchFunctionsResponse struct {
 func (m *APIListMatchFunctionsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateConfigs(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateFunctions(formats); err != nil {
 		res = append(res, err)
 	}
@@ -50,31 +44,6 @@ func (m *APIListMatchFunctionsResponse) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *APIListMatchFunctionsResponse) validateConfigs(formats strfmt.Registry) error {
-
-	if err := validate.Required("configs", "body", m.Configs); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Configs); i++ {
-		if swag.IsZero(m.Configs[i]) { // not required
-			continue
-		}
-
-		if m.Configs[i] != nil {
-			if err := m.Configs[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("configs" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 

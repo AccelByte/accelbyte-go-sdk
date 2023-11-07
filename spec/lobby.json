@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.30.0"
+    "version": "3.30.2"
   },
   "schemes": [
     "https"
@@ -1879,6 +1879,163 @@
         "summary": "get list of outgoing friend requests",
         "tags": [
           "friends"
+        ]
+      }
+    },
+    "/lobby/v1/admin/global-configurations": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete of global configuration data.",
+        "operationId": "adminDeleteGlobalConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Required permission : ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [DELETE]",
+        "tags": [
+          "admin",
+          "global-configurations"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\tget dsmc global configuration.",
+        "operationId": "adminGetGlobalConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GlobalConfiguration"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Record of global configuration dsmc.",
+        "tags": [
+          "admin",
+          "global-configurations"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Upsert global configuration data.",
+        "operationId": "adminUpdateGlobalConfig",
+        "parameters": [
+          {
+            "description": "Update global configuration",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PutGlobalConfigurationRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GlobalConfiguration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Required permission : ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]",
+        "tags": [
+          "admin",
+          "global-configurations"
         ]
       }
     },
@@ -7993,6 +8150,51 @@
         "paging"
       ]
     },
+    "model.GlobalConfiguration": {
+      "properties": {
+        "regionRetryMapping": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
+        "regionURLMapping": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "testGameMode": {
+          "type": "string"
+        },
+        "testRegionURLMapping": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "testTargetUserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "regionRetryMapping",
+        "regionURLMapping",
+        "testGameMode",
+        "testRegionURLMapping",
+        "testTargetUserIDs",
+        "updatedAt"
+      ]
+    },
     "model.IncomingFriendsWithTimeData": {
       "properties": {
         "friendId": {
@@ -8267,6 +8469,47 @@
         "last",
         "next",
         "previous"
+      ]
+    },
+    "model.PutGlobalConfigurationRequest": {
+      "properties": {
+        "regionRetryMapping": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
+        "regionURLMapping": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "testGameMode": {
+          "type": "string"
+        },
+        "testRegionURLMapping": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "testTargetUserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "regionRetryMapping",
+        "regionURLMapping",
+        "testGameMode",
+        "testRegionURLMapping",
+        "testTargetUserIDs"
       ]
     },
     "model.TemplateContent": {
@@ -9297,12 +9540,12 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-11T03:01:46+00:00",
-    "gitHash": "e52b4707fb85cee02893d0a04b4214f9e0101948",
+    "buildDate": "2023-10-24T02:04:33+00:00",
+    "gitHash": "b70b5caded36f6b7eb5209eff44f5facdf9d0432",
     "name": "justice-lobby-server",
-    "revisionID": "3.30.0",
-    "version": "3.30.0",
+    "revisionID": "3.30.2",
+    "version": "3.30.2",
     "version-justice": "3.45.0",
-    "version-roles-seeding": "0.0.29"
+    "version-roles-seeding": "1.0.1"
   }
 }

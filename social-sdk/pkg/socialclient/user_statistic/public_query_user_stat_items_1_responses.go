@@ -39,6 +39,18 @@ func (o *PublicQueryUserStatItems1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicQueryUserStatItems1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicQueryUserStatItems1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicQueryUserStatItems1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -47,6 +59,12 @@ func (o *PublicQueryUserStatItems1Reader) ReadResponse(response runtime.ClientRe
 		return result, nil
 	case 422:
 		result := NewPublicQueryUserStatItems1UnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicQueryUserStatItems1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -166,6 +184,112 @@ func (o *PublicQueryUserStatItems1BadRequest) readResponse(response runtime.Clie
 	return nil
 }
 
+// NewPublicQueryUserStatItems1Unauthorized creates a PublicQueryUserStatItems1Unauthorized with default headers values
+func NewPublicQueryUserStatItems1Unauthorized() *PublicQueryUserStatItems1Unauthorized {
+	return &PublicQueryUserStatItems1Unauthorized{}
+}
+
+/*PublicQueryUserStatItems1Unauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicQueryUserStatItems1Unauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicQueryUserStatItems1Unauthorized) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1Unauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicQueryUserStatItems1Unauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicQueryUserStatItems1Unauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicQueryUserStatItems1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicQueryUserStatItems1Forbidden creates a PublicQueryUserStatItems1Forbidden with default headers values
+func NewPublicQueryUserStatItems1Forbidden() *PublicQueryUserStatItems1Forbidden {
+	return &PublicQueryUserStatItems1Forbidden{}
+}
+
+/*PublicQueryUserStatItems1Forbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicQueryUserStatItems1Forbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicQueryUserStatItems1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicQueryUserStatItems1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicQueryUserStatItems1Forbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicQueryUserStatItems1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicQueryUserStatItems1NotFound creates a PublicQueryUserStatItems1NotFound with default headers values
 func NewPublicQueryUserStatItems1NotFound() *PublicQueryUserStatItems1NotFound {
 	return &PublicQueryUserStatItems1NotFound{}
@@ -263,6 +387,59 @@ func (o *PublicQueryUserStatItems1UnprocessableEntity) readResponse(response run
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicQueryUserStatItems1InternalServerError creates a PublicQueryUserStatItems1InternalServerError with default headers values
+func NewPublicQueryUserStatItems1InternalServerError() *PublicQueryUserStatItems1InternalServerError {
+	return &PublicQueryUserStatItems1InternalServerError{}
+}
+
+/*PublicQueryUserStatItems1InternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicQueryUserStatItems1InternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicQueryUserStatItems1InternalServerError) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] publicQueryUserStatItems1InternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicQueryUserStatItems1InternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicQueryUserStatItems1InternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicQueryUserStatItems1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

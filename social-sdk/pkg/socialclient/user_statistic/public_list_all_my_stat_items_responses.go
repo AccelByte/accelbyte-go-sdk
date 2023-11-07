@@ -39,6 +39,12 @@ func (o *PublicListAllMyStatItemsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPublicListAllMyStatItemsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicListAllMyStatItemsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -150,6 +156,59 @@ func (o *PublicListAllMyStatItemsBadRequest) GetPayload() *socialclientmodels.Er
 }
 
 func (o *PublicListAllMyStatItemsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicListAllMyStatItemsForbidden creates a PublicListAllMyStatItemsForbidden with default headers values
+func NewPublicListAllMyStatItemsForbidden() *PublicListAllMyStatItemsForbidden {
+	return &PublicListAllMyStatItemsForbidden{}
+}
+
+/*PublicListAllMyStatItemsForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicListAllMyStatItemsForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicListAllMyStatItemsForbidden) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/me/statitems/value/bulk][%d] publicListAllMyStatItemsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicListAllMyStatItemsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicListAllMyStatItemsForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicListAllMyStatItemsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

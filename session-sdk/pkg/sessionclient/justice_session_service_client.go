@@ -15,11 +15,13 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/certificate"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/configuration_template"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/d_s_m_c_default_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/environment_variable"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/global_configuration"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/max_active"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/platform_credential"
@@ -74,11 +76,13 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeSessionService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.Certificate = certificate.New(transport, formats)
 	cli.ConfigurationTemplate = configuration_template.New(transport, formats)
 	cli.DsmcDefaultConfiguration = d_s_m_c_default_configuration.New(transport, formats)
 	cli.EnvironmentVariable = environment_variable.New(transport, formats)
 	cli.GameSession = game_session.New(transport, formats)
 	cli.GlobalConfiguration = global_configuration.New(transport, formats)
+	cli.MaxActive = max_active.New(transport, formats)
 	cli.Party = party.New(transport, formats)
 	cli.PlatformCredential = platform_credential.New(transport, formats)
 	cli.Player = player.New(transport, formats)
@@ -144,6 +148,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeSessionService is a client for justice session service
 type JusticeSessionService struct {
+	Certificate certificate.ClientService
+
 	ConfigurationTemplate configuration_template.ClientService
 
 	DsmcDefaultConfiguration d_s_m_c_default_configuration.ClientService
@@ -153,6 +159,8 @@ type JusticeSessionService struct {
 	GameSession game_session.ClientService
 
 	GlobalConfiguration global_configuration.ClientService
+
+	MaxActive max_active.ClientService
 
 	Party party.ClientService
 
@@ -171,11 +179,13 @@ type JusticeSessionService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeSessionService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Certificate.SetTransport(transport)
 	c.ConfigurationTemplate.SetTransport(transport)
 	c.DsmcDefaultConfiguration.SetTransport(transport)
 	c.EnvironmentVariable.SetTransport(transport)
 	c.GameSession.SetTransport(transport)
 	c.GlobalConfiguration.SetTransport(transport)
+	c.MaxActive.SetTransport(transport)
 	c.Party.SetTransport(transport)
 	c.PlatformCredential.SetTransport(transport)
 	c.Player.SetTransport(transport)

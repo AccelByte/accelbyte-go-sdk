@@ -46,6 +46,8 @@ type ClientService interface {
 	CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error)
 	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletUnprocessableEntity, error)
 	CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error)
+	DebitByWalletPlatform(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, *DebitByWalletPlatformBadRequest, *DebitByWalletPlatformUnprocessableEntity, error)
+	DebitByWalletPlatformShort(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, error)
 	PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletUnprocessableEntity, error)
 	PayWithUserWalletShort(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, error)
 	GetUserWallet(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, *GetUserWalletNotFound, error)
@@ -908,6 +910,150 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 	case *CreditUserWalletBadRequest:
 		return nil, v
 	case *CreditUserWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DebitByWalletPlatformShort instead.
+
+DebitByWalletPlatform pay with user wallet by currency code and client platform
+Pay with user wallet by currency code and client platform.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)
+
+
+
+## Restrictions for metadata
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
+*/
+func (a *Client) DebitByWalletPlatform(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, *DebitByWalletPlatformBadRequest, *DebitByWalletPlatformUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebitByWalletPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debitByWalletPlatform",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/debitByWalletPlatform",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebitByWalletPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebitByWalletPlatformOK:
+		return v, nil, nil, nil
+
+	case *DebitByWalletPlatformBadRequest:
+		return nil, v, nil, nil
+
+	case *DebitByWalletPlatformUnprocessableEntity:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DebitByWalletPlatformShort pay with user wallet by currency code and client platform
+Pay with user wallet by currency code and client platform.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)
+
+
+
+## Restrictions for metadata
+
+
+1. Cannot use "." as the key name
+-
+
+
+    { "data.2": "value" }
+
+
+2. Cannot use "$" as the prefix in key names
+-
+
+
+    { "$data": "value" }
+*/
+func (a *Client) DebitByWalletPlatformShort(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebitByWalletPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debitByWalletPlatform",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/debitByWalletPlatform",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebitByWalletPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebitByWalletPlatformOK:
+		return v, nil
+	case *DebitByWalletPlatformBadRequest:
+		return nil, v
+	case *DebitByWalletPlatformUnprocessableEntity:
 		return nil, v
 
 	default:

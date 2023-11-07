@@ -30,6 +30,75 @@ func (aaa *AdminService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetGlobalConfigShort instead.
+func (aaa *AdminService) AdminGetGlobalConfig(input *admin.AdminGetGlobalConfigParams) (*lobbyclientmodels.ModelGlobalConfiguration, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Admin.AdminGetGlobalConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdateGlobalConfigShort instead.
+func (aaa *AdminService) AdminUpdateGlobalConfig(input *admin.AdminUpdateGlobalConfigParams) (*lobbyclientmodels.ModelGlobalConfiguration, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := aaa.Client.Admin.AdminUpdateGlobalConfig(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminDeleteGlobalConfigShort instead.
+func (aaa *AdminService) AdminDeleteGlobalConfig(input *admin.AdminDeleteGlobalConfigParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	noContent, unauthorized, forbidden, err := aaa.Client.Admin.AdminDeleteGlobalConfig(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return "", unauthorized
+	}
+	if forbidden != nil {
+		return "", forbidden
+	}
+	if err != nil {
+		return "", err
+	}
+
+	return noContent.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use FreeFormNotificationShort instead.
 func (aaa *AdminService) FreeFormNotification(input *admin.FreeFormNotificationParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -288,6 +357,81 @@ func (aaa *AdminService) PublishTemplate(input *admin.PublishTemplateParams) err
 	}
 
 	return nil
+}
+
+func (aaa *AdminService) AdminGetGlobalConfigShort(input *admin.AdminGetGlobalConfigParams) (*lobbyclientmodels.ModelGlobalConfiguration, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Admin.AdminGetGlobalConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminService) AdminUpdateGlobalConfigShort(input *admin.AdminUpdateGlobalConfigParams) (*lobbyclientmodels.ModelGlobalConfiguration, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Admin.AdminUpdateGlobalConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminService) AdminDeleteGlobalConfigShort(input *admin.AdminDeleteGlobalConfigParams) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	noContent, err := aaa.Client.Admin.AdminDeleteGlobalConfigShort(input, authInfoWriter)
+	if err != nil {
+		return "", err
+	}
+
+	return noContent.GetPayload(), nil
 }
 
 func (aaa *AdminService) FreeFormNotificationShort(input *admin.FreeFormNotificationParams) error {

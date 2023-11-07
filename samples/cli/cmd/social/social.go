@@ -72,6 +72,7 @@ func init() {
 	SocialCmd.AddCommand(statConfiguration.GetStatCmd)
 	SocialCmd.AddCommand(statConfiguration.DeleteStatCmd)
 	SocialCmd.AddCommand(statConfiguration.UpdateStatCmd)
+	SocialCmd.AddCommand(userStatistic.GetStatItemsCmd)
 	SocialCmd.AddCommand(statConfiguration.DeleteTiedStatCmd)
 	SocialCmd.AddCommand(userStatisticCycle.GetUserStatCycleItemsCmd)
 	SocialCmd.AddCommand(userStatistic.GetUserStatItemsCmd)

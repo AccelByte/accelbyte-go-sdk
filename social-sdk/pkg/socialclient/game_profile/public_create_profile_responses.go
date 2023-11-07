@@ -33,8 +33,32 @@ func (o *PublicCreateProfileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPublicCreateProfileBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewPublicCreateProfileUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicCreateProfileForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewPublicCreateProfileUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicCreateProfileInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,6 +95,165 @@ func (o *PublicCreateProfileCreated) readResponse(response runtime.ClientRespons
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewPublicCreateProfileBadRequest creates a PublicCreateProfileBadRequest with default headers values
+func NewPublicCreateProfileBadRequest() *PublicCreateProfileBadRequest {
+	return &PublicCreateProfileBadRequest{}
+}
+
+/*PublicCreateProfileBadRequest handles this case with default header values.
+
+  Bad request
+*/
+type PublicCreateProfileBadRequest struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicCreateProfileBadRequest) Error() string {
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *PublicCreateProfileBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateProfileBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicCreateProfileBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicCreateProfileUnauthorized creates a PublicCreateProfileUnauthorized with default headers values
+func NewPublicCreateProfileUnauthorized() *PublicCreateProfileUnauthorized {
+	return &PublicCreateProfileUnauthorized{}
+}
+
+/*PublicCreateProfileUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicCreateProfileUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicCreateProfileUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicCreateProfileUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateProfileUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicCreateProfileUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicCreateProfileForbidden creates a PublicCreateProfileForbidden with default headers values
+func NewPublicCreateProfileForbidden() *PublicCreateProfileForbidden {
+	return &PublicCreateProfileForbidden{}
+}
+
+/*PublicCreateProfileForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicCreateProfileForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicCreateProfileForbidden) Error() string {
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicCreateProfileForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateProfileForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicCreateProfileForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil
@@ -120,6 +303,59 @@ func (o *PublicCreateProfileUnprocessableEntity) readResponse(response runtime.C
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicCreateProfileInternalServerError creates a PublicCreateProfileInternalServerError with default headers values
+func NewPublicCreateProfileInternalServerError() *PublicCreateProfileInternalServerError {
+	return &PublicCreateProfileInternalServerError{}
+}
+
+/*PublicCreateProfileInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicCreateProfileInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicCreateProfileInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicCreateProfileInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateProfileInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicCreateProfileInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

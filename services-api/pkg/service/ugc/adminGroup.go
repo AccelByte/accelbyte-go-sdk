@@ -289,6 +289,52 @@ func (aaa *AdminGroupService) AdminGetGroupContents(input *admin_group.AdminGetG
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetOfficialGroupContentsV2Short instead.
+func (aaa *AdminGroupService) AdminGetOfficialGroupContentsV2(input *admin_group.AdminGetOfficialGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetOfficialGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminGetUserGroupContentsV2Short instead.
+func (aaa *AdminGroupService) AdminGetUserGroupContentsV2(input *admin_group.AdminGetUserGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetUserGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminGroupService) SingleAdminGetAllGroupsShort(input *admin_group.SingleAdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -557,6 +603,56 @@ func (aaa *AdminGroupService) AdminGetGroupContentsShort(input *admin_group.Admi
 	}
 
 	ok, err := aaa.Client.AdminGroup.AdminGetGroupContentsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminGroupService) AdminGetOfficialGroupContentsV2Short(input *admin_group.AdminGetOfficialGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminGroup.AdminGetOfficialGroupContentsV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminGroupService) AdminGetUserGroupContentsV2Short(input *admin_group.AdminGetUserGroupContentsV2Params) (*ugcclientmodels.ModelsPaginatedContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminGroup.AdminGetUserGroupContentsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

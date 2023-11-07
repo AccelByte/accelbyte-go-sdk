@@ -33,6 +33,14 @@ type ModelsNativeSessionSetting struct {
 	// shouldsync
 	ShouldSync bool `json:"ShouldSync"`
 
+	// xboxallowcrossplatform
+	// Required: true
+	XboxAllowCrossPlatform *bool `json:"XboxAllowCrossPlatform"`
+
+	// xboxsandboxid
+	// Required: true
+	XboxSandboxID *string `json:"XboxSandboxID"`
+
 	// xboxserviceconfigid
 	// Required: true
 	XboxServiceConfigID *string `json:"XboxServiceConfigID"`
@@ -40,6 +48,10 @@ type ModelsNativeSessionSetting struct {
 	// xboxsessiontemplatename
 	// Required: true
 	XboxSessionTemplateName *string `json:"XboxSessionTemplateName"`
+
+	// xboxtitleid
+	// Required: true
+	XboxTitleID *string `json:"XboxTitleID"`
 
 	// localizedsessionname
 	LocalizedSessionName interface{} `json:"localizedSessionName,omitempty"`
@@ -55,10 +67,19 @@ func (m *ModelsNativeSessionSetting) Validate(formats strfmt.Registry) error {
 	if err := m.validateSessionTitle(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateXboxAllowCrossPlatform(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateXboxSandboxID(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateXboxServiceConfigID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateXboxSessionTemplateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateXboxTitleID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,6 +107,24 @@ func (m *ModelsNativeSessionSetting) validateSessionTitle(formats strfmt.Registr
 	return nil
 }
 
+func (m *ModelsNativeSessionSetting) validateXboxAllowCrossPlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("XboxAllowCrossPlatform", "body", m.XboxAllowCrossPlatform); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsNativeSessionSetting) validateXboxSandboxID(formats strfmt.Registry) error {
+
+	if err := validate.Required("XboxSandboxID", "body", m.XboxSandboxID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsNativeSessionSetting) validateXboxServiceConfigID(formats strfmt.Registry) error {
 
 	if err := validate.Required("XboxServiceConfigID", "body", m.XboxServiceConfigID); err != nil {
@@ -98,6 +137,15 @@ func (m *ModelsNativeSessionSetting) validateXboxServiceConfigID(formats strfmt.
 func (m *ModelsNativeSessionSetting) validateXboxSessionTemplateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("XboxSessionTemplateName", "body", m.XboxSessionTemplateName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsNativeSessionSetting) validateXboxTitleID(formats strfmt.Registry) error {
+
+	if err := validate.Required("XboxTitleID", "body", m.XboxTitleID); err != nil {
 		return err
 	}
 

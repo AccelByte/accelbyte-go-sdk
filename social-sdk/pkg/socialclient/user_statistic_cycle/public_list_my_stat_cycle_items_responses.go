@@ -33,6 +33,18 @@ func (o *PublicListMyStatCycleItemsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicListMyStatCycleItemsUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicListMyStatCycleItemsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicListMyStatCycleItemsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -41,6 +53,12 @@ func (o *PublicListMyStatCycleItemsReader) ReadResponse(response runtime.ClientR
 		return result, nil
 	case 422:
 		result := NewPublicListMyStatCycleItemsUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicListMyStatCycleItemsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -100,6 +118,112 @@ func (o *PublicListMyStatCycleItemsOK) readResponse(response runtime.ClientRespo
 	}
 
 	o.Payload = new(socialclientmodels.UserStatCycleItemPagingSlicedResult)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicListMyStatCycleItemsUnauthorized creates a PublicListMyStatCycleItemsUnauthorized with default headers values
+func NewPublicListMyStatCycleItemsUnauthorized() *PublicListMyStatCycleItemsUnauthorized {
+	return &PublicListMyStatCycleItemsUnauthorized{}
+}
+
+/*PublicListMyStatCycleItemsUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicListMyStatCycleItemsUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicListMyStatCycleItemsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems][%d] publicListMyStatCycleItemsUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicListMyStatCycleItemsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicListMyStatCycleItemsUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicListMyStatCycleItemsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicListMyStatCycleItemsForbidden creates a PublicListMyStatCycleItemsForbidden with default headers values
+func NewPublicListMyStatCycleItemsForbidden() *PublicListMyStatCycleItemsForbidden {
+	return &PublicListMyStatCycleItemsForbidden{}
+}
+
+/*PublicListMyStatCycleItemsForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicListMyStatCycleItemsForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicListMyStatCycleItemsForbidden) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems][%d] publicListMyStatCycleItemsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicListMyStatCycleItemsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicListMyStatCycleItemsForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicListMyStatCycleItemsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -206,6 +330,59 @@ func (o *PublicListMyStatCycleItemsUnprocessableEntity) readResponse(response ru
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicListMyStatCycleItemsInternalServerError creates a PublicListMyStatCycleItemsInternalServerError with default headers values
+func NewPublicListMyStatCycleItemsInternalServerError() *PublicListMyStatCycleItemsInternalServerError {
+	return &PublicListMyStatCycleItemsInternalServerError{}
+}
+
+/*PublicListMyStatCycleItemsInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicListMyStatCycleItemsInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicListMyStatCycleItemsInternalServerError) Error() string {
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems][%d] publicListMyStatCycleItemsInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicListMyStatCycleItemsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicListMyStatCycleItemsInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicListMyStatCycleItemsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -108,6 +108,32 @@ func (aaa *GameSessionService) AdminDeleteBulkGameSessions(input *game_session.A
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminSetDSReadyShort instead.
+func (aaa *GameSessionService) AdminSetDSReady(input *game_session.AdminSetDSReadyParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameSession.AdminSetDSReady(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpdateGameSessionMemberShort instead.
 func (aaa *GameSessionService) AdminUpdateGameSessionMember(input *game_session.AdminUpdateGameSessionMemberParams) (*sessionclientmodels.ApimodelsUpdateGameSessionMemberStatusResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -708,6 +734,31 @@ func (aaa *GameSessionService) AdminDeleteBulkGameSessionsShort(input *game_sess
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) AdminSetDSReadyShort(input *game_session.AdminSetDSReadyParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.GameSession.AdminSetDSReadyShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *GameSessionService) AdminUpdateGameSessionMemberShort(input *game_session.AdminUpdateGameSessionMemberParams) (*sessionclientmodels.ApimodelsUpdateGameSessionMemberStatusResponse, error) {

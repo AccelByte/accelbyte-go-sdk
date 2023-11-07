@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.38.0"
+    "version": "4.39.0"
   },
   "schemes": [
     "https"
@@ -106,6 +106,9 @@
     },
     {
       "name": "Ticket"
+    },
+    {
+      "name": "TradeAction"
     },
     {
       "name": "View"
@@ -13358,6 +13361,177 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/trade/commit": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to create a chained operations\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: chain action history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "operationId": "commit",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TradeChainedActionCommitRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TradeChainActionHistoryInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "commit a chain of actions or operations",
+        "tags": [
+          "TradeAction"
+        ],
+        "x-authorization": {
+          "action": "1",
+          "resource": "ADMIN:NAMESPACE:{namespace}:TRADE"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/trade/history/byCriteria": {
+      "get": {
+        "description": "This API is used to fetch trade history based on the provided criteria\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=2 (REDA)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: trade history list based on criteria\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getTradeHistoryByCriteria",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Status of the trade (SUCCESS/FAIL)",
+            "enum": [
+              "FAILED",
+              "INIT",
+              "SUCCESS"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Type of the trade",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "User ID for which the trade history is queried",
+            "in": "query",
+            "name": "userId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve trade history by criteria",
+        "tags": [
+          "TradeAction"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:TRADE"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/trade/{transactionId}": {
+      "get": {
+        "description": "This API is used to fetch a specific trade history using transaction ID\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=2 (REDA)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: trade history based on transaction ID\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getTradeHistoryByTransactionId",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Transaction ID to query the trade history",
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve trade history by transaction ID",
+        "tags": [
+          "TradeAction"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:TRADE"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/achievement/steam": {
       "put": {
         "consumes": [
@@ -18756,6 +18930,87 @@
           }
         ],
         "summary": "Credit a user wallet by currency code and balance origin",
+        "tags": [
+          "Wallet"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/debitByWalletPlatform": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Pay with user wallet by currency code and client platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "operationId": "debitByWalletPlatform",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "currencyCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DebitByWalletPlatformRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformWallet"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Pay with user wallet by currency code and client platform",
         "tags": [
           "Wallet"
         ],
@@ -28514,6 +28769,48 @@
       },
       "type": "object"
     },
+    "Action": {
+      "properties": {
+        "operations": {
+          "items": {
+            "$ref": "#/definitions/Operation"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "FAILED",
+            "INIT",
+            "SKIPPED",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActionRequest": {
+      "description": "Represents the request to commit a chained trade action.",
+      "properties": {
+        "operations": {
+          "example": "[\n    {\n        \"type\": \"DEBIT_WALLET\",\n        \"debitPayload\": {\n            \"currencyCode\": \"string\",\n            \"walletPlatform\": \"Other\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"CREDIT_WALLET\",\n        \"creditPayload\": {\n            \"currencyCode\": \"string\",\n            \"expireAt\": null,\n            \"balanceOrigin\": \"System\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"FULFILL_ITEM\",\n        \"fulFillItemPayload\": {\n            \"itemIdentityType\": \"ITEM_ID\",\n            \"itemIdentity\": \"string\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"REVOKE_ENTITLEMENT\",\n        \"revokeEntitlementPayload\": {\n            \"entitlementId\": \"string\",\n            \"count\": 1\n        }\n    }\n]\n",
+          "items": {
+            "$ref": "#/definitions/OperationRequest"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AdditionalData": {
       "properties": {
         "cardSummary": {
@@ -31134,6 +31431,43 @@
       },
       "type": "object"
     },
+    "CreditPayload": {
+      "properties": {
+        "balanceOrigin": {
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
+        "count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "expireAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "count",
+        "currencyCode"
+      ],
+      "type": "object"
+    },
     "CreditRequest": {
       "description": "A DTO for wallet's credit",
       "properties": {
@@ -31193,7 +31527,8 @@
             "REFERRAL_BONUS",
             "REFUND",
             "REWARD",
-            "SELL_BACK"
+            "SELL_BACK",
+            "TRADE"
           ],
           "type": "string"
         }
@@ -31671,7 +32006,8 @@
             "IAP_REVOCATION",
             "ORDER_REVOCATION",
             "OTHER",
-            "PAYMENT"
+            "PAYMENT",
+            "TRADE"
           ],
           "type": "string"
         },
@@ -31692,6 +32028,90 @@
       ],
       "type": "object"
     },
+    "DebitByWalletPlatformRequest": {
+      "properties": {
+        "amount": {
+          "description": "amount",
+          "format": "int64",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "debitBalanceSource": {
+          "description": "debitBalanceSource, default is OTHER",
+          "enum": [
+            "DLC_REVOCATION",
+            "EXPIRATION",
+            "IAP_REVOCATION",
+            "ORDER_REVOCATION",
+            "OTHER",
+            "PAYMENT",
+            "TRADE"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata for additional wallet transaction detail",
+          "type": "object"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "string"
+        },
+        "walletPlatform": {
+          "description": "walletPlatform source, default is OTHER",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "Xbox"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount"
+      ],
+      "type": "object"
+    },
+    "DebitPayload": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "walletPlatform": {
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "Xbox"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "currencyCode",
+        "walletPlatform"
+      ],
+      "type": "object"
+    },
     "DebitRequest": {
       "description": "A DTO for wallet's debit",
       "properties": {
@@ -31709,7 +32129,8 @@
             "IAP_REVOCATION",
             "ORDER_REVOCATION",
             "OTHER",
-            "PAYMENT"
+            "PAYMENT",
+            "TRADE"
           ],
           "type": "string"
         },
@@ -33083,6 +33504,30 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "FulFillItemPayload": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemIdentity": {
+          "type": "string"
+        },
+        "itemIdentityType": {
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "itemIdentity",
+        "itemIdentityType"
+      ],
       "type": "object"
     },
     "FulfillCodeRequest": {
@@ -36907,6 +37352,77 @@
         },
         "transactionId": {
           "description": "AGS transaction id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "properties": {
+        "creditPayload": {
+          "$ref": "#/definitions/CreditPayload"
+        },
+        "debitPayload": {
+          "$ref": "#/definitions/DebitPayload"
+        },
+        "fulFillItemPayload": {
+          "$ref": "#/definitions/FulFillItemPayload"
+        },
+        "resultId": {
+          "type": "string"
+        },
+        "revokeEntitlementPayload": {
+          "$ref": "#/definitions/RevokeEntitlementPayload"
+        },
+        "status": {
+          "enum": [
+            "FAILED",
+            "INIT",
+            "SKIPPED",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "CREDIT_WALLET",
+            "DEBIT_WALLET",
+            "FULFILL_ITEM",
+            "REVOKE_ENTITLEMENT"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "OperationRequest": {
+      "description": "Represents a single operation request.",
+      "properties": {
+        "creditPayload": {
+          "$ref": "#/definitions/CreditPayload"
+        },
+        "debitPayload": {
+          "$ref": "#/definitions/DebitPayload"
+        },
+        "fulFillItemPayload": {
+          "$ref": "#/definitions/FulFillItemPayload"
+        },
+        "revokeEntitlementPayload": {
+          "$ref": "#/definitions/RevokeEntitlementPayload"
+        },
+        "type": {
+          "enum": [
+            "CREDIT_WALLET",
+            "DEBIT_WALLET",
+            "FULFILL_ITEM",
+            "REVOKE_ENTITLEMENT"
+          ],
           "type": "string"
         }
       },
@@ -40992,6 +41508,21 @@
       },
       "type": "object"
     },
+    "RevokeEntitlementPayload": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "entitlementId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "entitlementId"
+      ],
+      "type": "object"
+    },
     "RevokeEntry": {
       "properties": {
         "currency": {
@@ -43143,6 +43674,85 @@
       ],
       "type": "object"
     },
+    "TradeChainActionHistoryInfo": {
+      "properties": {
+        "actions": {
+          "description": "chained actions",
+          "items": {
+            "$ref": "#/definitions/Action"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "metadata",
+          "type": "object"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "status": {
+          "description": "status of the whole chained actions",
+          "enum": [
+            "FAILED",
+            "INIT",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "description": "failed reason",
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "transaction Id provided by submitter",
+          "type": "string"
+        },
+        "type": {
+          "description": "type defined by submitted",
+          "type": "string"
+        },
+        "userIds": {
+          "description": "user Ids involved",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TradeChainedActionCommitRequest": {
+      "description": "Represents the request to commit a chained trade action.",
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "#/definitions/ActionRequest"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "needPreCheck": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "transactionId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TradeNotification": {
       "properties": {
         "additionalData": {
@@ -44394,16 +45004,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-10-20T07:26:31+00:00",
-    "buildID": "4.38.0",
+    "buildDate": "2023-11-03T08:42:53+00:00",
+    "buildID": "4.39.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "ced8bd68ab",
-    "gitTag": "4.38.0",
+    "gitHash": "b88a57de1d",
+    "gitTag": "4.39.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.38.0",
-    "version-roles-seeding": "0.0.43"
+    "version": "4.39.0",
+    "version-roles-seeding": "1.0.3"
   }
 }

@@ -36,7 +36,16 @@ func (aaa *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfil
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.GameProfile.GetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.GameProfile.GetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -50,9 +59,18 @@ func (aaa *GameProfileService) GetProfile(input *game_profile.GetProfileParams) 
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.GameProfile.GetProfile(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameProfile.GetProfile(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -67,9 +85,18 @@ func (aaa *GameProfileService) PublicGetUserGameProfiles(input *game_profile.Pub
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.GameProfile.PublicGetUserGameProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.GameProfile.PublicGetUserGameProfiles(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -84,7 +111,16 @@ func (aaa *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicG
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.GameProfile.PublicGetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.GameProfile.PublicGetUserProfiles(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -98,9 +134,21 @@ func (aaa *GameProfileService) PublicCreateProfile(input *game_profile.PublicCre
 	if err != nil {
 		return err
 	}
-	_, unprocessableEntity, err := aaa.Client.GameProfile.PublicCreateProfile(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.GameProfile.PublicCreateProfile(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
 	if unprocessableEntity != nil {
 		return unprocessableEntity
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -115,9 +163,18 @@ func (aaa *GameProfileService) PublicGetProfile(input *game_profile.PublicGetPro
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.GameProfile.PublicGetProfile(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameProfile.PublicGetProfile(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -132,12 +189,24 @@ func (aaa *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpd
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := aaa.Client.GameProfile.PublicUpdateProfile(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GameProfile.PublicUpdateProfile(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -152,9 +221,18 @@ func (aaa *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDel
 	if err != nil {
 		return err
 	}
-	_, notFound, err := aaa.Client.GameProfile.PublicDeleteProfile(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameProfile.PublicDeleteProfile(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -169,9 +247,18 @@ func (aaa *GameProfileService) PublicGetProfileAttribute(input *game_profile.Pub
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.GameProfile.PublicGetProfileAttribute(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameProfile.PublicGetProfileAttribute(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -186,12 +273,24 @@ func (aaa *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := aaa.Client.GameProfile.PublicUpdateAttribute(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GameProfile.PublicUpdateAttribute(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

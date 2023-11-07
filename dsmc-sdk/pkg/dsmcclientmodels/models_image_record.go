@@ -7,8 +7,6 @@
 package dsmcclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,8 +19,7 @@ import (
 type ModelsImageRecord struct {
 
 	// artifactpath
-	// Required: true
-	ArtifactPath *string `json:"artifactPath"`
+	ArtifactPath string `json:"artifactPath,omitempty"`
 
 	// coredumpenabled
 	CoreDumpEnabled bool `json:"coreDumpEnabled"`
@@ -41,12 +38,10 @@ type ModelsImageRecord struct {
 	Image *string `json:"image"`
 
 	// imagereplications
-	// Required: true
-	ImageReplications []*ModelsImageReplication `json:"imageReplications"`
+	ImageReplications []*ModelsImageReplication `json:"imageReplications,omitempty"`
 
 	// imagereplicationsmap
-	// Required: true
-	ImageReplicationsMap map[string]ModelsImageReplication `json:"imageReplicationsMap"`
+	ImageReplicationsMap map[string]ModelsImageReplication `json:"imageReplicationsMap,omitempty"`
 
 	// imagesize
 	// Required: true
@@ -83,9 +78,6 @@ type ModelsImageRecord struct {
 func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateArtifactPath(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -93,9 +85,6 @@ func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateImage(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateImageReplications(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateImageSize(formats); err != nil {
@@ -120,15 +109,6 @@ func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsImageRecord) validateArtifactPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -158,53 +138,6 @@ func (m *ModelsImageRecord) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsImageRecord) validateImageReplications(formats strfmt.Registry) error {
-
-	if err := validate.Required("imageReplications", "body", m.ImageReplications); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.ImageReplications); i++ {
-		if swag.IsZero(m.ImageReplications[i]) { // not required
-			continue
-		}
-
-		if m.ImageReplications[i] != nil {
-			if err := m.ImageReplications[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("imageReplications" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ModelsImageRecord) validateImageReplicationsMap(formats strfmt.Registry) error {
-
-	if err := validate.Required("imageReplicationsMap", "body", m.ImageReplicationsMap); err != nil {
-		return err
-	}
-
-	for k := range m.ImageReplicationsMap {
-
-		if err := validate.Required("imageReplicationsMap"+"."+k, "body", m.ImageReplicationsMap[k]); err != nil {
-			return err
-		}
-		if val, ok := m.ImageReplicationsMap[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

@@ -1713,7 +1713,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it\u0026#39;s logical that we have to send/post a filter (search term) in order to get the data.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will not return anything if you give it an empty filters in the request body. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;\u0026#34;+scope+\u0026#34;\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it\u0026#39;s logical that we have to send/post a filter (search term) in order to get the data.\n\t\t\tThis endpoint will not return anything if you give it an empty filters in the request body. ",
         "operationId": "QueryEventStreamHandler",
         "parameters": [
           {
@@ -1787,9 +1787,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1808,7 +1805,7 @@
     },
     "/event/v2/admin/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "description": "Get events from a specific user",
         "operationId": "GetEventSpecificUserV2Handler",
         "parameters": [
           {
@@ -1887,12 +1884,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1911,7 +1902,7 @@
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory": {
       "get": {
-        "description": "Available Type:\n\t\t\t\t* email\n\t\t\t\t* password\n\t\t\t\t* displayname\n\t\t\t\t* dateofbirth\n\t\t\t\t* country\n\t\t\t\t* language\n\n\t\tRequires valid user access token\n\t\t",
+        "description": "Available Type:\n\t\t\t\t* email\n\t\t\t\t* password\n\t\t\t\t* displayname\n\t\t\t\t* dateofbirth\n\t\t\t\t* country\n\t\t\t\t* language\n\t\t",
         "operationId": "GetPublicEditHistory",
         "parameters": [
           {
@@ -2501,11 +2492,11 @@
     "path": "/event/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-20T07:18:43+00:00",
-    "gitHash": "131571969f968bb9ed5d99d5c709bf067622e29a",
+    "buildDate": "2023-11-03T07:09:27+00:00",
+    "gitHash": "95215571f962a0326da2e8a3bc3e54246b1359b1",
     "name": "justice-event-log-service",
     "realm": "demo",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "version-roles-seeding": "0.0.3"
   }
 }

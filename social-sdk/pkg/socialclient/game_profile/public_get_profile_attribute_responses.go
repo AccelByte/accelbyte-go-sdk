@@ -33,8 +33,26 @@ func (o *PublicGetProfileAttributeReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicGetProfileAttributeUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicGetProfileAttributeForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicGetProfileAttributeNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicGetProfileAttributeInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -103,6 +121,112 @@ func (o *PublicGetProfileAttributeOK) readResponse(response runtime.ClientRespon
 	return nil
 }
 
+// NewPublicGetProfileAttributeUnauthorized creates a PublicGetProfileAttributeUnauthorized with default headers values
+func NewPublicGetProfileAttributeUnauthorized() *PublicGetProfileAttributeUnauthorized {
+	return &PublicGetProfileAttributeUnauthorized{}
+}
+
+/*PublicGetProfileAttributeUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicGetProfileAttributeUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicGetProfileAttributeUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicGetProfileAttributeUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetProfileAttributeUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicGetProfileAttributeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicGetProfileAttributeForbidden creates a PublicGetProfileAttributeForbidden with default headers values
+func NewPublicGetProfileAttributeForbidden() *PublicGetProfileAttributeForbidden {
+	return &PublicGetProfileAttributeForbidden{}
+}
+
+/*PublicGetProfileAttributeForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicGetProfileAttributeForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicGetProfileAttributeForbidden) Error() string {
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicGetProfileAttributeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetProfileAttributeForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicGetProfileAttributeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicGetProfileAttributeNotFound creates a PublicGetProfileAttributeNotFound with default headers values
 func NewPublicGetProfileAttributeNotFound() *PublicGetProfileAttributeNotFound {
 	return &PublicGetProfileAttributeNotFound{}
@@ -140,6 +264,59 @@ func (o *PublicGetProfileAttributeNotFound) GetPayload() *socialclientmodels.Err
 }
 
 func (o *PublicGetProfileAttributeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicGetProfileAttributeInternalServerError creates a PublicGetProfileAttributeInternalServerError with default headers values
+func NewPublicGetProfileAttributeInternalServerError() *PublicGetProfileAttributeInternalServerError {
+	return &PublicGetProfileAttributeInternalServerError{}
+}
+
+/*PublicGetProfileAttributeInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicGetProfileAttributeInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicGetProfileAttributeInternalServerError) Error() string {
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicGetProfileAttributeInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetProfileAttributeInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicGetProfileAttributeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

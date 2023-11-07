@@ -30,13 +30,13 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error)
+	GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, *GetGlobalStatItemsUnauthorized, *GetGlobalStatItemsForbidden, *GetGlobalStatItemsInternalServerError, error)
 	GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error)
-	GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCodeOK, *GetGlobalStatItemByStatCodeNotFound, error)
+	GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCodeOK, *GetGlobalStatItemByStatCodeUnauthorized, *GetGlobalStatItemByStatCodeForbidden, *GetGlobalStatItemByStatCodeNotFound, *GetGlobalStatItemByStatCodeInternalServerError, error)
 	GetGlobalStatItemByStatCodeShort(params *GetGlobalStatItemByStatCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCodeOK, error)
-	GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItems1OK, error)
+	GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItems1OK, *GetGlobalStatItems1Unauthorized, *GetGlobalStatItems1Forbidden, *GetGlobalStatItems1InternalServerError, error)
 	GetGlobalStatItems1Short(params *GetGlobalStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItems1OK, error)
-	GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCode1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCode1OK, *GetGlobalStatItemByStatCode1NotFound, error)
+	GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCode1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCode1OK, *GetGlobalStatItemByStatCode1Unauthorized, *GetGlobalStatItemByStatCode1Forbidden, *GetGlobalStatItemByStatCode1NotFound, *GetGlobalStatItemByStatCode1InternalServerError, error)
 	GetGlobalStatItemByStatCode1Short(params *GetGlobalStatItemByStatCode1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCode1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -51,7 +51,7 @@ Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
-func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error) {
+func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, *GetGlobalStatItemsUnauthorized, *GetGlobalStatItemsForbidden, *GetGlobalStatItemsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGlobalStatItemsParams()
@@ -79,16 +79,25 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGlobalStatItemsOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *GetGlobalStatItemsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetGlobalStatItemsForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetGlobalStatItemsInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -134,6 +143,12 @@ func (a *Client) GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authI
 
 	case *GetGlobalStatItemsOK:
 		return v, nil
+	case *GetGlobalStatItemsUnauthorized:
+		return nil, v
+	case *GetGlobalStatItemsForbidden:
+		return nil, v
+	case *GetGlobalStatItemsInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -149,7 +164,7 @@ Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)
               *  Returns : global stat item
 */
-func (a *Client) GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCodeOK, *GetGlobalStatItemByStatCodeNotFound, error) {
+func (a *Client) GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCodeOK, *GetGlobalStatItemByStatCodeUnauthorized, *GetGlobalStatItemByStatCodeForbidden, *GetGlobalStatItemByStatCodeNotFound, *GetGlobalStatItemByStatCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGlobalStatItemByStatCodeParams()
@@ -177,19 +192,28 @@ func (a *Client) GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCode
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGlobalStatItemByStatCodeOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGlobalStatItemByStatCodeUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetGlobalStatItemByStatCodeForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *GetGlobalStatItemByStatCodeNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *GetGlobalStatItemByStatCodeInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -235,7 +259,13 @@ func (a *Client) GetGlobalStatItemByStatCodeShort(params *GetGlobalStatItemBySta
 
 	case *GetGlobalStatItemByStatCodeOK:
 		return v, nil
+	case *GetGlobalStatItemByStatCodeUnauthorized:
+		return nil, v
+	case *GetGlobalStatItemByStatCodeForbidden:
+		return nil, v
 	case *GetGlobalStatItemByStatCodeNotFound:
+		return nil, v
+	case *GetGlobalStatItemByStatCodeInternalServerError:
 		return nil, v
 
 	default:
@@ -252,7 +282,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
-func (a *Client) GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItems1OK, error) {
+func (a *Client) GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItems1OK, *GetGlobalStatItems1Unauthorized, *GetGlobalStatItems1Forbidden, *GetGlobalStatItems1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGlobalStatItems1Params()
@@ -280,16 +310,25 @@ func (a *Client) GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGlobalStatItems1OK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *GetGlobalStatItems1Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetGlobalStatItems1Forbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetGlobalStatItems1InternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -335,6 +374,12 @@ func (a *Client) GetGlobalStatItems1Short(params *GetGlobalStatItems1Params, aut
 
 	case *GetGlobalStatItems1OK:
 		return v, nil
+	case *GetGlobalStatItems1Unauthorized:
+		return nil, v
+	case *GetGlobalStatItems1Forbidden:
+		return nil, v
+	case *GetGlobalStatItems1InternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -350,7 +395,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=2 (READ)
               *  Returns : global stat item
 */
-func (a *Client) GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCode1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCode1OK, *GetGlobalStatItemByStatCode1NotFound, error) {
+func (a *Client) GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCode1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemByStatCode1OK, *GetGlobalStatItemByStatCode1Unauthorized, *GetGlobalStatItemByStatCode1Forbidden, *GetGlobalStatItemByStatCode1NotFound, *GetGlobalStatItemByStatCode1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGlobalStatItemByStatCode1Params()
@@ -378,19 +423,28 @@ func (a *Client) GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCod
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGlobalStatItemByStatCode1OK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGlobalStatItemByStatCode1Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetGlobalStatItemByStatCode1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *GetGlobalStatItemByStatCode1NotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *GetGlobalStatItemByStatCode1InternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -436,7 +490,13 @@ func (a *Client) GetGlobalStatItemByStatCode1Short(params *GetGlobalStatItemBySt
 
 	case *GetGlobalStatItemByStatCode1OK:
 		return v, nil
+	case *GetGlobalStatItemByStatCode1Unauthorized:
+		return nil, v
+	case *GetGlobalStatItemByStatCode1Forbidden:
+		return nil, v
 	case *GetGlobalStatItemByStatCode1NotFound:
+		return nil, v
+	case *GetGlobalStatItemByStatCode1InternalServerError:
 		return nil, v
 
 	default:

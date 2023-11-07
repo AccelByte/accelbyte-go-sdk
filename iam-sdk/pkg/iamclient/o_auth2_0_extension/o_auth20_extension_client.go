@@ -46,14 +46,14 @@ type ClientService interface {
 	GetCountryLocationV3Short(params *GetCountryLocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCountryLocationV3OK, error)
 	Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error)
 	LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error)
-	RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
-	RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error)
+	RequestTokenExchangeCodeV3(params *RequestTokenExchangeCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenExchangeCodeV3OK, error)
+	RequestTokenExchangeCodeV3Short(params *RequestTokenExchangeCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenExchangeCodeV3OK, error)
 	PlatformAuthenticationV3(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
 	PlatformAuthenticationV3Short(params *PlatformAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticationV3Found, error)
 	PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, *PlatformTokenRefreshV3BadRequest, *PlatformTokenRefreshV3Unauthorized, *PlatformTokenRefreshV3Forbidden, *PlatformTokenRefreshV3ServiceUnavailable, error)
 	PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3OK, error)
-	RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
-	RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error)
+	RequestTargetTokenResponseV3(params *RequestTargetTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTargetTokenResponseV3OK, error)
+	RequestTargetTokenResponseV3Short(params *RequestTargetTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTargetTokenResponseV3OK, error)
 	PlatformTokenRefreshV3Deprecate(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, *PlatformTokenRefreshV3DeprecateBadRequest, *PlatformTokenRefreshV3DeprecateUnauthorized, *PlatformTokenRefreshV3DeprecateForbidden, *PlatformTokenRefreshV3DeprecateServiceUnavailable, error)
 	PlatformTokenRefreshV3DeprecateShort(params *PlatformTokenRefreshV3DeprecateParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRefreshV3DeprecateOK, error)
 
@@ -432,7 +432,7 @@ RequestOneTimeLinkingCodeV3 generate one time linking code
 
 This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.
 
-It require a valid user token.
+It requires a valid user token.
 
 Should specify the target platform id and current user should already linked to this platform.
 
@@ -554,7 +554,7 @@ RequestOneTimeLinkingCodeV3Short generate one time linking code
 
 This endpoint is being used to request the one time code [8 length] for headless account to link or upgrade to a full account.
 
-It require a valid user token.
+It requires a valid user token.
 
 Should specify the target platform id and current user should already linked to this platform.
 
@@ -1107,24 +1107,26 @@ func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthIn
 }
 
 /*
-Deprecated: 2022-08-10 - Use RequestGameTokenCodeResponseV3Short instead.
+Deprecated: 2022-08-10 - Use RequestTokenExchangeCodeV3Short instead.
 
-RequestGameTokenCodeResponseV3 request code to get game token
+RequestTokenExchangeCodeV3 request code to get a new token
+This endpoint is being used to request the code to exchange a new token.
+The target new token's clientId should NOT be same with current using one.
 
+It requires a valid user token.
 
-This endpoint is being used to request the code to generate publisher user's game token.
-
-It require a valid user token with publisher namespace.
-
-Path namespace should be a game namespace.
+Path namespace should be target namespace.
 
 Client ID should match the target namespace.
-It response a code and it can be consumed by /iam/v3/token/exchange
+
+
+
+The code in response can be consumed by /iam/v3/token/exchange
 */
-func (a *Client) RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error) {
+func (a *Client) RequestTokenExchangeCodeV3(params *RequestTokenExchangeCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenExchangeCodeV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestGameTokenCodeResponseV3Params()
+		params = NewRequestTokenExchangeCodeV3Params()
 	}
 
 	if params.Context == nil {
@@ -1136,14 +1138,14 @@ func (a *Client) RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResp
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "RequestGameTokenCodeResponseV3",
+		ID:                 "RequestTokenExchangeCodeV3",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/namespace/{namespace}/token/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestGameTokenCodeResponseV3Reader{formats: a.formats},
+		Reader:             &RequestTokenExchangeCodeV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1154,7 +1156,7 @@ func (a *Client) RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResp
 
 	switch v := result.(type) {
 
-	case *RequestGameTokenCodeResponseV3OK:
+	case *RequestTokenExchangeCodeV3OK:
 		return v, nil
 
 	default:
@@ -1163,22 +1165,24 @@ func (a *Client) RequestGameTokenCodeResponseV3(params *RequestGameTokenCodeResp
 }
 
 /*
-RequestGameTokenCodeResponseV3Short request code to get game token
+RequestTokenExchangeCodeV3Short request code to get a new token
+This endpoint is being used to request the code to exchange a new token.
+The target new token's clientId should NOT be same with current using one.
 
+It requires a valid user token.
 
-This endpoint is being used to request the code to generate publisher user's game token.
-
-It require a valid user token with publisher namespace.
-
-Path namespace should be a game namespace.
+Path namespace should be target namespace.
 
 Client ID should match the target namespace.
-It response a code and it can be consumed by /iam/v3/token/exchange
+
+
+
+The code in response can be consumed by /iam/v3/token/exchange
 */
-func (a *Client) RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCodeResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenCodeResponseV3OK, error) {
+func (a *Client) RequestTokenExchangeCodeV3Short(params *RequestTokenExchangeCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTokenExchangeCodeV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestGameTokenCodeResponseV3Params()
+		params = NewRequestTokenExchangeCodeV3Params()
 	}
 
 	if params.Context == nil {
@@ -1190,14 +1194,14 @@ func (a *Client) RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCod
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "RequestGameTokenCodeResponseV3",
+		ID:                 "RequestTokenExchangeCodeV3",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/namespace/{namespace}/token/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestGameTokenCodeResponseV3Reader{formats: a.formats},
+		Reader:             &RequestTokenExchangeCodeV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1208,7 +1212,7 @@ func (a *Client) RequestGameTokenCodeResponseV3Short(params *RequestGameTokenCod
 
 	switch v := result.(type) {
 
-	case *RequestGameTokenCodeResponseV3OK:
+	case *RequestTokenExchangeCodeV3OK:
 		return v, nil
 
 	default:
@@ -1619,21 +1623,21 @@ func (a *Client) PlatformTokenRefreshV3Short(params *PlatformTokenRefreshV3Param
 }
 
 /*
-Deprecated: 2022-08-10 - Use RequestGameTokenResponseV3Short instead.
+Deprecated: 2022-08-10 - Use RequestTargetTokenResponseV3Short instead.
 
-RequestGameTokenResponseV3 generate game token by code
+RequestTargetTokenResponseV3 generate target token by code
 
 
-This endpoint is being used to generate publisher user's game token.
+This endpoint is being used to generate target token.
 
-It require basic header with ClientID and Secret, it should match the ClientID when call /iam/v3/namespace/{namespace}/token/request
+It requires basic header with ClientID and Secret, it should match the ClientID when call /iam/v3/namespace/{namespace}/token/request
 
-It required a code which can be generated from /iam/v3/namespace/{namespace}/token/request.
+The code should be generated from /iam/v3/namespace/{namespace}/token/request.
 */
-func (a *Client) RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error) {
+func (a *Client) RequestTargetTokenResponseV3(params *RequestTargetTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTargetTokenResponseV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestGameTokenResponseV3Params()
+		params = NewRequestTargetTokenResponseV3Params()
 	}
 
 	if params.Context == nil {
@@ -1645,14 +1649,14 @@ func (a *Client) RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Pa
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "RequestGameTokenResponseV3",
+		ID:                 "RequestTargetTokenResponseV3",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/token/exchange",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestGameTokenResponseV3Reader{formats: a.formats},
+		Reader:             &RequestTargetTokenResponseV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1663,7 +1667,7 @@ func (a *Client) RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Pa
 
 	switch v := result.(type) {
 
-	case *RequestGameTokenResponseV3OK:
+	case *RequestTargetTokenResponseV3OK:
 		return v, nil
 
 	default:
@@ -1672,19 +1676,19 @@ func (a *Client) RequestGameTokenResponseV3(params *RequestGameTokenResponseV3Pa
 }
 
 /*
-RequestGameTokenResponseV3Short generate game token by code
+RequestTargetTokenResponseV3Short generate target token by code
 
 
-This endpoint is being used to generate publisher user's game token.
+This endpoint is being used to generate target token.
 
-It require basic header with ClientID and Secret, it should match the ClientID when call /iam/v3/namespace/{namespace}/token/request
+It requires basic header with ClientID and Secret, it should match the ClientID when call /iam/v3/namespace/{namespace}/token/request
 
-It required a code which can be generated from /iam/v3/namespace/{namespace}/token/request.
+The code should be generated from /iam/v3/namespace/{namespace}/token/request.
 */
-func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestGameTokenResponseV3OK, error) {
+func (a *Client) RequestTargetTokenResponseV3Short(params *RequestTargetTokenResponseV3Params, authInfo runtime.ClientAuthInfoWriter) (*RequestTargetTokenResponseV3OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestGameTokenResponseV3Params()
+		params = NewRequestTargetTokenResponseV3Params()
 	}
 
 	if params.Context == nil {
@@ -1696,14 +1700,14 @@ func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenRespons
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "RequestGameTokenResponseV3",
+		ID:                 "RequestTargetTokenResponseV3",
 		Method:             "POST",
 		PathPattern:        "/iam/v3/token/exchange",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestGameTokenResponseV3Reader{formats: a.formats},
+		Reader:             &RequestTargetTokenResponseV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1714,7 +1718,7 @@ func (a *Client) RequestGameTokenResponseV3Short(params *RequestGameTokenRespons
 
 	switch v := result.(type) {
 
-	case *RequestGameTokenResponseV3OK:
+	case *RequestTargetTokenResponseV3OK:
 		return v, nil
 
 	default:

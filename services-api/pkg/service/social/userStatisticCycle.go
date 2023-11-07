@@ -36,12 +36,21 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -56,12 +65,21 @@ func (aaa *UserStatisticCycleService) PublicListMyStatCycleItems(input *user_sta
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := aaa.Client.UserStatisticCycle.PublicListMyStatCycleItems(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserStatisticCycle.PublicListMyStatCycleItems(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -76,12 +94,21 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems1(input *user_statist
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

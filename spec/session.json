@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.9.0"
+    "version": "3.10.0"
   },
   "schemes": [
     "https"
@@ -583,12 +583,107 @@
         ]
       }
     },
+    "/session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Upload certificates for xbox. Certificate must be in the valid form of PFX format.",
+        "operationId": "HandleUploadXboxPFXCertificate",
+        "parameters": [
+          {
+            "description": "the file to upload",
+            "in": "formData",
+            "name": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "description": "the uploaded file password",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "certificate name",
+            "in": "formData",
+            "name": "certname",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the description of the uploaded file",
+            "in": "formData",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PlatformCredentials"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upload certificates for xbox. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CERTIFICATES [UPDATE]",
+        "tags": [
+          "Certificate"
+        ]
+      }
+    },
     "/session/v1/admin/namespaces/{namespace}/configuration": {
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n\n",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -896,7 +991,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n\n",
+        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -972,6 +1067,145 @@
         "summary": "Update configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
         "tags": [
           "Configuration Template"
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/configurations/{name}/memberactivesession/{userId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tGet Member Active Session.\n",
+        "operationId": "adminGetMemberActiveSession",
+        "parameters": [
+          {
+            "description": "configuration name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberActiveSession"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Member Active Session . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "tags": [
+          "Max Active"
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/configurations/{name}/reconcile": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tReconcile Max Active Session.\n",
+        "operationId": "adminReconcileMaxActiveSession",
+        "parameters": [
+          {
+            "description": "Request Reconcile max Active Session",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.RequestReconcileMaxActiveSession"
+            }
+          },
+          {
+            "description": "configuration name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Reconcile Max Active Session . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "tags": [
+          "Max Active"
         ]
       }
     },
@@ -1213,13 +1447,13 @@
             "type": "string"
           },
           {
-            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST",
+            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,DS_ERROR,PREPARING",
             "in": "query",
             "name": "status",
             "type": "string"
           },
           {
-            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED",
+            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING",
             "in": "query",
             "name": "statusV2",
             "type": "string"
@@ -1292,7 +1526,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -1416,6 +1650,80 @@
           }
         ],
         "summary": "Delete bulk game sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [DELETE]",
+        "tags": [
+          "Game Session"
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/ds": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "When the session template has ds_manual_set_ready as true. Then the DS need to calls this end point in order to notify game client if the DS is ready to accept any game client connection.\n",
+        "operationId": "adminSetDSReady",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.SetDSReadyRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin set the DS ready to accept connection",
         "tags": [
           "Game Session"
         ]
@@ -1945,7 +2253,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -2022,7 +2330,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -2287,7 +2595,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -4439,7 +4747,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -4465,7 +4773,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -4524,7 +4832,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -4557,7 +4865,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "additionalProperties": true,
+              "additionalProperties": {},
               "type": "object"
             }
           },
@@ -5081,6 +5389,14 @@
         "deployment": {
           "type": "string"
         },
+        "disableCodeGeneration": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "dsManualSetReady": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "dsSource": {
           "type": "string"
         },
@@ -5212,6 +5528,14 @@
         },
         "deployment": {
           "type": "string"
+        },
+        "disableCodeGeneration": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "dsManualSetReady": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "dsSource": {
           "type": "string"
@@ -5510,11 +5834,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "failed",
-        "success"
-      ]
+      }
     },
     "apimodels.EnvironmentVariableListResponse": {
       "properties": {
@@ -5911,6 +6231,10 @@
     },
     "apimodels.PlayerPlatform": {
       "properties": {
+        "crossplayEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "currentPlatform": {
           "type": "string"
         },
@@ -5973,6 +6297,14 @@
         },
         "deployment": {
           "type": "string"
+        },
+        "disableCodeGeneration": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "dsManualSetReady": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "dsSource": {
           "type": "string"
@@ -6156,6 +6488,17 @@
         "userID"
       ]
     },
+    "apimodels.SetDSReadyRequest": {
+      "properties": {
+        "ready": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "ready"
+      ]
+    },
     "apimodels.UpdateConfigurationTemplateRequest": {
       "properties": {
         "NativeSessionSetting": {
@@ -6173,6 +6516,14 @@
         },
         "deployment": {
           "type": "string"
+        },
+        "disableCodeGeneration": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "dsManualSetReady": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "dsSource": {
           "type": "string"
@@ -6586,6 +6937,52 @@
         "status"
       ]
     },
+    "models.MemberActiveSession": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "ID": {
+          "type": "string"
+        },
+        "MemberID": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "SessionIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "SessionTemplate": {
+          "type": "string"
+        },
+        "Total": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "UpdatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "CreatedAt",
+        "ID",
+        "MemberID",
+        "Namespace",
+        "SessionIDs",
+        "SessionTemplate",
+        "Total",
+        "UpdatedAt"
+      ]
+    },
     "models.NativeSessionSetting": {
       "properties": {
         "PSNServiceLabel": {
@@ -6605,10 +7002,20 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "XboxAllowCrossPlatform": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "XboxSandboxID": {
+          "type": "string"
+        },
         "XboxServiceConfigID": {
           "type": "string"
         },
         "XboxSessionTemplateName": {
+          "type": "string"
+        },
+        "XboxTitleID": {
           "type": "string"
         },
         "localizedSessionName": {
@@ -6618,8 +7025,11 @@
       "required": [
         "PSNServiceLabel",
         "SessionTitle",
+        "XboxAllowCrossPlatform",
+        "XboxSandboxID",
         "XboxServiceConfigID",
-        "XboxSessionTemplateName"
+        "XboxSessionTemplateName",
+        "XboxTitleID"
       ]
     },
     "models.PSNAppServerCredentials": {
@@ -6685,6 +7095,16 @@
         "protocol"
       ]
     },
+    "models.RequestReconcileMaxActiveSession": {
+      "properties": {
+        "userID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userID"
+      ]
+    },
     "models.Team": {
       "properties": {
         "UserIDs": {
@@ -6699,10 +7119,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "UserIDs"
-      ]
+      }
     },
     "models.UserPlatformInfo": {
       "properties": {
@@ -6755,9 +7172,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-11T03:02:53+00:00",
-    "gitHash": "b44b3f124bd9fc0c74e402b63817ebc40fc5cfbd",
-    "version": "3.9.0",
+    "buildDate": "2023-10-24T02:07:49+00:00",
+    "gitHash": "6f11d24afab60bf7ca7e04491e34fbc3f4eb3ed1",
+    "version": "3.10.0",
     "version-roles-seeding": "0.0.49"
   }
 }

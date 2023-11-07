@@ -39,6 +39,18 @@ func (o *PublicIncUserStatItemValueReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicIncUserStatItemValueUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPublicIncUserStatItemValueForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicIncUserStatItemValueNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -53,6 +65,12 @@ func (o *PublicIncUserStatItemValueReader) ReadResponse(response runtime.ClientR
 		return result, nil
 	case 422:
 		result := NewPublicIncUserStatItemValueUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewPublicIncUserStatItemValueInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -158,6 +176,112 @@ func (o *PublicIncUserStatItemValueBadRequest) GetPayload() *socialclientmodels.
 }
 
 func (o *PublicIncUserStatItemValueBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicIncUserStatItemValueUnauthorized creates a PublicIncUserStatItemValueUnauthorized with default headers values
+func NewPublicIncUserStatItemValueUnauthorized() *PublicIncUserStatItemValueUnauthorized {
+	return &PublicIncUserStatItemValueUnauthorized{}
+}
+
+/*PublicIncUserStatItemValueUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicIncUserStatItemValueUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicIncUserStatItemValueUnauthorized) Error() string {
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicIncUserStatItemValueUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicIncUserStatItemValueUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicIncUserStatItemValueUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicIncUserStatItemValueForbidden creates a PublicIncUserStatItemValueForbidden with default headers values
+func NewPublicIncUserStatItemValueForbidden() *PublicIncUserStatItemValueForbidden {
+	return &PublicIncUserStatItemValueForbidden{}
+}
+
+/*PublicIncUserStatItemValueForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PublicIncUserStatItemValueForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicIncUserStatItemValueForbidden) Error() string {
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicIncUserStatItemValueForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicIncUserStatItemValueForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicIncUserStatItemValueForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -324,6 +448,59 @@ func (o *PublicIncUserStatItemValueUnprocessableEntity) readResponse(response ru
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicIncUserStatItemValueInternalServerError creates a PublicIncUserStatItemValueInternalServerError with default headers values
+func NewPublicIncUserStatItemValueInternalServerError() *PublicIncUserStatItemValueInternalServerError {
+	return &PublicIncUserStatItemValueInternalServerError{}
+}
+
+/*PublicIncUserStatItemValueInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type PublicIncUserStatItemValueInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *PublicIncUserStatItemValueInternalServerError) Error() string {
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] publicIncUserStatItemValueInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *PublicIncUserStatItemValueInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicIncUserStatItemValueInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicIncUserStatItemValueInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

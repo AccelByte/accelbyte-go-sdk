@@ -33,8 +33,26 @@ func (o *GetStatReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewGetStatUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewGetStatForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewGetStatNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewGetStatInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -103,6 +121,112 @@ func (o *GetStatOK) readResponse(response runtime.ClientResponse, consumer runti
 	return nil
 }
 
+// NewGetStatUnauthorized creates a GetStatUnauthorized with default headers values
+func NewGetStatUnauthorized() *GetStatUnauthorized {
+	return &GetStatUnauthorized{}
+}
+
+/*GetStatUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type GetStatUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *GetStatUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *GetStatUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetStatUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *GetStatUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetStatForbidden creates a GetStatForbidden with default headers values
+func NewGetStatForbidden() *GetStatForbidden {
+	return &GetStatForbidden{}
+}
+
+/*GetStatForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type GetStatForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *GetStatForbidden) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetStatForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetStatForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *GetStatForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetStatNotFound creates a GetStatNotFound with default headers values
 func NewGetStatNotFound() *GetStatNotFound {
 	return &GetStatNotFound{}
@@ -140,6 +264,59 @@ func (o *GetStatNotFound) GetPayload() *socialclientmodels.ErrorEntity {
 }
 
 func (o *GetStatNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetStatInternalServerError creates a GetStatInternalServerError with default headers values
+func NewGetStatInternalServerError() *GetStatInternalServerError {
+	return &GetStatInternalServerError{}
+}
+
+/*GetStatInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type GetStatInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *GetStatInternalServerError) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *GetStatInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetStatInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *GetStatInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

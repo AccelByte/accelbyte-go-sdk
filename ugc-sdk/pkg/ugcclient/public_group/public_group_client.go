@@ -42,6 +42,8 @@ type ClientService interface {
 	DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, error)
 	GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error)
 	GetGroupContentShort(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, error)
+	PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error)
+	PublicGetGroupContentsV2Short(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -591,7 +593,7 @@ func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.Cl
 /*
 Deprecated: 2022-08-10 - Use GetGroupContentShort instead.
 
-GetGroupContent get contents belong to a group
+GetGroupContent (legacy) get contents belong to a group
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error) {
@@ -645,7 +647,7 @@ func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime
 }
 
 /*
-GetGroupContentShort get contents belong to a group
+GetGroupContentShort (legacy) get contents belong to a group
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
 func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, error) {
@@ -688,6 +690,113 @@ func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo ru
 	case *GetGroupContentNotFound:
 		return nil, v
 	case *GetGroupContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetGroupContentsV2Short instead.
+
+PublicGetGroupContentsV2 get contents belong to a group
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetGroupContentsV2OK:
+		return v, nil, nil, nil, nil
+
+	case *PublicGetGroupContentsV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicGetGroupContentsV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicGetGroupContentsV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetGroupContentsV2Short get contents belong to a group
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+*/
+func (a *Client) PublicGetGroupContentsV2Short(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetGroupContentsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetGroupContentsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetGroupContentsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetGroupContentsV2OK:
+		return v, nil
+	case *PublicGetGroupContentsV2Unauthorized:
+		return nil, v
+	case *PublicGetGroupContentsV2NotFound:
+		return nil, v
+	case *PublicGetGroupContentsV2InternalServerError:
 		return nil, v
 
 	default:

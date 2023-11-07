@@ -30,25 +30,25 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserProfiles(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, error)
+	GetUserProfiles(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, *GetUserProfilesUnauthorized, *GetUserProfilesForbidden, *GetUserProfilesInternalServerError, error)
 	GetUserProfilesShort(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, error)
-	GetProfile(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, *GetProfileNotFound, error)
+	GetProfile(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, *GetProfileUnauthorized, *GetProfileForbidden, *GetProfileNotFound, *GetProfileInternalServerError, error)
 	GetProfileShort(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, error)
-	PublicGetUserGameProfiles(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, *PublicGetUserGameProfilesBadRequest, error)
+	PublicGetUserGameProfiles(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, *PublicGetUserGameProfilesBadRequest, *PublicGetUserGameProfilesUnauthorized, *PublicGetUserGameProfilesForbidden, *PublicGetUserGameProfilesInternalServerError, error)
 	PublicGetUserGameProfilesShort(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, error)
-	PublicGetUserProfiles(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, error)
+	PublicGetUserProfiles(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, *PublicGetUserProfilesUnauthorized, *PublicGetUserProfilesForbidden, *PublicGetUserProfilesInternalServerError, error)
 	PublicGetUserProfilesShort(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, error)
-	PublicCreateProfile(params *PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateProfileCreated, *PublicCreateProfileUnprocessableEntity, error)
+	PublicCreateProfile(params *PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateProfileCreated, *PublicCreateProfileBadRequest, *PublicCreateProfileUnauthorized, *PublicCreateProfileForbidden, *PublicCreateProfileUnprocessableEntity, *PublicCreateProfileInternalServerError, error)
 	PublicCreateProfileShort(params *PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateProfileCreated, error)
-	PublicGetProfile(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, *PublicGetProfileNotFound, error)
+	PublicGetProfile(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, *PublicGetProfileUnauthorized, *PublicGetProfileForbidden, *PublicGetProfileNotFound, *PublicGetProfileInternalServerError, error)
 	PublicGetProfileShort(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, error)
-	PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, *PublicUpdateProfileNotFound, *PublicUpdateProfileUnprocessableEntity, error)
+	PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, *PublicUpdateProfileBadRequest, *PublicUpdateProfileUnauthorized, *PublicUpdateProfileForbidden, *PublicUpdateProfileNotFound, *PublicUpdateProfileUnprocessableEntity, *PublicUpdateProfileInternalServerError, error)
 	PublicUpdateProfileShort(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, error)
-	PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileNotFound, error)
+	PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileUnauthorized, *PublicDeleteProfileForbidden, *PublicDeleteProfileNotFound, *PublicDeleteProfileInternalServerError, error)
 	PublicDeleteProfileShort(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, error)
-	PublicGetProfileAttribute(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, *PublicGetProfileAttributeNotFound, error)
+	PublicGetProfileAttribute(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, *PublicGetProfileAttributeUnauthorized, *PublicGetProfileAttributeForbidden, *PublicGetProfileAttributeNotFound, *PublicGetProfileAttributeInternalServerError, error)
 	PublicGetProfileAttributeShort(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, error)
-	PublicUpdateAttribute(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, *PublicUpdateAttributeBadRequest, *PublicUpdateAttributeNotFound, error)
+	PublicUpdateAttribute(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, *PublicUpdateAttributeBadRequest, *PublicUpdateAttributeUnauthorized, *PublicUpdateAttributeForbidden, *PublicUpdateAttributeNotFound, *PublicUpdateAttributeUnprocessableEntity, *PublicUpdateAttributeInternalServerError, error)
 	PublicUpdateAttributeShort(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -63,7 +63,7 @@ Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
-func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, error) {
+func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, *GetUserProfilesUnauthorized, *GetUserProfilesForbidden, *GetUserProfilesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserProfilesParams()
@@ -91,16 +91,25 @@ func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserProfilesOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *GetUserProfilesUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetUserProfilesForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetUserProfilesInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -146,6 +155,12 @@ func (a *Client) GetUserProfilesShort(params *GetUserProfilesParams, authInfo ru
 
 	case *GetUserProfilesOK:
 		return v, nil
+	case *GetUserProfilesUnauthorized:
+		return nil, v
+	case *GetUserProfilesForbidden:
+		return nil, v
+	case *GetUserProfilesInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -161,7 +176,7 @@ Other detail info:
               *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
-func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, *GetProfileNotFound, error) {
+func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, *GetProfileUnauthorized, *GetProfileForbidden, *GetProfileNotFound, *GetProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetProfileParams()
@@ -189,19 +204,28 @@ func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetProfileOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetProfileUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetProfileForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *GetProfileNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *GetProfileInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -247,7 +271,13 @@ func (a *Client) GetProfileShort(params *GetProfileParams, authInfo runtime.Clie
 
 	case *GetProfileOK:
 		return v, nil
+	case *GetProfileUnauthorized:
+		return nil, v
+	case *GetProfileForbidden:
+		return nil, v
 	case *GetProfileNotFound:
+		return nil, v
+	case *GetProfileInternalServerError:
 		return nil, v
 
 	default:
@@ -265,7 +295,7 @@ Other detail info:
 
               *  Returns : list of profiles
 */
-func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, *PublicGetUserGameProfilesBadRequest, error) {
+func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, *PublicGetUserGameProfilesBadRequest, *PublicGetUserGameProfilesUnauthorized, *PublicGetUserGameProfilesForbidden, *PublicGetUserGameProfilesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetUserGameProfilesParams()
@@ -293,19 +323,28 @@ func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetUserGameProfilesOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicGetUserGameProfilesBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetUserGameProfilesUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetUserGameProfilesForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetUserGameProfilesInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -354,6 +393,12 @@ func (a *Client) PublicGetUserGameProfilesShort(params *PublicGetUserGameProfile
 		return v, nil
 	case *PublicGetUserGameProfilesBadRequest:
 		return nil, v
+	case *PublicGetUserGameProfilesUnauthorized:
+		return nil, v
+	case *PublicGetUserGameProfilesForbidden:
+		return nil, v
+	case *PublicGetUserGameProfilesInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -369,7 +414,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
-func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, error) {
+func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, *PublicGetUserProfilesUnauthorized, *PublicGetUserProfilesForbidden, *PublicGetUserProfilesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetUserProfilesParams()
@@ -397,16 +442,25 @@ func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetUserProfilesOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *PublicGetUserProfilesUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicGetUserProfilesForbidden:
+		return nil, nil, v, nil, nil
+
+	case *PublicGetUserProfilesInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -452,6 +506,12 @@ func (a *Client) PublicGetUserProfilesShort(params *PublicGetUserProfilesParams,
 
 	case *PublicGetUserProfilesOK:
 		return v, nil
+	case *PublicGetUserProfilesUnauthorized:
+		return nil, v
+	case *PublicGetUserProfilesForbidden:
+		return nil, v
+	case *PublicGetUserProfilesInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -469,7 +529,7 @@ Other detail info:
               *  Returns
 : created game profile
 */
-func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateProfileCreated, *PublicCreateProfileUnprocessableEntity, error) {
+func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateProfileCreated, *PublicCreateProfileBadRequest, *PublicCreateProfileUnauthorized, *PublicCreateProfileForbidden, *PublicCreateProfileUnprocessableEntity, *PublicCreateProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicCreateProfileParams()
@@ -497,19 +557,31 @@ func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicCreateProfileCreated:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicCreateProfileBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicCreateProfileUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicCreateProfileForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicCreateProfileUnprocessableEntity:
-		return nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicCreateProfileInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -557,7 +629,15 @@ func (a *Client) PublicCreateProfileShort(params *PublicCreateProfileParams, aut
 
 	case *PublicCreateProfileCreated:
 		return v, nil
+	case *PublicCreateProfileBadRequest:
+		return nil, v
+	case *PublicCreateProfileUnauthorized:
+		return nil, v
+	case *PublicCreateProfileForbidden:
+		return nil, v
 	case *PublicCreateProfileUnprocessableEntity:
+		return nil, v
+	case *PublicCreateProfileInternalServerError:
 		return nil, v
 
 	default:
@@ -574,7 +654,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
-func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, *PublicGetProfileNotFound, error) {
+func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, *PublicGetProfileUnauthorized, *PublicGetProfileForbidden, *PublicGetProfileNotFound, *PublicGetProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetProfileParams()
@@ -602,19 +682,28 @@ func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetProfileOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetProfileUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetProfileForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicGetProfileNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetProfileInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -660,7 +749,13 @@ func (a *Client) PublicGetProfileShort(params *PublicGetProfileParams, authInfo 
 
 	case *PublicGetProfileOK:
 		return v, nil
+	case *PublicGetProfileUnauthorized:
+		return nil, v
+	case *PublicGetProfileForbidden:
+		return nil, v
 	case *PublicGetProfileNotFound:
+		return nil, v
+	case *PublicGetProfileInternalServerError:
 		return nil, v
 
 	default:
@@ -677,7 +772,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated game profile
 */
-func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, *PublicUpdateProfileNotFound, *PublicUpdateProfileUnprocessableEntity, error) {
+func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, *PublicUpdateProfileBadRequest, *PublicUpdateProfileUnauthorized, *PublicUpdateProfileForbidden, *PublicUpdateProfileNotFound, *PublicUpdateProfileUnprocessableEntity, *PublicUpdateProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUpdateProfileParams()
@@ -705,22 +800,34 @@ func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUpdateProfileOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateProfileBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateProfileUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateProfileForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUpdateProfileNotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *PublicUpdateProfileUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateProfileInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -766,9 +873,17 @@ func (a *Client) PublicUpdateProfileShort(params *PublicUpdateProfileParams, aut
 
 	case *PublicUpdateProfileOK:
 		return v, nil
+	case *PublicUpdateProfileBadRequest:
+		return nil, v
+	case *PublicUpdateProfileUnauthorized:
+		return nil, v
+	case *PublicUpdateProfileForbidden:
+		return nil, v
 	case *PublicUpdateProfileNotFound:
 		return nil, v
 	case *PublicUpdateProfileUnprocessableEntity:
+		return nil, v
+	case *PublicUpdateProfileInternalServerError:
 		return nil, v
 
 	default:
@@ -784,7 +899,7 @@ Deletes game profile.
 Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=8 (DELETE)
 */
-func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileNotFound, error) {
+func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileUnauthorized, *PublicDeleteProfileForbidden, *PublicDeleteProfileNotFound, *PublicDeleteProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicDeleteProfileParams()
@@ -812,19 +927,28 @@ func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicDeleteProfileNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicDeleteProfileUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicDeleteProfileForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicDeleteProfileNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicDeleteProfileInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -869,7 +993,13 @@ func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, aut
 
 	case *PublicDeleteProfileNoContent:
 		return v, nil
+	case *PublicDeleteProfileUnauthorized:
+		return nil, v
+	case *PublicDeleteProfileForbidden:
+		return nil, v
 	case *PublicDeleteProfileNotFound:
+		return nil, v
+	case *PublicDeleteProfileInternalServerError:
 		return nil, v
 
 	default:
@@ -886,7 +1016,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : attribute info
 */
-func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, *PublicGetProfileAttributeNotFound, error) {
+func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, *PublicGetProfileAttributeUnauthorized, *PublicGetProfileAttributeForbidden, *PublicGetProfileAttributeNotFound, *PublicGetProfileAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetProfileAttributeParams()
@@ -914,19 +1044,28 @@ func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributePara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetProfileAttributeOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetProfileAttributeUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetProfileAttributeForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicGetProfileAttributeNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetProfileAttributeInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -972,7 +1111,13 @@ func (a *Client) PublicGetProfileAttributeShort(params *PublicGetProfileAttribut
 
 	case *PublicGetProfileAttributeOK:
 		return v, nil
+	case *PublicGetProfileAttributeUnauthorized:
+		return nil, v
+	case *PublicGetProfileAttributeForbidden:
+		return nil, v
 	case *PublicGetProfileAttributeNotFound:
+		return nil, v
+	case *PublicGetProfileAttributeInternalServerError:
 		return nil, v
 
 	default:
@@ -989,7 +1134,7 @@ Other detail info:
               *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated attribute
 */
-func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, *PublicUpdateAttributeBadRequest, *PublicUpdateAttributeNotFound, error) {
+func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, *PublicUpdateAttributeBadRequest, *PublicUpdateAttributeUnauthorized, *PublicUpdateAttributeForbidden, *PublicUpdateAttributeNotFound, *PublicUpdateAttributeUnprocessableEntity, *PublicUpdateAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUpdateAttributeParams()
@@ -1017,22 +1162,34 @@ func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUpdateAttributeOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdateAttributeBadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateAttributeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateAttributeForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUpdateAttributeNotFound:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateAttributeUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateAttributeInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1080,7 +1237,15 @@ func (a *Client) PublicUpdateAttributeShort(params *PublicUpdateAttributeParams,
 		return v, nil
 	case *PublicUpdateAttributeBadRequest:
 		return nil, v
+	case *PublicUpdateAttributeUnauthorized:
+		return nil, v
+	case *PublicUpdateAttributeForbidden:
+		return nil, v
 	case *PublicUpdateAttributeNotFound:
+		return nil, v
+	case *PublicUpdateAttributeUnprocessableEntity:
+		return nil, v
+	case *PublicUpdateAttributeInternalServerError:
 		return nil, v
 
 	default:

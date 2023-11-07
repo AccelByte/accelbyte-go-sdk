@@ -39,6 +39,18 @@ func (o *ResetUserStatItemValueReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewResetUserStatItemValueUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewResetUserStatItemValueForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewResetUserStatItemValueNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -47,6 +59,12 @@ func (o *ResetUserStatItemValueReader) ReadResponse(response runtime.ClientRespo
 		return result, nil
 	case 422:
 		result := NewResetUserStatItemValueUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewResetUserStatItemValueInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -168,6 +186,112 @@ func (o *ResetUserStatItemValueBadRequest) readResponse(response runtime.ClientR
 	return nil
 }
 
+// NewResetUserStatItemValueUnauthorized creates a ResetUserStatItemValueUnauthorized with default headers values
+func NewResetUserStatItemValueUnauthorized() *ResetUserStatItemValueUnauthorized {
+	return &ResetUserStatItemValueUnauthorized{}
+}
+
+/*ResetUserStatItemValueUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type ResetUserStatItemValueUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ResetUserStatItemValueUnauthorized) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *ResetUserStatItemValueUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ResetUserStatItemValueUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ResetUserStatItemValueUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewResetUserStatItemValueForbidden creates a ResetUserStatItemValueForbidden with default headers values
+func NewResetUserStatItemValueForbidden() *ResetUserStatItemValueForbidden {
+	return &ResetUserStatItemValueForbidden{}
+}
+
+/*ResetUserStatItemValueForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type ResetUserStatItemValueForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ResetUserStatItemValueForbidden) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *ResetUserStatItemValueForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ResetUserStatItemValueForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ResetUserStatItemValueForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewResetUserStatItemValueNotFound creates a ResetUserStatItemValueNotFound with default headers values
 func NewResetUserStatItemValueNotFound() *ResetUserStatItemValueNotFound {
 	return &ResetUserStatItemValueNotFound{}
@@ -265,6 +389,59 @@ func (o *ResetUserStatItemValueUnprocessableEntity) readResponse(response runtim
 	}
 
 	o.Payload = new(socialclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewResetUserStatItemValueInternalServerError creates a ResetUserStatItemValueInternalServerError with default headers values
+func NewResetUserStatItemValueInternalServerError() *ResetUserStatItemValueInternalServerError {
+	return &ResetUserStatItemValueInternalServerError{}
+}
+
+/*ResetUserStatItemValueInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type ResetUserStatItemValueInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ResetUserStatItemValueInternalServerError) Error() string {
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *ResetUserStatItemValueInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ResetUserStatItemValueInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ResetUserStatItemValueInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

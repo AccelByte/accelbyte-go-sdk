@@ -3630,8 +3630,8 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-17T02:57:56+00:00",
-    "gitHash": "b36f05c9a60ccb266ac183be74d51879cd9e2cd1",
+    "buildDate": "2023-10-24T10:07:41+00:00",
+    "gitHash": "be9474eaf07c93341c7002d66eb1ff1d23c389a3",
     "name": "justice-inventory-service",
     "realm": "staging",
     "version": "0.1.0",

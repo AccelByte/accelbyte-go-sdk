@@ -1,3 +1,11 @@
+<a name="v0.57.0"></a>
+## [v0.57.0]
+### fix
+- **:** update getting started with sdk link
+### chore
+- **:** review validate role permission
+
+
 <a name="v0.56.0"></a>
 ## [v0.56.0]
 ### chore

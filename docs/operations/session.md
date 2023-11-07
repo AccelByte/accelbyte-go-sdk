@@ -42,12 +42,24 @@
 | `/session/v1/admin/namespaces/{namespace}/dsconfigs` | GET | AdminGetDSMCConfigurationShort | [AdminGetDSMCConfigurationShort](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminGetDSMCConfigurationShort](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminGetDSMCConfigurationShort](../../samples/cli/cmd/session/configurationTemplate/adminGetDSMCConfiguration.go) |
 | `/session/v1/admin/namespaces/{namespace}/dsconfigs/sync` | GET | AdminSyncDSMCConfigurationShort | [AdminSyncDSMCConfigurationShort](../../session-sdk/pkg/sessionclient/configuration_template/configuration_template_client.go) | [AdminSyncDSMCConfigurationShort](../../services-api/pkg/service/session/configurationTemplate.go) | [AdminSyncDSMCConfigurationShort](../../samples/cli/cmd/session/configurationTemplate/adminSyncDSMCConfiguration.go) |
 
+### Certificate Wrapper:  [Certificate](../../services-api/pkg/service/session/certificate.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl` | PUT | HandleUploadXboxPFXCertificateShort | [HandleUploadXboxPFXCertificateShort](../../session-sdk/pkg/sessionclient/certificate/certificate_client.go) | [HandleUploadXboxPFXCertificateShort](../../services-api/pkg/service/session/certificate.go) | [HandleUploadXboxPFXCertificateShort](../../samples/cli/cmd/session/certificate/handleUploadXboxPFXCertificate.go) |
+
+### Max Active Wrapper:  [MaxActive](../../services-api/pkg/service/session/maxActive.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/namespaces/{namespace}/configurations/{name}/memberactivesession/{userId}` | GET | AdminGetMemberActiveSessionShort | [AdminGetMemberActiveSessionShort](../../session-sdk/pkg/sessionclient/max_active/max_active_client.go) | [AdminGetMemberActiveSessionShort](../../services-api/pkg/service/session/maxActive.go) | [AdminGetMemberActiveSessionShort](../../samples/cli/cmd/session/maxActive/adminGetMemberActiveSession.go) |
+| `/session/v1/admin/namespaces/{namespace}/configurations/{name}/reconcile` | POST | AdminReconcileMaxActiveSessionShort | [AdminReconcileMaxActiveSessionShort](../../session-sdk/pkg/sessionclient/max_active/max_active_client.go) | [AdminReconcileMaxActiveSessionShort](../../services-api/pkg/service/session/maxActive.go) | [AdminReconcileMaxActiveSessionShort](../../samples/cli/cmd/session/maxActive/adminReconcileMaxActiveSession.go) |
+
 ### Game Session Wrapper:  [GameSession](../../services-api/pkg/service/session/gameSession.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/session/v1/admin/namespaces/{namespace}/gamesessions` | GET | AdminQueryGameSessionsShort | [AdminQueryGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminQueryGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [AdminQueryGameSessionsShort](../../samples/cli/cmd/session/gameSession/adminQueryGameSessions.go) |
 | `/session/v1/admin/namespaces/{namespace}/gamesessions` | POST | AdminQueryGameSessionsByAttributesShort | [AdminQueryGameSessionsByAttributesShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminQueryGameSessionsByAttributesShort](../../services-api/pkg/service/session/gameSession.go) | [AdminQueryGameSessionsByAttributesShort](../../samples/cli/cmd/session/gameSession/adminQueryGameSessionsByAttributes.go) |
 | `/session/v1/admin/namespaces/{namespace}/gamesessions/bulk` | DELETE | AdminDeleteBulkGameSessionsShort | [AdminDeleteBulkGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminDeleteBulkGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [AdminDeleteBulkGameSessionsShort](../../samples/cli/cmd/session/gameSession/adminDeleteBulkGameSessions.go) |
+| `/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/ds` | PUT | AdminSetDSReadyShort | [AdminSetDSReadyShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminSetDSReadyShort](../../services-api/pkg/service/session/gameSession.go) | [AdminSetDSReadyShort](../../samples/cli/cmd/session/gameSession/adminSetDSReady.go) |
 | `/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/status/{statusType}` | PUT | AdminUpdateGameSessionMemberShort | [AdminUpdateGameSessionMemberShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AdminUpdateGameSessionMemberShort](../../services-api/pkg/service/session/gameSession.go) | [AdminUpdateGameSessionMemberShort](../../samples/cli/cmd/session/gameSession/adminUpdateGameSessionMember.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesession` | POST | CreateGameSessionShort | [CreateGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [CreateGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [CreateGameSessionShort](../../samples/cli/cmd/session/gameSession/createGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/gamesessions` | POST | PublicQueryGameSessionsByAttributesShort | [PublicQueryGameSessionsByAttributesShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryGameSessionsByAttributesShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryGameSessionsByAttributesShort](../../samples/cli/cmd/session/gameSession/publicQueryGameSessionsByAttributes.go) |
@@ -153,6 +165,7 @@
 | `apimodels.RequestMember` | [ApimodelsRequestMember ](../../session-sdk/pkg/sessionclientmodels/apimodels_request_member.go) |
 | `apimodels.ResponseDeleteBulkGameSessions` | [ApimodelsResponseDeleteBulkGameSessions ](../../session-sdk/pkg/sessionclientmodels/apimodels_response_delete_bulk_game_sessions.go) |
 | `apimodels.SessionInviteRequest` | [ApimodelsSessionInviteRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_session_invite_request.go) |
+| `apimodels.SetDSReadyRequest` | [ApimodelsSetDSReadyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_set_d_s_ready_request.go) |
 | `apimodels.UpdateConfigurationTemplateRequest` | [ApimodelsUpdateConfigurationTemplateRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_configuration_template_request.go) |
 | `apimodels.UpdateGameSessionBackfillRequest` | [ApimodelsUpdateGameSessionBackfillRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_backfill_request.go) |
 | `apimodels.UpdateGameSessionMemberStatusResponse` | [ApimodelsUpdateGameSessionMemberStatusResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_member_status_response.go) |
@@ -162,11 +175,13 @@
 | `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../session-sdk/pkg/sessionclientmodels/models_d_s_m_config_record.go) |
 | `models.DefaultDSMCConfig` | [ModelsDefaultDSMCConfig ](../../session-sdk/pkg/sessionclientmodels/models_default_d_s_m_c_config.go) |
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
+| `models.MemberActiveSession` | [ModelsMemberActiveSession ](../../session-sdk/pkg/sessionclientmodels/models_member_active_session.go) |
 | `models.NativeSessionSetting` | [ModelsNativeSessionSetting ](../../session-sdk/pkg/sessionclientmodels/models_native_session_setting.go) |
 | `models.PSNAppServerCredentials` | [ModelsPSNAppServerCredentials ](../../session-sdk/pkg/sessionclientmodels/models_p_s_n_app_server_credentials.go) |
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.PlatformCredentials` | [ModelsPlatformCredentials ](../../session-sdk/pkg/sessionclientmodels/models_platform_credentials.go) |
 | `models.PortConfigurationAMS` | [ModelsPortConfigurationAMS ](../../session-sdk/pkg/sessionclientmodels/models_port_configuration_a_m_s.go) |
+| `models.RequestReconcileMaxActiveSession` | [ModelsRequestReconcileMaxActiveSession ](../../session-sdk/pkg/sessionclientmodels/models_request_reconcile_max_active_session.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

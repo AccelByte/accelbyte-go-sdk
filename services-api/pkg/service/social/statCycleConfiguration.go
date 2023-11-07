@@ -36,7 +36,16 @@ func (aaa *StatCycleConfigurationService) GetStatCycles(input *stat_cycle_config
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.StatCycleConfiguration.GetStatCycles(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.StatCycleConfiguration.GetStatCycles(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -50,9 +59,21 @@ func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_conf
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, err := aaa.Client.StatCycleConfiguration.CreateStatCycle(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.CreateStatCycle(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -67,7 +88,22 @@ func (aaa *StatCycleConfigurationService) BulkGetStatCycle(input *stat_cycle_con
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -81,9 +117,18 @@ func (aaa *StatCycleConfigurationService) GetStatCycle(input *stat_cycle_configu
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.StatCycleConfiguration.GetStatCycle(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.StatCycleConfiguration.GetStatCycle(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -98,15 +143,27 @@ func (aaa *StatCycleConfigurationService) UpdateStatCycle(input *stat_cycle_conf
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := aaa.Client.StatCycleConfiguration.UpdateStatCycle(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.UpdateStatCycle(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -121,9 +178,18 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycle(input *stat_cycle_conf
 	if err != nil {
 		return err
 	}
-	_, notFound, err := aaa.Client.StatCycleConfiguration.DeleteStatCycle(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.StatCycleConfiguration.DeleteStatCycle(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
 	if notFound != nil {
 		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
 		return err
@@ -138,9 +204,24 @@ func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configu
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.StatCycleConfiguration.BulkAddStats(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.BulkAddStats(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -155,12 +236,21 @@ func (aaa *StatCycleConfigurationService) StopStatCycle(input *stat_cycle_config
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := aaa.Client.StatCycleConfiguration.StopStatCycle(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.StatCycleConfiguration.StopStatCycle(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -175,7 +265,16 @@ func (aaa *StatCycleConfigurationService) GetStatCycles1(input *stat_cycle_confi
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.StatCycleConfiguration.GetStatCycles1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.StatCycleConfiguration.GetStatCycles1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -189,7 +288,22 @@ func (aaa *StatCycleConfigurationService) BulkGetStatCycle1(input *stat_cycle_co
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycle1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -203,9 +317,18 @@ func (aaa *StatCycleConfigurationService) GetStatCycle1(input *stat_cycle_config
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.StatCycleConfiguration.GetStatCycle1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.StatCycleConfiguration.GetStatCycle1(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err

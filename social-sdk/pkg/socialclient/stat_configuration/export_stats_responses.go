@@ -15,6 +15,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 )
 
 // ExportStatsReader is a Reader for the ExportStats structure.
@@ -28,6 +30,24 @@ func (o *ExportStatsReader) ReadResponse(response runtime.ClientResponse, consum
 	switch response.Code() {
 	case 200:
 		result := NewExportStatsOK(o.writer)
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewExportStatsUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewExportStatsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 500:
+		result := NewExportStatsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -87,6 +107,165 @@ func (o *ExportStatsOK) readResponse(response runtime.ClientResponse, consumer r
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
 	}
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewExportStatsUnauthorized creates a ExportStatsUnauthorized with default headers values
+func NewExportStatsUnauthorized() *ExportStatsUnauthorized {
+	return &ExportStatsUnauthorized{}
+}
+
+/*ExportStatsUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type ExportStatsUnauthorized struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ExportStatsUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *ExportStatsUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStatsUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ExportStatsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewExportStatsForbidden creates a ExportStatsForbidden with default headers values
+func NewExportStatsForbidden() *ExportStatsForbidden {
+	return &ExportStatsForbidden{}
+}
+
+/*ExportStatsForbidden handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type ExportStatsForbidden struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ExportStatsForbidden) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *ExportStatsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStatsForbidden) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ExportStatsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewExportStatsInternalServerError creates a ExportStatsInternalServerError with default headers values
+func NewExportStatsInternalServerError() *ExportStatsInternalServerError {
+	return &ExportStatsInternalServerError{}
+}
+
+/*ExportStatsInternalServerError handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20000</td><td>Internal server error</td></tr></table>
+*/
+type ExportStatsInternalServerError struct {
+	Payload *socialclientmodels.ErrorEntity
+}
+
+func (o *ExportStatsInternalServerError) Error() string {
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *ExportStatsInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ExportStatsInternalServerError) GetPayload() *socialclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *ExportStatsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(socialclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

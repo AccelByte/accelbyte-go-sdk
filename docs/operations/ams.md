@@ -36,6 +36,14 @@
 | `/ams/v1/namespaces/{namespace}/fleets/{fleetID}/claim` | PUT | FleetClaimByIDShort | [FleetClaimByIDShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetClaimByIDShort](../../services-api/pkg/service/ams/fleets.go) | [FleetClaimByIDShort](../../samples/cli/cmd/ams/fleets/fleetClaimByID.go) |
 | `/ams/v1/namespaces/{namespace}/servers/claim` | PUT | FleetClaimByKeysShort | [FleetClaimByKeysShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetClaimByKeysShort](../../services-api/pkg/service/ams/fleets.go) | [FleetClaimByKeysShort](../../samples/cli/cmd/ams/fleets/fleetClaimByKeys.go) |
 
+### Images Wrapper:  [Images](../../services-api/pkg/service/ams/images.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules` | GET | FleetArtifactSamplingRulesGetShort | [FleetArtifactSamplingRulesGetShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [FleetArtifactSamplingRulesGetShort](../../services-api/pkg/service/ams/images.go) | [FleetArtifactSamplingRulesGetShort](../../samples/cli/cmd/ams/images/fleetArtifactSamplingRulesGet.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images` | GET | ImageListShort | [ImageListShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageListShort](../../services-api/pkg/service/ams/images.go) | [ImageListShort](../../samples/cli/cmd/ams/images/imageList.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | GET | ImageGetShort | [ImageGetShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageGetShort](../../services-api/pkg/service/ams/images.go) | [ImageGetShort](../../samples/cli/cmd/ams/images/imageGet.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | PATCH | ImagePatchShort | [ImagePatchShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImagePatchShort](../../services-api/pkg/service/ams/images.go) | [ImagePatchShort](../../samples/cli/cmd/ams/images/imagePatch.go) |
+
 ### Servers Wrapper:  [Servers](../../services-api/pkg/service/ams/servers.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -43,12 +51,11 @@
 | `/ams/v1/admin/namespaces/{namespace}/servers/{serverID}` | GET | FleetServerInfoShort | [FleetServerInfoShort](../../ams-sdk/pkg/amsclient/servers/servers_client.go) | [FleetServerInfoShort](../../services-api/pkg/service/ams/servers.go) | [FleetServerInfoShort](../../samples/cli/cmd/ams/servers/fleetServerInfo.go) |
 | `/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history` | GET | ServerHistoryShort | [ServerHistoryShort](../../ams-sdk/pkg/amsclient/servers/servers_client.go) | [ServerHistoryShort](../../services-api/pkg/service/ams/servers.go) | [ServerHistoryShort](../../samples/cli/cmd/ams/servers/serverHistory.go) |
 
-### Images Wrapper:  [Images](../../services-api/pkg/service/ams/images.go)
+### AMS QoS Wrapper:  [AMSQoS](../../services-api/pkg/service/ams/amsQoS.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/ams/v1/admin/namespaces/{namespace}/images` | GET | ImageListShort | [ImageListShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageListShort](../../services-api/pkg/service/ams/images.go) | [ImageListShort](../../samples/cli/cmd/ams/images/imageList.go) |
-| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | GET | ImageGetShort | [ImageGetShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageGetShort](../../services-api/pkg/service/ams/images.go) | [ImageGetShort](../../samples/cli/cmd/ams/images/imageGet.go) |
-| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | PATCH | ImagePatchShort | [ImagePatchShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImagePatchShort](../../services-api/pkg/service/ams/images.go) | [ImagePatchShort](../../samples/cli/cmd/ams/images/imagePatch.go) |
+| `/ams/v1/admin/namespaces/{namespace}/qos/{region}` | PATCH | QoSRegionsUpdateShort | [QoSRegionsUpdateShort](../../ams-sdk/pkg/amsclient/a_m_s_qo_s/ams_qos_client.go) | [QoSRegionsUpdateShort](../../services-api/pkg/service/ams/amsQoS.go) | [QoSRegionsUpdateShort](../../samples/cli/cmd/ams/amsQoS/qoSRegionsUpdate.go) |
+| `/ams/v1/namespaces/{namespace}/qos` | GET | QoSRegionsGetShort | [QoSRegionsGetShort](../../ams-sdk/pkg/amsclient/a_m_s_qo_s/ams_qos_client.go) | [QoSRegionsGetShort](../../services-api/pkg/service/ams/amsQoS.go) | [QoSRegionsGetShort](../../samples/cli/cmd/ams/amsQoS/qoSRegionsGet.go) |
 
 ### AMS Info Wrapper:  [AMSInfo](../../services-api/pkg/service/ams/amsInfo.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -69,6 +76,7 @@
 
 | Model Struct | Class |
 |---|---|
+| `api.AMSRegionsResponse` | [ApiAMSRegionsResponse ](../../ams-sdk/pkg/amsclientmodels/api_a_m_s_regions_response.go) |
 | `api.AccountCreateRequest` | [ApiAccountCreateRequest ](../../ams-sdk/pkg/amsclientmodels/api_account_create_request.go) |
 | `api.AccountCreateResponse` | [ApiAccountCreateResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_create_response.go) |
 | `api.AccountLimits` | [ApiAccountLimits ](../../ams-sdk/pkg/amsclientmodels/api_account_limits.go) |
@@ -76,10 +84,13 @@
 | `api.AccountLinkResponse` | [ApiAccountLinkResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_response.go) |
 | `api.AccountLinkTokenResponse` | [ApiAccountLinkTokenResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_token_response.go) |
 | `api.AccountResponse` | [ApiAccountResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_response.go) |
+| `api.ArtifactSamplingRuleResponse` | [ApiArtifactSamplingRuleResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_sampling_rule_response.go) |
+| `api.ArtifactTypeSamplingRulesResponse` | [ApiArtifactTypeSamplingRulesResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_type_sampling_rules_response.go) |
 | `api.AvailableInstanceTypesResponse` | [ApiAvailableInstanceTypesResponse ](../../ams-sdk/pkg/amsclientmodels/api_available_instance_types_response.go) |
 | `api.DSHistoryEvent` | [ApiDSHistoryEvent ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_event.go) |
 | `api.DSHistoryList` | [ApiDSHistoryList ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_list.go) |
 | `api.DSHostConfiguration` | [ApiDSHostConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_d_s_host_configuration.go) |
+| `api.FleetArtifactsSampleRulesResponse` | [ApiFleetArtifactsSampleRulesResponse ](../../ams-sdk/pkg/amsclientmodels/api_fleet_artifacts_sample_rules_response.go) |
 | `api.FleetClaimByKeysReq` | [ApiFleetClaimByKeysReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_by_keys_req.go) |
 | `api.FleetClaimReq` | [ApiFleetClaimReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_req.go) |
 | `api.FleetClaimResponse` | [ApiFleetClaimResponse ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_response.go) |
@@ -101,9 +112,14 @@
 | `api.InstanceTypeDescriptionResponse` | [ApiInstanceTypeDescriptionResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_description_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
-| `api.QOSServer` | [ApiQOSServer ](../../ams-sdk/pkg/amsclientmodels/api_q_o_s_server.go) |
+| `api.QoSEndpointResponse` | [ApiQoSEndpointResponse ](../../ams-sdk/pkg/amsclientmodels/api_qo_s_endpoint_response.go) |
+| `api.QoSServer` | [ApiQoSServer ](../../ams-sdk/pkg/amsclientmodels/api_qo_s_server.go) |
 | `api.ReferencingFleet` | [ApiReferencingFleet ](../../ams-sdk/pkg/amsclientmodels/api_referencing_fleet.go) |
 | `api.RegionConfig` | [ApiRegionConfig ](../../ams-sdk/pkg/amsclientmodels/api_region_config.go) |
-| `api.RegionsResponse` | [ApiRegionsResponse ](../../ams-sdk/pkg/amsclientmodels/api_regions_response.go) |
+| `api.Time` | [ApiTime ](../../ams-sdk/pkg/amsclientmodels/api_time.go) |
 | `api.Timeout` | [ApiTimeout ](../../ams-sdk/pkg/amsclientmodels/api_timeout.go) |
+| `api.UpdateServerRequest` | [ApiUpdateServerRequest ](../../ams-sdk/pkg/amsclientmodels/api_update_server_request.go) |
 | `response.ErrorResponse` | [ResponseErrorResponse ](../../ams-sdk/pkg/amsclientmodels/response_error_response.go) |
+| `time.Location` | [TimeLocation ](../../ams-sdk/pkg/amsclientmodels/time_location.go) |
+| `time.zone` | [TimeZone ](../../ams-sdk/pkg/amsclientmodels/time_zone.go) |
+| `time.zoneTrans` | [TimeZoneTrans ](../../ams-sdk/pkg/amsclientmodels/time_zone_trans.go) |

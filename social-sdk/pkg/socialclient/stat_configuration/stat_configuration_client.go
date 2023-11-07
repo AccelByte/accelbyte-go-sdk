@@ -31,25 +31,25 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
+	GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, *GetStatsUnauthorized, *GetStatsForbidden, *GetStatsInternalServerError, error)
 	GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
-	CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatNotFound, *CreateStatConflict, error)
+	CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error)
 	CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error)
-	ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error)
+	ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, *ExportStatsUnauthorized, *ExportStatsForbidden, *ExportStatsInternalServerError, error)
 	ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error)
-	ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, error)
+	ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, *ImportStatsUnauthorized, *ImportStatsForbidden, *ImportStatsInternalServerError, error)
 	ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, error)
-	QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error)
+	QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, *QueryStatsUnauthorized, *QueryStatsForbidden, *QueryStatsInternalServerError, error)
 	QueryStatsShort(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error)
-	GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatNotFound, error)
+	GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatUnauthorized, *GetStatForbidden, *GetStatNotFound, *GetStatInternalServerError, error)
 	GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error)
-	DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatNotFound, error)
+	DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatUnauthorized, *DeleteStatForbidden, *DeleteStatNotFound, *DeleteStatInternalServerError, error)
 	DeleteStatShort(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, error)
-	UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatNotFound, error)
+	UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error)
 	UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error)
-	DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatConflict, error)
+	DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatUnauthorized, *DeleteTiedStatForbidden, *DeleteTiedStatNotFound, *DeleteTiedStatConflict, *DeleteTiedStatInternalServerError, error)
 	DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, error)
-	CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1NotFound, *CreateStat1Conflict, error)
+	CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1BadRequest, *CreateStat1Unauthorized, *CreateStat1Forbidden, *CreateStat1NotFound, *CreateStat1Conflict, *CreateStat1UnprocessableEntity, *CreateStat1InternalServerError, error)
 	CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -64,7 +64,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
                   *  Returns : stats
 */
-func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error) {
+func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, *GetStatsUnauthorized, *GetStatsForbidden, *GetStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStatsParams()
@@ -92,16 +92,25 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetStatsOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *GetStatsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetStatsForbidden:
+		return nil, nil, v, nil, nil
+
+	case *GetStatsInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -147,6 +156,12 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 
 	case *GetStatsOK:
 		return v, nil
+	case *GetStatsUnauthorized:
+		return nil, v
+	case *GetStatsForbidden:
+		return nil, v
+	case *GetStatsInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -164,7 +179,7 @@ Other detail info:
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
 */
-func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatNotFound, *CreateStatConflict, error) {
+func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStatParams()
@@ -192,22 +207,37 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateStatCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil, nil
+
+	case *CreateStatBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil, nil
+
+	case *CreateStatUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil, nil
+
+	case *CreateStatForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil, nil
 
 	case *CreateStatNotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil, nil
 
 	case *CreateStatConflict:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil, nil
+
+	case *CreateStatUnprocessableEntity:
+		return nil, nil, nil, nil, nil, nil, v, nil, nil
+
+	case *CreateStatInternalServerError:
+		return nil, nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -255,9 +285,19 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 
 	case *CreateStatCreated:
 		return v, nil
+	case *CreateStatBadRequest:
+		return nil, v
+	case *CreateStatUnauthorized:
+		return nil, v
+	case *CreateStatForbidden:
+		return nil, v
 	case *CreateStatNotFound:
 		return nil, v
 	case *CreateStatConflict:
+		return nil, v
+	case *CreateStatUnprocessableEntity:
+		return nil, v
+	case *CreateStatInternalServerError:
 		return nil, v
 
 	default:
@@ -274,7 +314,7 @@ Export all stat configurations for a given namespace into file At current, only 
 Other detail info:
                   *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
 */
-func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error) {
+func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, *ExportStatsUnauthorized, *ExportStatsForbidden, *ExportStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStatsParams()
@@ -302,16 +342,25 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ExportStatsOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *ExportStatsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *ExportStatsForbidden:
+		return nil, nil, v, nil, nil
+
+	case *ExportStatsInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -357,6 +406,12 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 
 	case *ExportStatsOK:
 		return v, nil
+	case *ExportStatsUnauthorized:
+		return nil, v
+	case *ExportStatsForbidden:
+		return nil, v
+	case *ExportStatsInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -372,7 +427,7 @@ Import stat configurations for a given namespace from file. At current, only JSO
 Other detail info:
                   *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
-func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, error) {
+func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, *ImportStatsUnauthorized, *ImportStatsForbidden, *ImportStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportStatsParams()
@@ -400,19 +455,28 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ImportStatsCreated:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *ImportStatsBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *ImportStatsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *ImportStatsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *ImportStatsInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -460,6 +524,12 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 		return v, nil
 	case *ImportStatsBadRequest:
 		return nil, v
+	case *ImportStatsUnauthorized:
+		return nil, v
+	case *ImportStatsForbidden:
+		return nil, v
+	case *ImportStatsInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -475,7 +545,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
                   *  Returns : stats
 */
-func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error) {
+func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, *QueryStatsUnauthorized, *QueryStatsForbidden, *QueryStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewQueryStatsParams()
@@ -503,16 +573,25 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *QueryStatsOK:
-		return v, nil
+		return v, nil, nil, nil, nil
+
+	case *QueryStatsUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *QueryStatsForbidden:
+		return nil, nil, v, nil, nil
+
+	case *QueryStatsInternalServerError:
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -558,6 +637,12 @@ func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.Clie
 
 	case *QueryStatsOK:
 		return v, nil
+	case *QueryStatsUnauthorized:
+		return nil, v
+	case *QueryStatsForbidden:
+		return nil, v
+	case *QueryStatsInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -573,7 +658,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
                   *  Returns : stat info
 */
-func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatNotFound, error) {
+func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatUnauthorized, *GetStatForbidden, *GetStatNotFound, *GetStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStatParams()
@@ -601,19 +686,28 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetStatOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetStatUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetStatForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *GetStatNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *GetStatInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -659,7 +753,13 @@ func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuth
 
 	case *GetStatOK:
 		return v, nil
+	case *GetStatUnauthorized:
+		return nil, v
+	case *GetStatForbidden:
+		return nil, v
 	case *GetStatNotFound:
+		return nil, v
+	case *GetStatInternalServerError:
 		return nil, v
 
 	default:
@@ -675,7 +775,7 @@ Deletes stat template.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
-func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatNotFound, error) {
+func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatUnauthorized, *DeleteStatForbidden, *DeleteStatNotFound, *DeleteStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteStatParams()
@@ -703,19 +803,28 @@ func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteStatNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *DeleteStatUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *DeleteStatForbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *DeleteStatNotFound:
-		return nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteStatInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -760,7 +869,13 @@ func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.Clie
 
 	case *DeleteStatNoContent:
 		return v, nil
+	case *DeleteStatUnauthorized:
+		return nil, v
+	case *DeleteStatForbidden:
+		return nil, v
 	case *DeleteStatNotFound:
+		return nil, v
+	case *DeleteStatInternalServerError:
 		return nil, v
 
 	default:
@@ -777,7 +892,7 @@ Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
                   *  Returns : updated stat
 */
-func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatNotFound, error) {
+func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateStatParams()
@@ -805,19 +920,31 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateStatOK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateStatBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateStatUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateStatForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *UpdateStatNotFound:
-		return nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateStatInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -863,7 +990,15 @@ func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.Clie
 
 	case *UpdateStatOK:
 		return v, nil
+	case *UpdateStatBadRequest:
+		return nil, v
+	case *UpdateStatUnauthorized:
+		return nil, v
+	case *UpdateStatForbidden:
+		return nil, v
 	case *UpdateStatNotFound:
+		return nil, v
+	case *UpdateStatInternalServerError:
 		return nil, v
 
 	default:
@@ -879,7 +1014,7 @@ Deletes stat template.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
-func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatConflict, error) {
+func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatUnauthorized, *DeleteTiedStatForbidden, *DeleteTiedStatNotFound, *DeleteTiedStatConflict, *DeleteTiedStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteTiedStatParams()
@@ -907,19 +1042,31 @@ func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteTiedStatNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteTiedStatUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteTiedStatForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteTiedStatNotFound:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *DeleteTiedStatConflict:
-		return nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteTiedStatInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -964,7 +1111,15 @@ func (a *Client) DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runt
 
 	case *DeleteTiedStatNoContent:
 		return v, nil
+	case *DeleteTiedStatUnauthorized:
+		return nil, v
+	case *DeleteTiedStatForbidden:
+		return nil, v
+	case *DeleteTiedStatNotFound:
+		return nil, v
 	case *DeleteTiedStatConflict:
+		return nil, v
+	case *DeleteTiedStatInternalServerError:
 		return nil, v
 
 	default:
@@ -983,7 +1138,7 @@ Other detail info:
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
 */
-func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1NotFound, *CreateStat1Conflict, error) {
+func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1BadRequest, *CreateStat1Unauthorized, *CreateStat1Forbidden, *CreateStat1NotFound, *CreateStat1Conflict, *CreateStat1UnprocessableEntity, *CreateStat1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStat1Params()
@@ -1011,22 +1166,37 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateStat1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil, nil
+
+	case *CreateStat1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil, nil
+
+	case *CreateStat1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil, nil
+
+	case *CreateStat1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil, nil
 
 	case *CreateStat1NotFound:
-		return nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil, nil
 
 	case *CreateStat1Conflict:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil, nil, nil
+
+	case *CreateStat1UnprocessableEntity:
+		return nil, nil, nil, nil, nil, nil, v, nil, nil
+
+	case *CreateStat1InternalServerError:
+		return nil, nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1074,9 +1244,19 @@ func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.Cl
 
 	case *CreateStat1Created:
 		return v, nil
+	case *CreateStat1BadRequest:
+		return nil, v
+	case *CreateStat1Unauthorized:
+		return nil, v
+	case *CreateStat1Forbidden:
+		return nil, v
 	case *CreateStat1NotFound:
 		return nil, v
 	case *CreateStat1Conflict:
+		return nil, v
+	case *CreateStat1UnprocessableEntity:
+		return nil, v
+	case *CreateStat1InternalServerError:
 		return nil, v
 
 	default:

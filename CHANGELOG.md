@@ -4,6 +4,7 @@
 - **:** update getting started with sdk link
 ### chore
 - **:** review validate role permission
+- **:** update CHANGELOG.md and go sum getting started
 
 
 <a name="v0.56.0"></a>

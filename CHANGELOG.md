@@ -5,6 +5,8 @@
 ### chore
 - **:** review validate role permission
 - **:** update CHANGELOG.md and go sum getting started
+### docs
+- **migrations:** add migration-guide-v0.56-to-v0.57.md
 
 
 <a name="v0.56.0"></a>

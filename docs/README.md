@@ -1,6 +1,6 @@
 # AccelByte Go SDK Documentation
 
-This documentation is a complement to the documentation published at [docs.accelbyte.io](https://docs-old.accelbyte.io).
+This documentation is a complement to the documentation published at [docs.accelbyte.io](https://docs.accelbyte.io).
 It also serves as an entry point for developers who like to jump straight to code.
 
 ## [Getting Started](getting_started.md)

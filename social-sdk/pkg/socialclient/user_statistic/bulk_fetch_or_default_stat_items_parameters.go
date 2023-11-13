@@ -191,7 +191,7 @@ func (o *BulkFetchOrDefaultStatItemsParams) WriteToRequest(r runtime.ClientReque
 
 	valuesUserIds := o.UserIds
 
-	joinedUserIds := swag.JoinByFormat(valuesUserIds, "csv")
+	joinedUserIds := swag.JoinByFormat(valuesUserIds, "multi")
 	// query array param userIds
 	if err := r.SetQueryParam("userIds", joinedUserIds...); err != nil {
 		return err

@@ -178,7 +178,7 @@ func (o *GetUserActiveEntitlementsByItemIdsParams) WriteToRequest(r runtime.Clie
 
 	valuesIds := o.Ids
 
-	joinedIds := swag.JoinByFormat(valuesIds, "csv")
+	joinedIds := swag.JoinByFormat(valuesIds, "multi")
 	// query array param ids
 	if err := r.SetQueryParam("ids", joinedIds...); err != nil {
 		return err

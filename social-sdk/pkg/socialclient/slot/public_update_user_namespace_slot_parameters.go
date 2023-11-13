@@ -330,7 +330,7 @@ func (o *PublicUpdateUserNamespaceSlotParams) WriteToRequest(r runtime.ClientReq
 
 	valuesTags := o.Tags
 
-	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	joinedTags := swag.JoinByFormat(valuesTags, "multi")
 	// query array param tags
 	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
 		return err

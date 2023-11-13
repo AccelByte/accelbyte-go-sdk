@@ -386,7 +386,7 @@ func (o *QueryUserExpGrantHistoryParams) WriteToRequest(r runtime.ClientRequest,
 
 	valuesTags := o.Tags
 
-	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	joinedTags := swag.JoinByFormat(valuesTags, "multi")
 	// query array param tags
 	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
 		return err

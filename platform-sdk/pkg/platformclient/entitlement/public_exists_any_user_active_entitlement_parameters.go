@@ -204,7 +204,7 @@ func (o *PublicExistsAnyUserActiveEntitlementParams) WriteToRequest(r runtime.Cl
 
 	valuesAppIds := o.AppIds
 
-	joinedAppIds := swag.JoinByFormat(valuesAppIds, "csv")
+	joinedAppIds := swag.JoinByFormat(valuesAppIds, "multi")
 	// query array param appIds
 	if err := r.SetQueryParam("appIds", joinedAppIds...); err != nil {
 		return err
@@ -212,7 +212,7 @@ func (o *PublicExistsAnyUserActiveEntitlementParams) WriteToRequest(r runtime.Cl
 
 	valuesItemIds := o.ItemIds
 
-	joinedItemIds := swag.JoinByFormat(valuesItemIds, "csv")
+	joinedItemIds := swag.JoinByFormat(valuesItemIds, "multi")
 	// query array param itemIds
 	if err := r.SetQueryParam("itemIds", joinedItemIds...); err != nil {
 		return err
@@ -220,7 +220,7 @@ func (o *PublicExistsAnyUserActiveEntitlementParams) WriteToRequest(r runtime.Cl
 
 	valuesSkus := o.Skus
 
-	joinedSkus := swag.JoinByFormat(valuesSkus, "csv")
+	joinedSkus := swag.JoinByFormat(valuesSkus, "multi")
 	// query array param skus
 	if err := r.SetQueryParam("skus", joinedSkus...); err != nil {
 		return err

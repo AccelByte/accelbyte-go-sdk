@@ -204,7 +204,7 @@ func (o *ListBasicItemsByFeaturesParams) WriteToRequest(r runtime.ClientRequest,
 
 	valuesFeatures := o.Features
 
-	joinedFeatures := swag.JoinByFormat(valuesFeatures, "csv")
+	joinedFeatures := swag.JoinByFormat(valuesFeatures, "multi")
 	// query array param features
 	if err := r.SetQueryParam("features", joinedFeatures...); err != nil {
 		return err

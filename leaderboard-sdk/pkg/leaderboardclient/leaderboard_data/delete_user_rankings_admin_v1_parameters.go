@@ -187,7 +187,7 @@ func (o *DeleteUserRankingsAdminV1Params) WriteToRequest(r runtime.ClientRequest
 
 	valuesLeaderboardCode := o.LeaderboardCode
 
-	joinedLeaderboardCode := swag.JoinByFormat(valuesLeaderboardCode, "csv")
+	joinedLeaderboardCode := swag.JoinByFormat(valuesLeaderboardCode, "multi")
 	// query array param leaderboardCode
 	if err := r.SetQueryParam("leaderboardCode", joinedLeaderboardCode...); err != nil {
 		return err

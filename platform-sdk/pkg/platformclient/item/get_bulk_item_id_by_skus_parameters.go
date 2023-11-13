@@ -182,7 +182,7 @@ func (o *GetBulkItemIDBySkusParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 	valuesSku := o.Sku
 
-	joinedSku := swag.JoinByFormat(valuesSku, "csv")
+	joinedSku := swag.JoinByFormat(valuesSku, "multi")
 	// query array param sku
 	if err := r.SetQueryParam("sku", joinedSku...); err != nil {
 		return err

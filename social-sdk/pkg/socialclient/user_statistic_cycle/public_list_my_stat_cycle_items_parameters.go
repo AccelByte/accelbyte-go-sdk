@@ -297,7 +297,7 @@ func (o *PublicListMyStatCycleItemsParams) WriteToRequest(r runtime.ClientReques
 
 	valuesStatCodes := o.StatCodes
 
-	joinedStatCodes := swag.JoinByFormat(valuesStatCodes, "csv")
+	joinedStatCodes := swag.JoinByFormat(valuesStatCodes, "multi")
 	// query array param statCodes
 	if err := r.SetQueryParam("statCodes", joinedStatCodes...); err != nil {
 		return err

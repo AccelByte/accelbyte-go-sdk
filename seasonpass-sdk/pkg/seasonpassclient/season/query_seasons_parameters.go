@@ -251,7 +251,7 @@ func (o *QuerySeasonsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	valuesStatus := o.Status
 
-	joinedStatus := swag.JoinByFormat(valuesStatus, "csv")
+	joinedStatus := swag.JoinByFormat(valuesStatus, "multi")
 	// query array param status
 	if err := r.SetQueryParam("status", joinedStatus...); err != nil {
 		return err

@@ -181,7 +181,7 @@ func (o *ExistsAnyPassByPassCodesParams) WriteToRequest(r runtime.ClientRequest,
 
 	valuesPassCodes := o.PassCodes
 
-	joinedPassCodes := swag.JoinByFormat(valuesPassCodes, "csv")
+	joinedPassCodes := swag.JoinByFormat(valuesPassCodes, "multi")
 	// query array param passCodes
 	if err := r.SetQueryParam("passCodes", joinedPassCodes...); err != nil {
 		return err

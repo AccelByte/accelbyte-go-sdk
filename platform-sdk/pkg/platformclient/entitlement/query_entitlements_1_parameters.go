@@ -243,7 +243,7 @@ func (o *QueryEntitlements1Params) WriteToRequest(r runtime.ClientRequest, reg s
 
 	valuesItemIds := o.ItemIds
 
-	joinedItemIds := swag.JoinByFormat(valuesItemIds, "csv")
+	joinedItemIds := swag.JoinByFormat(valuesItemIds, "multi")
 	// query array param itemIds
 	if err := r.SetQueryParam("itemIds", joinedItemIds...); err != nil {
 		return err

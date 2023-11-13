@@ -362,7 +362,7 @@ func (o *QueryOrdersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 	valuesOrderNos := o.OrderNos
 
-	joinedOrderNos := swag.JoinByFormat(valuesOrderNos, "csv")
+	joinedOrderNos := swag.JoinByFormat(valuesOrderNos, "multi")
 	// query array param orderNos
 	if err := r.SetQueryParam("orderNos", joinedOrderNos...); err != nil {
 		return err

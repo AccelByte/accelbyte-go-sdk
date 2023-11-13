@@ -343,7 +343,7 @@ func (o *PublicQueryUserEntitlementsParams) WriteToRequest(r runtime.ClientReque
 
 	valuesFeatures := o.Features
 
-	joinedFeatures := swag.JoinByFormat(valuesFeatures, "csv")
+	joinedFeatures := swag.JoinByFormat(valuesFeatures, "multi")
 	// query array param features
 	if err := r.SetQueryParam("features", joinedFeatures...); err != nil {
 		return err
@@ -351,7 +351,7 @@ func (o *PublicQueryUserEntitlementsParams) WriteToRequest(r runtime.ClientReque
 
 	valuesItemID := o.ItemID
 
-	joinedItemID := swag.JoinByFormat(valuesItemID, "csv")
+	joinedItemID := swag.JoinByFormat(valuesItemID, "multi")
 	// query array param itemId
 	if err := r.SetQueryParam("itemId", joinedItemID...); err != nil {
 		return err

@@ -44,6 +44,12 @@ oAuth20Service := iam.OAuth20Service{
 }
 ```
 
+## Enable HTTP Logging
+To enable http logging feature, set `ENABLE_LOG` to true in the environment variables.
+```
+export ENABLE_LOG=true
+```
+
 #### With Custom HTTP retry in the client
 
 Use this to get SDK instance with HTTP retry functionality.

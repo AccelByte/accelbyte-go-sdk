@@ -84,7 +84,7 @@ var (
 		ReachMinimumAge: true,
 		Username:        &dynamicUsername,
 	}
-	updateUserBody = &iamclientmodels.ModelUserUpdateRequest{
+	updateUserBody = &iamclientmodels.ModelUserUpdateRequestV3{
 		DisplayName: "Golang Update Test",
 	}
 )
@@ -105,6 +105,21 @@ func Init() {
 		if errStore != nil {
 			logrus.Error("failed stored the token")
 		}
+	}
+}
+
+func InitLoginClient() {
+	id := os.Getenv("AB_CLIENT_ID")
+	secret := os.Getenv("AB_CLIENT_SECRET")
+	err := oAuth20Service.LoginClient(&id, &secret)
+	if err != nil {
+		logrus.Error("failed login")
+	} else {
+		token, errStore := oAuth20Service.TokenRepository.GetToken()
+		if errStore != nil {
+			logrus.Error("failed stored the token")
+		}
+		logrus.Infof("token: %s", *token.AccessToken)
 	}
 }
 
@@ -297,13 +312,13 @@ func TestIntegrationUser(t *testing.T) {
 	assert.NotNil(t, user, "response should not be nil")
 
 	// CASE Update a user
-	inputUpdate := &users.UpdateUserParams{
+	inputUpdate := &users.AdminUpdateUserV3Params{
 		Body:      updateUserBody,
 		Namespace: integration.NamespaceTest,
 		UserID:    *user.UserID,
 	}
 
-	update, errUpdate := userService.UpdateUserShort(inputUpdate)
+	update, errUpdate := userService.AdminUpdateUserV3Short(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -328,12 +343,12 @@ func TestIntegrationUser(t *testing.T) {
 	assert.NotNil(t, get, "should not be nil")
 
 	// CASE Delete a user
-	inputDelete := &users.DeleteUserParams{
+	inputDelete := &users.AdminDeleteUserInformationV3Params{
 		Namespace: integration.NamespaceTest,
 		UserID:    *user.UserID,
 	}
 
-	errDelete := userService.DeleteUserShort(inputDelete)
+	errDelete := userService.AdminDeleteUserInformationV3Short(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

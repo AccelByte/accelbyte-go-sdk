@@ -33,8 +33,8 @@ var (
 
 // ListServer + Heartbeat
 func TestIntegrationListServerHeartbeat(t *testing.T) {
-	// Login User - Arrange
-	Init()
+	// Login Client - Arrange
+	InitLoginClient()
 
 	// CASE ListServer
 	inputListServer := &public.ListServerParams{}

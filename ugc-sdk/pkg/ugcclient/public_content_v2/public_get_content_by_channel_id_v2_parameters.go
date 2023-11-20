@@ -119,6 +119,7 @@ type PublicGetContentByChannelIDV2Params struct {
 	available value:
 	<ul>
 	<li>createdTime, createdTime:desc, createdTime:asc</li>
+	<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
 	</ul>
 
 	*/

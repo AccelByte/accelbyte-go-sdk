@@ -52,10 +52,10 @@
 | `/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history` | GET | ServerHistoryShort | [ServerHistoryShort](../../ams-sdk/pkg/amsclient/servers/servers_client.go) | [ServerHistoryShort](../../services-api/pkg/service/ams/servers.go) | [ServerHistoryShort](../../samples/cli/cmd/ams/servers/serverHistory.go) |
 
 ### AMS QoS Wrapper:  [AMSQoS](../../services-api/pkg/service/ams/amsQoS.go)
-| Endpoint | Method | ID | Class                                                                              | Wrapper | Example |
-|---|---|---|------------------------------------------------------------------------------------|---|---|
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
 | `/ams/v1/admin/namespaces/{namespace}/qos/{region}` | PATCH | QoSRegionsUpdateShort | [QoSRegionsUpdateShort](../../ams-sdk/pkg/amsclient/a_m_s_qo_s/ams_qo_s_client.go) | [QoSRegionsUpdateShort](../../services-api/pkg/service/ams/amsQoS.go) | [QoSRegionsUpdateShort](../../samples/cli/cmd/ams/amsQoS/qoSRegionsUpdate.go) |
-| `/ams/v1/namespaces/{namespace}/qos` | GET | QoSRegionsGetShort | [QoSRegionsGetShort](../../ams-sdk/pkg/amsclient/a_m_s_qo_s/ams_qo_s_client.go)    | [QoSRegionsGetShort](../../services-api/pkg/service/ams/amsQoS.go) | [QoSRegionsGetShort](../../samples/cli/cmd/ams/amsQoS/qoSRegionsGet.go) |
+| `/ams/v1/namespaces/{namespace}/qos` | GET | QoSRegionsGetShort | [QoSRegionsGetShort](../../ams-sdk/pkg/amsclient/a_m_s_qo_s/ams_qo_s_client.go) | [QoSRegionsGetShort](../../services-api/pkg/service/ams/amsQoS.go) | [QoSRegionsGetShort](../../samples/cli/cmd/ams/amsQoS/qoSRegionsGet.go) |
 
 ### AMS Info Wrapper:  [AMSInfo](../../services-api/pkg/service/ams/amsInfo.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |

@@ -78,7 +78,7 @@ func NewPublicGetPublisherUserV3OK() *PublicGetPublisherUserV3OK {
   OK
 */
 type PublicGetPublisherUserV3OK struct {
-	Payload *iamclientmodels.ModelGetPublisherUserV3Response
+	Payload *iamclientmodels.ModelGetPublisherUserResponse
 }
 
 func (o *PublicGetPublisherUserV3OK) Error() string {
@@ -100,7 +100,7 @@ func (o *PublicGetPublisherUserV3OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicGetPublisherUserV3OK) GetPayload() *iamclientmodels.ModelGetPublisherUserV3Response {
+func (o *PublicGetPublisherUserV3OK) GetPayload() *iamclientmodels.ModelGetPublisherUserResponse {
 	return o.Payload
 }
 
@@ -111,7 +111,7 @@ func (o *PublicGetPublisherUserV3OK) readResponse(response runtime.ClientRespons
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.ModelGetPublisherUserV3Response)
+	o.Payload = new(iamclientmodels.ModelGetPublisherUserResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

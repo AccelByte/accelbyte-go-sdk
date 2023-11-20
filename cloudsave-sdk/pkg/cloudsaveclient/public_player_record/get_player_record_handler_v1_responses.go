@@ -33,6 +33,12 @@ func (o *GetPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetPlayerRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewGetPlayerRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -121,6 +127,59 @@ func (o *GetPlayerRecordHandlerV1OK) readResponse(response runtime.ClientRespons
 	return nil
 }
 
+// NewGetPlayerRecordHandlerV1BadRequest creates a GetPlayerRecordHandlerV1BadRequest with default headers values
+func NewGetPlayerRecordHandlerV1BadRequest() *GetPlayerRecordHandlerV1BadRequest {
+	return &GetPlayerRecordHandlerV1BadRequest{}
+}
+
+/*GetPlayerRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type GetPlayerRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetPlayerRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetPlayerRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetPlayerRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetPlayerRecordHandlerV1Unauthorized creates a GetPlayerRecordHandlerV1Unauthorized with default headers values
 func NewGetPlayerRecordHandlerV1Unauthorized() *GetPlayerRecordHandlerV1Unauthorized {
 	return &GetPlayerRecordHandlerV1Unauthorized{}
@@ -128,7 +187,7 @@ func NewGetPlayerRecordHandlerV1Unauthorized() *GetPlayerRecordHandlerV1Unauthor
 
 /*GetPlayerRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetPlayerRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -181,7 +240,7 @@ func NewGetPlayerRecordHandlerV1Forbidden() *GetPlayerRecordHandlerV1Forbidden {
 
 /*GetPlayerRecordHandlerV1Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18023</td><td>get action is forbidden on other user's record</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18023</td><td>get action is forbidden on other user's record</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type GetPlayerRecordHandlerV1Forbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -234,7 +293,7 @@ func NewGetPlayerRecordHandlerV1NotFound() *GetPlayerRecordHandlerV1NotFound {
 
 /*GetPlayerRecordHandlerV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18022</td><td>record not found</td></tr></table>
 */
 type GetPlayerRecordHandlerV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -287,7 +346,7 @@ func NewGetPlayerRecordHandlerV1InternalServerError() *GetPlayerRecordHandlerV1I
 
 /*GetPlayerRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18020</td><td>unable to get record</td></tr><tr><td>18006</td><td>unable to decode record</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetPlayerRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

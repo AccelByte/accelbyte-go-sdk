@@ -45,6 +45,12 @@ func (o *ListPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewListPlayerRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewListPlayerRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewListPlayerRecordHandlerV1BadRequest() *ListPlayerRecordHandlerV1BadReque
 
 /*ListPlayerRecordHandlerV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18113</td><td>invalid request body</td></tr></table>
 */
 type ListPlayerRecordHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -175,7 +181,7 @@ func NewListPlayerRecordHandlerV1Unauthorized() *ListPlayerRecordHandlerV1Unauth
 
 /*ListPlayerRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type ListPlayerRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -221,6 +227,59 @@ func (o *ListPlayerRecordHandlerV1Unauthorized) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewListPlayerRecordHandlerV1Forbidden creates a ListPlayerRecordHandlerV1Forbidden with default headers values
+func NewListPlayerRecordHandlerV1Forbidden() *ListPlayerRecordHandlerV1Forbidden {
+	return &ListPlayerRecordHandlerV1Forbidden{}
+}
+
+/*ListPlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type ListPlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *ListPlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/records][%d] listPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *ListPlayerRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *ListPlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewListPlayerRecordHandlerV1InternalServerError creates a ListPlayerRecordHandlerV1InternalServerError with default headers values
 func NewListPlayerRecordHandlerV1InternalServerError() *ListPlayerRecordHandlerV1InternalServerError {
 	return &ListPlayerRecordHandlerV1InternalServerError{}
@@ -228,7 +287,7 @@ func NewListPlayerRecordHandlerV1InternalServerError() *ListPlayerRecordHandlerV
 
 /*ListPlayerRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18114</td><td>unable to retrieve list of key records</td></tr></table>
 */
 type ListPlayerRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

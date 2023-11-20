@@ -45,6 +45,12 @@ func (o *PutGameRecordConcurrentHandlerV1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPutGameRecordConcurrentHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 412:
 		result := NewPutGameRecordConcurrentHandlerV1PreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -101,7 +107,7 @@ func NewPutGameRecordConcurrentHandlerV1BadRequest() *PutGameRecordConcurrentHan
 
 /*PutGameRecordConcurrentHandlerV1BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr><tr><td>18060</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>18052</td><td>invalid request body: size of the request body must be less than [%d]MB</td></tr></table>
 */
 type PutGameRecordConcurrentHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -154,7 +160,7 @@ func NewPutGameRecordConcurrentHandlerV1Unauthorized() *PutGameRecordConcurrentH
 
 /*PutGameRecordConcurrentHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PutGameRecordConcurrentHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -200,6 +206,59 @@ func (o *PutGameRecordConcurrentHandlerV1Unauthorized) readResponse(response run
 	return nil
 }
 
+// NewPutGameRecordConcurrentHandlerV1Forbidden creates a PutGameRecordConcurrentHandlerV1Forbidden with default headers values
+func NewPutGameRecordConcurrentHandlerV1Forbidden() *PutGameRecordConcurrentHandlerV1Forbidden {
+	return &PutGameRecordConcurrentHandlerV1Forbidden{}
+}
+
+/*PutGameRecordConcurrentHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PutGameRecordConcurrentHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPutGameRecordConcurrentHandlerV1PreconditionFailed creates a PutGameRecordConcurrentHandlerV1PreconditionFailed with default headers values
 func NewPutGameRecordConcurrentHandlerV1PreconditionFailed() *PutGameRecordConcurrentHandlerV1PreconditionFailed {
 	return &PutGameRecordConcurrentHandlerV1PreconditionFailed{}
@@ -207,7 +266,7 @@ func NewPutGameRecordConcurrentHandlerV1PreconditionFailed() *PutGameRecordConcu
 
 /*PutGameRecordConcurrentHandlerV1PreconditionFailed handles this case with default header values.
 
-  Precondition Failed
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18056</td><td>precondition failed: record has changed</td></tr></table>
 */
 type PutGameRecordConcurrentHandlerV1PreconditionFailed struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -260,7 +319,7 @@ func NewPutGameRecordConcurrentHandlerV1InternalServerError() *PutGameRecordConc
 
 /*PutGameRecordConcurrentHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18051</td><td>unable to marshal request body</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>18053</td><td>unable to update record</td></tr></table>
 */
 type PutGameRecordConcurrentHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

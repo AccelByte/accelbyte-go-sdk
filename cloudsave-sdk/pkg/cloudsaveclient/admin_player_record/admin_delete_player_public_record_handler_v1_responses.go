@@ -33,8 +33,20 @@ func (o *AdminDeletePlayerPublicRecordHandlerV1Reader) ReadResponse(response run
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminDeletePlayerPublicRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminDeletePlayerPublicRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminDeletePlayerPublicRecordHandlerV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -88,6 +100,59 @@ func (o *AdminDeletePlayerPublicRecordHandlerV1NoContent) readResponse(response 
 	return nil
 }
 
+// NewAdminDeletePlayerPublicRecordHandlerV1BadRequest creates a AdminDeletePlayerPublicRecordHandlerV1BadRequest with default headers values
+func NewAdminDeletePlayerPublicRecordHandlerV1BadRequest() *AdminDeletePlayerPublicRecordHandlerV1BadRequest {
+	return &AdminDeletePlayerPublicRecordHandlerV1BadRequest{}
+}
+
+/*AdminDeletePlayerPublicRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type AdminDeletePlayerPublicRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeletePlayerPublicRecordHandlerV1Unauthorized creates a AdminDeletePlayerPublicRecordHandlerV1Unauthorized with default headers values
 func NewAdminDeletePlayerPublicRecordHandlerV1Unauthorized() *AdminDeletePlayerPublicRecordHandlerV1Unauthorized {
 	return &AdminDeletePlayerPublicRecordHandlerV1Unauthorized{}
@@ -95,7 +160,7 @@ func NewAdminDeletePlayerPublicRecordHandlerV1Unauthorized() *AdminDeletePlayerP
 
 /*AdminDeletePlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeletePlayerPublicRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -141,6 +206,59 @@ func (o *AdminDeletePlayerPublicRecordHandlerV1Unauthorized) readResponse(respon
 	return nil
 }
 
+// NewAdminDeletePlayerPublicRecordHandlerV1Forbidden creates a AdminDeletePlayerPublicRecordHandlerV1Forbidden with default headers values
+func NewAdminDeletePlayerPublicRecordHandlerV1Forbidden() *AdminDeletePlayerPublicRecordHandlerV1Forbidden {
+	return &AdminDeletePlayerPublicRecordHandlerV1Forbidden{}
+}
+
+/*AdminDeletePlayerPublicRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminDeletePlayerPublicRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminDeletePlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeletePlayerPublicRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeletePlayerPublicRecordHandlerV1NotFound creates a AdminDeletePlayerPublicRecordHandlerV1NotFound with default headers values
 func NewAdminDeletePlayerPublicRecordHandlerV1NotFound() *AdminDeletePlayerPublicRecordHandlerV1NotFound {
 	return &AdminDeletePlayerPublicRecordHandlerV1NotFound{}
@@ -148,7 +266,7 @@ func NewAdminDeletePlayerPublicRecordHandlerV1NotFound() *AdminDeletePlayerPubli
 
 /*AdminDeletePlayerPublicRecordHandlerV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18122</td><td>record not found</td></tr></table>
 */
 type AdminDeletePlayerPublicRecordHandlerV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -201,7 +319,7 @@ func NewAdminDeletePlayerPublicRecordHandlerV1InternalServerError() *AdminDelete
 
 /*AdminDeletePlayerPublicRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18120</td><td>unable to delete record</td></tr></table>
 */
 type AdminDeletePlayerPublicRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

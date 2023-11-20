@@ -765,6 +765,7 @@ Deprecated: 2022-08-10 - Use UserRequestFriendShort instead.
 
 UserRequestFriend user add friend
 Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.
+This endpoint will only send a pending invite that can be either rejected/accepted
 */
 func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, *UserRequestFriendBadRequest, *UserRequestFriendUnauthorized, *UserRequestFriendForbidden, *UserRequestFriendNotFound, *UserRequestFriendUnprocessableEntity, *UserRequestFriendInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -828,6 +829,7 @@ func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo run
 /*
 UserRequestFriendShort user add friend
 Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.
+This endpoint will only send a pending invite that can be either rejected/accepted
 */
 func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, error) {
 	// TODO: Validate the params before sending

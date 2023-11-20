@@ -39,6 +39,12 @@ func (o *AdminGetPlayerRecordHandlerV1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminGetPlayerRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetPlayerRecordHandlerV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminGetPlayerRecordHandlerV1Unauthorized() *AdminGetPlayerRecordHandler
 
 /*AdminGetPlayerRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetPlayerRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *AdminGetPlayerRecordHandlerV1Unauthorized) readResponse(response runtim
 	return nil
 }
 
+// NewAdminGetPlayerRecordHandlerV1Forbidden creates a AdminGetPlayerRecordHandlerV1Forbidden with default headers values
+func NewAdminGetPlayerRecordHandlerV1Forbidden() *AdminGetPlayerRecordHandlerV1Forbidden {
+	return &AdminGetPlayerRecordHandlerV1Forbidden{}
+}
+
+/*AdminGetPlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminGetPlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminGetPlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminGetPlayerRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetPlayerRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetPlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetPlayerRecordHandlerV1NotFound creates a AdminGetPlayerRecordHandlerV1NotFound with default headers values
 func NewAdminGetPlayerRecordHandlerV1NotFound() *AdminGetPlayerRecordHandlerV1NotFound {
 	return &AdminGetPlayerRecordHandlerV1NotFound{}
@@ -175,7 +234,7 @@ func NewAdminGetPlayerRecordHandlerV1NotFound() *AdminGetPlayerRecordHandlerV1No
 
 /*AdminGetPlayerRecordHandlerV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18022</td><td>record not found</td></tr></table>
 */
 type AdminGetPlayerRecordHandlerV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewAdminGetPlayerRecordHandlerV1InternalServerError() *AdminGetPlayerRecord
 
 /*AdminGetPlayerRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18020</td><td>unable to get record</td></tr><tr><td>18005</td><td>unable to decode record</td></tr></table>
 */
 type AdminGetPlayerRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

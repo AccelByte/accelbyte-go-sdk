@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.11.6"
+    "version": "2.11.7"
   },
   "schemes": [
     "https"
@@ -19,6 +19,7 @@
       "scopes": {
         "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]": "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]",
         "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
+        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]",
         "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]",
@@ -996,7 +997,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Created",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/api.ListMatchPoolsResponse"
             }
@@ -1491,6 +1492,96 @@
           }
         ],
         "summary": "Get metrics player for a specific match pool",
+        "tags": [
+          "Match-Pools",
+          "admin"
+        ]
+      }
+    },
+    "/match2/v1/namespaces/{namespace}/match-pools/{pool}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]\n\nRequired Scope: social\n\nGet tickets in queue for a specific match pool\n\nResult: number of tickets and list of ticket detail in a match pool.\n",
+        "operationId": "adminGetMatchPoolTickets",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the match pool",
+            "in": "path",
+            "name": "pool",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.ListMatchPoolTicketsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get tickets in queue for a specific match pool",
         "tags": [
           "Match-Pools",
           "admin"
@@ -2350,6 +2441,27 @@
         "pagination"
       ]
     },
+    "api.ListMatchPoolTicketsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/matchmaker.MatchTicketRecord"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "totalData"
+      ]
+    },
     "api.ListMatchPoolsResponse": {
       "properties": {
         "data": {
@@ -2816,6 +2928,47 @@
         "name"
       ]
     },
+    "matchmaker.MatchTicketRecord": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "IsActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "PartySessionID": {
+          "type": "string"
+        },
+        "ProposedProposal": {
+          "$ref": "#/definitions/matchmaker.ProposedProposal"
+        },
+        "SessionID": {
+          "type": "string"
+        },
+        "Ticket": {
+          "$ref": "#/definitions/matchmaker.Ticket"
+        },
+        "TicketID": {
+          "type": "string"
+        },
+        "UniqueTicketID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "CreatedAt",
+        "IsActive",
+        "PartySessionID",
+        "ProposedProposal",
+        "SessionID",
+        "Ticket",
+        "TicketID",
+        "UniqueTicketID"
+      ]
+    },
     "matchmaker.Party": {
       "properties": {
         "partyID": {
@@ -2831,6 +2984,24 @@
       "required": [
         "partyID",
         "userIDs"
+      ]
+    },
+    "matchmaker.ProposedProposal": {
+      "properties": {
+        "BackfillID": {
+          "type": "string"
+        },
+        "ProposalID": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BackfillID",
+        "ProposalID",
+        "Status"
       ]
     },
     "matchmaker.Team": {
@@ -2851,6 +3022,56 @@
       "required": [
         "Parties",
         "UserIDs"
+      ]
+    },
+    "matchmaker.Ticket": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "Latencies": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "PartySessionID": {
+          "type": "string"
+        },
+        "Players": {
+          "items": {
+            "$ref": "#/definitions/player.PlayerData"
+          },
+          "type": "array"
+        },
+        "ProposedProposal": {
+          "$ref": "#/definitions/matchmaker.ProposedProposal"
+        },
+        "TicketAttributes": {
+          "type": "object"
+        },
+        "TicketID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "CreatedAt",
+        "Latencies",
+        "MatchPool",
+        "Namespace",
+        "PartySessionID",
+        "Players",
+        "ProposedProposal",
+        "TicketAttributes",
+        "TicketID"
       ]
     },
     "models.Configuration": {
@@ -3147,6 +3368,24 @@
         "UpdatedAt"
       ]
     },
+    "player.PlayerData": {
+      "properties": {
+        "Attributes": {
+          "type": "object"
+        },
+        "PartyID": {
+          "type": "string"
+        },
+        "PlayerID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Attributes",
+        "PartyID",
+        "PlayerID"
+      ]
+    },
     "response.Error": {
       "properties": {
         "ErrorCode": {
@@ -3171,9 +3410,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-24T02:05:33+00:00",
-    "gitHash": "622ecdac8cf3c4c68c3799aa39f8fe39743aeb86",
-    "version": "2.11.6",
-    "version-roles-seeding": "0.0.38"
+    "buildDate": "2023-11-07T07:30:43+00:00",
+    "gitHash": "2bfd3c7bacbd3a55612982ed06912d422500515b",
+    "version": "2.11.7",
+    "version-roles-seeding": "1.0.10"
   }
 }

@@ -45,6 +45,12 @@ func (o *RollbackContentVersionReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewRollbackContentVersionUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewRollbackContentVersionInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -205,6 +211,59 @@ func (o *RollbackContentVersionNotFound) GetPayload() *ugcclientmodels.ResponseE
 }
 
 func (o *RollbackContentVersionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRollbackContentVersionUnprocessableEntity creates a RollbackContentVersionUnprocessableEntity with default headers values
+func NewRollbackContentVersionUnprocessableEntity() *RollbackContentVersionUnprocessableEntity {
+	return &RollbackContentVersionUnprocessableEntity{}
+}
+
+/*RollbackContentVersionUnprocessableEntity handles this case with default header values.
+
+  Unprocessable Entity
+*/
+type RollbackContentVersionUnprocessableEntity struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *RollbackContentVersionUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/rollback/{versionId}][%d] rollbackContentVersionUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *RollbackContentVersionUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RollbackContentVersionUnprocessableEntity) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *RollbackContentVersionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

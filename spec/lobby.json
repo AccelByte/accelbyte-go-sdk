@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.30.2"
+    "version": "3.31.0"
   },
   "schemes": [
     "https"
@@ -567,7 +567,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.",
+        "description": "Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.\nThis endpoint will only send a pending invite that can be either rejected/accepted\n",
         "operationId": "userRequestFriend",
         "parameters": [
           {
@@ -9540,11 +9540,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-24T02:04:33+00:00",
-    "gitHash": "b70b5caded36f6b7eb5209eff44f5facdf9d0432",
+    "buildDate": "2023-11-07T07:30:41+00:00",
+    "gitHash": "abb42ce8f1cdb7096c550c9bc65a7e6902ba9dc7",
     "name": "justice-lobby-server",
-    "revisionID": "3.30.2",
-    "version": "3.30.2",
+    "revisionID": "3.31.0",
+    "version": "3.31.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "1.0.1"
   }

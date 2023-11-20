@@ -33,8 +33,20 @@ func (o *AdminPutAdminGameRecordV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminPutAdminGameRecordV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminPutAdminGameRecordV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminPutAdminGameRecordV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +121,59 @@ func (o *AdminPutAdminGameRecordV1OK) readResponse(response runtime.ClientRespon
 	return nil
 }
 
+// NewAdminPutAdminGameRecordV1BadRequest creates a AdminPutAdminGameRecordV1BadRequest with default headers values
+func NewAdminPutAdminGameRecordV1BadRequest() *AdminPutAdminGameRecordV1BadRequest {
+	return &AdminPutAdminGameRecordV1BadRequest{}
+}
+
+/*AdminPutAdminGameRecordV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18144</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>18146</td><td>invalid request body: size of the request body must be less than [%d]MB</td></tr></table>
+*/
+type AdminPutAdminGameRecordV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutAdminGameRecordV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}][%d] adminPutAdminGameRecordV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminPutAdminGameRecordV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutAdminGameRecordV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutAdminGameRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutAdminGameRecordV1Unauthorized creates a AdminPutAdminGameRecordV1Unauthorized with default headers values
 func NewAdminPutAdminGameRecordV1Unauthorized() *AdminPutAdminGameRecordV1Unauthorized {
 	return &AdminPutAdminGameRecordV1Unauthorized{}
@@ -116,7 +181,7 @@ func NewAdminPutAdminGameRecordV1Unauthorized() *AdminPutAdminGameRecordV1Unauth
 
 /*AdminPutAdminGameRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPutAdminGameRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +227,59 @@ func (o *AdminPutAdminGameRecordV1Unauthorized) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewAdminPutAdminGameRecordV1Forbidden creates a AdminPutAdminGameRecordV1Forbidden with default headers values
+func NewAdminPutAdminGameRecordV1Forbidden() *AdminPutAdminGameRecordV1Forbidden {
+	return &AdminPutAdminGameRecordV1Forbidden{}
+}
+
+/*AdminPutAdminGameRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminPutAdminGameRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutAdminGameRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}][%d] adminPutAdminGameRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminPutAdminGameRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutAdminGameRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutAdminGameRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutAdminGameRecordV1InternalServerError creates a AdminPutAdminGameRecordV1InternalServerError with default headers values
 func NewAdminPutAdminGameRecordV1InternalServerError() *AdminPutAdminGameRecordV1InternalServerError {
 	return &AdminPutAdminGameRecordV1InternalServerError{}
@@ -169,7 +287,7 @@ func NewAdminPutAdminGameRecordV1InternalServerError() *AdminPutAdminGameRecordV
 
 /*AdminPutAdminGameRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18145</td><td>unable to marshal request body</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>18164</td><td>unable to decode record</td></tr><tr><td>18147</td><td>unable to update record</td></tr></table>
 */
 type AdminPutAdminGameRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

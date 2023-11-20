@@ -9,6 +9,7 @@ package stat_cycle_configuration
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -36,6 +37,8 @@ type ClientService interface {
 	CreateStatCycleShort(params *CreateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCycleCreated, error)
 	BulkGetStatCycle(params *BulkGetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycleOK, *BulkGetStatCycleBadRequest, *BulkGetStatCycleUnauthorized, *BulkGetStatCycleForbidden, *BulkGetStatCycleUnprocessableEntity, *BulkGetStatCycleInternalServerError, error)
 	BulkGetStatCycleShort(params *BulkGetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycleOK, error)
+	ExportStatCycle(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, *ExportStatCycleUnauthorized, *ExportStatCycleForbidden, *ExportStatCycleInternalServerError, error)
+	ExportStatCycleShort(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, error)
 	GetStatCycle(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, *GetStatCycleUnauthorized, *GetStatCycleForbidden, *GetStatCycleNotFound, *GetStatCycleInternalServerError, error)
 	GetStatCycleShort(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, error)
 	UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, *UpdateStatCycleBadRequest, *UpdateStatCycleUnauthorized, *UpdateStatCycleForbidden, *UpdateStatCycleNotFound, *UpdateStatCycleConflict, *UpdateStatCycleUnprocessableEntity, *UpdateStatCycleInternalServerError, error)
@@ -426,6 +429,119 @@ func (a *Client) BulkGetStatCycleShort(params *BulkGetStatCycleParams, authInfo 
 	case *BulkGetStatCycleUnprocessableEntity:
 		return nil, v
 	case *BulkGetStatCycleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ExportStatCycleShort instead.
+
+ExportStatCycle export all stat cycle configurations
+Export all stat cycle configurations for a given namespace into file At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+*/
+func (a *Client) ExportStatCycle(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, *ExportStatCycleUnauthorized, *ExportStatCycleForbidden, *ExportStatCycleInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportStatCycle",
+		Method:             "GET",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportStatCycleReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportStatCycleOK:
+		return v, nil, nil, nil, nil
+
+	case *ExportStatCycleUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *ExportStatCycleForbidden:
+		return nil, nil, v, nil, nil
+
+	case *ExportStatCycleInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ExportStatCycleShort export all stat cycle configurations
+Export all stat cycle configurations for a given namespace into file At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+*/
+func (a *Client) ExportStatCycleShort(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportStatCycle",
+		Method:             "GET",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportStatCycleReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportStatCycleOK:
+		return v, nil
+	case *ExportStatCycleUnauthorized:
+		return nil, v
+	case *ExportStatCycleForbidden:
+		return nil, v
+	case *ExportStatCycleInternalServerError:
 		return nil, v
 
 	default:

@@ -214,6 +214,35 @@ func (aaa *PublicContentLegacyService) CreateContentS3(input *public_content_leg
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicUpdateContentByShareCodeShort instead.
+func (aaa *PublicContentLegacyService) PublicUpdateContentByShareCode(input *public_content_legacy.PublicUpdateContentByShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.PublicContentLegacy.PublicUpdateContentByShareCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use UpdateContentS3Short instead.
 func (aaa *PublicContentLegacyService) UpdateContentS3(input *public_content_legacy.UpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -238,6 +267,29 @@ func (aaa *PublicContentLegacyService) UpdateContentS3(input *public_content_leg
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicDeleteContentByShareCodeShort instead.
+func (aaa *PublicContentLegacyService) PublicDeleteContentByShareCode(input *public_content_legacy.PublicDeleteContentByShareCodeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.PublicContentLegacy.PublicDeleteContentByShareCode(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use UpdateContentDirectShort instead.
@@ -587,6 +639,31 @@ func (aaa *PublicContentLegacyService) CreateContentS3Short(input *public_conten
 	return created.GetPayload(), nil
 }
 
+func (aaa *PublicContentLegacyService) PublicUpdateContentByShareCodeShort(input *public_content_legacy.PublicUpdateContentByShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentLegacy.PublicUpdateContentByShareCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *PublicContentLegacyService) UpdateContentS3Short(input *public_content_legacy.UpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -610,6 +687,31 @@ func (aaa *PublicContentLegacyService) UpdateContentS3Short(input *public_conten
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicContentLegacyService) PublicDeleteContentByShareCodeShort(input *public_content_legacy.PublicDeleteContentByShareCodeParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.PublicContentLegacy.PublicDeleteContentByShareCodeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *PublicContentLegacyService) UpdateContentDirectShort(input *public_content_legacy.UpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {

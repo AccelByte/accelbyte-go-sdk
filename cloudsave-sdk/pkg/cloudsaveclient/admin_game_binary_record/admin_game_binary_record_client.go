@@ -30,19 +30,19 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, *AdminListGameBinaryRecordsV1Unauthorized, *AdminListGameBinaryRecordsV1InternalServerError, error)
+	AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, *AdminListGameBinaryRecordsV1BadRequest, *AdminListGameBinaryRecordsV1Unauthorized, *AdminListGameBinaryRecordsV1Forbidden, *AdminListGameBinaryRecordsV1InternalServerError, error)
 	AdminListGameBinaryRecordsV1Short(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, error)
-	AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryRecordV1Created, *AdminPostGameBinaryRecordV1Unauthorized, *AdminPostGameBinaryRecordV1InternalServerError, error)
+	AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryRecordV1Created, *AdminPostGameBinaryRecordV1BadRequest, *AdminPostGameBinaryRecordV1Unauthorized, *AdminPostGameBinaryRecordV1Forbidden, *AdminPostGameBinaryRecordV1Conflict, *AdminPostGameBinaryRecordV1InternalServerError, error)
 	AdminPostGameBinaryRecordV1Short(params *AdminPostGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryRecordV1Created, error)
-	AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, *AdminGetGameBinaryRecordV1Unauthorized, *AdminGetGameBinaryRecordV1NotFound, *AdminGetGameBinaryRecordV1InternalServerError, error)
+	AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, *AdminGetGameBinaryRecordV1Unauthorized, *AdminGetGameBinaryRecordV1Forbidden, *AdminGetGameBinaryRecordV1NotFound, *AdminGetGameBinaryRecordV1InternalServerError, error)
 	AdminGetGameBinaryRecordV1Short(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, error)
-	AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, *AdminPutGameBinaryRecordV1Unauthorized, *AdminPutGameBinaryRecordV1InternalServerError, error)
+	AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, *AdminPutGameBinaryRecordV1BadRequest, *AdminPutGameBinaryRecordV1Unauthorized, *AdminPutGameBinaryRecordV1Forbidden, *AdminPutGameBinaryRecordV1NotFound, *AdminPutGameBinaryRecordV1InternalServerError, error)
 	AdminPutGameBinaryRecordV1Short(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, error)
-	AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, *AdminDeleteGameBinaryRecordV1Unauthorized, *AdminDeleteGameBinaryRecordV1NotFound, *AdminDeleteGameBinaryRecordV1InternalServerError, error)
+	AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, *AdminDeleteGameBinaryRecordV1BadRequest, *AdminDeleteGameBinaryRecordV1Unauthorized, *AdminDeleteGameBinaryRecordV1Forbidden, *AdminDeleteGameBinaryRecordV1NotFound, *AdminDeleteGameBinaryRecordV1InternalServerError, error)
 	AdminDeleteGameBinaryRecordV1Short(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, error)
-	AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, *AdminPutGameBinaryRecorMetadataV1Unauthorized, *AdminPutGameBinaryRecorMetadataV1InternalServerError, error)
+	AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, *AdminPutGameBinaryRecorMetadataV1BadRequest, *AdminPutGameBinaryRecorMetadataV1Unauthorized, *AdminPutGameBinaryRecorMetadataV1Forbidden, *AdminPutGameBinaryRecorMetadataV1NotFound, *AdminPutGameBinaryRecorMetadataV1InternalServerError, error)
 	AdminPutGameBinaryRecorMetadataV1Short(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, error)
-	AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPresignedURLV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryPresignedURLV1Created, *AdminPostGameBinaryPresignedURLV1Unauthorized, *AdminPostGameBinaryPresignedURLV1InternalServerError, error)
+	AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPresignedURLV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryPresignedURLV1Created, *AdminPostGameBinaryPresignedURLV1BadRequest, *AdminPostGameBinaryPresignedURLV1Unauthorized, *AdminPostGameBinaryPresignedURLV1Forbidden, *AdminPostGameBinaryPresignedURLV1NotFound, *AdminPostGameBinaryPresignedURLV1InternalServerError, error)
 	AdminPostGameBinaryPresignedURLV1Short(params *AdminPostGameBinaryPresignedURLV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryPresignedURLV1Created, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -57,7 +57,7 @@ Required scope: `social`
 
 Retrieve list of binary records by namespace.
 */
-func (a *Client) AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, *AdminListGameBinaryRecordsV1Unauthorized, *AdminListGameBinaryRecordsV1InternalServerError, error) {
+func (a *Client) AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, *AdminListGameBinaryRecordsV1BadRequest, *AdminListGameBinaryRecordsV1Unauthorized, *AdminListGameBinaryRecordsV1Forbidden, *AdminListGameBinaryRecordsV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminListGameBinaryRecordsV1Params()
@@ -85,22 +85,28 @@ func (a *Client) AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecords
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminListGameBinaryRecordsV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminListGameBinaryRecordsV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminListGameBinaryRecordsV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminListGameBinaryRecordsV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminListGameBinaryRecordsV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -146,7 +152,11 @@ func (a *Client) AdminListGameBinaryRecordsV1Short(params *AdminListGameBinaryRe
 
 	case *AdminListGameBinaryRecordsV1OK:
 		return v, nil
+	case *AdminListGameBinaryRecordsV1BadRequest:
+		return nil, v
 	case *AdminListGameBinaryRecordsV1Unauthorized:
+		return nil, v
+	case *AdminListGameBinaryRecordsV1Forbidden:
 		return nil, v
 	case *AdminListGameBinaryRecordsV1InternalServerError:
 		return nil, v
@@ -179,7 +189,7 @@ Other detail info:
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
-func (a *Client) AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryRecordV1Created, *AdminPostGameBinaryRecordV1Unauthorized, *AdminPostGameBinaryRecordV1InternalServerError, error) {
+func (a *Client) AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryRecordV1Created, *AdminPostGameBinaryRecordV1BadRequest, *AdminPostGameBinaryRecordV1Unauthorized, *AdminPostGameBinaryRecordV1Forbidden, *AdminPostGameBinaryRecordV1Conflict, *AdminPostGameBinaryRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPostGameBinaryRecordV1Params()
@@ -207,22 +217,31 @@ func (a *Client) AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPostGameBinaryRecordV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminPostGameBinaryRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPostGameBinaryRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPostGameBinaryRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminPostGameBinaryRecordV1Conflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPostGameBinaryRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -282,7 +301,13 @@ func (a *Client) AdminPostGameBinaryRecordV1Short(params *AdminPostGameBinaryRec
 
 	case *AdminPostGameBinaryRecordV1Created:
 		return v, nil
+	case *AdminPostGameBinaryRecordV1BadRequest:
+		return nil, v
 	case *AdminPostGameBinaryRecordV1Unauthorized:
+		return nil, v
+	case *AdminPostGameBinaryRecordV1Forbidden:
+		return nil, v
+	case *AdminPostGameBinaryRecordV1Conflict:
 		return nil, v
 	case *AdminPostGameBinaryRecordV1InternalServerError:
 		return nil, v
@@ -301,7 +326,7 @@ Required scope: `social`
 
 Get a game binary record by its key.
 */
-func (a *Client) AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, *AdminGetGameBinaryRecordV1Unauthorized, *AdminGetGameBinaryRecordV1NotFound, *AdminGetGameBinaryRecordV1InternalServerError, error) {
+func (a *Client) AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, *AdminGetGameBinaryRecordV1Unauthorized, *AdminGetGameBinaryRecordV1Forbidden, *AdminGetGameBinaryRecordV1NotFound, *AdminGetGameBinaryRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetGameBinaryRecordV1Params()
@@ -329,25 +354,28 @@ func (a *Client) AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetGameBinaryRecordV1OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetGameBinaryRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetGameBinaryRecordV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetGameBinaryRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetGameBinaryRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -395,6 +423,8 @@ func (a *Client) AdminGetGameBinaryRecordV1Short(params *AdminGetGameBinaryRecor
 		return v, nil
 	case *AdminGetGameBinaryRecordV1Unauthorized:
 		return nil, v
+	case *AdminGetGameBinaryRecordV1Forbidden:
+		return nil, v
 	case *AdminGetGameBinaryRecordV1NotFound:
 		return nil, v
 	case *AdminGetGameBinaryRecordV1InternalServerError:
@@ -414,7 +444,7 @@ Required scope: `social`
 
 Update a game binary record file by its key
 */
-func (a *Client) AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, *AdminPutGameBinaryRecordV1Unauthorized, *AdminPutGameBinaryRecordV1InternalServerError, error) {
+func (a *Client) AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, *AdminPutGameBinaryRecordV1BadRequest, *AdminPutGameBinaryRecordV1Unauthorized, *AdminPutGameBinaryRecordV1Forbidden, *AdminPutGameBinaryRecordV1NotFound, *AdminPutGameBinaryRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutGameBinaryRecordV1Params()
@@ -442,22 +472,31 @@ func (a *Client) AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutGameBinaryRecordV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminPutGameBinaryRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutGameBinaryRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutGameBinaryRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminPutGameBinaryRecordV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutGameBinaryRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -503,7 +542,13 @@ func (a *Client) AdminPutGameBinaryRecordV1Short(params *AdminPutGameBinaryRecor
 
 	case *AdminPutGameBinaryRecordV1OK:
 		return v, nil
+	case *AdminPutGameBinaryRecordV1BadRequest:
+		return nil, v
 	case *AdminPutGameBinaryRecordV1Unauthorized:
+		return nil, v
+	case *AdminPutGameBinaryRecordV1Forbidden:
+		return nil, v
+	case *AdminPutGameBinaryRecordV1NotFound:
 		return nil, v
 	case *AdminPutGameBinaryRecordV1InternalServerError:
 		return nil, v
@@ -522,7 +567,7 @@ Required scope: `social`
 
 Delete a game binary record.
 */
-func (a *Client) AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, *AdminDeleteGameBinaryRecordV1Unauthorized, *AdminDeleteGameBinaryRecordV1NotFound, *AdminDeleteGameBinaryRecordV1InternalServerError, error) {
+func (a *Client) AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, *AdminDeleteGameBinaryRecordV1BadRequest, *AdminDeleteGameBinaryRecordV1Unauthorized, *AdminDeleteGameBinaryRecordV1Forbidden, *AdminDeleteGameBinaryRecordV1NotFound, *AdminDeleteGameBinaryRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteGameBinaryRecordV1Params()
@@ -550,25 +595,31 @@ func (a *Client) AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryReco
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteGameBinaryRecordV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDeleteGameBinaryRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteGameBinaryRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteGameBinaryRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteGameBinaryRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteGameBinaryRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -614,7 +665,11 @@ func (a *Client) AdminDeleteGameBinaryRecordV1Short(params *AdminDeleteGameBinar
 
 	case *AdminDeleteGameBinaryRecordV1NoContent:
 		return v, nil
+	case *AdminDeleteGameBinaryRecordV1BadRequest:
+		return nil, v
 	case *AdminDeleteGameBinaryRecordV1Unauthorized:
+		return nil, v
+	case *AdminDeleteGameBinaryRecordV1Forbidden:
 		return nil, v
 	case *AdminDeleteGameBinaryRecordV1NotFound:
 		return nil, v
@@ -635,7 +690,7 @@ Required scope: `social`
 
 Update a game binary record metadata by its key
 */
-func (a *Client) AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, *AdminPutGameBinaryRecorMetadataV1Unauthorized, *AdminPutGameBinaryRecorMetadataV1InternalServerError, error) {
+func (a *Client) AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, *AdminPutGameBinaryRecorMetadataV1BadRequest, *AdminPutGameBinaryRecorMetadataV1Unauthorized, *AdminPutGameBinaryRecorMetadataV1Forbidden, *AdminPutGameBinaryRecorMetadataV1NotFound, *AdminPutGameBinaryRecorMetadataV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutGameBinaryRecorMetadataV1Params()
@@ -663,22 +718,31 @@ func (a *Client) AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRec
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutGameBinaryRecorMetadataV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminPutGameBinaryRecorMetadataV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutGameBinaryRecorMetadataV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutGameBinaryRecorMetadataV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminPutGameBinaryRecorMetadataV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutGameBinaryRecorMetadataV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -724,7 +788,13 @@ func (a *Client) AdminPutGameBinaryRecorMetadataV1Short(params *AdminPutGameBina
 
 	case *AdminPutGameBinaryRecorMetadataV1OK:
 		return v, nil
+	case *AdminPutGameBinaryRecorMetadataV1BadRequest:
+		return nil, v
 	case *AdminPutGameBinaryRecorMetadataV1Unauthorized:
+		return nil, v
+	case *AdminPutGameBinaryRecorMetadataV1Forbidden:
+		return nil, v
+	case *AdminPutGameBinaryRecorMetadataV1NotFound:
 		return nil, v
 	case *AdminPutGameBinaryRecorMetadataV1InternalServerError:
 		return nil, v
@@ -750,7 +820,7 @@ Other detail info:
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
-func (a *Client) AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPresignedURLV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryPresignedURLV1Created, *AdminPostGameBinaryPresignedURLV1Unauthorized, *AdminPostGameBinaryPresignedURLV1InternalServerError, error) {
+func (a *Client) AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPresignedURLV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameBinaryPresignedURLV1Created, *AdminPostGameBinaryPresignedURLV1BadRequest, *AdminPostGameBinaryPresignedURLV1Unauthorized, *AdminPostGameBinaryPresignedURLV1Forbidden, *AdminPostGameBinaryPresignedURLV1NotFound, *AdminPostGameBinaryPresignedURLV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPostGameBinaryPresignedURLV1Params()
@@ -778,22 +848,31 @@ func (a *Client) AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPr
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPostGameBinaryPresignedURLV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminPostGameBinaryPresignedURLV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPostGameBinaryPresignedURLV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPostGameBinaryPresignedURLV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminPostGameBinaryPresignedURLV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPostGameBinaryPresignedURLV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -846,7 +925,13 @@ func (a *Client) AdminPostGameBinaryPresignedURLV1Short(params *AdminPostGameBin
 
 	case *AdminPostGameBinaryPresignedURLV1Created:
 		return v, nil
+	case *AdminPostGameBinaryPresignedURLV1BadRequest:
+		return nil, v
 	case *AdminPostGameBinaryPresignedURLV1Unauthorized:
+		return nil, v
+	case *AdminPostGameBinaryPresignedURLV1Forbidden:
+		return nil, v
+	case *AdminPostGameBinaryPresignedURLV1NotFound:
 		return nil, v
 	case *AdminPostGameBinaryPresignedURLV1InternalServerError:
 		return nil, v

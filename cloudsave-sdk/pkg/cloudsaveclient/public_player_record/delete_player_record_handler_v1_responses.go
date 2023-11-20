@@ -154,7 +154,7 @@ func NewDeletePlayerRecordHandlerV1Unauthorized() *DeletePlayerRecordHandlerV1Un
 
 /*DeletePlayerRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeletePlayerRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -207,7 +207,7 @@ func NewDeletePlayerRecordHandlerV1Forbidden() *DeletePlayerRecordHandlerV1Forbi
 
 /*DeletePlayerRecordHandlerV1Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18072</td><td>delete action is forbidden on other user's record</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18072</td><td>delete action is forbidden on other user's record</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type DeletePlayerRecordHandlerV1Forbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -260,7 +260,7 @@ func NewDeletePlayerRecordHandlerV1InternalServerError() *DeletePlayerRecordHand
 
 /*DeletePlayerRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18070</td><td>unable to delete record</td></tr></table>
 */
 type DeletePlayerRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

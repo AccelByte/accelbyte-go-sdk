@@ -54,6 +54,8 @@ func init() {
 	SocialCmd.AddCommand(statCycleConfiguration.GetStatCyclesCmd)
 	SocialCmd.AddCommand(statCycleConfiguration.CreateStatCycleCmd)
 	SocialCmd.AddCommand(statCycleConfiguration.BulkGetStatCycleCmd)
+	SocialCmd.AddCommand(statCycleConfiguration.ExportStatCycleCmd)
+	SocialCmd.AddCommand(statConfiguration.ImportStatCycleCmd)
 	SocialCmd.AddCommand(statCycleConfiguration.GetStatCycleCmd)
 	SocialCmd.AddCommand(statCycleConfiguration.UpdateStatCycleCmd)
 	SocialCmd.AddCommand(statCycleConfiguration.DeleteStatCycleCmd)

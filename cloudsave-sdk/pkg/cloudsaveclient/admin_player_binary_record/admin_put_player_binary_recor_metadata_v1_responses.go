@@ -33,8 +33,26 @@ func (o *AdminPutPlayerBinaryRecorMetadataV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminPutPlayerBinaryRecorMetadataV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminPutPlayerBinaryRecorMetadataV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminPutPlayerBinaryRecorMetadataV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewAdminPutPlayerBinaryRecorMetadataV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +127,59 @@ func (o *AdminPutPlayerBinaryRecorMetadataV1OK) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewAdminPutPlayerBinaryRecorMetadataV1BadRequest creates a AdminPutPlayerBinaryRecorMetadataV1BadRequest with default headers values
+func NewAdminPutPlayerBinaryRecorMetadataV1BadRequest() *AdminPutPlayerBinaryRecorMetadataV1BadRequest {
+	return &AdminPutPlayerBinaryRecorMetadataV1BadRequest{}
+}
+
+/*AdminPutPlayerBinaryRecorMetadataV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18332</td><td>invalid request body</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecorMetadataV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}/metadata][%d] adminPutPlayerBinaryRecorMetadataV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutPlayerBinaryRecorMetadataV1Unauthorized creates a AdminPutPlayerBinaryRecorMetadataV1Unauthorized with default headers values
 func NewAdminPutPlayerBinaryRecorMetadataV1Unauthorized() *AdminPutPlayerBinaryRecorMetadataV1Unauthorized {
 	return &AdminPutPlayerBinaryRecorMetadataV1Unauthorized{}
@@ -116,7 +187,7 @@ func NewAdminPutPlayerBinaryRecorMetadataV1Unauthorized() *AdminPutPlayerBinaryR
 
 /*AdminPutPlayerBinaryRecorMetadataV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPutPlayerBinaryRecorMetadataV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +233,112 @@ func (o *AdminPutPlayerBinaryRecorMetadataV1Unauthorized) readResponse(response 
 	return nil
 }
 
+// NewAdminPutPlayerBinaryRecorMetadataV1Forbidden creates a AdminPutPlayerBinaryRecorMetadataV1Forbidden with default headers values
+func NewAdminPutPlayerBinaryRecorMetadataV1Forbidden() *AdminPutPlayerBinaryRecorMetadataV1Forbidden {
+	return &AdminPutPlayerBinaryRecorMetadataV1Forbidden{}
+}
+
+/*AdminPutPlayerBinaryRecorMetadataV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecorMetadataV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}/metadata][%d] adminPutPlayerBinaryRecorMetadataV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminPutPlayerBinaryRecorMetadataV1NotFound creates a AdminPutPlayerBinaryRecorMetadataV1NotFound with default headers values
+func NewAdminPutPlayerBinaryRecorMetadataV1NotFound() *AdminPutPlayerBinaryRecorMetadataV1NotFound {
+	return &AdminPutPlayerBinaryRecorMetadataV1NotFound{}
+}
+
+/*AdminPutPlayerBinaryRecorMetadataV1NotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18333</td><td>record not found</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecorMetadataV1NotFound struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1NotFound) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}/metadata][%d] adminPutPlayerBinaryRecorMetadataV1NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1NotFound) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecorMetadataV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutPlayerBinaryRecorMetadataV1InternalServerError creates a AdminPutPlayerBinaryRecorMetadataV1InternalServerError with default headers values
 func NewAdminPutPlayerBinaryRecorMetadataV1InternalServerError() *AdminPutPlayerBinaryRecorMetadataV1InternalServerError {
 	return &AdminPutPlayerBinaryRecorMetadataV1InternalServerError{}
@@ -169,7 +346,7 @@ func NewAdminPutPlayerBinaryRecorMetadataV1InternalServerError() *AdminPutPlayer
 
 /*AdminPutPlayerBinaryRecorMetadataV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18334</td><td>unable to update record</td></tr></table>
 */
 type AdminPutPlayerBinaryRecorMetadataV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -45,6 +45,12 @@ func (o *AdminRetrievePlayerRecordsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminRetrievePlayerRecordsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminRetrievePlayerRecordsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminRetrievePlayerRecordsBadRequest() *AdminRetrievePlayerRecordsBadReq
 
 /*AdminRetrievePlayerRecordsBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18113</td><td>invalid request body</td></tr></table>
 */
 type AdminRetrievePlayerRecordsBadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -175,7 +181,7 @@ func NewAdminRetrievePlayerRecordsUnauthorized() *AdminRetrievePlayerRecordsUnau
 
 /*AdminRetrievePlayerRecordsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminRetrievePlayerRecordsUnauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -221,6 +227,59 @@ func (o *AdminRetrievePlayerRecordsUnauthorized) readResponse(response runtime.C
 	return nil
 }
 
+// NewAdminRetrievePlayerRecordsForbidden creates a AdminRetrievePlayerRecordsForbidden with default headers values
+func NewAdminRetrievePlayerRecordsForbidden() *AdminRetrievePlayerRecordsForbidden {
+	return &AdminRetrievePlayerRecordsForbidden{}
+}
+
+/*AdminRetrievePlayerRecordsForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminRetrievePlayerRecordsForbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminRetrievePlayerRecordsForbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminRetrievePlayerRecordsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminRetrievePlayerRecordsForbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminRetrievePlayerRecordsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminRetrievePlayerRecordsInternalServerError creates a AdminRetrievePlayerRecordsInternalServerError with default headers values
 func NewAdminRetrievePlayerRecordsInternalServerError() *AdminRetrievePlayerRecordsInternalServerError {
 	return &AdminRetrievePlayerRecordsInternalServerError{}
@@ -228,7 +287,7 @@ func NewAdminRetrievePlayerRecordsInternalServerError() *AdminRetrievePlayerReco
 
 /*AdminRetrievePlayerRecordsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18114</td><td>unable to retrieve list of key records</td></tr></table>
 */
 type AdminRetrievePlayerRecordsInternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

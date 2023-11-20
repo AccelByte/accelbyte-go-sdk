@@ -22,8 +22,11 @@ import (
 // NewAdminSearchUserV3Params creates a new AdminSearchUserV3Params object
 // with the default values initialized.
 func NewAdminSearchUserV3Params() *AdminSearchUserV3Params {
-	var ()
+	var (
+		includeTotalDefault = bool(false)
+	)
 	return &AdminSearchUserV3Params{
+		IncludeTotal: &includeTotalDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminSearchUserV3Params() *AdminSearchUserV3Params {
 // NewAdminSearchUserV3ParamsWithTimeout creates a new AdminSearchUserV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminSearchUserV3ParamsWithTimeout(timeout time.Duration) *AdminSearchUserV3Params {
-	var ()
+	var (
+		includeTotalDefault = bool(false)
+	)
 	return &AdminSearchUserV3Params{
+		IncludeTotal: &includeTotalDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminSearchUserV3ParamsWithTimeout(timeout time.Duration) *AdminSearchUs
 // NewAdminSearchUserV3ParamsWithContext creates a new AdminSearchUserV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminSearchUserV3ParamsWithContext(ctx context.Context) *AdminSearchUserV3Params {
-	var ()
+	var (
+		includeTotalDefault = bool(false)
+	)
 	return &AdminSearchUserV3Params{
+		IncludeTotal: &includeTotalDefault,
 
 		Context: ctx,
 	}
@@ -52,9 +61,12 @@ func NewAdminSearchUserV3ParamsWithContext(ctx context.Context) *AdminSearchUser
 // NewAdminSearchUserV3ParamsWithHTTPClient creates a new AdminSearchUserV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminSearchUserV3ParamsWithHTTPClient(client *http.Client) *AdminSearchUserV3Params {
-	var ()
+	var (
+		includeTotalDefault = bool(false)
+	)
 	return &AdminSearchUserV3Params{
-		HTTPClient: client,
+		IncludeTotal: &includeTotalDefault,
+		HTTPClient:   client,
 	}
 }
 
@@ -80,6 +92,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	EndDate *string
+	/*IncludeTotal
+	  A flag whether this request should include total count, default false
+
+	*/
+	IncludeTotal *bool
 	/*Limit
 	  the maximum number of data that may be returned (1...100), default 100
 
@@ -197,6 +214,17 @@ func (o *AdminSearchUserV3Params) SetEndDate(endDate *string) {
 	o.EndDate = endDate
 }
 
+// WithIncludeTotal adds the includeTotal to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithIncludeTotal(includeTotal *bool) *AdminSearchUserV3Params {
+	o.SetIncludeTotal(includeTotal)
+	return o
+}
+
+// SetIncludeTotal adds the includeTotal to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetIncludeTotal(includeTotal *bool) {
+	o.IncludeTotal = includeTotal
+}
+
 // WithLimit adds the limit to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithLimit(limit *int64) *AdminSearchUserV3Params {
 	o.SetLimit(limit)
@@ -302,6 +330,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qEndDate := qrEndDate
 		if qEndDate != "" {
 			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IncludeTotal != nil {
+
+		// query param includeTotal
+		var qrIncludeTotal bool
+		if o.IncludeTotal != nil {
+			qrIncludeTotal = *o.IncludeTotal
+		}
+		qIncludeTotal := swag.FormatBool(qrIncludeTotal)
+		if qIncludeTotal != "" {
+			if err := r.SetQueryParam("includeTotal", qIncludeTotal); err != nil {
 				return err
 			}
 		}

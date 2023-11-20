@@ -30,15 +30,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error)
+	GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkBadRequest, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error)
 	GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, error)
-	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1BadRequest, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error)
+	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1BadRequest, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1Forbidden, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error)
 	GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, error)
-	PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error)
+	PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1Unauthorized, *PutGameRecordHandlerV1Forbidden, *PutGameRecordHandlerV1InternalServerError, error)
 	PutGameRecordHandlerV1Short(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, error)
-	PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error)
+	PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1Unauthorized, *PostGameRecordHandlerV1Forbidden, *PostGameRecordHandlerV1InternalServerError, error)
 	PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, error)
-	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error)
+	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1Forbidden, *DeleteGameRecordHandlerV1InternalServerError, error)
 	DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -58,7 +58,7 @@ Required Scope      | `social`
 
 Bulk get game records. Maximum key per request 20.
 */
-func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error) {
+func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkBadRequest, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGameRecordsBulkParams()
@@ -86,28 +86,31 @@ func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGameRecordsBulkOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetGameRecordsBulkBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *GetGameRecordsBulkUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *GetGameRecordsBulkForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetGameRecordsBulkNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *GetGameRecordsBulkInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -158,6 +161,8 @@ func (a *Client) GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authI
 
 	case *GetGameRecordsBulkOK:
 		return v, nil
+	case *GetGameRecordsBulkBadRequest:
+		return nil, v
 	case *GetGameRecordsBulkUnauthorized:
 		return nil, v
 	case *GetGameRecordsBulkForbidden:
@@ -185,7 +190,7 @@ Required Scope      | `social`
 
 Get game record by its key.
 */
-func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1BadRequest, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1BadRequest, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1Forbidden, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGameRecordHandlerV1Params()
@@ -213,28 +218,31 @@ func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGameRecordHandlerV1OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *GetGameRecordHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *GetGameRecordHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetGameRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetGameRecordHandlerV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *GetGameRecordHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -287,6 +295,8 @@ func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Param
 	case *GetGameRecordHandlerV1BadRequest:
 		return nil, v
 	case *GetGameRecordHandlerV1Unauthorized:
+		return nil, v
+	case *GetGameRecordHandlerV1Forbidden:
 		return nil, v
 	case *GetGameRecordHandlerV1NotFound:
 		return nil, v
@@ -380,7 +390,7 @@ Reserved Word List: __META
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 */
-func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1Unauthorized, *PutGameRecordHandlerV1Forbidden, *PutGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutGameRecordHandlerV1Params()
@@ -408,22 +418,28 @@ func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutGameRecordHandlerV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PutGameRecordHandlerV1BadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *PutGameRecordHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PutGameRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *PutGameRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -544,6 +560,10 @@ func (a *Client) PutGameRecordHandlerV1Short(params *PutGameRecordHandlerV1Param
 		return v, nil
 	case *PutGameRecordHandlerV1BadRequest:
 		return nil, v
+	case *PutGameRecordHandlerV1Unauthorized:
+		return nil, v
+	case *PutGameRecordHandlerV1Forbidden:
+		return nil, v
 	case *PutGameRecordHandlerV1InternalServerError:
 		return nil, v
 
@@ -656,7 +676,7 @@ Reserved Word List: __META
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 */
-func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1Unauthorized, *PostGameRecordHandlerV1Forbidden, *PostGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostGameRecordHandlerV1Params()
@@ -684,22 +704,28 @@ func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PostGameRecordHandlerV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PostGameRecordHandlerV1BadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *PostGameRecordHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PostGameRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *PostGameRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -842,6 +868,10 @@ func (a *Client) PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Par
 		return v, nil
 	case *PostGameRecordHandlerV1BadRequest:
 		return nil, v
+	case *PostGameRecordHandlerV1Unauthorized:
+		return nil, v
+	case *PostGameRecordHandlerV1Forbidden:
+		return nil, v
 	case *PostGameRecordHandlerV1InternalServerError:
 		return nil, v
 
@@ -864,7 +894,7 @@ Required Scope      | `social`
 
 Delete records by its key
 */
-func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1Forbidden, *DeleteGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteGameRecordHandlerV1Params()
@@ -892,25 +922,28 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteGameRecordHandlerV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *DeleteGameRecordHandlerV1BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *DeleteGameRecordHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *DeleteGameRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *DeleteGameRecordHandlerV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -964,6 +997,8 @@ func (a *Client) DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV
 	case *DeleteGameRecordHandlerV1BadRequest:
 		return nil, v
 	case *DeleteGameRecordHandlerV1Unauthorized:
+		return nil, v
+	case *DeleteGameRecordHandlerV1Forbidden:
 		return nil, v
 	case *DeleteGameRecordHandlerV1InternalServerError:
 		return nil, v

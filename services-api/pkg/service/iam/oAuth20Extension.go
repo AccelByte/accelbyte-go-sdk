@@ -60,12 +60,15 @@ func (aaa *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3(input *o_au
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, err := aaa.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, err := aaa.Client.OAuth20Extension.AuthenticationWithPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if conflict != nil {
 		return nil, conflict

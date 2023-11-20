@@ -45,6 +45,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// dssource
 	DsSource string `json:"dsSource,omitempty"`
 
+	// enablesecret
+	// Required: true
+	EnableSecret *bool `json:"enableSecret"`
+
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
 
@@ -133,6 +137,9 @@ func (m *ApimodelsConfigurationTemplateResponse) Validate(formats strfmt.Registr
 	if err := m.validateDeployment(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateEnableSecret(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateInactiveTimeout(formats); err != nil {
 		res = append(res, err)
 	}
@@ -197,6 +204,15 @@ func (m *ApimodelsConfigurationTemplateResponse) validateCreatedAt(formats strfm
 func (m *ApimodelsConfigurationTemplateResponse) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsConfigurationTemplateResponse) validateEnableSecret(formats strfmt.Registry) error {
+
+	if err := validate.Required("enableSecret", "body", m.EnableSecret); err != nil {
 		return err
 	}
 

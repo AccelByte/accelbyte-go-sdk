@@ -39,6 +39,12 @@ func (o *AdminGetPlayerRecordSizeHandlerV1Reader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminGetPlayerRecordSizeHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetPlayerRecordSizeHandlerV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminGetPlayerRecordSizeHandlerV1Unauthorized() *AdminGetPlayerRecordSiz
 
 /*AdminGetPlayerRecordSizeHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetPlayerRecordSizeHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *AdminGetPlayerRecordSizeHandlerV1Unauthorized) readResponse(response ru
 	return nil
 }
 
+// NewAdminGetPlayerRecordSizeHandlerV1Forbidden creates a AdminGetPlayerRecordSizeHandlerV1Forbidden with default headers values
+func NewAdminGetPlayerRecordSizeHandlerV1Forbidden() *AdminGetPlayerRecordSizeHandlerV1Forbidden {
+	return &AdminGetPlayerRecordSizeHandlerV1Forbidden{}
+}
+
+/*AdminGetPlayerRecordSizeHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminGetPlayerRecordSizeHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminGetPlayerRecordSizeHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/size][%d] adminGetPlayerRecordSizeHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetPlayerRecordSizeHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetPlayerRecordSizeHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetPlayerRecordSizeHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetPlayerRecordSizeHandlerV1NotFound creates a AdminGetPlayerRecordSizeHandlerV1NotFound with default headers values
 func NewAdminGetPlayerRecordSizeHandlerV1NotFound() *AdminGetPlayerRecordSizeHandlerV1NotFound {
 	return &AdminGetPlayerRecordSizeHandlerV1NotFound{}
@@ -175,7 +234,7 @@ func NewAdminGetPlayerRecordSizeHandlerV1NotFound() *AdminGetPlayerRecordSizeHan
 
 /*AdminGetPlayerRecordSizeHandlerV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18022</td><td>record not found</td></tr></table>
 */
 type AdminGetPlayerRecordSizeHandlerV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewAdminGetPlayerRecordSizeHandlerV1InternalServerError() *AdminGetPlayerRe
 
 /*AdminGetPlayerRecordSizeHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18020</td><td>unable to get record</td></tr></table>
 */
 type AdminGetPlayerRecordSizeHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

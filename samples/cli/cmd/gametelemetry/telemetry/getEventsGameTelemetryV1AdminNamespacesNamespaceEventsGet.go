@@ -30,18 +30,22 @@ var GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd = &cobra.Comman
 		eventId, _ := cmd.Flags().GetString("eventId")
 		eventName, _ := cmd.Flags().GetString("eventName")
 		eventPayload, _ := cmd.Flags().GetString("eventPayload")
+		flightId, _ := cmd.Flags().GetString("flightId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		startTime, _ := cmd.Flags().GetString("startTime")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &telemetry.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
 			Namespace:    namespace,
 			EndTime:      &endTime,
 			EventID:      &eventId,
 			EventName:    &eventName,
 			EventPayload: &eventPayload,
+			FlightID:     &flightId,
 			Limit:        &limit,
 			Offset:       &offset,
 			StartTime:    &startTime,
+			UserID:       &userId,
 		}
 		errOK := telemetryService.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(input)
 		if errOK != nil {
@@ -63,7 +67,9 @@ func init() {
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("eventId", "0", "Event id")
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("eventName", "", "Event name")
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("eventPayload", "", "Event payload")
+	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("flightId", "", "Flight id")
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().Int64("limit", 20, "Limit")
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().Int64("offset", 0, "Offset")
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("startTime", "", "Start time")
+	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd.Flags().String("userId", "", "User id")
 }

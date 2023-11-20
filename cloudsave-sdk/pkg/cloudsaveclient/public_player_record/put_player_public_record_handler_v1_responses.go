@@ -45,6 +45,12 @@ func (o *PutPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPutPlayerPublicRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPutPlayerPublicRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewPutPlayerPublicRecordHandlerV1BadRequest() *PutPlayerPublicRecordHandler
 
 /*PutPlayerPublicRecordHandlerV1BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr><tr><td>18100</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type PutPlayerPublicRecordHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -175,7 +181,7 @@ func NewPutPlayerPublicRecordHandlerV1Unauthorized() *PutPlayerPublicRecordHandl
 
 /*PutPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PutPlayerPublicRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -221,6 +227,59 @@ func (o *PutPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runti
 	return nil
 }
 
+// NewPutPlayerPublicRecordHandlerV1Forbidden creates a PutPlayerPublicRecordHandlerV1Forbidden with default headers values
+func NewPutPlayerPublicRecordHandlerV1Forbidden() *PutPlayerPublicRecordHandlerV1Forbidden {
+	return &PutPlayerPublicRecordHandlerV1Forbidden{}
+}
+
+/*PutPlayerPublicRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PutPlayerPublicRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPutPlayerPublicRecordHandlerV1InternalServerError creates a PutPlayerPublicRecordHandlerV1InternalServerError with default headers values
 func NewPutPlayerPublicRecordHandlerV1InternalServerError() *PutPlayerPublicRecordHandlerV1InternalServerError {
 	return &PutPlayerPublicRecordHandlerV1InternalServerError{}
@@ -228,7 +287,7 @@ func NewPutPlayerPublicRecordHandlerV1InternalServerError() *PutPlayerPublicReco
 
 /*PutPlayerPublicRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>18101</td><td>unable to update record</td></tr><tr><td>18005</td><td>unable to decode record</td></tr></table>
 */
 type PutPlayerPublicRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

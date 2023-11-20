@@ -1,3 +1,14 @@
+<a name="v0.58.0"></a>
+## [v0.58.0]
+### docs
+- **operation:** update the client file link
+- **:** update the old doc links
+- **readme:** remove the preview word
+- **readme:** add how to enable the logging
+### fix
+- **regenerate:** use the correct collection format
+
+
 <a name="v0.57.0"></a>
 ## [v0.57.0]
 ### fix

@@ -56,7 +56,7 @@ type ClientService interface {
 	AdminGetSpecificContentShort(params *AdminGetSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSpecificContentOK, error)
 	AdminDownloadContentPreview(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, *AdminDownloadContentPreviewUnauthorized, *AdminDownloadContentPreviewNotFound, *AdminDownloadContentPreviewInternalServerError, error)
 	AdminDownloadContentPreviewShort(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, error)
-	RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionInternalServerError, error)
+	RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionUnprocessableEntity, *RollbackContentVersionInternalServerError, error)
 	RollbackContentVersionShort(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, error)
 	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
 	AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error)
@@ -1667,7 +1667,7 @@ RollbackContentVersion rollback content's payload version
 Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]
 Rollback content's payload to specified version.
 */
-func (a *Client) RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionInternalServerError, error) {
+func (a *Client) RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionUnprocessableEntity, *RollbackContentVersionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRollbackContentVersionParams()
@@ -1695,25 +1695,28 @@ func (a *Client) RollbackContentVersion(params *RollbackContentVersionParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RollbackContentVersionOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *RollbackContentVersionUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *RollbackContentVersionNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *RollbackContentVersionUnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
 
 	case *RollbackContentVersionInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1761,6 +1764,8 @@ func (a *Client) RollbackContentVersionShort(params *RollbackContentVersionParam
 		return nil, v
 	case *RollbackContentVersionNotFound:
 		return nil, v
+	case *RollbackContentVersionUnprocessableEntity:
+		return nil, v
 	case *RollbackContentVersionInternalServerError:
 		return nil, v
 
@@ -1774,7 +1779,6 @@ Deprecated: 2022-08-10 - Use AdminUpdateScreenshotsShort instead.
 
 AdminUpdateScreenshots update screenshot of content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error) {
@@ -1833,7 +1837,6 @@ func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, au
 /*
 AdminUpdateScreenshotsShort update screenshot of content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error) {
@@ -1890,12 +1893,10 @@ Deprecated: 2022-08-10 - Use AdminUploadContentScreenshotShort instead.
 
 AdminUploadContentScreenshot upload screenshots for content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error) {
@@ -1954,12 +1955,10 @@ func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreensh
 /*
 AdminUploadContentScreenshotShort upload screenshots for content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error) {

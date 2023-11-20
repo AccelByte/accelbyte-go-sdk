@@ -30,6 +30,20 @@ func (aaa *TelemetryService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetNamespacesGameTelemetryV1AdminNamespacesGetShort instead.
+func (aaa *TelemetryService) GetNamespacesGameTelemetryV1AdminNamespacesGet(input *telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.Telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGet(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
 func (aaa *TelemetryService) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(input *telemetry.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -40,6 +54,32 @@ func (aaa *TelemetryService) GetEventsGameTelemetryV1AdminNamespacesNamespaceEve
 	if unprocessableEntity != nil {
 		return unprocessableEntity
 	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *TelemetryService) GetNamespacesGameTelemetryV1AdminNamespacesGetShort(input *telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+			{"cookie"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, constant.AccessToken)
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

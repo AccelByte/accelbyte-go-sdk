@@ -69,7 +69,7 @@ func NewMatchPoolListOK() *MatchPoolListOK {
 
 /*MatchPoolListOK handles this case with default header values.
 
-  Created
+  OK
 */
 type MatchPoolListOK struct {
 	Payload *match2clientmodels.APIListMatchPoolsResponse

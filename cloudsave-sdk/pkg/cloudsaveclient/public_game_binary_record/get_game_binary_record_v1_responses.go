@@ -39,6 +39,12 @@ func (o *GetGameBinaryRecordV1Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewGetGameBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewGetGameBinaryRecordV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewGetGameBinaryRecordV1Unauthorized() *GetGameBinaryRecordV1Unauthorized {
 
 /*GetGameBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetGameBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *GetGameBinaryRecordV1Unauthorized) readResponse(response runtime.Client
 	return nil
 }
 
+// NewGetGameBinaryRecordV1Forbidden creates a GetGameBinaryRecordV1Forbidden with default headers values
+func NewGetGameBinaryRecordV1Forbidden() *GetGameBinaryRecordV1Forbidden {
+	return &GetGameBinaryRecordV1Forbidden{}
+}
+
+/*GetGameBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type GetGameBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetGameBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/binaries/{key}][%d] getGameBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetGameBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetGameBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetGameBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetGameBinaryRecordV1NotFound creates a GetGameBinaryRecordV1NotFound with default headers values
 func NewGetGameBinaryRecordV1NotFound() *GetGameBinaryRecordV1NotFound {
 	return &GetGameBinaryRecordV1NotFound{}
@@ -175,7 +234,7 @@ func NewGetGameBinaryRecordV1NotFound() *GetGameBinaryRecordV1NotFound {
 
 /*GetGameBinaryRecordV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18303</td><td>record not found</td></tr></table>
 */
 type GetGameBinaryRecordV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewGetGameBinaryRecordV1InternalServerError() *GetGameBinaryRecordV1Interna
 
 /*GetGameBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18301</td><td>unable to get record</td></tr></table>
 */
 type GetGameBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

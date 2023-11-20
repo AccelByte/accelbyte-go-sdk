@@ -39,6 +39,12 @@ func (o *AdminGetPlayerBinaryRecordV1Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminGetPlayerBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetPlayerBinaryRecordV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminGetPlayerBinaryRecordV1Unauthorized() *AdminGetPlayerBinaryRecordV1
 
 /*AdminGetPlayerBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetPlayerBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *AdminGetPlayerBinaryRecordV1Unauthorized) readResponse(response runtime
 	return nil
 }
 
+// NewAdminGetPlayerBinaryRecordV1Forbidden creates a AdminGetPlayerBinaryRecordV1Forbidden with default headers values
+func NewAdminGetPlayerBinaryRecordV1Forbidden() *AdminGetPlayerBinaryRecordV1Forbidden {
+	return &AdminGetPlayerBinaryRecordV1Forbidden{}
+}
+
+/*AdminGetPlayerBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminGetPlayerBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminGetPlayerBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}][%d] adminGetPlayerBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetPlayerBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetPlayerBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetPlayerBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetPlayerBinaryRecordV1NotFound creates a AdminGetPlayerBinaryRecordV1NotFound with default headers values
 func NewAdminGetPlayerBinaryRecordV1NotFound() *AdminGetPlayerBinaryRecordV1NotFound {
 	return &AdminGetPlayerBinaryRecordV1NotFound{}
@@ -175,7 +234,7 @@ func NewAdminGetPlayerBinaryRecordV1NotFound() *AdminGetPlayerBinaryRecordV1NotF
 
 /*AdminGetPlayerBinaryRecordV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18325</td><td>record not found</td></tr></table>
 */
 type AdminGetPlayerBinaryRecordV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewAdminGetPlayerBinaryRecordV1InternalServerError() *AdminGetPlayerBinaryR
 
 /*AdminGetPlayerBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18323</td><td>unable to get record</td></tr></table>
 */
 type AdminGetPlayerBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

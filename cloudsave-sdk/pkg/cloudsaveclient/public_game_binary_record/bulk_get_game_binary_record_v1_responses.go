@@ -128,7 +128,7 @@ func NewBulkGetGameBinaryRecordV1BadRequest() *BulkGetGameBinaryRecordV1BadReque
 
 /*BulkGetGameBinaryRecordV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18350</td><td>invalid request body</td></tr><tr><td>18351</td><td>request record keys list exceed max size [%d]</td></tr></table>
 */
 type BulkGetGameBinaryRecordV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -181,7 +181,7 @@ func NewBulkGetGameBinaryRecordV1Unauthorized() *BulkGetGameBinaryRecordV1Unauth
 
 /*BulkGetGameBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type BulkGetGameBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -234,7 +234,7 @@ func NewBulkGetGameBinaryRecordV1Forbidden() *BulkGetGameBinaryRecordV1Forbidden
 
 /*BulkGetGameBinaryRecordV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type BulkGetGameBinaryRecordV1Forbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -287,7 +287,7 @@ func NewBulkGetGameBinaryRecordV1InternalServerError() *BulkGetGameBinaryRecordV
 
 /*BulkGetGameBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18349</td><td>unable to get record</td></tr></table>
 */
 type BulkGetGameBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

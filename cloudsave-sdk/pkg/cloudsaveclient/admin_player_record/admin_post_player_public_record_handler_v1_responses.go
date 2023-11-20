@@ -45,6 +45,12 @@ func (o *AdminPostPlayerPublicRecordHandlerV1Reader) ReadResponse(response runti
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminPostPlayerPublicRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminPostPlayerPublicRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminPostPlayerPublicRecordHandlerV1BadRequest() *AdminPostPlayerPublicR
 
 /*AdminPostPlayerPublicRecordHandlerV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18030</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type AdminPostPlayerPublicRecordHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -175,7 +181,7 @@ func NewAdminPostPlayerPublicRecordHandlerV1Unauthorized() *AdminPostPlayerPubli
 
 /*AdminPostPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPostPlayerPublicRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -221,6 +227,59 @@ func (o *AdminPostPlayerPublicRecordHandlerV1Unauthorized) readResponse(response
 	return nil
 }
 
+// NewAdminPostPlayerPublicRecordHandlerV1Forbidden creates a AdminPostPlayerPublicRecordHandlerV1Forbidden with default headers values
+func NewAdminPostPlayerPublicRecordHandlerV1Forbidden() *AdminPostPlayerPublicRecordHandlerV1Forbidden {
+	return &AdminPostPlayerPublicRecordHandlerV1Forbidden{}
+}
+
+/*AdminPostPlayerPublicRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminPostPlayerPublicRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPostPlayerPublicRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPostPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminPostPlayerPublicRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPostPlayerPublicRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPostPlayerPublicRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPostPlayerPublicRecordHandlerV1InternalServerError creates a AdminPostPlayerPublicRecordHandlerV1InternalServerError with default headers values
 func NewAdminPostPlayerPublicRecordHandlerV1InternalServerError() *AdminPostPlayerPublicRecordHandlerV1InternalServerError {
 	return &AdminPostPlayerPublicRecordHandlerV1InternalServerError{}
@@ -228,7 +287,7 @@ func NewAdminPostPlayerPublicRecordHandlerV1InternalServerError() *AdminPostPlay
 
 /*AdminPostPlayerPublicRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>18033</td><td>unable to save record</td></tr><tr><td>18005</td><td>unable to decode record</td></tr></table>
 */
 type AdminPostPlayerPublicRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

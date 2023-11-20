@@ -36,7 +36,10 @@ func (aaa *PublicGameRecordService) GetGameRecordsBulk(input *public_game_record
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordsBulk(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordsBulk(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -62,12 +65,15 @@ func (aaa *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_re
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PublicGameRecord.GetGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -88,9 +94,15 @@ func (aaa *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_re
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := aaa.Client.PublicGameRecord.PutGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicGameRecord.PutGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -108,9 +120,15 @@ func (aaa *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_r
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, internalServerError, err := aaa.Client.PublicGameRecord.PostGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicGameRecord.PostGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -128,12 +146,15 @@ func (aaa *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicGameRecord.DeleteGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicGameRecord.DeleteGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if internalServerError != nil {
 		return internalServerError

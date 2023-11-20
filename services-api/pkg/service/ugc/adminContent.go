@@ -350,12 +350,15 @@ func (aaa *AdminContentService) RollbackContentVersion(input *admin_content.Roll
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.RollbackContentVersion(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.AdminContent.RollbackContentVersion(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

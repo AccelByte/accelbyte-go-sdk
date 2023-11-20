@@ -32,7 +32,7 @@ type Client struct {
 type ClientService interface {
 	UserAuthenticationV3(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
 	UserAuthenticationV3Short(params *UserAuthenticationV3Params, authInfo runtime.ClientAuthInfoWriter) (*UserAuthenticationV3Found, error)
-	AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error)
+	AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Forbidden, *AuthenticationWithPlatformLinkV3Conflict, error)
 	AuthenticationWithPlatformLinkV3Short(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, error)
 	GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, *GenerateTokenByNewHeadlessAccountV3BadRequest, *GenerateTokenByNewHeadlessAccountV3Unauthorized, *GenerateTokenByNewHeadlessAccountV3NotFound, error)
 	GenerateTokenByNewHeadlessAccountV3Short(params *GenerateTokenByNewHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*GenerateTokenByNewHeadlessAccountV3OK, error)
@@ -197,7 +197,7 @@ If user already enable 2FA, then invoke /mfa/verify using mfa_token from this en
 Device Cookie is used to protect the user account from brute force login attack, [more detail from OWASP.
 This endpoint will read device cookie from cookie auth-trust-id. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.
 */
-func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Conflict, error) {
+func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthenticationWithPlatformLinkV3OK, *AuthenticationWithPlatformLinkV3BadRequest, *AuthenticationWithPlatformLinkV3Unauthorized, *AuthenticationWithPlatformLinkV3Forbidden, *AuthenticationWithPlatformLinkV3Conflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAuthenticationWithPlatformLinkV3Params()
@@ -225,25 +225,28 @@ func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlat
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AuthenticationWithPlatformLinkV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AuthenticationWithPlatformLinkV3BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AuthenticationWithPlatformLinkV3Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AuthenticationWithPlatformLinkV3Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AuthenticationWithPlatformLinkV3Conflict:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -300,6 +303,8 @@ func (a *Client) AuthenticationWithPlatformLinkV3Short(params *AuthenticationWit
 	case *AuthenticationWithPlatformLinkV3BadRequest:
 		return nil, v
 	case *AuthenticationWithPlatformLinkV3Unauthorized:
+		return nil, v
+	case *AuthenticationWithPlatformLinkV3Forbidden:
 		return nil, v
 	case *AuthenticationWithPlatformLinkV3Conflict:
 		return nil, v

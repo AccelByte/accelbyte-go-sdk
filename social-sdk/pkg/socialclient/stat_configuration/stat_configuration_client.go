@@ -31,6 +31,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	ImportStatCycle(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, *ImportStatCycleBadRequest, *ImportStatCycleUnauthorized, *ImportStatCycleForbidden, *ImportStatCycleInternalServerError, error)
+	ImportStatCycleShort(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, error)
 	GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, *GetStatsUnauthorized, *GetStatsForbidden, *GetStatsInternalServerError, error)
 	GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error)
 	CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error)
@@ -56,13 +58,131 @@ type ClientService interface {
 }
 
 /*
+Deprecated: 2022-08-10 - Use ImportStatCycleShort instead.
+
+ImportStatCycle import stat cycle configurations
+Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+*/
+func (a *Client) ImportStatCycle(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, *ImportStatCycleBadRequest, *ImportStatCycleUnauthorized, *ImportStatCycleForbidden, *ImportStatCycleInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStatCycleCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *ImportStatCycleBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *ImportStatCycleUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *ImportStatCycleForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *ImportStatCycleInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImportStatCycleShort import stat cycle configurations
+Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+*/
+func (a *Client) ImportStatCycleShort(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStatCycleCreated:
+		return v, nil
+	case *ImportStatCycleBadRequest:
+		return nil, v
+	case *ImportStatCycleUnauthorized:
+		return nil, v
+	case *ImportStatCycleForbidden:
+		return nil, v
+	case *ImportStatCycleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetStatsShort instead.
 
 GetStats list stats
 List stats by pagination.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stats
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stats
 */
 func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, *GetStatsUnauthorized, *GetStatsForbidden, *GetStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -118,8 +238,8 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 GetStatsShort list stats
 List stats by pagination.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stats
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stats
 */
 func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -174,10 +294,10 @@ Deprecated: 2022-08-10 - Use CreateStatShort instead.
 CreateStat create stat
 Create stat.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  Returns : created stat template
+              * default minimum value is 0
+              * default maximum value is 1.7976931348623157e+308
 */
 func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -245,10 +365,10 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 CreateStatShort create stat
 Create stat.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  Returns : created stat template
+              * default minimum value is 0
+              * default maximum value is 1.7976931348623157e+308
 */
 func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error) {
 	// TODO: Validate the params before sending
@@ -312,7 +432,7 @@ ExportStats export all stat configurations
 Export all stat configurations for a given namespace into file At current, only JSON file is supported.
 
 Other detail info:
-                  *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
 */
 func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, *ExportStatsUnauthorized, *ExportStatsForbidden, *ExportStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -369,7 +489,7 @@ ExportStatsShort export all stat configurations
 Export all stat configurations for a given namespace into file At current, only JSON file is supported.
 
 Other detail info:
-                  *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
 */
 func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -425,7 +545,7 @@ ImportStats import stat configurations
 Import stat configurations for a given namespace from file. At current, only JSON file is supported.
 
 Other detail info:
-                  *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, *ImportStatsBadRequest, *ImportStatsUnauthorized, *ImportStatsForbidden, *ImportStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -485,7 +605,7 @@ ImportStatsShort import stat configurations
 Import stat configurations for a given namespace from file. At current, only JSON file is supported.
 
 Other detail info:
-                  *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatsCreated, error) {
 	// TODO: Validate the params before sending
@@ -542,8 +662,8 @@ Deprecated: 2022-08-10 - Use QueryStatsShort instead.
 QueryStats query stats by keyword
 Query stats by keyword.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stats
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stats
 */
 func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, *QueryStatsUnauthorized, *QueryStatsForbidden, *QueryStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -599,8 +719,8 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 QueryStatsShort query stats by keyword
 Query stats by keyword.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stats
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stats
 */
 func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -655,8 +775,8 @@ Deprecated: 2022-08-10 - Use GetStatShort instead.
 GetStat get stat by statcode
 Get stat by statCode.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stat info
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stat info
 */
 func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatUnauthorized, *GetStatForbidden, *GetStatNotFound, *GetStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -715,8 +835,8 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 GetStatShort get stat by statcode
 Get stat by statCode.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
-                  *  Returns : stat info
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
+              *  Returns : stat info
 */
 func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error) {
 	// TODO: Validate the params before sending
@@ -773,7 +893,7 @@ Deprecated: 2022-08-10 - Use DeleteStatShort instead.
 DeleteStat deletes stat
 Deletes stat template.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatUnauthorized, *DeleteStatForbidden, *DeleteStatNotFound, *DeleteStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -832,7 +952,7 @@ func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAut
 DeleteStatShort deletes stat
 Deletes stat template.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, error) {
 	// TODO: Validate the params before sending
@@ -889,8 +1009,8 @@ Deprecated: 2022-08-10 - Use UpdateStatShort instead.
 UpdateStat update stat
 Update stat.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
-                  *  Returns : updated stat
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
+              *  Returns : updated stat
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -952,8 +1072,8 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 UpdateStatShort update stat
 Update stat.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
-                  *  Returns : updated stat
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
+              *  Returns : updated stat
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending
@@ -1012,7 +1132,7 @@ Deprecated: 2022-08-10 - Use DeleteTiedStatShort instead.
 DeleteTiedStat deletes tied stat
 Deletes stat template.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatUnauthorized, *DeleteTiedStatForbidden, *DeleteTiedStatNotFound, *DeleteTiedStatConflict, *DeleteTiedStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1074,7 +1194,7 @@ func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.C
 DeleteTiedStatShort deletes tied stat
 Deletes stat template.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
+              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1133,10 +1253,10 @@ Deprecated: 2022-08-10 - Use CreateStat1Short instead.
 CreateStat1 create stat
 Create stat.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=1 (CREATE)
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
+              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  Returns : created stat template
+              * default minimum value is 0
+              * default maximum value is 1.7976931348623157e+308
 */
 func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1BadRequest, *CreateStat1Unauthorized, *CreateStat1Forbidden, *CreateStat1NotFound, *CreateStat1Conflict, *CreateStat1UnprocessableEntity, *CreateStat1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1204,10 +1324,10 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 CreateStat1Short create stat
 Create stat.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=1 (CREATE)
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
+              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+              *  Returns : created stat template
+              * default minimum value is 0
+              * default maximum value is 1.7976931348623157e+308
 */
 func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error) {
 	// TODO: Validate the params before sending

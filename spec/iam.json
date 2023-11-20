@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.5.0"
+    "version": "7.6.0"
   },
   "schemes": [
     "https"
@@ -10643,6 +10643,14 @@
             "type": "string"
           },
           {
+            "default": false,
+            "description": "A flag whether this request should include total count, default false",
+            "in": "query",
+            "name": "includeTotal",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "description": "the maximum number of data that may be returned (1...100), default 100",
             "in": "query",
             "name": "limit",
@@ -15162,6 +15170,12 @@
               "$ref": "#/definitions/oauthmodel.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "409": {
             "description": "User already link this platform's another account'.",
             "schema": {
@@ -19642,7 +19656,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/model.GetPublisherUserV3Response"
+              "$ref": "#/definitions/model.GetPublisherUserResponse"
             }
           },
           "400": {
@@ -28363,20 +28377,6 @@
         "UserId"
       ]
     },
-    "model.GetPublisherUserV3Response": {
-      "properties": {
-        "namespace": {
-          "type": "string"
-        },
-        "userId": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "namespace",
-        "userId"
-      ]
-    },
     "model.GetUserBanV3Response": {
       "properties": {
         "data": {
@@ -32562,11 +32562,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-03T08:42:57+00:00",
-    "gitHash": "7101ae84e451b85a63245efad152c7def90b9bc4",
+    "buildDate": "2023-11-17T10:12:43+00:00",
+    "gitHash": "4bfa862f418f319f63d9480b4ed2467887f21f88",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.5.0",
-    "version-roles-seeding": "1.0.2"
+    "version": "7.6.0",
+    "version-roles-seeding": "1.0.6"
   }
 }

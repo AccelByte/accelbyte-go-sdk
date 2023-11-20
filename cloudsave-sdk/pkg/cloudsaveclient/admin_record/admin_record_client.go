@@ -30,31 +30,31 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, *AdminListAdminGameRecordV1Unauthorized, *AdminListAdminGameRecordV1InternalServerError, error)
+	AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, *AdminListAdminGameRecordV1BadRequest, *AdminListAdminGameRecordV1Unauthorized, *AdminListAdminGameRecordV1Forbidden, *AdminListAdminGameRecordV1InternalServerError, error)
 	AdminListAdminGameRecordV1Short(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, error)
-	AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, *AdminBulkGetAdminGameRecordV1Unauthorized, *AdminBulkGetAdminGameRecordV1Forbidden, *AdminBulkGetAdminGameRecordV1NotFound, *AdminBulkGetAdminGameRecordV1InternalServerError, error)
+	AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, *AdminBulkGetAdminGameRecordV1BadRequest, *AdminBulkGetAdminGameRecordV1Unauthorized, *AdminBulkGetAdminGameRecordV1Forbidden, *AdminBulkGetAdminGameRecordV1NotFound, *AdminBulkGetAdminGameRecordV1InternalServerError, error)
 	AdminBulkGetAdminGameRecordV1Short(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, error)
-	AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, *AdminGetAdminGameRecordV1Unauthorized, *AdminGetAdminGameRecordV1NotFound, *AdminGetAdminGameRecordV1InternalServerError, error)
+	AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, *AdminGetAdminGameRecordV1Unauthorized, *AdminGetAdminGameRecordV1Forbidden, *AdminGetAdminGameRecordV1NotFound, *AdminGetAdminGameRecordV1InternalServerError, error)
 	AdminGetAdminGameRecordV1Short(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, error)
-	AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1InternalServerError, error)
+	AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1BadRequest, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1Forbidden, *AdminPutAdminGameRecordV1InternalServerError, error)
 	AdminPutAdminGameRecordV1Short(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, error)
-	AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1InternalServerError, error)
+	AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1BadRequest, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1Forbidden, *AdminPostAdminGameRecordV1InternalServerError, error)
 	AdminPostAdminGameRecordV1Short(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, error)
-	AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, *AdminDeleteAdminGameRecordV1Unauthorized, *AdminDeleteAdminGameRecordV1NotFound, *AdminDeleteAdminGameRecordV1InternalServerError, error)
+	AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, *AdminDeleteAdminGameRecordV1Unauthorized, *AdminDeleteAdminGameRecordV1Forbidden, *AdminDeleteAdminGameRecordV1NotFound, *AdminDeleteAdminGameRecordV1InternalServerError, error)
 	AdminDeleteAdminGameRecordV1Short(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, error)
-	BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized, *BulkGetAdminPlayerRecordByUserIdsV1Forbidden, *BulkGetAdminPlayerRecordByUserIdsV1NotFound, *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError, error)
+	BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, *BulkGetAdminPlayerRecordByUserIdsV1BadRequest, *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized, *BulkGetAdminPlayerRecordByUserIdsV1Forbidden, *BulkGetAdminPlayerRecordByUserIdsV1NotFound, *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError, error)
 	BulkGetAdminPlayerRecordByUserIdsV1Short(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, error)
-	AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, *AdminListAdminUserRecordsV1BadRequest, *AdminListAdminUserRecordsV1Unauthorized, *AdminListAdminUserRecordsV1InternalServerError, error)
+	AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, *AdminListAdminUserRecordsV1BadRequest, *AdminListAdminUserRecordsV1Unauthorized, *AdminListAdminUserRecordsV1Forbidden, *AdminListAdminUserRecordsV1InternalServerError, error)
 	AdminListAdminUserRecordsV1Short(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, error)
-	AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, *AdminBulkGetAdminPlayerRecordV1Unauthorized, *AdminBulkGetAdminPlayerRecordV1Forbidden, *AdminBulkGetAdminPlayerRecordV1NotFound, *AdminBulkGetAdminPlayerRecordV1InternalServerError, error)
+	AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, *AdminBulkGetAdminPlayerRecordV1BadRequest, *AdminBulkGetAdminPlayerRecordV1Unauthorized, *AdminBulkGetAdminPlayerRecordV1Forbidden, *AdminBulkGetAdminPlayerRecordV1NotFound, *AdminBulkGetAdminPlayerRecordV1InternalServerError, error)
 	AdminBulkGetAdminPlayerRecordV1Short(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, error)
-	AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, *AdminGetAdminPlayerRecordV1Unauthorized, *AdminGetAdminPlayerRecordV1NotFound, *AdminGetAdminPlayerRecordV1InternalServerError, error)
+	AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, *AdminGetAdminPlayerRecordV1Unauthorized, *AdminGetAdminPlayerRecordV1Forbidden, *AdminGetAdminPlayerRecordV1NotFound, *AdminGetAdminPlayerRecordV1InternalServerError, error)
 	AdminGetAdminPlayerRecordV1Short(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, error)
-	AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1InternalServerError, error)
+	AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1BadRequest, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1Forbidden, *AdminPutAdminPlayerRecordV1InternalServerError, error)
 	AdminPutAdminPlayerRecordV1Short(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, error)
-	AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1InternalServerError, error)
+	AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1BadRequest, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1Forbidden, *AdminPostPlayerAdminRecordV1InternalServerError, error)
 	AdminPostPlayerAdminRecordV1Short(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, error)
-	AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, *AdminDeleteAdminPlayerRecordV1Unauthorized, *AdminDeleteAdminPlayerRecordV1NotFound, *AdminDeleteAdminPlayerRecordV1InternalServerError, error)
+	AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, *AdminDeleteAdminPlayerRecordV1Unauthorized, *AdminDeleteAdminPlayerRecordV1Forbidden, *AdminDeleteAdminPlayerRecordV1NotFound, *AdminDeleteAdminPlayerRecordV1InternalServerError, error)
 	AdminDeleteAdminPlayerRecordV1Short(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -70,7 +70,7 @@ Required scope: `social`
 
 Retrieve list of records key by namespace
 */
-func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, *AdminListAdminGameRecordV1Unauthorized, *AdminListAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, *AdminListAdminGameRecordV1BadRequest, *AdminListAdminGameRecordV1Unauthorized, *AdminListAdminGameRecordV1Forbidden, *AdminListAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminListAdminGameRecordV1Params()
@@ -98,22 +98,28 @@ func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminListAdminGameRecordV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminListAdminGameRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminListAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminListAdminGameRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminListAdminGameRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -160,7 +166,11 @@ func (a *Client) AdminListAdminGameRecordV1Short(params *AdminListAdminGameRecor
 
 	case *AdminListAdminGameRecordV1OK:
 		return v, nil
+	case *AdminListAdminGameRecordV1BadRequest:
+		return nil, v
 	case *AdminListAdminGameRecordV1Unauthorized:
+		return nil, v
+	case *AdminListAdminGameRecordV1Forbidden:
 		return nil, v
 	case *AdminListAdminGameRecordV1InternalServerError:
 		return nil, v
@@ -184,7 +194,7 @@ Required Scope      | `social`
 
 Bulk get admin game records. Maximum key per request 20.
 */
-func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, *AdminBulkGetAdminGameRecordV1Unauthorized, *AdminBulkGetAdminGameRecordV1Forbidden, *AdminBulkGetAdminGameRecordV1NotFound, *AdminBulkGetAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, *AdminBulkGetAdminGameRecordV1BadRequest, *AdminBulkGetAdminGameRecordV1Unauthorized, *AdminBulkGetAdminGameRecordV1Forbidden, *AdminBulkGetAdminGameRecordV1NotFound, *AdminBulkGetAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBulkGetAdminGameRecordV1Params()
@@ -212,28 +222,31 @@ func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameReco
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBulkGetAdminGameRecordV1OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminBulkGetAdminGameRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBulkGetAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminBulkGetAdminGameRecordV1Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminBulkGetAdminGameRecordV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminBulkGetAdminGameRecordV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -284,6 +297,8 @@ func (a *Client) AdminBulkGetAdminGameRecordV1Short(params *AdminBulkGetAdminGam
 
 	case *AdminBulkGetAdminGameRecordV1OK:
 		return v, nil
+	case *AdminBulkGetAdminGameRecordV1BadRequest:
+		return nil, v
 	case *AdminBulkGetAdminGameRecordV1Unauthorized:
 		return nil, v
 	case *AdminBulkGetAdminGameRecordV1Forbidden:
@@ -308,7 +323,7 @@ Required scope: `social`
 
 Get a record by its key in namespace-level.
 */
-func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, *AdminGetAdminGameRecordV1Unauthorized, *AdminGetAdminGameRecordV1NotFound, *AdminGetAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, *AdminGetAdminGameRecordV1Unauthorized, *AdminGetAdminGameRecordV1Forbidden, *AdminGetAdminGameRecordV1NotFound, *AdminGetAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetAdminGameRecordV1Params()
@@ -336,25 +351,28 @@ func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetAdminGameRecordV1OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetAdminGameRecordV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetAdminGameRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetAdminGameRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -402,6 +420,8 @@ func (a *Client) AdminGetAdminGameRecordV1Short(params *AdminGetAdminGameRecordV
 	case *AdminGetAdminGameRecordV1OK:
 		return v, nil
 	case *AdminGetAdminGameRecordV1Unauthorized:
+		return nil, v
+	case *AdminGetAdminGameRecordV1Forbidden:
 		return nil, v
 	case *AdminGetAdminGameRecordV1NotFound:
 		return nil, v
@@ -480,7 +500,7 @@ This is the restriction of Key Naming for the record:
 
     { "": "value" }
 */
-func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1BadRequest, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1Forbidden, *AdminPutAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutAdminGameRecordV1Params()
@@ -508,22 +528,28 @@ func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutAdminGameRecordV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPutAdminGameRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminPutAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPutAdminGameRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminPutAdminGameRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -627,7 +653,11 @@ func (a *Client) AdminPutAdminGameRecordV1Short(params *AdminPutAdminGameRecordV
 
 	case *AdminPutAdminGameRecordV1OK:
 		return v, nil
+	case *AdminPutAdminGameRecordV1BadRequest:
+		return nil, v
 	case *AdminPutAdminGameRecordV1Unauthorized:
+		return nil, v
+	case *AdminPutAdminGameRecordV1Forbidden:
 		return nil, v
 	case *AdminPutAdminGameRecordV1InternalServerError:
 		return nil, v
@@ -727,7 +757,7 @@ This is the restriction of Key Naming for the record:
 
     { "": "value" }
 */
-func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1BadRequest, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1Forbidden, *AdminPostAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPostAdminGameRecordV1Params()
@@ -755,22 +785,28 @@ func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPostAdminGameRecordV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPostAdminGameRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminPostAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPostAdminGameRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminPostAdminGameRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -897,7 +933,11 @@ func (a *Client) AdminPostAdminGameRecordV1Short(params *AdminPostAdminGameRecor
 
 	case *AdminPostAdminGameRecordV1Created:
 		return v, nil
+	case *AdminPostAdminGameRecordV1BadRequest:
+		return nil, v
 	case *AdminPostAdminGameRecordV1Unauthorized:
+		return nil, v
+	case *AdminPostAdminGameRecordV1Forbidden:
 		return nil, v
 	case *AdminPostAdminGameRecordV1InternalServerError:
 		return nil, v
@@ -917,7 +957,7 @@ Required scope: `social`
 
 This endpoints delete game record in namespace-level
 */
-func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, *AdminDeleteAdminGameRecordV1Unauthorized, *AdminDeleteAdminGameRecordV1NotFound, *AdminDeleteAdminGameRecordV1InternalServerError, error) {
+func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, *AdminDeleteAdminGameRecordV1Unauthorized, *AdminDeleteAdminGameRecordV1Forbidden, *AdminDeleteAdminGameRecordV1NotFound, *AdminDeleteAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAdminGameRecordV1Params()
@@ -945,25 +985,28 @@ func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecord
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteAdminGameRecordV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteAdminGameRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteAdminGameRecordV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteAdminGameRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteAdminGameRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1012,6 +1055,8 @@ func (a *Client) AdminDeleteAdminGameRecordV1Short(params *AdminDeleteAdminGameR
 		return v, nil
 	case *AdminDeleteAdminGameRecordV1Unauthorized:
 		return nil, v
+	case *AdminDeleteAdminGameRecordV1Forbidden:
+		return nil, v
 	case *AdminDeleteAdminGameRecordV1NotFound:
 		return nil, v
 	case *AdminDeleteAdminGameRecordV1InternalServerError:
@@ -1036,7 +1081,7 @@ Required Scope      | `social`
 
 Bulk get admin player record by userIds, max allowed 20 at a time.
 */
-func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized, *BulkGetAdminPlayerRecordByUserIdsV1Forbidden, *BulkGetAdminPlayerRecordByUserIdsV1NotFound, *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError, error) {
+func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, *BulkGetAdminPlayerRecordByUserIdsV1BadRequest, *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized, *BulkGetAdminPlayerRecordByUserIdsV1Forbidden, *BulkGetAdminPlayerRecordByUserIdsV1NotFound, *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBulkGetAdminPlayerRecordByUserIdsV1Params()
@@ -1064,28 +1109,31 @@ func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerR
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *BulkGetAdminPlayerRecordByUserIdsV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1136,6 +1184,8 @@ func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1Short(params *BulkGetAdminPl
 
 	case *BulkGetAdminPlayerRecordByUserIdsV1OK:
 		return v, nil
+	case *BulkGetAdminPlayerRecordByUserIdsV1BadRequest:
+		return nil, v
 	case *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized:
 		return nil, v
 	case *BulkGetAdminPlayerRecordByUserIdsV1Forbidden:
@@ -1160,7 +1210,7 @@ Required scope: `social`
 
 Retrieve list of admin player records key and userID under given namespace.
 */
-func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, *AdminListAdminUserRecordsV1BadRequest, *AdminListAdminUserRecordsV1Unauthorized, *AdminListAdminUserRecordsV1InternalServerError, error) {
+func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, *AdminListAdminUserRecordsV1BadRequest, *AdminListAdminUserRecordsV1Unauthorized, *AdminListAdminUserRecordsV1Forbidden, *AdminListAdminUserRecordsV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminListAdminUserRecordsV1Params()
@@ -1188,25 +1238,28 @@ func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminListAdminUserRecordsV1OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminListAdminUserRecordsV1BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminListAdminUserRecordsV1Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminListAdminUserRecordsV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminListAdminUserRecordsV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1257,6 +1310,8 @@ func (a *Client) AdminListAdminUserRecordsV1Short(params *AdminListAdminUserReco
 		return nil, v
 	case *AdminListAdminUserRecordsV1Unauthorized:
 		return nil, v
+	case *AdminListAdminUserRecordsV1Forbidden:
+		return nil, v
 	case *AdminListAdminUserRecordsV1InternalServerError:
 		return nil, v
 
@@ -1279,7 +1334,7 @@ Required Scope      | `social`
 
 Bulk get admin player records. Maximum key per request 20.
 */
-func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, *AdminBulkGetAdminPlayerRecordV1Unauthorized, *AdminBulkGetAdminPlayerRecordV1Forbidden, *AdminBulkGetAdminPlayerRecordV1NotFound, *AdminBulkGetAdminPlayerRecordV1InternalServerError, error) {
+func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, *AdminBulkGetAdminPlayerRecordV1BadRequest, *AdminBulkGetAdminPlayerRecordV1Unauthorized, *AdminBulkGetAdminPlayerRecordV1Forbidden, *AdminBulkGetAdminPlayerRecordV1NotFound, *AdminBulkGetAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBulkGetAdminPlayerRecordV1Params()
@@ -1307,28 +1362,31 @@ func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayer
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBulkGetAdminPlayerRecordV1OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminBulkGetAdminPlayerRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBulkGetAdminPlayerRecordV1Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminBulkGetAdminPlayerRecordV1Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminBulkGetAdminPlayerRecordV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminBulkGetAdminPlayerRecordV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1379,6 +1437,8 @@ func (a *Client) AdminBulkGetAdminPlayerRecordV1Short(params *AdminBulkGetAdminP
 
 	case *AdminBulkGetAdminPlayerRecordV1OK:
 		return v, nil
+	case *AdminBulkGetAdminPlayerRecordV1BadRequest:
+		return nil, v
 	case *AdminBulkGetAdminPlayerRecordV1Unauthorized:
 		return nil, v
 	case *AdminBulkGetAdminPlayerRecordV1Forbidden:
@@ -1403,7 +1463,7 @@ Required scope: `social`
 
 Get a admin record in user-level (arbitrary JSON data) by its key.
 */
-func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, *AdminGetAdminPlayerRecordV1Unauthorized, *AdminGetAdminPlayerRecordV1NotFound, *AdminGetAdminPlayerRecordV1InternalServerError, error) {
+func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, *AdminGetAdminPlayerRecordV1Unauthorized, *AdminGetAdminPlayerRecordV1Forbidden, *AdminGetAdminPlayerRecordV1NotFound, *AdminGetAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetAdminPlayerRecordV1Params()
@@ -1431,25 +1491,28 @@ func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetAdminPlayerRecordV1OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminGetAdminPlayerRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetAdminPlayerRecordV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetAdminPlayerRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetAdminPlayerRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1497,6 +1560,8 @@ func (a *Client) AdminGetAdminPlayerRecordV1Short(params *AdminGetAdminPlayerRec
 	case *AdminGetAdminPlayerRecordV1OK:
 		return v, nil
 	case *AdminGetAdminPlayerRecordV1Unauthorized:
+		return nil, v
+	case *AdminGetAdminPlayerRecordV1Forbidden:
 		return nil, v
 	case *AdminGetAdminPlayerRecordV1NotFound:
 		return nil, v
@@ -1576,7 +1641,7 @@ This is the restriction of Key Naming for the record:
 
     { "": "value" }
 */
-func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1InternalServerError, error) {
+func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1BadRequest, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1Forbidden, *AdminPutAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutAdminPlayerRecordV1Params()
@@ -1604,22 +1669,28 @@ func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutAdminPlayerRecordV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPutAdminPlayerRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminPutAdminPlayerRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPutAdminPlayerRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminPutAdminPlayerRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1724,7 +1795,11 @@ func (a *Client) AdminPutAdminPlayerRecordV1Short(params *AdminPutAdminPlayerRec
 
 	case *AdminPutAdminPlayerRecordV1OK:
 		return v, nil
+	case *AdminPutAdminPlayerRecordV1BadRequest:
+		return nil, v
 	case *AdminPutAdminPlayerRecordV1Unauthorized:
+		return nil, v
+	case *AdminPutAdminPlayerRecordV1Forbidden:
 		return nil, v
 	case *AdminPutAdminPlayerRecordV1InternalServerError:
 		return nil, v
@@ -1824,7 +1899,7 @@ This is the restriction of Key Naming for the record:
 
     { "": "value" }
 */
-func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1InternalServerError, error) {
+func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1BadRequest, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1Forbidden, *AdminPostPlayerAdminRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPostPlayerAdminRecordV1Params()
@@ -1852,22 +1927,28 @@ func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecord
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPostPlayerAdminRecordV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPostPlayerAdminRecordV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminPostPlayerAdminRecordV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPostPlayerAdminRecordV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminPostPlayerAdminRecordV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1994,7 +2075,11 @@ func (a *Client) AdminPostPlayerAdminRecordV1Short(params *AdminPostPlayerAdminR
 
 	case *AdminPostPlayerAdminRecordV1Created:
 		return v, nil
+	case *AdminPostPlayerAdminRecordV1BadRequest:
+		return nil, v
 	case *AdminPostPlayerAdminRecordV1Unauthorized:
+		return nil, v
+	case *AdminPostPlayerAdminRecordV1Forbidden:
 		return nil, v
 	case *AdminPostPlayerAdminRecordV1InternalServerError:
 		return nil, v
@@ -2014,7 +2099,7 @@ Required scope: `social`
 
 Delete a record (arbitrary JSON data) in user-level with given key.
 */
-func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, *AdminDeleteAdminPlayerRecordV1Unauthorized, *AdminDeleteAdminPlayerRecordV1NotFound, *AdminDeleteAdminPlayerRecordV1InternalServerError, error) {
+func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, *AdminDeleteAdminPlayerRecordV1Unauthorized, *AdminDeleteAdminPlayerRecordV1Forbidden, *AdminDeleteAdminPlayerRecordV1NotFound, *AdminDeleteAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAdminPlayerRecordV1Params()
@@ -2042,25 +2127,28 @@ func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRe
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteAdminPlayerRecordV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteAdminPlayerRecordV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteAdminPlayerRecordV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteAdminPlayerRecordV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteAdminPlayerRecordV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2108,6 +2196,8 @@ func (a *Client) AdminDeleteAdminPlayerRecordV1Short(params *AdminDeleteAdminPla
 	case *AdminDeleteAdminPlayerRecordV1NoContent:
 		return v, nil
 	case *AdminDeleteAdminPlayerRecordV1Unauthorized:
+		return nil, v
+	case *AdminDeleteAdminPlayerRecordV1Forbidden:
 		return nil, v
 	case *AdminDeleteAdminPlayerRecordV1NotFound:
 		return nil, v

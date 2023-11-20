@@ -162,6 +162,58 @@ func (aaa *PublicContentV2Service) PublicCreateContentV2(input *public_content_v
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicUpdateContentByShareCodeV2Short instead.
+func (aaa *PublicContentV2Service) PublicUpdateContentByShareCodeV2(input *public_content_v2.PublicUpdateContentByShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.PublicContentV2.PublicUpdateContentByShareCodeV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicDeleteContentByShareCodeV2Short instead.
+func (aaa *PublicContentV2Service) PublicDeleteContentByShareCodeV2(input *public_content_v2.PublicDeleteContentByShareCodeV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.PublicContentV2.PublicDeleteContentByShareCodeV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicDeleteContentV2Short instead.
 func (aaa *PublicContentV2Service) PublicDeleteContentV2(input *public_content_v2.PublicDeleteContentV2Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -506,6 +558,56 @@ func (aaa *PublicContentV2Service) PublicCreateContentV2Short(input *public_cont
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *PublicContentV2Service) PublicUpdateContentByShareCodeV2Short(input *public_content_v2.PublicUpdateContentByShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentV2.PublicUpdateContentByShareCodeV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicContentV2Service) PublicDeleteContentByShareCodeV2Short(input *public_content_v2.PublicDeleteContentByShareCodeV2Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.PublicContentV2.PublicDeleteContentByShareCodeV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *PublicContentV2Service) PublicDeleteContentV2Short(input *public_content_v2.PublicDeleteContentV2Params) error {

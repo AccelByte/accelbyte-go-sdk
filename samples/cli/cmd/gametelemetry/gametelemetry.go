@@ -19,6 +19,7 @@ var GametelemetryCmd = &cobra.Command{
 }
 
 func init() {
+	GametelemetryCmd.AddCommand(telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetCmd)
 	GametelemetryCmd.AddCommand(telemetry.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetCmd)
 	GametelemetryCmd.AddCommand(gametelemetryOperations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd)
 	GametelemetryCmd.AddCommand(gametelemetryOperations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd)

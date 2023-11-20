@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.19.0"
+    "version": "1.20.0"
   },
   "schemes": [
     "https"
@@ -43,12 +43,39 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/game-telemetry/v1/admin/namespaces": {
+      "get": {
+        "description": "This endpoint requires valid JWT token and telemetry permission\nThis endpoint retrieves namespace list",
+        "operationId": "get_namespaces_game_telemetry_v1_admin_namespaces_get",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          },
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Namespaces",
+        "tags": [
+          "telemetry"
+        ]
+      }
+    },
     "/game-telemetry/v1/admin/namespaces/{namespace}/events": {
       "get": {
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
-            "default": "2023-11-06T02:03:19Z",
             "description": "Start time of data to be queried. Default: Current time in UTC minus 1 day.",
             "in": "query",
             "name": "startTime",
@@ -56,7 +83,6 @@
             "type": "string"
           },
           {
-            "default": "2023-11-07T02:03:19Z",
             "description": "End time of data to be queried. Default: Current time in UTC.",
             "in": "query",
             "name": "endTime",
@@ -78,6 +104,20 @@
             "name": "limit",
             "required": false,
             "type": "integer"
+          },
+          {
+            "description": "Game telemetry UserId.",
+            "in": "query",
+            "name": "userId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Game telemetry FlightId.",
+            "in": "query",
+            "name": "flightId",
+            "required": false,
+            "type": "string"
           },
           {
             "description": "Game telemetry EventId.",
@@ -401,11 +441,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2023-08-14T01:22:28+00:00",
-    "gitHash": "7371fa8af5fa2f4844d92883e1ccdcea58c6930b",
+    "buildDate": "2023-11-20T01:24:25+00:00",
+    "gitHash": "0998317b75df6140aaad35756195a8008f9acf49",
     "name": "analytics-game-telemetry",
     "realm": "demo",
     "rolesSeedingVersion": "0.0.3",
-    "version": "1.19.0"
+    "version": "1.20.0"
   }
 }

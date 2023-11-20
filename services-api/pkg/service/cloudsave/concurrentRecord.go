@@ -35,12 +35,15 @@ func (aaa *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *conc
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutGameRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutGameRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if preconditionFailed != nil {
 		return preconditionFailed
@@ -61,12 +64,15 @@ func (aaa *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1(input *co
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if preconditionFailed != nil {
 		return preconditionFailed
@@ -87,12 +93,15 @@ func (aaa *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(inp
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.ConcurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if preconditionFailed != nil {
 		return preconditionFailed

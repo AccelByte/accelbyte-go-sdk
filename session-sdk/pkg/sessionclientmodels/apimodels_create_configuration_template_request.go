@@ -44,6 +44,9 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// dssource
 	DsSource string `json:"dsSource,omitempty"`
 
+	// enablesecret
+	EnableSecret bool `json:"enableSecret"`
+
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
 

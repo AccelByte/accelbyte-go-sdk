@@ -44,6 +44,8 @@ type ClientService interface {
 	MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, error)
 	GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, *GetPlayerMetricUnauthorized, *GetPlayerMetricForbidden, *GetPlayerMetricNotFound, *GetPlayerMetricInternalServerError, error)
 	GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error)
+	AdminGetMatchPoolTickets(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, *AdminGetMatchPoolTicketsUnauthorized, *AdminGetMatchPoolTicketsForbidden, *AdminGetMatchPoolTicketsNotFound, *AdminGetMatchPoolTicketsInternalServerError, error)
+	AdminGetMatchPoolTicketsShort(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -951,6 +953,130 @@ func (a *Client) GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo ru
 	case *GetPlayerMetricNotFound:
 		return nil, v
 	case *GetPlayerMetricInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetMatchPoolTicketsShort instead.
+
+AdminGetMatchPoolTickets get tickets in queue for a specific match pool
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]
+
+Required Scope: social
+
+Get tickets in queue for a specific match pool
+
+Result: number of tickets and list of ticket detail in a match pool.
+*/
+func (a *Client) AdminGetMatchPoolTickets(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, *AdminGetMatchPoolTicketsUnauthorized, *AdminGetMatchPoolTicketsForbidden, *AdminGetMatchPoolTicketsNotFound, *AdminGetMatchPoolTicketsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMatchPoolTicketsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetMatchPoolTickets",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/tickets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMatchPoolTicketsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMatchPoolTicketsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetMatchPoolTicketsUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetMatchPoolTicketsForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetMatchPoolTicketsNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetMatchPoolTicketsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetMatchPoolTicketsShort get tickets in queue for a specific match pool
+Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]
+
+Required Scope: social
+
+Get tickets in queue for a specific match pool
+
+Result: number of tickets and list of ticket detail in a match pool.
+*/
+func (a *Client) AdminGetMatchPoolTicketsShort(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMatchPoolTicketsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetMatchPoolTickets",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/tickets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMatchPoolTicketsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMatchPoolTicketsOK:
+		return v, nil
+	case *AdminGetMatchPoolTicketsUnauthorized:
+		return nil, v
+	case *AdminGetMatchPoolTicketsForbidden:
+		return nil, v
+	case *AdminGetMatchPoolTicketsNotFound:
+		return nil, v
+	case *AdminGetMatchPoolTicketsInternalServerError:
 		return nil, v
 
 	default:

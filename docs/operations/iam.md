@@ -555,7 +555,6 @@
 | `model.GetBulkUserBansRequest` | [ModelGetBulkUserBansRequest ](../../iam-sdk/pkg/iamclientmodels/model_get_bulk_user_bans_request.go) |
 | `model.GetLinkHeadlessAccountConflictResponse` | [ModelGetLinkHeadlessAccountConflictResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_link_headless_account_conflict_response.go) |
 | `model.GetPublisherUserResponse` | [ModelGetPublisherUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_publisher_user_response.go) |
-| `model.GetPublisherUserV3Response` | [ModelGetPublisherUserV3Response ](../../iam-sdk/pkg/iamclientmodels/model_get_publisher_user_v3_response.go) |
 | `model.GetUserBanV3Response` | [ModelGetUserBanV3Response ](../../iam-sdk/pkg/iamclientmodels/model_get_user_ban_v3_response.go) |
 | `model.GetUserJusticePlatformAccountResponse` | [ModelGetUserJusticePlatformAccountResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_user_justice_platform_account_response.go) |
 | `model.GetUserMapping` | [ModelGetUserMapping ](../../iam-sdk/pkg/iamclientmodels/model_get_user_mapping.go) |

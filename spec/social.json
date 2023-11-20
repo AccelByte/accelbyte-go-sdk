@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.10.0"
+    "version": "2.10.1"
   },
   "schemes": [
     "https"
@@ -2305,6 +2305,155 @@
         ],
         "x-authorization": {
           "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/export": {
+      "get": {
+        "description": "Export all stat cycle configurations for a given namespace into file  At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "exportStatCycle",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful export of stat cycle configs",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eUnauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003eInternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Export all stat cycle configurations",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/import": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "importStatCycle",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "description": "replaceExisting",
+            "in": "query",
+            "name": "replaceExisting",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Import stat cycles successfully",
+            "schema": {
+              "$ref": "#/definitions/StatImportInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12222\u003c/td\u003e\u003ctd\u003eStats data for namespace [{namespace}] is invalid\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eUnauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003eInternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Import stat cycle configurations",
+        "tags": [
+          "StatConfiguration"
+        ],
+        "x-authorization": {
+          "action": "1",
           "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
         }
       }
@@ -10183,16 +10332,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-11-03T03:21:21+00:00",
-    "buildID": "2.10.0",
+    "buildDate": "2023-11-17T06:40:35+00:00",
+    "buildID": "2.10.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "6e32aa0f4c",
-    "gitTag": "2.10.0",
+    "gitHash": "674ad71314",
+    "gitTag": "2.10.1",
     "name": "justice-social-service",
     "realm": "demo",
-    "version": "2.10.0",
+    "version": "2.10.1",
     "version-roles-seeding": "0.0.12"
   }
 }

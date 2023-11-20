@@ -220,6 +220,29 @@ func (aaa *AdminContentV2Service) AdminBulkGetContentByIDsV2(input *admin_conten
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetContentBulkByShareCodesV2Short instead.
+func (aaa *AdminContentV2Service) AdminGetContentBulkByShareCodesV2(input *admin_content_v2.AdminGetContentBulkByShareCodesV2Params) ([]*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContentV2.AdminGetContentBulkByShareCodesV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetContentByShareCodeV2Short instead.
 func (aaa *AdminContentV2Service) AdminGetContentByShareCodeV2(input *admin_content_v2.AdminGetContentByShareCodeV2Params) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -255,6 +278,32 @@ func (aaa *AdminContentV2Service) AdminGetContentByContentIDV2(input *admin_cont
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use RollbackContentVersionV2Short instead.
+func (aaa *AdminContentV2Service) RollbackContentVersionV2(input *admin_content_v2.RollbackContentVersionV2Params) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.AdminContentV2.RollbackContentVersionV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -328,6 +377,81 @@ func (aaa *AdminContentV2Service) AdminDeleteContentScreenshotV2(input *admin_co
 	if badRequest != nil {
 		return badRequest
 	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use ListContentVersionsV2Short instead.
+func (aaa *AdminContentV2Service) ListContentVersionsV2(input *admin_content_v2.ListContentVersionsV2Params) (*ugcclientmodels.ModelsListContentVersionsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContentV2.ListContentVersionsV2(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdateContentByShareCodeV2Short instead.
+func (aaa *AdminContentV2Service) AdminUpdateContentByShareCodeV2(input *admin_content_v2.AdminUpdateContentByShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContentV2.AdminUpdateContentByShareCodeV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminDeleteContentByShareCodeV2Short instead.
+func (aaa *AdminContentV2Service) AdminDeleteContentByShareCodeV2(input *admin_content_v2.AdminDeleteContentByShareCodeV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContentV2.AdminDeleteContentByShareCodeV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -700,6 +824,31 @@ func (aaa *AdminContentV2Service) AdminBulkGetContentByIDsV2Short(input *admin_c
 	return ok.GetPayload(), nil
 }
 
+func (aaa *AdminContentV2Service) AdminGetContentBulkByShareCodesV2Short(input *admin_content_v2.AdminGetContentBulkByShareCodesV2Params) ([]*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContentV2.AdminGetContentBulkByShareCodesV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminContentV2Service) AdminGetContentByShareCodeV2Short(input *admin_content_v2.AdminGetContentByShareCodeV2Params) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -743,6 +892,31 @@ func (aaa *AdminContentV2Service) AdminGetContentByContentIDV2Short(input *admin
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByContentIDV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentV2Service) RollbackContentVersionV2Short(input *admin_content_v2.RollbackContentVersionV2Params) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContentV2.RollbackContentVersionV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -818,6 +992,81 @@ func (aaa *AdminContentV2Service) AdminDeleteContentScreenshotV2Short(input *adm
 	}
 
 	_, err := aaa.Client.AdminContentV2.AdminDeleteContentScreenshotV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *AdminContentV2Service) ListContentVersionsV2Short(input *admin_content_v2.ListContentVersionsV2Params) (*ugcclientmodels.ModelsListContentVersionsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContentV2.ListContentVersionsV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentV2Service) AdminUpdateContentByShareCodeV2Short(input *admin_content_v2.AdminUpdateContentByShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminContentV2.AdminUpdateContentByShareCodeV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentV2Service) AdminDeleteContentByShareCodeV2Short(input *admin_content_v2.AdminDeleteContentByShareCodeV2Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AdminContentV2.AdminDeleteContentByShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -46,16 +46,26 @@ type ClientService interface {
 	AdminListContentV2Short(params *AdminListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListContentV2OK, error)
 	AdminBulkGetContentByIDsV2(params *AdminBulkGetContentByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetContentByIDsV2OK, *AdminBulkGetContentByIDsV2Unauthorized, *AdminBulkGetContentByIDsV2Forbidden, *AdminBulkGetContentByIDsV2InternalServerError, error)
 	AdminBulkGetContentByIDsV2Short(params *AdminBulkGetContentByIDsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetContentByIDsV2OK, error)
+	AdminGetContentBulkByShareCodesV2(params *AdminGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesV2OK, *AdminGetContentBulkByShareCodesV2Unauthorized, *AdminGetContentBulkByShareCodesV2Forbidden, *AdminGetContentBulkByShareCodesV2InternalServerError, error)
+	AdminGetContentBulkByShareCodesV2Short(params *AdminGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesV2OK, error)
 	AdminGetContentByShareCodeV2(params *AdminGetContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentByShareCodeV2OK, *AdminGetContentByShareCodeV2Unauthorized, *AdminGetContentByShareCodeV2NotFound, *AdminGetContentByShareCodeV2InternalServerError, error)
 	AdminGetContentByShareCodeV2Short(params *AdminGetContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentByShareCodeV2OK, error)
 	AdminGetContentByContentIDV2(params *AdminGetContentByContentIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentByContentIDV2OK, *AdminGetContentByContentIDV2Unauthorized, *AdminGetContentByContentIDV2NotFound, *AdminGetContentByContentIDV2InternalServerError, error)
 	AdminGetContentByContentIDV2Short(params *AdminGetContentByContentIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentByContentIDV2OK, error)
+	RollbackContentVersionV2(params *RollbackContentVersionV2Params, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionV2OK, *RollbackContentVersionV2Unauthorized, *RollbackContentVersionV2NotFound, *RollbackContentVersionV2UnprocessableEntity, *RollbackContentVersionV2InternalServerError, error)
+	RollbackContentVersionV2Short(params *RollbackContentVersionV2Params, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionV2OK, error)
 	AdminUpdateScreenshotsV2(params *AdminUpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsV2OK, *AdminUpdateScreenshotsV2BadRequest, *AdminUpdateScreenshotsV2Unauthorized, *AdminUpdateScreenshotsV2NotFound, *AdminUpdateScreenshotsV2InternalServerError, error)
 	AdminUpdateScreenshotsV2Short(params *AdminUpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsV2OK, error)
 	AdminUploadContentScreenshotV2(params *AdminUploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotV2Created, *AdminUploadContentScreenshotV2BadRequest, *AdminUploadContentScreenshotV2Unauthorized, *AdminUploadContentScreenshotV2NotFound, *AdminUploadContentScreenshotV2InternalServerError, error)
 	AdminUploadContentScreenshotV2Short(params *AdminUploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotV2Created, error)
 	AdminDeleteContentScreenshotV2(params *AdminDeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotV2NoContent, *AdminDeleteContentScreenshotV2BadRequest, *AdminDeleteContentScreenshotV2Unauthorized, *AdminDeleteContentScreenshotV2NotFound, *AdminDeleteContentScreenshotV2InternalServerError, error)
 	AdminDeleteContentScreenshotV2Short(params *AdminDeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotV2NoContent, error)
+	ListContentVersionsV2(params *ListContentVersionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsV2OK, *ListContentVersionsV2Unauthorized, *ListContentVersionsV2NotFound, *ListContentVersionsV2InternalServerError, error)
+	ListContentVersionsV2Short(params *ListContentVersionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsV2OK, error)
+	AdminUpdateContentByShareCodeV2(params *AdminUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentByShareCodeV2OK, *AdminUpdateContentByShareCodeV2BadRequest, *AdminUpdateContentByShareCodeV2Unauthorized, *AdminUpdateContentByShareCodeV2NotFound, *AdminUpdateContentByShareCodeV2Conflict, *AdminUpdateContentByShareCodeV2InternalServerError, error)
+	AdminUpdateContentByShareCodeV2Short(params *AdminUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentByShareCodeV2OK, error)
+	AdminDeleteContentByShareCodeV2(params *AdminDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentByShareCodeV2NoContent, *AdminDeleteContentByShareCodeV2Unauthorized, *AdminDeleteContentByShareCodeV2NotFound, *AdminDeleteContentByShareCodeV2InternalServerError, error)
+	AdminDeleteContentByShareCodeV2Short(params *AdminDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentByShareCodeV2NoContent, error)
 	AdminDeleteUserContentV2(params *AdminDeleteUserContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserContentV2NoContent, *AdminDeleteUserContentV2Unauthorized, *AdminDeleteUserContentV2NotFound, *AdminDeleteUserContentV2InternalServerError, error)
 	AdminDeleteUserContentV2Short(params *AdminDeleteUserContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserContentV2NoContent, error)
 	AdminUpdateUserContentV2(params *AdminUpdateUserContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserContentV2OK, *AdminUpdateUserContentV2BadRequest, *AdminUpdateUserContentV2Unauthorized, *AdminUpdateUserContentV2NotFound, *AdminUpdateUserContentV2Conflict, *AdminUpdateUserContentV2InternalServerError, error)
@@ -973,6 +983,115 @@ func (a *Client) AdminBulkGetContentByIDsV2Short(params *AdminBulkGetContentByID
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetContentBulkByShareCodesV2Short instead.
+
+AdminGetContentBulkByShareCodesV2 bulk get content by content sharecodes
+Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
+Maximum sharecodes per request 100
+*/
+func (a *Client) AdminGetContentBulkByShareCodesV2(params *AdminGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesV2OK, *AdminGetContentBulkByShareCodesV2Unauthorized, *AdminGetContentBulkByShareCodesV2Forbidden, *AdminGetContentBulkByShareCodesV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkByShareCodesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulkByShareCodesV2",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkByShareCodesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkByShareCodesV2OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetContentBulkByShareCodesV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetContentBulkByShareCodesV2Forbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetContentBulkByShareCodesV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetContentBulkByShareCodesV2Short bulk get content by content sharecodes
+Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
+Maximum sharecodes per request 100
+*/
+func (a *Client) AdminGetContentBulkByShareCodesV2Short(params *AdminGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetContentBulkByShareCodesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetContentBulkByShareCodesV2",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetContentBulkByShareCodesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetContentBulkByShareCodesV2OK:
+		return v, nil
+	case *AdminGetContentBulkByShareCodesV2Unauthorized:
+		return nil, v
+	case *AdminGetContentBulkByShareCodesV2Forbidden:
+		return nil, v
+	case *AdminGetContentBulkByShareCodesV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminGetContentByShareCodeV2Short instead.
 
 AdminGetContentByShareCodeV2 get content by sharecode
@@ -1187,11 +1306,124 @@ func (a *Client) AdminGetContentByContentIDV2Short(params *AdminGetContentByCont
 }
 
 /*
+Deprecated: 2022-08-10 - Use RollbackContentVersionV2Short instead.
+
+RollbackContentVersionV2 rollback content's payload version
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]
+Rollback content's payload to specified version.
+*/
+func (a *Client) RollbackContentVersionV2(params *RollbackContentVersionV2Params, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionV2OK, *RollbackContentVersionV2Unauthorized, *RollbackContentVersionV2NotFound, *RollbackContentVersionV2UnprocessableEntity, *RollbackContentVersionV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackContentVersionV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RollbackContentVersionV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/rollback/{versionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RollbackContentVersionV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RollbackContentVersionV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *RollbackContentVersionV2Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *RollbackContentVersionV2NotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *RollbackContentVersionV2UnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
+
+	case *RollbackContentVersionV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RollbackContentVersionV2Short rollback content's payload version
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]
+Rollback content's payload to specified version.
+*/
+func (a *Client) RollbackContentVersionV2Short(params *RollbackContentVersionV2Params, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackContentVersionV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RollbackContentVersionV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/rollback/{versionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RollbackContentVersionV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RollbackContentVersionV2OK:
+		return v, nil
+	case *RollbackContentVersionV2Unauthorized:
+		return nil, v
+	case *RollbackContentVersionV2NotFound:
+		return nil, v
+	case *RollbackContentVersionV2UnprocessableEntity:
+		return nil, v
+	case *RollbackContentVersionV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpdateScreenshotsV2Short instead.
 
 AdminUpdateScreenshotsV2 update screenshot of content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUpdateScreenshotsV2(params *AdminUpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsV2OK, *AdminUpdateScreenshotsV2BadRequest, *AdminUpdateScreenshotsV2Unauthorized, *AdminUpdateScreenshotsV2NotFound, *AdminUpdateScreenshotsV2InternalServerError, error) {
@@ -1250,7 +1482,6 @@ func (a *Client) AdminUpdateScreenshotsV2(params *AdminUpdateScreenshotsV2Params
 /*
 AdminUpdateScreenshotsV2Short update screenshot of content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUpdateScreenshotsV2Short(params *AdminUpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsV2OK, error) {
@@ -1307,12 +1538,10 @@ Deprecated: 2022-08-10 - Use AdminUploadContentScreenshotV2Short instead.
 
 AdminUploadContentScreenshotV2 upload screenshots for content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUploadContentScreenshotV2(params *AdminUploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotV2Created, *AdminUploadContentScreenshotV2BadRequest, *AdminUploadContentScreenshotV2Unauthorized, *AdminUploadContentScreenshotV2NotFound, *AdminUploadContentScreenshotV2InternalServerError, error) {
@@ -1371,12 +1600,10 @@ func (a *Client) AdminUploadContentScreenshotV2(params *AdminUploadContentScreen
 /*
 AdminUploadContentScreenshotV2Short upload screenshots for content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) AdminUploadContentScreenshotV2Short(params *AdminUploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotV2Created, error) {
@@ -1533,6 +1760,349 @@ func (a *Client) AdminDeleteContentScreenshotV2Short(params *AdminDeleteContentS
 	case *AdminDeleteContentScreenshotV2NotFound:
 		return nil, v
 	case *AdminDeleteContentScreenshotV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ListContentVersionsV2Short instead.
+
+ListContentVersionsV2 list content's payload versions
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]
+Content's payload versions created when UGC is created or updated with `updateContentFile` set to true. Only list up to 10 latest versions.
+*/
+func (a *Client) ListContentVersionsV2(params *ListContentVersionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsV2OK, *ListContentVersionsV2Unauthorized, *ListContentVersionsV2NotFound, *ListContentVersionsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListContentVersionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListContentVersionsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListContentVersionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListContentVersionsV2OK:
+		return v, nil, nil, nil, nil
+
+	case *ListContentVersionsV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *ListContentVersionsV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *ListContentVersionsV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ListContentVersionsV2Short list content's payload versions
+Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]
+Content's payload versions created when UGC is created or updated with `updateContentFile` set to true. Only list up to 10 latest versions.
+*/
+func (a *Client) ListContentVersionsV2Short(params *ListContentVersionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListContentVersionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListContentVersionsV2",
+		Method:             "GET",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/contents/{contentId}/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListContentVersionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListContentVersionsV2OK:
+		return v, nil
+	case *ListContentVersionsV2Unauthorized:
+		return nil, v
+	case *ListContentVersionsV2NotFound:
+		return nil, v
+	case *ListContentVersionsV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminUpdateContentByShareCodeV2Short instead.
+
+AdminUpdateContentByShareCodeV2 update content to s3 bucket by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+`shareCode` format should follows:
+
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+*/
+func (a *Client) AdminUpdateContentByShareCodeV2(params *AdminUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentByShareCodeV2OK, *AdminUpdateContentByShareCodeV2BadRequest, *AdminUpdateContentByShareCodeV2Unauthorized, *AdminUpdateContentByShareCodeV2NotFound, *AdminUpdateContentByShareCodeV2Conflict, *AdminUpdateContentByShareCodeV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateContentByShareCodeV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateContentByShareCodeV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentByShareCodeV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentByShareCodeV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateContentByShareCodeV2NotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminUpdateContentByShareCodeV2Conflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateContentByShareCodeV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdateContentByShareCodeV2Short update content to s3 bucket by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+`shareCode` format should follows:
+
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+*/
+func (a *Client) AdminUpdateContentByShareCodeV2Short(params *AdminUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentByShareCodeV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateContentByShareCodeV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateContentByShareCodeV2OK:
+		return v, nil
+	case *AdminUpdateContentByShareCodeV2BadRequest:
+		return nil, v
+	case *AdminUpdateContentByShareCodeV2Unauthorized:
+		return nil, v
+	case *AdminUpdateContentByShareCodeV2NotFound:
+		return nil, v
+	case *AdminUpdateContentByShareCodeV2Conflict:
+		return nil, v
+	case *AdminUpdateContentByShareCodeV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminDeleteContentByShareCodeV2Short instead.
+
+AdminDeleteContentByShareCodeV2 delete content by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) AdminDeleteContentByShareCodeV2(params *AdminDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentByShareCodeV2NoContent, *AdminDeleteContentByShareCodeV2Unauthorized, *AdminDeleteContentByShareCodeV2NotFound, *AdminDeleteContentByShareCodeV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteContentByShareCodeV2",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteContentByShareCodeV2NoContent:
+		return v, nil, nil, nil, nil
+
+	case *AdminDeleteContentByShareCodeV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminDeleteContentByShareCodeV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminDeleteContentByShareCodeV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminDeleteContentByShareCodeV2Short delete content by share code
+Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) AdminDeleteContentByShareCodeV2Short(params *AdminDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentByShareCodeV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteContentByShareCodeV2",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteContentByShareCodeV2NoContent:
+		return v, nil
+	case *AdminDeleteContentByShareCodeV2Unauthorized:
+		return nil, v
+	case *AdminDeleteContentByShareCodeV2NotFound:
+		return nil, v
+	case *AdminDeleteContentByShareCodeV2InternalServerError:
 		return nil, v
 
 	default:

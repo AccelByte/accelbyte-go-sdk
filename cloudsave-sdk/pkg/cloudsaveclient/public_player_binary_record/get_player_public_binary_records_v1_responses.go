@@ -39,6 +39,12 @@ func (o *GetPlayerPublicBinaryRecordsV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewGetPlayerPublicBinaryRecordsV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewGetPlayerPublicBinaryRecordsV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewGetPlayerPublicBinaryRecordsV1Unauthorized() *GetPlayerPublicBinaryRecor
 
 /*GetPlayerPublicBinaryRecordsV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetPlayerPublicBinaryRecordsV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *GetPlayerPublicBinaryRecordsV1Unauthorized) readResponse(response runti
 	return nil
 }
 
+// NewGetPlayerPublicBinaryRecordsV1Forbidden creates a GetPlayerPublicBinaryRecordsV1Forbidden with default headers values
+func NewGetPlayerPublicBinaryRecordsV1Forbidden() *GetPlayerPublicBinaryRecordsV1Forbidden {
+	return &GetPlayerPublicBinaryRecordsV1Forbidden{}
+}
+
+/*GetPlayerPublicBinaryRecordsV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type GetPlayerPublicBinaryRecordsV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetPlayerPublicBinaryRecordsV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/binaries/{key}/public][%d] getPlayerPublicBinaryRecordsV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetPlayerPublicBinaryRecordsV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetPlayerPublicBinaryRecordsV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetPlayerPublicBinaryRecordsV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetPlayerPublicBinaryRecordsV1NotFound creates a GetPlayerPublicBinaryRecordsV1NotFound with default headers values
 func NewGetPlayerPublicBinaryRecordsV1NotFound() *GetPlayerPublicBinaryRecordsV1NotFound {
 	return &GetPlayerPublicBinaryRecordsV1NotFound{}
@@ -175,7 +234,7 @@ func NewGetPlayerPublicBinaryRecordsV1NotFound() *GetPlayerPublicBinaryRecordsV1
 
 /*GetPlayerPublicBinaryRecordsV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18340</td><td>record not found</td></tr></table>
 */
 type GetPlayerPublicBinaryRecordsV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewGetPlayerPublicBinaryRecordsV1InternalServerError() *GetPlayerPublicBina
 
 /*GetPlayerPublicBinaryRecordsV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18339</td><td>unable to get record</td></tr></table>
 */
 type GetPlayerPublicBinaryRecordsV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

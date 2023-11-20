@@ -46,8 +46,12 @@ type ClientService interface {
 	CreateContentDirectShort(params *CreateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*CreateContentDirectCreated, error)
 	CreateContentS3(params *CreateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateContentS3Created, *CreateContentS3BadRequest, *CreateContentS3Unauthorized, *CreateContentS3InternalServerError, error)
 	CreateContentS3Short(params *CreateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateContentS3Created, error)
+	PublicUpdateContentByShareCode(params *PublicUpdateContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeOK, *PublicUpdateContentByShareCodeBadRequest, *PublicUpdateContentByShareCodeUnauthorized, *PublicUpdateContentByShareCodeNotFound, *PublicUpdateContentByShareCodeConflict, *PublicUpdateContentByShareCodeInternalServerError, error)
+	PublicUpdateContentByShareCodeShort(params *PublicUpdateContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeOK, error)
 	UpdateContentS3(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, *UpdateContentS3BadRequest, *UpdateContentS3Unauthorized, *UpdateContentS3NotFound, *UpdateContentS3InternalServerError, error)
 	UpdateContentS3Short(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, error)
+	PublicDeleteContentByShareCode(params *PublicDeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeNoContent, *PublicDeleteContentByShareCodeUnauthorized, *PublicDeleteContentByShareCodeNotFound, *PublicDeleteContentByShareCodeInternalServerError, error)
+	PublicDeleteContentByShareCodeShort(params *PublicDeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeNoContent, error)
 	UpdateContentDirect(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, *UpdateContentDirectBadRequest, *UpdateContentDirectUnauthorized, *UpdateContentDirectNotFound, *UpdateContentDirectInternalServerError, error)
 	UpdateContentDirectShort(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, error)
 	DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentNoContent, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error)
@@ -1031,6 +1035,149 @@ func (a *Client) CreateContentS3Short(params *CreateContentS3Params, authInfo ru
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicUpdateContentByShareCodeShort instead.
+
+PublicUpdateContentByShareCode update content to s3 bucket by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+All request body are required except `payload`, `preview`, `tags`,`contentType`, `updateContentFile`, `customAttributes` and `shareCode`.
+
+`contentType` values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+
+If not specified, it will use `fileExtension` value.
+
+To update content file, set `updateContentFile` to `true` and upload the file using URL in `payloadURL.url` in response body.
+
+
+
+
+ NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
+*/
+func (a *Client) PublicUpdateContentByShareCode(params *PublicUpdateContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeOK, *PublicUpdateContentByShareCodeBadRequest, *PublicUpdateContentByShareCodeUnauthorized, *PublicUpdateContentByShareCodeNotFound, *PublicUpdateContentByShareCodeConflict, *PublicUpdateContentByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateContentByShareCode",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateContentByShareCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateContentByShareCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateContentByShareCodeShort update content to s3 bucket by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+
+All request body are required except `payload`, `preview`, `tags`,`contentType`, `updateContentFile`, `customAttributes` and `shareCode`.
+
+`contentType` values is used to enforce the Content-Type header needed by the client to upload the content using the S3 presigned URL.
+
+If not specified, it will use `fileExtension` value.
+
+To update content file, set `updateContentFile` to `true` and upload the file using URL in `payloadURL.url` in response body.
+
+
+
+
+ NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
+*/
+func (a *Client) PublicUpdateContentByShareCodeShort(params *PublicUpdateContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateContentByShareCode",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateContentByShareCodeOK:
+		return v, nil
+	case *PublicUpdateContentByShareCodeBadRequest:
+		return nil, v
+	case *PublicUpdateContentByShareCodeUnauthorized:
+		return nil, v
+	case *PublicUpdateContentByShareCodeNotFound:
+		return nil, v
+	case *PublicUpdateContentByShareCodeConflict:
+		return nil, v
+	case *PublicUpdateContentByShareCodeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use UpdateContentS3Short instead.
 
 UpdateContentS3 update content to s3 bucket
@@ -1151,6 +1298,113 @@ func (a *Client) UpdateContentS3Short(params *UpdateContentS3Params, authInfo ru
 	case *UpdateContentS3NotFound:
 		return nil, v
 	case *UpdateContentS3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicDeleteContentByShareCodeShort instead.
+
+PublicDeleteContentByShareCode delete content by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) PublicDeleteContentByShareCode(params *PublicDeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeNoContent, *PublicDeleteContentByShareCodeUnauthorized, *PublicDeleteContentByShareCodeNotFound, *PublicDeleteContentByShareCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDeleteContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDeleteContentByShareCode",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDeleteContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDeleteContentByShareCodeNoContent:
+		return v, nil, nil, nil, nil
+
+	case *PublicDeleteContentByShareCodeUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicDeleteContentByShareCodeNotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicDeleteContentByShareCodeInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicDeleteContentByShareCodeShort delete content by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) PublicDeleteContentByShareCodeShort(params *PublicDeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDeleteContentByShareCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDeleteContentByShareCode",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDeleteContentByShareCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDeleteContentByShareCodeNoContent:
+		return v, nil
+	case *PublicDeleteContentByShareCodeUnauthorized:
+		return nil, v
+	case *PublicDeleteContentByShareCodeNotFound:
+		return nil, v
+	case *PublicDeleteContentByShareCodeInternalServerError:
 		return nil, v
 
 	default:
@@ -1493,7 +1747,6 @@ Deprecated: 2022-08-10 - Use UpdateScreenshotsShort instead.
 
 UpdateScreenshots update screenshot of content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, *UpdateScreenshotsBadRequest, *UpdateScreenshotsUnauthorized, *UpdateScreenshotsNotFound, *UpdateScreenshotsInternalServerError, error) {
@@ -1552,7 +1805,6 @@ func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo run
 /*
 UpdateScreenshotsShort update screenshot of content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-
 Maximum description length: 1024.
 */
 func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, error) {
@@ -1609,12 +1861,10 @@ Deprecated: 2022-08-10 - Use UploadContentScreenshotShort instead.
 
 UploadContentScreenshot upload screenshots for content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, *UploadContentScreenshotBadRequest, *UploadContentScreenshotUnauthorized, *UploadContentScreenshotInternalServerError, error) {
@@ -1670,12 +1920,10 @@ func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, 
 /*
 UploadContentScreenshotShort upload screenshots for content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-
 All request body are required except for contentType field.
 contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
 If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-
 Maximum description length: 1024.
 */
 func (a *Client) UploadContentScreenshotShort(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, error) {

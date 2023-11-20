@@ -577,6 +577,7 @@ example payload :
 - TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
+- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -673,6 +674,7 @@ example payload :
 - TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
+- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
 	// TODO: Validate the params before sending
@@ -995,6 +997,7 @@ example payload :
 - TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
+- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1091,6 +1094,7 @@ example payload :
 - TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
+- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error) {
 	// TODO: Validate the params before sending

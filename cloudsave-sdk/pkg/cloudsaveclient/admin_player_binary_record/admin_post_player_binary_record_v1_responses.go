@@ -33,8 +33,26 @@ func (o *AdminPostPlayerBinaryRecordV1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminPostPlayerBinaryRecordV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminPostPlayerBinaryRecordV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminPostPlayerBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 409:
+		result := NewAdminPostPlayerBinaryRecordV1Conflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +127,59 @@ func (o *AdminPostPlayerBinaryRecordV1Created) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewAdminPostPlayerBinaryRecordV1BadRequest creates a AdminPostPlayerBinaryRecordV1BadRequest with default headers values
+func NewAdminPostPlayerBinaryRecordV1BadRequest() *AdminPostPlayerBinaryRecordV1BadRequest {
+	return &AdminPostPlayerBinaryRecordV1BadRequest{}
+}
+
+/*AdminPostPlayerBinaryRecordV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18327</td><td>invalid request body</td></tr></table>
+*/
+type AdminPostPlayerBinaryRecordV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPostPlayerBinaryRecordV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries][%d] adminPostPlayerBinaryRecordV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminPostPlayerBinaryRecordV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPostPlayerBinaryRecordV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPostPlayerBinaryRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPostPlayerBinaryRecordV1Unauthorized creates a AdminPostPlayerBinaryRecordV1Unauthorized with default headers values
 func NewAdminPostPlayerBinaryRecordV1Unauthorized() *AdminPostPlayerBinaryRecordV1Unauthorized {
 	return &AdminPostPlayerBinaryRecordV1Unauthorized{}
@@ -116,7 +187,7 @@ func NewAdminPostPlayerBinaryRecordV1Unauthorized() *AdminPostPlayerBinaryRecord
 
 /*AdminPostPlayerBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPostPlayerBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +233,112 @@ func (o *AdminPostPlayerBinaryRecordV1Unauthorized) readResponse(response runtim
 	return nil
 }
 
+// NewAdminPostPlayerBinaryRecordV1Forbidden creates a AdminPostPlayerBinaryRecordV1Forbidden with default headers values
+func NewAdminPostPlayerBinaryRecordV1Forbidden() *AdminPostPlayerBinaryRecordV1Forbidden {
+	return &AdminPostPlayerBinaryRecordV1Forbidden{}
+}
+
+/*AdminPostPlayerBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminPostPlayerBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries][%d] adminPostPlayerBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminPostPlayerBinaryRecordV1Conflict creates a AdminPostPlayerBinaryRecordV1Conflict with default headers values
+func NewAdminPostPlayerBinaryRecordV1Conflict() *AdminPostPlayerBinaryRecordV1Conflict {
+	return &AdminPostPlayerBinaryRecordV1Conflict{}
+}
+
+/*AdminPostPlayerBinaryRecordV1Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18330</td><td>key already exists</td></tr></table>
+*/
+type AdminPostPlayerBinaryRecordV1Conflict struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Conflict) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries][%d] adminPostPlayerBinaryRecordV1Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Conflict) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPostPlayerBinaryRecordV1Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPostPlayerBinaryRecordV1InternalServerError creates a AdminPostPlayerBinaryRecordV1InternalServerError with default headers values
 func NewAdminPostPlayerBinaryRecordV1InternalServerError() *AdminPostPlayerBinaryRecordV1InternalServerError {
 	return &AdminPostPlayerBinaryRecordV1InternalServerError{}
@@ -169,7 +346,7 @@ func NewAdminPostPlayerBinaryRecordV1InternalServerError() *AdminPostPlayerBinar
 
 /*AdminPostPlayerBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18323</td><td>unable to get record</td></tr><tr><td>18328</td><td>unable to save record</td></tr><tr><td>18331</td><td>unable to get presigned URL</td></tr></table>
 */
 type AdminPostPlayerBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

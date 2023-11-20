@@ -36,9 +36,15 @@ func (aaa *AdminPlayerBinaryRecordService) AdminListPlayerBinaryRecordsV1(input 
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminListPlayerBinaryRecordsV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminListPlayerBinaryRecordsV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -56,9 +62,18 @@ func (aaa *AdminPlayerBinaryRecordService) AdminPostPlayerBinaryRecordV1(input *
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPostPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPostPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -76,9 +91,12 @@ func (aaa *AdminPlayerBinaryRecordService) AdminGetPlayerBinaryRecordV1(input *a
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminGetPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminGetPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -99,9 +117,18 @@ func (aaa *AdminPlayerBinaryRecordService) AdminPutPlayerBinaryRecordV1(input *a
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPutPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPutPlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -119,9 +146,12 @@ func (aaa *AdminPlayerBinaryRecordService) AdminDeletePlayerBinaryRecordV1(input
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminDeletePlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminDeletePlayerBinaryRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -142,9 +172,18 @@ func (aaa *AdminPlayerBinaryRecordService) AdminPutPlayerBinaryRecorMetadataV1(i
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPutPlayerBinaryRecorMetadataV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPutPlayerBinaryRecorMetadataV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -162,9 +201,18 @@ func (aaa *AdminPlayerBinaryRecordService) AdminPostPlayerBinaryPresignedURLV1(i
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPostPlayerBinaryPresignedURLV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminPlayerBinaryRecord.AdminPostPlayerBinaryPresignedURLV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

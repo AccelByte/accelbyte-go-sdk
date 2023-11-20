@@ -44,6 +44,7 @@
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}` | DELETE | DeleteMatchPoolShort | [DeleteMatchPoolShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [DeleteMatchPoolShort](../../services-api/pkg/service/match2/matchPools.go) | [DeleteMatchPoolShort](../../samples/cli/cmd/match2/matchPools/deleteMatchPool.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics` | GET | MatchPoolMetricShort | [MatchPoolMetricShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [MatchPoolMetricShort](../../services-api/pkg/service/match2/matchPools.go) | [MatchPoolMetricShort](../../samples/cli/cmd/match2/matchPools/matchPoolMetric.go) |
 | `/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player` | GET | GetPlayerMetricShort | [GetPlayerMetricShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [GetPlayerMetricShort](../../services-api/pkg/service/match2/matchPools.go) | [GetPlayerMetricShort](../../samples/cli/cmd/match2/matchPools/getPlayerMetric.go) |
+| `/match2/v1/namespaces/{namespace}/match-pools/{pool}/tickets` | GET | AdminGetMatchPoolTicketsShort | [AdminGetMatchPoolTicketsShort](../../match2-sdk/pkg/match2client/match_pools/match_pools_client.go) | [AdminGetMatchPoolTicketsShort](../../services-api/pkg/service/match2/matchPools.go) | [AdminGetMatchPoolTicketsShort](../../samples/cli/cmd/match2/matchPools/adminGetMatchPoolTickets.go) |
 
 ### Match-Tickets Wrapper:  [MatchTickets](../../services-api/pkg/service/match2/matchTickets.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -76,6 +77,7 @@
 | `api.BackfillProposalResponse` | [ApiBackfillProposalResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_proposal_response.go) |
 | `api.ListEnvironmentVariablesResponse` | [ApiListEnvironmentVariablesResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_environment_variables_response.go) |
 | `api.ListMatchFunctionsResponse` | [ApiListMatchFunctionsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_functions_response.go) |
+| `api.ListMatchPoolTicketsResponse` | [ApiListMatchPoolTicketsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_pool_tickets_response.go) |
 | `api.ListMatchPoolsResponse` | [ApiListMatchPoolsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_pools_response.go) |
 | `api.ListRuleSetsResponse` | [ApiListRuleSetsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_rule_sets_response.go) |
 | `api.Match` | [ApiMatch ](../../match2-sdk/pkg/match2clientmodels/api_match.go) |
@@ -99,12 +101,16 @@
 | `api.TicketMetricResultRecord` | [ApiTicketMetricResultRecord ](../../match2-sdk/pkg/match2clientmodels/api_ticket_metric_result_record.go) |
 | `api.backFillRejectRequest` | [ApiBackFillRejectRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_reject_request.go) |
 | `config.EnvironmentVariable` | [ConfigEnvironmentVariable ](../../match2-sdk/pkg/match2clientmodels/config_environment_variable.go) |
+| `matchmaker.MatchTicketRecord` | [MatchmakerMatchTicketRecord ](../../match2-sdk/pkg/match2clientmodels/matchmaker_match_ticket_record.go) |
 | `matchmaker.Party` | [MatchmakerParty ](../../match2-sdk/pkg/match2clientmodels/matchmaker_party.go) |
+| `matchmaker.ProposedProposal` | [MatchmakerProposedProposal ](../../match2-sdk/pkg/match2clientmodels/matchmaker_proposed_proposal.go) |
 | `matchmaker.Team` | [MatchmakerTeam ](../../match2-sdk/pkg/match2clientmodels/matchmaker_team.go) |
+| `matchmaker.Ticket` | [MatchmakerTicket ](../../match2-sdk/pkg/match2clientmodels/matchmaker_ticket.go) |
 | `models.Configuration` | [ModelsConfiguration ](../../match2-sdk/pkg/match2clientmodels/models_configuration.go) |
 | `models.DSInformation` | [ModelsDSInformation ](../../match2-sdk/pkg/match2clientmodels/models_d_s_information.go) |
 | `models.GameSession` | [ModelsGameSession ](../../match2-sdk/pkg/match2clientmodels/models_game_session.go) |
 | `models.Pagination` | [ModelsPagination ](../../match2-sdk/pkg/match2clientmodels/models_pagination.go) |
 | `models.Server` | [ModelsServer ](../../match2-sdk/pkg/match2clientmodels/models_server.go) |
 | `models.User` | [ModelsUser ](../../match2-sdk/pkg/match2clientmodels/models_user.go) |
+| `player.PlayerData` | [PlayerPlayerData ](../../match2-sdk/pkg/match2clientmodels/player_player_data.go) |
 | `response.Error` | [ResponseError ](../../match2-sdk/pkg/match2clientmodels/response_error.go) |

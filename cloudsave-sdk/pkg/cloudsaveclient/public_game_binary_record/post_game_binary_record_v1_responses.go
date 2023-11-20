@@ -33,8 +33,26 @@ func (o *PostGameBinaryRecordV1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPostGameBinaryRecordV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPostGameBinaryRecordV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPostGameBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 409:
+		result := NewPostGameBinaryRecordV1Conflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +127,59 @@ func (o *PostGameBinaryRecordV1Created) readResponse(response runtime.ClientResp
 	return nil
 }
 
+// NewPostGameBinaryRecordV1BadRequest creates a PostGameBinaryRecordV1BadRequest with default headers values
+func NewPostGameBinaryRecordV1BadRequest() *PostGameBinaryRecordV1BadRequest {
+	return &PostGameBinaryRecordV1BadRequest{}
+}
+
+/*PostGameBinaryRecordV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18305</td><td>invalid request body</td></tr></table>
+*/
+type PostGameBinaryRecordV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostGameBinaryRecordV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/binaries][%d] postGameBinaryRecordV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *PostGameBinaryRecordV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PostGameBinaryRecordV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostGameBinaryRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPostGameBinaryRecordV1Unauthorized creates a PostGameBinaryRecordV1Unauthorized with default headers values
 func NewPostGameBinaryRecordV1Unauthorized() *PostGameBinaryRecordV1Unauthorized {
 	return &PostGameBinaryRecordV1Unauthorized{}
@@ -116,7 +187,7 @@ func NewPostGameBinaryRecordV1Unauthorized() *PostGameBinaryRecordV1Unauthorized
 
 /*PostGameBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PostGameBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +233,112 @@ func (o *PostGameBinaryRecordV1Unauthorized) readResponse(response runtime.Clien
 	return nil
 }
 
+// NewPostGameBinaryRecordV1Forbidden creates a PostGameBinaryRecordV1Forbidden with default headers values
+func NewPostGameBinaryRecordV1Forbidden() *PostGameBinaryRecordV1Forbidden {
+	return &PostGameBinaryRecordV1Forbidden{}
+}
+
+/*PostGameBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type PostGameBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostGameBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/binaries][%d] postGameBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PostGameBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PostGameBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostGameBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPostGameBinaryRecordV1Conflict creates a PostGameBinaryRecordV1Conflict with default headers values
+func NewPostGameBinaryRecordV1Conflict() *PostGameBinaryRecordV1Conflict {
+	return &PostGameBinaryRecordV1Conflict{}
+}
+
+/*PostGameBinaryRecordV1Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18309</td><td>key already exists</td></tr></table>
+*/
+type PostGameBinaryRecordV1Conflict struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostGameBinaryRecordV1Conflict) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/binaries][%d] postGameBinaryRecordV1Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *PostGameBinaryRecordV1Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PostGameBinaryRecordV1Conflict) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostGameBinaryRecordV1Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPostGameBinaryRecordV1InternalServerError creates a PostGameBinaryRecordV1InternalServerError with default headers values
 func NewPostGameBinaryRecordV1InternalServerError() *PostGameBinaryRecordV1InternalServerError {
 	return &PostGameBinaryRecordV1InternalServerError{}
@@ -169,7 +346,7 @@ func NewPostGameBinaryRecordV1InternalServerError() *PostGameBinaryRecordV1Inter
 
 /*PostGameBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18301</td><td>unable to get record</td></tr><tr><td>18307</td><td>unable to save record</td></tr><tr><td>18310</td><td>unable to get presigned URL</td></tr></table>
 */
 type PostGameBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

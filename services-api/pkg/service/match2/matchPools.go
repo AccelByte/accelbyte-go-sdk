@@ -212,6 +212,32 @@ func (aaa *MatchPoolsService) GetPlayerMetric(input *match_pools.GetPlayerMetric
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetMatchPoolTicketsShort instead.
+func (aaa *MatchPoolsService) AdminGetMatchPoolTickets(input *match_pools.AdminGetMatchPoolTicketsParams) (*match2clientmodels.APIListMatchPoolTicketsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.AdminGetMatchPoolTickets(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *MatchPoolsService) MatchPoolListShort(input *match_pools.MatchPoolListParams) (*match2clientmodels.APIListMatchPoolsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -380,6 +406,31 @@ func (aaa *MatchPoolsService) GetPlayerMetricShort(input *match_pools.GetPlayerM
 	}
 
 	ok, err := aaa.Client.MatchPools.GetPlayerMetricShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *MatchPoolsService) AdminGetMatchPoolTicketsShort(input *match_pools.AdminGetMatchPoolTicketsParams) (*match2clientmodels.APIListMatchPoolTicketsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.MatchPools.AdminGetMatchPoolTicketsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

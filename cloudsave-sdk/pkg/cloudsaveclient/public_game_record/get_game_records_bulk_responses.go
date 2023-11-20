@@ -33,6 +33,12 @@ func (o *GetGameRecordsBulkReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetGameRecordsBulkBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewGetGameRecordsBulkUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -121,6 +127,59 @@ func (o *GetGameRecordsBulkOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
+// NewGetGameRecordsBulkBadRequest creates a GetGameRecordsBulkBadRequest with default headers values
+func NewGetGameRecordsBulkBadRequest() *GetGameRecordsBulkBadRequest {
+	return &GetGameRecordsBulkBadRequest{}
+}
+
+/*GetGameRecordsBulkBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18128</td><td>invalid request body</td></tr><tr><td>18129</td><td>request record keys list exceed max size [%d]</td></tr></table>
+*/
+type GetGameRecordsBulkBadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetGameRecordsBulkBadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/bulk][%d] getGameRecordsBulkBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetGameRecordsBulkBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetGameRecordsBulkBadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetGameRecordsBulkBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetGameRecordsBulkUnauthorized creates a GetGameRecordsBulkUnauthorized with default headers values
 func NewGetGameRecordsBulkUnauthorized() *GetGameRecordsBulkUnauthorized {
 	return &GetGameRecordsBulkUnauthorized{}
@@ -128,7 +187,7 @@ func NewGetGameRecordsBulkUnauthorized() *GetGameRecordsBulkUnauthorized {
 
 /*GetGameRecordsBulkUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetGameRecordsBulkUnauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -181,7 +240,7 @@ func NewGetGameRecordsBulkForbidden() *GetGameRecordsBulkForbidden {
 
 /*GetGameRecordsBulkForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type GetGameRecordsBulkForbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -234,7 +293,7 @@ func NewGetGameRecordsBulkNotFound() *GetGameRecordsBulkNotFound {
 
 /*GetGameRecordsBulkNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18133</td><td>record not found</td></tr></table>
 */
 type GetGameRecordsBulkNotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -287,7 +346,7 @@ func NewGetGameRecordsBulkInternalServerError() *GetGameRecordsBulkInternalServe
 
 /*GetGameRecordsBulkInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18130</td><td>unable to get record</td></tr><tr><td>18131</td><td>unable to decode record</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetGameRecordsBulkInternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

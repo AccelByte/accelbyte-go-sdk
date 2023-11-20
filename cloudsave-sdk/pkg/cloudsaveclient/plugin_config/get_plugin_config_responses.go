@@ -128,7 +128,7 @@ func NewGetPluginConfigUnauthorized() *GetPluginConfigUnauthorized {
 
 /*GetPluginConfigUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetPluginConfigUnauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -181,7 +181,7 @@ func NewGetPluginConfigForbidden() *GetPluginConfigForbidden {
 
 /*GetPluginConfigForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type GetPluginConfigForbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -234,7 +234,7 @@ func NewGetPluginConfigNotFound() *GetPluginConfigNotFound {
 
 /*GetPluginConfigNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18304</td><td>plugins not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18404</td><td>plugins not found</td></tr></table>
 */
 type GetPluginConfigNotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

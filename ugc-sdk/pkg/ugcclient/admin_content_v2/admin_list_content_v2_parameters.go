@@ -114,6 +114,7 @@ type AdminListContentV2Params struct {
 	<li>download, download:desc, download:asc</li>
 	<li>like, like:desc, like:asc</li>
 	<li>name, name:desc, name:asc</li>
+	<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
 	</ul>
 
 	*/

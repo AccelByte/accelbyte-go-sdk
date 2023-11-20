@@ -45,6 +45,12 @@ func (o *AdminListAdminUserRecordsV1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminListAdminUserRecordsV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminListAdminUserRecordsV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminListAdminUserRecordsV1BadRequest() *AdminListAdminUserRecordsV1BadR
 
 /*AdminListAdminUserRecordsV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18159</td><td>invalid request body</td></tr></table>
 */
 type AdminListAdminUserRecordsV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -175,7 +181,7 @@ func NewAdminListAdminUserRecordsV1Unauthorized() *AdminListAdminUserRecordsV1Un
 
 /*AdminListAdminUserRecordsV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminListAdminUserRecordsV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -221,6 +227,59 @@ func (o *AdminListAdminUserRecordsV1Unauthorized) readResponse(response runtime.
 	return nil
 }
 
+// NewAdminListAdminUserRecordsV1Forbidden creates a AdminListAdminUserRecordsV1Forbidden with default headers values
+func NewAdminListAdminUserRecordsV1Forbidden() *AdminListAdminUserRecordsV1Forbidden {
+	return &AdminListAdminUserRecordsV1Forbidden{}
+}
+
+/*AdminListAdminUserRecordsV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminListAdminUserRecordsV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminListAdminUserRecordsV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords][%d] adminListAdminUserRecordsV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminListAdminUserRecordsV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminListAdminUserRecordsV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminListAdminUserRecordsV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminListAdminUserRecordsV1InternalServerError creates a AdminListAdminUserRecordsV1InternalServerError with default headers values
 func NewAdminListAdminUserRecordsV1InternalServerError() *AdminListAdminUserRecordsV1InternalServerError {
 	return &AdminListAdminUserRecordsV1InternalServerError{}
@@ -228,7 +287,7 @@ func NewAdminListAdminUserRecordsV1InternalServerError() *AdminListAdminUserReco
 
 /*AdminListAdminUserRecordsV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18160</td><td>unable to retrieve list of key records</td></tr></table>
 */
 type AdminListAdminUserRecordsV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -30,15 +30,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdminGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordConcurrentHandlerV1NoContent, *AdminPutAdminGameRecordConcurrentHandlerV1BadRequest, *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError, error)
+	AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdminGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordConcurrentHandlerV1NoContent, *AdminPutAdminGameRecordConcurrentHandlerV1BadRequest, *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminGameRecordConcurrentHandlerV1Forbidden, *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError, error)
 	AdminPutAdminGameRecordConcurrentHandlerV1Short(params *AdminPutAdminGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordConcurrentHandlerV1NoContent, error)
-	AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, *AdminPutGameRecordConcurrentHandlerV1BadRequest, *AdminPutGameRecordConcurrentHandlerV1Unauthorized, *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutGameRecordConcurrentHandlerV1InternalServerError, error)
+	AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, *AdminPutGameRecordConcurrentHandlerV1BadRequest, *AdminPutGameRecordConcurrentHandlerV1Unauthorized, *AdminPutGameRecordConcurrentHandlerV1Forbidden, *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutGameRecordConcurrentHandlerV1InternalServerError, error)
 	AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, error)
-	AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAdminPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent, *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError, error)
+	AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAdminPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent, *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminPlayerRecordConcurrentHandlerV1Forbidden, *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError, error)
 	AdminPutAdminPlayerRecordConcurrentHandlerV1Short(params *AdminPutAdminPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent, error)
-	AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, *AdminPutPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError, error)
+	AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, *AdminPutPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerRecordConcurrentHandlerV1Forbidden, *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError, error)
 	AdminPutPlayerRecordConcurrentHandlerV1Short(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, error)
-	AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
+	AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerPublicRecordConcurrentHandlerV1Forbidden, *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
 	AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -166,7 +166,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdminGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordConcurrentHandlerV1NoContent, *AdminPutAdminGameRecordConcurrentHandlerV1BadRequest, *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdminGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordConcurrentHandlerV1NoContent, *AdminPutAdminGameRecordConcurrentHandlerV1BadRequest, *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminGameRecordConcurrentHandlerV1Forbidden, *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutAdminGameRecordConcurrentHandlerV1Params()
@@ -194,28 +194,31 @@ func (a *Client) AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdmi
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutAdminGameRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminPutAdminGameRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutAdminGameRecordConcurrentHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -378,6 +381,8 @@ func (a *Client) AdminPutAdminGameRecordConcurrentHandlerV1Short(params *AdminPu
 		return nil, v
 	case *AdminPutAdminGameRecordConcurrentHandlerV1Unauthorized:
 		return nil, v
+	case *AdminPutAdminGameRecordConcurrentHandlerV1Forbidden:
+		return nil, v
 	case *AdminPutAdminGameRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, v
 	case *AdminPutAdminGameRecordConcurrentHandlerV1InternalServerError:
@@ -515,7 +520,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, *AdminPutGameRecordConcurrentHandlerV1BadRequest, *AdminPutGameRecordConcurrentHandlerV1Unauthorized, *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutGameRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordConcurrentHandlerV1NoContent, *AdminPutGameRecordConcurrentHandlerV1BadRequest, *AdminPutGameRecordConcurrentHandlerV1Unauthorized, *AdminPutGameRecordConcurrentHandlerV1Forbidden, *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed, *AdminPutGameRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutGameRecordConcurrentHandlerV1Params()
@@ -543,28 +548,31 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecor
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutGameRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminPutGameRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutGameRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutGameRecordConcurrentHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutGameRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -732,6 +740,8 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1Short(params *AdminPutGame
 		return nil, v
 	case *AdminPutGameRecordConcurrentHandlerV1Unauthorized:
 		return nil, v
+	case *AdminPutGameRecordConcurrentHandlerV1Forbidden:
+		return nil, v
 	case *AdminPutGameRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, v
 	case *AdminPutGameRecordConcurrentHandlerV1InternalServerError:
@@ -865,7 +875,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAdminPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent, *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAdminPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent, *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutAdminPlayerRecordConcurrentHandlerV1Forbidden, *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutAdminPlayerRecordConcurrentHandlerV1Params()
@@ -893,28 +903,31 @@ func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAd
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutAdminPlayerRecordConcurrentHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1078,6 +1091,8 @@ func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1Short(params *Admin
 		return nil, v
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized:
 		return nil, v
+	case *AdminPutAdminPlayerRecordConcurrentHandlerV1Forbidden:
+		return nil, v
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, v
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1InternalServerError:
@@ -1216,7 +1231,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, *AdminPutPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordConcurrentHandlerV1NoContent, *AdminPutPlayerRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerRecordConcurrentHandlerV1Forbidden, *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutPlayerRecordConcurrentHandlerV1Params()
@@ -1244,28 +1259,31 @@ func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerR
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutPlayerRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminPutPlayerRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutPlayerRecordConcurrentHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1434,6 +1452,8 @@ func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1Short(params *AdminPutPl
 		return nil, v
 	case *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized:
 		return nil, v
+	case *AdminPutPlayerRecordConcurrentHandlerV1Forbidden:
+		return nil, v
 	case *AdminPutPlayerRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, v
 	case *AdminPutPlayerRecordConcurrentHandlerV1InternalServerError:
@@ -1572,7 +1592,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent, *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest, *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *AdminPutPlayerPublicRecordConcurrentHandlerV1Forbidden, *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *AdminPutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminPutPlayerPublicRecordConcurrentHandlerV1Params()
@@ -1600,28 +1620,31 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutP
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminPutPlayerPublicRecordConcurrentHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1789,6 +1812,8 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *Admi
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPutPlayerPublicRecordConcurrentHandlerV1Forbidden:
 		return nil, v
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, v

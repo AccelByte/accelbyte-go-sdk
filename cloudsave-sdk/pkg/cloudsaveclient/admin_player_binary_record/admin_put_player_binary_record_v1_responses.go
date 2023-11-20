@@ -33,8 +33,26 @@ func (o *AdminPutPlayerBinaryRecordV1Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminPutPlayerBinaryRecordV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminPutPlayerBinaryRecordV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminPutPlayerBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewAdminPutPlayerBinaryRecordV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +127,59 @@ func (o *AdminPutPlayerBinaryRecordV1OK) readResponse(response runtime.ClientRes
 	return nil
 }
 
+// NewAdminPutPlayerBinaryRecordV1BadRequest creates a AdminPutPlayerBinaryRecordV1BadRequest with default headers values
+func NewAdminPutPlayerBinaryRecordV1BadRequest() *AdminPutPlayerBinaryRecordV1BadRequest {
+	return &AdminPutPlayerBinaryRecordV1BadRequest{}
+}
+
+/*AdminPutPlayerBinaryRecordV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18332</td><td>invalid request body</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecordV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecordV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}][%d] adminPutPlayerBinaryRecordV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecordV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecordV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutPlayerBinaryRecordV1Unauthorized creates a AdminPutPlayerBinaryRecordV1Unauthorized with default headers values
 func NewAdminPutPlayerBinaryRecordV1Unauthorized() *AdminPutPlayerBinaryRecordV1Unauthorized {
 	return &AdminPutPlayerBinaryRecordV1Unauthorized{}
@@ -116,7 +187,7 @@ func NewAdminPutPlayerBinaryRecordV1Unauthorized() *AdminPutPlayerBinaryRecordV1
 
 /*AdminPutPlayerBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminPutPlayerBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +233,112 @@ func (o *AdminPutPlayerBinaryRecordV1Unauthorized) readResponse(response runtime
 	return nil
 }
 
+// NewAdminPutPlayerBinaryRecordV1Forbidden creates a AdminPutPlayerBinaryRecordV1Forbidden with default headers values
+func NewAdminPutPlayerBinaryRecordV1Forbidden() *AdminPutPlayerBinaryRecordV1Forbidden {
+	return &AdminPutPlayerBinaryRecordV1Forbidden{}
+}
+
+/*AdminPutPlayerBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}][%d] adminPutPlayerBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminPutPlayerBinaryRecordV1NotFound creates a AdminPutPlayerBinaryRecordV1NotFound with default headers values
+func NewAdminPutPlayerBinaryRecordV1NotFound() *AdminPutPlayerBinaryRecordV1NotFound {
+	return &AdminPutPlayerBinaryRecordV1NotFound{}
+}
+
+/*AdminPutPlayerBinaryRecordV1NotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18333</td><td>record not found</td></tr></table>
+*/
+type AdminPutPlayerBinaryRecordV1NotFound struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerBinaryRecordV1NotFound) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}][%d] adminPutPlayerBinaryRecordV1NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerBinaryRecordV1NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerBinaryRecordV1NotFound) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerBinaryRecordV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminPutPlayerBinaryRecordV1InternalServerError creates a AdminPutPlayerBinaryRecordV1InternalServerError with default headers values
 func NewAdminPutPlayerBinaryRecordV1InternalServerError() *AdminPutPlayerBinaryRecordV1InternalServerError {
 	return &AdminPutPlayerBinaryRecordV1InternalServerError{}
@@ -169,7 +346,7 @@ func NewAdminPutPlayerBinaryRecordV1InternalServerError() *AdminPutPlayerBinaryR
 
 /*AdminPutPlayerBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18334</td><td>unable to update record</td></tr></table>
 */
 type AdminPutPlayerBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -33,8 +33,20 @@ func (o *ListGameRecordsHandlerV1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewListGameRecordsHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewListGameRecordsHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewListGameRecordsHandlerV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -109,6 +121,59 @@ func (o *ListGameRecordsHandlerV1OK) readResponse(response runtime.ClientRespons
 	return nil
 }
 
+// NewListGameRecordsHandlerV1BadRequest creates a ListGameRecordsHandlerV1BadRequest with default headers values
+func NewListGameRecordsHandlerV1BadRequest() *ListGameRecordsHandlerV1BadRequest {
+	return &ListGameRecordsHandlerV1BadRequest{}
+}
+
+/*ListGameRecordsHandlerV1BadRequest handles this case with default header values.
+
+
+ */
+type ListGameRecordsHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *ListGameRecordsHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *ListGameRecordsHandlerV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListGameRecordsHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *ListGameRecordsHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewListGameRecordsHandlerV1Unauthorized creates a ListGameRecordsHandlerV1Unauthorized with default headers values
 func NewListGameRecordsHandlerV1Unauthorized() *ListGameRecordsHandlerV1Unauthorized {
 	return &ListGameRecordsHandlerV1Unauthorized{}
@@ -116,7 +181,7 @@ func NewListGameRecordsHandlerV1Unauthorized() *ListGameRecordsHandlerV1Unauthor
 
 /*ListGameRecordsHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type ListGameRecordsHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -162,6 +227,59 @@ func (o *ListGameRecordsHandlerV1Unauthorized) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewListGameRecordsHandlerV1Forbidden creates a ListGameRecordsHandlerV1Forbidden with default headers values
+func NewListGameRecordsHandlerV1Forbidden() *ListGameRecordsHandlerV1Forbidden {
+	return &ListGameRecordsHandlerV1Forbidden{}
+}
+
+/*ListGameRecordsHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type ListGameRecordsHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *ListGameRecordsHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/records][%d] listGameRecordsHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *ListGameRecordsHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ListGameRecordsHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *ListGameRecordsHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewListGameRecordsHandlerV1InternalServerError creates a ListGameRecordsHandlerV1InternalServerError with default headers values
 func NewListGameRecordsHandlerV1InternalServerError() *ListGameRecordsHandlerV1InternalServerError {
 	return &ListGameRecordsHandlerV1InternalServerError{}
@@ -169,7 +287,7 @@ func NewListGameRecordsHandlerV1InternalServerError() *ListGameRecordsHandlerV1I
 
 /*ListGameRecordsHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18001</td><td>unable to get record</td></tr></table>
 */
 type ListGameRecordsHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -28,6 +28,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		by, _ := cmd.Flags().GetString("by")
 		endDate, _ := cmd.Flags().GetString("endDate")
+		includeTotal, _ := cmd.Flags().GetBool("includeTotal")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		platformBy, _ := cmd.Flags().GetString("platformBy")
@@ -35,15 +36,16 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		query, _ := cmd.Flags().GetString("query")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		input := &users.AdminSearchUserV3Params{
-			Namespace:  namespace,
-			By:         &by,
-			EndDate:    &endDate,
-			Limit:      &limit,
-			Offset:     &offset,
-			PlatformBy: &platformBy,
-			PlatformID: &platformId,
-			Query:      &query,
-			StartDate:  &startDate,
+			Namespace:    namespace,
+			By:           &by,
+			EndDate:      &endDate,
+			IncludeTotal: &includeTotal,
+			Limit:        &limit,
+			Offset:       &offset,
+			PlatformBy:   &platformBy,
+			PlatformID:   &platformId,
+			Query:        &query,
+			StartDate:    &startDate,
 		}
 		ok, errOK := usersService.AdminSearchUserV3Short(input)
 		if errOK != nil {
@@ -63,6 +65,7 @@ func init() {
 	_ = AdminSearchUserV3Cmd.MarkFlagRequired("namespace")
 	AdminSearchUserV3Cmd.Flags().String("by", "", "By")
 	AdminSearchUserV3Cmd.Flags().String("endDate", "", "End date")
+	AdminSearchUserV3Cmd.Flags().Bool("includeTotal", false, "Include total")
 	AdminSearchUserV3Cmd.Flags().Int64("limit", 20, "Limit")
 	AdminSearchUserV3Cmd.Flags().Int64("offset", 0, "Offset")
 	AdminSearchUserV3Cmd.Flags().String("platformBy", "", "Platform by")

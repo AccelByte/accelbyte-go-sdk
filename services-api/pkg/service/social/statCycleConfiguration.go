@@ -7,6 +7,8 @@
 package social
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -100,6 +102,29 @@ func (aaa *StatCycleConfigurationService) BulkGetStatCycle(input *stat_cycle_con
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use ExportStatCycleShort instead.
+func (aaa *StatCycleConfigurationService) ExportStatCycle(input *stat_cycle_configuration.ExportStatCycleParams, writer io.Writer) (io.Writer, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.StatCycleConfiguration.ExportStatCycle(input, client.BearerToken(*token.AccessToken), writer)
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -405,6 +430,31 @@ func (aaa *StatCycleConfigurationService) BulkGetStatCycleShort(input *stat_cycl
 	}
 
 	ok, err := aaa.Client.StatCycleConfiguration.BulkGetStatCycleShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StatCycleConfigurationService) ExportStatCycleShort(input *stat_cycle_configuration.ExportStatCycleParams, writer io.Writer) (io.Writer, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.StatCycleConfiguration.ExportStatCycleShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
 	}

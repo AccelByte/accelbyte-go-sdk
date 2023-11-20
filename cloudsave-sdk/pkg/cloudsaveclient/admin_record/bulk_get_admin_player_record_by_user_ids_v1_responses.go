@@ -33,6 +33,12 @@ func (o *BulkGetAdminPlayerRecordByUserIdsV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewBulkGetAdminPlayerRecordByUserIdsV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewBulkGetAdminPlayerRecordByUserIdsV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -121,6 +127,59 @@ func (o *BulkGetAdminPlayerRecordByUserIdsV1OK) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewBulkGetAdminPlayerRecordByUserIdsV1BadRequest creates a BulkGetAdminPlayerRecordByUserIdsV1BadRequest with default headers values
+func NewBulkGetAdminPlayerRecordByUserIdsV1BadRequest() *BulkGetAdminPlayerRecordByUserIdsV1BadRequest {
+	return &BulkGetAdminPlayerRecordByUserIdsV1BadRequest{}
+}
+
+/*BulkGetAdminPlayerRecordByUserIdsV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18184</td><td>invalid request body</td></tr></table>
+*/
+type BulkGetAdminPlayerRecordByUserIdsV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *BulkGetAdminPlayerRecordByUserIdsV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/adminrecords/{key}/bulk][%d] bulkGetAdminPlayerRecordByUserIdsV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *BulkGetAdminPlayerRecordByUserIdsV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkGetAdminPlayerRecordByUserIdsV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *BulkGetAdminPlayerRecordByUserIdsV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewBulkGetAdminPlayerRecordByUserIdsV1Unauthorized creates a BulkGetAdminPlayerRecordByUserIdsV1Unauthorized with default headers values
 func NewBulkGetAdminPlayerRecordByUserIdsV1Unauthorized() *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized {
 	return &BulkGetAdminPlayerRecordByUserIdsV1Unauthorized{}
@@ -128,7 +187,7 @@ func NewBulkGetAdminPlayerRecordByUserIdsV1Unauthorized() *BulkGetAdminPlayerRec
 
 /*BulkGetAdminPlayerRecordByUserIdsV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type BulkGetAdminPlayerRecordByUserIdsV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -181,7 +240,7 @@ func NewBulkGetAdminPlayerRecordByUserIdsV1Forbidden() *BulkGetAdminPlayerRecord
 
 /*BulkGetAdminPlayerRecordByUserIdsV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type BulkGetAdminPlayerRecordByUserIdsV1Forbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -234,7 +293,7 @@ func NewBulkGetAdminPlayerRecordByUserIdsV1NotFound() *BulkGetAdminPlayerRecordB
 
 /*BulkGetAdminPlayerRecordByUserIdsV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18186</td><td>record not found</td></tr></table>
 */
 type BulkGetAdminPlayerRecordByUserIdsV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -287,7 +346,7 @@ func NewBulkGetAdminPlayerRecordByUserIdsV1InternalServerError() *BulkGetAdminPl
 
 /*BulkGetAdminPlayerRecordByUserIdsV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18185</td><td>unable to get record</td></tr><tr><td>18187</td><td>unable to decode record</td></tr></table>
 */
 type BulkGetAdminPlayerRecordByUserIdsV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -23,16 +23,12 @@ import (
 // with the default values initialized.
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams() *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-11-07T02:03:19Z")
-		limitDefault     = int64(100)
-		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-11-06T02:03:19Z")
+		limitDefault  = int64(100)
+		offsetDefault = int64(0)
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
-		EndTime:   &endTimeDefault,
-		Limit:     &limitDefault,
-		Offset:    &offsetDefault,
-		StartTime: &startTimeDefault,
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -42,16 +38,12 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams() *GetEv
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithTimeout(timeout time.Duration) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-11-07T02:03:19Z")
-		limitDefault     = int64(100)
-		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-11-06T02:03:19Z")
+		limitDefault  = int64(100)
+		offsetDefault = int64(0)
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
-		EndTime:   &endTimeDefault,
-		Limit:     &limitDefault,
-		Offset:    &offsetDefault,
-		StartTime: &startTimeDefault,
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -61,16 +53,12 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithTimeo
 // with the default values initialized, and the ability to set a context for a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithContext(ctx context.Context) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-11-07T02:03:19Z")
-		limitDefault     = int64(100)
-		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-11-06T02:03:19Z")
+		limitDefault  = int64(100)
+		offsetDefault = int64(0)
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
-		EndTime:   &endTimeDefault,
-		Limit:     &limitDefault,
-		Offset:    &offsetDefault,
-		StartTime: &startTimeDefault,
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -80,16 +68,12 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithConte
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParamsWithHTTPClient(client *http.Client) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	var (
-		endTimeDefault   = string("2023-11-07T02:03:19Z")
-		limitDefault     = int64(100)
-		offsetDefault    = int64(0)
-		startTimeDefault = string("2023-11-06T02:03:19Z")
+		limitDefault  = int64(100)
+		offsetDefault = int64(0)
 	)
 	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams{
-		EndTime:    &endTimeDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
-		StartTime:  &startTimeDefault,
 		HTTPClient: client,
 	}
 }
@@ -123,6 +107,11 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams struct {
 
 	*/
 	EventPayload *string
+	/*FlightID
+	  Game telemetry FlightId.
+
+	*/
+	FlightID *string
 	/*Limit
 	  Limit of response data number.
 
@@ -138,6 +127,11 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams struct {
 
 	*/
 	StartTime *string
+	/*UserID
+	  Game telemetry UserId.
+
+	*/
+	UserID *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -247,6 +241,17 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetEve
 	o.EventPayload = eventPayload
 }
 
+// WithFlightID adds the flightID to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithFlightID(flightID *string) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
+	o.SetFlightID(flightID)
+	return o
+}
+
+// SetFlightID adds the flightId to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetFlightID(flightID *string) {
+	o.FlightID = flightID
+}
+
 // WithLimit adds the limit to the get events game telemetry v1 admin namespaces namespace events get params
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithLimit(limit *int64) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	o.SetLimit(limit)
@@ -278,6 +283,17 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithSt
 // SetStartTime adds the startTime to the get events game telemetry v1 admin namespaces namespace events get params
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetStartTime(startTime *string) {
 	o.StartTime = startTime
+}
+
+// WithUserID adds the userID to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithUserID(userID *string) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -357,6 +373,22 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WriteT
 
 	}
 
+	if o.FlightID != nil {
+
+		// query param flightId
+		var qrFlightID string
+		if o.FlightID != nil {
+			qrFlightID = *o.FlightID
+		}
+		qFlightID := qrFlightID
+		if qFlightID != "" {
+			if err := r.SetQueryParam("flightId", qFlightID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -399,6 +431,22 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WriteT
 		qStartTime := qrStartTime
 		if qStartTime != "" {
 			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UserID != nil {
+
+		// query param userId
+		var qrUserID string
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

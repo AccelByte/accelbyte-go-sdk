@@ -36,9 +36,15 @@ func (aaa *AdminRecordService) AdminListAdminGameRecordV1(input *admin_record.Ad
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminListAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminListAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -56,7 +62,10 @@ func (aaa *AdminRecordService) AdminBulkGetAdminGameRecordV1(input *admin_record
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminBulkGetAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminBulkGetAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -82,9 +91,12 @@ func (aaa *AdminRecordService) AdminGetAdminGameRecordV1(input *admin_record.Adm
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminGetAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminGetAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -105,9 +117,15 @@ func (aaa *AdminRecordService) AdminPutAdminGameRecordV1(input *admin_record.Adm
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminPutAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminPutAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -125,9 +143,15 @@ func (aaa *AdminRecordService) AdminPostAdminGameRecordV1(input *admin_record.Ad
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminPostAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminPostAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -145,9 +169,12 @@ func (aaa *AdminRecordService) AdminDeleteAdminGameRecordV1(input *admin_record.
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminDeleteAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminDeleteAdminGameRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -168,7 +195,10 @@ func (aaa *AdminRecordService) BulkGetAdminPlayerRecordByUserIdsV1(input *admin_
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.BulkGetAdminPlayerRecordByUserIdsV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.BulkGetAdminPlayerRecordByUserIdsV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -194,12 +224,15 @@ func (aaa *AdminRecordService) AdminListAdminUserRecordsV1(input *admin_record.A
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminListAdminUserRecordsV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminListAdminUserRecordsV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -217,7 +250,10 @@ func (aaa *AdminRecordService) AdminBulkGetAdminPlayerRecordV1(input *admin_reco
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminBulkGetAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminBulkGetAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -243,9 +279,12 @@ func (aaa *AdminRecordService) AdminGetAdminPlayerRecordV1(input *admin_record.A
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminGetAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminGetAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -266,9 +305,15 @@ func (aaa *AdminRecordService) AdminPutAdminPlayerRecordV1(input *admin_record.A
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminPutAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminPutAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -286,9 +331,15 @@ func (aaa *AdminRecordService) AdminPostPlayerAdminRecordV1(input *admin_record.
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, internalServerError, err := aaa.Client.AdminRecord.AdminPostPlayerAdminRecordV1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminRecord.AdminPostPlayerAdminRecordV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -306,9 +357,12 @@ func (aaa *AdminRecordService) AdminDeleteAdminPlayerRecordV1(input *admin_recor
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminDeleteAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminRecord.AdminDeleteAdminPlayerRecordV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound

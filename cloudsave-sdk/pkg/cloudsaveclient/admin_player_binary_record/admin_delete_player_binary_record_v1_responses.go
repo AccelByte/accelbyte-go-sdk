@@ -39,6 +39,12 @@ func (o *AdminDeletePlayerBinaryRecordV1Reader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminDeletePlayerBinaryRecordV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminDeletePlayerBinaryRecordV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -95,7 +101,7 @@ func NewAdminDeletePlayerBinaryRecordV1Unauthorized() *AdminDeletePlayerBinaryRe
 
 /*AdminDeletePlayerBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeletePlayerBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -141,6 +147,59 @@ func (o *AdminDeletePlayerBinaryRecordV1Unauthorized) readResponse(response runt
 	return nil
 }
 
+// NewAdminDeletePlayerBinaryRecordV1Forbidden creates a AdminDeletePlayerBinaryRecordV1Forbidden with default headers values
+func NewAdminDeletePlayerBinaryRecordV1Forbidden() *AdminDeletePlayerBinaryRecordV1Forbidden {
+	return &AdminDeletePlayerBinaryRecordV1Forbidden{}
+}
+
+/*AdminDeletePlayerBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminDeletePlayerBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeletePlayerBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/binaries/{key}][%d] adminDeletePlayerBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminDeletePlayerBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeletePlayerBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeletePlayerBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeletePlayerBinaryRecordV1NotFound creates a AdminDeletePlayerBinaryRecordV1NotFound with default headers values
 func NewAdminDeletePlayerBinaryRecordV1NotFound() *AdminDeletePlayerBinaryRecordV1NotFound {
 	return &AdminDeletePlayerBinaryRecordV1NotFound{}
@@ -148,7 +207,7 @@ func NewAdminDeletePlayerBinaryRecordV1NotFound() *AdminDeletePlayerBinaryRecord
 
 /*AdminDeletePlayerBinaryRecordV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18338</td><td>record not found</td></tr></table>
 */
 type AdminDeletePlayerBinaryRecordV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -201,7 +260,7 @@ func NewAdminDeletePlayerBinaryRecordV1InternalServerError() *AdminDeletePlayerB
 
 /*AdminDeletePlayerBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18336</td><td>unable to delete record</td></tr><tr><td>18338</td><td>record not found</td></tr></table>
 */
 type AdminDeletePlayerBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

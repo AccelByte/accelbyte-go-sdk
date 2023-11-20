@@ -134,7 +134,7 @@ func NewCreatePluginConfigBadRequest() *CreatePluginConfigBadRequest {
 
 /*CreatePluginConfigBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18301</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18401</td><td>invalid request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type CreatePluginConfigBadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -187,7 +187,7 @@ func NewCreatePluginConfigUnauthorized() *CreatePluginConfigUnauthorized {
 
 /*CreatePluginConfigUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreatePluginConfigUnauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -240,7 +240,7 @@ func NewCreatePluginConfigForbidden() *CreatePluginConfigForbidden {
 
 /*CreatePluginConfigForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type CreatePluginConfigForbidden struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -293,7 +293,7 @@ func NewCreatePluginConfigConflict() *CreatePluginConfigConflict {
 
 /*CreatePluginConfigConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18302</td><td>plugins already configured</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18402</td><td>plugins already configured</td></tr></table>
 */
 type CreatePluginConfigConflict struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

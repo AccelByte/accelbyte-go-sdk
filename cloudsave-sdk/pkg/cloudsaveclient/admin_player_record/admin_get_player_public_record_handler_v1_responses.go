@@ -39,6 +39,12 @@ func (o *AdminGetPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminGetPlayerPublicRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetPlayerPublicRecordHandlerV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -122,7 +128,7 @@ func NewAdminGetPlayerPublicRecordHandlerV1Unauthorized() *AdminGetPlayerPublicR
 
 /*AdminGetPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetPlayerPublicRecordHandlerV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -168,6 +174,59 @@ func (o *AdminGetPlayerPublicRecordHandlerV1Unauthorized) readResponse(response 
 	return nil
 }
 
+// NewAdminGetPlayerPublicRecordHandlerV1Forbidden creates a AdminGetPlayerPublicRecordHandlerV1Forbidden with default headers values
+func NewAdminGetPlayerPublicRecordHandlerV1Forbidden() *AdminGetPlayerPublicRecordHandlerV1Forbidden {
+	return &AdminGetPlayerPublicRecordHandlerV1Forbidden{}
+}
+
+/*AdminGetPlayerPublicRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminGetPlayerPublicRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetPlayerPublicRecordHandlerV1NotFound creates a AdminGetPlayerPublicRecordHandlerV1NotFound with default headers values
 func NewAdminGetPlayerPublicRecordHandlerV1NotFound() *AdminGetPlayerPublicRecordHandlerV1NotFound {
 	return &AdminGetPlayerPublicRecordHandlerV1NotFound{}
@@ -175,7 +234,7 @@ func NewAdminGetPlayerPublicRecordHandlerV1NotFound() *AdminGetPlayerPublicRecor
 
 /*AdminGetPlayerPublicRecordHandlerV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18081</td><td>record not found</td></tr></table>
 */
 type AdminGetPlayerPublicRecordHandlerV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -228,7 +287,7 @@ func NewAdminGetPlayerPublicRecordHandlerV1InternalServerError() *AdminGetPlayer
 
 /*AdminGetPlayerPublicRecordHandlerV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18080</td><td>unable to get record</td></tr><tr><td>18005</td><td>unable to decode record</td></tr></table>
 */
 type AdminGetPlayerPublicRecordHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

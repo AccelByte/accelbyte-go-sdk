@@ -33,8 +33,20 @@ func (o *AdminDeleteGameBinaryRecordV1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminDeleteGameBinaryRecordV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminDeleteGameBinaryRecordV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminDeleteGameBinaryRecordV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -88,6 +100,59 @@ func (o *AdminDeleteGameBinaryRecordV1NoContent) readResponse(response runtime.C
 	return nil
 }
 
+// NewAdminDeleteGameBinaryRecordV1BadRequest creates a AdminDeleteGameBinaryRecordV1BadRequest with default headers values
+func NewAdminDeleteGameBinaryRecordV1BadRequest() *AdminDeleteGameBinaryRecordV1BadRequest {
+	return &AdminDeleteGameBinaryRecordV1BadRequest{}
+}
+
+/*AdminDeleteGameBinaryRecordV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type AdminDeleteGameBinaryRecordV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeleteGameBinaryRecordV1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}][%d] adminDeleteGameBinaryRecordV1BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminDeleteGameBinaryRecordV1BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeleteGameBinaryRecordV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeleteGameBinaryRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeleteGameBinaryRecordV1Unauthorized creates a AdminDeleteGameBinaryRecordV1Unauthorized with default headers values
 func NewAdminDeleteGameBinaryRecordV1Unauthorized() *AdminDeleteGameBinaryRecordV1Unauthorized {
 	return &AdminDeleteGameBinaryRecordV1Unauthorized{}
@@ -95,7 +160,7 @@ func NewAdminDeleteGameBinaryRecordV1Unauthorized() *AdminDeleteGameBinaryRecord
 
 /*AdminDeleteGameBinaryRecordV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteGameBinaryRecordV1Unauthorized struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -141,6 +206,59 @@ func (o *AdminDeleteGameBinaryRecordV1Unauthorized) readResponse(response runtim
 	return nil
 }
 
+// NewAdminDeleteGameBinaryRecordV1Forbidden creates a AdminDeleteGameBinaryRecordV1Forbidden with default headers values
+func NewAdminDeleteGameBinaryRecordV1Forbidden() *AdminDeleteGameBinaryRecordV1Forbidden {
+	return &AdminDeleteGameBinaryRecordV1Forbidden{}
+}
+
+/*AdminDeleteGameBinaryRecordV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminDeleteGameBinaryRecordV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeleteGameBinaryRecordV1Forbidden) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}][%d] adminDeleteGameBinaryRecordV1Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminDeleteGameBinaryRecordV1Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeleteGameBinaryRecordV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeleteGameBinaryRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeleteGameBinaryRecordV1NotFound creates a AdminDeleteGameBinaryRecordV1NotFound with default headers values
 func NewAdminDeleteGameBinaryRecordV1NotFound() *AdminDeleteGameBinaryRecordV1NotFound {
 	return &AdminDeleteGameBinaryRecordV1NotFound{}
@@ -148,7 +266,7 @@ func NewAdminDeleteGameBinaryRecordV1NotFound() *AdminDeleteGameBinaryRecordV1No
 
 /*AdminDeleteGameBinaryRecordV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18322</td><td>record not found</td></tr></table>
 */
 type AdminDeleteGameBinaryRecordV1NotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -201,7 +319,7 @@ func NewAdminDeleteGameBinaryRecordV1InternalServerError() *AdminDeleteGameBinar
 
 /*AdminDeleteGameBinaryRecordV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18320</td><td>unable to delete record</td></tr></table>
 */
 type AdminDeleteGameBinaryRecordV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

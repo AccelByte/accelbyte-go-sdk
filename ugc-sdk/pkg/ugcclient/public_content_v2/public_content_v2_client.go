@@ -42,6 +42,10 @@ type ClientService interface {
 	PublicGetContentByIDV2Short(params *PublicGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByIDV2OK, error)
 	PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2InternalServerError, error)
 	PublicCreateContentV2Short(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, error)
+	PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error)
+	PublicUpdateContentByShareCodeV2Short(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, error)
+	PublicDeleteContentByShareCodeV2(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, *PublicDeleteContentByShareCodeV2Unauthorized, *PublicDeleteContentByShareCodeV2NotFound, *PublicDeleteContentByShareCodeV2InternalServerError, error)
+	PublicDeleteContentByShareCodeV2Short(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, error)
 	PublicDeleteContentV2(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, *PublicDeleteContentV2Unauthorized, *PublicDeleteContentV2NotFound, *PublicDeleteContentV2InternalServerError, error)
 	PublicDeleteContentV2Short(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, error)
 	PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error)
@@ -717,6 +721,230 @@ func (a *Client) PublicCreateContentV2Short(params *PublicCreateContentV2Params,
 	case *PublicCreateContentV2Unauthorized:
 		return nil, v
 	case *PublicCreateContentV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUpdateContentByShareCodeV2Short instead.
+
+PublicUpdateContentByShareCodeV2 update content to s3 bucket by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+*/
+func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateContentByShareCodeV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateContentByShareCodeV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2NotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2Conflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateContentByShareCodeV2Short update content to s3 bucket by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+*/
+func (a *Client) PublicUpdateContentByShareCodeV2Short(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateContentByShareCodeV2",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateContentByShareCodeV2OK:
+		return v, nil
+	case *PublicUpdateContentByShareCodeV2BadRequest:
+		return nil, v
+	case *PublicUpdateContentByShareCodeV2Unauthorized:
+		return nil, v
+	case *PublicUpdateContentByShareCodeV2NotFound:
+		return nil, v
+	case *PublicUpdateContentByShareCodeV2Conflict:
+		return nil, v
+	case *PublicUpdateContentByShareCodeV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicDeleteContentByShareCodeV2Short instead.
+
+PublicDeleteContentByShareCodeV2 delete content by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) PublicDeleteContentByShareCodeV2(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, *PublicDeleteContentByShareCodeV2Unauthorized, *PublicDeleteContentByShareCodeV2NotFound, *PublicDeleteContentByShareCodeV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDeleteContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDeleteContentByShareCodeV2",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDeleteContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDeleteContentByShareCodeV2NoContent:
+		return v, nil, nil, nil, nil
+
+	case *PublicDeleteContentByShareCodeV2Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicDeleteContentByShareCodeV2NotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicDeleteContentByShareCodeV2InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicDeleteContentByShareCodeV2Short delete content by share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+*/
+func (a *Client) PublicDeleteContentByShareCodeV2Short(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDeleteContentByShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDeleteContentByShareCodeV2",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/sharecodes/{shareCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDeleteContentByShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDeleteContentByShareCodeV2NoContent:
+		return v, nil
+	case *PublicDeleteContentByShareCodeV2Unauthorized:
+		return nil, v
+	case *PublicDeleteContentByShareCodeV2NotFound:
+		return nil, v
+	case *PublicDeleteContentByShareCodeV2InternalServerError:
 		return nil, v
 
 	default:

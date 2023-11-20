@@ -7,6 +7,7 @@
 ### telemetry Wrapper:  [Telemetry](../../services-api/pkg/service/gametelemetry/telemetry.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/game-telemetry/v1/admin/namespaces` | GET | GetNamespacesGameTelemetryV1AdminNamespacesGetShort | [GetNamespacesGameTelemetryV1AdminNamespacesGetShort](../../gametelemetry-sdk/pkg/gametelemetryclient/telemetry/telemetry_client.go) | [GetNamespacesGameTelemetryV1AdminNamespacesGetShort](../../services-api/pkg/service/gametelemetry/telemetry.go) | [GetNamespacesGameTelemetryV1AdminNamespacesGetShort](../../samples/cli/cmd/gametelemetry/telemetry/getNamespacesGameTelemetryV1AdminNamespacesGet.go) |
 | `/game-telemetry/v1/admin/namespaces/{namespace}/events` | GET | GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../../gametelemetry-sdk/pkg/gametelemetryclient/telemetry/telemetry_client.go) | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../../services-api/pkg/service/gametelemetry/telemetry.go) | [GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort](../../samples/cli/cmd/gametelemetry/telemetry/getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet.go) |
 
 ### Gametelemetry Operations Wrapper:  [GametelemetryOperations](../../services-api/pkg/service/gametelemetry/gametelemetryOperations.go)

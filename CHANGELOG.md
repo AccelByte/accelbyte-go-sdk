@@ -1,12 +1,17 @@
 <a name="v0.58.0"></a>
 ## [v0.58.0]
 ### docs
+- **migrations:** add migration-guide-v0.57-to-v0.58.md
 - **operation:** update the client file link
 - **:** update the old doc links
 - **readme:** remove the preview word
 - **readme:** add how to enable the logging
 ### fix
 - **regenerate:** use the correct collection format
+### chore
+- **:** update CHANGELOG.md and go sum getting started
+## test
+- **integration:** adjustments against ags starter
 
 
 <a name="v0.57.0"></a>

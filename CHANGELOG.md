@@ -1,5 +1,7 @@
 <a name="v0.59.0"></a>
 ## [v0.59.0]
+### chore
+- **:** update CHANGELOG.md and go sum getting started
 
 
 <a name="v0.58.0"></a>

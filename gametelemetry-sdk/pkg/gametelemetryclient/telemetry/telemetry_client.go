@@ -136,6 +136,8 @@ func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGetShort(params *Get
 Deprecated: 2022-08-10 - Use GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort instead.
 
 GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet get events
+This endpoint requires valid JWT token and telemetry permission
+This endpoint retrieves event list
 */
 func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -183,6 +185,8 @@ func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(param
 
 /*
 GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort get events
+This endpoint requires valid JWT token and telemetry permission
+This endpoint retrieves event list
 */
 func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, error) {
 	// TODO: Validate the params before sending

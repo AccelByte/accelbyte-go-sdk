@@ -37,20 +37,22 @@ var PutPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
 		key, _ := cmd.Flags().GetString("key")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		responseBody, _ := cmd.Flags().GetBool("responseBody")
 		input := &concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params{
-			Body:      body,
-			Key:       key,
-			Namespace: namespace,
-			UserID:    userId,
+			Body:         body,
+			Key:          key,
+			Namespace:    namespace,
+			UserID:       userId,
+			ResponseBody: &responseBody,
 		}
-		errNoContent := concurrentRecordService.PutPlayerPublicRecordConcurrentHandlerV1Short(input)
-		if errNoContent != nil {
-			logrus.Error(errNoContent)
+		ok, errOK := concurrentRecordService.PutPlayerPublicRecordConcurrentHandlerV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errNoContent
+			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},
@@ -65,4 +67,5 @@ func init() {
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().String("userId", "", "User id")
 	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().Bool("responseBody", false, "Response body")
 }

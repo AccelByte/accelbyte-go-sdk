@@ -93,6 +93,32 @@ func (aaa *PublicContentV2Service) PublicBulkGetContentByIDV2(input *public_cont
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetContentBulkByShareCodesV2Short instead.
+func (aaa *PublicContentV2Service) PublicGetContentBulkByShareCodesV2(input *public_content_v2.PublicGetContentBulkByShareCodesV2Params) ([]*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicContentV2.PublicGetContentBulkByShareCodesV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetContentByShareCodeV2Short instead.
 func (aaa *PublicContentV2Service) PublicGetContentByShareCodeV2(input *public_content_v2.PublicGetContentByShareCodeV2Params) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -281,6 +307,38 @@ func (aaa *PublicContentV2Service) PublicUpdateContentFileLocation(input *public
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateContentShareCodeV2Short instead.
+func (aaa *PublicContentV2Service) UpdateContentShareCodeV2(input *public_content_v2.UpdateContentShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.PublicContentV2.UpdateContentShareCodeV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -485,6 +543,31 @@ func (aaa *PublicContentV2Service) PublicBulkGetContentByIDV2Short(input *public
 	return ok.GetPayload(), nil
 }
 
+func (aaa *PublicContentV2Service) PublicGetContentBulkByShareCodesV2Short(input *public_content_v2.PublicGetContentBulkByShareCodesV2Params) ([]*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentV2.PublicGetContentBulkByShareCodesV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *PublicContentV2Service) PublicGetContentByShareCodeV2Short(input *public_content_v2.PublicGetContentByShareCodeV2Params) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -678,6 +761,31 @@ func (aaa *PublicContentV2Service) PublicUpdateContentFileLocationShort(input *p
 	}
 
 	ok, err := aaa.Client.PublicContentV2.PublicUpdateContentFileLocationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicContentV2Service) UpdateContentShareCodeV2Short(input *public_content_v2.UpdateContentShareCodeV2Params) (*ugcclientmodels.ModelsCreateContentResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentV2.UpdateContentShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

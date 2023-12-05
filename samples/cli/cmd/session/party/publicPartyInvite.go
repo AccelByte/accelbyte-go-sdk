@@ -41,14 +41,14 @@ var PublicPartyInviteCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errCreated := partyService.PublicPartyInviteShort(input)
+		created, errCreated := partyService.PublicPartyInviteShort(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 
 			return errCreated
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

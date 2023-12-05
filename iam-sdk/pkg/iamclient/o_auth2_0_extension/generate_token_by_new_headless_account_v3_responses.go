@@ -175,7 +175,7 @@ func NewGenerateTokenByNewHeadlessAccountV3Unauthorized() *GenerateTokenByNewHea
 
 /*GenerateTokenByNewHeadlessAccountV3Unauthorized handles this case with default header values.
 
-  Invalid Basic header.
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10213</td><td>country is blocked</td></tr></table>
 */
 type GenerateTokenByNewHeadlessAccountV3Unauthorized struct {
 	Payload *iamclientmodels.RestErrorResponse

@@ -32,10 +32,10 @@ type Client struct {
 type ClientService interface {
 	PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1Unauthorized, *PutGameRecordConcurrentHandlerV1Forbidden, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error)
 	PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, error)
-	PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1NoContent, *PutPlayerRecordConcurrentHandlerV1BadRequest, *PutPlayerRecordConcurrentHandlerV1Unauthorized, *PutPlayerRecordConcurrentHandlerV1Forbidden, *PutPlayerRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerRecordConcurrentHandlerV1InternalServerError, error)
-	PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1NoContent, error)
-	PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1Forbidden, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
-	PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, error)
+	PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1OK, *PutPlayerRecordConcurrentHandlerV1NoContent, *PutPlayerRecordConcurrentHandlerV1BadRequest, *PutPlayerRecordConcurrentHandlerV1Unauthorized, *PutPlayerRecordConcurrentHandlerV1Forbidden, *PutPlayerRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerRecordConcurrentHandlerV1InternalServerError, error)
+	PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1OK, error)
+	PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1OK, *PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1Forbidden, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
+	PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -445,7 +445,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1NoContent, *PutPlayerRecordConcurrentHandlerV1BadRequest, *PutPlayerRecordConcurrentHandlerV1Unauthorized, *PutPlayerRecordConcurrentHandlerV1Forbidden, *PutPlayerRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1OK, *PutPlayerRecordConcurrentHandlerV1NoContent, *PutPlayerRecordConcurrentHandlerV1BadRequest, *PutPlayerRecordConcurrentHandlerV1Unauthorized, *PutPlayerRecordConcurrentHandlerV1Forbidden, *PutPlayerRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerRecordConcurrentHandlerV1Params()
@@ -473,31 +473,34 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcu
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *PutPlayerRecordConcurrentHandlerV1OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PutPlayerRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PutPlayerRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PutPlayerRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PutPlayerRecordConcurrentHandlerV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *PutPlayerRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PutPlayerRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -599,7 +602,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1NoContent, error) {
+func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordConcurrentHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerRecordConcurrentHandlerV1Params()
@@ -632,8 +635,10 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecord
 
 	switch v := result.(type) {
 
-	case *PutPlayerRecordConcurrentHandlerV1NoContent:
+	case *PutPlayerRecordConcurrentHandlerV1OK:
 		return v, nil
+	case *PutPlayerRecordConcurrentHandlerV1NoContent:
+		return nil, v
 	case *PutPlayerRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *PutPlayerRecordConcurrentHandlerV1Unauthorized:
@@ -750,7 +755,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1Forbidden, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1OK, *PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1Forbidden, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerPublicRecordConcurrentHandlerV1Params()
@@ -778,31 +783,34 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *PutPlayerPublicRecordConcurrentHandlerV1OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -904,7 +912,7 @@ If the record has been updated since the client fetch it, the server will return
 and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 */
-func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, error) {
+func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerPublicRecordConcurrentHandlerV1Params()
@@ -937,8 +945,10 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayer
 
 	switch v := result.(type) {
 
-	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
+	case *PutPlayerPublicRecordConcurrentHandlerV1OK:
 		return v, nil
+	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
+		return nil, v
 	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:

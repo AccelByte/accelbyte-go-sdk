@@ -132,8 +132,8 @@ func NewPublicListJusticePlatformAccountsV3BadRequest() *PublicListJusticePlatfo
 
 /*PublicListJusticePlatformAccountsV3BadRequest handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20025</td><td>not a publisher user</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
 type PublicListJusticePlatformAccountsV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

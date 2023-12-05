@@ -128,8 +128,8 @@ func NewCreateUserBadRequest() *CreateUserBadRequest {
 
 /*CreateUserBadRequest handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>1014001</td><td>unable to parse request body</td></tr></table>
+*/
 type CreateUserBadRequest struct {
 }
 
@@ -260,8 +260,8 @@ func NewCreateUserConflict() *CreateUserConflict {
 
 /*CreateUserConflict handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>1014002</td><td>user already exists</td></tr></table>
+*/
 type CreateUserConflict struct {
 }
 

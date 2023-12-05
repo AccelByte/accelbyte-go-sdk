@@ -3446,12 +3446,15 @@ func (aaa *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) (*iamclie
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.Users.UpdateUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Users.UpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if conflict != nil {
 		return nil, conflict

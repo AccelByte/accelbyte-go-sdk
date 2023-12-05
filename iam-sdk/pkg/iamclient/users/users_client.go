@@ -288,7 +288,7 @@ type ClientService interface {
 	GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error)
 	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
 	CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error)
-	UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error)
+	UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Forbidden, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error)
 	UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error)
 	PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Forbidden, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error)
 	PublicPartialUpdateUserV3Short(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, error)
@@ -20077,7 +20077,7 @@ If the client support PATCH method, use [PATCH] /iam/v3/public/namespaces/{names
 
 action code : 10103
 */
-func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error) {
+func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Forbidden, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateUserV3Params()
@@ -20105,28 +20105,31 @@ func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateUserV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateUserV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateUserV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateUserV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *UpdateUserV3Conflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateUserV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -20223,6 +20226,8 @@ func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.
 	case *UpdateUserV3BadRequest:
 		return nil, v
 	case *UpdateUserV3Unauthorized:
+		return nil, v
+	case *UpdateUserV3Forbidden:
 		return nil, v
 	case *UpdateUserV3Conflict:
 		return nil, v

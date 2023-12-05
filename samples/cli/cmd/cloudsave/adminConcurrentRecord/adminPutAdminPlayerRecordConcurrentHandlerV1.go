@@ -37,20 +37,22 @@ var AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd = &cobra.Command{
 		key, _ := cmd.Flags().GetString("key")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		responseBody, _ := cmd.Flags().GetBool("responseBody")
 		input := &admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params{
-			Body:      body,
-			Key:       key,
-			Namespace: namespace,
-			UserID:    userId,
+			Body:         body,
+			Key:          key,
+			Namespace:    namespace,
+			UserID:       userId,
+			ResponseBody: &responseBody,
 		}
-		errNoContent := adminConcurrentRecordService.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input)
-		if errNoContent != nil {
-			logrus.Error(errNoContent)
+		ok, errOK := adminConcurrentRecordService.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errNoContent
+			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},
@@ -65,4 +67,5 @@ func init() {
 	_ = AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 	AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd.Flags().String("userId", "", "User id")
 	_ = AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
+	AdminPutAdminPlayerRecordConcurrentHandlerV1Cmd.Flags().Bool("responseBody", false, "Response body")
 }

@@ -27,6 +27,12 @@ type AdminPutPlayerPublicRecordConcurrentHandlerV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 200:
+		result := NewAdminPutPlayerPublicRecordConcurrentHandlerV1OK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 204:
 		result := NewAdminPutPlayerPublicRecordConcurrentHandlerV1NoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,6 +78,59 @@ func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1Reader) ReadResponse(respo
 
 		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewAdminPutPlayerPublicRecordConcurrentHandlerV1OK creates a AdminPutPlayerPublicRecordConcurrentHandlerV1OK with default headers values
+func NewAdminPutPlayerPublicRecordConcurrentHandlerV1OK() *AdminPutPlayerPublicRecordConcurrentHandlerV1OK {
+	return &AdminPutPlayerPublicRecordConcurrentHandlerV1OK{}
+}
+
+/*AdminPutPlayerPublicRecordConcurrentHandlerV1OK handles this case with default header values.
+
+  Record saved
+*/
+type AdminPutPlayerPublicRecordConcurrentHandlerV1OK struct {
+	Payload *cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse
+}
+
+func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1OK) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] adminPutPlayerPublicRecordConcurrentHandlerV1OK  %+v", 200, o.ToJSONString())
+}
+
+func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1OK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerPublicRecordConcurrentHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
 }
 
 // NewAdminPutPlayerPublicRecordConcurrentHandlerV1NoContent creates a AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent with default headers values

@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 )
@@ -83,6 +84,11 @@ type AdminPutPlayerRecordConcurrentHandlerV1Params struct {
 
 	*/
 	UserID string
+	/*ResponseBody
+	  flag to tell the service to return non empty response
+
+	*/
+	ResponseBody *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -181,6 +187,17 @@ func (o *AdminPutPlayerRecordConcurrentHandlerV1Params) SetUserID(userID string)
 	o.UserID = userID
 }
 
+// WithResponseBody adds the responseBody to the admin put player record concurrent handler v1 params
+func (o *AdminPutPlayerRecordConcurrentHandlerV1Params) WithResponseBody(responseBody *bool) *AdminPutPlayerRecordConcurrentHandlerV1Params {
+	o.SetResponseBody(responseBody)
+	return o
+}
+
+// SetResponseBody adds the responseBody to the admin put player record concurrent handler v1 params
+func (o *AdminPutPlayerRecordConcurrentHandlerV1Params) SetResponseBody(responseBody *bool) {
+	o.ResponseBody = responseBody
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminPutPlayerRecordConcurrentHandlerV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -208,6 +225,22 @@ func (o *AdminPutPlayerRecordConcurrentHandlerV1Params) WriteToRequest(r runtime
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.ResponseBody != nil {
+
+		// query param responseBody
+		var qrResponseBody bool
+		if o.ResponseBody != nil {
+			qrResponseBody = *o.ResponseBody
+		}
+		qResponseBody := swag.FormatBool(qrResponseBody)
+		if qResponseBody != "" {
+			if err := r.SetQueryParam("responseBody", qResponseBody); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

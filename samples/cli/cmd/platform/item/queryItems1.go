@@ -50,6 +50,7 @@ var QueryItems1Cmd = &cobra.Command{
 		storeId, _ := cmd.Flags().GetString("storeId")
 		tags, _ := cmd.Flags().GetString("tags")
 		targetNamespace, _ := cmd.Flags().GetString("targetNamespace")
+		withTotal, _ := cmd.Flags().GetBool("withTotal")
 		input := &item.QueryItems1Params{
 			Namespace:              namespace,
 			AppType:                &appType,
@@ -69,6 +70,7 @@ var QueryItems1Cmd = &cobra.Command{
 			StoreID:                &storeId,
 			Tags:                   &tags,
 			TargetNamespace:        &targetNamespace,
+			WithTotal:              &withTotal,
 		}
 		ok, errOK := itemService.QueryItems1Short(input)
 		if errOK != nil {
@@ -103,4 +105,5 @@ func init() {
 	QueryItems1Cmd.Flags().String("storeId", "", "Store id")
 	QueryItems1Cmd.Flags().String("tags", "", "Tags")
 	QueryItems1Cmd.Flags().String("targetNamespace", "", "Target namespace")
+	QueryItems1Cmd.Flags().Bool("withTotal", false, "With total")
 }

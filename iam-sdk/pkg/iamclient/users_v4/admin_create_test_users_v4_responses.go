@@ -228,8 +228,8 @@ func NewAdminCreateTestUsersV4NotImplemented() *AdminCreateTestUsersV4NotImpleme
 
 /*AdminCreateTestUsersV4NotImplemented handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20024</td><td>not implemented</td></tr></table>
+*/
 type AdminCreateTestUsersV4NotImplemented struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

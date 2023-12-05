@@ -33,6 +33,12 @@ func (o *AdminGetContentBulkByShareCodesReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminGetContentBulkByShareCodesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminGetContentBulkByShareCodesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -107,6 +113,59 @@ func (o *AdminGetContentBulkByShareCodesOK) readResponse(response runtime.Client
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetContentBulkByShareCodesBadRequest creates a AdminGetContentBulkByShareCodesBadRequest with default headers values
+func NewAdminGetContentBulkByShareCodesBadRequest() *AdminGetContentBulkByShareCodesBadRequest {
+	return &AdminGetContentBulkByShareCodesBadRequest{}
+}
+
+/*AdminGetContentBulkByShareCodesBadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type AdminGetContentBulkByShareCodesBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetContentBulkByShareCodesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/sharecodes/bulk][%d] adminGetContentBulkByShareCodesBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetContentBulkByShareCodesBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetContentBulkByShareCodesBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetContentBulkByShareCodesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

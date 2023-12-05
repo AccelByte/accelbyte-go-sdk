@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.34.0"
+    "version": "1.35.0"
   },
   "schemes": [
     "https"
@@ -5182,16 +5182,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-11-17T10:12:35+00:00",
-    "buildID": "1.34.0",
+    "buildDate": "2023-12-01T11:05:14+00:00",
+    "buildID": "1.35.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "885581b8ae",
-    "gitTag": "1.34.0",
+    "gitHash": "cf0757eac4",
+    "gitTag": "1.35.0",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.34.0",
+    "version": "1.35.0",
     "version-roles-seeding": "0.0.3"
   }
 }

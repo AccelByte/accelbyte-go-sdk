@@ -36,6 +36,8 @@ type ClientService interface {
 	PublicListContentV2Short(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, error)
 	PublicBulkGetContentByIDV2(params *PublicBulkGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetContentByIDV2OK, *PublicBulkGetContentByIDV2BadRequest, *PublicBulkGetContentByIDV2Unauthorized, *PublicBulkGetContentByIDV2InternalServerError, error)
 	PublicBulkGetContentByIDV2Short(params *PublicBulkGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetContentByIDV2OK, error)
+	PublicGetContentBulkByShareCodesV2(params *PublicGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkByShareCodesV2OK, *PublicGetContentBulkByShareCodesV2BadRequest, *PublicGetContentBulkByShareCodesV2Unauthorized, *PublicGetContentBulkByShareCodesV2Forbidden, *PublicGetContentBulkByShareCodesV2InternalServerError, error)
+	PublicGetContentBulkByShareCodesV2Short(params *PublicGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkByShareCodesV2OK, error)
 	PublicGetContentByShareCodeV2(params *PublicGetContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByShareCodeV2OK, *PublicGetContentByShareCodeV2Unauthorized, *PublicGetContentByShareCodeV2NotFound, *PublicGetContentByShareCodeV2InternalServerError, error)
 	PublicGetContentByShareCodeV2Short(params *PublicGetContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByShareCodeV2OK, error)
 	PublicGetContentByIDV2(params *PublicGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByIDV2OK, *PublicGetContentByIDV2Unauthorized, *PublicGetContentByIDV2NotFound, *PublicGetContentByIDV2InternalServerError, error)
@@ -52,6 +54,8 @@ type ClientService interface {
 	PublicUpdateContentV2Short(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, error)
 	PublicUpdateContentFileLocation(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, *PublicUpdateContentFileLocationBadRequest, *PublicUpdateContentFileLocationUnauthorized, *PublicUpdateContentFileLocationForbidden, *PublicUpdateContentFileLocationNotFound, *PublicUpdateContentFileLocationInternalServerError, error)
 	PublicUpdateContentFileLocationShort(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, error)
+	UpdateContentShareCodeV2(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, *UpdateContentShareCodeV2BadRequest, *UpdateContentShareCodeV2Unauthorized, *UpdateContentShareCodeV2Forbidden, *UpdateContentShareCodeV2NotFound, *UpdateContentShareCodeV2Conflict, *UpdateContentShareCodeV2InternalServerError, error)
+	UpdateContentShareCodeV2Short(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, error)
 	PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2InternalServerError, error)
 	PublicGenerateContentUploadURLV2Short(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, error)
 	PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, *PublicGetContentByUserIDV2Unauthorized, *PublicGetContentByUserIDV2InternalServerError, error)
@@ -400,6 +404,120 @@ func (a *Client) PublicBulkGetContentByIDV2Short(params *PublicBulkGetContentByI
 	case *PublicBulkGetContentByIDV2Unauthorized:
 		return nil, v
 	case *PublicBulkGetContentByIDV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetContentBulkByShareCodesV2Short instead.
+
+PublicGetContentBulkByShareCodesV2 bulk get content by content sharecodes
+Require valid user token.
+Maximum sharecodes per request 100
+*/
+func (a *Client) PublicGetContentBulkByShareCodesV2(params *PublicGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkByShareCodesV2OK, *PublicGetContentBulkByShareCodesV2BadRequest, *PublicGetContentBulkByShareCodesV2Unauthorized, *PublicGetContentBulkByShareCodesV2Forbidden, *PublicGetContentBulkByShareCodesV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetContentBulkByShareCodesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetContentBulkByShareCodesV2",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetContentBulkByShareCodesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetContentBulkByShareCodesV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetContentBulkByShareCodesV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetContentBulkByShareCodesV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetContentBulkByShareCodesV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetContentBulkByShareCodesV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetContentBulkByShareCodesV2Short bulk get content by content sharecodes
+Require valid user token.
+Maximum sharecodes per request 100
+*/
+func (a *Client) PublicGetContentBulkByShareCodesV2Short(params *PublicGetContentBulkByShareCodesV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkByShareCodesV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetContentBulkByShareCodesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetContentBulkByShareCodesV2",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/contents/sharecodes/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetContentBulkByShareCodesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetContentBulkByShareCodesV2OK:
+		return v, nil
+	case *PublicGetContentBulkByShareCodesV2BadRequest:
+		return nil, v
+	case *PublicGetContentBulkByShareCodesV2Unauthorized:
+		return nil, v
+	case *PublicGetContentBulkByShareCodesV2Forbidden:
+		return nil, v
+	case *PublicGetContentBulkByShareCodesV2InternalServerError:
 		return nil, v
 
 	default:
@@ -1283,6 +1401,140 @@ func (a *Client) PublicUpdateContentFileLocationShort(params *PublicUpdateConten
 	case *PublicUpdateContentFileLocationNotFound:
 		return nil, v
 	case *PublicUpdateContentFileLocationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateContentShareCodeV2Short instead.
+
+UpdateContentShareCodeV2 update content share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE].
+
+This endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.
+
+`shareCode` format should follows:
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+*/
+func (a *Client) UpdateContentShareCodeV2(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, *UpdateContentShareCodeV2BadRequest, *UpdateContentShareCodeV2Unauthorized, *UpdateContentShareCodeV2Forbidden, *UpdateContentShareCodeV2NotFound, *UpdateContentShareCodeV2Conflict, *UpdateContentShareCodeV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateContentShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateContentShareCodeV2",
+		Method:             "PATCH",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/sharecode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateContentShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateContentShareCodeV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *UpdateContentShareCodeV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateContentShareCodeV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateContentShareCodeV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateContentShareCodeV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateContentShareCodeV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateContentShareCodeV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateContentShareCodeV2Short update content share code
+Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE].
+
+This endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.
+
+`shareCode` format should follows:
+Max length: 7
+Available characters: abcdefhkpqrstuxyz
+*/
+func (a *Client) UpdateContentShareCodeV2Short(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateContentShareCodeV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateContentShareCodeV2",
+		Method:             "PATCH",
+		PathPattern:        "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/sharecode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateContentShareCodeV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateContentShareCodeV2OK:
+		return v, nil
+	case *UpdateContentShareCodeV2BadRequest:
+		return nil, v
+	case *UpdateContentShareCodeV2Unauthorized:
+		return nil, v
+	case *UpdateContentShareCodeV2Forbidden:
+		return nil, v
+	case *UpdateContentShareCodeV2NotFound:
+		return nil, v
+	case *UpdateContentShareCodeV2Conflict:
+		return nil, v
+	case *UpdateContentShareCodeV2InternalServerError:
 		return nil, v
 
 	default:

@@ -222,32 +222,32 @@ func (aaa *PartyService) PublicRevokePartyCode(input *party.PublicRevokePartyCod
 }
 
 // Deprecated: 2022-01-10 - please use PublicPartyInviteShort instead.
-func (aaa *PartyService) PublicPartyInvite(input *party.PublicPartyInviteParams) error {
+func (aaa *PartyService) PublicPartyInvite(input *party.PublicPartyInviteParams) (*sessionclientmodels.ApimodelsSessionInviteResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, noContent, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Party.PublicPartyInvite(input, client.BearerToken(*token.AccessToken))
+	created, noContent, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Party.PublicPartyInvite(input, client.BearerToken(*token.AccessToken))
 	if noContent != nil {
-		return noContent
+		return nil, noContent
 	}
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return created.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicPromotePartyLeaderShort instead.
@@ -610,7 +610,7 @@ func (aaa *PartyService) PublicRevokePartyCodeShort(input *party.PublicRevokePar
 	return nil
 }
 
-func (aaa *PartyService) PublicPartyInviteShort(input *party.PublicPartyInviteParams) error {
+func (aaa *PartyService) PublicPartyInviteShort(input *party.PublicPartyInviteParams) (*sessionclientmodels.ApimodelsSessionInviteResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -627,12 +627,12 @@ func (aaa *PartyService) PublicPartyInviteShort(input *party.PublicPartyInvitePa
 		}
 	}
 
-	_, err := aaa.Client.Party.PublicPartyInviteShort(input, authInfoWriter)
+	created, err := aaa.Client.Party.PublicPartyInviteShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return created.GetPayload(), nil
 }
 
 func (aaa *PartyService) PublicPromotePartyLeaderShort(input *party.PublicPromotePartyLeaderParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {

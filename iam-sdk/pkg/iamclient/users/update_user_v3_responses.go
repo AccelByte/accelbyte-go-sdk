@@ -45,6 +45,12 @@ func (o *UpdateUserV3Reader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewUpdateUserV3Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewUpdateUserV3Conflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -211,6 +217,59 @@ func (o *UpdateUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorRespon
 }
 
 func (o *UpdateUserV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateUserV3Forbidden creates a UpdateUserV3Forbidden with default headers values
+func NewUpdateUserV3Forbidden() *UpdateUserV3Forbidden {
+	return &UpdateUserV3Forbidden{}
+}
+
+/*UpdateUserV3Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10213</td><td>country is blocked</td></tr></table>
+*/
+type UpdateUserV3Forbidden struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *UpdateUserV3Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] updateUserV3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateUserV3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateUserV3Forbidden) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *UpdateUserV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

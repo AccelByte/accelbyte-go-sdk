@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.40.0"
+    "version": "4.41.0"
   },
   "schemes": [
     "https"
@@ -3297,6 +3297,12 @@
               "$ref": "#/definitions/DLCItemConfigInfo"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e394721\u003c/td\u003e\u003ctd\u003eInvalid platform DLC config namespace [{namespace}]: [{message}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39471\u003c/td\u003e\u003ctd\u003eDuplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] \u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -4666,6 +4672,12 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/IAPItemConfigInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39321\u003c/td\u003e\u003ctd\u003eInvalid IAP item config namespace [{namespace}]: [{message}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           },
           "409": {
@@ -28466,6 +28478,15 @@
             "name": "targetNamespace",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "true means include total count of items in response body",
+            "in": "query",
+            "name": "withTotal",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -28475,7 +28496,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/FullItemPagingSlicedResult"
+              "$ref": "#/definitions/FullItemPagingResult"
             }
           },
           "404": {
@@ -34363,6 +34384,28 @@
         "regionData",
         "status",
         "updatedAt"
+      ],
+      "type": "object"
+    },
+    "FullItemPagingResult": {
+      "properties": {
+        "data": {
+          "description": "data",
+          "items": {
+            "$ref": "#/definitions/FullItemInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "total": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data"
       ],
       "type": "object"
     },
@@ -42523,13 +42566,26 @@
       ],
       "type": "object"
     },
+    "SteamAchievement": {
+      "description": "steam achievement request",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "SteamAchievementUpdateRequest": {
       "description": "A DTO object for unlock steam achievement API",
       "properties": {
         "achievements": {
           "description": "achievements to be updated",
           "items": {
-            "$ref": "#/definitions/steam achievement"
+            "$ref": "#/definitions/SteamAchievement"
           },
           "type": "array"
         },
@@ -43635,7 +43691,7 @@
       ],
       "type": "object"
     },
-    "Time-limited balance": {
+    "TimeLimitedBalance": {
       "properties": {
         "balance": {
           "description": "balance",
@@ -44486,7 +44542,7 @@
         "timeLimitedBalances": {
           "description": "time-limited balances info",
           "items": {
-            "$ref": "#/definitions/Time-limited balance"
+            "$ref": "#/definitions/TimeLimitedBalance"
           },
           "type": "array"
         },
@@ -44712,7 +44768,7 @@
         "achievements": {
           "description": "achievements to be updated",
           "items": {
-            "$ref": "#/definitions/xbox achievement"
+            "$ref": "#/definitions/XboxAchievement"
           },
           "type": "array"
         },
@@ -44862,6 +44918,21 @@
       ],
       "type": "object"
     },
+    "XboxAchievement": {
+      "description": "xbox achievement request",
+      "properties": {
+        "id": {
+          "description": "achievement id",
+          "type": "string"
+        },
+        "percentComplete": {
+          "description": "complete percentage",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "XsollaConfig": {
       "description": "A DTO object for updating xsolla config.",
       "properties": {
@@ -44967,34 +45038,6 @@
         }
       },
       "type": "object"
-    },
-    "steam achievement": {
-      "description": "steam achievement request",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "value": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "xbox achievement": {
-      "description": "xbox achievement request",
-      "properties": {
-        "id": {
-          "description": "achievement id",
-          "type": "string"
-        },
-        "percentComplete": {
-          "description": "complete percentage",
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "type": "object"
     }
   },
   "x-docs": {
@@ -45004,16 +45047,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-11-17T10:16:05+00:00",
-    "buildID": "4.40.0",
+    "buildDate": "2023-12-01T11:05:22+00:00",
+    "buildID": "4.41.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.13.0-1021-aws",
     "gitBranchName": "release-candidate",
-    "gitHash": "76dff6789a",
-    "gitTag": "4.40.0",
+    "gitHash": "1d897dcab8",
+    "gitTag": "4.41.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.40.0",
+    "version": "4.41.0",
     "version-roles-seeding": "1.0.3"
   }
 }

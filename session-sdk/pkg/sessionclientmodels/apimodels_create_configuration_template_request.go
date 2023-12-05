@@ -24,6 +24,9 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// psnbaseurl
 	PSNBaseURL string `json:"PSNBaseUrl,omitempty"`
 
+	// attributes
+	Attributes interface{} `json:"attributes,omitempty"`
+
 	// autojoin
 	AutoJoin bool `json:"autoJoin"`
 

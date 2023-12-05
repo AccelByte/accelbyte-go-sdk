@@ -36,6 +36,8 @@ type ClientService interface {
 	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
 	AdminRetrievePlayerRecords(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, *AdminRetrievePlayerRecordsBadRequest, *AdminRetrievePlayerRecordsUnauthorized, *AdminRetrievePlayerRecordsForbidden, *AdminRetrievePlayerRecordsInternalServerError, error)
 	AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, error)
+	AdminGetPlayerRecordsHandlerV1(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, *AdminGetPlayerRecordsHandlerV1BadRequest, *AdminGetPlayerRecordsHandlerV1Unauthorized, *AdminGetPlayerRecordsHandlerV1Forbidden, *AdminGetPlayerRecordsHandlerV1NotFound, *AdminGetPlayerRecordsHandlerV1InternalServerError, error)
+	AdminGetPlayerRecordsHandlerV1Short(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, error)
 	AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, *AdminGetPlayerRecordHandlerV1Unauthorized, *AdminGetPlayerRecordHandlerV1Forbidden, *AdminGetPlayerRecordHandlerV1NotFound, *AdminGetPlayerRecordHandlerV1InternalServerError, error)
 	AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, error)
 	AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1BadRequest, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1Forbidden, *AdminPutPlayerRecordHandlerV1InternalServerError, error)
@@ -419,6 +421,139 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 	case *AdminRetrievePlayerRecordsForbidden:
 		return nil, v
 	case *AdminRetrievePlayerRecordsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetPlayerRecordsHandlerV1Short instead.
+
+AdminGetPlayerRecordsHandlerV1 bulk get player records by multiple record keys
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]`
+--------------------|-----------------------------------------------------------
+Required Scope      | `social`
+
+
+
+
+Retrieve player record key and payload in bulk under given namespace.
+Maximum bulk key limit per request 20.
+*/
+func (a *Client) AdminGetPlayerRecordsHandlerV1(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, *AdminGetPlayerRecordsHandlerV1BadRequest, *AdminGetPlayerRecordsHandlerV1Unauthorized, *AdminGetPlayerRecordsHandlerV1Forbidden, *AdminGetPlayerRecordsHandlerV1NotFound, *AdminGetPlayerRecordsHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerRecordsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerRecordsHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerRecordsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerRecordsHandlerV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetPlayerRecordsHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetPlayerRecordsHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetPlayerRecordsHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetPlayerRecordsHandlerV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetPlayerRecordsHandlerV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetPlayerRecordsHandlerV1Short bulk get player records by multiple record keys
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]`
+--------------------|-----------------------------------------------------------
+Required Scope      | `social`
+
+
+
+
+Retrieve player record key and payload in bulk under given namespace.
+Maximum bulk key limit per request 20.
+*/
+func (a *Client) AdminGetPlayerRecordsHandlerV1Short(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerRecordsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerRecordsHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerRecordsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerRecordsHandlerV1OK:
+		return v, nil
+	case *AdminGetPlayerRecordsHandlerV1BadRequest:
+		return nil, v
+	case *AdminGetPlayerRecordsHandlerV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerRecordsHandlerV1Forbidden:
+		return nil, v
+	case *AdminGetPlayerRecordsHandlerV1NotFound:
+		return nil, v
+	case *AdminGetPlayerRecordsHandlerV1InternalServerError:
 		return nil, v
 
 	default:

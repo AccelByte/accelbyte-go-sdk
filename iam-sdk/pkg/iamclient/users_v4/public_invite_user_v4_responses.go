@@ -181,8 +181,8 @@ func NewPublicInviteUserV4Conflict() *PublicInviteUserV4Conflict {
 
 /*PublicInviteUserV4Conflict handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10207</td><td>user namespace is not available</td></tr></table>
+*/
 type PublicInviteUserV4Conflict struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

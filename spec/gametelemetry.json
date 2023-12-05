@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.20.0"
+    "version": "1.21.0"
   },
   "schemes": [
     "https"
@@ -68,11 +68,19 @@
         "summary": "Get Namespaces",
         "tags": [
           "telemetry"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:*:TELEMETRY [READ]"
+            ]
+          }
         ]
       }
     },
     "/game-telemetry/v1/admin/namespaces/{namespace}/events": {
       "get": {
+        "description": "This endpoint requires valid JWT token and telemetry permission\nThis endpoint retrieves event list",
         "operationId": "get_events_game_telemetry_v1_admin_namespaces__namespace__events_get",
         "parameters": [
           {
@@ -173,6 +181,13 @@
         "summary": "Get Events",
         "tags": [
           "telemetry"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TELEMETRY [READ]"
+            ]
+          }
         ]
       }
     },
@@ -233,7 +248,8 @@
         "summary": "Protected Save Events",
         "tags": [
           "Gametelemetry Operations"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime": {
@@ -289,7 +305,8 @@
         "summary": "Protected Get Playtime",
         "tags": [
           "Gametelemetry Operations"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}": {
@@ -348,7 +365,8 @@
         "summary": "Protected Update Playtime",
         "tags": [
           "Gametelemetry Operations"
-        ]
+        ],
+        "x-security": []
       }
     }
   },
@@ -441,11 +459,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2023-11-20T01:24:25+00:00",
-    "gitHash": "0998317b75df6140aaad35756195a8008f9acf49",
+    "buildDate": "2023-12-01T14:08:24+00:00",
+    "gitHash": "688bc563e3c3ddd3c906f70e22495227b3e21068",
     "name": "analytics-game-telemetry",
     "realm": "demo",
-    "rolesSeedingVersion": "0.0.3",
-    "version": "1.20.0"
+    "version": "1.21.0",
+    "version-roles-seeding": "1.0.18"
   }
 }

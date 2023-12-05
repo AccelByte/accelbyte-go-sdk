@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.26.2"
+    "version": "2.27.1"
   },
   "schemes": [
     "https"
@@ -4480,6 +4480,10 @@
           },
           "type": "array"
         },
+        "batch_size": {
+          "format": "int32",
+          "type": "integer"
+        },
         "bucket_mmr_rule": {
           "$ref": "#/definitions/models.BucketMMRRule"
         },
@@ -4502,11 +4506,35 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "sort_ticket": {
+          "$ref": "#/definitions/models.SortTicket"
+        },
+        "sort_tickets": {
+          "items": {
+            "$ref": "#/definitions/models.SortTicketRule"
+          },
+          "type": "array"
+        },
         "sub_game_modes": {
           "additionalProperties": {
             "$ref": "#/definitions/models.SubGameMode"
           },
           "type": "object"
+        },
+        "ticket_flexing_selection": {
+          "enum": [
+            "newest",
+            "oldest",
+            "pivot",
+            "random"
+          ],
+          "type": "string"
+        },
+        "ticket_flexing_selections": {
+          "items": {
+            "$ref": "#/definitions/models.SelectionRule"
+          },
+          "type": "array"
         },
         "use_newest_ticket_for_flexing": {
           "type": "boolean",
@@ -4515,10 +4543,15 @@
       },
       "required": [
         "alliance",
+        "batch_size",
         "flexing_rule",
         "match_options",
         "matching_rule",
-        "rebalance_enable"
+        "rebalance_enable",
+        "sort_ticket",
+        "sort_tickets",
+        "ticket_flexing_selection",
+        "ticket_flexing_selections"
       ]
     },
     "models.RuleSetV1": {
@@ -4531,6 +4564,10 @@
             "$ref": "#/definitions/models.AllianceFlexingRule"
           },
           "type": "array"
+        },
+        "batch_size": {
+          "format": "int32",
+          "type": "integer"
         },
         "bucket_mmr_rule": {
           "$ref": "#/definitions/models.BucketMMRRule"
@@ -4550,11 +4587,35 @@
           },
           "type": "array"
         },
+        "sort_ticket": {
+          "$ref": "#/definitions/models.SortTicket"
+        },
+        "sort_tickets": {
+          "items": {
+            "$ref": "#/definitions/models.SortTicketRule"
+          },
+          "type": "array"
+        },
         "sub_game_modes": {
           "additionalProperties": {
             "$ref": "#/definitions/models.SubGameMode"
           },
           "type": "object"
+        },
+        "ticket_flexing_selection": {
+          "enum": [
+            "newest",
+            "oldest",
+            "pivot",
+            "random"
+          ],
+          "type": "string"
+        },
+        "ticket_flexing_selections": {
+          "items": {
+            "$ref": "#/definitions/models.SelectionRule"
+          },
+          "type": "array"
         },
         "use_newest_ticket_for_flexing": {
           "type": "boolean",
@@ -4564,10 +4625,97 @@
       "required": [
         "alliance",
         "alliance_flexing_rule",
+        "batch_size",
         "flexingRules",
         "match_options",
         "matchingRules",
-        "sub_game_modes"
+        "sort_ticket",
+        "sort_tickets",
+        "sub_game_modes",
+        "ticket_flexing_selection",
+        "ticket_flexing_selections"
+      ]
+    },
+    "models.SelectionRule": {
+      "properties": {
+        "selection": {
+          "enum": [
+            "newest",
+            "oldest",
+            "pivot",
+            "random"
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "selection",
+        "threshold"
+      ]
+    },
+    "models.SortTicket": {
+      "properties": {
+        "search_result": {
+          "enum": [
+            "distance",
+            "largestPartySize",
+            "none",
+            "oldestTicketAge",
+            "random"
+          ],
+          "type": "string"
+        },
+        "ticket_queue": {
+          "enum": [
+            "distance",
+            "largestPartySize",
+            "none",
+            "oldestTicketAge",
+            "random"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "search_result",
+        "ticket_queue"
+      ]
+    },
+    "models.SortTicketRule": {
+      "properties": {
+        "search_result": {
+          "enum": [
+            "distance",
+            "largestPartySize",
+            "none",
+            "oldestTicketAge",
+            "random"
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ticket_queue": {
+          "enum": [
+            "distance",
+            "largestPartySize",
+            "none",
+            "oldestTicketAge",
+            "random"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "search_result",
+        "threshold",
+        "ticket_queue"
       ]
     },
     "models.StatResumeResponse": {
@@ -4793,6 +4941,10 @@
           },
           "type": "array"
         },
+        "batch_size": {
+          "format": "int32",
+          "type": "integer"
+        },
         "bucket_mmr_rule": {
           "$ref": "#/definitions/models.BucketMMRRule"
         },
@@ -4811,8 +4963,32 @@
           },
           "type": "array"
         },
+        "sort_ticket": {
+          "$ref": "#/definitions/models.SortTicket"
+        },
+        "sort_tickets": {
+          "items": {
+            "$ref": "#/definitions/models.SortTicketRule"
+          },
+          "type": "array"
+        },
         "sub_game_modes": {
           "$ref": "#/definitions/models.UpdateRuleset.sub_game_modes"
+        },
+        "ticket_flexing_selection": {
+          "enum": [
+            "newest",
+            "oldest",
+            "pivot",
+            "random"
+          ],
+          "type": "string"
+        },
+        "ticket_flexing_selections": {
+          "items": {
+            "$ref": "#/definitions/models.SelectionRule"
+          },
+          "type": "array"
         },
         "use_newest_ticket_for_flexing": {
           "type": "boolean",
@@ -4821,7 +4997,12 @@
       },
       "required": [
         "alliance",
-        "alliance_flexing_rule"
+        "alliance_flexing_rule",
+        "batch_size",
+        "sort_ticket",
+        "sort_tickets",
+        "ticket_flexing_selection",
+        "ticket_flexing_selections"
       ]
     },
     "models.UpdateRuleset.sub_game_modes": {
@@ -5124,9 +5305,9 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-11T02:40:56+00:00",
-    "gitHash": "9e1563b045cf9e016178a5945273e2b616dc638f",
-    "version": "2.26.2",
+    "buildDate": "2023-11-29T01:22:10+00:00",
+    "gitHash": "7be07d7fefb7e7676211feba7b7938f00cfe84f6",
+    "version": "2.27.1",
     "version-roles-seeding": "0.0.23"
   }
 }

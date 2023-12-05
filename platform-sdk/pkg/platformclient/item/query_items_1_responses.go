@@ -66,7 +66,7 @@ func NewQueryItems1OK() *QueryItems1OK {
   successful operation
 */
 type QueryItems1OK struct {
-	Payload *platformclientmodels.FullItemPagingSlicedResult
+	Payload *platformclientmodels.FullItemPagingResult
 }
 
 func (o *QueryItems1OK) Error() string {
@@ -88,7 +88,7 @@ func (o *QueryItems1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryItems1OK) GetPayload() *platformclientmodels.FullItemPagingSlicedResult {
+func (o *QueryItems1OK) GetPayload() *platformclientmodels.FullItemPagingResult {
 	return o.Payload
 }
 
@@ -99,7 +99,7 @@ func (o *QueryItems1OK) readResponse(response runtime.ClientResponse, consumer r
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(platformclientmodels.FullItemPagingSlicedResult)
+	o.Payload = new(platformclientmodels.FullItemPagingResult)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -21,10 +21,11 @@ import (
 
 // Get the enum in TokenGrantV3Params
 const (
-	TokenGrantV3AuthorizationCodeConstant = "authorization_code"
-	TokenGrantV3ClientCredentialsConstant = "client_credentials"
-	TokenGrantV3PasswordConstant          = "password"
-	TokenGrantV3RefreshTokenConstant      = "refresh_token"
+	TokenGrantV3AuthorizationCodeConstant                                  = "authorization_code"
+	TokenGrantV3ClientCredentialsConstant                                  = "client_credentials"
+	TokenGrantV3PasswordConstant                                           = "password"
+	TokenGrantV3RefreshTokenConstant                                       = "refresh_token"
+	TokenGrantV3UrnIetfParamsOauthGrantTypeExtendClientCredentialsConstant = "urn:ietf:params:oauth:grant-type:extend_client_credentials"
 )
 
 // NewTokenGrantV3Params creates a new TokenGrantV3Params object
@@ -115,6 +116,11 @@ type TokenGrantV3Params struct {
 
 	*/
 	CodeVerifier *string
+	/*ExtendNamespace
+	  extend namespace, Used on grant type 'urn:ietf:params:oauth:grant-type:extend_client_credentials'.
+
+	*/
+	ExtendNamespace *string
 	/*ExtendExp
 	  Extend expiration date of refresh token. Only available for grant type 'password'
 
@@ -263,6 +269,17 @@ func (o *TokenGrantV3Params) WithCodeVerifier(codeVerifier *string) *TokenGrantV
 // SetCodeVerifier adds the codeVerifier to the token grant v3 params
 func (o *TokenGrantV3Params) SetCodeVerifier(codeVerifier *string) {
 	o.CodeVerifier = codeVerifier
+}
+
+// WithExtendNamespace adds the extendNamespace to the token grant v3 params
+func (o *TokenGrantV3Params) WithExtendNamespace(extendNamespace *string) *TokenGrantV3Params {
+	o.SetExtendNamespace(extendNamespace)
+	return o
+}
+
+// SetExtendNamespace adds the extendNamespace to the token grant v3 params
+func (o *TokenGrantV3Params) SetExtendNamespace(extendNamespace *string) {
+	o.ExtendNamespace = extendNamespace
 }
 
 // WithExtendExp adds the extendExp to the token grant v3 params
@@ -414,6 +431,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		fCodeVerifier := frCodeVerifier
 		if fCodeVerifier != "" {
 			if err := r.SetFormParam("code_verifier", fCodeVerifier); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ExtendNamespace != nil {
+
+		// form param extendNamespace
+		var frExtendNamespace string
+		if o.ExtendNamespace != nil {
+			frExtendNamespace = *o.ExtendNamespace
+		}
+		fExtendNamespace := frExtendNamespace
+		if fExtendNamespace != "" {
+			if err := r.SetFormParam("extendNamespace", fExtendNamespace); err != nil {
 				return err
 			}
 		}

@@ -193,7 +193,10 @@ func (aaa *IAPService) UpdateIAPItemConfig(input *iap.UpdateIAPItemConfigParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, conflict, unprocessableEntity, err := aaa.Client.IAP.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, unprocessableEntity, err := aaa.Client.IAP.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if conflict != nil {
 		return nil, conflict
 	}

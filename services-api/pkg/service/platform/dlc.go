@@ -53,7 +53,10 @@ func (aaa *DLCService) UpdateDLCItemConfig(input *dlc.UpdateDLCItemConfigParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, conflict, unprocessableEntity, err := aaa.Client.DLC.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, unprocessableEntity, err := aaa.Client.DLC.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if conflict != nil {
 		return nil, conflict
 	}

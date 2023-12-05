@@ -72,6 +72,8 @@ type ClientService interface {
 	LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, error)
 	PublicGameSessionReject(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, *PublicGameSessionRejectBadRequest, *PublicGameSessionRejectUnauthorized, *PublicGameSessionRejectForbidden, *PublicGameSessionRejectNotFound, *PublicGameSessionRejectInternalServerError, error)
 	PublicGameSessionRejectShort(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, error)
+	GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error)
+	GetSessionServerSecretShort(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, error)
 	AppendTeamGameSession(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, *AppendTeamGameSessionUnauthorized, *AppendTeamGameSessionForbidden, *AppendTeamGameSessionNotFound, *AppendTeamGameSessionInternalServerError, error)
 	AppendTeamGameSessionShort(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, error)
 	PublicQueryMyGameSessions(params *PublicQueryMyGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryMyGameSessionsOK, *PublicQueryMyGameSessionsBadRequest, *PublicQueryMyGameSessionsUnauthorized, *PublicQueryMyGameSessionsInternalServerError, error)
@@ -2657,6 +2659,158 @@ func (a *Client) PublicGameSessionRejectShort(params *PublicGameSessionRejectPar
 	case *PublicGameSessionRejectNotFound:
 		return nil, v
 	case *PublicGameSessionRejectInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetSessionServerSecretShort instead.
+
+GetSessionServerSecret get server secret. requires namespace:{namespace}:session:game:secret [read]
+
+Used by game Client to Get Secret
+constraints
+- EnableSecret = true
+- Type = "DS"
+- secret value will only be produced if enableSecret is true and type is DS
+
+if enableSecret = false
+- empty secret will be returned as 200 OK
+
+Expected caller of this API
+- Game Client to get server secret
+
+In the Response you will get following:
+- 200 OK { "secret":  }
+
+If there is error:
+- 400 Invalid path parameters
+- 401 unauthorized
+- 404 StatusNotFound
+- 500 Internal server error
+*/
+func (a *Client) GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionServerSecretParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSessionServerSecret",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionServerSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionServerSecretOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetSessionServerSecretBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetSessionServerSecretUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetSessionServerSecretNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetSessionServerSecretInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetSessionServerSecretShort get server secret. requires namespace:{namespace}:session:game:secret [read]
+
+Used by game Client to Get Secret
+constraints
+- EnableSecret = true
+- Type = "DS"
+- secret value will only be produced if enableSecret is true and type is DS
+
+if enableSecret = false
+- empty secret will be returned as 200 OK
+
+Expected caller of this API
+- Game Client to get server secret
+
+In the Response you will get following:
+- 200 OK { "secret":  }
+
+If there is error:
+- 400 Invalid path parameters
+- 401 unauthorized
+- 404 StatusNotFound
+- 500 Internal server error
+*/
+func (a *Client) GetSessionServerSecretShort(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionServerSecretParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSessionServerSecret",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/secret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionServerSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionServerSecretOK:
+		return v, nil
+	case *GetSessionServerSecretBadRequest:
+		return nil, v
+	case *GetSessionServerSecretUnauthorized:
+		return nil, v
+	case *GetSessionServerSecretNotFound:
+		return nil, v
+	case *GetSessionServerSecretInternalServerError:
 		return nil, v
 
 	default:

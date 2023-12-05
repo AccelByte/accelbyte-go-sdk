@@ -226,7 +226,10 @@ func (aaa *AdminContentV2Service) AdminGetContentBulkByShareCodesV2(input *admin
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContentV2.AdminGetContentBulkByShareCodesV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContentV2.AdminGetContentBulkByShareCodesV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

@@ -84,10 +84,30 @@ func NewPublicPartyInviteCreated() *PublicPartyInviteCreated {
   Created
 */
 type PublicPartyInviteCreated struct {
+	Payload *sessionclientmodels.ApimodelsSessionInviteResponse
 }
 
 func (o *PublicPartyInviteCreated) Error() string {
-	return fmt.Sprintf("[POST /session/v1/public/namespaces/{namespace}/parties/{partyId}/invite][%d] publicPartyInviteCreated ", 201)
+	return fmt.Sprintf("[POST /session/v1/public/namespaces/{namespace}/parties/{partyId}/invite][%d] publicPartyInviteCreated  %+v", 201, o.ToJSONString())
+}
+
+func (o *PublicPartyInviteCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicPartyInviteCreated) GetPayload() *sessionclientmodels.ApimodelsSessionInviteResponse {
+	return o.Payload
 }
 
 func (o *PublicPartyInviteCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -95,6 +115,13 @@ func (o *PublicPartyInviteCreated) readResponse(response runtime.ClientResponse,
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(sessionclientmodels.ApimodelsSessionInviteResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

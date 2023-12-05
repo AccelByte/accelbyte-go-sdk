@@ -7,6 +7,7 @@
 package matchmakingclientmodels
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -27,6 +28,11 @@ type ModelsRuleSet struct {
 	// alliance_flexing_rule
 	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule,omitempty"`
 
+	// batch_size
+	// Required: true
+	// Format: int32
+	BatchSize *int32 `json:"batch_size"`
+
 	// bucket_mmr_rule
 	BucketMmrRule *ModelsBucketMMRRule `json:"bucket_mmr_rule,omitempty"`
 
@@ -46,8 +52,25 @@ type ModelsRuleSet struct {
 	// Required: true
 	RebalanceEnable *bool `json:"rebalance_enable"`
 
+	// sort_ticket
+	// Required: true
+	SortTicket *ModelsSortTicket `json:"sort_ticket"`
+
+	// sort_tickets
+	// Required: true
+	SortTickets []*ModelsSortTicketRule `json:"sort_tickets"`
+
 	// sub_game_modes
 	SubGameModes map[string]ModelsSubGameMode `json:"sub_game_modes,omitempty"`
+
+	// ticket_flexing_selection
+	// Enum: ['newest', 'oldest', 'pivot', 'random']
+	// Required: true
+	TicketFlexingSelection *string `json:"ticket_flexing_selection"`
+
+	// ticket_flexing_selections
+	// Required: true
+	TicketFlexingSelections []*ModelsSelectionRule `json:"ticket_flexing_selections"`
 
 	// use_newest_ticket_for_flexing
 	UseNewestTicketForFlexing bool `json:"use_newest_ticket_for_flexing"`
@@ -60,6 +83,9 @@ func (m *ModelsRuleSet) Validate(formats strfmt.Registry) error {
 	if err := m.validateAlliance(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateBatchSize(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateFlexingRule(formats); err != nil {
 		res = append(res, err)
 	}
@@ -70,6 +96,18 @@ func (m *ModelsRuleSet) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRebalanceEnable(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSortTicket(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSortTickets(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTicketFlexingSelection(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTicketFlexingSelections(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,6 +130,15 @@ func (m *ModelsRuleSet) validateAlliance(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSet) validateBatchSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("batch_size", "body", m.BatchSize); err != nil {
+		return err
 	}
 
 	return nil
@@ -169,6 +216,123 @@ func (m *ModelsRuleSet) validateRebalanceEnable(formats strfmt.Registry) error {
 
 	if err := validate.Required("rebalance_enable", "body", m.RebalanceEnable); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSet) validateSortTicket(formats strfmt.Registry) error {
+
+	if err := validate.Required("sort_ticket", "body", m.SortTicket); err != nil {
+		return err
+	}
+
+	if m.SortTicket != nil {
+		if err := m.SortTicket.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sort_ticket")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSet) validateSortTickets(formats strfmt.Registry) error {
+
+	if err := validate.Required("sort_tickets", "body", m.SortTickets); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.SortTickets); i++ {
+		if swag.IsZero(m.SortTickets[i]) { // not required
+			continue
+		}
+
+		if m.SortTickets[i] != nil {
+			if err := m.SortTickets[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("sort_tickets" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+var modelsRuleSetTypeTicketFlexingSelectionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["NEWEST", "OLDEST", "PIVOT", "RANDOM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsRuleSetTypeTicketFlexingSelectionPropEnum = append(modelsRuleSetTypeTicketFlexingSelectionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsRuleSetTicketFlexingSelectionNEWEST captures enum value "NEWEST"
+	ModelsRuleSetTicketFlexingSelectionNEWEST string = "NEWEST"
+
+	// ModelsRuleSetTicketFlexingSelectionOLDEST captures enum value "OLDEST"
+	ModelsRuleSetTicketFlexingSelectionOLDEST string = "OLDEST"
+
+	// ModelsRuleSetTicketFlexingSelectionPIVOT captures enum value "PIVOT"
+	ModelsRuleSetTicketFlexingSelectionPIVOT string = "PIVOT"
+
+	// ModelsRuleSetTicketFlexingSelectionRANDOM captures enum value "RANDOM"
+	ModelsRuleSetTicketFlexingSelectionRANDOM string = "RANDOM"
+)
+
+// prop value enum
+func (m *ModelsRuleSet) validateTicketFlexingSelectionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsRuleSetTypeTicketFlexingSelectionPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ModelsRuleSet) validateTicketFlexingSelection(formats strfmt.Registry) error {
+
+	if err := validate.Required("ticket_flexing_selection", "body", m.TicketFlexingSelection); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTicketFlexingSelectionEnum("ticket_flexing_selection", "body", *m.TicketFlexingSelection); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSet) validateTicketFlexingSelections(formats strfmt.Registry) error {
+
+	if err := validate.Required("ticket_flexing_selections", "body", m.TicketFlexingSelections); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.TicketFlexingSelections); i++ {
+		if swag.IsZero(m.TicketFlexingSelections[i]) { // not required
+			continue
+		}
+
+		if m.TicketFlexingSelections[i] != nil {
+			if err := m.TicketFlexingSelections[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ticket_flexing_selections" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

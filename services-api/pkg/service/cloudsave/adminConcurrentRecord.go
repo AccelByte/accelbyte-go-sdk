@@ -9,6 +9,7 @@ package cloudsave
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_concurrent_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -88,90 +89,99 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1(i
 }
 
 // Deprecated: 2022-01-10 - please use AdminPutAdminPlayerRecordConcurrentHandlerV1Short instead.
-func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, noContent, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if noContent != nil {
+		return nil, noContent
+	}
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		return forbidden
+		return nil, forbidden
 	}
 	if preconditionFailed != nil {
-		return preconditionFailed
+		return nil, preconditionFailed
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use AdminPutPlayerRecordConcurrentHandlerV1Short instead.
-func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, noContent, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if noContent != nil {
+		return nil, noContent
+	}
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		return forbidden
+		return nil, forbidden
 	}
 	if preconditionFailed != nil {
-		return preconditionFailed
+		return nil, preconditionFailed
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use AdminPutPlayerPublicRecordConcurrentHandlerV1Short instead.
-func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	ok, noContent, badRequest, unauthorized, forbidden, preconditionFailed, internalServerError, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if noContent != nil {
+		return nil, noContent
+	}
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if unauthorized != nil {
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		return forbidden
+		return nil, forbidden
 	}
 	if preconditionFailed != nil {
-		return preconditionFailed
+		return nil, preconditionFailed
 	}
 	if internalServerError != nil {
-		return internalServerError
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *AdminConcurrentRecordService) AdminPutAdminGameRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutAdminGameRecordConcurrentHandlerV1Params) error {
@@ -224,7 +234,7 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Sh
 	return nil
 }
 
-func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutAdminPlayerRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -241,15 +251,15 @@ func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHand
 		}
 	}
 
-	_, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
-func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -266,15 +276,15 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1
 		}
 	}
 
-	_, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
-func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) error {
+func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordConcurrentUpdateResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -291,10 +301,10 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHan
 		}
 	}
 
-	_, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input, authInfoWriter)
+	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }

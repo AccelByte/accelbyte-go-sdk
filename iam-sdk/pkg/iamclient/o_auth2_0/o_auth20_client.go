@@ -105,10 +105,27 @@ The third party platform and platform group covered for this is:
                                   * (psn) ps5
 
 
-                                  * xbox live
+                                  * epicgames
 
 
-                                  * steam
+                                  * twitch
+
+
+                                  * awscognito
+
+
+                                  *
+
+                                  * eaorigin
+
+
+                                  * snapchat
+
+
+                                  * twitch
+
+
+                                  * live
 */
 func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized, *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden, *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -199,10 +216,27 @@ The third party platform and platform group covered for this is:
                                   * (psn) ps5
 
 
-                                  * xbox live
+                                  * epicgames
 
 
-                                  * steam
+                                  * twitch
+
+
+                                  * awscognito
+
+
+                                  *
+
+                                  * eaorigin
+
+
+                                  * snapchat
+
+
+                                  * twitch
+
+
+                                  * live
 */
 func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1359,6 +1393,20 @@ The third party platform and platform group covered for this is:
 
 
                                   * awscognito
+
+
+                                  *
+
+                                  * eaorigin
+
+
+                                  * snapchat
+
+
+                                  * twitch
+
+
+                                  * live
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1446,6 +1494,20 @@ The third party platform and platform group covered for this is:
 
 
                                   * awscognito
+
+
+                                  *
+
+                                  * eaorigin
+
+
+                                  * snapchat
+
+
+                                  * twitch
+
+
+                                  * live
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending
@@ -2623,6 +2685,18 @@ or through platform.
 
 
 
+                                      5. Grant Type == `urn:ietf:params:oauth:grant-type:extend_client_credentials`:
+
+    It generates a token by checking the client credentials provided through Authorization header.
+   It only allow publisher namespace client.
+   In generated token:
+     1.There wil be no roles, namespace_roles & permission.
+     2.The scope will be fixed as 'extend'.
+     3.There will have a new field 'extend_namespace', the value is from token request body.
+
+
+
+
 
 ## Access Token Content
 
@@ -2915,6 +2989,18 @@ or through platform.
                                       4. Grant Type == `client_credentials`:
 
     It generates a token by checking the client credentials provided through Authorization header.
+
+
+
+                                      5. Grant Type == `urn:ietf:params:oauth:grant-type:extend_client_credentials`:
+
+    It generates a token by checking the client credentials provided through Authorization header.
+   It only allow publisher namespace client.
+   In generated token:
+     1.There wil be no roles, namespace_roles & permission.
+     2.The scope will be fixed as 'extend'.
+     3.There will have a new field 'extend_namespace', the value is from token request body.
+
 
 
 

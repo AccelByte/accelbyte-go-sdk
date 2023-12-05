@@ -181,7 +181,7 @@ func NewCreateUserFromInvitationV4Forbidden() *CreateUserFromInvitationV4Forbidd
 
 /*CreateUserFromInvitationV4Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr><tr><td>10213</td><td>country is blocked</td></tr></table>
 */
 type CreateUserFromInvitationV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse

@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.12.6"
+    "version": "3.12.7"
   },
   "schemes": [
     "https"
@@ -3420,12 +3420,25 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "flag to tell the service to return non empty response",
+            "in": "query",
+            "name": "responseBody",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordConcurrentUpdateResponse"
+            }
+          },
           "204": {
             "description": "Record saved"
           },
@@ -3513,12 +3526,25 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "flag to tell the service to return non empty response",
+            "in": "query",
+            "name": "responseBody",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordConcurrentUpdateResponse"
+            }
+          },
           "204": {
             "description": "Record saved"
           },
@@ -3607,12 +3633,25 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "flag to tell the service to return non empty response",
+            "in": "query",
+            "name": "responseBody",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordConcurrentUpdateResponse"
+            }
+          },
           "204": {
             "description": "Record saved"
           },
@@ -3747,6 +3786,95 @@
           }
         ],
         "summary": "Query player records",
+        "tags": [
+          "AdminPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\nRetrieve player record key and payload in bulk under given namespace.\nMaximum bulk key limit per request 20.\n",
+        "operationId": "adminGetPlayerRecordsHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordsRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id of the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetAdminPlayerRecordResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18125\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18126\u003c/td\u003e\u003ctd\u003erequest record keys list exceed max size [%d]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18186\u003c/td\u003e\u003ctd\u003erecord not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18124\u003c/td\u003e\u003ctd\u003eunable to get record\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18006\u003c/td\u003e\u003ctd\u003eunable to decode record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get player records by multiple record keys",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -6934,12 +7062,25 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "flag to tell the service to return non empty response",
+            "in": "query",
+            "name": "responseBody",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordConcurrentUpdateResponse"
+            }
+          },
           "204": {
             "description": "Record saved"
           },
@@ -7027,12 +7168,25 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "flag to tell the service to return non empty response",
+            "in": "query",
+            "name": "responseBody",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
           "application/json"
         ],
         "responses": {
+          "200": {
+            "description": "Record saved",
+            "schema": {
+              "$ref": "#/definitions/models.PlayerRecordConcurrentUpdateResponse"
+            }
+          },
           "204": {
             "description": "Record saved"
           },
@@ -8609,6 +8763,18 @@
         "user_id"
       ]
     },
+    "models.PlayerRecordConcurrentUpdateResponse": {
+      "properties": {
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "updated_at"
+      ]
+    },
     "models.PlayerRecordKeyInfo": {
       "properties": {
         "key": {
@@ -8858,11 +9024,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-17T06:40:08+00:00",
-    "gitHash": "459278a0523e5192dae087138d1689c028f68bfd",
+    "buildDate": "2023-12-01T09:19:21+00:00",
+    "gitHash": "f9ba83a033a17332de769f018432067dbf314595",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.12.6",
-    "version": "3.12.6",
+    "revisionID": "3.12.7",
+    "version": "3.12.7",
     "version-roles-seeding": "0.0.46"
   }
 }

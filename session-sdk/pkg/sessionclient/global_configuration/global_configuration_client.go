@@ -43,7 +43,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminListGlobalConfigurationShort instead.
 
-AdminListGlobalConfiguration record of global configuration data. requires admin:namespace:{namespace}:session:configuration [read]
+AdminListGlobalConfiguration record of global configuration data. requires admin:namespace:session:configuration [read]
 Record of global configuration data.
 */
 func (a *Client) AdminListGlobalConfiguration(params *AdminListGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListGlobalConfigurationOK, *AdminListGlobalConfigurationUnauthorized, *AdminListGlobalConfigurationForbidden, error) {
@@ -94,7 +94,7 @@ func (a *Client) AdminListGlobalConfiguration(params *AdminListGlobalConfigurati
 }
 
 /*
-AdminListGlobalConfigurationShort record of global configuration data. requires admin:namespace:{namespace}:session:configuration [read]
+AdminListGlobalConfigurationShort record of global configuration data. requires admin:namespace:session:configuration [read]
 Record of global configuration data.
 */
 func (a *Client) AdminListGlobalConfigurationShort(params *AdminListGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListGlobalConfigurationOK, error) {
@@ -145,7 +145,7 @@ func (a *Client) AdminListGlobalConfigurationShort(params *AdminListGlobalConfig
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateGlobalConfigurationShort instead.
 
-AdminUpdateGlobalConfiguration upsert global configuration data. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateGlobalConfiguration upsert global configuration data. requires admin:namespace:session:configuration [update]
 Upsert global configuration data.
 */
 func (a *Client) AdminUpdateGlobalConfiguration(params *AdminUpdateGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigurationOK, *AdminUpdateGlobalConfigurationUnauthorized, *AdminUpdateGlobalConfigurationForbidden, error) {
@@ -196,7 +196,7 @@ func (a *Client) AdminUpdateGlobalConfiguration(params *AdminUpdateGlobalConfigu
 }
 
 /*
-AdminUpdateGlobalConfigurationShort upsert global configuration data. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateGlobalConfigurationShort upsert global configuration data. requires admin:namespace:session:configuration [update]
 Upsert global configuration data.
 */
 func (a *Client) AdminUpdateGlobalConfigurationShort(params *AdminUpdateGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigurationOK, error) {
@@ -247,7 +247,7 @@ func (a *Client) AdminUpdateGlobalConfigurationShort(params *AdminUpdateGlobalCo
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteGlobalConfigurationShort instead.
 
-AdminDeleteGlobalConfiguration delete of global configuration data. requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteGlobalConfiguration delete of global configuration data. requires admin:namespace:session:configuration [delete]
 Delete of global configuration data.
 */
 func (a *Client) AdminDeleteGlobalConfiguration(params *AdminDeleteGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigurationNoContent, *AdminDeleteGlobalConfigurationUnauthorized, *AdminDeleteGlobalConfigurationForbidden, error) {
@@ -298,7 +298,7 @@ func (a *Client) AdminDeleteGlobalConfiguration(params *AdminDeleteGlobalConfigu
 }
 
 /*
-AdminDeleteGlobalConfigurationShort delete of global configuration data. requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteGlobalConfigurationShort delete of global configuration data. requires admin:namespace:session:configuration [delete]
 Delete of global configuration data.
 */
 func (a *Client) AdminDeleteGlobalConfigurationShort(params *AdminDeleteGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigurationNoContent, error) {

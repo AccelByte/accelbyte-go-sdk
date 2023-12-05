@@ -52,7 +52,7 @@ type ClientService interface {
 	UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
 	GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, *GetIAPItemConfigNotFound, error)
 	GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error)
-	UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error)
+	UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigBadRequest, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error)
 	UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error)
 	DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
 	DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
@@ -1219,7 +1219,7 @@ Update iap item config. Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)
   *  Returns : updated iap item config
 */
-func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error) {
+func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigBadRequest, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateIAPItemConfigParams()
@@ -1247,22 +1247,25 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateIAPItemConfigOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *UpdateIAPItemConfigBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *UpdateIAPItemConfigConflict:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *UpdateIAPItemConfigUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1307,6 +1310,8 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 
 	case *UpdateIAPItemConfigOK:
 		return v, nil
+	case *UpdateIAPItemConfigBadRequest:
+		return nil, v
 	case *UpdateIAPItemConfigConflict:
 		return nil, v
 	case *UpdateIAPItemConfigUnprocessableEntity:

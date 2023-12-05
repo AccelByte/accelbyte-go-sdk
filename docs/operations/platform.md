@@ -706,6 +706,7 @@
 | `FullAppInfo` | [FullAppInfo ](../../platform-sdk/pkg/platformclientmodels/full_app_info.go) |
 | `FullCategoryInfo` | [FullCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/full_category_info.go) |
 | `FullItemInfo` | [FullItemInfo ](../../platform-sdk/pkg/platformclientmodels/full_item_info.go) |
+| `FullItemPagingResult` | [FullItemPagingResult ](../../platform-sdk/pkg/platformclientmodels/full_item_paging_result.go) |
 | `FullItemPagingSlicedResult` | [FullItemPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/full_item_paging_sliced_result.go) |
 | `FullSectionInfo` | [FullSectionInfo ](../../platform-sdk/pkg/platformclientmodels/full_section_info.go) |
 | `FullViewInfo` | [FullViewInfo ](../../platform-sdk/pkg/platformclientmodels/full_view_info.go) |
@@ -896,6 +897,7 @@
 | `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |
+| `SteamAchievement` | [SteamAchievement ](../../platform-sdk/pkg/platformclientmodels/steam_achievement.go) |
 | `SteamAchievementUpdateRequest` | [SteamAchievementUpdateRequest ](../../platform-sdk/pkg/platformclientmodels/steam_achievement_update_request.go) |
 | `SteamDLCSyncRequest` | [SteamDLCSyncRequest ](../../platform-sdk/pkg/platformclientmodels/steam_dlc_sync_request.go) |
 | `SteamIAPConfig` | [SteamIAPConfig ](../../platform-sdk/pkg/platformclientmodels/steam_iap_config.go) |
@@ -927,7 +929,7 @@
 | `TicketSaleDecrementRequest` | [TicketSaleDecrementRequest ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_decrement_request.go) |
 | `TicketSaleIncrementRequest` | [TicketSaleIncrementRequest ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_increment_request.go) |
 | `TicketSaleIncrementResult` | [TicketSaleIncrementResult ](../../platform-sdk/pkg/platformclientmodels/ticket_sale_increment_result.go) |
-| `Time-limited balance` | [TimeLimitedBalance ](../../platform-sdk/pkg/platformclientmodels/time_limited_balance.go) |
+| `TimeLimitedBalance` | [TimeLimitedBalance ](../../platform-sdk/pkg/platformclientmodels/time_limited_balance.go) |
 | `TimedOwnership` | [TimedOwnership ](../../platform-sdk/pkg/platformclientmodels/timed_ownership.go) |
 | `TradeChainActionHistoryInfo` | [TradeChainActionHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/trade_chain_action_history_info.go) |
 | `TradeChainedActionCommitRequest` | [TradeChainedActionCommitRequest ](../../platform-sdk/pkg/platformclientmodels/trade_chained_action_commit_request.go) |
@@ -959,8 +961,7 @@
 | `XblReconcileResult` | [XblReconcileResult ](../../platform-sdk/pkg/platformclientmodels/xbl_reconcile_result.go) |
 | `XblUserAchievements` | [XblUserAchievements ](../../platform-sdk/pkg/platformclientmodels/xbl_user_achievements.go) |
 | `XblUserSessionRequest` | [XblUserSessionRequest ](../../platform-sdk/pkg/platformclientmodels/xbl_user_session_request.go) |
+| `XboxAchievement` | [XboxAchievement ](../../platform-sdk/pkg/platformclientmodels/xbox_achievement.go) |
 | `XsollaConfig` | [XsollaConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_config.go) |
 | `XsollaPaywallConfig` | [XsollaPaywallConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config.go) |
 | `XsollaPaywallConfigRequest` | [XsollaPaywallConfigRequest ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config_request.go) |
-| `steam achievement` | [SteamAchievement ](../../platform-sdk/pkg/platformclientmodels/steam_achievement.go) |
-| `xbox achievement` | [XboxAchievement ](../../platform-sdk/pkg/platformclientmodels/xbox_achievement.go) |

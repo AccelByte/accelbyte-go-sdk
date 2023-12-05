@@ -80,6 +80,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.PublicPromoteGameSessionLeaderCmd)
 	SessionCmd.AddCommand(gameSession.LeaveGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.PublicGameSessionRejectCmd)
+	SessionCmd.AddCommand(gameSession.GetSessionServerSecretCmd)
 	SessionCmd.AddCommand(gameSession.AppendTeamGameSessionCmd)
 	SessionCmd.AddCommand(party.PublicPartyJoinCodeCmd)
 	SessionCmd.AddCommand(party.PublicGetPartyCmd)

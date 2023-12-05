@@ -33,24 +33,26 @@ var TokenGrantV3Cmd = &cobra.Command{
 		clientId, _ := cmd.Flags().GetString("clientId")
 		code, _ := cmd.Flags().GetString("code")
 		codeVerifier, _ := cmd.Flags().GetString("codeVerifier")
+		extendNamespace, _ := cmd.Flags().GetString("extendNamespace")
 		extendExp, _ := cmd.Flags().GetBool("extendExp")
 		password, _ := cmd.Flags().GetString("password")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		refreshToken, _ := cmd.Flags().GetString("refreshToken")
 		username, _ := cmd.Flags().GetString("username")
 		input := &o_auth2_0.TokenGrantV3Params{
-			AuthTrustID:    &authTrustId,
-			DeviceID:       &deviceId,
-			AdditionalData: &additionalData,
-			ClientID:       &clientId,
-			Code:           &code,
-			CodeVerifier:   &codeVerifier,
-			ExtendExp:      &extendExp,
-			Password:       &password,
-			RedirectURI:    &redirectUri,
-			RefreshToken:   &refreshToken,
-			Username:       &username,
-			GrantType:      grantType,
+			AuthTrustID:     &authTrustId,
+			DeviceID:        &deviceId,
+			AdditionalData:  &additionalData,
+			ClientID:        &clientId,
+			Code:            &code,
+			CodeVerifier:    &codeVerifier,
+			ExtendNamespace: &extendNamespace,
+			ExtendExp:       &extendExp,
+			Password:        &password,
+			RedirectURI:     &redirectUri,
+			RefreshToken:    &refreshToken,
+			Username:        &username,
+			GrantType:       grantType,
 		}
 		ok, errOK := oAuth20Service.TokenGrantV3Short(input)
 		if errOK != nil {
@@ -72,6 +74,7 @@ func init() {
 	TokenGrantV3Cmd.Flags().String("clientId", "", "Client id")
 	TokenGrantV3Cmd.Flags().String("code", "", "Code")
 	TokenGrantV3Cmd.Flags().String("codeVerifier", "", "Code verifier")
+	TokenGrantV3Cmd.Flags().String("extendNamespace", "", "Extend namespace")
 	TokenGrantV3Cmd.Flags().Bool("extendExp", false, "Extend exp")
 	TokenGrantV3Cmd.Flags().String("password", "", "Password")
 	TokenGrantV3Cmd.Flags().String("redirectUri", "", "Redirect uri")

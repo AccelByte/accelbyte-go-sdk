@@ -246,7 +246,7 @@ func NewPublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden() *PublicUpg
 
 /*PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10152</td><td>verification code not found</td></tr><tr><td>10137</td><td>code is expired</td></tr><tr><td>10136</td><td>code is either been used or not valid anymore</td></tr><tr><td>10138</td><td>code not match</td></tr><tr><td>10149</td><td>verification contact type doesn't match</td></tr><tr><td>10148</td><td>verification code context doesn't match the required context</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10152</td><td>verification code not found</td></tr><tr><td>10137</td><td>code is expired</td></tr><tr><td>10136</td><td>code is either been used or not valid anymore</td></tr><tr><td>10138</td><td>code not match</td></tr><tr><td>10149</td><td>verification contact type doesn't match</td></tr><tr><td>10148</td><td>verification code context doesn't match the required context</td></tr><tr><td>10213</td><td>country is blocked</td></tr></table>
 */
 type PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse

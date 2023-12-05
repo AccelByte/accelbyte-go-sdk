@@ -8,6 +8,7 @@ package ugc
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminChannel"
+	"github.com/AccelByte/sample-apps/cmd/ugc/adminConfig"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminContent"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminContentV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminGroup"
@@ -96,6 +97,7 @@ func init() {
 	UgcCmd.AddCommand(publicContentLegacy.PublicGetContentBulkCmd)
 	UgcCmd.AddCommand(publicFollow.GetFollowedContentCmd)
 	UgcCmd.AddCommand(publicLikeLegacy.GetLikedContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.PublicGetContentBulkByShareCodesCmd)
 	UgcCmd.AddCommand(publicContentLegacy.PublicDownloadContentByShareCodeCmd)
 	UgcCmd.AddCommand(publicContentLegacy.PublicDownloadContentByContentIDCmd)
 	UgcCmd.AddCommand(publicDownloadCountLegacy.AddDownloadCountCmd)
@@ -118,6 +120,7 @@ func init() {
 	UgcCmd.AddCommand(publicContentLegacy.PublicDeleteContentByShareCodeCmd)
 	UgcCmd.AddCommand(publicContentLegacy.UpdateContentDirectCmd)
 	UgcCmd.AddCommand(publicContentLegacy.DeleteContentCmd)
+	UgcCmd.AddCommand(publicContentLegacy.UpdateContentShareCodeCmd)
 	UgcCmd.AddCommand(publicContentLegacy.PublicGetUserContentCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserContentsCmd)
 	UgcCmd.AddCommand(publicContentLegacy.UpdateScreenshotsCmd)
@@ -140,6 +143,8 @@ func init() {
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentFileLocationCmd)
 	UgcCmd.AddCommand(adminContentV2.AdminGenerateOfficialContentUploadURLV2Cmd)
+	UgcCmd.AddCommand(adminConfig.AdminGetConfigsCmd)
+	UgcCmd.AddCommand(adminConfig.AdminUpdateConfigCmd)
 	UgcCmd.AddCommand(adminContentV2.AdminListContentV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminBulkGetContentByIDsV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminGetContentBulkByShareCodesV2Cmd)
@@ -163,6 +168,7 @@ func init() {
 	UgcCmd.AddCommand(publicContentV2.PublicGetContentByChannelIDV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicListContentV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicBulkGetContentByIDV2Cmd)
+	UgcCmd.AddCommand(publicContentV2.PublicGetContentBulkByShareCodesV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicGetContentByShareCodeV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicGetContentByIDV2Cmd)
 	UgcCmd.AddCommand(publicDownloadCountV2.PublicAddDownloadCountV2Cmd)
@@ -175,6 +181,7 @@ func init() {
 	UgcCmd.AddCommand(publicContentV2.PublicDeleteContentV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicUpdateContentV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicUpdateContentFileLocationCmd)
+	UgcCmd.AddCommand(publicContentV2.UpdateContentShareCodeV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicGenerateContentUploadURLV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicGetContentByUserIDV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.UpdateScreenshotsV2Cmd)

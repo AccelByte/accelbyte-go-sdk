@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.17.0"
+    "version": "2.18.0"
   },
   "schemes": [
     "https"
@@ -49,6 +49,7 @@
         "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]",
         "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]",
+        "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]",
         "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]",
         "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]": "NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]",
@@ -1226,6 +1227,12 @@
                 "$ref": "#/definitions/models.ContentDownloadResponse"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
             }
           },
           "401": {
@@ -4865,6 +4872,80 @@
         ]
       }
     },
+    "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/bulk": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Require valid user token.\n\t\t\t\t\tMaximum sharecodes per request 100",
+        "operationId": "PublicGetContentBulkByShareCodes",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GetContentBulkByShareCodesRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get content by content sharecodes",
+        "tags": [
+          "Public Content (Legacy)"
+        ]
+      }
+    },
     "/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
       "get": {
         "consumes": [
@@ -6544,6 +6625,113 @@
           }
         ],
         "summary": "Update content to a channel",
+        "tags": [
+          "Public Content (Legacy)"
+        ]
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/sharecode": {
+      "patch": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]\u0026lt;/b\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\t\t\tThis endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.\u0026lt;br\u0026gt;\n\t\t\t\t\t\u0026lt;code\u0026gt;shareCode\u0026lt;/code\u0026gt; format should follows:\n\t\t\t\t\tMax length: 7\n\t\t\t\t\tAvailable characters: abcdefhkpqrstuxyz",
+        "operationId": "UpdateContentShareCode",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentShareCodeRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content sharecode",
         "tags": [
           "Public Content (Legacy)"
         ]
@@ -8261,6 +8449,160 @@
         ]
       }
     },
+    "/ugc/v2/admin/namespaces/{namespace}/configs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]\u0026lt;/b\u0026gt;",
+        "operationId": "AdminGetConfigs",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of configs per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedGetConfigsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get configs",
+        "tags": [
+          "Admin Config"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/configs/{key}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]\u0026lt;/b\u0026gt;.\n\t\t\t\t\tIt will create a new config if the \u0026lt;i\u0026gt;key\u0026lt;/i\u0026gt; doesn\u0026#39;t exist.\n\t\t\t\t\tAllowed key value:\n\t\t\t\t\t- \u0026lt;i\u0026gt;contentReview\u0026lt;/i\u0026gt;: \u0026lt;i\u0026gt;enabled\u0026lt;/i\u0026gt;,\u0026lt;i\u0026gt;disabled\u0026lt;/i\u0026gt;",
+        "operationId": "AdminUpdateConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateConfigRequest"
+            }
+          },
+          {
+            "description": "config key",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update config",
+        "tags": [
+          "Admin Config"
+        ]
+      }
+    },
     "/ugc/v2/admin/namespaces/{namespace}/contents": {
       "get": {
         "consumes": [
@@ -8467,6 +8809,12 @@
                 "$ref": "#/definitions/models.ContentDownloadResponseV2"
               },
               "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
             }
           },
           "401": {
@@ -10146,6 +10494,80 @@
         ]
       }
     },
+    "/ugc/v2/public/namespaces/{namespace}/contents/sharecodes/bulk": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Require valid user token.\n\t\t\t\t\t\t\tMaximum sharecodes per request 100",
+        "operationId": "PublicGetContentBulkByShareCodesV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.GetContentBulkByShareCodesRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponseV2"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get content by content sharecodes",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
     "/ugc/v2/public/namespaces/{namespace}/contents/sharecodes/{shareCode}": {
       "get": {
         "consumes": [
@@ -11129,6 +11551,113 @@
         ]
       }
     },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/sharecode": {
+      "patch": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]\u0026lt;/b\u0026gt;.\u0026lt;br\u0026gt;\n\t\t\t\t\t\t\t\tThis endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.\u0026lt;br\u0026gt;\n\t\t\t\t\t\t\t\t\u0026lt;code\u0026gt;shareCode\u0026lt;/code\u0026gt; format should follows:\n\t\t\t\t\t\t\t\tMax length: 7\n\t\t\t\t\t\t\t\tAvailable characters: abcdefhkpqrstuxyz",
+        "operationId": "UpdateContentShareCodeV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateContentShareCodeRequest"
+            }
+          },
+          {
+            "description": "channel ID",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CreateContentResponseV2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update content share code",
+        "tags": [
+          "Public Content V2"
+        ]
+      }
+    },
     "/ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}/uploadUrl": {
       "patch": {
         "consumes": [
@@ -11817,6 +12346,24 @@
         "name",
         "namespace",
         "userId"
+      ]
+    },
+    "models.ConfigResponse": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "namespace",
+        "value"
       ]
     },
     "models.ContentDownloadResponse": {
@@ -12899,6 +13446,23 @@
         "paging"
       ]
     },
+    "models.PaginatedGetConfigsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ConfigResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.PaginatedGetTagResponse": {
       "properties": {
         "data": {
@@ -13100,6 +13664,16 @@
         "name"
       ]
     },
+    "models.UpdateConfigRequest": {
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
     "models.UpdateContentRequest": {
       "properties": {
         "contentType": {
@@ -13259,6 +13833,16 @@
         "userId"
       ]
     },
+    "models.UpdateContentShareCodeRequest": {
+      "properties": {
+        "shareCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "shareCode"
+      ]
+    },
     "models.UpdateFileLocationRequest": {
       "properties": {
         "fileExtension": {
@@ -13400,11 +13984,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-17T06:42:09+00:00",
-    "gitHash": "a03a04eb60f8dd358e4f7d45f0f9d3f827b5b931",
+    "buildDate": "2023-12-01T09:41:39+00:00",
+    "gitHash": "04dc26df8d1abaaf372157f6879ef4d408e3d29b",
     "name": "justice-ugc-service",
     "realm": "demo",
-    "version": "2.17.0",
+    "version": "2.18.0",
     "version-roles-seeding": "0.0.13"
   }
 }

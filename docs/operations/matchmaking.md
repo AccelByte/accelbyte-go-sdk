@@ -106,6 +106,9 @@
 | `models.Role` | [ModelsRole ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_role.go) |
 | `models.RuleSet` | [ModelsRuleSet ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_rule_set.go) |
 | `models.RuleSetV1` | [ModelsRuleSetV1 ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_rule_set_v1.go) |
+| `models.SelectionRule` | [ModelsSelectionRule ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_selection_rule.go) |
+| `models.SortTicket` | [ModelsSortTicket ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_sort_ticket.go) |
+| `models.SortTicketRule` | [ModelsSortTicketRule ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_sort_ticket_rule.go) |
 | `models.StatResumeResponse` | [ModelsStatResumeResponse ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_stat_resume_response.go) |
 | `models.SubGameMode` | [ModelsSubGameMode ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_sub_game_mode.go) |
 | `models.TicketMetricResultRecord` | [ModelsTicketMetricResultRecord ](../../matchmaking-sdk/pkg/matchmakingclientmodels/models_ticket_metric_result_record.go) |

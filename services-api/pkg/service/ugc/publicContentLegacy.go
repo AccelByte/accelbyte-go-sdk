@@ -99,6 +99,32 @@ func (aaa *PublicContentLegacyService) PublicGetContentBulk(input *public_conten
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetContentBulkByShareCodesShort instead.
+func (aaa *PublicContentLegacyService) PublicGetContentBulkByShareCodes(input *public_content_legacy.PublicGetContentBulkByShareCodesParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PublicContentLegacy.PublicGetContentBulkByShareCodes(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicDownloadContentByShareCodeShort instead.
 func (aaa *PublicContentLegacyService) PublicDownloadContentByShareCode(input *public_content_legacy.PublicDownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -341,6 +367,38 @@ func (aaa *PublicContentLegacyService) DeleteContent(input *public_content_legac
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use UpdateContentShareCodeShort instead.
+func (aaa *PublicContentLegacyService) UpdateContentShareCode(input *public_content_legacy.UpdateContentShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.PublicContentLegacy.UpdateContentShareCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetUserContentShort instead.
 func (aaa *PublicContentLegacyService) PublicGetUserContent(input *public_content_legacy.PublicGetUserContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -507,6 +565,31 @@ func (aaa *PublicContentLegacyService) PublicGetContentBulkShort(input *public_c
 	}
 
 	ok, err := aaa.Client.PublicContentLegacy.PublicGetContentBulkShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PublicContentLegacyService) PublicGetContentBulkByShareCodesShort(input *public_content_legacy.PublicGetContentBulkByShareCodesParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentLegacy.PublicGetContentBulkByShareCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -762,6 +845,31 @@ func (aaa *PublicContentLegacyService) DeleteContentShort(input *public_content_
 	}
 
 	return nil
+}
+
+func (aaa *PublicContentLegacyService) UpdateContentShareCodeShort(input *public_content_legacy.UpdateContentShareCodeParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.PublicContentLegacy.UpdateContentShareCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *PublicContentLegacyService) PublicGetUserContentShort(input *public_content_legacy.PublicGetUserContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {

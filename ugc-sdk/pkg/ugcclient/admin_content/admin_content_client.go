@@ -48,7 +48,7 @@ type ClientService interface {
 	AdminGetContentBulkShort(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, error)
 	AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error)
 	AdminSearchContentShort(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, error)
-	AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error)
+	AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesBadRequest, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error)
 	AdminGetContentBulkByShareCodesShort(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, error)
 	AdminGetUserContentByShareCode(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, *AdminGetUserContentByShareCodeUnauthorized, *AdminGetUserContentByShareCodeNotFound, *AdminGetUserContentByShareCodeInternalServerError, error)
 	AdminGetUserContentByShareCodeShort(params *AdminGetUserContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserContentByShareCodeOK, error)
@@ -1233,7 +1233,7 @@ AdminGetContentBulkByShareCodes bulk get content by content sharecodes
 Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
 Maximum sharecodes per request 100
 */
-func (a *Client) AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error) {
+func (a *Client) AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesBadRequest, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetContentBulkByShareCodesParams()
@@ -1261,25 +1261,28 @@ func (a *Client) AdminGetContentBulkByShareCodes(params *AdminGetContentBulkBySh
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetContentBulkByShareCodesOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetContentBulkByShareCodesBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetContentBulkByShareCodesUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetContentBulkByShareCodesForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetContentBulkByShareCodesInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1323,6 +1326,8 @@ func (a *Client) AdminGetContentBulkByShareCodesShort(params *AdminGetContentBul
 
 	case *AdminGetContentBulkByShareCodesOK:
 		return v, nil
+	case *AdminGetContentBulkByShareCodesBadRequest:
+		return nil, v
 	case *AdminGetContentBulkByShareCodesUnauthorized:
 		return nil, v
 	case *AdminGetContentBulkByShareCodesForbidden:

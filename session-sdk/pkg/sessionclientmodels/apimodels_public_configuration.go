@@ -21,6 +21,9 @@ type ApimodelsPublicConfiguration struct {
 	// psnbaseurl
 	PSNBaseURL string `json:"PSNBaseURL,omitempty"`
 
+	// attributes
+	Attributes interface{} `json:"attributes,omitempty"`
+
 	// autojoin
 	// Required: true
 	AutoJoin *bool `json:"autoJoin"`

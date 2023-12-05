@@ -72,12 +72,14 @@ func NewQueryItems1Params() *QueryItems1Params {
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
+		withTotalDefault              = bool(false)
 	)
 	return &QueryItems1Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
 		SortBy:                 sortByDefault,
+		WithTotal:              &withTotalDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -91,12 +93,14 @@ func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
+		withTotalDefault              = bool(false)
 	)
 	return &QueryItems1Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
 		SortBy:                 sortByDefault,
+		WithTotal:              &withTotalDefault,
 
 		timeout: timeout,
 	}
@@ -110,12 +114,14 @@ func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
+		withTotalDefault              = bool(false)
 	)
 	return &QueryItems1Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
 		SortBy:                 sortByDefault,
+		WithTotal:              &withTotalDefault,
 
 		Context: ctx,
 	}
@@ -129,12 +135,14 @@ func NewQueryItems1ParamsWithHTTPClient(client *http.Client) *QueryItems1Params 
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
+		withTotalDefault              = bool(false)
 	)
 	return &QueryItems1Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
 		SortBy:                 sortByDefault,
+		WithTotal:              &withTotalDefault,
 		HTTPClient:             client,
 	}
 }
@@ -218,6 +226,11 @@ type QueryItems1Params struct {
 
 	*/
 	TargetNamespace *string
+	/*WithTotal
+	  true means include total count of items in response body
+
+	*/
+	WithTotal *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -468,6 +481,17 @@ func (o *QueryItems1Params) WithTargetNamespace(targetNamespace *string) *QueryI
 // SetTargetNamespace adds the targetNamespace to the query items 1 params
 func (o *QueryItems1Params) SetTargetNamespace(targetNamespace *string) {
 	o.TargetNamespace = targetNamespace
+}
+
+// WithWithTotal adds the withTotal to the query items 1 params
+func (o *QueryItems1Params) WithWithTotal(withTotal *bool) *QueryItems1Params {
+	o.SetWithTotal(withTotal)
+	return o
+}
+
+// SetWithTotal adds the withTotal to the query items 1 params
+func (o *QueryItems1Params) SetWithTotal(withTotal *bool) {
+	o.WithTotal = withTotal
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -741,6 +765,22 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qTargetNamespace := qrTargetNamespace
 		if qTargetNamespace != "" {
 			if err := r.SetQueryParam("targetNamespace", qTargetNamespace); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.WithTotal != nil {
+
+		// query param withTotal
+		var qrWithTotal bool
+		if o.WithTotal != nil {
+			qrWithTotal = *o.WithTotal
+		}
+		qWithTotal := swag.FormatBool(qrWithTotal)
+		if qWithTotal != "" {
+			if err := r.SetQueryParam("withTotal", qWithTotal); err != nil {
 				return err
 			}
 		}

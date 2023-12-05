@@ -201,8 +201,8 @@ func NewAdminResetInputValidationsNotFound() *AdminResetInputValidationsNotFound
 
 /*AdminResetInputValidationsNotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10188</td><td>input validation field not found</td></tr></table>
+*/
 type AdminResetInputValidationsNotFound struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

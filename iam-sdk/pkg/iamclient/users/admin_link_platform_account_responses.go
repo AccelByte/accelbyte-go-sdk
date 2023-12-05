@@ -266,8 +266,8 @@ func NewAdminLinkPlatformAccountConflict() *AdminLinkPlatformAccountConflict {
 
 /*AdminLinkPlatformAccountConflict handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10163</td><td>platform is already linked with the user account</td></tr><tr><td>10200</td><td>link to a different platform account is not allowed</td></tr><tr><td>10173</td><td>platform is already linked with another user account</td></tr></table>
+*/
 type AdminLinkPlatformAccountConflict struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

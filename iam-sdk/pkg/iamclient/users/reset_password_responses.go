@@ -97,8 +97,8 @@ func NewResetPasswordBadRequest() *ResetPasswordBadRequest {
 
 /*ResetPasswordBadRequest handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>1014016</td><td>unable to parse request body</td></tr><tr><td>1015073</td><td>new password same as old password</td></tr></table>
+*/
 type ResetPasswordBadRequest struct {
 }
 
@@ -149,8 +149,8 @@ func NewResetPasswordNotFound() *ResetPasswordNotFound {
 
 /*ResetPasswordNotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>1014017</td><td>user not found</td></tr></table>
+*/
 type ResetPasswordNotFound struct {
 }
 

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.11.0"
+    "version": "3.12.0"
   },
   "schemes": [
     "https"
@@ -207,7 +207,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete of global configuration data. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]",
+        "summary": "Delete of global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [DELETE]",
         "tags": [
           "Global Configuration"
         ]
@@ -246,7 +246,7 @@
             "authorization": []
           }
         ],
-        "summary": "Record of global configuration data. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Record of global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [READ]",
         "tags": [
           "Global Configuration"
         ]
@@ -296,7 +296,7 @@
             "authorization": []
           }
         ],
-        "summary": "Upsert global configuration data. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Upsert global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [UPDATE]",
         "tags": [
           "Global Configuration"
         ]
@@ -3700,6 +3700,83 @@
         ]
       }
     },
+    "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/secret": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tUsed by game Client to Get Secret  \n\t\t\t constraints\n\t\t\t\t- EnableSecret = true\n\t\t\t\t- Type = \u0026#34;DS\u0026#34;\n\t\t\t\t- secret value will only be produced if enableSecret is true and type is DS\n\n  \t\t\t if enableSecret = false\n\t\t\t\t- empty secret will be returned as 200 OK\n\n\t\t\tExpected caller of this API\n\t\t\t\t- Game Client to get server secret\n\n\t\t\tIn the Response you will get following:\n\t\t\t\t- 200 OK { \u0026#34;secret\u0026#34;: \u0026lt;string\u0026gt; } \n\n\t\t\t\tIf there is error: \n\t\t\t\t- 400 Invalid path parameters\n\t\t\t\t- 401 unauthorized\n\t\t\t\t- 404 StatusNotFound\n\t\t\t\t- 500 Internal server error",
+        "operationId": "getSessionServerSecret",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.ServerSecret"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ServerSecret"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Server Secret. Requires NAMESPACE:{namespace}:SESSION:GAME:SECRET [READ]",
+        "tags": [
+          "Game Session"
+        ]
+      }
+    },
     "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/teams": {
       "post": {
         "consumes": [
@@ -4258,7 +4335,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/apimodels.SessionInviteResponse"
+            }
           },
           "204": {
             "description": "No Content"
@@ -5376,6 +5456,9 @@
         "PSNBaseUrl": {
           "type": "string"
         },
+        "attributes": {
+          "type": "object"
+        },
         "autoJoin": {
           "type": "boolean",
           "x-omitempty": false
@@ -5523,6 +5606,9 @@
         },
         "PSNBaseUrl": {
           "type": "string"
+        },
+        "attributes": {
+          "type": "object"
         },
         "autoJoin": {
           "type": "boolean",
@@ -6297,6 +6383,9 @@
         "PSNBaseURL": {
           "type": "string"
         },
+        "attributes": {
+          "type": "object"
+        },
         "autoJoin": {
           "type": "boolean",
           "x-omitempty": false
@@ -6483,6 +6572,16 @@
         "id"
       ]
     },
+    "apimodels.ServerSecret": {
+      "properties": {
+        "secret": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "secret"
+      ]
+    },
     "apimodels.SessionInviteRequest": {
       "properties": {
         "platformID": {
@@ -6495,6 +6594,16 @@
       "required": [
         "platformID",
         "userID"
+      ]
+    },
+    "apimodels.SessionInviteResponse": {
+      "properties": {
+        "platformUserID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformUserID"
       ]
     },
     "apimodels.SetDSReadyRequest": {
@@ -6515,6 +6624,9 @@
         },
         "PSNBaseUrl": {
           "type": "string"
+        },
+        "attributes": {
+          "type": "object"
         },
         "autoJoin": {
           "type": "boolean",
@@ -7186,9 +7298,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-07T07:31:14+00:00",
-    "gitHash": "58f782f43a1e72f009606ebb030a55a9d0949d68",
-    "version": "3.11.0",
-    "version-roles-seeding": "0.0.49"
+    "buildDate": "2023-11-21T01:21:25+00:00",
+    "gitHash": "d643872f83fbd877a30f8da4b6c5baef9e49cca2",
+    "version": "3.12.0",
+    "version-roles-seeding": "1.0.12"
   }
 }

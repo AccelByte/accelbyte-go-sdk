@@ -48,6 +48,10 @@ func (v *TokenValidator) Initialize() {
 }
 
 func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
+	if permission == nil {
+		return v.impl.Validate(token, nil, namespace, userId)
+	}
+
 	return v.impl.Validate(token, &iam.Permission{
 		Resource: permission.Resource,
 		Action:   permission.Action,

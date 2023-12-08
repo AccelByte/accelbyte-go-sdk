@@ -44,6 +44,7 @@ type JWTClaims struct {
 	ClientID        string          `json:"client_id"`
 	IsComply        bool            `json:"is_comply"`
 	StudioNamespace string          `json:"studio_namespace,omitempty"`
+	ExtendNamespace string          `json:"extend_namespace,omitempty"`
 	jwt.Claims
 }
 

@@ -17,7 +17,7 @@ import (
 
 type AuthTokenValidator interface {
 	Initialize()
-	Validate(token string, permission *Permission, namespace *string, userId *string) error
+	Validate(token string, permission *iam.Permission, namespace *string, userId *string) error
 }
 
 type TokenValidator struct {
@@ -26,7 +26,7 @@ type TokenValidator struct {
 
 	Filter                *bloom.Filter
 	JwkSet                *iamclientmodels.OauthcommonJWKSet
-	JwtClaims             JWTClaims
+	JwtClaims             iam.JWTClaims
 	JwtEncoding           base64.Encoding
 	LocalValidationActive bool
 	PublicKeys            map[string]*rsa.PublicKey
@@ -47,7 +47,7 @@ func (v *TokenValidator) Initialize() {
 	v.impl.Initialize()
 }
 
-func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
+func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {
 	if permission == nil {
 		return v.impl.Validate(token, nil, namespace, userId)
 	}
@@ -56,20 +56,4 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		Resource: permission.Resource,
 		Action:   permission.Action,
 	}, namespace, userId)
-}
-
-func NewTokenValidator(authService iam.OAuth20Service, refreshInterval time.Duration) AuthTokenValidator {
-	return &TokenValidator{
-		AuthService:     authService,
-		RefreshInterval: refreshInterval,
-
-		Filter:                nil,
-		JwkSet:                nil,
-		JwtClaims:             JWTClaims{},
-		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
-		PublicKeys:            make(map[string]*rsa.PublicKey),
-		LocalValidationActive: false,
-		RevokedUsers:          make(map[string]time.Time),
-		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
-	}
 }

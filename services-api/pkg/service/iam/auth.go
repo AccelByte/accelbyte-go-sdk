@@ -465,37 +465,18 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 		return nil, fmt.Errorf("failed to parse. %w", err)
 	}
 
-	// Check if token validation is already exist
-	if o.tokenValidation == nil {
-		o.initTokenValidator(false)
-	}
-
-	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
-	headers := parsedToken.Headers
-	if len(headers) == 0 {
-		return nil, fmt.Errorf("no headers found in the token. %w", err)
-	}
-	kid := headers[0].KeyID
-
-	if o.tokenValidation.PublicKeys == nil {
-		err = o.tokenValidation.fetchJWKSet()
-		if err != nil {
-			return nil, fmt.Errorf("failed to fetch jwks key. %w", err)
-		}
-	}
-
-	publicKey, ok := o.tokenValidation.PublicKeys[kid]
-	if !ok {
-		return nil, fmt.Errorf("unable to find public key with kid %s", kid)
-	}
-
 	// Verify and decode the token claims
 	claims := struct {
 		*iamclientmodels.OauthmodelTokenResponseV3
 		Sub string `json:"sub"`
 	}{}
 
-	err = parsedToken.Claims(publicKey, &claims)
+	pub, err := o.getPublicKey(parsedToken)
+	if err != nil {
+		return nil, err
+	}
+
+	err = parsedToken.Claims(pub, &claims)
 	if err != nil {
 		return nil, fmt.Errorf("failed to claims. %w", err)
 	}
@@ -507,7 +488,7 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 	// Validate the token if required
 	if validate {
 		var perm *Permission
-		if len(tokenResponseV3.Permissions) > 0 {
+		if claims.Permissions != nil && len(tokenResponseV3.Permissions) > 0 {
 			permission := tokenResponseV3.Permissions[0]
 			perm = &Permission{
 				Resource: *permission.Resource,
@@ -515,13 +496,64 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 			}
 		}
 
-		errValidate := o.tokenValidation.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
+		errValidate := o.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
 		if errValidate != nil {
 			log.Fatalf("token validation failed: %s", errValidate.Error())
 		}
 	}
 
 	return tokenResponseV3, nil
+}
+
+func (o *OAuth20Service) ParseAccessTokenToClaims(accessToken string, validate bool) (*JWTClaims, error) {
+	// Parse the JWT token
+	parsedToken, err := jwt.ParseSigned(accessToken)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse. %w", err)
+	}
+
+	// Verify and decode the token claims
+	claims := struct {
+		*JWTClaims
+	}{}
+
+	pub, err := o.getPublicKey(parsedToken)
+	if err != nil {
+		return nil, err
+	}
+
+	err = parsedToken.Claims(pub, &claims)
+	if err != nil {
+		return nil, fmt.Errorf("failed to claims. %w", err)
+	}
+
+	// Validate the token if required
+	if validate {
+		var perm *Permission
+		if claims.Permissions != nil && len(claims.Permissions) > 0 {
+			permission := claims.Permissions[0]
+			perm = &Permission{
+				Resource: permission.Resource,
+				Action:   permission.Action,
+			}
+		}
+
+		errValidate := o.Validate(accessToken, perm, &claims.Namespace, nil)
+		if errValidate != nil {
+			log.Fatalf("token validation failed: %s", errValidate.Error())
+		}
+	}
+
+	return claims.JWTClaims, nil
+}
+
+func (o *OAuth20Service) Validate(token string, permission *Permission, namespace *string, userId *string) error {
+	err := o.tokenValidation.Validate(token, permission, namespace, userId)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (o *OAuth20Service) SetLocalValidation(value bool) {
@@ -549,4 +581,32 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 
 	// Initiate
 	o.tokenValidation.Initialize()
+}
+
+func (o *OAuth20Service) getPublicKey(parsedToken *jwt.JSONWebToken) (*rsa.PublicKey, error) {
+	// Check if token validation is already exist
+	if o.tokenValidation == nil {
+		o.initTokenValidator(false)
+	}
+
+	// Get the public key from the JWKS based on the Key ID (kid) from the token's header
+	headers := parsedToken.Headers
+	if len(headers) == 0 {
+		return nil, fmt.Errorf("no headers found in the token. ")
+	}
+	kid := headers[0].KeyID
+
+	if o.tokenValidation.PublicKeys == nil {
+		err := o.tokenValidation.fetchJWKSet()
+		if err != nil {
+			return nil, fmt.Errorf("failed to fetch jwks key. %w", err)
+		}
+	}
+
+	publicKey, ok := o.tokenValidation.PublicKeys[kid]
+	if !ok {
+		return nil, fmt.Errorf("unable to find public key with kid %s", kid)
+	}
+
+	return publicKey, nil
 }

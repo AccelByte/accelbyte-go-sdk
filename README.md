@@ -118,35 +118,14 @@ To enable it, import the package
 ```go
 import (
     ...
-    "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth/validator"
+    "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
     ...
 )
 ```
-configure `authTokenValidator` struct or use the existing one `NewTokenValidator` with the default `localValidationActive` is false. Invoked them with
+- if the boolean `SetLocalValidation` is `true`, it will validate locally.
+- if the boolean `SetLocalValidation` is `false`, it will validate remotely (call `VerifyTokenV3` endpoint).
 ```
-tokenValidator := validator.NewTokenValidator(authService, time.Hour)
-tokenValidator.Initialize()
-
-err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
-```
-
-if want to set `localValidationActive` is true, use a `TokenValidator` directly and do this:
-```
-tokenValidator := &validator.TokenValidator{
-		AuthService:     *oAuth20Service,
-		RefreshInterval: time.Hour,
-
-		Filter:                nil,
-		JwkSet:                nil,
-		JwtClaims:             validator.JWTClaims{},
-		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
-		PublicKeys:            make(map[string]*rsa.PublicKey),
-		LocalValidationActive: true, // set here to true
-		RevokedUsers:          make(map[string]time.Time),
-		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
-	}
-	
-tokenValidator.Initialize()
+oAuth20Service.SetLocalValidation(true)
 
 err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
 ```
@@ -206,11 +185,11 @@ if err != nil {
     // fail here
 }
 ```
-- if the boolean is `false`, it will not validate the token at all. 
-- if the boolean is `true`, it will validate remotely (call `VerifyTokenV3` endpoint). 
-- if the boolean is `true` and call `SetLocalValidation` before `ParseAccessToken`, it will validate locally.
+- if the boolean `SetLocalValidation` is `true`, it will validate locally.
+- if the boolean `SetLocalValidation` is `false`, it will validate remotely (call `VerifyTokenV3` endpoint).
+- if the boolean `ParseAccessToken` is `false`, it will not validate the token at all.
 ```go
-oAuth20Service.SetLocalValidation(true) // call this also to activate local validation
+oAuth20Service.SetLocalValidation(true) // call this also to activate local validation whether locally or remotely
 
 // parse the token
 parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true) // set true here to validate before parsing the access token

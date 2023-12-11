@@ -7,12 +7,10 @@ package iam
 import (
 	"fmt"
 	"testing"
-	"time"
-
-	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
@@ -49,12 +47,18 @@ func TestTokenValidator_ValidateToken(t *testing.T) {
 		Resource: fmt.Sprintf("NAMESPACE:%s:%s", namespace, resourceName),
 	}
 
-	tokenValidator := NewTokenValidator(authService, time.Hour)
-	tokenValidator.Initialize()
+	authService.SetLocalValidation(true)                                          // true will do it locally, false will do it remotely
+	claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false) // false will not validate using client namespace
+	if errClaims != nil {
+		assert.Fail(t, errClaims.Error())
+
+		return
+	}
 
 	// Act
-	err = tokenValidator.Validate(accessToken, &requiredPermission, &namespace, nil)
+	err = authService.Validate(accessToken, &requiredPermission, &namespace, nil)
 
 	// Assert
 	assert.Nil(t, err)
+	assert.Equal(t, claims.Namespace, namespace)
 }

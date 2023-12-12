@@ -1,3 +1,22 @@
+<a name="v0.59.2"></a>
+## [v0.59.2]
+### chore
+- **docs:** generate chat service
+- **integration-test:** add chat service
+- **:** update CHANGELOG.md
+### feat
+-  **api:** bootstrap chat service support
+
+
+<a name="v0.59.1"></a>
+## [v0.59.1]
+### chore
+- **readme:** update readme in validation section
+- **:** delete unused model and refactor wrapper
+### feat
+-  support extend delegate token
+
+
 <a name="v0.59.0"></a>
 ## [v0.59.0]
 ### chore

@@ -402,7 +402,7 @@ inputEventLog := &event_v2.GetEventSpecificUserV2HandlerParams{
 
 ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
 if err != nil {
-	assert.FailNow(t, err.Error())
+	t.Skipf(err.Error())
 }
 ```
 
@@ -662,6 +662,18 @@ getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
 logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
 ```
 
+### Login
+
+```go
+err := oAuth20Service.Login(username, password)
+if err != nil {
+	assert.FailNow(t, err.Error())
+}
+
+getToken, errGetToken := oAuth20Service.TokenRepository.GetToken()
+logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
+```
+
 ### Create a user
 
 ```go
@@ -680,13 +692,13 @@ t.Logf("userId: %v", *user.UserID)
 ### Update a user
 
 ```go
-inputUpdate := &users.UpdateUserParams{
+inputUpdate := &users.AdminUpdateUserV3Params{
 	Body:      updateUserBody,
 	Namespace: integration.NamespaceTest,
 	UserID:    *user.UserID,
 }
 
-update, errUpdate := userService.UpdateUserShort(inputUpdate)
+update, errUpdate := userService.AdminUpdateUserV3Short(inputUpdate)
 if errUpdate != nil {
 	assert.FailNow(t, errUpdate.Error())
 }
@@ -709,12 +721,12 @@ if errGet != nil {
 ### Delete a user
 
 ```go
-inputDelete := &users.DeleteUserParams{
+inputDelete := &users.AdminDeleteUserInformationV3Params{
 	Namespace: integration.NamespaceTest,
 	UserID:    *user.UserID,
 }
 
-errDelete := userService.DeleteUserShort(inputDelete)
+errDelete := userService.AdminDeleteUserInformationV3Short(inputDelete)
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
@@ -1424,11 +1436,11 @@ if errDeleted != nil {
 ### Query Game Session
 
 ```go
-input := &game_session.PublicQueryGameSessionsParams{
+input := &game_session.PublicQueryGameSessionsByAttributesParams{
 	Body:      nil,
 	Namespace: integration.NamespaceTest,
 }
-query, err := gameSessionService.PublicQueryGameSessionsShort(input)
+query, err := gameSessionService.PublicQueryGameSessionsByAttributesShort(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
 
@@ -1724,6 +1736,88 @@ inputDelete := &admin_tag.AdminDeleteTagParams{
 errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
+}
+```
+
+## Chat
+
+Source: [chat_test.go](../services-api/pkg/tests/integration/chat_test.go)
+
+### Admin Profanity Get
+
+```go
+get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
+	Namespace: integration.NamespaceTest,
+})
+if errGet != nil {
+	assert.FailNow(t, errGet.Error())
+}
+```
+
+### Admin Profanity Create
+
+```go
+create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
+	Body: &chatclientmodels.ModelsDictionaryInsertRequest{
+		Word:     &wordUpdate,
+		WordType: &wordType,
+	},
+	Namespace: integration.NamespaceTest,
+})
+if errCreate != nil {
+	assert.FailNow(t, errCreate.Error())
+}
+```
+
+### Admin Profanity Update
+
+```go
+update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
+	Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
+		Word:     &word,
+		WordType: &wordType,
+	},
+	Namespace: integration.NamespaceTest,
+	ID:        *create.ID,
+})
+if errUpdate != nil {
+	assert.FailNow(t, errUpdate.Error())
+}
+```
+
+### Admin Profanity Delete
+
+```go
+errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.AdminProfanityDeleteParams{
+	Namespace: integration.NamespaceTest,
+	ID:        *create.ID,
+})
+if errDelete != nil {
+	assert.FailNow(t, errDelete.Error())
+}
+```
+
+### Save Inbox Message
+
+```go
+expiredAt := int64(1704251627)
+scopeChat := chatclientmodels.ModelsSaveInboxMessageRequestScopeUSER
+statusChat := chatclientmodels.ModelsSaveInboxMessageRequestStatusDRAFT
+userIdChat := GetUserID()
+userIds := []string{userIdChat}
+
+save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminSaveInboxMessageParams{
+	Body: &chatclientmodels.ModelsSaveInboxMessageRequest{
+		ExpiredAt: &expiredAt,
+		Message:   &dataMessage,
+		Scope:     &scopeChat,
+		Status:    &statusChat,
+		UserIds:   userIds,
+	},
+	Namespace: integration.NamespaceTest,
+})
+if errSave != nil {
+	assert.FailNow(t, errSave.Error())
 }
 ```
 

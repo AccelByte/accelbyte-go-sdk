@@ -1,0 +1,6822 @@
+{
+  "host": "demo.accelbyte.io",
+  "info": {
+    "description": "Justice Chat Service",
+    "title": "justice-chat-service",
+    "version": "demo"
+  },
+  "schemes": [
+    "https"
+  ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://demo.accelbyte.io/chat/apidocs"
+  },
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/chat/admin/namespaces/{namespace}/chats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat history in a namespace.",
+        "operationId": "adminChatHistory",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "chat ID of chat",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "chatId",
+            "type": "array"
+          },
+          {
+            "description": "end date",
+            "in": "query",
+            "name": "endCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "keyword containing in message",
+            "in": "query",
+            "name": "keyword",
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "anyof: createdAt:asc / createdAt:desc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "sender user ID",
+            "in": "query",
+            "name": "senderUserId",
+            "type": "string"
+          },
+          {
+            "description": "shard id",
+            "in": "query",
+            "name": "shardId",
+            "type": "string"
+          },
+          {
+            "description": "start date",
+            "in": "query",
+            "name": "startCreatedAt",
+            "type": "integer"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "topic ID that receive the chat",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "topic",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChatMessageWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get chat history",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/namespace-topic": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create new namespace group topic in a namespace.",
+        "operationId": "adminCreateNamespaceTopic",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.CreateNamespaceTopicParams"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/api.CreateTopicResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Use to create namespace group. Message that send to this group send to connected user in a namespace",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat list of topic in a namespace.",
+        "operationId": "adminTopicList",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "PERSONAL or GROUP",
+            "in": "query",
+            "name": "topicType",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.TopicResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get list of topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create new group topic in a namespace.",
+        "operationId": "adminCreateTopic",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.CreateTopicParams"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/api.CreateTopicResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Use to create group. Only group admin can use this operation",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/channel": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get channel chat list of topic in a namespace.",
+        "operationId": "adminChannelTopicList",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "name",
+            "in": "query",
+            "name": "topicName",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChannelTopicWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get list of channel topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/channel/summary": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat list of topic in a namespace.",
+        "operationId": "adminChannelTopicSummary",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChannelTopicSummaryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get channel topic summary",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/log": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat log of topic in a namespace.",
+        "operationId": "adminQueryTopicLog",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end date",
+            "in": "query",
+            "name": "endCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "default: 1000",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "senderUserId (actor, can be admin or the user itself)",
+            "in": "query",
+            "name": "senderUserId",
+            "type": "string"
+          },
+          {
+            "description": "start date",
+            "in": "query",
+            "name": "startCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "topicId",
+            "in": "query",
+            "name": "topicId",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "topicIds",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "topicIds",
+            "type": "array"
+          },
+          {
+            "description": "userId",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.TopicLogWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin query topic log",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete topic in a namespace.",
+        "operationId": "adminDeleteTopic",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/message.ActionDeleteTopicResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Use to delete group. Only group admin can use this operation",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [DELETE]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update group topic in a namespace.",
+        "operationId": "adminUpdateTopic",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.UpdateTopicParams"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/api.CreateTopicResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Use to update group information. Only group admin can use this operation",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/ban-members": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Ban users in some topic. banned user not assigned to shard for channel topic, and cannot send and query chat.",
+        "operationId": "adminBanTopicMembers",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BanTopicMemberParam"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BanTopicMemberResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admins ban user in group topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/channel": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat list of topic in a namespace.",
+        "operationId": "adminChannelTopicInfo",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChannelTopicResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get channel topic detail",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/chats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "deprecated": true,
+        "description": "Get chat history in a namespace.",
+        "operationId": "adminTopicChatHistory",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "end date",
+            "in": "query",
+            "name": "endCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "keyword containing in message",
+            "in": "query",
+            "name": "keyword",
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "anyof: createdAt:asc / createdAt:desc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "sender user ID",
+            "in": "query",
+            "name": "senderUserId",
+            "type": "string"
+          },
+          {
+            "description": "shard id",
+            "in": "query",
+            "name": "shardId",
+            "type": "string"
+          },
+          {
+            "description": "start date",
+            "in": "query",
+            "name": "startCreatedAt",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChatMessageWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get chat history",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Send message to chat topic as system.",
+        "operationId": "adminSendChat",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.SendChatParams"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ChatMessageResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admins send chat to group topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/chats/{chatId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete chat.",
+        "operationId": "adminDeleteChat",
+        "parameters": [
+          {
+            "description": "chat ID od the chat",
+            "in": "path",
+            "name": "chatId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID of the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admins delete chat",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/members": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get topic members.",
+        "operationId": "adminTopicMembers",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "only show banned member",
+            "in": "query",
+            "name": "isBanned",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "only show moderator member",
+            "in": "query",
+            "name": "isModerator",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "shard ID",
+            "in": "query",
+            "name": "shardId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.TopicMemberWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get topic member",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/shards": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get shard list from topic.",
+        "operationId": "adminTopicShards",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get shard list of topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/unban-members": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Unban users in some topic.",
+        "operationId": "adminUnbanTopicMembers",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UnbanTopicMemberParam"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UnbanTopicMemberResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admins unban user in group topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topic/{topic}/user/{userId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Remove member from topic in a namespace.",
+        "operationId": "adminRemoveTopicMember",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that will removed user from",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID that will be removed from topic",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/message.ActionAddUserToTopicResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin remove user from topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add new member for topic in a namespace.",
+        "operationId": "adminAddTopicMember",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.AddMemberParams"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that will added user to",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID that will be added to topic",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/message.ActionAddUserToTopicResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin add user to topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/topics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get topics in a namespace.",
+        "operationId": "adminQueryTopic",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "include topic's members",
+            "in": "query",
+            "name": "includeMembers",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "include past members (user that had left topic)",
+            "in": "query",
+            "name": "includePastMembers",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "include topic that has been removed.\u003cbr/\u003e\u003cb\u003eNOTE:\u003c/b\u003e only soft deleted topics are available",
+            "in": "query",
+            "name": "includePastTopics",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "default: 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "topic",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "topic",
+            "type": "array"
+          },
+          {
+            "description": "topicSubType",
+            "enum": [
+              "CLAN",
+              "NAMESPACE",
+              "NORMAL",
+              "PARTY",
+              "SESSION"
+            ],
+            "in": "query",
+            "name": "topicSubType",
+            "type": "string"
+          },
+          {
+            "description": "topicType",
+            "enum": [
+              "GROUP",
+              "PERSONAL"
+            ],
+            "in": "query",
+            "name": "topicType",
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.TopicInfo"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin query topics",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/admin/namespaces/{namespace}/users/{userId}/topics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get user\u0026#39;s topics in a namespace.",
+        "operationId": "adminQueryUsersTopic",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "when true will include topics that user already left",
+            "in": "query",
+            "name": "includePastTopics",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "default: 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "topicSubType",
+            "enum": [
+              "CLAN",
+              "NAMESPACE",
+              "NORMAL",
+              "PARTY",
+              "SESSION"
+            ],
+            "in": "query",
+            "name": "topicSubType",
+            "type": "string"
+          },
+          {
+            "description": "topicType",
+            "enum": [
+              "GROUP",
+              "PERSONAL"
+            ],
+            "in": "query",
+            "name": "topicType",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.TopicLogWithPaginationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin query user's topics",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/muted": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "get chat muted topics in a namespace.",
+        "operationId": "publicGetMutedTopics",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/api.MutedTopicResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public get muted at topics",
+        "tags": [
+          "topic"
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "get chat list of topic in a namespace.",
+        "operationId": "publicTopicList",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "PERSONAL or GROUP",
+            "in": "query",
+            "name": "topicType",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ChatMessageResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public get list of topic",
+        "tags": [
+          "topic"
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/ban-members": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Ban topic members in a group topic.",
+        "operationId": "publicBanTopicMembers",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicBanTopicMembersRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/models.PublicBanTopicMembersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public ban topic members in a group topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/chats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "get chat history in a namespace.",
+        "operationId": "publicChatHistory",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID that receive the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "anyof: createdAt:asc / createdAt:desc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "lastChatCreatedAt",
+            "in": "query",
+            "name": "startCreatedAt",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ChatMessageResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public get chat history",
+        "tags": [
+          "topic"
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/chats/{chatId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete chat.",
+        "operationId": "publicDeleteChat",
+        "parameters": [
+          {
+            "description": "chat ID od the chat",
+            "in": "path",
+            "name": "chatId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID of the chat",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public delete chat",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/mute": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Mute user.",
+        "operationId": "publicMuteUser",
+        "parameters": [
+          {
+            "description": "Duration is in seconds",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.MuteUserRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public mute user in a topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/unban-members": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Unban topic members in a group topic.",
+        "operationId": "publicUnbanTopicMembers",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicUnbanTopicMembersRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/models.PublicUnbanTopicMembersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public unban topic members in a group topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/public/namespaces/{namespace}/topic/{topic}/unmute": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Unmute user.",
+        "operationId": "publicUnmuteUser",
+        "parameters": [
+          {
+            "description": "Duration is in seconds",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.UnmuteUserRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic ID",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public unmute user in a topic",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/config": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat config of all namespaces.",
+        "operationId": "adminGetAllConfigV1",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ConfigList"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get all namespaces config",
+        "tags": [
+          "config"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:*:CHAT:CONFIG [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/config/namespaces/{namespace}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat config of a namespace.",
+        "operationId": "adminGetConfigV1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ConfigResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get namespace config",
+        "tags": [
+          "config"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CONFIG [READ]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update chat config of a namespace.",
+        "operationId": "adminUpdateConfigV1",
+        "parameters": [
+          {
+            "description": "chat config",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ConfigResponse"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ConfigResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin update namespace config",
+        "tags": [
+          "config"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CONFIG [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/config/namespaces/{namespace}/export": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\t\tExport chat configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\t",
+        "operationId": "ExportConfig",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ConfigExport"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Export chat config to a json file.",
+        "tags": [
+          "config"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CONFIG [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/config/namespaces/{namespace}/import": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "\n\t\t\t\tImport config configuration from file. The existing configuration will be replaced.\n\t\t\t\tThe json file to import can be obtained from the /export endpoint. \n\t\t\t\t",
+        "operationId": "ImportConfig",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "file to be imported",
+            "in": "formData",
+            "name": "file",
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ImportConfigResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Import chat config from a json file.",
+        "tags": [
+          "config"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CONFIG [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get inbox categories",
+        "operationId": "adminGetInboxCategories",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.GetInboxCategoriesResponseItem"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get inbox categories",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CATEGORY [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add inbox category.",
+        "operationId": "adminAddInboxCategory",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AddInboxCategoryRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.AddInboxCategoryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "add inbox category",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CATEGORY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/categories/{category}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete inbox category",
+        "operationId": "adminDeleteInboxCategory",
+        "parameters": [
+          {
+            "description": "category",
+            "in": "path",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin delete inbox category",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CATEGORY [DELETE]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update inbox category",
+        "operationId": "adminUpdateInboxCategory",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateInboxCategoryRequest"
+            }
+          },
+          {
+            "description": "category",
+            "in": "path",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin update inbox category",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CATEGORY [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/categories/{category}/schema.json": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get category schema.",
+        "operationId": "adminGetCategorySchema",
+        "parameters": [
+          {
+            "description": "category",
+            "in": "path",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.JSONSchemaType"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get category schema",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:CATEGORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/message/{messageId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete inbox message",
+        "operationId": "adminDeleteInboxMessage",
+        "parameters": [
+          {
+            "description": "message",
+            "in": "path",
+            "name": "messageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "only for testing purposes, to force delete data",
+            "in": "query",
+            "name": "force",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin delete inbox message",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/messages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get inbox messages",
+        "operationId": "adminGetInboxMessages",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "active only",
+            "in": "query",
+            "name": "activeOnly",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "end created at",
+            "in": "query",
+            "name": "endCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "message ids",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "messageId",
+            "type": "array"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "anyof: createdAt:asc / createdAt:desc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "message scope",
+            "enum": [
+              "NAMESPACE",
+              "USER"
+            ],
+            "in": "query",
+            "name": "scope",
+            "type": "string"
+          },
+          {
+            "description": "start created at",
+            "in": "query",
+            "name": "startCreatedAt",
+            "type": "integer"
+          },
+          {
+            "description": "message status",
+            "enum": [
+              "DRAFT",
+              "SENT",
+              "UNSENT"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "transient message filter",
+            "in": "query",
+            "name": "transient",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetInboxMessagesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get inbox messages",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Save inbox message",
+        "operationId": "adminSaveInboxMessage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.SaveInboxMessageRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.SaveInboxMessageResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin save inbox message",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/messages/{inbox}/unsend": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Unsend inbox message",
+        "operationId": "adminUnsendInboxMessage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UnsendInboxMessageRequest"
+            }
+          },
+          {
+            "description": "message",
+            "in": "path",
+            "name": "inbox",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UnsendInboxMessageResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin unsend inbox message",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/messages/{inbox}/users": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get inbox users",
+        "operationId": "adminGetInboxUsers",
+        "parameters": [
+          {
+            "description": "message id",
+            "in": "path",
+            "name": "inbox",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "message status",
+            "enum": [
+              "READ",
+              "UNREAD"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "userId",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetInboxUsersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get inbox users",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/messages/{messageId}": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update inbox message",
+        "operationId": "adminUpdateInboxMessage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateInboxMessageRequest"
+            }
+          },
+          {
+            "description": "message",
+            "in": "path",
+            "name": "messageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin update inbox message",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/messages/{messageId}/send": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Send inbox message",
+        "operationId": "adminSendInboxMessage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.SendInboxMessageRequest"
+            }
+          },
+          {
+            "description": "message",
+            "in": "path",
+            "name": "messageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.SendInboxMessageResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin send inbox message",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/inbox/namespaces/{namespace}/stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get inbox stats",
+        "operationId": "adminGetInboxStats",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "message ids",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "messageId",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetInboxStatsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get inbox stats",
+        "tags": [
+          "inbox"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:INBOX [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/namespaces/{namespace}/snapshot/{chatId}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete the chat snapshot",
+        "operationId": "adminDeleteChatSnapshot",
+        "parameters": [
+          {
+            "description": "id of the chat",
+            "in": "path",
+            "name": "chatId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin delete chat snapshot",
+        "tags": [
+          "moderation"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [DELETE]"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get the chat snapshot",
+        "operationId": "adminGetChatSnapshot",
+        "parameters": [
+          {
+            "description": "id of the chat",
+            "in": "path",
+            "name": "chatId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChatSnapshots"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get chat snapshot",
+        "tags": [
+          "moderation"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query all profanity words.",
+        "operationId": "adminProfanityQuery",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter mask",
+            "in": "query",
+            "name": "filterMask",
+            "type": "string"
+          },
+          {
+            "description": "include false positives and false negatives",
+            "in": "query",
+            "name": "includeChildren",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "parent ID of the word",
+            "in": "query",
+            "name": "parentId",
+            "type": "string"
+          },
+          {
+            "description": "word start with",
+            "in": "query",
+            "name": "startWith",
+            "type": "string"
+          },
+          {
+            "description": "type of the word: PROFANITY, FALSEPOSITIVE, FALSENEGATIVE",
+            "in": "query",
+            "name": "wordType",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryQueryResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin query profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Insert new word for profanity censor",
+        "operationId": "adminProfanityCreate",
+        "parameters": [
+          {
+            "description": "insert request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryInsertRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.Dictionary"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin insert new profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Bulk insert new word for profanity censor",
+        "operationId": "adminProfanityCreateBulk",
+        "parameters": [
+          {
+            "description": "insert request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryInsertBulkRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "$ref": "#/definitions/models.Dictionary"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin bulk insert new profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary/export": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Export profanity words",
+        "operationId": "adminProfanityExport",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryExport"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin export profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary/group": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get profanity words group.",
+        "operationId": "adminProfanityGroup",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "default: 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.DictionaryGroup"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get profanity words group",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary/import": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Import profanity words",
+        "operationId": "adminProfanityImport",
+        "parameters": [
+          {
+            "description": "file to be imported",
+            "in": "formData",
+            "name": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "REPLACE",
+            "description": "The action when same words already exists\u003c/br\u003e\n\t\t\t\t\t\t\t\t\u003cb\u003eREPLACE\u003c/b\u003e: replace all same words with imported false positives and false negatives, existing non-imported words won't be removed\u003c/br\u003e\n                                \u003cb\u003eFULLREPLACE\u003c/b\u003e: replace all words with imported data and remove existing non-imported words, list words will be exactly same with imported data\u003c/br\u003e\n                                \u003cb\u003eLEAVEOUT\u003c/b\u003e: ignore imported same words, false positives and false negatives won't be replaced with imported data'",
+            "enum": [
+              "FULLREPLACE",
+              "LEAVEOUT",
+              "REPLACE"
+            ],
+            "in": "query",
+            "name": "action",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "When showResult=true, this endpoint with returns imported words result",
+            "in": "query",
+            "name": "showResult",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "returned when showResult=true",
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryImportResult"
+            }
+          },
+          "204": {
+            "description": "No Content returned when showResult=false or not defined"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin import profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/profanity/namespaces/{namespace}/dictionary/{id}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete profanity words.",
+        "operationId": "adminProfanityDelete",
+        "parameters": [
+          {
+            "description": "id of the dictionary",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin delete profanity words",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [DELETE]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update profanity word",
+        "operationId": "adminProfanityUpdate",
+        "parameters": [
+          {
+            "description": "update request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DictionaryUpdateRequest"
+            }
+          },
+          {
+            "description": "id of the dictionary",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.Dictionary"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin update profanity word",
+        "tags": [
+          "profanity"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:PROFANITY [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/messages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "get the list of messages.",
+        "operationId": "publicGetMessages",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/log.AppMessageDeclaration"
+              },
+              "type": "array"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get service messages"
+      }
+    },
+    "/chat/v1/public/namespaces/{namespace}/topic/{topic}/snapshot/{chatId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get the chat snapshot",
+        "operationId": "publicGetChatSnapshot",
+        "parameters": [
+          {
+            "description": "id of the chat",
+            "in": "path",
+            "name": "chatId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "topic",
+            "in": "path",
+            "name": "topic",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChatSnapshots"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public get chat snapshot",
+        "tags": [
+          "moderation"
+        ],
+        "x-security": [
+          {
+            "groupPermissions": [
+              "NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "api.AddMemberParams": {
+      "properties": {
+        "isAdmin": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "isAdmin"
+      ]
+    },
+    "api.CreateNamespaceTopicParams": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "name"
+      ]
+    },
+    "api.CreateTopicParams": {
+      "properties": {
+        "admins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isChannel": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isJoinable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "members": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shardLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "admins",
+        "description",
+        "isChannel",
+        "isJoinable",
+        "members",
+        "name",
+        "type"
+      ]
+    },
+    "api.CreateTopicResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isChannel": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isJoinable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdBy",
+        "description",
+        "isChannel",
+        "isJoinable",
+        "name",
+        "namespace",
+        "topicId",
+        "type"
+      ]
+    },
+    "api.MuteUserRequest": {
+      "properties": {
+        "duration": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "duration",
+        "userId"
+      ]
+    },
+    "api.MutedTopicResponse": {
+      "properties": {
+        "expirationTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "remainingTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "expirationTime",
+        "remainingTime",
+        "topicId"
+      ]
+    },
+    "api.SendChatParams": {
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "api.UnmuteUserRequest": {
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userId"
+      ]
+    },
+    "api.UpdateTopicParams": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "isJoinable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "isJoinable",
+        "name"
+      ]
+    },
+    "log.AppMessageDeclaration": {
+      "properties": {
+        "Attributes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "CodeName": {
+          "type": "string"
+        },
+        "Section": {
+          "type": "string"
+        },
+        "Service": {
+          "type": "string"
+        },
+        "Text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Attributes",
+        "Code",
+        "CodeName",
+        "Section",
+        "Service",
+        "Text"
+      ]
+    },
+    "message.ActionAddUserToTopicResult": {
+      "properties": {
+        "processed": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "processed",
+        "topicId",
+        "userId"
+      ]
+    },
+    "message.ActionDeleteTopicResult": {
+      "properties": {
+        "processed": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "processed",
+        "topicId"
+      ]
+    },
+    "models.AddInboxCategoryRequest": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "expiresIn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hook": {
+          "$ref": "#/definitions/models.CategoryHook"
+        },
+        "jsonSchema": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "saveInbox": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "sendNotification": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enabled",
+        "expiresIn",
+        "name",
+        "saveInbox",
+        "sendNotification"
+      ]
+    },
+    "models.AddInboxCategoryResponse": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "expiresIn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hook": {
+          "$ref": "#/definitions/models.CategoryHook"
+        },
+        "jsonSchema": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "saveInbox": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "sendNotification": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enabled",
+        "expiresIn",
+        "hook",
+        "name",
+        "saveInbox",
+        "sendNotification"
+      ]
+    },
+    "models.BanTopicMemberParam": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
+    "models.BanTopicMemberResult": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
+    "models.CategoryHook": {
+      "properties": {
+        "driver": {
+          "enum": [
+            "KAFKA"
+          ],
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "driver",
+        "params"
+      ]
+    },
+    "models.ChannelTopicResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isJoinable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "messagePerMinutes": {
+          "format": "double",
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "shardLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "totalMember": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdBy",
+        "description",
+        "isJoinable",
+        "messagePerMinutes",
+        "name",
+        "namespace",
+        "shardLimit",
+        "shardNumber",
+        "topicId",
+        "totalMember"
+      ]
+    },
+    "models.ChannelTopicSummaryResponse": {
+      "properties": {
+        "totalChannel": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalShard": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "totalChannel",
+        "totalShard"
+      ]
+    },
+    "models.ChannelTopicWithPaginationResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ChannelTopicResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "paging",
+        "totalData"
+      ]
+    },
+    "models.ChatMessageResponse": {
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "readAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "receivedAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "id",
+        "message",
+        "readAt",
+        "receivedAt",
+        "topicId"
+      ]
+    },
+    "models.ChatMessageWithPaginationResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.ChatMessageResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "paging",
+        "totalData"
+      ]
+    },
+    "models.ChatSnapshotMessage": {
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "senderId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chatId",
+        "createdAt",
+        "message",
+        "senderId"
+      ]
+    },
+    "models.ChatSnapshots": {
+      "properties": {
+        "chatId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "joinedTopics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/models.ChatSnapshotMessage"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "senderId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chatId",
+        "createdAt",
+        "joinedTopics",
+        "messages",
+        "namespace",
+        "senderId",
+        "ticketId",
+        "topicId"
+      ]
+    },
+    "models.Config": {
+      "properties": {
+        "ChatRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ChatRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ConcurrentUsersLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "EnableManualTopicCreation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "EnableProfanityFilter": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "FilterAppName": {
+          "type": "string"
+        },
+        "FilterParam": {
+          "type": "string"
+        },
+        "FilterType": {
+          "type": "string"
+        },
+        "GeneralRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "GeneralRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "ShardCapacityLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ShardDefaultLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ShardHardLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SpamChatBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SpamChatDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "SpamMuteDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "enableClanChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "ChatRateLimitBurst",
+        "ChatRateLimitDuration",
+        "ConcurrentUsersLimit",
+        "EnableProfanityFilter",
+        "FilterAppName",
+        "FilterParam",
+        "FilterType",
+        "GeneralRateLimitBurst",
+        "GeneralRateLimitDuration",
+        "Namespace",
+        "ShardCapacityLimit",
+        "ShardDefaultLimit",
+        "ShardHardLimit",
+        "SpamChatBurst",
+        "SpamChatDuration",
+        "SpamMuteDuration"
+      ]
+    },
+    "models.ConfigExport": {
+      "properties": {
+        "chatRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "chatRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "concurrentUsersLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableClanChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enableManualTopicCreation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enableProfanityFilter": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "filterAppName": {
+          "type": "string"
+        },
+        "filterParam": {
+          "type": "string"
+        },
+        "filterType": {
+          "type": "string"
+        },
+        "generalRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "generalRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "shardCapacityLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardDefaultLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardHardLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "spamMuteDuration": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "chatRateLimitBurst",
+        "chatRateLimitDuration",
+        "concurrentUsersLimit",
+        "generalRateLimitBurst",
+        "generalRateLimitDuration",
+        "namespace"
+      ]
+    },
+    "models.ConfigList": {
+      "properties": {
+        "configs": {
+          "items": {
+            "$ref": "#/definitions/models.Config"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "configs"
+      ]
+    },
+    "models.ConfigResponse": {
+      "properties": {
+        "chatRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "chatRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "concurrentUsersLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableClanChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enableManualTopicCreation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enableProfanityFilter": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "filterAppName": {
+          "type": "string"
+        },
+        "filterParam": {
+          "type": "string"
+        },
+        "filterType": {
+          "type": "string"
+        },
+        "generalRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "generalRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "shardCapacityLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardDefaultLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shardHardLimit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "spamMuteDuration": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "models.Dictionary": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "word": {
+          "type": "string"
+        },
+        "wordType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "namespace",
+        "parentId",
+        "word",
+        "wordType"
+      ]
+    },
+    "models.DictionaryChild": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "word": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "word"
+      ]
+    },
+    "models.DictionaryExport": {
+      "properties": {
+        "dictionaries": {
+          "items": {
+            "$ref": "#/definitions/models.DictionaryExportItem"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "dictionaries"
+      ]
+    },
+    "models.DictionaryExportItem": {
+      "properties": {
+        "falseNegative": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "falsePositive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "word": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "word"
+      ]
+    },
+    "models.DictionaryGroup": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "name"
+      ]
+    },
+    "models.DictionaryImportResult": {
+      "properties": {
+        "words": {
+          "$ref": "#/definitions/models.DictionaryWordChanges"
+        }
+      },
+      "required": [
+        "words"
+      ]
+    },
+    "models.DictionaryInsertBulkRequest": {
+      "properties": {
+        "dictionaries": {
+          "items": {
+            "$ref": "#/definitions/models.DictionaryInsertRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "dictionaries"
+      ]
+    },
+    "models.DictionaryInsertRequest": {
+      "properties": {
+        "falseNegative": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "falsePositive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "word": {
+          "type": "string"
+        },
+        "wordType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "falseNegative",
+        "falsePositive",
+        "word",
+        "wordType"
+      ]
+    },
+    "models.DictionaryQueryResult": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.DictionaryWithChildren"
+          },
+          "type": "array"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "next",
+        "previous"
+      ]
+    },
+    "models.DictionaryUpdateRequest": {
+      "properties": {
+        "falseNegative": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "falsePositive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "word": {
+          "type": "string"
+        },
+        "wordType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "falseNegative",
+        "falsePositive",
+        "word",
+        "wordType"
+      ]
+    },
+    "models.DictionaryWithChildren": {
+      "properties": {
+        "falseNegatives": {
+          "items": {
+            "$ref": "#/definitions/models.DictionaryChild"
+          },
+          "type": "array"
+        },
+        "falsePositives": {
+          "items": {
+            "$ref": "#/definitions/models.DictionaryChild"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "word": {
+          "type": "string"
+        },
+        "wordType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "namespace",
+        "parentId",
+        "word",
+        "wordType"
+      ]
+    },
+    "models.DictionaryWordChanges": {
+      "properties": {
+        "added": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "failed": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignored": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replaced": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unchanged": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "added",
+        "failed",
+        "ignored",
+        "replaced",
+        "unchanged"
+      ]
+    },
+    "models.GetInboxCategoriesResponseItem": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "expiresIn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hook": {
+          "$ref": "#/definitions/models.CategoryHook"
+        },
+        "jsonSchema": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "saveInbox": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "sendNotification": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enabled",
+        "expiresIn",
+        "name",
+        "saveInbox",
+        "sendNotification"
+      ]
+    },
+    "models.GetInboxMessagesResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GetInboxMessagesResponseData"
+          },
+          "type": "array"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "next",
+        "previous"
+      ]
+    },
+    "models.GetInboxMessagesResponseData": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "expiredAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "object"
+        },
+        "scope": {
+          "enum": [
+            "NAMESPACE",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "senderId": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "SENT",
+            "UNSENT"
+          ],
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "createdAt",
+        "expiredAt",
+        "id",
+        "message",
+        "scope",
+        "senderId",
+        "status",
+        "updatedAt",
+        "userIds"
+      ]
+    },
+    "models.GetInboxStatsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.MessageStats"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.GetInboxUsersResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.UserInbox"
+          },
+          "type": "array"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "next",
+        "previous"
+      ]
+    },
+    "models.ImportConfigResponse": {
+      "properties": {
+        "failedConfigs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoredConfigs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "newConfigs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replacedConfigs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "failedConfigs",
+        "ignoredConfigs",
+        "newConfigs",
+        "replacedConfigs"
+      ]
+    },
+    "models.JSONSchemaType": {
+      "type": "object"
+    },
+    "models.MessageStats": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "messageRead": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "messageStored": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "notificationSent": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "messageRead",
+        "messageStored",
+        "notificationSent"
+      ]
+    },
+    "models.Pagination": {
+      "properties": {
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "next",
+        "previous"
+      ]
+    },
+    "models.PublicBanTopicMembersRequest": {
+      "properties": {
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIDs"
+      ]
+    },
+    "models.PublicBanTopicMembersResponse": {
+      "properties": {
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIDs"
+      ]
+    },
+    "models.PublicUnbanTopicMembersRequest": {
+      "properties": {
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIDs"
+      ]
+    },
+    "models.PublicUnbanTopicMembersResponse": {
+      "properties": {
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIDs"
+      ]
+    },
+    "models.SaveInboxMessageRequest": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "expiredAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "message": {
+          "type": "object"
+        },
+        "scope": {
+          "enum": [
+            "NAMESPACE",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "SENT"
+          ],
+          "type": "string"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "category",
+        "expiredAt",
+        "message",
+        "scope",
+        "status",
+        "userIds"
+      ]
+    },
+    "models.SaveInboxMessageResponse": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "expiredAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "object"
+        },
+        "scope": {
+          "enum": [
+            "NAMESPACE",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "SENT",
+            "UNSENT"
+          ],
+          "type": "string"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "category",
+        "expiredAt",
+        "id",
+        "message",
+        "scope",
+        "status",
+        "userIDs"
+      ]
+    },
+    "models.SendInboxMessageRequest": {},
+    "models.SendInboxMessageResponse": {},
+    "models.TopicInfo": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deletedAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "members": {
+          "items": {
+            "$ref": "#/definitions/topic.InfoMember"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "name",
+        "subType",
+        "type"
+      ]
+    },
+    "models.TopicLogItem": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "senderId": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "TOPIC_CREATE",
+            "TOPIC_DELETE",
+            "TOPIC_JOIN",
+            "TOPIC_LEAVE"
+          ],
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "message",
+        "senderId",
+        "topicId",
+        "type",
+        "userId"
+      ]
+    },
+    "models.TopicLogWithPaginationResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.TopicLogItem"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.TopicMemberResponse": {
+      "properties": {
+        "isAdmin": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isBanned": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "shardId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isAdmin",
+        "isBanned",
+        "shardId",
+        "userId"
+      ]
+    },
+    "models.TopicMemberWithPaginationResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.TopicMemberResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "paging",
+        "totalData"
+      ]
+    },
+    "models.TopicResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "lastMessageAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdBy",
+        "lastMessageAt",
+        "name",
+        "namespace",
+        "topicId",
+        "type"
+      ]
+    },
+    "models.UnbanTopicMemberParam": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
+    "models.UnbanTopicMemberResult": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
+    "models.UnsendInboxMessageRequest": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
+    "models.UnsendInboxMessageResponse": {},
+    "models.UpdateInboxCategoryRequest": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "expiresIn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hook": {
+          "$ref": "#/definitions/models.CategoryHook"
+        },
+        "jsonSchema": {
+          "type": "object"
+        },
+        "saveInbox": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "sendNotification": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enabled",
+        "expiresIn",
+        "hook",
+        "saveInbox",
+        "sendNotification"
+      ]
+    },
+    "models.UpdateInboxMessageRequest": {
+      "properties": {
+        "expiredAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "message": {
+          "type": "object"
+        },
+        "scope": {
+          "enum": [
+            "NAMESPACE",
+            "USER"
+          ],
+          "type": "string"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "expiredAt",
+        "message",
+        "scope",
+        "userIds"
+      ]
+    },
+    "models.UserInbox": {
+      "properties": {
+        "keep": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "readAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "keep",
+        "readAt",
+        "userId"
+      ]
+    },
+    "response.Error": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ]
+    },
+    "restapi.ErrorResponseBody": {
+      "properties": {
+        "ErrorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ErrorCode",
+        "ErrorMessage"
+      ]
+    },
+    "topic.InfoMember": {
+      "properties": {
+        "leftAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userId"
+      ]
+    }
+  },
+  "x-docs": {
+    "alias": "chat",
+    "host": "https://demo.accelbyte.io",
+    "path": "/chat/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2023-12-06T04:07:37+00:00",
+    "gitHash": "ec601a04d2ffc7d1a49f7933946a84115353c53d",
+    "name": "justice-chat-service",
+    "revisionID": "0.4.14",
+    "version": "0.4.14",
+    "version-roles-seeding": "0.0.18"
+  }
+}

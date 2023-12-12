@@ -17,6 +17,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/achievement"
 	"github.com/AccelByte/sample-apps/cmd/ams"
 	"github.com/AccelByte/sample-apps/cmd/basic"
+	"github.com/AccelByte/sample-apps/cmd/chat"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager"
 	"github.com/AccelByte/sample-apps/cmd/dsmc"
@@ -105,6 +106,7 @@ func init() {
 	RootCmd.AddCommand(reporting.ReportingCmd)
 	RootCmd.AddCommand(ams.AmsCmd)
 	RootCmd.AddCommand(inventory.InventoryCmd)
+	RootCmd.AddCommand(chat.ChatCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

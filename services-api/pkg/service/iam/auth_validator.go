@@ -104,6 +104,10 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		}
 		fmt.Println("token verified")
 
+		if errNamespace := v.hasValidNamespace(v.JwtClaims, namespace); errNamespace != nil {
+			return errors.New(errNamespace.Error())
+		}
+
 		if !v.hasValidPermissions(v.JwtClaims, permission, namespace, userId) {
 			return errors.New("insufficient permissions")
 		}
@@ -122,6 +126,10 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 
 	if v.isUserRevoked(v.JwtClaims.Subject, int64(v.JwtClaims.IssuedAt)) {
 		return errors.New("user was revoked")
+	}
+
+	if errNamespace := v.hasValidNamespace(v.JwtClaims, namespace); errNamespace != nil {
+		return errors.New(errNamespace.Error())
 	}
 
 	if !v.hasValidPermissions(v.JwtClaims, permission, namespace, userId) {
@@ -375,6 +383,20 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 	}
 
 	return false
+}
+
+func (v *TokenValidator) hasValidNamespace(claims JWTClaims, namespace *string) error {
+	if namespace == nil {
+		return fmt.Errorf("trying to validate access token against a namepace, but have an empty namespace")
+	}
+
+	if claims.ExtendNamespace != "" {
+		if claims.ExtendNamespace != *namespace {
+			return fmt.Errorf("extend namespace from token has different a namespace with grpc server")
+		}
+	}
+
+	return nil
 }
 
 func (v *TokenValidator) isTokenRevoked(token string) bool {

@@ -538,7 +538,13 @@ func (o *OAuth20Service) ParseAccessTokenToClaims(accessToken string, validate b
 			}
 		}
 
-		errValidate := o.Validate(accessToken, perm, &claims.Namespace, nil)
+		namespace := claims.Namespace
+
+		if claims.ExtendNamespace != "" {
+			namespace = claims.ExtendNamespace
+		}
+
+		errValidate := o.Validate(accessToken, perm, &namespace, nil)
 		if errValidate != nil {
 			log.Fatalf("token validation failed: %s", errValidate.Error())
 		}

@@ -107,10 +107,12 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Deployment: deployment,
 		Namespace:  integration.NamespaceTest,
 	}
-	_, errGet := deploymentConfigService.GetDeploymentShort(input)
+	getDeployment, errGet := deploymentConfigService.GetDeploymentShort(input)
 	if errGet != nil {
 		t.Skipf("failed to get \"%s\" deployment. %s", deployment, errGet.Error())
 	}
+
+	bodySessionDsmc.ClientVersion = getDeployment.GameVersion
 
 	// CASE Create a session
 	inputCreate := &session.CreateSessionParams{

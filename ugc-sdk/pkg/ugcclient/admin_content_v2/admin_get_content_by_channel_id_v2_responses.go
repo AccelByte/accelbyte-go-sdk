@@ -33,6 +33,12 @@ func (o *AdminGetContentByChannelIDV2Reader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminGetContentByChannelIDV2BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminGetContentByChannelIDV2Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +69,7 @@ func NewAdminGetContentByChannelIDV2OK() *AdminGetContentByChannelIDV2OK {
 
 /*AdminGetContentByChannelIDV2OK handles this case with default header values.
 
-  OK
+  List contents specific to a channel
 */
 type AdminGetContentByChannelIDV2OK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponseV2
@@ -109,6 +115,59 @@ func (o *AdminGetContentByChannelIDV2OK) readResponse(response runtime.ClientRes
 	return nil
 }
 
+// NewAdminGetContentByChannelIDV2BadRequest creates a AdminGetContentByChannelIDV2BadRequest with default headers values
+func NewAdminGetContentByChannelIDV2BadRequest() *AdminGetContentByChannelIDV2BadRequest {
+	return &AdminGetContentByChannelIDV2BadRequest{}
+}
+
+/*AdminGetContentByChannelIDV2BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770804</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetContentByChannelIDV2BadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetContentByChannelIDV2BadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminGetContentByChannelIdV2BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetContentByChannelIDV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetContentByChannelIDV2BadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetContentByChannelIDV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetContentByChannelIDV2Unauthorized creates a AdminGetContentByChannelIDV2Unauthorized with default headers values
 func NewAdminGetContentByChannelIDV2Unauthorized() *AdminGetContentByChannelIDV2Unauthorized {
 	return &AdminGetContentByChannelIDV2Unauthorized{}
@@ -116,7 +175,7 @@ func NewAdminGetContentByChannelIDV2Unauthorized() *AdminGetContentByChannelIDV2
 
 /*AdminGetContentByChannelIDV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetContentByChannelIDV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -169,7 +228,7 @@ func NewAdminGetContentByChannelIDV2InternalServerError() *AdminGetContentByChan
 
 /*AdminGetContentByChannelIDV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770805</td><td>Unable to get ugc content: database error</td></tr></table>
 */
 type AdminGetContentByChannelIDV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

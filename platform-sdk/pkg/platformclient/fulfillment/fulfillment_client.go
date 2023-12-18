@@ -36,9 +36,11 @@ type ClientService interface {
 	FulfillItemShort(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, error)
 	RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, *RedeemCodeBadRequest, *RedeemCodeNotFound, *RedeemCodeConflict, error)
 	RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, error)
+	PreCheckFulfillItem(params *PreCheckFulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckFulfillItemOK, *PreCheckFulfillItemBadRequest, *PreCheckFulfillItemNotFound, error)
+	PreCheckFulfillItemShort(params *PreCheckFulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckFulfillItemOK, error)
 	FulfillRewards(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, *FulfillRewardsBadRequest, *FulfillRewardsNotFound, *FulfillRewardsConflict, error)
 	FulfillRewardsShort(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, error)
-	PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error)
+	PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, *PublicRedeemCodeTooManyRequests, error)
 	PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error)
 	FulfillRewardsV2(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, *FulfillRewardsV2BadRequest, *FulfillRewardsV2NotFound, *FulfillRewardsV2Conflict, error)
 	FulfillRewardsV2Short(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, error)
@@ -377,6 +379,116 @@ func (a *Client) RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.Clie
 }
 
 /*
+Deprecated: 2022-08-10 - Use PreCheckFulfillItemShort instead.
+
+PreCheckFulfillItem pre check fulfillment items
+Retrieve and check fulfillment items based on the provided request.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=READ
+  *  Returns : list of fulfillment items
+*/
+func (a *Client) PreCheckFulfillItem(params *PreCheckFulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckFulfillItemOK, *PreCheckFulfillItemBadRequest, *PreCheckFulfillItemNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPreCheckFulfillItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "preCheckFulfillItem",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/preCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PreCheckFulfillItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PreCheckFulfillItemOK:
+		return v, nil, nil, nil
+
+	case *PreCheckFulfillItemBadRequest:
+		return nil, v, nil, nil
+
+	case *PreCheckFulfillItemNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PreCheckFulfillItemShort pre check fulfillment items
+Retrieve and check fulfillment items based on the provided request.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=READ
+  *  Returns : list of fulfillment items
+*/
+func (a *Client) PreCheckFulfillItemShort(params *PreCheckFulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckFulfillItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPreCheckFulfillItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "preCheckFulfillItem",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/preCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PreCheckFulfillItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PreCheckFulfillItemOK:
+		return v, nil
+	case *PreCheckFulfillItemBadRequest:
+		return nil, v
+	case *PreCheckFulfillItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use FulfillRewardsShort instead.
 
 FulfillRewards fulfill rewards
@@ -495,13 +607,13 @@ func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runt
 Deprecated: 2022-08-10 - Use PublicRedeemCodeShort instead.
 
 PublicRedeemCode redeem campaign code
-Redeem campaign code.
+Redeem campaign code, this api have rate limit, default: only allow request once per user in 2 seconds
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
   *  Returns : fulfillment result
 */
-func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error) {
+func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, *PublicRedeemCodeTooManyRequests, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRedeemCodeParams()
@@ -529,31 +641,34 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicRedeemCodeOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicRedeemCodeBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicRedeemCodeNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicRedeemCodeConflict:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicRedeemCodeTooManyRequests:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
 PublicRedeemCodeShort redeem campaign code
-Redeem campaign code.
+Redeem campaign code, this api have rate limit, default: only allow request once per user in 2 seconds
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
@@ -599,6 +714,8 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 	case *PublicRedeemCodeNotFound:
 		return nil, v
 	case *PublicRedeemCodeConflict:
+		return nil, v
+	case *PublicRedeemCodeTooManyRequests:
 		return nil, v
 
 	default:

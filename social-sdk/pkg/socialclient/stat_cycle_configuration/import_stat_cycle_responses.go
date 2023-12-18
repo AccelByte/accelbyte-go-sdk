@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package stat_configuration
+package stat_cycle_configuration
 
 import (
 	"encoding/json"

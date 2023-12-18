@@ -71,7 +71,7 @@ type PublicGetUserBanHistoryV3Params struct {
 	*/
 	Namespace string
 	/*UserID
-	  User ID
+	  User ID, should follow UUID version 4 without hyphen
 
 	*/
 	UserID string
@@ -81,17 +81,17 @@ type PublicGetUserBanHistoryV3Params struct {
 	*/
 	ActiveOnly *bool
 	/*After
-	  Filter ban based on the date creation. If you set this, only user bans created after the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. <em>Doesn't work yet</em>
+	  Filter ban based on the date creation. If you set this, only user bans created after the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_
 
 	*/
 	After *string
 	/*Before
-	  Filter ban based on the date creation. If you set this, only user bans created before the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. <em>Doesn't work yet</em>
+	  Filter ban based on the date creation. If you set this, only user bans created before the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_
 
 	*/
 	Before *string
 	/*Limit
-	  The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. <em>Doesn't work yet</em>.
+	  The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. _Doesn't work yet_.
 
 	*/
 	Limit *int64

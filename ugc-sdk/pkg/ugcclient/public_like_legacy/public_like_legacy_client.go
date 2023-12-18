@@ -30,9 +30,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentUnauthorized, *GetLikedContentNotFound, *GetLikedContentInternalServerError, error)
+	GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentBadRequest, *GetLikedContentUnauthorized, *GetLikedContentInternalServerError, error)
 	GetLikedContentShort(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, error)
-	UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, *UpdateContentLikeStatusBadRequest, *UpdateContentLikeStatusUnauthorized, *UpdateContentLikeStatusInternalServerError, error)
+	UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, *UpdateContentLikeStatusBadRequest, *UpdateContentLikeStatusUnauthorized, *UpdateContentLikeStatusNotFound, *UpdateContentLikeStatusInternalServerError, error)
 	UpdateContentLikeStatusShort(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -64,7 +64,7 @@ Allowed character for operator: `&` `|` `(` `)`
 
  Please note that value of tags query param should be URL encoded
 */
-func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentUnauthorized, *GetLikedContentNotFound, *GetLikedContentInternalServerError, error) {
+func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentBadRequest, *GetLikedContentUnauthorized, *GetLikedContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLikedContentParams()
@@ -100,10 +100,10 @@ func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime
 	case *GetLikedContentOK:
 		return v, nil, nil, nil, nil
 
-	case *GetLikedContentUnauthorized:
+	case *GetLikedContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetLikedContentNotFound:
+	case *GetLikedContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetLikedContentInternalServerError:
@@ -173,9 +173,9 @@ func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo ru
 
 	case *GetLikedContentOK:
 		return v, nil
-	case *GetLikedContentUnauthorized:
+	case *GetLikedContentBadRequest:
 		return nil, v
-	case *GetLikedContentNotFound:
+	case *GetLikedContentUnauthorized:
 		return nil, v
 	case *GetLikedContentInternalServerError:
 		return nil, v
@@ -191,7 +191,7 @@ Deprecated: 2022-08-10 - Use UpdateContentLikeStatusShort instead.
 UpdateContentLikeStatus update like/unlike status to a content
 Requires valid user token
 */
-func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, *UpdateContentLikeStatusBadRequest, *UpdateContentLikeStatusUnauthorized, *UpdateContentLikeStatusInternalServerError, error) {
+func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, *UpdateContentLikeStatusBadRequest, *UpdateContentLikeStatusUnauthorized, *UpdateContentLikeStatusNotFound, *UpdateContentLikeStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateContentLikeStatusParams()
@@ -219,25 +219,28 @@ func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateContentLikeStatusOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *UpdateContentLikeStatusBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *UpdateContentLikeStatusUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *UpdateContentLikeStatusNotFound:
+		return nil, nil, nil, v, nil, nil
 
 	case *UpdateContentLikeStatusInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -283,6 +286,8 @@ func (a *Client) UpdateContentLikeStatusShort(params *UpdateContentLikeStatusPar
 	case *UpdateContentLikeStatusBadRequest:
 		return nil, v
 	case *UpdateContentLikeStatusUnauthorized:
+		return nil, v
+	case *UpdateContentLikeStatusNotFound:
 		return nil, v
 	case *UpdateContentLikeStatusInternalServerError:
 		return nil, v

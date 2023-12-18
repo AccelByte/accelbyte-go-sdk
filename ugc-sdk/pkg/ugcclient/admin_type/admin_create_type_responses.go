@@ -75,7 +75,7 @@ func NewAdminCreateTypeCreated() *AdminCreateTypeCreated {
 
 /*AdminCreateTypeCreated handles this case with default header values.
 
-  Created
+  types created
 */
 type AdminCreateTypeCreated struct {
 	Payload *ugcclientmodels.ModelsCreateTypeResponse
@@ -128,7 +128,7 @@ func NewAdminCreateTypeBadRequest() *AdminCreateTypeBadRequest {
 
 /*AdminCreateTypeBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771701</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminCreateTypeBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +181,7 @@ func NewAdminCreateTypeUnauthorized() *AdminCreateTypeUnauthorized {
 
 /*AdminCreateTypeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminCreateTypeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +234,7 @@ func NewAdminCreateTypeConflict() *AdminCreateTypeConflict {
 
 /*AdminCreateTypeConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771703</td><td>Conflicted resource indentifier</td></tr></table>
 */
 type AdminCreateTypeConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +287,7 @@ func NewAdminCreateTypeInternalServerError() *AdminCreateTypeInternalServerError
 
 /*AdminCreateTypeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771702</td><td>Unable to save ugc type</td></tr></table>
 */
 type AdminCreateTypeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -69,7 +69,7 @@ func NewDeleteGroupNoContent() *DeleteGroupNoContent {
 
 /*DeleteGroupNoContent handles this case with default header values.
 
-  No Content
+  Group deleted
 */
 type DeleteGroupNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewDeleteGroupUnauthorized() *DeleteGroupUnauthorized {
 
 /*DeleteGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewDeleteGroupNotFound() *DeleteGroupNotFound {
 
 /*DeleteGroupNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772403</td><td>Group not found</td></tr></table>
 */
 type DeleteGroupNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewDeleteGroupInternalServerError() *DeleteGroupInternalServerError {
 
 /*DeleteGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772402</td><td>Unable delete groups</td></tr></table>
 */
 type DeleteGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

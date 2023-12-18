@@ -45,31 +45,31 @@ func (aaa *TradeActionService) Commit(input *trade_action.CommitParams) (*platfo
 }
 
 // Deprecated: 2022-01-10 - please use GetTradeHistoryByCriteriaShort instead.
-func (aaa *TradeActionService) GetTradeHistoryByCriteria(input *trade_action.GetTradeHistoryByCriteriaParams) error {
+func (aaa *TradeActionService) GetTradeHistoryByCriteria(input *trade_action.GetTradeHistoryByCriteriaParams) (*platformclientmodels.TradeActionPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.TradeAction.GetTradeHistoryByCriteria(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.TradeAction.GetTradeHistoryByCriteria(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use GetTradeHistoryByTransactionIDShort instead.
-func (aaa *TradeActionService) GetTradeHistoryByTransactionID(input *trade_action.GetTradeHistoryByTransactionIDParams) error {
+func (aaa *TradeActionService) GetTradeHistoryByTransactionID(input *trade_action.GetTradeHistoryByTransactionIDParams) (*platformclientmodels.TradeChainActionHistoryInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.TradeAction.GetTradeHistoryByTransactionID(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.TradeAction.GetTradeHistoryByTransactionID(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *TradeActionService) CommitShort(input *trade_action.CommitParams) (*platformclientmodels.TradeChainActionHistoryInfo, error) {
@@ -97,7 +97,7 @@ func (aaa *TradeActionService) CommitShort(input *trade_action.CommitParams) (*p
 	return ok.GetPayload(), nil
 }
 
-func (aaa *TradeActionService) GetTradeHistoryByCriteriaShort(input *trade_action.GetTradeHistoryByCriteriaParams) error {
+func (aaa *TradeActionService) GetTradeHistoryByCriteriaShort(input *trade_action.GetTradeHistoryByCriteriaParams) (*platformclientmodels.TradeActionPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -114,15 +114,15 @@ func (aaa *TradeActionService) GetTradeHistoryByCriteriaShort(input *trade_actio
 		}
 	}
 
-	_, err := aaa.Client.TradeAction.GetTradeHistoryByCriteriaShort(input, authInfoWriter)
+	ok, err := aaa.Client.TradeAction.GetTradeHistoryByCriteriaShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
-func (aaa *TradeActionService) GetTradeHistoryByTransactionIDShort(input *trade_action.GetTradeHistoryByTransactionIDParams) error {
+func (aaa *TradeActionService) GetTradeHistoryByTransactionIDShort(input *trade_action.GetTradeHistoryByTransactionIDParams) (*platformclientmodels.TradeChainActionHistoryInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -139,10 +139,10 @@ func (aaa *TradeActionService) GetTradeHistoryByTransactionIDShort(input *trade_
 		}
 	}
 
-	_, err := aaa.Client.TradeAction.GetTradeHistoryByTransactionIDShort(input, authInfoWriter)
+	ok, err := aaa.Client.TradeAction.GetTradeHistoryByTransactionIDShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }

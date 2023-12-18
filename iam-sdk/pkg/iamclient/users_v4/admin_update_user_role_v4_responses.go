@@ -299,7 +299,7 @@ func NewAdminUpdateUserRoleV4NotFound() *AdminUpdateUserRoleV4NotFound {
 
 /*AdminUpdateUserRoleV4NotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>10156</td><td>role not found</td></tr></table>
 */
 type AdminUpdateUserRoleV4NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse

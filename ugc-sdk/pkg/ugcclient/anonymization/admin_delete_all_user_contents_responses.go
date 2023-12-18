@@ -69,7 +69,7 @@ func NewAdminDeleteAllUserContentsNoContent() *AdminDeleteAllUserContentsNoConte
 
 /*AdminDeleteAllUserContentsNoContent handles this case with default header values.
 
-  No Content
+  Users content's deleted
 */
 type AdminDeleteAllUserContentsNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewAdminDeleteAllUserContentsUnauthorized() *AdminDeleteAllUserContentsUnau
 
 /*AdminDeleteAllUserContentsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteAllUserContentsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewAdminDeleteAllUserContentsNotFound() *AdminDeleteAllUserContentsNotFound
 
 /*AdminDeleteAllUserContentsNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773402</td><td>Content not found</td></tr></table>
 */
 type AdminDeleteAllUserContentsNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewAdminDeleteAllUserContentsInternalServerError() *AdminDeleteAllUserConte
 
 /*AdminDeleteAllUserContentsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773401</td><td>Unable to get all user content</td></tr></table>
 */
 type AdminDeleteAllUserContentsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

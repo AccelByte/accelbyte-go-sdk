@@ -28,17 +28,17 @@ var DebitByWalletPlatformCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		requestString := cmd.Flag("request").Value.String()
+		var request *platformclientmodels.DebitByWalletPlatformRequest
+		errRequest := json.Unmarshal([]byte(requestString), &request)
+		if errRequest != nil {
+			return errRequest
+		}
 		currencyCode, _ := cmd.Flags().GetString("currencyCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.DebitByWalletPlatformRequest
-		errBody := json.Unmarshal([]byte(bodyString), &body)
-		if errBody != nil {
-			return errBody
-		}
 		input := &wallet.DebitByWalletPlatformParams{
-			Body:         body,
+			Request:      request,
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 			UserID:       userId,
@@ -57,7 +57,8 @@ var DebitByWalletPlatformCmd = &cobra.Command{
 }
 
 func init() {
-	DebitByWalletPlatformCmd.Flags().String("body", "", "Body")
+	DebitByWalletPlatformCmd.Flags().String("request", "", "Request")
+	_ = DebitByWalletPlatformCmd.MarkFlagRequired("request")
 	DebitByWalletPlatformCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = DebitByWalletPlatformCmd.MarkFlagRequired("currencyCode")
 	DebitByWalletPlatformCmd.Flags().String("namespace", "", "Namespace")

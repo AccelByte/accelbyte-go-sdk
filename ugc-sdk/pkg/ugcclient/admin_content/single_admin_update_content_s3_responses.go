@@ -45,6 +45,12 @@ func (o *SingleAdminUpdateContentS3Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewSingleAdminUpdateContentS3Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewSingleAdminUpdateContentS3NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +87,7 @@ func NewSingleAdminUpdateContentS3OK() *SingleAdminUpdateContentS3OK {
 
 /*SingleAdminUpdateContentS3OK handles this case with default header values.
 
-  OK
+  Content updated at s3
 */
 type SingleAdminUpdateContentS3OK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -134,7 +140,7 @@ func NewSingleAdminUpdateContentS3BadRequest() *SingleAdminUpdateContentS3BadReq
 
 /*SingleAdminUpdateContentS3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr><tr><td>772607</td><td>Unable to update ugc content: invalid shareCode format</td></tr></table>
 */
 type SingleAdminUpdateContentS3BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -187,7 +193,7 @@ func NewSingleAdminUpdateContentS3Unauthorized() *SingleAdminUpdateContentS3Unau
 
 /*SingleAdminUpdateContentS3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminUpdateContentS3Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -233,6 +239,59 @@ func (o *SingleAdminUpdateContentS3Unauthorized) readResponse(response runtime.C
 	return nil
 }
 
+// NewSingleAdminUpdateContentS3Forbidden creates a SingleAdminUpdateContentS3Forbidden with default headers values
+func NewSingleAdminUpdateContentS3Forbidden() *SingleAdminUpdateContentS3Forbidden {
+	return &SingleAdminUpdateContentS3Forbidden{}
+}
+
+/*SingleAdminUpdateContentS3Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type SingleAdminUpdateContentS3Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *SingleAdminUpdateContentS3Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3/{contentId}][%d] singleAdminUpdateContentS3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *SingleAdminUpdateContentS3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SingleAdminUpdateContentS3Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *SingleAdminUpdateContentS3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewSingleAdminUpdateContentS3NotFound creates a SingleAdminUpdateContentS3NotFound with default headers values
 func NewSingleAdminUpdateContentS3NotFound() *SingleAdminUpdateContentS3NotFound {
 	return &SingleAdminUpdateContentS3NotFound{}
@@ -240,7 +299,7 @@ func NewSingleAdminUpdateContentS3NotFound() *SingleAdminUpdateContentS3NotFound
 
 /*SingleAdminUpdateContentS3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type SingleAdminUpdateContentS3NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +352,7 @@ func NewSingleAdminUpdateContentS3Conflict() *SingleAdminUpdateContentS3Conflict
 
 /*SingleAdminUpdateContentS3Conflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772606</td><td>Share code already used</td></tr></table>
 */
 type SingleAdminUpdateContentS3Conflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +405,7 @@ func NewSingleAdminUpdateContentS3InternalServerError() *SingleAdminUpdateConten
 
 /*SingleAdminUpdateContentS3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr><tr><td>772605</td><td>Unable to save ugc content: failed generate upload URL</td></tr></table>
 */
 type SingleAdminUpdateContentS3InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

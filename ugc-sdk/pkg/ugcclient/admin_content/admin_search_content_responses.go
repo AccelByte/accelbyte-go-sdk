@@ -33,14 +33,14 @@ func (o *AdminSearchContentReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminSearchContentUnauthorized()
+	case 400:
+		result := NewAdminSearchContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminSearchContentNotFound()
+	case 401:
+		result := NewAdminSearchContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminSearchContentOK() *AdminSearchContentOK {
 
 /*AdminSearchContentOK handles this case with default header values.
 
-  OK
+  Search contents
 */
 type AdminSearchContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *AdminSearchContentOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
+// NewAdminSearchContentBadRequest creates a AdminSearchContentBadRequest with default headers values
+func NewAdminSearchContentBadRequest() *AdminSearchContentBadRequest {
+	return &AdminSearchContentBadRequest{}
+}
+
+/*AdminSearchContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770800</td><td>invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter</td></tr></table>
+*/
+type AdminSearchContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminSearchContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/search][%d] adminSearchContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminSearchContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminSearchContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminSearchContentUnauthorized creates a AdminSearchContentUnauthorized with default headers values
 func NewAdminSearchContentUnauthorized() *AdminSearchContentUnauthorized {
 	return &AdminSearchContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminSearchContentUnauthorized() *AdminSearchContentUnauthorized {
 
 /*AdminSearchContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminSearchContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminSearchContentUnauthorized) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewAdminSearchContentNotFound creates a AdminSearchContentNotFound with default headers values
-func NewAdminSearchContentNotFound() *AdminSearchContentNotFound {
-	return &AdminSearchContentNotFound{}
-}
-
-/*AdminSearchContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminSearchContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminSearchContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents/search][%d] adminSearchContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminSearchContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminSearchContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminSearchContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminSearchContentInternalServerError creates a AdminSearchContentInternalServerError with default headers values
 func NewAdminSearchContentInternalServerError() *AdminSearchContentInternalServerError {
 	return &AdminSearchContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminSearchContentInternalServerError() *AdminSearchContentInternalServe
 
 /*AdminSearchContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770803</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminSearchContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

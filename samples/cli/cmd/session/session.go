@@ -18,6 +18,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/session/party"
 	"github.com/AccelByte/sample-apps/cmd/session/platformCredential"
 	"github.com/AccelByte/sample-apps/cmd/session/player"
+	"github.com/AccelByte/sample-apps/cmd/session/recentPlayer"
 	"github.com/AccelByte/sample-apps/cmd/session/sessionStorage"
 	"github.com/spf13/cobra"
 )
@@ -95,6 +96,7 @@ func init() {
 	SessionCmd.AddCommand(party.PublicPartyRejectCmd)
 	SessionCmd.AddCommand(party.PublicPartyKickCmd)
 	SessionCmd.AddCommand(party.PublicCreatePartyCmd)
+	SessionCmd.AddCommand(recentPlayer.PublicGetRecentPlayerCmd)
 	SessionCmd.AddCommand(sessionStorage.PublicUpdateInsertSessionStorageLeaderCmd)
 	SessionCmd.AddCommand(sessionStorage.PublicUpdateInsertSessionStorageCmd)
 	SessionCmd.AddCommand(player.PublicGetBulkPlayerCurrentPlatformCmd)

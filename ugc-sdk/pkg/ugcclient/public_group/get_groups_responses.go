@@ -33,14 +33,14 @@ func (o *GetGroupsReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetGroupsUnauthorized()
+	case 400:
+		result := NewGetGroupsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetGroupsNotFound()
+	case 401:
+		result := NewGetGroupsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetGroupsOK() *GetGroupsOK {
 
 /*GetGroupsOK handles this case with default header values.
 
-  OK
+  Get all user group
 */
 type GetGroupsOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGroupResponse
@@ -115,6 +115,59 @@ func (o *GetGroupsOK) readResponse(response runtime.ClientResponse, consumer run
 	return nil
 }
 
+// NewGetGroupsBadRequest creates a GetGroupsBadRequest with default headers values
+func NewGetGroupsBadRequest() *GetGroupsBadRequest {
+	return &GetGroupsBadRequest{}
+}
+
+/*GetGroupsBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772301</td><td>invalid paging parameter</td></tr></table>
+*/
+type GetGroupsBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetGroupsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] getGroupsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetGroupsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetGroupsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetGroupsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetGroupsUnauthorized creates a GetGroupsUnauthorized with default headers values
 func NewGetGroupsUnauthorized() *GetGroupsUnauthorized {
 	return &GetGroupsUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetGroupsUnauthorized() *GetGroupsUnauthorized {
 
 /*GetGroupsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetGroupsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetGroupsUnauthorized) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewGetGroupsNotFound creates a GetGroupsNotFound with default headers values
-func NewGetGroupsNotFound() *GetGroupsNotFound {
-	return &GetGroupsNotFound{}
-}
-
-/*GetGroupsNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetGroupsNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups][%d] getGroupsNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetGroupsNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetGroupsNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetGroupsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetGroupsInternalServerError creates a GetGroupsInternalServerError with default headers values
 func NewGetGroupsInternalServerError() *GetGroupsInternalServerError {
 	return &GetGroupsInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetGroupsInternalServerError() *GetGroupsInternalServerError {
 
 /*GetGroupsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772302</td><td>Unable get groups</td></tr></table>
 */
 type GetGroupsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

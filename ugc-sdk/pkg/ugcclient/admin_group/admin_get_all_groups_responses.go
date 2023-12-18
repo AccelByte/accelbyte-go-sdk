@@ -33,14 +33,14 @@ func (o *AdminGetAllGroupsReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminGetAllGroupsUnauthorized()
+	case 400:
+		result := NewAdminGetAllGroupsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminGetAllGroupsNotFound()
+	case 401:
+		result := NewAdminGetAllGroupsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminGetAllGroupsOK() *AdminGetAllGroupsOK {
 
 /*AdminGetAllGroupsOK handles this case with default header values.
 
-  OK
+  Get all user groups
 */
 type AdminGetAllGroupsOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGroupResponse
@@ -115,6 +115,59 @@ func (o *AdminGetAllGroupsOK) readResponse(response runtime.ClientResponse, cons
 	return nil
 }
 
+// NewAdminGetAllGroupsBadRequest creates a AdminGetAllGroupsBadRequest with default headers values
+func NewAdminGetAllGroupsBadRequest() *AdminGetAllGroupsBadRequest {
+	return &AdminGetAllGroupsBadRequest{}
+}
+
+/*AdminGetAllGroupsBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772301</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetAllGroupsBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetAllGroupsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetAllGroupsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetAllGroupsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetAllGroupsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetAllGroupsUnauthorized creates a AdminGetAllGroupsUnauthorized with default headers values
 func NewAdminGetAllGroupsUnauthorized() *AdminGetAllGroupsUnauthorized {
 	return &AdminGetAllGroupsUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminGetAllGroupsUnauthorized() *AdminGetAllGroupsUnauthorized {
 
 /*AdminGetAllGroupsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetAllGroupsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminGetAllGroupsUnauthorized) readResponse(response runtime.ClientResp
 	return nil
 }
 
-// NewAdminGetAllGroupsNotFound creates a AdminGetAllGroupsNotFound with default headers values
-func NewAdminGetAllGroupsNotFound() *AdminGetAllGroupsNotFound {
-	return &AdminGetAllGroupsNotFound{}
-}
-
-/*AdminGetAllGroupsNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminGetAllGroupsNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminGetAllGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups][%d] adminGetAllGroupsNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminGetAllGroupsNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminGetAllGroupsNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminGetAllGroupsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminGetAllGroupsInternalServerError creates a AdminGetAllGroupsInternalServerError with default headers values
 func NewAdminGetAllGroupsInternalServerError() *AdminGetAllGroupsInternalServerError {
 	return &AdminGetAllGroupsInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminGetAllGroupsInternalServerError() *AdminGetAllGroupsInternalServerE
 
 /*AdminGetAllGroupsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772302</td><td>Unable get groups</td></tr></table>
 */
 type AdminGetAllGroupsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

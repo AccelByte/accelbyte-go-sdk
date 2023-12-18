@@ -33,14 +33,14 @@ func (o *SingleAdminGetChannelReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewSingleAdminGetChannelUnauthorized()
+	case 400:
+		result := NewSingleAdminGetChannelBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewSingleAdminGetChannelNotFound()
+	case 401:
+		result := NewSingleAdminGetChannelUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewSingleAdminGetChannelOK() *SingleAdminGetChannelOK {
 
 /*SingleAdminGetChannelOK handles this case with default header values.
 
-  OK
+  Get channels
 */
 type SingleAdminGetChannelOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGetChannelResponse
@@ -115,6 +115,59 @@ func (o *SingleAdminGetChannelOK) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
+// NewSingleAdminGetChannelBadRequest creates a SingleAdminGetChannelBadRequest with default headers values
+func NewSingleAdminGetChannelBadRequest() *SingleAdminGetChannelBadRequest {
+	return &SingleAdminGetChannelBadRequest{}
+}
+
+/*SingleAdminGetChannelBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770702</td><td>invalid paging parameter</td></tr></table>
+*/
+type SingleAdminGetChannelBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *SingleAdminGetChannelBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SingleAdminGetChannelBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SingleAdminGetChannelBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *SingleAdminGetChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewSingleAdminGetChannelUnauthorized creates a SingleAdminGetChannelUnauthorized with default headers values
 func NewSingleAdminGetChannelUnauthorized() *SingleAdminGetChannelUnauthorized {
 	return &SingleAdminGetChannelUnauthorized{}
@@ -122,7 +175,7 @@ func NewSingleAdminGetChannelUnauthorized() *SingleAdminGetChannelUnauthorized {
 
 /*SingleAdminGetChannelUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminGetChannelUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *SingleAdminGetChannelUnauthorized) readResponse(response runtime.Client
 	return nil
 }
 
-// NewSingleAdminGetChannelNotFound creates a SingleAdminGetChannelNotFound with default headers values
-func NewSingleAdminGetChannelNotFound() *SingleAdminGetChannelNotFound {
-	return &SingleAdminGetChannelNotFound{}
-}
-
-/*SingleAdminGetChannelNotFound handles this case with default header values.
-
-  Not Found
-*/
-type SingleAdminGetChannelNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *SingleAdminGetChannelNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels][%d] singleAdminGetChannelNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *SingleAdminGetChannelNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *SingleAdminGetChannelNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *SingleAdminGetChannelNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSingleAdminGetChannelInternalServerError creates a SingleAdminGetChannelInternalServerError with default headers values
 func NewSingleAdminGetChannelInternalServerError() *SingleAdminGetChannelInternalServerError {
 	return &SingleAdminGetChannelInternalServerError{}
@@ -228,7 +228,7 @@ func NewSingleAdminGetChannelInternalServerError() *SingleAdminGetChannelInterna
 
 /*SingleAdminGetChannelInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770700</td><td>Unable get user channels</td></tr></table>
 */
 type SingleAdminGetChannelInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

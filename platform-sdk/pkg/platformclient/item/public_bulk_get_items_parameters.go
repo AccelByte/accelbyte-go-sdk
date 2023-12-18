@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicBulkGetItemsParams creates a new PublicBulkGetItemsParams object
 // with the default values initialized.
 func NewPublicBulkGetItemsParams() *PublicBulkGetItemsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicBulkGetItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewPublicBulkGetItemsParams() *PublicBulkGetItemsParams {
 // NewPublicBulkGetItemsParamsWithTimeout creates a new PublicBulkGetItemsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicBulkGetItemsParamsWithTimeout(timeout time.Duration) *PublicBulkGetItemsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicBulkGetItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewPublicBulkGetItemsParamsWithTimeout(timeout time.Duration) *PublicBulkGe
 // NewPublicBulkGetItemsParamsWithContext creates a new PublicBulkGetItemsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicBulkGetItemsParamsWithContext(ctx context.Context) *PublicBulkGetItemsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicBulkGetItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewPublicBulkGetItemsParamsWithContext(ctx context.Context) *PublicBulkGetI
 // NewPublicBulkGetItemsParamsWithHTTPClient creates a new PublicBulkGetItemsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicBulkGetItemsParamsWithHTTPClient(client *http.Client) *PublicBulkGetItemsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicBulkGetItemsParams{
-		HTTPClient: client,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -69,6 +82,8 @@ type PublicBulkGetItemsParams struct {
 
 	*/
 	Namespace string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*Language*/
 	Language *string
 	/*Region*/
@@ -148,6 +163,17 @@ func (o *PublicBulkGetItemsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public bulk get items params
+func (o *PublicBulkGetItemsParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicBulkGetItemsParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public bulk get items params
+func (o *PublicBulkGetItemsParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
+}
+
 // WithLanguage adds the language to the public bulk get items params
 func (o *PublicBulkGetItemsParams) WithLanguage(language *string) *PublicBulkGetItemsParams {
 	o.SetLanguage(language)
@@ -203,6 +229,22 @@ func (o *PublicBulkGetItemsParams) WriteToRequest(r runtime.ClientRequest, reg s
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Language != nil {

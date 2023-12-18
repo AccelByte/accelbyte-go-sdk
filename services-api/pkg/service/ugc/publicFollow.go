@@ -36,12 +36,12 @@ func (aaa *PublicFollowService) GetFollowedContent(input *public_follow.GetFollo
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -59,12 +59,12 @@ func (aaa *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowe
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -82,15 +82,12 @@ func (aaa *PublicFollowService) UpdateUserFollowStatus(input *public_follow.Upda
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -108,12 +105,12 @@ func (aaa *PublicFollowService) GetPublicFollowers(input *public_follow.GetPubli
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -131,12 +128,12 @@ func (aaa *PublicFollowService) GetPublicFollowing(input *public_follow.GetPubli
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

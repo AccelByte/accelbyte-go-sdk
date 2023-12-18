@@ -45,6 +45,12 @@ func (o *UpdateContentLikeStatusReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewUpdateContentLikeStatusNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewUpdateContentLikeStatusInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewUpdateContentLikeStatusOK() *UpdateContentLikeStatusOK {
 
 /*UpdateContentLikeStatusOK handles this case with default header values.
 
-  OK
+  Update like/unlike status to a content
 */
 type UpdateContentLikeStatusOK struct {
 	Payload *ugcclientmodels.ModelsContentLikeResponse
@@ -122,7 +128,7 @@ func NewUpdateContentLikeStatusBadRequest() *UpdateContentLikeStatusBadRequest {
 
 /*UpdateContentLikeStatusBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771000</td><td>Malformed request/Content not found/Unable to update like status: content not found</td></tr></table>
 */
 type UpdateContentLikeStatusBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewUpdateContentLikeStatusUnauthorized() *UpdateContentLikeStatusUnauthoriz
 
 /*UpdateContentLikeStatusUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateContentLikeStatusUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *UpdateContentLikeStatusUnauthorized) readResponse(response runtime.Clie
 	return nil
 }
 
+// NewUpdateContentLikeStatusNotFound creates a UpdateContentLikeStatusNotFound with default headers values
+func NewUpdateContentLikeStatusNotFound() *UpdateContentLikeStatusNotFound {
+	return &UpdateContentLikeStatusNotFound{}
+}
+
+/*UpdateContentLikeStatusNotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771000</td><td>Malformed request/Content not found/Unable to update like status: content not found</td></tr><tr><td>771001</td><td>unable to like content/Unable to update like status: database error</td></tr><tr><td>771000</td><td>Malformed request/Content not found/Unable to update like status: content not found</td></tr></table>
+*/
+type UpdateContentLikeStatusNotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *UpdateContentLikeStatusNotFound) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like][%d] updateContentLikeStatusNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *UpdateContentLikeStatusNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateContentLikeStatusNotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *UpdateContentLikeStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewUpdateContentLikeStatusInternalServerError creates a UpdateContentLikeStatusInternalServerError with default headers values
 func NewUpdateContentLikeStatusInternalServerError() *UpdateContentLikeStatusInternalServerError {
 	return &UpdateContentLikeStatusInternalServerError{}
@@ -228,7 +287,7 @@ func NewUpdateContentLikeStatusInternalServerError() *UpdateContentLikeStatusInt
 
 /*UpdateContentLikeStatusInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771001</td><td>unable to like content/Unable to update like status: database error</td></tr></table>
 */
 type UpdateContentLikeStatusInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

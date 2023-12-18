@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, *PublicAddDownloadCountV2BadRequest, *PublicAddDownloadCountV2Unauthorized, *PublicAddDownloadCountV2NotFound, *PublicAddDownloadCountV2TooManyRequests, *PublicAddDownloadCountV2InternalServerError, error)
+	PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, *PublicAddDownloadCountV2Unauthorized, *PublicAddDownloadCountV2NotFound, *PublicAddDownloadCountV2TooManyRequests, *PublicAddDownloadCountV2InternalServerError, error)
 	PublicAddDownloadCountV2Short(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, error)
 	PublicListContentDownloaderV2(params *PublicListContentDownloaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentDownloaderV2OK, *PublicListContentDownloaderV2BadRequest, *PublicListContentDownloaderV2Unauthorized, *PublicListContentDownloaderV2InternalServerError, error)
 	PublicListContentDownloaderV2Short(params *PublicListContentDownloaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentDownloaderV2OK, error)
@@ -44,7 +44,7 @@ Deprecated: 2022-08-10 - Use PublicAddDownloadCountV2Short instead.
 PublicAddDownloadCountV2 add unique download count to a content
 Requires valid user token
 */
-func (a *Client) PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, *PublicAddDownloadCountV2BadRequest, *PublicAddDownloadCountV2Unauthorized, *PublicAddDownloadCountV2NotFound, *PublicAddDownloadCountV2TooManyRequests, *PublicAddDownloadCountV2InternalServerError, error) {
+func (a *Client) PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, *PublicAddDownloadCountV2Unauthorized, *PublicAddDownloadCountV2NotFound, *PublicAddDownloadCountV2TooManyRequests, *PublicAddDownloadCountV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicAddDownloadCountV2Params()
@@ -72,31 +72,28 @@ func (a *Client) PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicAddDownloadCountV2OK:
-		return v, nil, nil, nil, nil, nil, nil
-
-	case *PublicAddDownloadCountV2BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicAddDownloadCountV2Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicAddDownloadCountV2NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicAddDownloadCountV2TooManyRequests:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicAddDownloadCountV2InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -139,8 +136,6 @@ func (a *Client) PublicAddDownloadCountV2Short(params *PublicAddDownloadCountV2P
 
 	case *PublicAddDownloadCountV2OK:
 		return v, nil
-	case *PublicAddDownloadCountV2BadRequest:
-		return nil, v
 	case *PublicAddDownloadCountV2Unauthorized:
 		return nil, v
 	case *PublicAddDownloadCountV2NotFound:

@@ -36,12 +36,12 @@ func (aaa *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -154,7 +154,10 @@ func (aaa *PublicGroupService) GetGroupContent(input *public_group.GetGroupConte
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -177,7 +180,10 @@ func (aaa *PublicGroupService) PublicGetGroupContentsV2(input *public_group.Publ
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.PublicGetGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicGroup.PublicGetGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

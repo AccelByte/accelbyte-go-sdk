@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicGetItemBySkuParams creates a new PublicGetItemBySkuParams object
 // with the default values initialized.
 func NewPublicGetItemBySkuParams() *PublicGetItemBySkuParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicGetItemBySkuParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewPublicGetItemBySkuParams() *PublicGetItemBySkuParams {
 // NewPublicGetItemBySkuParamsWithTimeout creates a new PublicGetItemBySkuParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGetItemBySkuParamsWithTimeout(timeout time.Duration) *PublicGetItemBySkuParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicGetItemBySkuParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewPublicGetItemBySkuParamsWithTimeout(timeout time.Duration) *PublicGetIte
 // NewPublicGetItemBySkuParamsWithContext creates a new PublicGetItemBySkuParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGetItemBySkuParamsWithContext(ctx context.Context) *PublicGetItemBySkuParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicGetItemBySkuParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewPublicGetItemBySkuParamsWithContext(ctx context.Context) *PublicGetItemB
 // NewPublicGetItemBySkuParamsWithHTTPClient creates a new PublicGetItemBySkuParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGetItemBySkuParamsWithHTTPClient(client *http.Client) *PublicGetItemBySkuParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicGetItemBySkuParams{
-		HTTPClient: client,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -66,6 +79,8 @@ type PublicGetItemBySkuParams struct {
 	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*Language*/
 	Language *string
 	/*Region*/
@@ -142,6 +157,17 @@ func (o *PublicGetItemBySkuParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public get item by sku params
+func (o *PublicGetItemBySkuParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicGetItemBySkuParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public get item by sku params
+func (o *PublicGetItemBySkuParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
+}
+
 // WithLanguage adds the language to the public get item by sku params
 func (o *PublicGetItemBySkuParams) WithLanguage(language *string) *PublicGetItemBySkuParams {
 	o.SetLanguage(language)
@@ -197,6 +223,22 @@ func (o *PublicGetItemBySkuParams) WriteToRequest(r runtime.ClientRequest, reg s
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Language != nil {

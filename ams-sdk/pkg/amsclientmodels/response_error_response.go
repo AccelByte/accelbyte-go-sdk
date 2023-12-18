@@ -22,6 +22,10 @@ type ResponseErrorResponse struct {
 	// Required: true
 	ErrorMessage *string `json:"errorMessage"`
 
+	// errortype
+	// Required: true
+	ErrorType *string `json:"errorType"`
+
 	// traceid
 	// Required: true
 	TraceID *string `json:"traceId"`
@@ -32,6 +36,9 @@ func (m *ResponseErrorResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrorMessage(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateErrorType(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTraceID(formats); err != nil {
@@ -47,6 +54,15 @@ func (m *ResponseErrorResponse) Validate(formats strfmt.Registry) error {
 func (m *ResponseErrorResponse) validateErrorMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("errorMessage", "body", m.ErrorMessage); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ResponseErrorResponse) validateErrorType(formats strfmt.Registry) error {
+
+	if err := validate.Required("errorType", "body", m.ErrorType); err != nil {
 		return err
 	}
 

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.27.1"
+    "version": "2.27.2"
   },
   "schemes": [
     "https"
@@ -16,32 +16,14 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]",
-        "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]",
-        "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]": "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]",
-        "NAMESPACE:{namespace}:MATCHRESULT [CREATE]": "NAMESPACE:{namespace}:MATCHRESULT [CREATE]",
-        "NAMESPACE:{namespace}:SESSION [CREATE]": "NAMESPACE:{namespace}:SESSION [CREATE]",
-        "NAMESPACE:{namespace}:SESSION [READ]": "NAMESPACE:{namespace}:SESSION [READ]",
-        "NAMESPACE:{namespace}:SESSION [UPDATE]": "NAMESPACE:{namespace}:SESSION [UPDATE]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
     "HasScope": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -94,7 +76,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]\n\nRequired Scope: social\n\nReads all available channels in a namespace\n",
+        "description": "Reads all available channels in a namespace\n",
         "operationId": "GetAllChannelsHandler",
         "parameters": [
           {
@@ -160,12 +142,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -173,13 +149,20 @@
         "tags": [
           "Matchmaking",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking channel.\n\nMatchmaking channels is a list of pool name that is eligible for matchmaking processes. \nGameMode isolates each matchmaking pools.\n\nIf match timeout is set to 0, by default, incoming matchmaking requests will be timed out after 1 hour.\n\nIf max worker delay is set to 0, by default, it will wait for at max ~8 seconds during low volume.\n\nRule Set\n\nMatching Rule used to classify the player. Player that has matched criteria will be grouped together within an ally.\n\nValid value for criteria is \u0026#34;distance\u0026#34;\n",
+        "description": "Creates a new matchmaking channel.\n\nMatchmaking channels is a list of pool name that is eligible for matchmaking processes. \nGameMode isolates each matchmaking pools.\n\nIf match timeout is set to 0, by default, incoming matchmaking requests will be timed out after 1 hour.\n\nIf max worker delay is set to 0, by default, it will wait for at max ~8 seconds during low volume.\n\nRule Set\n\nMatching Rule used to classify the player. Player that has matched criteria will be grouped together within an ally.\n\nValid value for criteria is \u0026#34;distance\u0026#34;\n",
         "operationId": "CreateChannelHandler",
         "parameters": [
           {
@@ -241,12 +224,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -254,6 +231,13 @@
         "tags": [
           "Matchmaking",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -262,7 +246,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]\n\t\nRequired Scope: social\n\nGet metric for a specific match pool\n\t\nResult: queue_time in seconds\n",
+        "description": "Get metric for a specific match pool\n\t\nResult: queue_time in seconds\n",
         "operationId": "GetMatchPoolMetric",
         "parameters": [
           {
@@ -317,12 +301,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -330,6 +308,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]"
+            ]
+          }
         ]
       }
     },
@@ -338,7 +323,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\nRequired Scope: social\n\nDeletes a matchmaking channel. Matchmaking channels is a list of \npool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.\n\nTrying to delete non-existent channel will result deletion success\n",
+        "description": "Deletes a matchmaking channel. Matchmaking channels is a list of \npool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.\n\nTrying to delete non-existent channel will result deletion success\n",
         "operationId": "DeleteChannelHandler",
         "parameters": [
           {
@@ -384,12 +369,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -397,6 +376,13 @@
         "tags": [
           "Matchmaking",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -405,7 +391,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHRESULT [CREATE]\n\nRequired Scope: social\n\nProcess match result into final attribute value and stores it to player attribute\n\nWill return final attribute value\n",
+        "description": "Process match result into final attribute value and stores it to player attribute\n\nWill return final attribute value\n",
         "operationId": "StoreMatchResults",
         "parameters": [
           {
@@ -461,12 +447,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHRESULT [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -474,6 +454,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHRESULT [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -482,7 +469,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]\n\t\t\nRequired Scope: social\n\t\t\nDo rebalance the teams based on MMR from given matchID, \nconsider attribute name \u0026#34;mmr\u0026#34; (case-insensitive), \nor any first attribute with criteria \u0026#34;distance\u0026#34;\n\t\t\nWill return rebalanced mm result",
+        "description": "Do rebalance the teams based on MMR from given matchID, \nconsider attribute name \u0026#34;mmr\u0026#34; (case-insensitive), \nor any first attribute with criteria \u0026#34;distance\u0026#34;\n\t\t\nWill return rebalanced mm result",
         "operationId": "Rebalance",
         "parameters": [
           {
@@ -544,12 +531,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -557,6 +538,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -565,7 +553,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [CREATE]\n\nRequired Scope: social\n\nQueues joinable session so that it will be matched with player\u0026#39;s match request tickets. \nThe session queued must be in a channel/game mode that is set to have joinable flag. \nThe session will be in queue until it is full or expired. \nBoth the number of players and session queue timeout can be set in the channel\u0026#39;s config.\n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server is ready for receiving more players through matchmaking tickets to its session.\n\nIf a session is already queued, and game server wants to modify the data or \nrenew the queue timeout (e.g. some player left and more empty slot opened up), \nsimply call this endpoint with the updated session data. \n",
+        "description": "Queues joinable session so that it will be matched with player\u0026#39;s match request tickets. \nThe session queued must be in a channel/game mode that is set to have joinable flag. \nThe session will be in queue until it is full or expired. \nBoth the number of players and session queue timeout can be set in the channel\u0026#39;s config.\n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server is ready for receiving more players through matchmaking tickets to its session.\n\nIf a session is already queued, and game server wants to modify the data or \nrenew the queue timeout (e.g. some player left and more empty slot opened up), \nsimply call this endpoint with the updated session data. \n",
         "operationId": "QueueSessionHandler",
         "parameters": [
           {
@@ -618,12 +606,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:SESSION [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -631,6 +613,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -639,7 +628,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [UPDATE]\n\nRequired Scope: social\n\nDequeues joinable session so that it will not be matched with player\u0026#39;s match request tickets. \n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server does not want more players to its session, even though it is not full. \n",
+        "description": "Dequeues joinable session so that it will not be matched with player\u0026#39;s match request tickets. \n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server does not want more players to its session, even though it is not full. \n",
         "operationId": "DequeueSessionHandler",
         "parameters": [
           {
@@ -698,12 +687,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:SESSION [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -711,6 +694,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -719,7 +709,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [READ]\n\nRequired Scope: social\n\nQueries the specified session\u0026#39;s status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \u0026#34;sessionInQueue\u0026#34;, \u0026#34;sessionFull\u0026#34;, and \u0026#34;sessionTimeout\u0026#34;.\n\nif party_id value empty/null, field will not show in response body.\n",
+        "description": "Queries the specified session\u0026#39;s status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \u0026#34;sessionInQueue\u0026#34;, \u0026#34;sessionFull\u0026#34;, and \u0026#34;sessionTimeout\u0026#34;.\n\nif party_id value empty/null, field will not show in response body.\n",
         "operationId": "QuerySessionHandler",
         "parameters": [
           {
@@ -780,12 +770,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:SESSION [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -793,6 +777,13 @@
         "tags": [
           "Matchmaking",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -801,7 +792,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]\n\nRequired Scope: social\n\nUpdate a connection weight between player and playtime.\n\nThis endpoint is intended to be called by admin for debugging purpose on social matchmaking rule.\n",
+        "description": "Update a connection weight between player and playtime.\n\nThis endpoint is intended to be called by admin for debugging purpose on social matchmaking rule.\n",
         "operationId": "UpdatePlayTimeWeight",
         "parameters": [
           {
@@ -863,18 +854,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update player -- playtime connection weight",
         "tags": [
           "Social Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -883,7 +875,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all parties queueing in all channels.",
+        "description": "Get all parties queueing in all channels.",
         "operationId": "GetAllPartyInAllChannel",
         "parameters": [
           {
@@ -943,18 +935,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all party in all channels",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -963,7 +956,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nBulk get sessions.",
+        "description": "Bulk get sessions.",
         "operationId": "BulkGetSessions",
         "parameters": [
           {
@@ -1026,18 +1019,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Bulk get sessions",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1046,7 +1040,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nExport channels configuration to file. \n\nAction Code: 510114",
+        "description": "Export channels configuration to file. \n\nAction Code: 510114",
         "operationId": "ExportChannels",
         "parameters": [
           {
@@ -1094,18 +1088,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Export channels",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1114,7 +1109,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\nRequired Scope: social\n\nImport channels configuration from file. It will merge with existing channels.\nAvailable import strategy:\n- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\nAction Code: 510113",
+        "description": "Import channels configuration from file. It will merge with existing channels.\nAvailable import strategy:\n- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\nAction Code: 510113",
         "operationId": "ImportChannels",
         "parameters": [
           {
@@ -1174,18 +1169,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Import channels",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1194,7 +1190,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]\n\nRequired Scope: social\n\nReads single channel based on namespace and channel name\n\nAction Code: 510112",
+        "description": "Reads single channel based on namespace and channel name\n\nAction Code: 510112",
         "operationId": "GetSingleMatchmakingChannel",
         "parameters": [
           {
@@ -1255,25 +1251,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get single channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\nRequired Scope: social\n\nUpdate channel based on namespace and channel name\n\nAction Code: 510111",
+        "description": "Update channel based on namespace and channel name\n\nAction Code: 510111",
         "operationId": "UpdateMatchmakingChannel",
         "parameters": [
           {
@@ -1339,18 +1336,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update a channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1359,7 +1357,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\t\n\tRequired Scope: social\n\t\n\tDelete all mock tickets and matches in a channel.\n\u0026#39;",
+        "description": "\tDelete all mock tickets and matches in a channel.\n\u0026#39;",
         "operationId": "CleanAllMocks",
         "parameters": [
           {
@@ -1417,18 +1415,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete all mock tickets and matches",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1437,7 +1436,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead all mock matches in a channel resulted from matching mock tickets.\n\u0026#39;",
+        "description": "\tRead all mock matches in a channel resulted from matching mock tickets.\n\u0026#39;",
         "operationId": "GetAllMockMatches",
         "parameters": [
           {
@@ -1498,25 +1497,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all mock matches",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.\n\u0026#39;",
+        "description": "\tRead mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.\n\u0026#39;",
         "operationId": "GetMockMatchesByTimestamp",
         "parameters": [
           {
@@ -1586,18 +1586,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get mock matches after timestamp",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1606,7 +1607,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead all mock tickets in a channel.\n\u0026#39;",
+        "description": "\tRead all mock tickets in a channel.\n\u0026#39;",
         "operationId": "GetAllMockTickets",
         "parameters": [
           {
@@ -1667,25 +1668,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all mock tickets",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\n\tRequired Scope: social\n\t\n\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tTicket\u0026#39;s MMRs will be randomized using Normal distribution according to the input mean and standard deviation.\n\tAll mock tickets and matches will be cleaned up automatically after 1 day.\n\u0026#39;",
+        "description": "\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tTicket\u0026#39;s MMRs will be randomized using Normal distribution according to the input mean and standard deviation.\n\tAll mock tickets and matches will be cleaned up automatically after 1 day.\n\u0026#39;",
         "operationId": "CreateMockTickets",
         "parameters": [
           {
@@ -1757,18 +1759,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create mock tickets",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1777,7 +1780,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\n\tRequired Scope: social\n\t\n\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tThe tickets input will be used as is.\n\u0026#39;",
+        "description": "\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tThe tickets input will be used as is.\n\u0026#39;",
         "operationId": "BulkCreateMockTickets",
         "parameters": [
           {
@@ -1846,18 +1849,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Bulk create mock tickets",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1866,7 +1870,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tRead mock tickets after the specified timestamp in a channel.\n\u0026#39;",
+        "description": "\tRead mock tickets after the specified timestamp in a channel.\n\u0026#39;",
         "operationId": "GetMockTicketsByTimestamp",
         "parameters": [
           {
@@ -1936,18 +1940,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get mock tickets after timestamp",
         "tags": [
           "Mock Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1956,7 +1961,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all parties queueing in a channel.",
+        "description": "Get all parties queueing in a channel.",
         "operationId": "GetAllPartyInChannel",
         "parameters": [
           {
@@ -2020,18 +2025,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all party in a channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2040,7 +2046,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all sessions in a channel.\n\nif party_id value empty/null, field will not show in response body.",
+        "description": "Get all sessions in a channel.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetAllSessionsInChannel",
         "parameters": [
           {
@@ -2104,18 +2110,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all channel sessions",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2124,7 +2131,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\nRequired Scope: social\n\nDelete a session in a channel.",
+        "description": "Delete a session in a channel.",
         "operationId": "DeleteSessionInChannel",
         "parameters": [
           {
@@ -2189,25 +2196,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete session in a channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [DELETE]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\nRequired Scope: social\n\t\nAdd user into the session in a channel.",
+        "description": "Add user into the session in a channel.",
         "operationId": "AddUserIntoSessionInChannel",
         "parameters": [
           {
@@ -2280,18 +2288,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Add user into the session in a channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -2300,7 +2309,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\t\nRequired Scope: social\n\t\nDelete a user from a session in the channel.",
+        "description": "Delete a user from a session in the channel.",
         "operationId": "DeleteUserFromSessionInChannel",
         "parameters": [
           {
@@ -2375,18 +2384,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete user from the session in a channel",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -2395,7 +2405,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\tRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\n\tRequired Scope: social\n\t\n\tGet a channel\u0026#39;s stat data (mean, stddev, min, max) according to the stats collected from statistics service.\n\u0026#39;",
+        "description": "\tGet a channel\u0026#39;s stat data (mean, stddev, min, max) according to the stats collected from statistics service.\n\u0026#39;",
         "operationId": "GetStatData",
         "parameters": [
           {
@@ -2456,18 +2466,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get stats",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2477,7 +2488,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions.",
+        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nSearch sessions.",
         "operationId": "SearchSessions",
         "parameters": [
           {
@@ -2576,18 +2587,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Search sessions",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2597,7 +2609,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/{sessionId}/history/detailed [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
+        "description": "\n\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/{sessionId}/history/detailed [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nGet session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
           {
@@ -2661,18 +2673,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get session history detailed",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2866,7 +2879,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
+        "description": "\u0026lt;p\u0026gt;\n\t\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt; \u0026lt;/br\u0026gt;\n\t\u0026lt;strong\u0026gt;Endpoint migration guide\u0026lt;/strong\u0026gt;\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;Substitute endpoint: \u0026lt;i\u0026gt;/sessionbrowser/admin/namespaces/{namespace}/sessions/history/search [GET]\u0026lt;/i\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;/p\u0026gt;\n\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
         "operationId": "SearchSessionsV2",
         "parameters": [
           {
@@ -2965,18 +2978,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
         "summary": "Search sessions",
         "tags": [
           "Matchmaking"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -5305,9 +5319,9 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-29T01:22:10+00:00",
-    "gitHash": "7be07d7fefb7e7676211feba7b7938f00cfe84f6",
-    "version": "2.27.1",
+    "buildDate": "2023-12-06T03:31:29+00:00",
+    "gitHash": "24f09b0310aee0536f944c81eea6dce8ea955f3e",
+    "version": "2.27.2",
     "version-roles-seeding": "0.0.23"
   }
 }

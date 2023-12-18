@@ -27,15 +27,17 @@ var PublicGetItemBySkuCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		sku, _ := cmd.Flags().GetString("sku")
+		autoCalcEstimatedPrice, _ := cmd.Flags().GetBool("autoCalcEstimatedPrice")
 		language, _ := cmd.Flags().GetString("language")
 		region, _ := cmd.Flags().GetString("region")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.PublicGetItemBySkuParams{
-			Namespace: namespace,
-			Language:  &language,
-			Region:    &region,
-			StoreID:   &storeId,
-			Sku:       sku,
+			Namespace:              namespace,
+			AutoCalcEstimatedPrice: &autoCalcEstimatedPrice,
+			Language:               &language,
+			Region:                 &region,
+			StoreID:                &storeId,
+			Sku:                    sku,
 		}
 		ok, errOK := itemService.PublicGetItemBySkuShort(input)
 		if errOK != nil {
@@ -53,6 +55,7 @@ var PublicGetItemBySkuCmd = &cobra.Command{
 func init() {
 	PublicGetItemBySkuCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetItemBySkuCmd.MarkFlagRequired("namespace")
+	PublicGetItemBySkuCmd.Flags().Bool("autoCalcEstimatedPrice", false, "Auto calc estimated price")
 	PublicGetItemBySkuCmd.Flags().String("language", "", "Language")
 	PublicGetItemBySkuCmd.Flags().String("region", "", "Region")
 	PublicGetItemBySkuCmd.Flags().String("storeId", "", "Store id")

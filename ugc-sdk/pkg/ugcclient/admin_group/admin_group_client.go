@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, *SingleAdminGetAllGroupsUnauthorized, *SingleAdminGetAllGroupsNotFound, *SingleAdminGetAllGroupsInternalServerError, error)
+	SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, *SingleAdminGetAllGroupsBadRequest, *SingleAdminGetAllGroupsUnauthorized, *SingleAdminGetAllGroupsInternalServerError, error)
 	SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, error)
 	AdminCreateGroup(params *AdminCreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGroupCreated, *AdminCreateGroupBadRequest, *AdminCreateGroupUnauthorized, *AdminCreateGroupInternalServerError, error)
 	AdminCreateGroupShort(params *AdminCreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGroupCreated, error)
@@ -40,9 +40,9 @@ type ClientService interface {
 	SingleAdminUpdateGroupShort(params *SingleAdminUpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateGroupOK, error)
 	SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupNoContent, *SingleAdminDeleteGroupUnauthorized, *SingleAdminDeleteGroupNotFound, *SingleAdminDeleteGroupInternalServerError, error)
 	SingleAdminDeleteGroupShort(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupNoContent, error)
-	SingleAdminGetGroupContents(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, *SingleAdminGetGroupContentsUnauthorized, *SingleAdminGetGroupContentsNotFound, *SingleAdminGetGroupContentsInternalServerError, error)
+	SingleAdminGetGroupContents(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, *SingleAdminGetGroupContentsBadRequest, *SingleAdminGetGroupContentsUnauthorized, *SingleAdminGetGroupContentsNotFound, *SingleAdminGetGroupContentsInternalServerError, error)
 	SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, error)
-	AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, *AdminGetAllGroupsUnauthorized, *AdminGetAllGroupsNotFound, *AdminGetAllGroupsInternalServerError, error)
+	AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, *AdminGetAllGroupsBadRequest, *AdminGetAllGroupsUnauthorized, *AdminGetAllGroupsInternalServerError, error)
 	AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, error)
 	AdminGetGroup(params *AdminGetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupOK, *AdminGetGroupUnauthorized, *AdminGetGroupNotFound, *AdminGetGroupInternalServerError, error)
 	AdminGetGroupShort(params *AdminGetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupOK, error)
@@ -50,11 +50,11 @@ type ClientService interface {
 	AdminUpdateGroupShort(params *AdminUpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGroupOK, error)
 	AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, *AdminDeleteGroupUnauthorized, *AdminDeleteGroupNotFound, *AdminDeleteGroupInternalServerError, error)
 	AdminDeleteGroupShort(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, error)
-	AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error)
+	AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsBadRequest, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error)
 	AdminGetGroupContentsShort(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, error)
-	AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error)
+	AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2BadRequest, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error)
 	AdminGetOfficialGroupContentsV2Short(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, error)
-	AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error)
+	AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2BadRequest, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error)
 	AdminGetUserGroupContentsV2Short(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -66,7 +66,7 @@ Deprecated: 2022-08-10 - Use SingleAdminGetAllGroupsShort instead.
 SingleAdminGetAllGroups get all user groups
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
 */
-func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, *SingleAdminGetAllGroupsUnauthorized, *SingleAdminGetAllGroupsNotFound, *SingleAdminGetAllGroupsInternalServerError, error) {
+func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, *SingleAdminGetAllGroupsBadRequest, *SingleAdminGetAllGroupsUnauthorized, *SingleAdminGetAllGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminGetAllGroupsParams()
@@ -102,10 +102,10 @@ func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, 
 	case *SingleAdminGetAllGroupsOK:
 		return v, nil, nil, nil, nil
 
-	case *SingleAdminGetAllGroupsUnauthorized:
+	case *SingleAdminGetAllGroupsBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *SingleAdminGetAllGroupsNotFound:
+	case *SingleAdminGetAllGroupsUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *SingleAdminGetAllGroupsInternalServerError:
@@ -155,9 +155,9 @@ func (a *Client) SingleAdminGetAllGroupsShort(params *SingleAdminGetAllGroupsPar
 
 	case *SingleAdminGetAllGroupsOK:
 		return v, nil
-	case *SingleAdminGetAllGroupsUnauthorized:
+	case *SingleAdminGetAllGroupsBadRequest:
 		return nil, v
-	case *SingleAdminGetAllGroupsNotFound:
+	case *SingleAdminGetAllGroupsUnauthorized:
 		return nil, v
 	case *SingleAdminGetAllGroupsInternalServerError:
 		return nil, v
@@ -608,7 +608,7 @@ Deprecated: 2022-08-10 - Use SingleAdminGetGroupContentsShort instead.
 SingleAdminGetGroupContents (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, *SingleAdminGetGroupContentsUnauthorized, *SingleAdminGetGroupContentsNotFound, *SingleAdminGetGroupContentsInternalServerError, error) {
+func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetGroupContentsOK, *SingleAdminGetGroupContentsBadRequest, *SingleAdminGetGroupContentsUnauthorized, *SingleAdminGetGroupContentsNotFound, *SingleAdminGetGroupContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminGetGroupContentsParams()
@@ -636,25 +636,28 @@ func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContents
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SingleAdminGetGroupContentsOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *SingleAdminGetGroupContentsBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *SingleAdminGetGroupContentsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *SingleAdminGetGroupContentsNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *SingleAdminGetGroupContentsInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -697,6 +700,8 @@ func (a *Client) SingleAdminGetGroupContentsShort(params *SingleAdminGetGroupCon
 
 	case *SingleAdminGetGroupContentsOK:
 		return v, nil
+	case *SingleAdminGetGroupContentsBadRequest:
+		return nil, v
 	case *SingleAdminGetGroupContentsUnauthorized:
 		return nil, v
 	case *SingleAdminGetGroupContentsNotFound:
@@ -715,7 +720,7 @@ Deprecated: 2022-08-10 - Use AdminGetAllGroupsShort instead.
 AdminGetAllGroups get all user groups
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
 */
-func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, *AdminGetAllGroupsUnauthorized, *AdminGetAllGroupsNotFound, *AdminGetAllGroupsInternalServerError, error) {
+func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, *AdminGetAllGroupsBadRequest, *AdminGetAllGroupsUnauthorized, *AdminGetAllGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetAllGroupsParams()
@@ -751,10 +756,10 @@ func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo run
 	case *AdminGetAllGroupsOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminGetAllGroupsUnauthorized:
+	case *AdminGetAllGroupsBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminGetAllGroupsNotFound:
+	case *AdminGetAllGroupsUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminGetAllGroupsInternalServerError:
@@ -804,9 +809,9 @@ func (a *Client) AdminGetAllGroupsShort(params *AdminGetAllGroupsParams, authInf
 
 	case *AdminGetAllGroupsOK:
 		return v, nil
-	case *AdminGetAllGroupsUnauthorized:
+	case *AdminGetAllGroupsBadRequest:
 		return nil, v
-	case *AdminGetAllGroupsNotFound:
+	case *AdminGetAllGroupsUnauthorized:
 		return nil, v
 	case *AdminGetAllGroupsInternalServerError:
 		return nil, v
@@ -1150,7 +1155,7 @@ Deprecated: 2022-08-10 - Use AdminGetGroupContentsShort instead.
 AdminGetGroupContents (legacy) get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error) {
+func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGroupContentsOK, *AdminGetGroupContentsBadRequest, *AdminGetGroupContentsUnauthorized, *AdminGetGroupContentsNotFound, *AdminGetGroupContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetGroupContentsParams()
@@ -1178,25 +1183,28 @@ func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetGroupContentsOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetGroupContentsBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetGroupContentsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetGroupContentsNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetGroupContentsInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1239,6 +1247,8 @@ func (a *Client) AdminGetGroupContentsShort(params *AdminGetGroupContentsParams,
 
 	case *AdminGetGroupContentsOK:
 		return v, nil
+	case *AdminGetGroupContentsBadRequest:
+		return nil, v
 	case *AdminGetGroupContentsUnauthorized:
 		return nil, v
 	case *AdminGetGroupContentsNotFound:
@@ -1257,7 +1267,7 @@ Deprecated: 2022-08-10 - Use AdminGetOfficialGroupContentsV2Short instead.
 AdminGetOfficialGroupContentsV2 get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error) {
+func (a *Client) AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetOfficialGroupContentsV2OK, *AdminGetOfficialGroupContentsV2BadRequest, *AdminGetOfficialGroupContentsV2Unauthorized, *AdminGetOfficialGroupContentsV2NotFound, *AdminGetOfficialGroupContentsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetOfficialGroupContentsV2Params()
@@ -1285,25 +1295,28 @@ func (a *Client) AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupCo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetOfficialGroupContentsV2OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetOfficialGroupContentsV2BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetOfficialGroupContentsV2Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetOfficialGroupContentsV2NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetOfficialGroupContentsV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1346,6 +1359,8 @@ func (a *Client) AdminGetOfficialGroupContentsV2Short(params *AdminGetOfficialGr
 
 	case *AdminGetOfficialGroupContentsV2OK:
 		return v, nil
+	case *AdminGetOfficialGroupContentsV2BadRequest:
+		return nil, v
 	case *AdminGetOfficialGroupContentsV2Unauthorized:
 		return nil, v
 	case *AdminGetOfficialGroupContentsV2NotFound:
@@ -1364,7 +1379,7 @@ Deprecated: 2022-08-10 - Use AdminGetUserGroupContentsV2Short instead.
 AdminGetUserGroupContentsV2 get contents belong to a group
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error) {
+func (a *Client) AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserGroupContentsV2OK, *AdminGetUserGroupContentsV2BadRequest, *AdminGetUserGroupContentsV2Unauthorized, *AdminGetUserGroupContentsV2NotFound, *AdminGetUserGroupContentsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUserGroupContentsV2Params()
@@ -1392,25 +1407,28 @@ func (a *Client) AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUserGroupContentsV2OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserGroupContentsV2BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetUserGroupContentsV2Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetUserGroupContentsV2NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetUserGroupContentsV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1453,6 +1471,8 @@ func (a *Client) AdminGetUserGroupContentsV2Short(params *AdminGetUserGroupConte
 
 	case *AdminGetUserGroupContentsV2OK:
 		return v, nil
+	case *AdminGetUserGroupContentsV2BadRequest:
+		return nil, v
 	case *AdminGetUserGroupContentsV2Unauthorized:
 		return nil, v
 	case *AdminGetUserGroupContentsV2NotFound:

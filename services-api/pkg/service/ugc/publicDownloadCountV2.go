@@ -36,10 +36,7 @@ func (aaa *PublicDownloadCountV2Service) PublicAddDownloadCountV2(input *public_
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, tooManyRequests, internalServerError, err := aaa.Client.PublicDownloadCountV2.PublicAddDownloadCountV2(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
+	ok, unauthorized, notFound, tooManyRequests, internalServerError, err := aaa.Client.PublicDownloadCountV2.PublicAddDownloadCountV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

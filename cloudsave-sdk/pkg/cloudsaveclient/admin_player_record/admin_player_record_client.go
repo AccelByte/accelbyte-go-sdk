@@ -36,6 +36,8 @@ type ClientService interface {
 	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
 	AdminRetrievePlayerRecords(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, *AdminRetrievePlayerRecordsBadRequest, *AdminRetrievePlayerRecordsUnauthorized, *AdminRetrievePlayerRecordsForbidden, *AdminRetrievePlayerRecordsInternalServerError, error)
 	AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, error)
+	AdminPutPlayerRecordsHandlerV1(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, *AdminPutPlayerRecordsHandlerV1BadRequest, *AdminPutPlayerRecordsHandlerV1Unauthorized, *AdminPutPlayerRecordsHandlerV1Forbidden, error)
+	AdminPutPlayerRecordsHandlerV1Short(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, error)
 	AdminGetPlayerRecordsHandlerV1(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, *AdminGetPlayerRecordsHandlerV1BadRequest, *AdminGetPlayerRecordsHandlerV1Unauthorized, *AdminGetPlayerRecordsHandlerV1Forbidden, *AdminGetPlayerRecordsHandlerV1NotFound, *AdminGetPlayerRecordsHandlerV1InternalServerError, error)
 	AdminGetPlayerRecordsHandlerV1Short(params *AdminGetPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordsHandlerV1OK, error)
 	AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, *AdminGetPlayerRecordHandlerV1Unauthorized, *AdminGetPlayerRecordHandlerV1Forbidden, *AdminGetPlayerRecordHandlerV1NotFound, *AdminGetPlayerRecordHandlerV1InternalServerError, error)
@@ -429,11 +431,134 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminPutPlayerRecordsHandlerV1Short instead.
+
+AdminPutPlayerRecordsHandlerV1 bulk update player records
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]`
+--------------------|----------------------------------------------------------------
+Required Scope      | `social`
+
+
+
+
+This endpoints will create new player record or replace the existing player record in bulk.
+Maximum bulk key limit per request 10.
+*/
+func (a *Client) AdminPutPlayerRecordsHandlerV1(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, *AdminPutPlayerRecordsHandlerV1BadRequest, *AdminPutPlayerRecordsHandlerV1Unauthorized, *AdminPutPlayerRecordsHandlerV1Forbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutPlayerRecordsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPutPlayerRecordsHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPutPlayerRecordsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutPlayerRecordsHandlerV1OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminPutPlayerRecordsHandlerV1BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminPutPlayerRecordsHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil
+
+	case *AdminPutPlayerRecordsHandlerV1Forbidden:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminPutPlayerRecordsHandlerV1Short bulk update player records
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]`
+--------------------|----------------------------------------------------------------
+Required Scope      | `social`
+
+
+
+
+This endpoints will create new player record or replace the existing player record in bulk.
+Maximum bulk key limit per request 10.
+*/
+func (a *Client) AdminPutPlayerRecordsHandlerV1Short(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutPlayerRecordsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPutPlayerRecordsHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPutPlayerRecordsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutPlayerRecordsHandlerV1OK:
+		return v, nil
+	case *AdminPutPlayerRecordsHandlerV1BadRequest:
+		return nil, v
+	case *AdminPutPlayerRecordsHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPutPlayerRecordsHandlerV1Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminGetPlayerRecordsHandlerV1Short instead.
 
 AdminGetPlayerRecordsHandlerV1 bulk get player records by multiple record keys
-Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]`
---------------------|-----------------------------------------------------------
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]`
+--------------------|--------------------------------------------------------------
 Required Scope      | `social`
 
 
@@ -500,8 +625,8 @@ func (a *Client) AdminGetPlayerRecordsHandlerV1(params *AdminGetPlayerRecordsHan
 
 /*
 AdminGetPlayerRecordsHandlerV1Short bulk get player records by multiple record keys
-Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]`
---------------------|-----------------------------------------------------------
+Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]`
+--------------------|--------------------------------------------------------------
 Required Scope      | `social`
 
 

@@ -91,10 +91,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetAllChannelsHandlerShort instead.
 
 GetAllChannelsHandler get all channels
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]
-
-Required Scope: social
-
 Reads all available channels in a namespace
 */
 func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, *GetAllChannelsHandlerBadRequest, *GetAllChannelsHandlerUnauthorized, *GetAllChannelsHandlerForbidden, *GetAllChannelsHandlerConflict, *GetAllChannelsHandlerInternalServerError, error) {
@@ -155,10 +151,6 @@ func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, auth
 
 /*
 GetAllChannelsHandlerShort get all channels
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]
-
-Required Scope: social
-
 Reads all available channels in a namespace
 */
 func (a *Client) GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, error) {
@@ -216,10 +208,6 @@ func (a *Client) GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams,
 Deprecated: 2022-08-10 - Use CreateChannelHandlerShort instead.
 
 CreateChannelHandler create a channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking channel.
 
 Matchmaking channels is a list of pool name that is eligible for matchmaking processes.
@@ -293,10 +281,6 @@ func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authIn
 
 /*
 CreateChannelHandlerShort create a channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking channel.
 
 Matchmaking channels is a list of pool name that is eligible for matchmaking processes.
@@ -367,10 +351,6 @@ func (a *Client) CreateChannelHandlerShort(params *CreateChannelHandlerParams, a
 Deprecated: 2022-08-10 - Use GetMatchPoolMetricShort instead.
 
 GetMatchPoolMetric get metrics for a specific channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]
-
-Required Scope: social
-
 Get metric for a specific match pool
 
 Result: queue_time in seconds
@@ -430,10 +410,6 @@ func (a *Client) GetMatchPoolMetric(params *GetMatchPoolMetricParams, authInfo r
 
 /*
 GetMatchPoolMetricShort get metrics for a specific channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL:METRICS [READ]
-
-Required Scope: social
-
 Get metric for a specific match pool
 
 Result: queue_time in seconds
@@ -491,10 +467,6 @@ func (a *Client) GetMatchPoolMetricShort(params *GetMatchPoolMetricParams, authI
 Deprecated: 2022-08-10 - Use DeleteChannelHandlerShort instead.
 
 DeleteChannelHandler delete a channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Deletes a matchmaking channel. Matchmaking channels is a list of
 pool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.
 
@@ -552,10 +524,6 @@ func (a *Client) DeleteChannelHandler(params *DeleteChannelHandlerParams, authIn
 
 /*
 DeleteChannelHandlerShort delete a channel
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Deletes a matchmaking channel. Matchmaking channels is a list of
 pool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.
 
@@ -612,10 +580,6 @@ func (a *Client) DeleteChannelHandlerShort(params *DeleteChannelHandlerParams, a
 Deprecated: 2022-08-10 - Use StoreMatchResultsShort instead.
 
 StoreMatchResults store match result
-Required Permission: NAMESPACE:{namespace}:MATCHRESULT [CREATE]
-
-Required Scope: social
-
 Process match result into final attribute value and stores it to player attribute
 
 Will return final attribute value
@@ -675,10 +639,6 @@ func (a *Client) StoreMatchResults(params *StoreMatchResultsParams, authInfo run
 
 /*
 StoreMatchResultsShort store match result
-Required Permission: NAMESPACE:{namespace}:MATCHRESULT [CREATE]
-
-Required Scope: social
-
 Process match result into final attribute value and stores it to player attribute
 
 Will return final attribute value
@@ -736,10 +696,6 @@ func (a *Client) StoreMatchResultsShort(params *StoreMatchResultsParams, authInf
 Deprecated: 2022-08-10 - Use RebalanceShort instead.
 
 Rebalance rebalance matchmaking based on mmr
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]
-
-Required Scope: social
-
 Do rebalance the teams based on MMR from given matchID,
 consider attribute name "mmr" (case-insensitive),
 or any first attribute with criteria "distance"
@@ -804,10 +760,6 @@ func (a *Client) Rebalance(params *RebalanceParams, authInfo runtime.ClientAuthI
 
 /*
 RebalanceShort rebalance matchmaking based on mmr
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:REBALANCE [Update]
-
-Required Scope: social
-
 Do rebalance the teams based on MMR from given matchID,
 consider attribute name "mmr" (case-insensitive),
 or any first attribute with criteria "distance"
@@ -869,10 +821,6 @@ func (a *Client) RebalanceShort(params *RebalanceParams, authInfo runtime.Client
 Deprecated: 2022-08-10 - Use QueueSessionHandlerShort instead.
 
 QueueSessionHandler queue joinable session
-Required Permission: NAMESPACE:{namespace}:SESSION [CREATE]
-
-Required Scope: social
-
 Queues joinable session so that it will be matched with player's match request tickets.
 The session queued must be in a channel/game mode that is set to have joinable flag.
 The session will be in queue until it is full or expired.
@@ -940,10 +888,6 @@ func (a *Client) QueueSessionHandler(params *QueueSessionHandlerParams, authInfo
 
 /*
 QueueSessionHandlerShort queue joinable session
-Required Permission: NAMESPACE:{namespace}:SESSION [CREATE]
-
-Required Scope: social
-
 Queues joinable session so that it will be matched with player's match request tickets.
 The session queued must be in a channel/game mode that is set to have joinable flag.
 The session will be in queue until it is full or expired.
@@ -1009,10 +953,6 @@ func (a *Client) QueueSessionHandlerShort(params *QueueSessionHandlerParams, aut
 Deprecated: 2022-08-10 - Use DequeueSessionHandlerShort instead.
 
 DequeueSessionHandler dequeue joinable session
-Required Permission: NAMESPACE:{namespace}:SESSION [UPDATE]
-
-Required Scope: social
-
 Dequeues joinable session so that it will not be matched with player's match request tickets.
 
 This endpoint is intended to be called by game server to let matchmaker know that
@@ -1076,10 +1016,6 @@ func (a *Client) DequeueSessionHandler(params *DequeueSessionHandlerParams, auth
 
 /*
 DequeueSessionHandlerShort dequeue joinable session
-Required Permission: NAMESPACE:{namespace}:SESSION [UPDATE]
-
-Required Scope: social
-
 Dequeues joinable session so that it will not be matched with player's match request tickets.
 
 This endpoint is intended to be called by game server to let matchmaker know that
@@ -1140,10 +1076,6 @@ func (a *Client) DequeueSessionHandlerShort(params *DequeueSessionHandlerParams,
 Deprecated: 2022-08-10 - Use QuerySessionHandlerShort instead.
 
 QuerySessionHandler query joinable session status
-Required Permission: NAMESPACE:{namespace}:SESSION [READ]
-
-Required Scope: social
-
 Queries the specified session's status. Game servers are expected to
 call this periodically as long as it has a session in queue to see
 if there are new players being matched to the session.
@@ -1210,10 +1142,6 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 
 /*
 QuerySessionHandlerShort query joinable session status
-Required Permission: NAMESPACE:{namespace}:SESSION [READ]
-
-Required Scope: social
-
 Queries the specified session's status. Game servers are expected to
 call this periodically as long as it has a session in queue to see
 if there are new players being matched to the session.
@@ -1277,10 +1205,6 @@ func (a *Client) QuerySessionHandlerShort(params *QuerySessionHandlerParams, aut
 Deprecated: 2022-08-10 - Use GetAllPartyInAllChannelShort instead.
 
 GetAllPartyInAllChannel get all party in all channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all parties queueing in all channels.
 */
 func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, *GetAllPartyInAllChannelBadRequest, *GetAllPartyInAllChannelUnauthorized, *GetAllPartyInAllChannelForbidden, *GetAllPartyInAllChannelNotFound, *GetAllPartyInAllChannelInternalServerError, error) {
@@ -1341,10 +1265,6 @@ func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, 
 
 /*
 GetAllPartyInAllChannelShort get all party in all channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all parties queueing in all channels.
 */
 func (a *Client) GetAllPartyInAllChannelShort(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, error) {
@@ -1402,10 +1322,6 @@ func (a *Client) GetAllPartyInAllChannelShort(params *GetAllPartyInAllChannelPar
 Deprecated: 2022-08-10 - Use BulkGetSessionsShort instead.
 
 BulkGetSessions bulk get sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Bulk get sessions.
 */
 func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetSessionsOK, *BulkGetSessionsBadRequest, *BulkGetSessionsUnauthorized, *BulkGetSessionsForbidden, *BulkGetSessionsNotFound, *BulkGetSessionsInternalServerError, error) {
@@ -1466,10 +1382,6 @@ func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime
 
 /*
 BulkGetSessionsShort bulk get sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Bulk get sessions.
 */
 func (a *Client) BulkGetSessionsShort(params *BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetSessionsOK, error) {
@@ -1527,10 +1439,6 @@ func (a *Client) BulkGetSessionsShort(params *BulkGetSessionsParams, authInfo ru
 Deprecated: 2022-08-10 - Use ExportChannelsShort instead.
 
 ExportChannels export channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Export channels configuration to file.
 
 Action Code: 510114
@@ -1587,10 +1495,6 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 
 /*
 ExportChannelsShort export channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Export channels configuration to file.
 
 Action Code: 510114
@@ -1646,10 +1550,6 @@ func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runt
 Deprecated: 2022-08-10 - Use ImportChannelsShort instead.
 
 ImportChannels import channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Import channels configuration from file. It will merge with existing channels.
 Available import strategy:
 - leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)
@@ -1712,10 +1612,6 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 
 /*
 ImportChannelsShort import channels
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Import channels configuration from file. It will merge with existing channels.
 Available import strategy:
 - leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)
@@ -1776,10 +1672,6 @@ func (a *Client) ImportChannelsShort(params *ImportChannelsParams, authInfo runt
 Deprecated: 2022-08-10 - Use GetSingleMatchmakingChannelShort instead.
 
 GetSingleMatchmakingChannel get single channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]
-
-Required Scope: social
-
 Reads single channel based on namespace and channel name
 
 Action Code: 510112
@@ -1842,10 +1734,6 @@ func (a *Client) GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannel
 
 /*
 GetSingleMatchmakingChannelShort get single channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]
-
-Required Scope: social
-
 Reads single channel based on namespace and channel name
 
 Action Code: 510112
@@ -1905,10 +1793,6 @@ func (a *Client) GetSingleMatchmakingChannelShort(params *GetSingleMatchmakingCh
 Deprecated: 2022-08-10 - Use UpdateMatchmakingChannelShort instead.
 
 UpdateMatchmakingChannel update a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Update channel based on namespace and channel name
 
 Action Code: 510111
@@ -1971,10 +1855,6 @@ func (a *Client) UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams
 
 /*
 UpdateMatchmakingChannelShort update a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Update channel based on namespace and channel name
 
 Action Code: 510111
@@ -2034,10 +1914,6 @@ func (a *Client) UpdateMatchmakingChannelShort(params *UpdateMatchmakingChannelP
 Deprecated: 2022-08-10 - Use GetAllPartyInChannelShort instead.
 
 GetAllPartyInChannel get all party in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all parties queueing in a channel.
 */
 func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInChannelOK, *GetAllPartyInChannelBadRequest, *GetAllPartyInChannelUnauthorized, *GetAllPartyInChannelForbidden, *GetAllPartyInChannelNotFound, *GetAllPartyInChannelInternalServerError, error) {
@@ -2098,10 +1974,6 @@ func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authIn
 
 /*
 GetAllPartyInChannelShort get all party in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all parties queueing in a channel.
 */
 func (a *Client) GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInChannelOK, error) {
@@ -2159,10 +2031,6 @@ func (a *Client) GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, a
 Deprecated: 2022-08-10 - Use GetAllSessionsInChannelShort instead.
 
 GetAllSessionsInChannel get all channel sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all sessions in a channel.
 
 if party_id value empty/null, field will not show in response body.
@@ -2225,10 +2093,6 @@ func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, 
 
 /*
 GetAllSessionsInChannelShort get all channel sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get all sessions in a channel.
 
 if party_id value empty/null, field will not show in response body.
@@ -2288,10 +2152,6 @@ func (a *Client) GetAllSessionsInChannelShort(params *GetAllSessionsInChannelPar
 Deprecated: 2022-08-10 - Use AddUserIntoSessionInChannelShort instead.
 
 AddUserIntoSessionInChannel add user into the session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Add user into the session in a channel.
 */
 func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserIntoSessionInChannelOK, *AddUserIntoSessionInChannelBadRequest, *AddUserIntoSessionInChannelUnauthorized, *AddUserIntoSessionInChannelForbidden, *AddUserIntoSessionInChannelNotFound, *AddUserIntoSessionInChannelInternalServerError, error) {
@@ -2352,10 +2212,6 @@ func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannel
 
 /*
 AddUserIntoSessionInChannelShort add user into the session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Add user into the session in a channel.
 */
 func (a *Client) AddUserIntoSessionInChannelShort(params *AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserIntoSessionInChannelOK, error) {
@@ -2413,10 +2269,6 @@ func (a *Client) AddUserIntoSessionInChannelShort(params *AddUserIntoSessionInCh
 Deprecated: 2022-08-10 - Use DeleteSessionInChannelShort instead.
 
 DeleteSessionInChannel delete session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Delete a session in a channel.
 */
 func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, *DeleteSessionInChannelBadRequest, *DeleteSessionInChannelUnauthorized, *DeleteSessionInChannelForbidden, *DeleteSessionInChannelNotFound, *DeleteSessionInChannelInternalServerError, error) {
@@ -2477,10 +2329,6 @@ func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, au
 
 /*
 DeleteSessionInChannelShort delete session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Delete a session in a channel.
 */
 func (a *Client) DeleteSessionInChannelShort(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, error) {
@@ -2538,10 +2386,6 @@ func (a *Client) DeleteSessionInChannelShort(params *DeleteSessionInChannelParam
 Deprecated: 2022-08-10 - Use DeleteUserFromSessionInChannelShort instead.
 
 DeleteUserFromSessionInChannel delete user from the session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Delete a user from a session in the channel.
 */
 func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, *DeleteUserFromSessionInChannelNoContent, *DeleteUserFromSessionInChannelBadRequest, *DeleteUserFromSessionInChannelUnauthorized, *DeleteUserFromSessionInChannelForbidden, *DeleteUserFromSessionInChannelNotFound, *DeleteUserFromSessionInChannelInternalServerError, error) {
@@ -2605,10 +2449,6 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 
 /*
 DeleteUserFromSessionInChannelShort delete user from the session in a channel
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]
-
-Required Scope: social
-
 Delete a user from a session in the channel.
 */
 func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, error) {
@@ -2668,10 +2508,6 @@ func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessi
 Deprecated: 2022-08-10 - Use GetStatDataShort instead.
 
 GetStatData get stats
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get a channel's stat data (mean, stddev, min, max) according to the stats collected from statistics service.
 '
 */
@@ -2733,10 +2569,6 @@ func (a *Client) GetStatData(params *GetStatDataParams, authInfo runtime.ClientA
 
 /*
 GetStatDataShort get stats
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Get a channel's stat data (mean, stddev, min, max) according to the stats collected from statistics service.
 '
 */
@@ -2816,10 +2648,6 @@ Endpoint migration guide
 
 
 
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
 
 Search sessions.
 */
@@ -2903,10 +2731,6 @@ Endpoint migration guide
 
 
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Search sessions.
 */
 func (a *Client) SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error) {
@@ -2985,10 +2809,6 @@ Endpoint migration guide
 
 
 
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
 
 Get session history detailed.
 
@@ -3073,10 +2893,6 @@ Endpoint migration guide
 
 
 
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
 
 Get session history detailed.
 
@@ -3392,10 +3208,6 @@ Endpoint migration guide
 
 
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace & other filter (partyID, userID, matchID).
 Query with filter namespace only will not group whole session data while query with filter namespace & other filter will include session data.
 */
@@ -3477,10 +3289,6 @@ Endpoint migration guide
 
 
 
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
 
 Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace & other filter (partyID, userID, matchID).
 Query with filter namespace only will not group whole session data while query with filter namespace & other filter will include session data.

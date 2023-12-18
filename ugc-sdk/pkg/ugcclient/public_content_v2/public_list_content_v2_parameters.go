@@ -90,8 +90,13 @@ type PublicListContentV2Params struct {
 
 	*/
 	Namespace string
+	/*IsOfficial
+	  filter by is official
+
+	*/
+	IsOfficial *bool
 	/*Limit
-	  number of content per page
+	  number of content per page. max limit: -1 (-1 means unlimited).
 
 	*/
 	Limit *int64
@@ -125,7 +130,7 @@ type PublicListContentV2Params struct {
 	*/
 	SubType *string
 	/*Tags
-	  content tag
+	  content tag. max number of tags: -1 tags (-1 means unlimited).
 
 	*/
 	Tags []string
@@ -197,6 +202,17 @@ func (o *PublicListContentV2Params) WithNamespace(namespace string) *PublicListC
 // SetNamespace adds the namespace to the public list content v2 params
 func (o *PublicListContentV2Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithIsOfficial adds the isOfficial to the public list content v2 params
+func (o *PublicListContentV2Params) WithIsOfficial(isOfficial *bool) *PublicListContentV2Params {
+	o.SetIsOfficial(isOfficial)
+	return o
+}
+
+// SetIsOfficial adds the isOfficial to the public list content v2 params
+func (o *PublicListContentV2Params) SetIsOfficial(isOfficial *bool) {
+	o.IsOfficial = isOfficial
 }
 
 // WithLimit adds the limit to the public list content v2 params
@@ -287,6 +303,22 @@ func (o *PublicListContentV2Params) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.IsOfficial != nil {
+
+		// query param isOfficial
+		var qrIsOfficial bool
+		if o.IsOfficial != nil {
+			qrIsOfficial = *o.IsOfficial
+		}
+		qIsOfficial := swag.FormatBool(qrIsOfficial)
+		if qIsOfficial != "" {
+			if err := r.SetQueryParam("isOfficial", qIsOfficial); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

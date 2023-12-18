@@ -90,6 +90,11 @@ type AdminListContentV2Params struct {
 
 	*/
 	Namespace string
+	/*IsOfficial
+	  filter by is official
+
+	*/
+	IsOfficial *bool
 	/*Limit
 	  number of content per page
 
@@ -199,6 +204,17 @@ func (o *AdminListContentV2Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithIsOfficial adds the isOfficial to the admin list content v2 params
+func (o *AdminListContentV2Params) WithIsOfficial(isOfficial *bool) *AdminListContentV2Params {
+	o.SetIsOfficial(isOfficial)
+	return o
+}
+
+// SetIsOfficial adds the isOfficial to the admin list content v2 params
+func (o *AdminListContentV2Params) SetIsOfficial(isOfficial *bool) {
+	o.IsOfficial = isOfficial
+}
+
 // WithLimit adds the limit to the admin list content v2 params
 func (o *AdminListContentV2Params) WithLimit(limit *int64) *AdminListContentV2Params {
 	o.SetLimit(limit)
@@ -287,6 +303,22 @@ func (o *AdminListContentV2Params) WriteToRequest(r runtime.ClientRequest, reg s
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.IsOfficial != nil {
+
+		// query param isOfficial
+		var qrIsOfficial bool
+		if o.IsOfficial != nil {
+			qrIsOfficial = *o.IsOfficial
+		}
+		qIsOfficial := swag.FormatBool(qrIsOfficial)
+		if qIsOfficial != "" {
+			if err := r.SetQueryParam("isOfficial", qIsOfficial); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

@@ -64,7 +64,7 @@ func (o *QoSRegionsGetReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /ams/v1/namespaces/{namespace}/qos returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /ams/v1/admin/namespaces/{namespace}/qos returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -82,7 +82,7 @@ type QoSRegionsGetOK struct {
 }
 
 func (o *QoSRegionsGetOK) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/qos][%d] qoSRegionsGetOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/qos][%d] qoSRegionsGetOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *QoSRegionsGetOK) ToJSONString() string {
@@ -135,7 +135,7 @@ type QoSRegionsGetBadRequest struct {
 }
 
 func (o *QoSRegionsGetBadRequest) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/qos][%d] qoSRegionsGetBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/qos][%d] qoSRegionsGetBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *QoSRegionsGetBadRequest) ToJSONString() string {
@@ -188,7 +188,7 @@ type QoSRegionsGetUnauthorized struct {
 }
 
 func (o *QoSRegionsGetUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/qos][%d] qoSRegionsGetUnauthorized  %+v", 401, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/qos][%d] qoSRegionsGetUnauthorized  %+v", 401, o.ToJSONString())
 }
 
 func (o *QoSRegionsGetUnauthorized) ToJSONString() string {
@@ -241,7 +241,7 @@ type QoSRegionsGetForbidden struct {
 }
 
 func (o *QoSRegionsGetForbidden) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/qos][%d] qoSRegionsGetForbidden  %+v", 403, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/qos][%d] qoSRegionsGetForbidden  %+v", 403, o.ToJSONString())
 }
 
 func (o *QoSRegionsGetForbidden) ToJSONString() string {
@@ -294,7 +294,7 @@ type QoSRegionsGetInternalServerError struct {
 }
 
 func (o *QoSRegionsGetInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/qos][%d] qoSRegionsGetInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/qos][%d] qoSRegionsGetInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *QoSRegionsGetInternalServerError) ToJSONString() string {

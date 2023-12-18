@@ -73,6 +73,7 @@ func init() {
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminRetrievePlayerRecordsCmd)
+	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminPutPlayerRecordsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminGetPlayerRecordsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminGetPlayerRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminPutPlayerRecordHandlerV1Cmd)

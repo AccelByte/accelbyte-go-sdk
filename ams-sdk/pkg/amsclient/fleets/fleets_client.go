@@ -150,7 +150,7 @@ func (a *Client) FleetListShort(params *FleetListParams, authInfo runtime.Client
 /*
 Deprecated: 2022-08-10 - Use FleetCreateShort instead.
 
-FleetCreate create fleet
+FleetCreate create a fleet. optionally, sampling rules for the fleet can also be specified
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error) {
@@ -207,7 +207,7 @@ func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientA
 }
 
 /*
-FleetCreateShort create fleet
+FleetCreateShort create a fleet. optionally, sampling rules for the fleet can also be specified
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) FleetCreateShort(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, error) {
@@ -374,7 +374,7 @@ func (a *Client) FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAu
 /*
 Deprecated: 2022-08-10 - Use FleetUpdateShort instead.
 
-FleetUpdate update a fleet – overrides current data
+FleetUpdate update a fleet – overrides current data. optionally, sampling rules for the fleet can also be updated
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
 */
 func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error) {
@@ -434,7 +434,7 @@ func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientA
 }
 
 /*
-FleetUpdateShort update a fleet – overrides current data
+FleetUpdateShort update a fleet – overrides current data. optionally, sampling rules for the fleet can also be updated
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
 */
 func (a *Client) FleetUpdateShort(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, error) {

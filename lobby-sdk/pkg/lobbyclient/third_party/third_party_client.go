@@ -46,9 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetThirdPartyConfigShort instead.
 
 AdminGetThirdPartyConfig get third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]` with scope `social`
-
-get third party config for specified namespace.
+Get third party config for specified namespace.
 */
 func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, *AdminGetThirdPartyConfigBadRequest, *AdminGetThirdPartyConfigUnauthorized, *AdminGetThirdPartyConfigForbidden, *AdminGetThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -105,9 +103,7 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 
 /*
 AdminGetThirdPartyConfigShort get third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]` with scope `social`
-
-get third party config for specified namespace.
+Get third party config for specified namespace.
 */
 func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -162,8 +158,6 @@ func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigP
 Deprecated: 2022-08-10 - Use AdminUpdateThirdPartyConfigShort instead.
 
 AdminUpdateThirdPartyConfig update third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]` with scope `social`
-
 Update third party config in a namespace.
 */
 func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, *AdminUpdateThirdPartyConfigBadRequest, *AdminUpdateThirdPartyConfigUnauthorized, *AdminUpdateThirdPartyConfigForbidden, *AdminUpdateThirdPartyConfigInternalServerError, error) {
@@ -221,8 +215,6 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 
 /*
 AdminUpdateThirdPartyConfigShort update third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]` with scope `social`
-
 Update third party config in a namespace.
 */
 func (a *Client) AdminUpdateThirdPartyConfigShort(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, error) {
@@ -278,9 +270,7 @@ func (a *Client) AdminUpdateThirdPartyConfigShort(params *AdminUpdateThirdPartyC
 Deprecated: 2022-08-10 - Use AdminCreateThirdPartyConfigShort instead.
 
 AdminCreateThirdPartyConfig create third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]` with scope `social`
-
-create third party config in a namespace.
+Create third party config in a namespace.
 */
 func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigConflict, *AdminCreateThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -340,9 +330,7 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 
 /*
 AdminCreateThirdPartyConfigShort create third party steam config
-Required permission : `ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]` with scope `social`
-
-create third party config in a namespace.
+Create third party config in a namespace.
 */
 func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, error) {
 	// TODO: Validate the params before sending

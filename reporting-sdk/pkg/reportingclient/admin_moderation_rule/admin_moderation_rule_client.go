@@ -50,57 +50,17 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateModerationRuleShort instead.
 
 CreateModerationRule create auto moderation rule
-
-
 This endpoint create moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]
-
-
-
-
-Supported Category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
-
-
-
-
-
-
+Supported Category: - UGC - USER - CHAT - EXTENSION
 Supported Action (GOING TO DEPRECATE, for replacement please use "actions"):
 
-
-
-
-
-
-  * HideContent
-
-
-
-
+* HideContent
 
 Supported Actions:
 
-
-
-
-
-
-  * hideContent : Hide the content
-
-
-  * banAccount : Ban the user account
-
-
-  * deleteChat : Delete chat
+* **hideContent**: Hide the content
+* **banAccount**: Ban the user account
+* **deleteChat**: Delete chat
 */
 func (a *Client) CreateModerationRule(params *CreateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateModerationRuleCreated, *CreateModerationRuleBadRequest, *CreateModerationRuleConflict, *CreateModerationRuleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -154,57 +114,17 @@ func (a *Client) CreateModerationRule(params *CreateModerationRuleParams, authIn
 
 /*
 CreateModerationRuleShort create auto moderation rule
-
-
 This endpoint create moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]
-
-
-
-
-Supported Category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
-
-
-
-
-
-
+Supported Category: - UGC - USER - CHAT - EXTENSION
 Supported Action (GOING TO DEPRECATE, for replacement please use "actions"):
 
-
-
-
-
-
-  * HideContent
-
-
-
-
+* HideContent
 
 Supported Actions:
 
-
-
-
-
-
-  * hideContent : Hide the content
-
-
-  * banAccount : Ban the user account
-
-
-  * deleteChat : Delete chat
+* **hideContent**: Hide the content
+* **banAccount**: Ban the user account
+* **deleteChat**: Delete chat
 */
 func (a *Client) CreateModerationRuleShort(params *CreateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateModerationRuleCreated, error) {
 	// TODO: Validate the params before sending
@@ -257,55 +177,15 @@ func (a *Client) CreateModerationRuleShort(params *CreateModerationRuleParams, a
 Deprecated: 2022-08-10 - Use UpdateModerationRuleShort instead.
 
 UpdateModerationRule update auto moderation rule
-
-
 This endpoint update moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
-
-
-Supported Category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
-
-
-
-
-
-
+Supported Category:- UGC - USER - CHAT - EXTENSION
 Supported Action (GOING TO DEPRECATE, for replacement please use "actions"):
-
-
-
-
-
-
-  * HideContent
-
-
-
-
+* HideContent
 
 Supported Actions:
-
-
-
-
-
-
-  * hideContent : Hide the content
-
-
-  * banAccount : Ban the user account
-
-
-  * deleteChat : Delete chat
+* **hideContent**: Hide the content
+* **banAccount**: Ban the user account
+* **deleteChat**: Delete chat
 */
 func (a *Client) UpdateModerationRule(params *UpdateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleOK, *UpdateModerationRuleBadRequest, *UpdateModerationRuleNotFound, *UpdateModerationRuleConflict, *UpdateModerationRuleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -362,55 +242,15 @@ func (a *Client) UpdateModerationRule(params *UpdateModerationRuleParams, authIn
 
 /*
 UpdateModerationRuleShort update auto moderation rule
-
-
 This endpoint update moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
-
-
-Supported Category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
-
-
-
-
-
-
+Supported Category:- UGC - USER - CHAT - EXTENSION
 Supported Action (GOING TO DEPRECATE, for replacement please use "actions"):
-
-
-
-
-
-
-  * HideContent
-
-
-
-
+* HideContent
 
 Supported Actions:
-
-
-
-
-
-
-  * hideContent : Hide the content
-
-
-  * banAccount : Ban the user account
-
-
-  * deleteChat : Delete chat
+* **hideContent**: Hide the content
+* **banAccount**: Ban the user account
+* **deleteChat**: Delete chat
 */
 func (a *Client) UpdateModerationRuleShort(params *UpdateModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -465,14 +305,7 @@ func (a *Client) UpdateModerationRuleShort(params *UpdateModerationRuleParams, a
 Deprecated: 2022-08-10 - Use DeleteModerationRuleShort instead.
 
 DeleteModerationRule delete auto moderation rule
-
-
 This endpoint delete moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]
 */
 func (a *Client) DeleteModerationRule(params *DeleteModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteModerationRuleNoContent, *DeleteModerationRuleBadRequest, *DeleteModerationRuleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -523,14 +356,7 @@ func (a *Client) DeleteModerationRule(params *DeleteModerationRuleParams, authIn
 
 /*
 DeleteModerationRuleShort delete auto moderation rule
-
-
 This endpoint delete moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]
 */
 func (a *Client) DeleteModerationRuleShort(params *DeleteModerationRuleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteModerationRuleNoContent, error) {
 	// TODO: Validate the params before sending
@@ -581,14 +407,7 @@ func (a *Client) DeleteModerationRuleShort(params *DeleteModerationRuleParams, a
 Deprecated: 2022-08-10 - Use UpdateModerationRuleStatusShort instead.
 
 UpdateModerationRuleStatus enable/disable auto moderation rule
-
-
 This endpoint enable/disable moderation rule status.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 */
 func (a *Client) UpdateModerationRuleStatus(params *UpdateModerationRuleStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleStatusNoContent, *UpdateModerationRuleStatusBadRequest, *UpdateModerationRuleStatusNotFound, *UpdateModerationRuleStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -642,14 +461,7 @@ func (a *Client) UpdateModerationRuleStatus(params *UpdateModerationRuleStatusPa
 
 /*
 UpdateModerationRuleStatusShort enable/disable auto moderation rule
-
-
 This endpoint enable/disable moderation rule status.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]
 */
 func (a *Client) UpdateModerationRuleStatusShort(params *UpdateModerationRuleStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateModerationRuleStatusNoContent, error) {
 	// TODO: Validate the params before sending
@@ -702,14 +514,7 @@ func (a *Client) UpdateModerationRuleStatusShort(params *UpdateModerationRuleSta
 Deprecated: 2022-08-10 - Use GetModerationRulesShort instead.
 
 GetModerationRules get auto moderation rules
-
-
 This endpoint get moderation rules.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRules(params *GetModerationRulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRulesOK, *GetModerationRulesBadRequest, *GetModerationRulesNotFound, *GetModerationRulesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -763,14 +568,7 @@ func (a *Client) GetModerationRules(params *GetModerationRulesParams, authInfo r
 
 /*
 GetModerationRulesShort get auto moderation rules
-
-
 This endpoint get moderation rules.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRulesShort(params *GetModerationRulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRulesOK, error) {
 	// TODO: Validate the params before sending
@@ -823,14 +621,7 @@ func (a *Client) GetModerationRulesShort(params *GetModerationRulesParams, authI
 Deprecated: 2022-08-10 - Use GetModerationRuleDetailsShort instead.
 
 GetModerationRuleDetails get auto moderation rule
-
-
 This endpoint get moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRuleDetails(params *GetModerationRuleDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRuleDetailsOK, *GetModerationRuleDetailsNotFound, *GetModerationRuleDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -881,14 +672,7 @@ func (a *Client) GetModerationRuleDetails(params *GetModerationRuleDetailsParams
 
 /*
 GetModerationRuleDetailsShort get auto moderation rule
-
-
 This endpoint get moderation rule.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]
 */
 func (a *Client) GetModerationRuleDetailsShort(params *GetModerationRuleDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetModerationRuleDetailsOK, error) {
 	// TODO: Validate the params before sending

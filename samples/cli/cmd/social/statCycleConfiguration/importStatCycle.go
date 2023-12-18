@@ -4,14 +4,14 @@
 
 // Code generated. DO NOT EDIT.
 
-package statConfiguration
+package statCycleConfiguration
 
 import (
 	"os"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_cycle_configuration"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -23,7 +23,7 @@ var ImportStatCycleCmd = &cobra.Command{
 	Short: "Import stat cycle",
 	Long:  `Import stat cycle`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		statConfigurationService := &social.StatConfigurationService{
+		statCycleConfigurationService := &social.StatCycleConfigurationService{
 			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
@@ -35,12 +35,12 @@ var ImportStatCycleCmd = &cobra.Command{
 			return err
 		}
 		replaceExisting, _ := cmd.Flags().GetBool("replaceExisting")
-		input := &stat_configuration.ImportStatCycleParams{
+		input := &stat_cycle_configuration.ImportStatCycleParams{
 			File:            file,
 			Namespace:       namespace,
 			ReplaceExisting: &replaceExisting,
 		}
-		created, errCreated := statConfigurationService.ImportStatCycleShort(input)
+		created, errCreated := statCycleConfigurationService.ImportStatCycleShort(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 

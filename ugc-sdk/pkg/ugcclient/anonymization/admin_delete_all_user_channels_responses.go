@@ -69,7 +69,7 @@ func NewAdminDeleteAllUserChannelsNoContent() *AdminDeleteAllUserChannelsNoConte
 
 /*AdminDeleteAllUserChannelsNoContent handles this case with default header values.
 
-  No Content
+  Channel deleted
 */
 type AdminDeleteAllUserChannelsNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewAdminDeleteAllUserChannelsUnauthorized() *AdminDeleteAllUserChannelsUnau
 
 /*AdminDeleteAllUserChannelsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteAllUserChannelsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewAdminDeleteAllUserChannelsNotFound() *AdminDeleteAllUserChannelsNotFound
 
 /*AdminDeleteAllUserChannelsNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773502</td><td>Channel not found</td></tr></table>
 */
 type AdminDeleteAllUserChannelsNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewAdminDeleteAllUserChannelsInternalServerError() *AdminDeleteAllUserChann
 
 /*AdminDeleteAllUserChannelsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773501</td><td>Unable to delete channel</td></tr></table>
 */
 type AdminDeleteAllUserChannelsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

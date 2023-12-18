@@ -64,8 +64,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetGlobalConfigShort instead.
 
 AdminGetGlobalConfig record of global configuration dsmc.
-Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]` with scope `social`
-get dsmc global configuration.
+Get dsmc global configuration.
 */
 func (a *Client) AdminGetGlobalConfig(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, *AdminGetGlobalConfigBadRequest, *AdminGetGlobalConfigUnauthorized, *AdminGetGlobalConfigForbidden, *AdminGetGlobalConfigNotFound, *AdminGetGlobalConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -125,8 +124,7 @@ func (a *Client) AdminGetGlobalConfig(params *AdminGetGlobalConfigParams, authIn
 
 /*
 AdminGetGlobalConfigShort record of global configuration dsmc.
-Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]` with scope `social`
-get dsmc global configuration.
+Get dsmc global configuration.
 */
 func (a *Client) AdminGetGlobalConfigShort(params *AdminGetGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGlobalConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -182,7 +180,7 @@ func (a *Client) AdminGetGlobalConfigShort(params *AdminGetGlobalConfigParams, a
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateGlobalConfigShort instead.
 
-AdminUpdateGlobalConfig required permission : admin:namespace:{namespace}:lobby:config [update]
+AdminUpdateGlobalConfig upsert global configuration data.
 Upsert global configuration data.
 */
 func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, *AdminUpdateGlobalConfigUnauthorized, *AdminUpdateGlobalConfigForbidden, error) {
@@ -233,7 +231,7 @@ func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, 
 }
 
 /*
-AdminUpdateGlobalConfigShort required permission : admin:namespace:{namespace}:lobby:config [update]
+AdminUpdateGlobalConfigShort upsert global configuration data.
 Upsert global configuration data.
 */
 func (a *Client) AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, error) {
@@ -284,7 +282,7 @@ func (a *Client) AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigPar
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteGlobalConfigShort instead.
 
-AdminDeleteGlobalConfig required permission : admin:namespace:{namespace}:lobby:config [delete]
+AdminDeleteGlobalConfig delete of global configuration data.
 Delete of global configuration data.
 */
 func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, *AdminDeleteGlobalConfigUnauthorized, *AdminDeleteGlobalConfigForbidden, error) {
@@ -335,7 +333,7 @@ func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, 
 }
 
 /*
-AdminDeleteGlobalConfigShort required permission : admin:namespace:{namespace}:lobby:config [delete]
+AdminDeleteGlobalConfigShort delete of global configuration data.
 Delete of global configuration data.
 */
 func (a *Client) AdminDeleteGlobalConfigShort(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, error) {
@@ -387,8 +385,6 @@ func (a *Client) AdminDeleteGlobalConfigShort(params *AdminDeleteGlobalConfigPar
 Deprecated: 2022-08-10 - Use FreeFormNotificationShort instead.
 
 FreeFormNotification send freeform notification to a user
-Required permission : `NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace.
 */
 func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, *FreeFormNotificationBadRequest, *FreeFormNotificationUnauthorized, *FreeFormNotificationForbidden, *FreeFormNotificationNotFound, error) {
@@ -446,8 +442,6 @@ func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authIn
 
 /*
 FreeFormNotificationShort send freeform notification to a user
-Required permission : `NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace.
 */
 func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationAccepted, error) {
@@ -503,8 +497,6 @@ func (a *Client) FreeFormNotificationShort(params *FreeFormNotificationParams, a
 Deprecated: 2022-08-10 - Use NotificationWithTemplateShort instead.
 
 NotificationWithTemplate send notification to a user with template
-Required permission : `NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -567,8 +559,6 @@ func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams
 
 /*
 NotificationWithTemplateShort send notification to a user with template
-Required permission : `NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -629,8 +619,6 @@ func (a *Client) NotificationWithTemplateShort(params *NotificationWithTemplateP
 Deprecated: 2022-08-10 - Use GetGameTemplateShort instead.
 
 GetGameTemplate get all notification template in a namespace
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get all templates in a namespace
 */
 func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, *GetGameTemplateBadRequest, *GetGameTemplateUnauthorized, *GetGameTemplateForbidden, *GetGameTemplateNotFound, error) {
@@ -688,8 +676,6 @@ func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime
 
 /*
 GetGameTemplateShort get all notification template in a namespace
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get all templates in a namespace
 */
 func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, error) {
@@ -745,8 +731,6 @@ func (a *Client) GetGameTemplateShort(params *GetGameTemplateParams, authInfo ru
 Deprecated: 2022-08-10 - Use CreateTemplateShort instead.
 
 CreateTemplate create new notification template
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [CREATE]` with scope `social`
-
 Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
 handlebars will be the key to be replaced when sending notification. Already existing template with the same
 slug and language can not be created.
@@ -808,8 +792,6 @@ func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.C
 
 /*
 CreateTemplateShort create new notification template
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [CREATE]` with scope `social`
-
 Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
 handlebars will be the key to be replaced when sending notification. Already existing template with the same
 slug and language can not be created.
@@ -869,8 +851,6 @@ func (a *Client) CreateTemplateShort(params *CreateTemplateParams, authInfo runt
 Deprecated: 2022-08-10 - Use GetSlugTemplateShort instead.
 
 GetSlugTemplate get all notification template in a slug
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get all templates in a namespace
 */
 func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, *GetSlugTemplateBadRequest, *GetSlugTemplateUnauthorized, *GetSlugTemplateForbidden, *GetSlugTemplateNotFound, error) {
@@ -928,8 +908,6 @@ func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime
 
 /*
 GetSlugTemplateShort get all notification template in a slug
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get all templates in a namespace
 */
 func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetSlugTemplateOK, error) {
@@ -985,8 +963,6 @@ func (a *Client) GetSlugTemplateShort(params *GetSlugTemplateParams, authInfo ru
 Deprecated: 2022-08-10 - Use DeleteTemplateSlugShort instead.
 
 DeleteTemplateSlug delete template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [DELETE]` with scope `social`
-
 Delete localization template
 */
 func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, *DeleteTemplateSlugBadRequest, *DeleteTemplateSlugUnauthorized, *DeleteTemplateSlugForbidden, *DeleteTemplateSlugNotFound, error) {
@@ -1044,8 +1020,6 @@ func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo r
 
 /*
 DeleteTemplateSlugShort delete template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [DELETE]` with scope `social`
-
 Delete localization template
 */
 func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateSlugNoContent, error) {
@@ -1101,8 +1075,6 @@ func (a *Client) DeleteTemplateSlugShort(params *DeleteTemplateSlugParams, authI
 Deprecated: 2022-08-10 - Use GetLocalizationTemplateShort instead.
 
 GetLocalizationTemplate get a template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get a template localization
 */
 func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, *GetLocalizationTemplateBadRequest, *GetLocalizationTemplateUnauthorized, *GetLocalizationTemplateForbidden, *GetLocalizationTemplateNotFound, error) {
@@ -1160,8 +1132,6 @@ func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, 
 
 /*
 GetLocalizationTemplateShort get a template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [READ]` with scope `social`
-
 Get a template localization
 */
 func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, error) {
@@ -1217,8 +1187,6 @@ func (a *Client) GetLocalizationTemplateShort(params *GetLocalizationTemplatePar
 Deprecated: 2022-08-10 - Use UpdateLocalizationTemplateShort instead.
 
 UpdateLocalizationTemplate update template draft
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [UPDATE]` with scope `social`
-
 Modify draft template
 */
 func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, *UpdateLocalizationTemplateBadRequest, *UpdateLocalizationTemplateUnauthorized, *UpdateLocalizationTemplateForbidden, *UpdateLocalizationTemplateNotFound, error) {
@@ -1276,8 +1244,6 @@ func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplatePa
 
 /*
 UpdateLocalizationTemplateShort update template draft
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [UPDATE]` with scope `social`
-
 Modify draft template
 */
 func (a *Client) UpdateLocalizationTemplateShort(params *UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizationTemplateNoContent, error) {
@@ -1333,8 +1299,6 @@ func (a *Client) UpdateLocalizationTemplateShort(params *UpdateLocalizationTempl
 Deprecated: 2022-08-10 - Use DeleteTemplateLocalizationShort instead.
 
 DeleteTemplateLocalization delete template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [DELETE]` with scope `social`
-
 Delete all template in a slug
 */
 func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, *DeleteTemplateLocalizationBadRequest, *DeleteTemplateLocalizationUnauthorized, *DeleteTemplateLocalizationForbidden, *DeleteTemplateLocalizationNotFound, error) {
@@ -1392,8 +1356,6 @@ func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationPa
 
 /*
 DeleteTemplateLocalizationShort delete template localization
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [DELETE]` with scope `social`
-
 Delete all template in a slug
 */
 func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTemplateLocalizationNoContent, error) {
@@ -1449,8 +1411,6 @@ func (a *Client) DeleteTemplateLocalizationShort(params *DeleteTemplateLocalizat
 Deprecated: 2022-08-10 - Use PublishTemplateShort instead.
 
 PublishTemplate publish draft template
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [CREATE]` with scope `social`
-
 Publish notification template draft. Empty draft can not be published.
 */
 func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, *PublishTemplateBadRequest, *PublishTemplateUnauthorized, *PublishTemplateForbidden, *PublishTemplateNotFound, error) {
@@ -1508,8 +1468,6 @@ func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime
 
 /*
 PublishTemplateShort publish draft template
-Required permission : `NAMESPACE:{namespace}:TEMPLATE [CREATE]` with scope `social`
-
 Publish notification template draft. Empty draft can not be published.
 */
 func (a *Client) PublishTemplateShort(params *PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateNoContent, error) {

@@ -33,14 +33,14 @@ func (o *GetTypeReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetTypeUnauthorized()
+	case 400:
+		result := NewGetTypeBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetTypeNotFound()
+	case 401:
+		result := NewGetTypeUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetTypeOK() *GetTypeOK {
 
 /*GetTypeOK handles this case with default header values.
 
-  OK
+  Get types
 */
 type GetTypeOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGetTypeResponse
@@ -115,6 +115,59 @@ func (o *GetTypeOK) readResponse(response runtime.ClientResponse, consumer runti
 	return nil
 }
 
+// NewGetTypeBadRequest creates a GetTypeBadRequest with default headers values
+func NewGetTypeBadRequest() *GetTypeBadRequest {
+	return &GetTypeBadRequest{}
+}
+
+/*GetTypeBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771801</td><td>invalid paging parameter</td></tr></table>
+*/
+type GetTypeBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetTypeBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetTypeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetTypeBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetTypeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetTypeUnauthorized creates a GetTypeUnauthorized with default headers values
 func NewGetTypeUnauthorized() *GetTypeUnauthorized {
 	return &GetTypeUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetTypeUnauthorized() *GetTypeUnauthorized {
 
 /*GetTypeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetTypeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetTypeUnauthorized) readResponse(response runtime.ClientResponse, cons
 	return nil
 }
 
-// NewGetTypeNotFound creates a GetTypeNotFound with default headers values
-func NewGetTypeNotFound() *GetTypeNotFound {
-	return &GetTypeNotFound{}
-}
-
-/*GetTypeNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetTypeNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetTypeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/types][%d] getTypeNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetTypeNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetTypeNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetTypeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetTypeInternalServerError creates a GetTypeInternalServerError with default headers values
 func NewGetTypeInternalServerError() *GetTypeInternalServerError {
 	return &GetTypeInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetTypeInternalServerError() *GetTypeInternalServerError {
 
 /*GetTypeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771802</td><td>Unable get types</td></tr></table>
 */
 type GetTypeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

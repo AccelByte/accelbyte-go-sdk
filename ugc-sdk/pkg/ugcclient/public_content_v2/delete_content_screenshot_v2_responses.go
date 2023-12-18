@@ -45,6 +45,12 @@ func (o *DeleteContentScreenshotV2Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewDeleteContentScreenshotV2Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewDeleteContentScreenshotV2NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewDeleteContentScreenshotV2NoContent() *DeleteContentScreenshotV2NoContent
 
 /*DeleteContentScreenshotV2NoContent handles this case with default header values.
 
-  No Content
+  Screenshot deleted
 */
 type DeleteContentScreenshotV2NoContent struct {
 }
@@ -101,7 +107,7 @@ func NewDeleteContentScreenshotV2BadRequest() *DeleteContentScreenshotV2BadReque
 
 /*DeleteContentScreenshotV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type DeleteContentScreenshotV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -154,7 +160,7 @@ func NewDeleteContentScreenshotV2Unauthorized() *DeleteContentScreenshotV2Unauth
 
 /*DeleteContentScreenshotV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteContentScreenshotV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -200,6 +206,59 @@ func (o *DeleteContentScreenshotV2Unauthorized) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewDeleteContentScreenshotV2Forbidden creates a DeleteContentScreenshotV2Forbidden with default headers values
+func NewDeleteContentScreenshotV2Forbidden() *DeleteContentScreenshotV2Forbidden {
+	return &DeleteContentScreenshotV2Forbidden{}
+}
+
+/*DeleteContentScreenshotV2Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type DeleteContentScreenshotV2Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *DeleteContentScreenshotV2Forbidden) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v2/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}][%d] deleteContentScreenshotV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *DeleteContentScreenshotV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteContentScreenshotV2Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *DeleteContentScreenshotV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewDeleteContentScreenshotV2NotFound creates a DeleteContentScreenshotV2NotFound with default headers values
 func NewDeleteContentScreenshotV2NotFound() *DeleteContentScreenshotV2NotFound {
 	return &DeleteContentScreenshotV2NotFound{}
@@ -207,7 +266,7 @@ func NewDeleteContentScreenshotV2NotFound() *DeleteContentScreenshotV2NotFound {
 
 /*DeleteContentScreenshotV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type DeleteContentScreenshotV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -260,7 +319,7 @@ func NewDeleteContentScreenshotV2InternalServerError() *DeleteContentScreenshotV
 
 /*DeleteContentScreenshotV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type DeleteContentScreenshotV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

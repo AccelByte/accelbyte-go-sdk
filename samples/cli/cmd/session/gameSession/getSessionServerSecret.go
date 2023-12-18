@@ -7,12 +7,9 @@
 package gameSession
 
 import (
-	"encoding/json"
-
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
-	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -28,16 +25,9 @@ var GetSessionServerSecretCmd = &cobra.Command{
 			Client:          factory.NewSessionClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		bodyString := cmd.Flag("body").Value.String()
-		var body *sessionclientmodels.ApimodelsServerSecret
-		errBody := json.Unmarshal([]byte(bodyString), &body)
-		if errBody != nil {
-			return errBody
-		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		sessionId, _ := cmd.Flags().GetString("sessionId")
 		input := &game_session.GetSessionServerSecretParams{
-			Body:      body,
 			Namespace: namespace,
 			SessionID: sessionId,
 		}
@@ -55,8 +45,6 @@ var GetSessionServerSecretCmd = &cobra.Command{
 }
 
 func init() {
-	GetSessionServerSecretCmd.Flags().String("body", "", "Body")
-	_ = GetSessionServerSecretCmd.MarkFlagRequired("body")
 	GetSessionServerSecretCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetSessionServerSecretCmd.MarkFlagRequired("namespace")
 	GetSessionServerSecretCmd.Flags().String("sessionId", "", "Session id")

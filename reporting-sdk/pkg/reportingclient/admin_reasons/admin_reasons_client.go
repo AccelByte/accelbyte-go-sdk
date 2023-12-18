@@ -62,8 +62,8 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListReasonGroupsShort instead.
 
 AdminListReasonGroups list reason groups under a namespace
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
-Return list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.
+Return list of reason groups ID and title under given namespace.
+To fetch the reasons inside a group, use get reason group endpoint.
 */
 func (a *Client) AdminListReasonGroups(params *AdminListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListReasonGroupsOK, *AdminListReasonGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,8 +111,8 @@ func (a *Client) AdminListReasonGroups(params *AdminListReasonGroupsParams, auth
 
 /*
 AdminListReasonGroupsShort list reason groups under a namespace
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
-Return list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.
+Return list of reason groups ID and title under given namespace.
+To fetch the reasons inside a group, use get reason group endpoint.
 */
 func (a *Client) AdminListReasonGroupsShort(params *AdminListReasonGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListReasonGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -161,9 +161,9 @@ func (a *Client) AdminListReasonGroupsShort(params *AdminListReasonGroupsParams,
 Deprecated: 2022-08-10 - Use CreateReasonGroupShort instead.
 
 CreateReasonGroup create a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
-Create a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.
-Reason group title is case insensitive, meaning you can't have reason if you already create a reason titled Reason
+Create a reason group for easier query. You can query reasons by specifying
+the group title in the list reasons query. Reason group title is case insensitive,
+meaning you can't have **reason** if you already create a reason titled **Reason**
 */
 func (a *Client) CreateReasonGroup(params *CreateReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonGroupCreated, *CreateReasonGroupBadRequest, *CreateReasonGroupConflict, *CreateReasonGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -217,9 +217,9 @@ func (a *Client) CreateReasonGroup(params *CreateReasonGroupParams, authInfo run
 
 /*
 CreateReasonGroupShort create a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
-Create a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.
-Reason group title is case insensitive, meaning you can't have reason if you already create a reason titled Reason
+Create a reason group for easier query. You can query reasons by specifying
+the group title in the list reasons query. Reason group title is case insensitive,
+meaning you can't have **reason** if you already create a reason titled **Reason**
 */
 func (a *Client) CreateReasonGroupShort(params *CreateReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonGroupCreated, error) {
 	// TODO: Validate the params before sending
@@ -272,7 +272,6 @@ func (a *Client) CreateReasonGroupShort(params *CreateReasonGroupParams, authInf
 Deprecated: 2022-08-10 - Use GetReasonGroupShort instead.
 
 GetReasonGroup get reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) GetReasonGroup(params *GetReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetReasonGroupOK, *GetReasonGroupNotFound, *GetReasonGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -323,7 +322,6 @@ func (a *Client) GetReasonGroup(params *GetReasonGroupParams, authInfo runtime.C
 
 /*
 GetReasonGroupShort get reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) GetReasonGroupShort(params *GetReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetReasonGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -374,7 +372,7 @@ func (a *Client) GetReasonGroupShort(params *GetReasonGroupParams, authInfo runt
 Deprecated: 2022-08-10 - Use DeleteReasonGroupShort instead.
 
 DeleteReasonGroup delete a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+This endpoint delete a reason group for a namespace with ID.
 */
 func (a *Client) DeleteReasonGroup(params *DeleteReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonGroupNoContent, *DeleteReasonGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -422,7 +420,7 @@ func (a *Client) DeleteReasonGroup(params *DeleteReasonGroupParams, authInfo run
 
 /*
 DeleteReasonGroupShort delete a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+This endpoint delete a reason group for a namespace with ID.
 */
 func (a *Client) DeleteReasonGroupShort(params *DeleteReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonGroupNoContent, error) {
 	// TODO: Validate the params before sending
@@ -471,8 +469,7 @@ func (a *Client) DeleteReasonGroupShort(params *DeleteReasonGroupParams, authInf
 Deprecated: 2022-08-10 - Use UpdateReasonGroupShort instead.
 
 UpdateReasonGroup update a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
-Reason group title is case insensitive, meaning you can't have reason if you already create a reason titled Reason
+Reason group title is case insensitive, meaning you can't have **reason** if you already create a reason titled **Reason**
 If no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).
 */
 func (a *Client) UpdateReasonGroup(params *UpdateReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonGroupOK, *UpdateReasonGroupBadRequest, *UpdateReasonGroupConflict, *UpdateReasonGroupInternalServerError, error) {
@@ -527,8 +524,7 @@ func (a *Client) UpdateReasonGroup(params *UpdateReasonGroupParams, authInfo run
 
 /*
 UpdateReasonGroupShort update a reason group
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
-Reason group title is case insensitive, meaning you can't have reason if you already create a reason titled Reason
+Reason group title is case insensitive, meaning you can't have **reason** if you already create a reason titled **Reason**
 If no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).
 */
 func (a *Client) UpdateReasonGroupShort(params *UpdateReasonGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonGroupOK, error) {
@@ -582,6 +578,7 @@ func (a *Client) UpdateReasonGroupShort(params *UpdateReasonGroupParams, authInf
 Deprecated: 2022-08-10 - Use AdminGetReasonsShort instead.
 
 AdminGetReasons get list of reasons
+This endpoint get reasons with pagination
 */
 func (a *Client) AdminGetReasons(params *AdminGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonsOK, *AdminGetReasonsNotFound, *AdminGetReasonsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -632,6 +629,7 @@ func (a *Client) AdminGetReasons(params *AdminGetReasonsParams, authInfo runtime
 
 /*
 AdminGetReasonsShort get list of reasons
+This endpoint get reasons with pagination
 */
 func (a *Client) AdminGetReasonsShort(params *AdminGetReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonsOK, error) {
 	// TODO: Validate the params before sending
@@ -682,7 +680,7 @@ func (a *Client) AdminGetReasonsShort(params *AdminGetReasonsParams, authInfo ru
 Deprecated: 2022-08-10 - Use CreateReasonShort instead.
 
 CreateReason create a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
+This endpoint create a reason for a namespace.
 */
 func (a *Client) CreateReason(params *CreateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonCreated, *CreateReasonBadRequest, *CreateReasonConflict, *CreateReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -736,7 +734,7 @@ func (a *Client) CreateReason(params *CreateReasonParams, authInfo runtime.Clien
 
 /*
 CreateReasonShort create a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]
+This endpoint create a reason for a namespace.
 */
 func (a *Client) CreateReasonShort(params *CreateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateReasonCreated, error) {
 	// TODO: Validate the params before sending
@@ -789,14 +787,7 @@ func (a *Client) CreateReasonShort(params *CreateReasonParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use AdminGetAllReasonsShort instead.
 
 AdminGetAllReasons get all reasons
-
-
 This endpoint get all reasons without pagination.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetAllReasons(params *AdminGetAllReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllReasonsOK, *AdminGetAllReasonsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -844,14 +835,7 @@ func (a *Client) AdminGetAllReasons(params *AdminGetAllReasonsParams, authInfo r
 
 /*
 AdminGetAllReasonsShort get all reasons
-
-
 This endpoint get all reasons without pagination.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetAllReasonsShort(params *AdminGetAllReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllReasonsOK, error) {
 	// TODO: Validate the params before sending
@@ -900,14 +884,7 @@ func (a *Client) AdminGetAllReasonsShort(params *AdminGetAllReasonsParams, authI
 Deprecated: 2022-08-10 - Use AdminGetUnusedReasonsShort instead.
 
 AdminGetUnusedReasons get list of reasons that not used by moderation rules
-
-
 This endpoint get reasons not used by moderation rules.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetUnusedReasons(params *AdminGetUnusedReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUnusedReasonsOK, *AdminGetUnusedReasonsNotFound, *AdminGetUnusedReasonsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -958,14 +935,7 @@ func (a *Client) AdminGetUnusedReasons(params *AdminGetUnusedReasonsParams, auth
 
 /*
 AdminGetUnusedReasonsShort get list of reasons that not used by moderation rules
-
-
 This endpoint get reasons not used by moderation rules.
-
-
-
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
 */
 func (a *Client) AdminGetUnusedReasonsShort(params *AdminGetUnusedReasonsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUnusedReasonsOK, error) {
 	// TODO: Validate the params before sending
@@ -1016,7 +986,7 @@ func (a *Client) AdminGetUnusedReasonsShort(params *AdminGetUnusedReasonsParams,
 Deprecated: 2022-08-10 - Use AdminGetReasonShort instead.
 
 AdminGetReason get a single reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+This endpoint get a single reason.
 */
 func (a *Client) AdminGetReason(params *AdminGetReasonParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonOK, *AdminGetReasonNotFound, *AdminGetReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1067,7 +1037,7 @@ func (a *Client) AdminGetReason(params *AdminGetReasonParams, authInfo runtime.C
 
 /*
 AdminGetReasonShort get a single reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]
+This endpoint get a single reason.
 */
 func (a *Client) AdminGetReasonShort(params *AdminGetReasonParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetReasonOK, error) {
 	// TODO: Validate the params before sending
@@ -1118,7 +1088,7 @@ func (a *Client) AdminGetReasonShort(params *AdminGetReasonParams, authInfo runt
 Deprecated: 2022-08-10 - Use DeleteReasonShort instead.
 
 DeleteReason delete a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+This endpoint delete a reason for a namespace with ID.
 */
 func (a *Client) DeleteReason(params *DeleteReasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonNoContent, *DeleteReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1166,7 +1136,7 @@ func (a *Client) DeleteReason(params *DeleteReasonParams, authInfo runtime.Clien
 
 /*
 DeleteReasonShort delete a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]
+This endpoint delete a reason for a namespace with ID.
 */
 func (a *Client) DeleteReasonShort(params *DeleteReasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReasonNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1215,7 +1185,7 @@ func (a *Client) DeleteReasonShort(params *DeleteReasonParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use UpdateReasonShort instead.
 
 UpdateReason update a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
+This endpoint update a reason for a namespace with ID.
 */
 func (a *Client) UpdateReason(params *UpdateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonOK, *UpdateReasonBadRequest, *UpdateReasonConflict, *UpdateReasonInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1269,7 +1239,7 @@ func (a *Client) UpdateReason(params *UpdateReasonParams, authInfo runtime.Clien
 
 /*
 UpdateReasonShort update a report reason
-Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]
+This endpoint update a reason for a namespace with ID.
 */
 func (a *Client) UpdateReasonShort(params *UpdateReasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateReasonOK, error) {
 	// TODO: Validate the params before sending

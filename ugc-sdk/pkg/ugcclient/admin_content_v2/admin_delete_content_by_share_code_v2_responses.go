@@ -69,7 +69,7 @@ func NewAdminDeleteContentByShareCodeV2NoContent() *AdminDeleteContentByShareCod
 
 /*AdminDeleteContentByShareCodeV2NoContent handles this case with default header values.
 
-  No Content
+  content deleted
 */
 type AdminDeleteContentByShareCodeV2NoContent struct {
 }
@@ -95,7 +95,7 @@ func NewAdminDeleteContentByShareCodeV2Unauthorized() *AdminDeleteContentByShare
 
 /*AdminDeleteContentByShareCodeV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteContentByShareCodeV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewAdminDeleteContentByShareCodeV2NotFound() *AdminDeleteContentByShareCode
 
 /*AdminDeleteContentByShareCodeV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772702</td><td>Content not found</td></tr></table>
 */
 type AdminDeleteContentByShareCodeV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewAdminDeleteContentByShareCodeV2InternalServerError() *AdminDeleteContent
 
 /*AdminDeleteContentByShareCodeV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772701</td><td>Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state</td></tr></table>
 */
 type AdminDeleteContentByShareCodeV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

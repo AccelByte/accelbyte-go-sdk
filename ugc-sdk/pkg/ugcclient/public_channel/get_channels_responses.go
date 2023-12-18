@@ -33,14 +33,14 @@ func (o *GetChannelsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetChannelsUnauthorized()
+	case 400:
+		result := NewGetChannelsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetChannelsNotFound()
+	case 401:
+		result := NewGetChannelsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetChannelsOK() *GetChannelsOK {
 
 /*GetChannelsOK handles this case with default header values.
 
-  OK
+  Channel in namespace-level retrieved
 */
 type GetChannelsOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGetChannelResponse
@@ -115,6 +115,59 @@ func (o *GetChannelsOK) readResponse(response runtime.ClientResponse, consumer r
 	return nil
 }
 
+// NewGetChannelsBadRequest creates a GetChannelsBadRequest with default headers values
+func NewGetChannelsBadRequest() *GetChannelsBadRequest {
+	return &GetChannelsBadRequest{}
+}
+
+/*GetChannelsBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770702</td><td>invalid paging parameter</td></tr></table>
+*/
+type GetChannelsBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetChannelsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] getChannelsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetChannelsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetChannelsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetChannelsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetChannelsUnauthorized creates a GetChannelsUnauthorized with default headers values
 func NewGetChannelsUnauthorized() *GetChannelsUnauthorized {
 	return &GetChannelsUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetChannelsUnauthorized() *GetChannelsUnauthorized {
 
 /*GetChannelsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetChannelsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetChannelsUnauthorized) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewGetChannelsNotFound creates a GetChannelsNotFound with default headers values
-func NewGetChannelsNotFound() *GetChannelsNotFound {
-	return &GetChannelsNotFound{}
-}
-
-/*GetChannelsNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetChannelsNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetChannelsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels][%d] getChannelsNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetChannelsNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetChannelsNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetChannelsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetChannelsInternalServerError creates a GetChannelsInternalServerError with default headers values
 func NewGetChannelsInternalServerError() *GetChannelsInternalServerError {
 	return &GetChannelsInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetChannelsInternalServerError() *GetChannelsInternalServerError {
 
 /*GetChannelsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770700</td><td>Unable get user channels</td></tr></table>
 */
 type GetChannelsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

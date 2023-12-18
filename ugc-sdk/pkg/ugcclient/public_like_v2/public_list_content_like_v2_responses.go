@@ -69,7 +69,7 @@ func NewPublicListContentLikeV2OK() *PublicListContentLikeV2OK {
 
 /*PublicListContentLikeV2OK handles this case with default header values.
 
-  OK
+  Retrieve list of user liked content
 */
 type PublicListContentLikeV2OK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentLikersResponse
@@ -122,7 +122,7 @@ func NewPublicListContentLikeV2BadRequest() *PublicListContentLikeV2BadRequest {
 
 /*PublicListContentLikeV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771004</td><td>invalid paging parameter</td></tr></table>
 */
 type PublicListContentLikeV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicListContentLikeV2Unauthorized() *PublicListContentLikeV2Unauthoriz
 
 /*PublicListContentLikeV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicListContentLikeV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicListContentLikeV2InternalServerError() *PublicListContentLikeV2Int
 
 /*PublicListContentLikeV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771006</td><td>unable to get list of content like: database error</td></tr></table>
 */
 type PublicListContentLikeV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

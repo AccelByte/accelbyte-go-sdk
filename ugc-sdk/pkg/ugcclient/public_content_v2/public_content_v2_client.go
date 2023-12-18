@@ -30,9 +30,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	PublicGetContentByChannelIDV2(params *PublicGetContentByChannelIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByChannelIDV2OK, *PublicGetContentByChannelIDV2Unauthorized, *PublicGetContentByChannelIDV2InternalServerError, error)
+	PublicGetContentByChannelIDV2(params *PublicGetContentByChannelIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByChannelIDV2OK, *PublicGetContentByChannelIDV2BadRequest, *PublicGetContentByChannelIDV2Unauthorized, *PublicGetContentByChannelIDV2InternalServerError, error)
 	PublicGetContentByChannelIDV2Short(params *PublicGetContentByChannelIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByChannelIDV2OK, error)
-	PublicListContentV2(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, *PublicListContentV2Unauthorized, *PublicListContentV2InternalServerError, error)
+	PublicListContentV2(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, *PublicListContentV2BadRequest, *PublicListContentV2Unauthorized, *PublicListContentV2InternalServerError, error)
 	PublicListContentV2Short(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, error)
 	PublicBulkGetContentByIDV2(params *PublicBulkGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetContentByIDV2OK, *PublicBulkGetContentByIDV2BadRequest, *PublicBulkGetContentByIDV2Unauthorized, *PublicBulkGetContentByIDV2InternalServerError, error)
 	PublicBulkGetContentByIDV2Short(params *PublicBulkGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetContentByIDV2OK, error)
@@ -42,29 +42,29 @@ type ClientService interface {
 	PublicGetContentByShareCodeV2Short(params *PublicGetContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByShareCodeV2OK, error)
 	PublicGetContentByIDV2(params *PublicGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByIDV2OK, *PublicGetContentByIDV2Unauthorized, *PublicGetContentByIDV2NotFound, *PublicGetContentByIDV2InternalServerError, error)
 	PublicGetContentByIDV2Short(params *PublicGetContentByIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByIDV2OK, error)
-	PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2InternalServerError, error)
+	PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2NotFound, *PublicCreateContentV2InternalServerError, error)
 	PublicCreateContentV2Short(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, error)
-	PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error)
+	PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2Forbidden, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error)
 	PublicUpdateContentByShareCodeV2Short(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, error)
 	PublicDeleteContentByShareCodeV2(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, *PublicDeleteContentByShareCodeV2Unauthorized, *PublicDeleteContentByShareCodeV2NotFound, *PublicDeleteContentByShareCodeV2InternalServerError, error)
 	PublicDeleteContentByShareCodeV2Short(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, error)
 	PublicDeleteContentV2(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, *PublicDeleteContentV2Unauthorized, *PublicDeleteContentV2NotFound, *PublicDeleteContentV2InternalServerError, error)
 	PublicDeleteContentV2Short(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, error)
-	PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error)
+	PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2Forbidden, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error)
 	PublicUpdateContentV2Short(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, error)
 	PublicUpdateContentFileLocation(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, *PublicUpdateContentFileLocationBadRequest, *PublicUpdateContentFileLocationUnauthorized, *PublicUpdateContentFileLocationForbidden, *PublicUpdateContentFileLocationNotFound, *PublicUpdateContentFileLocationInternalServerError, error)
 	PublicUpdateContentFileLocationShort(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, error)
 	UpdateContentShareCodeV2(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, *UpdateContentShareCodeV2BadRequest, *UpdateContentShareCodeV2Unauthorized, *UpdateContentShareCodeV2Forbidden, *UpdateContentShareCodeV2NotFound, *UpdateContentShareCodeV2Conflict, *UpdateContentShareCodeV2InternalServerError, error)
 	UpdateContentShareCodeV2Short(params *UpdateContentShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentShareCodeV2OK, error)
-	PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2InternalServerError, error)
+	PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2Forbidden, *PublicGenerateContentUploadURLV2NotFound, *PublicGenerateContentUploadURLV2InternalServerError, error)
 	PublicGenerateContentUploadURLV2Short(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, error)
-	PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, *PublicGetContentByUserIDV2Unauthorized, *PublicGetContentByUserIDV2InternalServerError, error)
+	PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, *PublicGetContentByUserIDV2BadRequest, *PublicGetContentByUserIDV2Unauthorized, *PublicGetContentByUserIDV2InternalServerError, error)
 	PublicGetContentByUserIDV2Short(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, error)
-	UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, *UpdateScreenshotsV2BadRequest, *UpdateScreenshotsV2Unauthorized, *UpdateScreenshotsV2NotFound, *UpdateScreenshotsV2InternalServerError, error)
+	UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, *UpdateScreenshotsV2BadRequest, *UpdateScreenshotsV2Unauthorized, *UpdateScreenshotsV2Forbidden, *UpdateScreenshotsV2NotFound, *UpdateScreenshotsV2InternalServerError, error)
 	UpdateScreenshotsV2Short(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, error)
-	UploadContentScreenshotV2(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, *UploadContentScreenshotV2BadRequest, *UploadContentScreenshotV2Unauthorized, *UploadContentScreenshotV2InternalServerError, error)
+	UploadContentScreenshotV2(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, *UploadContentScreenshotV2BadRequest, *UploadContentScreenshotV2Unauthorized, *UploadContentScreenshotV2Forbidden, *UploadContentScreenshotV2InternalServerError, error)
 	UploadContentScreenshotV2Short(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, error)
-	DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, *DeleteContentScreenshotV2BadRequest, *DeleteContentScreenshotV2Unauthorized, *DeleteContentScreenshotV2NotFound, *DeleteContentScreenshotV2InternalServerError, error)
+	DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, *DeleteContentScreenshotV2BadRequest, *DeleteContentScreenshotV2Unauthorized, *DeleteContentScreenshotV2Forbidden, *DeleteContentScreenshotV2NotFound, *DeleteContentScreenshotV2InternalServerError, error)
 	DeleteContentScreenshotV2Short(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -76,7 +76,7 @@ Deprecated: 2022-08-10 - Use PublicGetContentByChannelIDV2Short instead.
 PublicGetContentByChannelIDV2 list contents specific to a channel
 Public user can access without token or if token specified, requires valid user token
 */
-func (a *Client) PublicGetContentByChannelIDV2(params *PublicGetContentByChannelIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByChannelIDV2OK, *PublicGetContentByChannelIDV2Unauthorized, *PublicGetContentByChannelIDV2InternalServerError, error) {
+func (a *Client) PublicGetContentByChannelIDV2(params *PublicGetContentByChannelIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByChannelIDV2OK, *PublicGetContentByChannelIDV2BadRequest, *PublicGetContentByChannelIDV2Unauthorized, *PublicGetContentByChannelIDV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetContentByChannelIDV2Params()
@@ -104,22 +104,25 @@ func (a *Client) PublicGetContentByChannelIDV2(params *PublicGetContentByChannel
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetContentByChannelIDV2OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PublicGetContentByChannelIDV2BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PublicGetContentByChannelIDV2Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PublicGetContentByChannelIDV2InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -162,6 +165,8 @@ func (a *Client) PublicGetContentByChannelIDV2Short(params *PublicGetContentByCh
 
 	case *PublicGetContentByChannelIDV2OK:
 		return v, nil
+	case *PublicGetContentByChannelIDV2BadRequest:
+		return nil, v
 	case *PublicGetContentByChannelIDV2Unauthorized:
 		return nil, v
 	case *PublicGetContentByChannelIDV2InternalServerError:
@@ -192,7 +197,7 @@ Allowed character for operator: `&` `|` `(` `)`
 
  Please note that value of tags query param should be URL encoded
 */
-func (a *Client) PublicListContentV2(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, *PublicListContentV2Unauthorized, *PublicListContentV2InternalServerError, error) {
+func (a *Client) PublicListContentV2(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, *PublicListContentV2BadRequest, *PublicListContentV2Unauthorized, *PublicListContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicListContentV2Params()
@@ -220,22 +225,25 @@ func (a *Client) PublicListContentV2(params *PublicListContentV2Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicListContentV2OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PublicListContentV2BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PublicListContentV2Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PublicListContentV2InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -292,6 +300,8 @@ func (a *Client) PublicListContentV2Short(params *PublicListContentV2Params, aut
 
 	case *PublicListContentV2OK:
 		return v, nil
+	case *PublicListContentV2BadRequest:
+		return nil, v
 	case *PublicListContentV2Unauthorized:
 		return nil, v
 	case *PublicListContentV2InternalServerError:
@@ -745,7 +755,7 @@ Deprecated: 2022-08-10 - Use PublicCreateContentV2Short instead.
 PublicCreateContentV2 create a content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
 */
-func (a *Client) PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2InternalServerError, error) {
+func (a *Client) PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2NotFound, *PublicCreateContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicCreateContentV2Params()
@@ -773,25 +783,28 @@ func (a *Client) PublicCreateContentV2(params *PublicCreateContentV2Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicCreateContentV2Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicCreateContentV2BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicCreateContentV2Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicCreateContentV2NotFound:
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicCreateContentV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -838,6 +851,8 @@ func (a *Client) PublicCreateContentV2Short(params *PublicCreateContentV2Params,
 		return nil, v
 	case *PublicCreateContentV2Unauthorized:
 		return nil, v
+	case *PublicCreateContentV2NotFound:
+		return nil, v
 	case *PublicCreateContentV2InternalServerError:
 		return nil, v
 
@@ -852,7 +867,7 @@ Deprecated: 2022-08-10 - Use PublicUpdateContentByShareCodeV2Short instead.
 PublicUpdateContentByShareCodeV2 update content to s3 bucket by share code
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 */
-func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error) {
+func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2Forbidden, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUpdateContentByShareCodeV2Params()
@@ -880,31 +895,34 @@ func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByS
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUpdateContentByShareCodeV2OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdateContentByShareCodeV2BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdateContentByShareCodeV2Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateContentByShareCodeV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUpdateContentByShareCodeV2NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *PublicUpdateContentByShareCodeV2Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUpdateContentByShareCodeV2InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -950,6 +968,8 @@ func (a *Client) PublicUpdateContentByShareCodeV2Short(params *PublicUpdateConte
 	case *PublicUpdateContentByShareCodeV2BadRequest:
 		return nil, v
 	case *PublicUpdateContentByShareCodeV2Unauthorized:
+		return nil, v
+	case *PublicUpdateContentByShareCodeV2Forbidden:
 		return nil, v
 	case *PublicUpdateContentByShareCodeV2NotFound:
 		return nil, v
@@ -1183,7 +1203,7 @@ Deprecated: 2022-08-10 - Use PublicUpdateContentV2Short instead.
 PublicUpdateContentV2 update content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 */
-func (a *Client) PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error) {
+func (a *Client) PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2Forbidden, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUpdateContentV2Params()
@@ -1211,28 +1231,31 @@ func (a *Client) PublicUpdateContentV2(params *PublicUpdateContentV2Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUpdateContentV2OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdateContentV2BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicUpdateContentV2Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateContentV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicUpdateContentV2NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUpdateContentV2InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1278,6 +1301,8 @@ func (a *Client) PublicUpdateContentV2Short(params *PublicUpdateContentV2Params,
 	case *PublicUpdateContentV2BadRequest:
 		return nil, v
 	case *PublicUpdateContentV2Unauthorized:
+		return nil, v
+	case *PublicUpdateContentV2Forbidden:
 		return nil, v
 	case *PublicUpdateContentV2NotFound:
 		return nil, v
@@ -1548,7 +1573,7 @@ Deprecated: 2022-08-10 - Use PublicGenerateContentUploadURLV2Short instead.
 PublicGenerateContentUploadURLV2 generate content upload url
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 */
-func (a *Client) PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2InternalServerError, error) {
+func (a *Client) PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2Forbidden, *PublicGenerateContentUploadURLV2NotFound, *PublicGenerateContentUploadURLV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGenerateContentUploadURLV2Params()
@@ -1576,25 +1601,31 @@ func (a *Client) PublicGenerateContentUploadURLV2(params *PublicGenerateContentU
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGenerateContentUploadURLV2OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicGenerateContentUploadURLV2BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicGenerateContentUploadURLV2Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGenerateContentUploadURLV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGenerateContentUploadURLV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicGenerateContentUploadURLV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1641,6 +1672,10 @@ func (a *Client) PublicGenerateContentUploadURLV2Short(params *PublicGenerateCon
 		return nil, v
 	case *PublicGenerateContentUploadURLV2Unauthorized:
 		return nil, v
+	case *PublicGenerateContentUploadURLV2Forbidden:
+		return nil, v
+	case *PublicGenerateContentUploadURLV2NotFound:
+		return nil, v
 	case *PublicGenerateContentUploadURLV2InternalServerError:
 		return nil, v
 
@@ -1655,7 +1690,7 @@ Deprecated: 2022-08-10 - Use PublicGetContentByUserIDV2Short instead.
 PublicGetContentByUserIDV2 get content by user id
 Public user can access without token or if token specified, required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, *PublicGetContentByUserIDV2Unauthorized, *PublicGetContentByUserIDV2InternalServerError, error) {
+func (a *Client) PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentByUserIDV2OK, *PublicGetContentByUserIDV2BadRequest, *PublicGetContentByUserIDV2Unauthorized, *PublicGetContentByUserIDV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetContentByUserIDV2Params()
@@ -1683,22 +1718,25 @@ func (a *Client) PublicGetContentByUserIDV2(params *PublicGetContentByUserIDV2Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetContentByUserIDV2OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PublicGetContentByUserIDV2BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PublicGetContentByUserIDV2Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PublicGetContentByUserIDV2InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1741,6 +1779,8 @@ func (a *Client) PublicGetContentByUserIDV2Short(params *PublicGetContentByUserI
 
 	case *PublicGetContentByUserIDV2OK:
 		return v, nil
+	case *PublicGetContentByUserIDV2BadRequest:
+		return nil, v
 	case *PublicGetContentByUserIDV2Unauthorized:
 		return nil, v
 	case *PublicGetContentByUserIDV2InternalServerError:
@@ -1758,7 +1798,7 @@ UpdateScreenshotsV2 update screenshot of content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 Maximum description length: 1024.
 */
-func (a *Client) UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, *UpdateScreenshotsV2BadRequest, *UpdateScreenshotsV2Unauthorized, *UpdateScreenshotsV2NotFound, *UpdateScreenshotsV2InternalServerError, error) {
+func (a *Client) UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, *UpdateScreenshotsV2BadRequest, *UpdateScreenshotsV2Unauthorized, *UpdateScreenshotsV2Forbidden, *UpdateScreenshotsV2NotFound, *UpdateScreenshotsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateScreenshotsV2Params()
@@ -1786,28 +1826,31 @@ func (a *Client) UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateScreenshotsV2OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateScreenshotsV2BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateScreenshotsV2Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateScreenshotsV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *UpdateScreenshotsV2NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateScreenshotsV2InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1855,6 +1898,8 @@ func (a *Client) UpdateScreenshotsV2Short(params *UpdateScreenshotsV2Params, aut
 		return nil, v
 	case *UpdateScreenshotsV2Unauthorized:
 		return nil, v
+	case *UpdateScreenshotsV2Forbidden:
+		return nil, v
 	case *UpdateScreenshotsV2NotFound:
 		return nil, v
 	case *UpdateScreenshotsV2InternalServerError:
@@ -1876,7 +1921,7 @@ If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
 Maximum description length: 1024.
 */
-func (a *Client) UploadContentScreenshotV2(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, *UploadContentScreenshotV2BadRequest, *UploadContentScreenshotV2Unauthorized, *UploadContentScreenshotV2InternalServerError, error) {
+func (a *Client) UploadContentScreenshotV2(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, *UploadContentScreenshotV2BadRequest, *UploadContentScreenshotV2Unauthorized, *UploadContentScreenshotV2Forbidden, *UploadContentScreenshotV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUploadContentScreenshotV2Params()
@@ -1904,25 +1949,28 @@ func (a *Client) UploadContentScreenshotV2(params *UploadContentScreenshotV2Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UploadContentScreenshotV2Created:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *UploadContentScreenshotV2BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *UploadContentScreenshotV2Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *UploadContentScreenshotV2Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *UploadContentScreenshotV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1974,6 +2022,8 @@ func (a *Client) UploadContentScreenshotV2Short(params *UploadContentScreenshotV
 		return nil, v
 	case *UploadContentScreenshotV2Unauthorized:
 		return nil, v
+	case *UploadContentScreenshotV2Forbidden:
+		return nil, v
 	case *UploadContentScreenshotV2InternalServerError:
 		return nil, v
 
@@ -1988,7 +2038,7 @@ Deprecated: 2022-08-10 - Use DeleteContentScreenshotV2Short instead.
 DeleteContentScreenshotV2 delete screenshots content
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
 */
-func (a *Client) DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, *DeleteContentScreenshotV2BadRequest, *DeleteContentScreenshotV2Unauthorized, *DeleteContentScreenshotV2NotFound, *DeleteContentScreenshotV2InternalServerError, error) {
+func (a *Client) DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, *DeleteContentScreenshotV2BadRequest, *DeleteContentScreenshotV2Unauthorized, *DeleteContentScreenshotV2Forbidden, *DeleteContentScreenshotV2NotFound, *DeleteContentScreenshotV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteContentScreenshotV2Params()
@@ -2016,28 +2066,31 @@ func (a *Client) DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteContentScreenshotV2NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *DeleteContentScreenshotV2BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *DeleteContentScreenshotV2Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteContentScreenshotV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *DeleteContentScreenshotV2NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *DeleteContentScreenshotV2InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2083,6 +2136,8 @@ func (a *Client) DeleteContentScreenshotV2Short(params *DeleteContentScreenshotV
 	case *DeleteContentScreenshotV2BadRequest:
 		return nil, v
 	case *DeleteContentScreenshotV2Unauthorized:
+		return nil, v
+	case *DeleteContentScreenshotV2Forbidden:
 		return nil, v
 	case *DeleteContentScreenshotV2NotFound:
 		return nil, v

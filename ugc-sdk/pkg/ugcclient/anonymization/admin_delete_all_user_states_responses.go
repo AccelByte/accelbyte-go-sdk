@@ -33,14 +33,14 @@ func (o *AdminDeleteAllUserStatesReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewAdminDeleteAllUserStatesBadRequest()
+	case 401:
+		result := NewAdminDeleteAllUserStatesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminDeleteAllUserStatesUnauthorized()
+	case 404:
+		result := NewAdminDeleteAllUserStatesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminDeleteAllUserStatesNoContent() *AdminDeleteAllUserStatesNoContent {
 
 /*AdminDeleteAllUserStatesNoContent handles this case with default header values.
 
-  No Content
+  User stats deleted
 */
 type AdminDeleteAllUserStatesNoContent struct {
 }
@@ -88,59 +88,6 @@ func (o *AdminDeleteAllUserStatesNoContent) readResponse(response runtime.Client
 	return nil
 }
 
-// NewAdminDeleteAllUserStatesBadRequest creates a AdminDeleteAllUserStatesBadRequest with default headers values
-func NewAdminDeleteAllUserStatesBadRequest() *AdminDeleteAllUserStatesBadRequest {
-	return &AdminDeleteAllUserStatesBadRequest{}
-}
-
-/*AdminDeleteAllUserStatesBadRequest handles this case with default header values.
-
-  Bad Request
-*/
-type AdminDeleteAllUserStatesBadRequest struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminDeleteAllUserStatesBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesBadRequest  %+v", 400, o.ToJSONString())
-}
-
-func (o *AdminDeleteAllUserStatesBadRequest) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminDeleteAllUserStatesBadRequest) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminDeleteAllUserStatesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminDeleteAllUserStatesUnauthorized creates a AdminDeleteAllUserStatesUnauthorized with default headers values
 func NewAdminDeleteAllUserStatesUnauthorized() *AdminDeleteAllUserStatesUnauthorized {
 	return &AdminDeleteAllUserStatesUnauthorized{}
@@ -148,7 +95,7 @@ func NewAdminDeleteAllUserStatesUnauthorized() *AdminDeleteAllUserStatesUnauthor
 
 /*AdminDeleteAllUserStatesUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteAllUserStatesUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -194,6 +141,59 @@ func (o *AdminDeleteAllUserStatesUnauthorized) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewAdminDeleteAllUserStatesNotFound creates a AdminDeleteAllUserStatesNotFound with default headers values
+func NewAdminDeleteAllUserStatesNotFound() *AdminDeleteAllUserStatesNotFound {
+	return &AdminDeleteAllUserStatesNotFound{}
+}
+
+/*AdminDeleteAllUserStatesNotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773602</td><td>user states are not found: content not found</td></tr></table>
+*/
+type AdminDeleteAllUserStatesNotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminDeleteAllUserStatesNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminDeleteAllUserStatesNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminDeleteAllUserStatesNotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeleteAllUserStatesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminDeleteAllUserStatesInternalServerError creates a AdminDeleteAllUserStatesInternalServerError with default headers values
 func NewAdminDeleteAllUserStatesInternalServerError() *AdminDeleteAllUserStatesInternalServerError {
 	return &AdminDeleteAllUserStatesInternalServerError{}
@@ -201,7 +201,7 @@ func NewAdminDeleteAllUserStatesInternalServerError() *AdminDeleteAllUserStatesI
 
 /*AdminDeleteAllUserStatesInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773601</td><td>Unable to get all user contents/Unable to delete user states</td></tr></table>
 */
 type AdminDeleteAllUserStatesInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

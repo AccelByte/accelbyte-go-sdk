@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicListActiveSectionsParams creates a new PublicListActiveSectionsParams object
 // with the default values initialized.
 func NewPublicListActiveSectionsParams() *PublicListActiveSectionsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicListActiveSectionsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewPublicListActiveSectionsParams() *PublicListActiveSectionsParams {
 // NewPublicListActiveSectionsParamsWithTimeout creates a new PublicListActiveSectionsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicListActiveSectionsParamsWithTimeout(timeout time.Duration) *PublicListActiveSectionsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicListActiveSectionsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewPublicListActiveSectionsParamsWithTimeout(timeout time.Duration) *Public
 // NewPublicListActiveSectionsParamsWithContext creates a new PublicListActiveSectionsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicListActiveSectionsParamsWithContext(ctx context.Context) *PublicListActiveSectionsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicListActiveSectionsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewPublicListActiveSectionsParamsWithContext(ctx context.Context) *PublicLi
 // NewPublicListActiveSectionsParamsWithHTTPClient creates a new PublicListActiveSectionsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicListActiveSectionsParamsWithHTTPClient(client *http.Client) *PublicListActiveSectionsParams {
-	var ()
+	var (
+		autoCalcEstimatedPriceDefault = bool(false)
+	)
 	return &PublicListActiveSectionsParams{
-		HTTPClient: client,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -68,6 +81,8 @@ type PublicListActiveSectionsParams struct {
 	Namespace string
 	/*UserID*/
 	UserID string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*Language*/
 	Language *string
 	/*Region*/
@@ -155,6 +170,17 @@ func (o *PublicListActiveSectionsParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public list active sections params
+func (o *PublicListActiveSectionsParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicListActiveSectionsParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public list active sections params
+func (o *PublicListActiveSectionsParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
+}
+
 // WithLanguage adds the language to the public list active sections params
 func (o *PublicListActiveSectionsParams) WithLanguage(language *string) *PublicListActiveSectionsParams {
 	o.SetLanguage(language)
@@ -215,6 +241,22 @@ func (o *PublicListActiveSectionsParams) WriteToRequest(r runtime.ClientRequest,
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Language != nil {

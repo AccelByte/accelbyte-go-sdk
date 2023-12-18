@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagUnauthorized, *AdminGetTagNotFound, *AdminGetTagInternalServerError, error)
+	AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagBadRequest, *AdminGetTagUnauthorized, *AdminGetTagInternalServerError, error)
 	AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, error)
 	AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, *AdminCreateTagBadRequest, *AdminCreateTagUnauthorized, *AdminCreateTagConflict, *AdminCreateTagInternalServerError, error)
 	AdminCreateTagShort(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, error)
@@ -48,7 +48,7 @@ Deprecated: 2022-08-10 - Use AdminGetTagShort instead.
 AdminGetTag get tags
 Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
 */
-func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagUnauthorized, *AdminGetTagNotFound, *AdminGetTagInternalServerError, error) {
+func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagBadRequest, *AdminGetTagUnauthorized, *AdminGetTagInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetTagParams()
@@ -84,10 +84,10 @@ func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientA
 	case *AdminGetTagOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminGetTagUnauthorized:
+	case *AdminGetTagBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminGetTagNotFound:
+	case *AdminGetTagUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminGetTagInternalServerError:
@@ -137,9 +137,9 @@ func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.Cl
 
 	case *AdminGetTagOK:
 		return v, nil
-	case *AdminGetTagUnauthorized:
+	case *AdminGetTagBadRequest:
 		return nil, v
-	case *AdminGetTagNotFound:
+	case *AdminGetTagUnauthorized:
 		return nil, v
 	case *AdminGetTagInternalServerError:
 		return nil, v

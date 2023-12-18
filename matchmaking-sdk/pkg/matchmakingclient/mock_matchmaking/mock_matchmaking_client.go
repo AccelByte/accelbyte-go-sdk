@@ -52,10 +52,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CleanAllMocksShort instead.
 
 CleanAllMocks delete all mock tickets and matches
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Delete all mock tickets and matches in a channel.
 '
 */
@@ -117,10 +113,6 @@ func (a *Client) CleanAllMocks(params *CleanAllMocksParams, authInfo runtime.Cli
 
 /*
 CleanAllMocksShort delete all mock tickets and matches
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]
-
-Required Scope: social
-
 Delete all mock tickets and matches in a channel.
 '
 */
@@ -179,10 +171,6 @@ func (a *Client) CleanAllMocksShort(params *CleanAllMocksParams, authInfo runtim
 Deprecated: 2022-08-10 - Use GetAllMockMatchesShort instead.
 
 GetAllMockMatches get all mock matches
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read all mock matches in a channel resulted from matching mock tickets.
 '
 */
@@ -244,10 +232,6 @@ func (a *Client) GetAllMockMatches(params *GetAllMockMatchesParams, authInfo run
 
 /*
 GetAllMockMatchesShort get all mock matches
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read all mock matches in a channel resulted from matching mock tickets.
 '
 */
@@ -306,10 +290,6 @@ func (a *Client) GetAllMockMatchesShort(params *GetAllMockMatchesParams, authInf
 Deprecated: 2022-08-10 - Use GetMockMatchesByTimestampShort instead.
 
 GetMockMatchesByTimestamp get mock matches after timestamp
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.
 '
 */
@@ -371,10 +351,6 @@ func (a *Client) GetMockMatchesByTimestamp(params *GetMockMatchesByTimestampPara
 
 /*
 GetMockMatchesByTimestampShort get mock matches after timestamp
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.
 '
 */
@@ -433,10 +409,6 @@ func (a *Client) GetMockMatchesByTimestampShort(params *GetMockMatchesByTimestam
 Deprecated: 2022-08-10 - Use GetAllMockTicketsShort instead.
 
 GetAllMockTickets get all mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read all mock tickets in a channel.
 '
 */
@@ -498,10 +470,6 @@ func (a *Client) GetAllMockTickets(params *GetAllMockTicketsParams, authInfo run
 
 /*
 GetAllMockTicketsShort get all mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read all mock tickets in a channel.
 '
 */
@@ -560,10 +528,6 @@ func (a *Client) GetAllMockTicketsShort(params *GetAllMockTicketsParams, authInf
 Deprecated: 2022-08-10 - Use CreateMockTicketsShort instead.
 
 CreateMockTickets create mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Create and queue mock tickets into specified game mode's pool.
 Ticket's MMRs will be randomized using Normal distribution according to the input mean and standard deviation.
 All mock tickets and matches will be cleaned up automatically after 1 day.
@@ -627,10 +591,6 @@ func (a *Client) CreateMockTickets(params *CreateMockTicketsParams, authInfo run
 
 /*
 CreateMockTicketsShort create mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Create and queue mock tickets into specified game mode's pool.
 Ticket's MMRs will be randomized using Normal distribution according to the input mean and standard deviation.
 All mock tickets and matches will be cleaned up automatically after 1 day.
@@ -691,10 +651,6 @@ func (a *Client) CreateMockTicketsShort(params *CreateMockTicketsParams, authInf
 Deprecated: 2022-08-10 - Use BulkCreateMockTicketsShort instead.
 
 BulkCreateMockTickets bulk create mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Create and queue mock tickets into specified game mode's pool.
 The tickets input will be used as is.
 '
@@ -757,10 +713,6 @@ func (a *Client) BulkCreateMockTickets(params *BulkCreateMockTicketsParams, auth
 
 /*
 BulkCreateMockTicketsShort bulk create mock tickets
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]
-
-Required Scope: social
-
 Create and queue mock tickets into specified game mode's pool.
 The tickets input will be used as is.
 '
@@ -820,10 +772,6 @@ func (a *Client) BulkCreateMockTicketsShort(params *BulkCreateMockTicketsParams,
 Deprecated: 2022-08-10 - Use GetMockTicketsByTimestampShort instead.
 
 GetMockTicketsByTimestamp get mock tickets after timestamp
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read mock tickets after the specified timestamp in a channel.
 '
 */
@@ -885,10 +833,6 @@ func (a *Client) GetMockTicketsByTimestamp(params *GetMockTicketsByTimestampPara
 
 /*
 GetMockTicketsByTimestampShort get mock tickets after timestamp
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
-
-Required Scope: social
-
 Read mock tickets after the specified timestamp in a channel.
 '
 */

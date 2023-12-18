@@ -32,32 +32,6 @@ func (aaa *StatConfigurationService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use ImportStatCycleShort instead.
-func (aaa *StatConfigurationService) ImportStatCycle(input *stat_configuration.ImportStatCycleParams) (*socialclientmodels.StatImportInfo, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.StatConfiguration.ImportStatCycle(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
 // Deprecated: 2022-01-10 - please use GetStatsShort instead.
 func (aaa *StatConfigurationService) GetStats(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -326,31 +300,6 @@ func (aaa *StatConfigurationService) CreateStat1(input *stat_configuration.Creat
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (aaa *StatConfigurationService) ImportStatCycleShort(input *stat_configuration.ImportStatCycleParams) (*socialclientmodels.StatImportInfo, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-
-	created, err := aaa.Client.StatConfiguration.ImportStatCycleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

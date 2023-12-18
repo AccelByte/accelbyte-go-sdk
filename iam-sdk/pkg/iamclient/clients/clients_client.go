@@ -80,21 +80,9 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetClientsShort instead.
 
 GetClients get all clients
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT [READ]'.
-
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [GET]_**
 */
 func (a *Client) GetClients(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, *GetClientsUnauthorized, *GetClientsForbidden, error) {
 	// TODO: Validate the params before sending
@@ -145,21 +133,9 @@ func (a *Client) GetClients(params *GetClientsParams, authInfo runtime.ClientAut
 
 /*
 GetClientsShort get all clients
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT [READ]'.
-
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [GET]_**
 */
 func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsOK, error) {
 	// TODO: Validate the params before sending
@@ -210,20 +186,9 @@ func (a *Client) GetClientsShort(params *GetClientsParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use CreateClientShort instead.
 
 CreateClient create client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [CREATE]'.
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**
 */
 func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, *CreateClientBadRequest, *CreateClientUnauthorized, *CreateClientForbidden, *CreateClientConflict, error) {
 	// TODO: Validate the params before sending
@@ -280,20 +245,9 @@ func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.Clien
 
 /*
 CreateClientShort create client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [CREATE]'.
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**
 */
 func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending
@@ -348,20 +302,9 @@ func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use GetClientShort instead.
 
 GetClient get client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT [READ]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]_**
 */
 func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, *GetClientUnauthorized, *GetClientForbidden, *GetClientNotFound, error) {
 	// TODO: Validate the params before sending
@@ -415,20 +358,9 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 
 /*
 GetClientShort get client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT [READ]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [GET]_**
 */
 func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error) {
 	// TODO: Validate the params before sending
@@ -481,20 +413,9 @@ func (a *Client) GetClientShort(params *GetClientParams, authInfo runtime.Client
 Deprecated: 2022-08-10 - Use UpdateClientShort instead.
 
 UpdateClient update client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [PATCH]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [PATCH]_**
 */
 func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, *UpdateClientBadRequest, *UpdateClientUnauthorized, *UpdateClientForbidden, *UpdateClientNotFound, error) {
 	// TODO: Validate the params before sending
@@ -551,20 +472,9 @@ func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.Clien
 
 /*
 UpdateClientShort update client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [PATCH]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [PATCH]_**
 */
 func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error) {
 	// TODO: Validate the params before sending
@@ -619,20 +529,9 @@ func (a *Client) UpdateClientShort(params *UpdateClientParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use DeleteClientShort instead.
 
 DeleteClient delete client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [DELETE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]_**
 */
 func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, *DeleteClientUnauthorized, *DeleteClientForbidden, *DeleteClientNotFound, error) {
 	// TODO: Validate the params before sending
@@ -686,20 +585,9 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 
 /*
 DeleteClientShort delete client
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [DELETE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]_**
 */
 func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
@@ -752,20 +640,9 @@ func (a *Client) DeleteClientShort(params *DeleteClientParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use UpdateClientPermissionShort instead.
 
 UpdateClientPermission update client permissions
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [PUT]
+**Endpoint migration guide**
+- **Substitute endpoint: _iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [PUT]_**
 */
 func (a *Client) UpdateClientPermission(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, *UpdateClientPermissionBadRequest, *UpdateClientPermissionUnauthorized, *UpdateClientPermissionForbidden, *UpdateClientPermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -822,20 +699,9 @@ func (a *Client) UpdateClientPermission(params *UpdateClientPermissionParams, au
 
 /*
 UpdateClientPermissionShort update client permissions
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [PUT]
+**Endpoint migration guide**
+- **Substitute endpoint: _iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [PUT]_**
 */
 func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -890,20 +756,9 @@ func (a *Client) UpdateClientPermissionShort(params *UpdateClientPermissionParam
 Deprecated: 2022-08-10 - Use AddClientPermissionShort instead.
 
 AddClientPermission add client permission
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [POST]_**
 */
 func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, *AddClientPermissionBadRequest, *AddClientPermissionUnauthorized, *AddClientPermissionForbidden, *AddClientPermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -960,20 +815,9 @@ func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo
 
 /*
 AddClientPermissionShort add client permission
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions [POST]_**
 */
 func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1028,19 +872,9 @@ func (a *Client) AddClientPermissionShort(params *AddClientPermissionParams, aut
 Deprecated: 2022-08-10 - Use DeleteClientPermissionShort instead.
 
 DeleteClientPermission delete client permission
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action} [DELETE]_**
 */
 func (a *Client) DeleteClientPermission(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, *DeleteClientPermissionBadRequest, *DeleteClientPermissionUnauthorized, *DeleteClientPermissionForbidden, *DeleteClientPermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1097,19 +931,9 @@ func (a *Client) DeleteClientPermission(params *DeleteClientPermissionParams, au
 
 /*
 DeleteClientPermissionShort delete client permission
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action} [DELETE]_**
 */
 func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientPermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1164,20 +988,9 @@ func (a *Client) DeleteClientPermissionShort(params *DeleteClientPermissionParam
 Deprecated: 2022-08-10 - Use UpdateClientSecretShort instead.
 
 UpdateClientSecret update client secret
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/{clientId}/secret [PUT]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/{clientId}/secret [PUT]_**
 */
 func (a *Client) UpdateClientSecret(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, *UpdateClientSecretBadRequest, *UpdateClientSecretUnauthorized, *UpdateClientSecretForbidden, *UpdateClientSecretNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1234,20 +1047,9 @@ func (a *Client) UpdateClientSecret(params *UpdateClientSecretParams, authInfo r
 
 /*
 UpdateClientSecretShort update client secret
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'CLIENT:ADMIN [UPDATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/{clientId}/secret [PUT]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/{clientId}/secret [PUT]_**
 */
 func (a *Client) UpdateClientSecretShort(params *UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientSecretNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1302,18 +1104,9 @@ func (a *Client) UpdateClientSecretShort(params *UpdateClientSecretParams, authI
 Deprecated: 2022-08-10 - Use GetClientsbyNamespaceShort instead.
 
 GetClientsbyNamespace get clients by namespace
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'NAMESPACE:{namespace}:CLIENT [READ]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [GET]_**
 */
 func (a *Client) GetClientsbyNamespace(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, *GetClientsbyNamespaceUnauthorized, *GetClientsbyNamespaceForbidden, error) {
 	// TODO: Validate the params before sending
@@ -1364,18 +1157,9 @@ func (a *Client) GetClientsbyNamespace(params *GetClientsbyNamespaceParams, auth
 
 /*
 GetClientsbyNamespaceShort get clients by namespace
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'NAMESPACE:{namespace}:CLIENT [READ]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients [GET]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [GET]_**
 */
 func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientsbyNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -1426,18 +1210,9 @@ func (a *Client) GetClientsbyNamespaceShort(params *GetClientsbyNamespaceParams,
 Deprecated: 2022-08-10 - Use CreateClientByNamespaceShort instead.
 
 CreateClientByNamespace create client
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /v3/admin/namespaces/{namespace}/clients [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**
 */
 func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, *CreateClientByNamespaceBadRequest, *CreateClientByNamespaceUnauthorized, *CreateClientByNamespaceForbidden, *CreateClientByNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -1494,18 +1269,9 @@ func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, 
 
 /*
 CreateClientByNamespaceShort create client
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /v3/admin/namespaces/{namespace}/clients [POST]
+**Endpoint migration guide**
+- **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**
 */
 func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, error) {
 	// TODO: Validate the params before sending
@@ -1560,18 +1326,9 @@ func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespacePar
 Deprecated: 2022-08-10 - Use DeleteClientByNamespaceShort instead.
 
 DeleteClientByNamespace delete client
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]_**
 */
 func (a *Client) DeleteClientByNamespace(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, *DeleteClientByNamespaceUnauthorized, *DeleteClientByNamespaceForbidden, *DeleteClientByNamespaceNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1625,18 +1382,9 @@ func (a *Client) DeleteClientByNamespace(params *DeleteClientByNamespaceParams, 
 
 /*
 DeleteClientByNamespaceShort delete client
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]'
-Endpoint migration guide
-
-
-
-
-  * Substitute endpoint: /iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]
+**Endpoint migration guide**
+- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients/{clientId} [DELETE]_**
 */
 func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1689,13 +1437,6 @@ func (a *Client) DeleteClientByNamespaceShort(params *DeleteClientByNamespacePar
 Deprecated: 2022-08-10 - Use AdminGetClientsByNamespaceV3Short instead.
 
 AdminGetClientsByNamespaceV3 get clients by namespace
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'
-
-
-
-
 action code: 10308
 */
 func (a *Client) AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, *AdminGetClientsByNamespaceV3BadRequest, *AdminGetClientsByNamespaceV3Unauthorized, *AdminGetClientsByNamespaceV3Forbidden, error) {
@@ -1750,13 +1491,6 @@ func (a *Client) AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespace
 
 /*
 AdminGetClientsByNamespaceV3Short get clients by namespace
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'
-
-
-
-
 action code: 10308
 */
 func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, error) {
@@ -1810,110 +1544,48 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 Deprecated: 2022-08-10 - Use AdminCreateClientV3Short instead.
 
 AdminCreateClientV3 create client
-Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]
-
+Add a new OAuth 2.0 client
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 New Confidential Client will have Default Client Role assigned to it. The role will have all
 permissions to access all APIs that's supported by game server SDK and DS uploader.
-
-However if Game Admin create Confidential Client and the permission(s) are specified in request body,
+However if **Game Admin** create Confidential Client and the permission(s) are specified in request body,
 then the Default Client Role will not be assigned.
-
 But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
 
 action code: 10301
 
-
-
-Fields Description:
-
-
-
-
-  * clientId : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4
-
-
-  * clientName : The client name. e.g E-commerce
-
-
-  * secret : The client's secret. It's empty if the client's type is a public client. Otherwise, the client secret is required
-
-
-  * namespace : The namespace where the client lives. e.g sample-game
-
-
-  * redirectUri : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform
-
-
-  * oauthClientType : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not.
+**Fields Description:**
+- **clientId** : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4
+- **clientName** : The client name. e.g E-commerce
+- **secret** : The client's secret. It's empty if the client's type is a public client. Otherwise, the client secret is required
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform
+- **oauthClientType** : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not.
 A public client type doesn't have a client secret and should use PKCE flow.
 A confidential client type has a client secret and don't use PKCE flow
 Supported oAuthClientType :
-
-    * Public
-
-
-    * Confidential
-
-
-  * audiences : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
-
-
-  * baseUri : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform
-
-
-  * clientPermissions : Contains the client's permissions
-
-
-  * deletable : The flag to identify whether client is deletable (optional). default value: true
-
-
-  * clientPlatform : available client platform (optional). default value: ""
-
-
-    * Playstation
-
-
-    * Xbox
-
-
-    * Steam
-
-
-    * Epic
-
-
-    * IOS
-
-
-    * GooglePlay
-
-
-    * Nintendo
-
-
-    * Oculus
-
-
-
-
-
-  * twoFactorEnabled : The flag to indicate whether 2FA validation is enable for this client. default value: false
-
-
-  * oauthAccessTokenExpiration : a configurable expiration time for access_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthRefreshTokenExpiration : a configurable expiration time for refresh_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthAccessTokenExpirationTimeUnit : a configurable expiration time unit for access_token , default value: SECONDS
-
-
-  * oauthRefreshTokenExpirationTimeUnit : a configurable expiration time unit for refresh_token , default value: SECONDS
+- **Public**
+- **Confidential**
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). default value: true
+- **clientPlatform**: available client platform (optional). default value: ""
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, default value: SECONDS
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, default value: SECONDS
 */
 func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, *AdminCreateClientV3BadRequest, *AdminCreateClientV3Unauthorized, *AdminCreateClientV3Forbidden, *AdminCreateClientV3Conflict, error) {
 	// TODO: Validate the params before sending
@@ -1970,110 +1642,48 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
 
 /*
 AdminCreateClientV3Short create client
-Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]
-
+Add a new OAuth 2.0 client
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 New Confidential Client will have Default Client Role assigned to it. The role will have all
 permissions to access all APIs that's supported by game server SDK and DS uploader.
-
-However if Game Admin create Confidential Client and the permission(s) are specified in request body,
+However if **Game Admin** create Confidential Client and the permission(s) are specified in request body,
 then the Default Client Role will not be assigned.
-
 But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
 
 action code: 10301
 
-
-
-Fields Description:
-
-
-
-
-  * clientId : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4
-
-
-  * clientName : The client name. e.g E-commerce
-
-
-  * secret : The client's secret. It's empty if the client's type is a public client. Otherwise, the client secret is required
-
-
-  * namespace : The namespace where the client lives. e.g sample-game
-
-
-  * redirectUri : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform
-
-
-  * oauthClientType : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not.
+**Fields Description:**
+- **clientId** : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4
+- **clientName** : The client name. e.g E-commerce
+- **secret** : The client's secret. It's empty if the client's type is a public client. Otherwise, the client secret is required
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform
+- **oauthClientType** : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not.
 A public client type doesn't have a client secret and should use PKCE flow.
 A confidential client type has a client secret and don't use PKCE flow
 Supported oAuthClientType :
-
-    * Public
-
-
-    * Confidential
-
-
-  * audiences : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
-
-
-  * baseUri : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform
-
-
-  * clientPermissions : Contains the client's permissions
-
-
-  * deletable : The flag to identify whether client is deletable (optional). default value: true
-
-
-  * clientPlatform : available client platform (optional). default value: ""
-
-
-    * Playstation
-
-
-    * Xbox
-
-
-    * Steam
-
-
-    * Epic
-
-
-    * IOS
-
-
-    * GooglePlay
-
-
-    * Nintendo
-
-
-    * Oculus
-
-
-
-
-
-  * twoFactorEnabled : The flag to indicate whether 2FA validation is enable for this client. default value: false
-
-
-  * oauthAccessTokenExpiration : a configurable expiration time for access_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthRefreshTokenExpiration : a configurable expiration time for refresh_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthAccessTokenExpirationTimeUnit : a configurable expiration time unit for access_token , default value: SECONDS
-
-
-  * oauthRefreshTokenExpirationTimeUnit : a configurable expiration time unit for refresh_token , default value: SECONDS
+- **Public**
+- **Confidential**
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). default value: true
+- **clientPlatform**: available client platform (optional). default value: ""
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, default value: SECONDS
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, default value: SECONDS
 */
 func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, error) {
 	// TODO: Validate the params before sending
@@ -2128,7 +1738,6 @@ func (a *Client) AdminCreateClientV3Short(params *AdminCreateClientV3Params, aut
 Deprecated: 2022-08-10 - Use AdminGetClientsbyNamespacebyIDV3Short instead.
 
 AdminGetClientsbyNamespacebyIDV3 get clients by namespace and client id. multi tenant mode allows admin portal client to be accessible regardless of namespace path.
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'
 action code: 10309
 */
 func (a *Client) AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsbyNamespacebyIDV3OK, *AdminGetClientsbyNamespacebyIDV3BadRequest, *AdminGetClientsbyNamespacebyIDV3Unauthorized, *AdminGetClientsbyNamespacebyIDV3Forbidden, *AdminGetClientsbyNamespacebyIDV3NotFound, error) {
@@ -2186,7 +1795,6 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNames
 
 /*
 AdminGetClientsbyNamespacebyIDV3Short get clients by namespace and client id. multi tenant mode allows admin portal client to be accessible regardless of namespace path.
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'
 action code: 10309
 */
 func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsbyNamespacebyIDV3OK, error) {
@@ -2242,7 +1850,6 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3Short(params *AdminGetClientsby
 Deprecated: 2022-08-10 - Use AdminDeleteClientV3Short instead.
 
 AdminDeleteClientV3 delete client
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]'
 action code : 10310
 */
 func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, *AdminDeleteClientV3BadRequest, *AdminDeleteClientV3Unauthorized, *AdminDeleteClientV3Forbidden, *AdminDeleteClientV3NotFound, *AdminDeleteClientV3Conflict, error) {
@@ -2303,7 +1910,6 @@ func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo
 
 /*
 AdminDeleteClientV3Short delete client
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]'
 action code : 10310
 */
 func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, error) {
@@ -2361,86 +1967,36 @@ func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, aut
 Deprecated: 2022-08-10 - Use AdminUpdateClientV3Short instead.
 
 AdminUpdateClientV3 update client
-Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
+Updates an OAuth 2.0 client.
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
-Note for Multi Tenant Mode:
 
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
 
 action code: 10302
 
-
-
-Fields Description:
-
-
-
-
-  * clientName : The client name. It should not be empty if the field exists in the body. e.g E-commerce
-
-
-  * namespace : The namespace where the client lives. e.g sample-game
-
-
-  * redirectUri : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
-
-
-  * audiences : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
-
-
-  * baseUri : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
-
-
-  * clientPermissions : Contains the client's permissions
-
-
-  * deletable : The flag to identify whether client is deletable (optional). e.g. true
-
-
-  * clientPlatform : available client platform (optional). default value: "".
-
-
-    * Playstation
-
-
-    * Xbox
-
-
-    * Steam
-
-
-    * Epic
-
-
-    * IOS
-
-
-    * GooglePlay
-
-
-    * Nintendo
-
-
-    * Oculus
-
-
-
-
-
-  * twoFactorEnabled : The flag to indicate whether 2FA validation is enable for this client. default value: false
-
-
-  * oauthAccessTokenExpiration : a configurable expiration time for access_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthRefreshTokenExpiration : a configurable expiration time for refresh_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthAccessTokenExpirationTimeUnit : a configurable expiration time unit for access_token , will use previous value if not specified
-
-
-  * oauthRefreshTokenExpirationTimeUnit : a configurable expiration time unit for refresh_token , will use previous value if not specified
+**Fields Description:**
+- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). e.g. true
+- **clientPlatform** : available client platform (optional). default value: "".
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
 */
 func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, *AdminUpdateClientV3BadRequest, *AdminUpdateClientV3Unauthorized, *AdminUpdateClientV3Forbidden, *AdminUpdateClientV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2497,86 +2053,36 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
 
 /*
 AdminUpdateClientV3Short update client
-Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].
+Updates an OAuth 2.0 client.
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
-Note for Multi Tenant Mode:
 
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
 
 action code: 10302
 
-
-
-Fields Description:
-
-
-
-
-  * clientName : The client name. It should not be empty if the field exists in the body. e.g E-commerce
-
-
-  * namespace : The namespace where the client lives. e.g sample-game
-
-
-  * redirectUri : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
-
-
-  * audiences : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
-
-
-  * baseUri : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
-
-
-  * clientPermissions : Contains the client's permissions
-
-
-  * deletable : The flag to identify whether client is deletable (optional). e.g. true
-
-
-  * clientPlatform : available client platform (optional). default value: "".
-
-
-    * Playstation
-
-
-    * Xbox
-
-
-    * Steam
-
-
-    * Epic
-
-
-    * IOS
-
-
-    * GooglePlay
-
-
-    * Nintendo
-
-
-    * Oculus
-
-
-
-
-
-  * twoFactorEnabled : The flag to indicate whether 2FA validation is enable for this client. default value: false
-
-
-  * oauthAccessTokenExpiration : a configurable expiration time for access_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthRefreshTokenExpiration : a configurable expiration time for refresh_token , default value: 0 (mean fetch value from environment variable)
-
-
-  * oauthAccessTokenExpirationTimeUnit : a configurable expiration time unit for access_token , will use previous value if not specified
-
-
-  * oauthRefreshTokenExpirationTimeUnit : a configurable expiration time unit for refresh_token , will use previous value if not specified
+**Fields Description:**
+- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). e.g. true
+- **clientPlatform** : available client platform (optional). default value: "".
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
 */
 func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, error) {
 	// TODO: Validate the params before sending
@@ -2631,17 +2137,8 @@ func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, aut
 Deprecated: 2022-08-10 - Use AdminUpdateClientPermissionV3Short instead.
 
 AdminUpdateClientPermissionV3 update client permissions
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
-
-
- Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
-
-
 action code: 10307
 */
 func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientPermissionV3NoContent, *AdminUpdateClientPermissionV3BadRequest, *AdminUpdateClientPermissionV3Unauthorized, *AdminUpdateClientPermissionV3Forbidden, *AdminUpdateClientPermissionV3NotFound, error) {
@@ -2699,17 +2196,8 @@ func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissi
 
 /*
 AdminUpdateClientPermissionV3Short update client permissions
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
-
-
- Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
-
-
 action code: 10307
 */
 func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientPermissionV3NoContent, error) {
@@ -2765,17 +2253,8 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 Deprecated: 2022-08-10 - Use AdminAddClientPermissionsV3Short instead.
 
 AdminAddClientPermissionsV3 add client permissions
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT' [UPDATE]'
-
-
- Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
-
-
 action code: 10303
 */
 func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, *AdminAddClientPermissionsV3BadRequest, *AdminAddClientPermissionsV3Unauthorized, *AdminAddClientPermissionsV3Forbidden, *AdminAddClientPermissionsV3NotFound, error) {
@@ -2833,17 +2312,8 @@ func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3
 
 /*
 AdminAddClientPermissionsV3Short add client permissions
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT' [UPDATE]'
-
-
- Note for Multi Tenant Mode:
-
+**Note for Multi Tenant Mode:**
 1. The assigned permission(s) should be restricted in the Default Client permission collection.
-
-
-
 action code: 10303
 */
 func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, error) {
@@ -2899,7 +2369,6 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 Deprecated: 2022-08-10 - Use AdminDeleteClientPermissionV3Short instead.
 
 AdminDeleteClientPermissionV3 delete client permission
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
 action code : 10304
 */
 func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, *AdminDeleteClientPermissionV3BadRequest, *AdminDeleteClientPermissionV3Unauthorized, *AdminDeleteClientPermissionV3Forbidden, *AdminDeleteClientPermissionV3NotFound, error) {
@@ -2957,7 +2426,6 @@ func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissi
 
 /*
 AdminDeleteClientPermissionV3Short delete client permission
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
 action code : 10304
 */
 func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, error) {
@@ -3013,9 +2481,7 @@ func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPer
 Deprecated: 2022-08-10 - Use AdminUpdateClientSecretV3Short instead.
 
 AdminUpdateClientSecretV3 update client secret
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
+Update Client Secret
 */
 func (a *Client) AdminUpdateClientSecretV3(params *AdminUpdateClientSecretV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientSecretV3NoContent, *AdminUpdateClientSecretV3BadRequest, *AdminUpdateClientSecretV3Unauthorized, *AdminUpdateClientSecretV3Forbidden, *AdminUpdateClientSecretV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -3072,9 +2538,7 @@ func (a *Client) AdminUpdateClientSecretV3(params *AdminUpdateClientSecretV3Para
 
 /*
 AdminUpdateClientSecretV3Short update client secret
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'
+Update Client Secret
 */
 func (a *Client) AdminUpdateClientSecretV3Short(params *AdminUpdateClientSecretV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientSecretV3NoContent, error) {
 	// TODO: Validate the params before sending

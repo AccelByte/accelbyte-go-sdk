@@ -81,7 +81,7 @@ func NewAdminUpdateOfficialContentV2OK() *AdminUpdateOfficialContentV2OK {
 
 /*AdminUpdateOfficialContentV2OK handles this case with default header values.
 
-  OK
+  Update official content
 */
 type AdminUpdateOfficialContentV2OK struct {
 	Payload *ugcclientmodels.ModelsUpdateContentResponseV2
@@ -134,7 +134,7 @@ func NewAdminUpdateOfficialContentV2BadRequest() *AdminUpdateOfficialContentV2Ba
 
 /*AdminUpdateOfficialContentV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr><tr><td>772607</td><td>Unable to update ugc content: invalid shareCode format</td></tr></table>
 */
 type AdminUpdateOfficialContentV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -187,7 +187,7 @@ func NewAdminUpdateOfficialContentV2Unauthorized() *AdminUpdateOfficialContentV2
 
 /*AdminUpdateOfficialContentV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateOfficialContentV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -240,7 +240,7 @@ func NewAdminUpdateOfficialContentV2NotFound() *AdminUpdateOfficialContentV2NotF
 
 /*AdminUpdateOfficialContentV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type AdminUpdateOfficialContentV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +293,7 @@ func NewAdminUpdateOfficialContentV2Conflict() *AdminUpdateOfficialContentV2Conf
 
 /*AdminUpdateOfficialContentV2Conflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772606</td><td>Share code already used</td></tr></table>
 */
 type AdminUpdateOfficialContentV2Conflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +346,7 @@ func NewAdminUpdateOfficialContentV2InternalServerError() *AdminUpdateOfficialCo
 
 /*AdminUpdateOfficialContentV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type AdminUpdateOfficialContentV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

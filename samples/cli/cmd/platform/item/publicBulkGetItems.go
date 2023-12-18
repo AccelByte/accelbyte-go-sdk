@@ -27,15 +27,17 @@ var PublicBulkGetItemsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		itemIds, _ := cmd.Flags().GetString("itemIds")
+		autoCalcEstimatedPrice, _ := cmd.Flags().GetBool("autoCalcEstimatedPrice")
 		language, _ := cmd.Flags().GetString("language")
 		region, _ := cmd.Flags().GetString("region")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.PublicBulkGetItemsParams{
-			Namespace: namespace,
-			Language:  &language,
-			Region:    &region,
-			StoreID:   &storeId,
-			ItemIds:   itemIds,
+			Namespace:              namespace,
+			AutoCalcEstimatedPrice: &autoCalcEstimatedPrice,
+			Language:               &language,
+			Region:                 &region,
+			StoreID:                &storeId,
+			ItemIds:                itemIds,
 		}
 		ok, errOK := itemService.PublicBulkGetItemsShort(input)
 		if errOK != nil {
@@ -53,6 +55,7 @@ var PublicBulkGetItemsCmd = &cobra.Command{
 func init() {
 	PublicBulkGetItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicBulkGetItemsCmd.MarkFlagRequired("namespace")
+	PublicBulkGetItemsCmd.Flags().Bool("autoCalcEstimatedPrice", false, "Auto calc estimated price")
 	PublicBulkGetItemsCmd.Flags().String("language", "", "Language")
 	PublicBulkGetItemsCmd.Flags().String("region", "", "Region")
 	PublicBulkGetItemsCmd.Flags().String("storeId", "", "Store id")

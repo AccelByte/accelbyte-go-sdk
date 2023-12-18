@@ -62,12 +62,14 @@ const (
 // with the default values initialized.
 func NewPublicQueryItemsParams() *PublicQueryItemsParams {
 	var (
+		autoCalcEstimatedPriceDefault = bool(false)
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 	)
 	return &PublicQueryItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -81,12 +83,14 @@ func NewPublicQueryItemsParams() *PublicQueryItemsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicQueryItemsParamsWithTimeout(timeout time.Duration) *PublicQueryItemsParams {
 	var (
+		autoCalcEstimatedPriceDefault = bool(false)
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 	)
 	return &PublicQueryItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -100,12 +104,14 @@ func NewPublicQueryItemsParamsWithTimeout(timeout time.Duration) *PublicQueryIte
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicQueryItemsParamsWithContext(ctx context.Context) *PublicQueryItemsParams {
 	var (
+		autoCalcEstimatedPriceDefault = bool(false)
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 	)
 	return &PublicQueryItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -119,12 +125,14 @@ func NewPublicQueryItemsParamsWithContext(ctx context.Context) *PublicQueryItems
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicQueryItemsParamsWithHTTPClient(client *http.Client) *PublicQueryItemsParams {
 	var (
+		autoCalcEstimatedPriceDefault = bool(false)
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
 		offsetDefault                 = int32(0)
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 	)
 	return &PublicQueryItemsParams{
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -144,6 +152,8 @@ type PublicQueryItemsParams struct {
 	Namespace string
 	/*AppType*/
 	AppType *string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*BaseAppID*/
 	BaseAppID *string
 	/*CategoryPath
@@ -266,6 +276,17 @@ func (o *PublicQueryItemsParams) WithAppType(appType *string) *PublicQueryItemsP
 // SetAppType adds the appType to the public query items params
 func (o *PublicQueryItemsParams) SetAppType(appType *string) {
 	o.AppType = appType
+}
+
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public query items params
+func (o *PublicQueryItemsParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicQueryItemsParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public query items params
+func (o *PublicQueryItemsParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
 }
 
 // WithBaseAppID adds the baseAppID to the public query items params
@@ -423,6 +444,22 @@ func (o *PublicQueryItemsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qAppType := qrAppType
 		if qAppType != "" {
 			if err := r.SetQueryParam("appType", qAppType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
 				return err
 			}
 		}

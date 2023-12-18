@@ -58,8 +58,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetLobbyCCUShort instead.
 
 AdminGetLobbyCCU admin get number of players currently connected to the lobby.
-Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]` with scope `social`
-
 Get the number of players connected to the Lobby in the given namespace.
 */
 func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, *AdminGetLobbyCCUBadRequest, *AdminGetLobbyCCUUnauthorized, *AdminGetLobbyCCUForbidden, *AdminGetLobbyCCUNotFound, *AdminGetLobbyCCUInternalServerError, error) {
@@ -120,8 +118,6 @@ func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runti
 
 /*
 AdminGetLobbyCCUShort admin get number of players currently connected to the lobby.
-Required permission : `ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]` with scope `social`
-
 Get the number of players connected to the Lobby in the given namespace.
 */
 func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error) {
@@ -179,9 +175,7 @@ func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo 
 Deprecated: 2022-08-10 - Use AdminGetBulkPlayerBlockedPlayersV1Short instead.
 
 AdminGetBulkPlayerBlockedPlayersV1 admin get blocked players by bulk user ids
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-get blocked players data by bulk user ids in a namespace.
+Get blocked players data by bulk user ids in a namespace.
 */
 func (a *Client) AdminGetBulkPlayerBlockedPlayersV1(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, *AdminGetBulkPlayerBlockedPlayersV1BadRequest, *AdminGetBulkPlayerBlockedPlayersV1Unauthorized, *AdminGetBulkPlayerBlockedPlayersV1Forbidden, *AdminGetBulkPlayerBlockedPlayersV1NotFound, *AdminGetBulkPlayerBlockedPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -241,9 +235,7 @@ func (a *Client) AdminGetBulkPlayerBlockedPlayersV1(params *AdminGetBulkPlayerBl
 
 /*
 AdminGetBulkPlayerBlockedPlayersV1Short admin get blocked players by bulk user ids
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-get blocked players data by bulk user ids in a namespace.
+Get blocked players data by bulk user ids in a namespace.
 */
 func (a *Client) AdminGetBulkPlayerBlockedPlayersV1Short(params *AdminGetBulkPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkPlayerBlockedPlayersV1OK, error) {
 	// TODO: Validate the params before sending
@@ -300,9 +292,7 @@ func (a *Client) AdminGetBulkPlayerBlockedPlayersV1Short(params *AdminGetBulkPla
 Deprecated: 2022-08-10 - Use AdminGetAllPlayerSessionAttributeShort instead.
 
 AdminGetAllPlayerSessionAttribute admin get all player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]` with scope `social`
-
-get all player's session attribute by user id in a namespace.
+Get all player's session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -356,9 +346,7 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 
 /*
 AdminGetAllPlayerSessionAttributeShort admin get all player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]` with scope `social`
-
-get all player's session attribute by user id in a namespace.
+Get all player's session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error) {
 	// TODO: Validate the params before sending
@@ -411,9 +399,7 @@ func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlaye
 Deprecated: 2022-08-10 - Use AdminSetPlayerSessionAttributeShort instead.
 
 AdminSetPlayerSessionAttribute admin set player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]` with scope `social`
-
-set player's session attribute by user id in a namespace.
+Set player's session attribute by user id in a namespace.
 */
 func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, *AdminSetPlayerSessionAttributeBadRequest, *AdminSetPlayerSessionAttributeUnauthorized, *AdminSetPlayerSessionAttributeForbidden, *AdminSetPlayerSessionAttributeNotFound, *AdminSetPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -473,9 +459,7 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 
 /*
 AdminSetPlayerSessionAttributeShort admin set player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]` with scope `social`
-
-set player's session attribute by user id in a namespace.
+Set player's session attribute by user id in a namespace.
 */
 func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, error) {
 	// TODO: Validate the params before sending
@@ -532,9 +516,7 @@ func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessi
 Deprecated: 2022-08-10 - Use AdminGetPlayerSessionAttributeShort instead.
 
 AdminGetPlayerSessionAttribute admin get player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]` with scope `social`
-
-get player's specific session attribute by user id in a namespace.
+Get player's specific session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, *AdminGetPlayerSessionAttributeBadRequest, *AdminGetPlayerSessionAttributeUnauthorized, *AdminGetPlayerSessionAttributeForbidden, *AdminGetPlayerSessionAttributeNotFound, *AdminGetPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -594,9 +576,7 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 
 /*
 AdminGetPlayerSessionAttributeShort admin get player's session attribute
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]` with scope `social`
-
-get player's specific session attribute by user id in a namespace.
+Get player's specific session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, error) {
 	// TODO: Validate the params before sending
@@ -653,9 +633,7 @@ func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessi
 Deprecated: 2022-08-10 - Use AdminGetPlayerBlockedPlayersV1Short instead.
 
 AdminGetPlayerBlockedPlayersV1 admin get blocked players by user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-get blocked players data by user id in a namespace.
+Get blocked players data by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, *AdminGetPlayerBlockedPlayersV1BadRequest, *AdminGetPlayerBlockedPlayersV1Unauthorized, *AdminGetPlayerBlockedPlayersV1Forbidden, *AdminGetPlayerBlockedPlayersV1NotFound, *AdminGetPlayerBlockedPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -715,9 +693,7 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 
 /*
 AdminGetPlayerBlockedPlayersV1Short admin get blocked players by user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-get blocked players data by user id in a namespace.
+Get blocked players data by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, error) {
 	// TODO: Validate the params before sending
@@ -774,9 +750,7 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlock
 Deprecated: 2022-08-10 - Use AdminGetPlayerBlockedByPlayersV1Short instead.
 
 AdminGetPlayerBlockedByPlayersV1 get players who blocked this player by user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-load get players who blocked this player in a namespace based on user id
+Load get players who blocked this player in a namespace based on user id
 */
 func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, *AdminGetPlayerBlockedByPlayersV1BadRequest, *AdminGetPlayerBlockedByPlayersV1Unauthorized, *AdminGetPlayerBlockedByPlayersV1Forbidden, *AdminGetPlayerBlockedByPlayersV1NotFound, *AdminGetPlayerBlockedByPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -836,9 +810,7 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 
 /*
 AdminGetPlayerBlockedByPlayersV1Short get players who blocked this player by user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]` with scope `social`
-
-load get players who blocked this player in a namespace based on user id
+Load get players who blocked this player in a namespace based on user id
 */
 func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error) {
 	// TODO: Validate the params before sending
@@ -895,8 +867,6 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlo
 Deprecated: 2022-08-10 - Use AdminBulkBlockPlayersV1Short instead.
 
 AdminBulkBlockPlayersV1 admin bulk blocks player by list user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]` with scope `social`
-
 Bulk block player in a namespace by list of user id
 */
 func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error) {
@@ -954,8 +924,6 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 
 /*
 AdminBulkBlockPlayersV1Short admin bulk blocks player by list user id
-Required permission : `ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]` with scope `social`
-
 Bulk block player in a namespace by list of user id
 */
 func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error) {

@@ -75,7 +75,7 @@ func NewRollbackContentVersionOK() *RollbackContentVersionOK {
 
 /*RollbackContentVersionOK handles this case with default header values.
 
-  OK
+  Rollback content's payload version
 */
 type RollbackContentVersionOK struct {
 	Payload *ugcclientmodels.ModelsContentDownloadResponse
@@ -128,7 +128,7 @@ func NewRollbackContentVersionUnauthorized() *RollbackContentVersionUnauthorized
 
 /*RollbackContentVersionUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type RollbackContentVersionUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +181,7 @@ func NewRollbackContentVersionNotFound() *RollbackContentVersionNotFound {
 
 /*RollbackContentVersionNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774101</td><td>ugc content not found</td></tr><tr><td>774102</td><td>version not found</td></tr></table>
 */
 type RollbackContentVersionNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +234,7 @@ func NewRollbackContentVersionUnprocessableEntity() *RollbackContentVersionUnpro
 
 /*RollbackContentVersionUnprocessableEntity handles this case with default header values.
 
-  Unprocessable Entity
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774103</td><td>unable to get ugc content/content cannot be restored using the current content version</td></tr></table>
 */
 type RollbackContentVersionUnprocessableEntity struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +287,7 @@ func NewRollbackContentVersionInternalServerError() *RollbackContentVersionInter
 
 /*RollbackContentVersionInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774103</td><td>unable to get ugc content/content cannot be restored using the current content version</td></tr></table>
 */
 type RollbackContentVersionInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

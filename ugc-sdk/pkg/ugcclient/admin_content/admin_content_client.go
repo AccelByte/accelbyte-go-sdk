@@ -30,23 +30,23 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error)
+	AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectForbidden, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error)
 	AdminUploadContentDirectShort(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, error)
-	AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error)
+	AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Forbidden, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error)
 	AdminUploadContentS3Short(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, error)
-	SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3Conflict, *SingleAdminUpdateContentS3InternalServerError, error)
+	SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3Forbidden, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3Conflict, *SingleAdminUpdateContentS3InternalServerError, error)
 	SingleAdminUpdateContentS3Short(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, error)
-	AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentNotFound, *AdminSearchChannelSpecificContentInternalServerError, error)
+	AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentBadRequest, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentInternalServerError, error)
 	AdminSearchChannelSpecificContentShort(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, error)
-	SingleAdminUpdateContentDirect(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, *SingleAdminUpdateContentDirectBadRequest, *SingleAdminUpdateContentDirectUnauthorized, *SingleAdminUpdateContentDirectNotFound, *SingleAdminUpdateContentDirectInternalServerError, error)
+	SingleAdminUpdateContentDirect(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, *SingleAdminUpdateContentDirectBadRequest, *SingleAdminUpdateContentDirectUnauthorized, *SingleAdminUpdateContentDirectForbidden, *SingleAdminUpdateContentDirectNotFound, *SingleAdminUpdateContentDirectInternalServerError, error)
 	SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, error)
 	SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentNoContent, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error)
 	SingleAdminDeleteContentShort(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentNoContent, error)
-	SingleAdminGetContent(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, *SingleAdminGetContentUnauthorized, *SingleAdminGetContentNotFound, *SingleAdminGetContentInternalServerError, error)
+	SingleAdminGetContent(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, *SingleAdminGetContentBadRequest, *SingleAdminGetContentUnauthorized, *SingleAdminGetContentInternalServerError, error)
 	SingleAdminGetContentShort(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, error)
-	AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error)
+	AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkBadRequest, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error)
 	AdminGetContentBulkShort(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, error)
-	AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error)
+	AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentBadRequest, *AdminSearchContentUnauthorized, *AdminSearchContentInternalServerError, error)
 	AdminSearchContentShort(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, error)
 	AdminGetContentBulkByShareCodes(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, *AdminGetContentBulkByShareCodesBadRequest, *AdminGetContentBulkByShareCodesUnauthorized, *AdminGetContentBulkByShareCodesForbidden, *AdminGetContentBulkByShareCodesInternalServerError, error)
 	AdminGetContentBulkByShareCodesShort(params *AdminGetContentBulkByShareCodesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkByShareCodesOK, error)
@@ -58,27 +58,27 @@ type ClientService interface {
 	AdminDownloadContentPreviewShort(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, error)
 	RollbackContentVersion(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, *RollbackContentVersionUnauthorized, *RollbackContentVersionNotFound, *RollbackContentVersionUnprocessableEntity, *RollbackContentVersionInternalServerError, error)
 	RollbackContentVersionShort(params *RollbackContentVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackContentVersionOK, error)
-	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
+	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsForbidden, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
 	AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error)
-	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error)
+	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotForbidden, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error)
 	AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error)
-	AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error)
+	AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotForbidden, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error)
 	AdminDeleteContentScreenshotShort(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, error)
 	ListContentVersions(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, *ListContentVersionsUnauthorized, *ListContentVersionsNotFound, *ListContentVersionsInternalServerError, error)
 	ListContentVersionsShort(params *ListContentVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListContentVersionsOK, error)
-	AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error)
+	AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeForbidden, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error)
 	AdminUpdateContentS3ByShareCodeShort(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, error)
-	AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error)
+	AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3Forbidden, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error)
 	AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, error)
 	DeleteContentByShareCode(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, *DeleteContentByShareCodeUnauthorized, *DeleteContentByShareCodeNotFound, *DeleteContentByShareCodeInternalServerError, error)
 	DeleteContentByShareCodeShort(params *DeleteContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentByShareCodeNoContent, error)
-	AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error)
+	AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectForbidden, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error)
 	AdminUpdateContentDirectShort(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, error)
 	AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error)
 	AdminDeleteContentShort(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, error)
-	AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentUnauthorized, *AdminGetContentNotFound, *AdminGetContentInternalServerError, error)
+	AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentBadRequest, *AdminGetContentUnauthorized, *AdminGetContentInternalServerError, error)
 	AdminGetContentShort(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, error)
-	AdminHideUserContent(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, *AdminHideUserContentUnauthorized, *AdminHideUserContentNotFound, *AdminHideUserContentInternalServerError, error)
+	AdminHideUserContent(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, *AdminHideUserContentBadRequest, *AdminHideUserContentUnauthorized, *AdminHideUserContentNotFound, *AdminHideUserContentInternalServerError, error)
 	AdminHideUserContentShort(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -92,7 +92,7 @@ Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
 
 All request body are required except preview, tags and customAttributes.
 */
-func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error) {
+func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectForbidden, *AdminUploadContentDirectConflict, *AdminUploadContentDirectInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUploadContentDirectParams()
@@ -120,28 +120,31 @@ func (a *Client) AdminUploadContentDirect(params *AdminUploadContentDirectParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUploadContentDirectCreated:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentDirectBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentDirectUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUploadContentDirectForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUploadContentDirectConflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUploadContentDirectInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -190,6 +193,8 @@ func (a *Client) AdminUploadContentDirectShort(params *AdminUploadContentDirectP
 		return nil, v
 	case *AdminUploadContentDirectUnauthorized:
 		return nil, v
+	case *AdminUploadContentDirectForbidden:
+		return nil, v
 	case *AdminUploadContentDirectConflict:
 		return nil, v
 	case *AdminUploadContentDirectInternalServerError:
@@ -220,7 +225,7 @@ Available characters: abcdefhkpqrstuxyz
 
  NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
 */
-func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error) {
+func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3Forbidden, *AdminUploadContentS3Conflict, *AdminUploadContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUploadContentS3Params()
@@ -248,28 +253,31 @@ func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUploadContentS3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentS3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentS3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUploadContentS3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUploadContentS3Conflict:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUploadContentS3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -330,6 +338,8 @@ func (a *Client) AdminUploadContentS3Short(params *AdminUploadContentS3Params, a
 		return nil, v
 	case *AdminUploadContentS3Unauthorized:
 		return nil, v
+	case *AdminUploadContentS3Forbidden:
+		return nil, v
 	case *AdminUploadContentS3Conflict:
 		return nil, v
 	case *AdminUploadContentS3InternalServerError:
@@ -364,7 +374,7 @@ Available characters: abcdefhkpqrstuxyz
 
  NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
 */
-func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3Conflict, *SingleAdminUpdateContentS3InternalServerError, error) {
+func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentS3OK, *SingleAdminUpdateContentS3BadRequest, *SingleAdminUpdateContentS3Unauthorized, *SingleAdminUpdateContentS3Forbidden, *SingleAdminUpdateContentS3NotFound, *SingleAdminUpdateContentS3Conflict, *SingleAdminUpdateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminUpdateContentS3Params()
@@ -392,31 +402,34 @@ func (a *Client) SingleAdminUpdateContentS3(params *SingleAdminUpdateContentS3Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SingleAdminUpdateContentS3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *SingleAdminUpdateContentS3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *SingleAdminUpdateContentS3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *SingleAdminUpdateContentS3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *SingleAdminUpdateContentS3NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *SingleAdminUpdateContentS3Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *SingleAdminUpdateContentS3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -481,6 +494,8 @@ func (a *Client) SingleAdminUpdateContentS3Short(params *SingleAdminUpdateConten
 		return nil, v
 	case *SingleAdminUpdateContentS3Unauthorized:
 		return nil, v
+	case *SingleAdminUpdateContentS3Forbidden:
+		return nil, v
 	case *SingleAdminUpdateContentS3NotFound:
 		return nil, v
 	case *SingleAdminUpdateContentS3Conflict:
@@ -519,7 +534,7 @@ Allowed character for operator: `&` `|` `(` `)`
 
  Please note that value of tags query param should be URL encoded
 */
-func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentNotFound, *AdminSearchChannelSpecificContentInternalServerError, error) {
+func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentBadRequest, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminSearchChannelSpecificContentParams()
@@ -555,10 +570,10 @@ func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpe
 	case *AdminSearchChannelSpecificContentOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminSearchChannelSpecificContentUnauthorized:
+	case *AdminSearchChannelSpecificContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminSearchChannelSpecificContentNotFound:
+	case *AdminSearchChannelSpecificContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminSearchChannelSpecificContentInternalServerError:
@@ -628,9 +643,9 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
 
 	case *AdminSearchChannelSpecificContentOK:
 		return v, nil
-	case *AdminSearchChannelSpecificContentUnauthorized:
+	case *AdminSearchChannelSpecificContentBadRequest:
 		return nil, v
-	case *AdminSearchChannelSpecificContentNotFound:
+	case *AdminSearchChannelSpecificContentUnauthorized:
 		return nil, v
 	case *AdminSearchChannelSpecificContentInternalServerError:
 		return nil, v
@@ -648,7 +663,7 @@ Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 
 All request body are required except preview, tags and customAttributes.
 */
-func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, *SingleAdminUpdateContentDirectBadRequest, *SingleAdminUpdateContentDirectUnauthorized, *SingleAdminUpdateContentDirectNotFound, *SingleAdminUpdateContentDirectInternalServerError, error) {
+func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateContentDirectOK, *SingleAdminUpdateContentDirectBadRequest, *SingleAdminUpdateContentDirectUnauthorized, *SingleAdminUpdateContentDirectForbidden, *SingleAdminUpdateContentDirectNotFound, *SingleAdminUpdateContentDirectInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminUpdateContentDirectParams()
@@ -676,28 +691,31 @@ func (a *Client) SingleAdminUpdateContentDirect(params *SingleAdminUpdateContent
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SingleAdminUpdateContentDirectOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *SingleAdminUpdateContentDirectBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *SingleAdminUpdateContentDirectUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *SingleAdminUpdateContentDirectForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *SingleAdminUpdateContentDirectNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *SingleAdminUpdateContentDirectInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -745,6 +763,8 @@ func (a *Client) SingleAdminUpdateContentDirectShort(params *SingleAdminUpdateCo
 	case *SingleAdminUpdateContentDirectBadRequest:
 		return nil, v
 	case *SingleAdminUpdateContentDirectUnauthorized:
+		return nil, v
+	case *SingleAdminUpdateContentDirectForbidden:
 		return nil, v
 	case *SingleAdminUpdateContentDirectNotFound:
 		return nil, v
@@ -869,7 +889,7 @@ Deprecated: 2022-08-10 - Use SingleAdminGetContentShort instead.
 SingleAdminGetContent get user's generated contents
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) SingleAdminGetContent(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, *SingleAdminGetContentUnauthorized, *SingleAdminGetContentNotFound, *SingleAdminGetContentInternalServerError, error) {
+func (a *Client) SingleAdminGetContent(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, *SingleAdminGetContentBadRequest, *SingleAdminGetContentUnauthorized, *SingleAdminGetContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminGetContentParams()
@@ -905,10 +925,10 @@ func (a *Client) SingleAdminGetContent(params *SingleAdminGetContentParams, auth
 	case *SingleAdminGetContentOK:
 		return v, nil, nil, nil, nil
 
-	case *SingleAdminGetContentUnauthorized:
+	case *SingleAdminGetContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *SingleAdminGetContentNotFound:
+	case *SingleAdminGetContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *SingleAdminGetContentInternalServerError:
@@ -958,9 +978,9 @@ func (a *Client) SingleAdminGetContentShort(params *SingleAdminGetContentParams,
 
 	case *SingleAdminGetContentOK:
 		return v, nil
-	case *SingleAdminGetContentUnauthorized:
+	case *SingleAdminGetContentBadRequest:
 		return nil, v
-	case *SingleAdminGetContentNotFound:
+	case *SingleAdminGetContentUnauthorized:
 		return nil, v
 	case *SingleAdminGetContentInternalServerError:
 		return nil, v
@@ -977,7 +997,7 @@ AdminGetContentBulk bulk get content by content ids
 Required permission ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ].
 Maximum contentId per request 100
 */
-func (a *Client) AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error) {
+func (a *Client) AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentBulkOK, *AdminGetContentBulkBadRequest, *AdminGetContentBulkUnauthorized, *AdminGetContentBulkForbidden, *AdminGetContentBulkInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetContentBulkParams()
@@ -1005,25 +1025,28 @@ func (a *Client) AdminGetContentBulk(params *AdminGetContentBulkParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetContentBulkOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetContentBulkBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetContentBulkUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetContentBulkForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetContentBulkInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1067,6 +1090,8 @@ func (a *Client) AdminGetContentBulkShort(params *AdminGetContentBulkParams, aut
 
 	case *AdminGetContentBulkOK:
 		return v, nil
+	case *AdminGetContentBulkBadRequest:
+		return nil, v
 	case *AdminGetContentBulkUnauthorized:
 		return nil, v
 	case *AdminGetContentBulkForbidden:
@@ -1105,7 +1130,7 @@ Allowed character for operator: `&` `|` `(` `)`
 
  Please note that value of tags query param should be URL encoded
 */
-func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error) {
+func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentBadRequest, *AdminSearchContentUnauthorized, *AdminSearchContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminSearchContentParams()
@@ -1141,10 +1166,10 @@ func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo r
 	case *AdminSearchContentOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminSearchContentUnauthorized:
+	case *AdminSearchContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminSearchContentNotFound:
+	case *AdminSearchContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminSearchContentInternalServerError:
@@ -1214,9 +1239,9 @@ func (a *Client) AdminSearchContentShort(params *AdminSearchContentParams, authI
 
 	case *AdminSearchContentOK:
 		return v, nil
-	case *AdminSearchContentUnauthorized:
+	case *AdminSearchContentBadRequest:
 		return nil, v
-	case *AdminSearchContentNotFound:
+	case *AdminSearchContentUnauthorized:
 		return nil, v
 	case *AdminSearchContentInternalServerError:
 		return nil, v
@@ -1786,7 +1811,7 @@ AdminUpdateScreenshots update screenshot of content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 Maximum description length: 1024.
 */
-func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error) {
+func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsForbidden, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateScreenshotsParams()
@@ -1814,28 +1839,31 @@ func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateScreenshotsOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateScreenshotsBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUpdateScreenshotsUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateScreenshotsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateScreenshotsNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUpdateScreenshotsInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1883,6 +1911,8 @@ func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParam
 		return nil, v
 	case *AdminUpdateScreenshotsUnauthorized:
 		return nil, v
+	case *AdminUpdateScreenshotsForbidden:
+		return nil, v
 	case *AdminUpdateScreenshotsNotFound:
 		return nil, v
 	case *AdminUpdateScreenshotsInternalServerError:
@@ -1904,7 +1934,7 @@ If not specified, it will use fileExtension value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
 Maximum description length: 1024.
 */
-func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error) {
+func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotForbidden, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUploadContentScreenshotParams()
@@ -1932,28 +1962,31 @@ func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreensh
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUploadContentScreenshotCreated:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentScreenshotBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUploadContentScreenshotUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUploadContentScreenshotForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUploadContentScreenshotNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUploadContentScreenshotInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2005,6 +2038,8 @@ func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScr
 		return nil, v
 	case *AdminUploadContentScreenshotUnauthorized:
 		return nil, v
+	case *AdminUploadContentScreenshotForbidden:
+		return nil, v
 	case *AdminUploadContentScreenshotNotFound:
 		return nil, v
 	case *AdminUploadContentScreenshotInternalServerError:
@@ -2021,7 +2056,7 @@ Deprecated: 2022-08-10 - Use AdminDeleteContentScreenshotShort instead.
 AdminDeleteContentScreenshot delete screenshots content
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
 */
-func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error) {
+func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotForbidden, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteContentScreenshotParams()
@@ -2049,28 +2084,31 @@ func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreensh
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteContentScreenshotNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteContentScreenshotBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteContentScreenshotUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteContentScreenshotForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteContentScreenshotNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteContentScreenshotInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2116,6 +2154,8 @@ func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScr
 	case *AdminDeleteContentScreenshotBadRequest:
 		return nil, v
 	case *AdminDeleteContentScreenshotUnauthorized:
+		return nil, v
+	case *AdminDeleteContentScreenshotForbidden:
 		return nil, v
 	case *AdminDeleteContentScreenshotNotFound:
 		return nil, v
@@ -2260,7 +2300,7 @@ Available characters: abcdefhkpqrstuxyz
 
  NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
 */
-func (a *Client) AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error) {
+func (a *Client) AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3ByShareCodeOK, *AdminUpdateContentS3ByShareCodeBadRequest, *AdminUpdateContentS3ByShareCodeUnauthorized, *AdminUpdateContentS3ByShareCodeForbidden, *AdminUpdateContentS3ByShareCodeNotFound, *AdminUpdateContentS3ByShareCodeConflict, *AdminUpdateContentS3ByShareCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateContentS3ByShareCodeParams()
@@ -2288,31 +2328,34 @@ func (a *Client) AdminUpdateContentS3ByShareCode(params *AdminUpdateContentS3ByS
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateContentS3ByShareCodeOK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3ByShareCodeBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3ByShareCodeUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentS3ByShareCodeForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3ByShareCodeNotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateContentS3ByShareCodeConflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUpdateContentS3ByShareCodeInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2377,6 +2420,8 @@ func (a *Client) AdminUpdateContentS3ByShareCodeShort(params *AdminUpdateContent
 		return nil, v
 	case *AdminUpdateContentS3ByShareCodeUnauthorized:
 		return nil, v
+	case *AdminUpdateContentS3ByShareCodeForbidden:
+		return nil, v
 	case *AdminUpdateContentS3ByShareCodeNotFound:
 		return nil, v
 	case *AdminUpdateContentS3ByShareCodeConflict:
@@ -2413,7 +2458,7 @@ Available characters: abcdefhkpqrstuxyz
 
  NOTE: Preview is Legacy Code, please use Screenshot for better solution to display preview of a content
 */
-func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error) {
+func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3Forbidden, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3Conflict, *AdminUpdateContentS3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateContentS3Params()
@@ -2441,31 +2486,34 @@ func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateContentS3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateContentS3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUpdateContentS3NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateContentS3Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUpdateContentS3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2529,6 +2577,8 @@ func (a *Client) AdminUpdateContentS3Short(params *AdminUpdateContentS3Params, a
 	case *AdminUpdateContentS3BadRequest:
 		return nil, v
 	case *AdminUpdateContentS3Unauthorized:
+		return nil, v
+	case *AdminUpdateContentS3Forbidden:
 		return nil, v
 	case *AdminUpdateContentS3NotFound:
 		return nil, v
@@ -2657,7 +2707,7 @@ Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 
 All request body are required except preview, tags and customAttributes.
 */
-func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error) {
+func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentDirectOK, *AdminUpdateContentDirectBadRequest, *AdminUpdateContentDirectUnauthorized, *AdminUpdateContentDirectForbidden, *AdminUpdateContentDirectNotFound, *AdminUpdateContentDirectInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateContentDirectParams()
@@ -2685,28 +2735,31 @@ func (a *Client) AdminUpdateContentDirect(params *AdminUpdateContentDirectParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateContentDirectOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentDirectBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUpdateContentDirectUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateContentDirectForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUpdateContentDirectNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUpdateContentDirectInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2754,6 +2807,8 @@ func (a *Client) AdminUpdateContentDirectShort(params *AdminUpdateContentDirectP
 	case *AdminUpdateContentDirectBadRequest:
 		return nil, v
 	case *AdminUpdateContentDirectUnauthorized:
+		return nil, v
+	case *AdminUpdateContentDirectForbidden:
 		return nil, v
 	case *AdminUpdateContentDirectNotFound:
 		return nil, v
@@ -2878,7 +2933,7 @@ Deprecated: 2022-08-10 - Use AdminGetContentShort instead.
 AdminGetContent get user's generated contents
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentUnauthorized, *AdminGetContentNotFound, *AdminGetContentInternalServerError, error) {
+func (a *Client) AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentBadRequest, *AdminGetContentUnauthorized, *AdminGetContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetContentParams()
@@ -2914,10 +2969,10 @@ func (a *Client) AdminGetContent(params *AdminGetContentParams, authInfo runtime
 	case *AdminGetContentOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminGetContentUnauthorized:
+	case *AdminGetContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminGetContentNotFound:
+	case *AdminGetContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminGetContentInternalServerError:
@@ -2967,9 +3022,9 @@ func (a *Client) AdminGetContentShort(params *AdminGetContentParams, authInfo ru
 
 	case *AdminGetContentOK:
 		return v, nil
-	case *AdminGetContentUnauthorized:
+	case *AdminGetContentBadRequest:
 		return nil, v
-	case *AdminGetContentNotFound:
+	case *AdminGetContentUnauthorized:
 		return nil, v
 	case *AdminGetContentInternalServerError:
 		return nil, v
@@ -2985,7 +3040,7 @@ Deprecated: 2022-08-10 - Use AdminHideUserContentShort instead.
 AdminHideUserContent hide/unhide user's generated contents
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
 */
-func (a *Client) AdminHideUserContent(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, *AdminHideUserContentUnauthorized, *AdminHideUserContentNotFound, *AdminHideUserContentInternalServerError, error) {
+func (a *Client) AdminHideUserContent(params *AdminHideUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminHideUserContentOK, *AdminHideUserContentBadRequest, *AdminHideUserContentUnauthorized, *AdminHideUserContentNotFound, *AdminHideUserContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminHideUserContentParams()
@@ -3013,25 +3068,28 @@ func (a *Client) AdminHideUserContent(params *AdminHideUserContentParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminHideUserContentOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminHideUserContentBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminHideUserContentUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminHideUserContentNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminHideUserContentInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3074,6 +3132,8 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
 
 	case *AdminHideUserContentOK:
 		return v, nil
+	case *AdminHideUserContentBadRequest:
+		return nil, v
 	case *AdminHideUserContentUnauthorized:
 		return nil, v
 	case *AdminHideUserContentNotFound:

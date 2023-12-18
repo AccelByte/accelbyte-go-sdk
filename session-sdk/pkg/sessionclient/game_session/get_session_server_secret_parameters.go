@@ -16,8 +16,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
 // NewGetSessionServerSecretParams creates a new GetSessionServerSecretParams object
@@ -66,8 +64,6 @@ type GetSessionServerSecretParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
-	/*Body*/
-	Body *sessionclientmodels.ApimodelsServerSecret
 	/*Namespace
 	  Namespace
 
@@ -132,17 +128,6 @@ func (o *GetSessionServerSecretParams) SetHTTPClientTransport(roundTripper http.
 	}
 }
 
-// WithBody adds the body to the get session server secret params
-func (o *GetSessionServerSecretParams) WithBody(body *sessionclientmodels.ApimodelsServerSecret) *GetSessionServerSecretParams {
-	o.SetBody(body)
-	return o
-}
-
-// SetBody adds the body to the get session server secret params
-func (o *GetSessionServerSecretParams) SetBody(body *sessionclientmodels.ApimodelsServerSecret) {
-	o.Body = body
-}
-
 // WithNamespace adds the namespace to the get session server secret params
 func (o *GetSessionServerSecretParams) WithNamespace(namespace string) *GetSessionServerSecretParams {
 	o.SetNamespace(namespace)
@@ -172,12 +157,6 @@ func (o *GetSessionServerSecretParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
-	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

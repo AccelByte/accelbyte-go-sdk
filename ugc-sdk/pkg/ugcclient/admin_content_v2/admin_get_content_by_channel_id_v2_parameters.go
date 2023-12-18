@@ -108,6 +108,11 @@ type AdminGetContentByChannelIDV2Params struct {
 
 	*/
 	Limit *int64
+	/*Name
+	  content name
+
+	*/
+	Name *string
 	/*Offset
 	  the offset number to retrieve
 
@@ -211,6 +216,17 @@ func (o *AdminGetContentByChannelIDV2Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the admin get content by channel idv2 params
+func (o *AdminGetContentByChannelIDV2Params) WithName(name *string) *AdminGetContentByChannelIDV2Params {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the admin get content by channel idv2 params
+func (o *AdminGetContentByChannelIDV2Params) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the admin get content by channel idv2 params
 func (o *AdminGetContentByChannelIDV2Params) WithOffset(offset *int64) *AdminGetContentByChannelIDV2Params {
 	o.SetOffset(offset)
@@ -261,6 +277,22 @@ func (o *AdminGetContentByChannelIDV2Params) WriteToRequest(r runtime.ClientRequ
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

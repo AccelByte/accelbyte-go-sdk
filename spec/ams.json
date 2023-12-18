@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.4.0"
+    "version": "1.7.1"
   },
   "schemes": [
     "https"
@@ -17,7 +17,9 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
@@ -26,10 +28,11 @@
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]",
+        "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]",
         "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]": "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
         "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
-        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]",
-        "NAMESPACE:{namespace}:QOS:SERVER [READ]": "NAMESPACE:{namespace}:QOS:SERVER [READ]"
+        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -374,6 +377,346 @@
         ]
       }
     },
+    "/ams/v1/admin/namespaces/{namespace}/artifacts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
+        "operationId": "ArtifactGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "One of: logs, coredump",
+            "in": "query",
+            "name": "artifactType",
+            "type": "string"
+          },
+          {
+            "description": "omit artifacts with collection dates newer than",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "id of the fleet where the artifact was collected",
+            "in": "query",
+            "name": "fleetID",
+            "type": "string"
+          },
+          {
+            "description": "id of the image being used on the server when artifact was collected",
+            "in": "query",
+            "name": "imageID",
+            "type": "string"
+          },
+          {
+            "description": "maximum artifact size in bytes",
+            "in": "query",
+            "name": "maxSize",
+            "type": "integer"
+          },
+          {
+            "description": "minimum artifact size in bytes",
+            "in": "query",
+            "name": "minSize",
+            "type": "integer"
+          },
+          {
+            "description": "region of the server where the artifact was collected",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "omit artifacts with collection dates older than",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
+          },
+          {
+            "description": "One of: success, skip_sample, skip_usage, failed, deleted",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/api.ArtifactResponse"
+              },
+              "type": "array"
+            }
+          },
+          "204": {
+            "description": "no artifacts found with specified criteria",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "400": {
+            "description": "invalid data in request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all artifacts matching the provided criteria",
+        "tags": [
+          "Artifacts"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/artifacts/usage": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
+        "operationId": "ArtifactUsageGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.ArtifactUsageResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieves artifact storage usage for the namespace",
+        "tags": [
+          "Artifacts"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]",
+        "operationId": "ArtifactDelete",
+        "parameters": [
+          {
+            "description": "the id of the artifact",
+            "in": "path",
+            "name": "artifactID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "delete received"
+          },
+          "204": {
+            "description": "no artifact with specifed artifactID",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Deletes the specified artifact",
+        "tags": [
+          "Artifacts"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
+        "operationId": "ArtifactGetURL",
+        "parameters": [
+          {
+            "description": "the id of the artifact",
+            "in": "path",
+            "name": "artifactID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.ArtifactURLResponse"
+            }
+          },
+          "204": {
+            "description": "no artifact found with specified ID",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "400": {
+            "description": "invalid data in request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get a signed URL for a specific artifact",
+        "tags": [
+          "Artifacts"
+        ]
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/fleets": {
       "get": {
         "consumes": [
@@ -486,7 +829,7 @@
             "authorization": []
           }
         ],
-        "summary": "create fleet",
+        "summary": "Create a fleet. Optionally, sampling rules for the fleet can also be specified",
         "tags": [
           "Fleets"
         ]
@@ -706,7 +1049,7 @@
             "authorization": []
           }
         ],
-        "summary": "Update a fleet – overrides current data",
+        "summary": "Update a fleet – overrides current data. Optionally, sampling rules for the fleet can also be updated",
         "tags": [
           "Fleets"
         ]
@@ -717,7 +1060,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
         "operationId": "FleetArtifactSamplingRulesGet",
         "parameters": [
           {
@@ -742,7 +1085,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/api.FleetArtifactsSampleRulesResponse"
+              "$ref": "#/definitions/api.FleetArtifactsSampleRules"
             }
           },
           "400": {
@@ -779,14 +1122,98 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]"
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
             ],
             "authorization": []
           }
         ],
         "summary": "Get the sampling rules for a fleet",
         "tags": [
-          "Images"
+          "Artifacts"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]",
+        "operationId": "FleetArtifactSamplingRulesSet",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetArtifactsSampleRules"
+            }
+          },
+          {
+            "description": "the id of the fleet",
+            "in": "path",
+            "name": "fleetID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetArtifactsSampleRules"
+            }
+          },
+          "400": {
+            "description": "invalid fleet ID",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "fleet not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Set sampling rules for a fleet",
+        "tags": [
+          "Artifacts"
         ]
       }
     },
@@ -1191,11 +1618,83 @@
         ]
       }
     },
+    "/ams/v1/admin/namespaces/{namespace}/qos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\n\t\t\tRequired Permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]\n\n\t\t\tThis endpoint lists all QoS services available in all regions.\n\n\t\t\tThis endpoint is intended to be called by game client to find out all available regions.\n\t\t\tAfter getting a list of QoS on each region, game client is expected to ping each one with UDP\n\t\t\tconnection as described below:\n\n\t\t\t1. Make UDP connection to each QoS\u0026#39;s IP:Port\n\t\t\t2. Send string \u0026#34;PING\u0026#34; after connection established\n\t\t\t3. Wait for string \u0026#34;PONG\u0026#34; response\n\t\t\t4. Note the request-response latency for each QoS in each region\n\n\t\t\tThe game then can use ping latency information to either:\n\t\t\t1. Inform the player on these latencies and let player choose preferred region\n\t\t\t2. Send the latency list to Matchmaking Service so that player can be matched with other players\n\t\t\t   in nearby regions\n\t\t\t",
+        "operationId": "QoSRegionsGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "QoS status, available value: ACTIVE, INACTIVE",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.QoSEndpointResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get the list of available AMS QoS regions.",
+        "tags": [
+          "AMS QoS"
+        ]
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/qos/{region}": {
       "patch": {
         "consumes": [
           "application/json"
         ],
+        "description": "```\n\t\t\tRequired Permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]\n\n\t\t\tThis endpoint updates the registered QoS service\u0026#39;s configurable configuration.\n\t\t\t",
         "operationId": "QoSRegionsUpdate",
         "parameters": [
           {
@@ -1261,6 +1760,9 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]"
+            ],
             "authorization": []
           }
         ],
@@ -1660,77 +2162,6 @@
         ]
       }
     },
-    "/ams/v1/namespaces/{namespace}/qos": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required Permission: NAMESPACE:{namespace}:QOS:SERVER [READ]",
-        "operationId": "QoSRegionsGet",
-        "parameters": [
-          {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "QoS status, available value: ACTIVE, INACTIVE",
-            "in": "query",
-            "name": "status",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/api.QoSEndpointResponse"
-            }
-          },
-          "400": {
-            "description": "bad request",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "no authorization provided",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "insufficient permissions",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "internal server error",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:QOS:SERVER [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get the list of available AMS QoS regions.",
-        "tags": [
-          "AMS QoS"
-        ]
-      }
-    },
     "/ams/v1/namespaces/{namespace}/servers/claim": {
       "put": {
         "consumes": [
@@ -2025,15 +2456,66 @@
         "namespaces"
       ]
     },
-    "api.ArtifactSamplingRuleResponse": {
+    "api.ArtifactResponse": {
+      "properties": {
+        "artifactType": {
+          "type": "string"
+        },
+        "createdOn": {
+          "$ref": "#/definitions/api.Time"
+        },
+        "dsId": {
+          "type": "string"
+        },
+        "expiresOn": {
+          "$ref": "#/definitions/api.Time"
+        },
+        "fleetId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "sizeBytes": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "storagePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactType",
+        "createdOn",
+        "dsId",
+        "expiresOn",
+        "fleetId",
+        "id",
+        "imageId",
+        "namespace",
+        "sizeBytes",
+        "status",
+        "storagePath"
+      ]
+    },
+    "api.ArtifactSamplingRule": {
       "properties": {
         "collect": {
           "type": "boolean",
           "x-omitempty": false
         },
         "percentage": {
-          "format": "double",
-          "type": "number"
+          "format": "int64",
+          "type": "integer"
         }
       },
       "required": [
@@ -2041,18 +2523,49 @@
         "percentage"
       ]
     },
-    "api.ArtifactTypeSamplingRulesResponse": {
+    "api.ArtifactTypeSamplingRules": {
       "properties": {
         "crashed": {
-          "$ref": "#/definitions/api.ArtifactSamplingRuleResponse"
+          "$ref": "#/definitions/api.ArtifactSamplingRule"
         },
         "success": {
-          "$ref": "#/definitions/api.ArtifactSamplingRuleResponse"
+          "$ref": "#/definitions/api.ArtifactSamplingRule"
         }
       },
       "required": [
         "crashed",
         "success"
+      ]
+    },
+    "api.ArtifactURLResponse": {
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "api.ArtifactUsageResponse": {
+      "properties": {
+        "quotaBytes": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "remainingBytes": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "usedBytes": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "quotaBytes",
+        "remainingBytes",
+        "usedBytes"
       ]
     },
     "api.AvailableInstanceTypesResponse": {
@@ -2143,13 +2656,13 @@
         "serversPerVm"
       ]
     },
-    "api.FleetArtifactsSampleRulesResponse": {
+    "api.FleetArtifactsSampleRules": {
       "properties": {
         "coredumps": {
-          "$ref": "#/definitions/api.ArtifactTypeSamplingRulesResponse"
+          "$ref": "#/definitions/api.ArtifactTypeSamplingRules"
         },
         "logs": {
-          "$ref": "#/definitions/api.ArtifactTypeSamplingRulesResponse"
+          "$ref": "#/definitions/api.ArtifactTypeSamplingRules"
         }
       },
       "required": [
@@ -2344,6 +2857,9 @@
             "$ref": "#/definitions/api.RegionConfig"
           },
           "type": "array"
+        },
+        "samplingRules": {
+          "$ref": "#/definitions/api.FleetArtifactsSampleRules"
         }
       },
       "required": [
@@ -2351,7 +2867,8 @@
         "dsHostConfiguration",
         "imageDeploymentProfile",
         "name",
-        "regions"
+        "regions",
+        "samplingRules"
       ]
     },
     "api.FleetRegionalServerCounts": {
@@ -2931,12 +3448,16 @@
         "errorMessage": {
           "type": "string"
         },
+        "errorType": {
+          "type": "string"
+        },
         "traceId": {
           "type": "string"
         }
       },
       "required": [
         "errorMessage",
+        "errorType",
         "traceId"
       ]
     },
@@ -3039,10 +3560,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-11-06T00:53:00+00:00",
-    "gitHash": "190a6a432c9ec2924ce8b516afb378ad76bd7bd1",
+    "buildDate": "2023-12-12T23:27:16+00:00",
+    "gitHash": "4b9eccaa605be6d9677fe13f13e48547754c5fc5",
     "name": "fleet-commander",
-    "version": "1.4.0",
+    "version": "1.7.1",
     "version-roles-seeding": "1.0.5"
   }
 }

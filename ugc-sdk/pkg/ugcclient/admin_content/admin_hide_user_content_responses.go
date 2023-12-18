@@ -33,6 +33,12 @@ func (o *AdminHideUserContentReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminHideUserContentBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminHideUserContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewAdminHideUserContentOK() *AdminHideUserContentOK {
 
 /*AdminHideUserContentOK handles this case with default header values.
 
-  OK
+  hide/unhide user's generated content
 */
 type AdminHideUserContentOK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -115,6 +121,59 @@ func (o *AdminHideUserContentOK) readResponse(response runtime.ClientResponse, c
 	return nil
 }
 
+// NewAdminHideUserContentBadRequest creates a AdminHideUserContentBadRequest with default headers values
+func NewAdminHideUserContentBadRequest() *AdminHideUserContentBadRequest {
+	return &AdminHideUserContentBadRequest{}
+}
+
+/*AdminHideUserContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773801</td><td>Invalid request body/Malformed request</td></tr></table>
+*/
+type AdminHideUserContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminHideUserContentBadRequest) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide][%d] adminHideUserContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminHideUserContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminHideUserContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminHideUserContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminHideUserContentUnauthorized creates a AdminHideUserContentUnauthorized with default headers values
 func NewAdminHideUserContentUnauthorized() *AdminHideUserContentUnauthorized {
 	return &AdminHideUserContentUnauthorized{}
@@ -122,7 +181,7 @@ func NewAdminHideUserContentUnauthorized() *AdminHideUserContentUnauthorized {
 
 /*AdminHideUserContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminHideUserContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +234,7 @@ func NewAdminHideUserContentNotFound() *AdminHideUserContentNotFound {
 
 /*AdminHideUserContentNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773803</td><td>Unable to update hide status: content not found</td></tr></table>
 */
 type AdminHideUserContentNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +287,7 @@ func NewAdminHideUserContentInternalServerError() *AdminHideUserContentInternalS
 
 /*AdminHideUserContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773802</td><td>Unable to update hide status: database error</td></tr><tr><td>773804</td><td>Unable to save ugc content: failed generate upload URL</td></tr><tr><td>773805</td><td>Unable to save ugc content preview: failed generate upload URL</td></tr></table>
 */
 type AdminHideUserContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

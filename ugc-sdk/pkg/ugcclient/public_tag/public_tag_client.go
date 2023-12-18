@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagUnauthorized, *GetTagNotFound, *GetTagInternalServerError, error)
+	GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagBadRequest, *GetTagUnauthorized, *GetTagInternalServerError, error)
 	GetTagShort(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -42,7 +42,7 @@ Deprecated: 2022-08-10 - Use GetTagShort instead.
 GetTag get tags
 Publicly accessible
 */
-func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagUnauthorized, *GetTagNotFound, *GetTagInternalServerError, error) {
+func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagBadRequest, *GetTagUnauthorized, *GetTagInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTagParams()
@@ -78,10 +78,10 @@ func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWri
 	case *GetTagOK:
 		return v, nil, nil, nil, nil
 
-	case *GetTagUnauthorized:
+	case *GetTagBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetTagNotFound:
+	case *GetTagUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetTagInternalServerError:
@@ -131,9 +131,9 @@ func (a *Client) GetTagShort(params *GetTagParams, authInfo runtime.ClientAuthIn
 
 	case *GetTagOK:
 		return v, nil
-	case *GetTagUnauthorized:
+	case *GetTagBadRequest:
 		return nil, v
-	case *GetTagNotFound:
+	case *GetTagUnauthorized:
 		return nil, v
 	case *GetTagInternalServerError:
 		return nil, v

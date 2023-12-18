@@ -33,12 +33,6 @@ func (o *PublicAddDownloadCountV2Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewPublicAddDownloadCountV2BadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 401:
 		result := NewPublicAddDownloadCountV2Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +75,7 @@ func NewPublicAddDownloadCountV2OK() *PublicAddDownloadCountV2OK {
 
 /*PublicAddDownloadCountV2OK handles this case with default header values.
 
-  OK
+  Added download count to a content
 */
 type PublicAddDownloadCountV2OK struct {
 	Payload *ugcclientmodels.ModelsAddDownloadCountResponse
@@ -127,59 +121,6 @@ func (o *PublicAddDownloadCountV2OK) readResponse(response runtime.ClientRespons
 	return nil
 }
 
-// NewPublicAddDownloadCountV2BadRequest creates a PublicAddDownloadCountV2BadRequest with default headers values
-func NewPublicAddDownloadCountV2BadRequest() *PublicAddDownloadCountV2BadRequest {
-	return &PublicAddDownloadCountV2BadRequest{}
-}
-
-/*PublicAddDownloadCountV2BadRequest handles this case with default header values.
-
-  Bad Request
-*/
-type PublicAddDownloadCountV2BadRequest struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *PublicAddDownloadCountV2BadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v2/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] publicAddDownloadCountV2BadRequest  %+v", 400, o.ToJSONString())
-}
-
-func (o *PublicAddDownloadCountV2BadRequest) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicAddDownloadCountV2BadRequest) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *PublicAddDownloadCountV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewPublicAddDownloadCountV2Unauthorized creates a PublicAddDownloadCountV2Unauthorized with default headers values
 func NewPublicAddDownloadCountV2Unauthorized() *PublicAddDownloadCountV2Unauthorized {
 	return &PublicAddDownloadCountV2Unauthorized{}
@@ -187,7 +128,7 @@ func NewPublicAddDownloadCountV2Unauthorized() *PublicAddDownloadCountV2Unauthor
 
 /*PublicAddDownloadCountV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicAddDownloadCountV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -240,7 +181,7 @@ func NewPublicAddDownloadCountV2NotFound() *PublicAddDownloadCountV2NotFound {
 
 /*PublicAddDownloadCountV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772903</td><td>Unable to add content download: content not found</td></tr></table>
 */
 type PublicAddDownloadCountV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +234,7 @@ func NewPublicAddDownloadCountV2TooManyRequests() *PublicAddDownloadCountV2TooMa
 
 /*PublicAddDownloadCountV2TooManyRequests handles this case with default header values.
 
-  Too Many Requests
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772906</td><td>Unable to add content download: too many request</td></tr></table>
 */
 type PublicAddDownloadCountV2TooManyRequests struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +287,7 @@ func NewPublicAddDownloadCountV2InternalServerError() *PublicAddDownloadCountV2I
 
 /*PublicAddDownloadCountV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772902</td><td>Unable to add content download: database error</td></tr></table>
 */
 type PublicAddDownloadCountV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

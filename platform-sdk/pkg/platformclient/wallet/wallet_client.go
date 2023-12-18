@@ -42,6 +42,8 @@ type ClientService interface {
 	DebitUserWalletByCurrencyCodeShort(params *DebitUserWalletByCurrencyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletByCurrencyCodeOK, error)
 	ListUserCurrencyTransactions(params *ListUserCurrencyTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserCurrencyTransactionsOK, *ListUserCurrencyTransactionsNotFound, error)
 	ListUserCurrencyTransactionsShort(params *ListUserCurrencyTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserCurrencyTransactionsOK, error)
+	CheckBalance(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, *CheckBalanceBadRequest, error)
+	CheckBalanceShort(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, error)
 	CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error)
 	CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error)
 	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletUnprocessableEntity, error)
@@ -689,6 +691,111 @@ func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTrans
 	case *ListUserCurrencyTransactionsOK:
 		return v, nil
 	case *ListUserCurrencyTransactionsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CheckBalanceShort instead.
+
+CheckBalance check if a user has enough balance
+Checks if the user has enough balance based on the provided criteria.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)
+  *  Returns : boolean value indicating if the user has enough balance
+*/
+func (a *Client) CheckBalance(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, *CheckBalanceBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckBalanceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "checkBalance",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/balanceCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckBalanceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckBalanceOK:
+		return v, nil, nil
+
+	case *CheckBalanceBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CheckBalanceShort check if a user has enough balance
+Checks if the user has enough balance based on the provided criteria.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)
+  *  Returns : boolean value indicating if the user has enough balance
+*/
+func (a *Client) CheckBalanceShort(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckBalanceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "checkBalance",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/balanceCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckBalanceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckBalanceOK:
+		return v, nil
+	case *CheckBalanceBadRequest:
 		return nil, v
 
 	default:

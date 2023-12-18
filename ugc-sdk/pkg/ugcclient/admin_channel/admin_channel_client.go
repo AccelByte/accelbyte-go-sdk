@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelNotFound, *SingleAdminGetChannelInternalServerError, error)
+	SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelBadRequest, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelInternalServerError, error)
 	SingleAdminGetChannelShort(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, error)
 	AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelConflict, *AdminCreateChannelInternalServerError, error)
 	AdminCreateChannelShort(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, error)
@@ -38,7 +38,7 @@ type ClientService interface {
 	SingleAdminUpdateChannelShort(params *SingleAdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateChannelOK, error)
 	SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error)
 	SingleAdminDeleteChannelShort(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, error)
-	AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelUnauthorized, *AdminGetChannelNotFound, *AdminGetChannelInternalServerError, error)
+	AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelBadRequest, *AdminGetChannelUnauthorized, *AdminGetChannelInternalServerError, error)
 	AdminGetChannelShort(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, error)
 	AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChannelOK, *AdminUpdateChannelBadRequest, *AdminUpdateChannelUnauthorized, *AdminUpdateChannelNotFound, *AdminUpdateChannelInternalServerError, error)
 	AdminUpdateChannelShort(params *AdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChannelOK, error)
@@ -54,7 +54,7 @@ Deprecated: 2022-08-10 - Use SingleAdminGetChannelShort instead.
 SingleAdminGetChannel get channels
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
 */
-func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelNotFound, *SingleAdminGetChannelInternalServerError, error) {
+func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelBadRequest, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminGetChannelParams()
@@ -90,10 +90,10 @@ func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, auth
 	case *SingleAdminGetChannelOK:
 		return v, nil, nil, nil, nil
 
-	case *SingleAdminGetChannelUnauthorized:
+	case *SingleAdminGetChannelBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *SingleAdminGetChannelNotFound:
+	case *SingleAdminGetChannelUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *SingleAdminGetChannelInternalServerError:
@@ -143,9 +143,9 @@ func (a *Client) SingleAdminGetChannelShort(params *SingleAdminGetChannelParams,
 
 	case *SingleAdminGetChannelOK:
 		return v, nil
-	case *SingleAdminGetChannelUnauthorized:
+	case *SingleAdminGetChannelBadRequest:
 		return nil, v
-	case *SingleAdminGetChannelNotFound:
+	case *SingleAdminGetChannelUnauthorized:
 		return nil, v
 	case *SingleAdminGetChannelInternalServerError:
 		return nil, v
@@ -492,7 +492,7 @@ Deprecated: 2022-08-10 - Use AdminGetChannelShort instead.
 AdminGetChannel get channels
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
 */
-func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelUnauthorized, *AdminGetChannelNotFound, *AdminGetChannelInternalServerError, error) {
+func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelBadRequest, *AdminGetChannelUnauthorized, *AdminGetChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetChannelParams()
@@ -528,10 +528,10 @@ func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime
 	case *AdminGetChannelOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminGetChannelUnauthorized:
+	case *AdminGetChannelBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminGetChannelNotFound:
+	case *AdminGetChannelUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminGetChannelInternalServerError:
@@ -581,9 +581,9 @@ func (a *Client) AdminGetChannelShort(params *AdminGetChannelParams, authInfo ru
 
 	case *AdminGetChannelOK:
 		return v, nil
-	case *AdminGetChannelUnauthorized:
+	case *AdminGetChannelBadRequest:
 		return nil, v
-	case *AdminGetChannelNotFound:
+	case *AdminGetChannelUnauthorized:
 		return nil, v
 	case *AdminGetChannelInternalServerError:
 		return nil, v

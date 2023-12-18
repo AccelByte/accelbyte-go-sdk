@@ -33,14 +33,14 @@ func (o *AdminGetContentReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminGetContentUnauthorized()
+	case 400:
+		result := NewAdminGetContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminGetContentNotFound()
+	case 401:
+		result := NewAdminGetContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminGetContentOK() *AdminGetContentOK {
 
 /*AdminGetContentOK handles this case with default header values.
 
-  OK
+  Get user's generated contents
 */
 type AdminGetContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *AdminGetContentOK) readResponse(response runtime.ClientResponse, consum
 	return nil
 }
 
+// NewAdminGetContentBadRequest creates a AdminGetContentBadRequest with default headers values
+func NewAdminGetContentBadRequest() *AdminGetContentBadRequest {
+	return &AdminGetContentBadRequest{}
+}
+
+/*AdminGetContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770900</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminGetContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetContentUnauthorized creates a AdminGetContentUnauthorized with default headers values
 func NewAdminGetContentUnauthorized() *AdminGetContentUnauthorized {
 	return &AdminGetContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminGetContentUnauthorized() *AdminGetContentUnauthorized {
 
 /*AdminGetContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminGetContentUnauthorized) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewAdminGetContentNotFound creates a AdminGetContentNotFound with default headers values
-func NewAdminGetContentNotFound() *AdminGetContentNotFound {
-	return &AdminGetContentNotFound{}
-}
-
-/*AdminGetContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminGetContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminGetContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminGetContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminGetContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminGetContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminGetContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminGetContentInternalServerError creates a AdminGetContentInternalServerError with default headers values
 func NewAdminGetContentInternalServerError() *AdminGetContentInternalServerError {
 	return &AdminGetContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminGetContentInternalServerError() *AdminGetContentInternalServerError
 
 /*AdminGetContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770901</td><td>Unable to get ugc content: database error/Unable to get creator</td></tr><tr><td>770903</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

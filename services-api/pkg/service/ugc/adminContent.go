@@ -36,12 +36,15 @@ func (aaa *AdminContentService) AdminUploadContentDirect(input *admin_content.Ad
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentDirect(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if conflict != nil {
 		return nil, conflict
@@ -62,12 +65,15 @@ func (aaa *AdminContentService) AdminUploadContentS3(input *admin_content.AdminU
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentS3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if conflict != nil {
 		return nil, conflict
@@ -88,12 +94,15 @@ func (aaa *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -117,12 +126,12 @@ func (aaa *AdminContentService) AdminSearchChannelSpecificContent(input *admin_c
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminSearchChannelSpecificContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminContent.AdminSearchChannelSpecificContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -140,12 +149,15 @@ func (aaa *AdminContentService) SingleAdminUpdateContentDirect(input *admin_cont
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContent.SingleAdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -189,12 +201,12 @@ func (aaa *AdminContentService) SingleAdminGetContent(input *admin_content.Singl
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.SingleAdminGetContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminContent.SingleAdminGetContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -212,7 +224,10 @@ func (aaa *AdminContentService) AdminGetContentBulk(input *admin_content.AdminGe
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContent.AdminGetContentBulk(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminContent.AdminGetContentBulk(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -235,12 +250,12 @@ func (aaa *AdminContentService) AdminSearchContent(input *admin_content.AdminSea
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminSearchContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminContent.AdminSearchContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -379,12 +394,15 @@ func (aaa *AdminContentService) AdminUpdateScreenshots(input *admin_content.Admi
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUpdateScreenshots(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUpdateScreenshots(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -405,12 +423,15 @@ func (aaa *AdminContentService) AdminUploadContentScreenshot(input *admin_conten
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentScreenshot(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUploadContentScreenshot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -431,12 +452,15 @@ func (aaa *AdminContentService) AdminDeleteContentScreenshot(input *admin_conten
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminDeleteContentScreenshot(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContent.AdminDeleteContentScreenshot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -480,12 +504,15 @@ func (aaa *AdminContentService) AdminUpdateContentS3ByShareCode(input *admin_con
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3ByShareCode(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3ByShareCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -509,12 +536,15 @@ func (aaa *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -561,12 +591,15 @@ func (aaa *AdminContentService) AdminUpdateContentDirect(input *admin_content.Ad
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContent.AdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -610,12 +643,12 @@ func (aaa *AdminContentService) AdminGetContent(input *admin_content.AdminGetCon
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminGetContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminContent.AdminGetContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -633,7 +666,10 @@ func (aaa *AdminContentService) AdminHideUserContent(input *admin_content.AdminH
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminHideUserContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminContent.AdminHideUserContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

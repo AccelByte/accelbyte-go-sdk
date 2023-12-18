@@ -153,9 +153,7 @@ func (a *Client) AdminGetCountryListV3Short(params *AdminGetCountryListV3Params,
 Deprecated: 2022-08-10 - Use AdminGetCountryBlacklistV3Short instead.
 
 AdminGetCountryBlacklistV3 get country blacklist
-Admin get country blacklist:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]
+Admin get country blacklist
 */
 func (a *Client) AdminGetCountryBlacklistV3(params *AdminGetCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryBlacklistV3OK, *AdminGetCountryBlacklistV3Unauthorized, *AdminGetCountryBlacklistV3Forbidden, *AdminGetCountryBlacklistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -209,9 +207,7 @@ func (a *Client) AdminGetCountryBlacklistV3(params *AdminGetCountryBlacklistV3Pa
 
 /*
 AdminGetCountryBlacklistV3Short get country blacklist
-Admin get country blacklist:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [READ]
+Admin get country blacklist
 */
 func (a *Client) AdminGetCountryBlacklistV3Short(params *AdminGetCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryBlacklistV3OK, error) {
 	// TODO: Validate the params before sending
@@ -264,9 +260,7 @@ func (a *Client) AdminGetCountryBlacklistV3Short(params *AdminGetCountryBlacklis
 Deprecated: 2022-08-10 - Use AdminAddCountryBlacklistV3Short instead.
 
 AdminAddCountryBlacklistV3 update country blacklist
-Admin update country blacklist:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]
+Admin update country blacklist
 */
 func (a *Client) AdminAddCountryBlacklistV3(params *AdminAddCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddCountryBlacklistV3NoContent, *AdminAddCountryBlacklistV3BadRequest, *AdminAddCountryBlacklistV3Unauthorized, *AdminAddCountryBlacklistV3Forbidden, *AdminAddCountryBlacklistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -323,9 +317,7 @@ func (a *Client) AdminAddCountryBlacklistV3(params *AdminAddCountryBlacklistV3Pa
 
 /*
 AdminAddCountryBlacklistV3Short update country blacklist
-Admin update country blacklist:
-
-Required Permission: ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]
+Admin update country blacklist
 */
 func (a *Client) AdminAddCountryBlacklistV3Short(params *AdminAddCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddCountryBlacklistV3NoContent, error) {
 	// TODO: Validate the params before sending

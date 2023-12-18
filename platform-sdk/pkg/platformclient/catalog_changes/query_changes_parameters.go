@@ -70,16 +70,18 @@ const (
 // with the default values initialized.
 func NewQueryChangesParams() *QueryChangesParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"updatedAtDesc"}
-		statusDefault = string("UNPUBLISHED")
+		limitDefault     = int32(20)
+		offsetDefault    = int32(0)
+		sortByDefault    = []string{"updatedAtDesc"}
+		statusDefault    = string("UNPUBLISHED")
+		withTotalDefault = bool(false)
 	)
 	return &QueryChangesParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
-		Status: &statusDefault,
+		Limit:     &limitDefault,
+		Offset:    &offsetDefault,
+		SortBy:    sortByDefault,
+		Status:    &statusDefault,
+		WithTotal: &withTotalDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -89,16 +91,18 @@ func NewQueryChangesParams() *QueryChangesParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryChangesParamsWithTimeout(timeout time.Duration) *QueryChangesParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"updatedAtDesc"}
-		statusDefault = string("UNPUBLISHED")
+		limitDefault     = int32(20)
+		offsetDefault    = int32(0)
+		sortByDefault    = []string{"updatedAtDesc"}
+		statusDefault    = string("UNPUBLISHED")
+		withTotalDefault = bool(false)
 	)
 	return &QueryChangesParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
-		Status: &statusDefault,
+		Limit:     &limitDefault,
+		Offset:    &offsetDefault,
+		SortBy:    sortByDefault,
+		Status:    &statusDefault,
+		WithTotal: &withTotalDefault,
 
 		timeout: timeout,
 	}
@@ -108,16 +112,18 @@ func NewQueryChangesParamsWithTimeout(timeout time.Duration) *QueryChangesParams
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryChangesParamsWithContext(ctx context.Context) *QueryChangesParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"updatedAtDesc"}
-		statusDefault = string("UNPUBLISHED")
+		limitDefault     = int32(20)
+		offsetDefault    = int32(0)
+		sortByDefault    = []string{"updatedAtDesc"}
+		statusDefault    = string("UNPUBLISHED")
+		withTotalDefault = bool(false)
 	)
 	return &QueryChangesParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
-		SortBy: sortByDefault,
-		Status: &statusDefault,
+		Limit:     &limitDefault,
+		Offset:    &offsetDefault,
+		SortBy:    sortByDefault,
+		Status:    &statusDefault,
+		WithTotal: &withTotalDefault,
 
 		Context: ctx,
 	}
@@ -127,16 +133,18 @@ func NewQueryChangesParamsWithContext(ctx context.Context) *QueryChangesParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryChangesParamsWithHTTPClient(client *http.Client) *QueryChangesParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
-		sortByDefault = []string{"updatedAtDesc"}
-		statusDefault = string("UNPUBLISHED")
+		limitDefault     = int32(20)
+		offsetDefault    = int32(0)
+		sortByDefault    = []string{"updatedAtDesc"}
+		statusDefault    = string("UNPUBLISHED")
+		withTotalDefault = bool(false)
 	)
 	return &QueryChangesParams{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
 		SortBy:     sortByDefault,
 		Status:     &statusDefault,
+		WithTotal:  &withTotalDefault,
 		HTTPClient: client,
 	}
 }
@@ -192,6 +200,11 @@ type QueryChangesParams struct {
 
 	*/
 	UpdatedAtStart *string
+	/*WithTotal
+	  true means include total count of catalog changes in response body
+
+	*/
+	WithTotal *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -389,6 +402,17 @@ func (o *QueryChangesParams) SetUpdatedAtStart(updatedAtStart *string) {
 	o.UpdatedAtStart = updatedAtStart
 }
 
+// WithWithTotal adds the withTotal to the query changes params
+func (o *QueryChangesParams) WithWithTotal(withTotal *bool) *QueryChangesParams {
+	o.SetWithTotal(withTotal)
+	return o
+}
+
+// SetWithTotal adds the withTotal to the query changes params
+func (o *QueryChangesParams) SetWithTotal(withTotal *bool) {
+	o.WithTotal = withTotal
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *QueryChangesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -569,6 +593,22 @@ func (o *QueryChangesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qUpdatedAtStart := qrUpdatedAtStart
 		if qUpdatedAtStart != "" {
 			if err := r.SetQueryParam("updatedAtStart", qUpdatedAtStart); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.WithTotal != nil {
+
+		// query param withTotal
+		var qrWithTotal bool
+		if o.WithTotal != nil {
+			qrWithTotal = *o.WithTotal
+		}
+		qWithTotal := swag.FormatBool(qrWithTotal)
+		if qWithTotal != "" {
+			if err := r.SetQueryParam("withTotal", qWithTotal); err != nil {
 				return err
 			}
 		}

@@ -13,22 +13,22 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIFleetArtifactsSampleRulesResponse Api fleet artifacts sample rules response
+// APIFleetArtifactsSampleRules Api fleet artifacts sample rules
 //
-// swagger:model Api fleet artifacts sample rules response.
-type APIFleetArtifactsSampleRulesResponse struct {
+// swagger:model Api fleet artifacts sample rules.
+type APIFleetArtifactsSampleRules struct {
 
 	// coredumps
 	// Required: true
-	Coredumps *APIArtifactTypeSamplingRulesResponse `json:"coredumps"`
+	Coredumps *APIArtifactTypeSamplingRules `json:"coredumps"`
 
 	// logs
 	// Required: true
-	Logs *APIArtifactTypeSamplingRulesResponse `json:"logs"`
+	Logs *APIArtifactTypeSamplingRules `json:"logs"`
 }
 
-// Validate validates this Api fleet artifacts sample rules response
-func (m *APIFleetArtifactsSampleRulesResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this Api fleet artifacts sample rules
+func (m *APIFleetArtifactsSampleRules) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCoredumps(formats); err != nil {
@@ -44,7 +44,7 @@ func (m *APIFleetArtifactsSampleRulesResponse) Validate(formats strfmt.Registry)
 	return nil
 }
 
-func (m *APIFleetArtifactsSampleRulesResponse) validateCoredumps(formats strfmt.Registry) error {
+func (m *APIFleetArtifactsSampleRules) validateCoredumps(formats strfmt.Registry) error {
 
 	if err := validate.Required("coredumps", "body", m.Coredumps); err != nil {
 		return err
@@ -62,7 +62,7 @@ func (m *APIFleetArtifactsSampleRulesResponse) validateCoredumps(formats strfmt.
 	return nil
 }
 
-func (m *APIFleetArtifactsSampleRulesResponse) validateLogs(formats strfmt.Registry) error {
+func (m *APIFleetArtifactsSampleRules) validateLogs(formats strfmt.Registry) error {
 
 	if err := validate.Required("logs", "body", m.Logs); err != nil {
 		return err
@@ -81,7 +81,7 @@ func (m *APIFleetArtifactsSampleRulesResponse) validateLogs(formats strfmt.Regis
 }
 
 // MarshalBinary interface implementation
-func (m *APIFleetArtifactsSampleRulesResponse) MarshalBinary() ([]byte, error) {
+func (m *APIFleetArtifactsSampleRules) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -89,8 +89,8 @@ func (m *APIFleetArtifactsSampleRulesResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIFleetArtifactsSampleRulesResponse) UnmarshalBinary(b []byte) error {
-	var res APIFleetArtifactsSampleRulesResponse
+func (m *APIFleetArtifactsSampleRules) UnmarshalBinary(b []byte) error {
+	var res APIFleetArtifactsSampleRules
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

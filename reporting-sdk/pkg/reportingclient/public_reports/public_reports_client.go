@@ -48,12 +48,7 @@ User can only submit report once for each different user / object reported in th
 Reporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).
 
 Fill the 'reason' field with a 'reason title'
-Supported category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
+Supported category: - UGC - USER - CHAT - EXTENSION
 */
 func (a *Client) SubmitReport(params *SubmitReportParams, authInfo runtime.ClientAuthInfoWriter) (*SubmitReportCreated, *SubmitReportBadRequest, *SubmitReportConflict, *SubmitReportTooManyRequests, *SubmitReportInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -118,12 +113,7 @@ User can only submit report once for each different user / object reported in th
 Reporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).
 
 Fill the 'reason' field with a 'reason title'
-Supported category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
+Supported category: - UGC - USER - CHAT - EXTENSION
 */
 func (a *Client) SubmitReportShort(params *SubmitReportParams, authInfo runtime.ClientAuthInfoWriter) (*SubmitReportCreated, error) {
 	// TODO: Validate the params before sending

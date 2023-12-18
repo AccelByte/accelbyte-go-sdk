@@ -3830,6 +3830,29 @@ func (aaa *UsersService) PublicProcessWebLinkPlatformV3(input *users.PublicProce
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetUsersPlatformInfosV3Short instead.
+func (aaa *UsersService) PublicGetUsersPlatformInfosV3(input *users.PublicGetUsersPlatformInfosV3Params) (*iamclientmodels.ModelUsersPlatformInfosResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.Users.PublicGetUsersPlatformInfosV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ResetPasswordV3Short instead.
 func (aaa *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -7855,6 +7878,31 @@ func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.Public
 	}
 
 	ok, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicGetUsersPlatformInfosV3Short(input *users.PublicGetUsersPlatformInfosV3Params) (*iamclientmodels.ModelUsersPlatformInfosResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Users.PublicGetUsersPlatformInfosV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

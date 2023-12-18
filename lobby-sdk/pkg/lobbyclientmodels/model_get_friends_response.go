@@ -7,6 +7,8 @@
 package lobbyclientmodels
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -27,7 +29,8 @@ type ModelGetFriendsResponse struct {
 
 	// friendssincetimes
 	// Required: true
-	FriendsSinceTimes []string `json:"friendsSinceTimes"`
+	// Format: date-time
+	FriendsSinceTimes []strfmt.DateTime `json:"friendsSinceTimes"`
 
 	// paging
 	// Required: true
@@ -67,6 +70,14 @@ func (m *ModelGetFriendsResponse) validateFriendsSinceTimes(formats strfmt.Regis
 
 	if err := validate.Required("friendsSinceTimes", "body", m.FriendsSinceTimes); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.FriendsSinceTimes); i++ {
+
+		if err := validate.FormatOf("friendsSinceTimes"+"."+strconv.Itoa(i), "body", "date-time", m.FriendsSinceTimes[i].String(), formats); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

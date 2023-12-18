@@ -38,6 +38,8 @@ type ClientService interface {
 	PublishSelectedShort(params *PublishSelectedParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSelectedOK, error)
 	SelectAllRecords(params *SelectAllRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsNoContent, *SelectAllRecordsNotFound, error)
 	SelectAllRecordsShort(params *SelectAllRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsNoContent, error)
+	SelectAllRecordsByCriteria(params *SelectAllRecordsByCriteriaParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsByCriteriaNoContent, *SelectAllRecordsByCriteriaNotFound, error)
+	SelectAllRecordsByCriteriaShort(params *SelectAllRecordsByCriteriaParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsByCriteriaNoContent, error)
 	GetStatistic(params *GetStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticOK, error)
 	GetStatisticShort(params *GetStatisticParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticOK, error)
 	UnselectAllRecords(params *UnselectAllRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*UnselectAllRecordsNoContent, *UnselectAllRecordsNotFound, error)
@@ -477,6 +479,109 @@ func (a *Client) SelectAllRecordsShort(params *SelectAllRecordsParams, authInfo 
 	case *SelectAllRecordsNoContent:
 		return v, nil
 	case *SelectAllRecordsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SelectAllRecordsByCriteriaShort instead.
+
+SelectAllRecordsByCriteria select all changes by criteria
+Select all changes by criteria
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
+*/
+func (a *Client) SelectAllRecordsByCriteria(params *SelectAllRecordsByCriteriaParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsByCriteriaNoContent, *SelectAllRecordsByCriteriaNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSelectAllRecordsByCriteriaParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "selectAllRecordsByCriteria",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/selectAllByCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SelectAllRecordsByCriteriaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SelectAllRecordsByCriteriaNoContent:
+		return v, nil, nil
+
+	case *SelectAllRecordsByCriteriaNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SelectAllRecordsByCriteriaShort select all changes by criteria
+Select all changes by criteria
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
+*/
+func (a *Client) SelectAllRecordsByCriteriaShort(params *SelectAllRecordsByCriteriaParams, authInfo runtime.ClientAuthInfoWriter) (*SelectAllRecordsByCriteriaNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSelectAllRecordsByCriteriaParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "selectAllRecordsByCriteria",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/selectAllByCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SelectAllRecordsByCriteriaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SelectAllRecordsByCriteriaNoContent:
+		return v, nil
+	case *SelectAllRecordsByCriteriaNotFound:
 		return nil, v
 
 	default:

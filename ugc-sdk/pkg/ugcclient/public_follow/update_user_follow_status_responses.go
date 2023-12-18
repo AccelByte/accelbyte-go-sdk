@@ -45,12 +45,6 @@ func (o *UpdateUserFollowStatusReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewUpdateUserFollowStatusNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewUpdateUserFollowStatusInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +69,7 @@ func NewUpdateUserFollowStatusOK() *UpdateUserFollowStatusOK {
 
 /*UpdateUserFollowStatusOK handles this case with default header values.
 
-  OK
+  update status follow/unfollow status to a user
 */
 type UpdateUserFollowStatusOK struct {
 	Payload *ugcclientmodels.ModelsUserFollowResponse
@@ -128,7 +122,7 @@ func NewUpdateUserFollowStatusBadRequest() *UpdateUserFollowStatusBadRequest {
 
 /*UpdateUserFollowStatusBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771200</td><td>Malformed request</td></tr></table>
 */
 type UpdateUserFollowStatusBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +175,7 @@ func NewUpdateUserFollowStatusUnauthorized() *UpdateUserFollowStatusUnauthorized
 
 /*UpdateUserFollowStatusUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateUserFollowStatusUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,59 +221,6 @@ func (o *UpdateUserFollowStatusUnauthorized) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewUpdateUserFollowStatusNotFound creates a UpdateUserFollowStatusNotFound with default headers values
-func NewUpdateUserFollowStatusNotFound() *UpdateUserFollowStatusNotFound {
-	return &UpdateUserFollowStatusNotFound{}
-}
-
-/*UpdateUserFollowStatusNotFound handles this case with default header values.
-
-  Not Found
-*/
-type UpdateUserFollowStatusNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *UpdateUserFollowStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/follow][%d] updateUserFollowStatusNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *UpdateUserFollowStatusNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *UpdateUserFollowStatusNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *UpdateUserFollowStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewUpdateUserFollowStatusInternalServerError creates a UpdateUserFollowStatusInternalServerError with default headers values
 func NewUpdateUserFollowStatusInternalServerError() *UpdateUserFollowStatusInternalServerError {
 	return &UpdateUserFollowStatusInternalServerError{}
@@ -287,7 +228,7 @@ func NewUpdateUserFollowStatusInternalServerError() *UpdateUserFollowStatusInter
 
 /*UpdateUserFollowStatusInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771201</td><td>Unable to update follow status: database error</td></tr></table>
 */
 type UpdateUserFollowStatusInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

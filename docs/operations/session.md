@@ -126,6 +126,11 @@
 | `/session/v1/public/namespaces/{namespace}/users/me/attributes` | POST | PublicStorePlayerAttributesShort | [PublicStorePlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [PublicStorePlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [PublicStorePlayerAttributesShort](../../samples/cli/cmd/session/player/publicStorePlayerAttributes.go) |
 | `/session/v1/public/namespaces/{namespace}/users/me/attributes` | DELETE | PublicDeletePlayerAttributesShort | [PublicDeletePlayerAttributesShort](../../session-sdk/pkg/sessionclient/player/player_client.go) | [PublicDeletePlayerAttributesShort](../../services-api/pkg/service/session/player.go) | [PublicDeletePlayerAttributesShort](../../samples/cli/cmd/session/player/publicDeletePlayerAttributes.go) |
 
+### Recent Player Wrapper:  [RecentPlayer](../../services-api/pkg/service/session/recentPlayer.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/public/namespaces/{namespace}/recent-player/{userId}` | GET | PublicGetRecentPlayerShort | [PublicGetRecentPlayerShort](../../session-sdk/pkg/sessionclient/recent_player/recent_player_client.go) | [PublicGetRecentPlayerShort](../../services-api/pkg/service/session/recentPlayer.go) | [PublicGetRecentPlayerShort](../../samples/cli/cmd/session/recentPlayer/publicGetRecentPlayer.go) |
+
 
 &nbsp;  
 
@@ -184,7 +189,9 @@
 | `models.PartyMembers` | [ModelsPartyMembers ](../../session-sdk/pkg/sessionclientmodels/models_party_members.go) |
 | `models.PlatformCredentials` | [ModelsPlatformCredentials ](../../session-sdk/pkg/sessionclientmodels/models_platform_credentials.go) |
 | `models.PortConfigurationAMS` | [ModelsPortConfigurationAMS ](../../session-sdk/pkg/sessionclientmodels/models_port_configuration_a_m_s.go) |
+| `models.RecentPlayerQueryResponse` | [ModelsRecentPlayerQueryResponse ](../../session-sdk/pkg/sessionclientmodels/models_recent_player_query_response.go) |
 | `models.RequestReconcileMaxActiveSession` | [ModelsRequestReconcileMaxActiveSession ](../../session-sdk/pkg/sessionclientmodels/models_request_reconcile_max_active_session.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
+| `models.UserInfo` | [ModelsUserInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_info.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

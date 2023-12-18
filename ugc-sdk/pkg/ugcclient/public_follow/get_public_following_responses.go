@@ -33,14 +33,14 @@ func (o *GetPublicFollowingReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetPublicFollowingUnauthorized()
+	case 400:
+		result := NewGetPublicFollowingBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetPublicFollowingNotFound()
+	case 401:
+		result := NewGetPublicFollowingUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetPublicFollowingOK() *GetPublicFollowingOK {
 
 /*GetPublicFollowingOK handles this case with default header values.
 
-  OK
+  Get list of following
 */
 type GetPublicFollowingOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedCreatorOverviewResponse
@@ -115,6 +115,59 @@ func (o *GetPublicFollowingOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
+// NewGetPublicFollowingBadRequest creates a GetPublicFollowingBadRequest with default headers values
+func NewGetPublicFollowingBadRequest() *GetPublicFollowingBadRequest {
+	return &GetPublicFollowingBadRequest{}
+}
+
+/*GetPublicFollowingBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771304</td><td>invalid paging parameter</td></tr></table>
+*/
+type GetPublicFollowingBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetPublicFollowingBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetPublicFollowingBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetPublicFollowingBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetPublicFollowingBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetPublicFollowingUnauthorized creates a GetPublicFollowingUnauthorized with default headers values
 func NewGetPublicFollowingUnauthorized() *GetPublicFollowingUnauthorized {
 	return &GetPublicFollowingUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetPublicFollowingUnauthorized() *GetPublicFollowingUnauthorized {
 
 /*GetPublicFollowingUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetPublicFollowingUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetPublicFollowingUnauthorized) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewGetPublicFollowingNotFound creates a GetPublicFollowingNotFound with default headers values
-func NewGetPublicFollowingNotFound() *GetPublicFollowingNotFound {
-	return &GetPublicFollowingNotFound{}
-}
-
-/*GetPublicFollowingNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetPublicFollowingNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetPublicFollowingNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/users/{userId}/following][%d] getPublicFollowingNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetPublicFollowingNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetPublicFollowingNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetPublicFollowingNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetPublicFollowingInternalServerError creates a GetPublicFollowingInternalServerError with default headers values
 func NewGetPublicFollowingInternalServerError() *GetPublicFollowingInternalServerError {
 	return &GetPublicFollowingInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetPublicFollowingInternalServerError() *GetPublicFollowingInternalServe
 
 /*GetPublicFollowingInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771303</td><td>Unable to get creators: database error</td></tr></table>
 */
 type GetPublicFollowingInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

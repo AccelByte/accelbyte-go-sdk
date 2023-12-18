@@ -28,12 +28,14 @@ var AdminGetContentByChannelIDV2Cmd = &cobra.Command{
 		channelId, _ := cmd.Flags().GetString("channelId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		input := &admin_content_v2.AdminGetContentByChannelIDV2Params{
 			ChannelID: channelId,
 			Namespace: namespace,
 			Limit:     &limit,
+			Name:      &name,
 			Offset:    &offset,
 			SortBy:    &sortBy,
 		}
@@ -56,6 +58,7 @@ func init() {
 	AdminGetContentByChannelIDV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGetContentByChannelIDV2Cmd.MarkFlagRequired("namespace")
 	AdminGetContentByChannelIDV2Cmd.Flags().Int64("limit", 20, "Limit")
+	AdminGetContentByChannelIDV2Cmd.Flags().String("name", "", "Name")
 	AdminGetContentByChannelIDV2Cmd.Flags().Int64("offset", 0, "Offset")
 	AdminGetContentByChannelIDV2Cmd.Flags().String("sortBy", "", "Sort by")
 }

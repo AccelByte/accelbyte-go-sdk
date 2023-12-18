@@ -48,9 +48,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetPartyDataV1Short instead.
 
 AdminGetPartyDataV1 admin get party data
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]` with scope `social`
-
-get party data in a namespace.
+Get party data in a namespace.
 */
 func (a *Client) AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartyDataV1OK, *AdminGetPartyDataV1BadRequest, *AdminGetPartyDataV1Unauthorized, *AdminGetPartyDataV1Forbidden, *AdminGetPartyDataV1NotFound, *AdminGetPartyDataV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -110,9 +108,7 @@ func (a *Client) AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo
 
 /*
 AdminGetPartyDataV1Short admin get party data
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]` with scope `social`
-
-get party data in a namespace.
+Get party data in a namespace.
 */
 func (a *Client) AdminGetPartyDataV1Short(params *AdminGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartyDataV1OK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +165,7 @@ func (a *Client) AdminGetPartyDataV1Short(params *AdminGetPartyDataV1Params, aut
 Deprecated: 2022-08-10 - Use AdminGetUserPartyV1Short instead.
 
 AdminGetUserPartyV1 admin get user party data
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]` with scope `social`
-
-get party data in a namespace.
+Get party data in a namespace.
 */
 func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPartyV1OK, *AdminGetUserPartyV1BadRequest, *AdminGetUserPartyV1Unauthorized, *AdminGetUserPartyV1Forbidden, *AdminGetUserPartyV1NotFound, *AdminGetUserPartyV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -231,9 +225,7 @@ func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo
 
 /*
 AdminGetUserPartyV1Short admin get user party data
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]` with scope `social`
-
-get party data in a namespace.
+Get party data in a namespace.
 */
 func (a *Client) AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPartyV1OK, error) {
 	// TODO: Validate the params before sending

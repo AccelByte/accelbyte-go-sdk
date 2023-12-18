@@ -33,14 +33,14 @@ func (o *PublicSearchContentReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewPublicSearchContentUnauthorized()
+	case 400:
+		result := NewPublicSearchContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewPublicSearchContentNotFound()
+	case 401:
+		result := NewPublicSearchContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewPublicSearchContentOK() *PublicSearchContentOK {
 
 /*PublicSearchContentOK handles this case with default header values.
 
-  OK
+  Search contents
 */
 type PublicSearchContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *PublicSearchContentOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
+// NewPublicSearchContentBadRequest creates a PublicSearchContentBadRequest with default headers values
+func NewPublicSearchContentBadRequest() *PublicSearchContentBadRequest {
+	return &PublicSearchContentBadRequest{}
+}
+
+/*PublicSearchContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770800</td><td>invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter</td></tr></table>
+*/
+type PublicSearchContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *PublicSearchContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents][%d] publicSearchContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *PublicSearchContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicSearchContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicSearchContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicSearchContentUnauthorized creates a PublicSearchContentUnauthorized with default headers values
 func NewPublicSearchContentUnauthorized() *PublicSearchContentUnauthorized {
 	return &PublicSearchContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewPublicSearchContentUnauthorized() *PublicSearchContentUnauthorized {
 
 /*PublicSearchContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicSearchContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *PublicSearchContentUnauthorized) readResponse(response runtime.ClientRe
 	return nil
 }
 
-// NewPublicSearchContentNotFound creates a PublicSearchContentNotFound with default headers values
-func NewPublicSearchContentNotFound() *PublicSearchContentNotFound {
-	return &PublicSearchContentNotFound{}
-}
-
-/*PublicSearchContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type PublicSearchContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *PublicSearchContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents][%d] publicSearchContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *PublicSearchContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *PublicSearchContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *PublicSearchContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewPublicSearchContentInternalServerError creates a PublicSearchContentInternalServerError with default headers values
 func NewPublicSearchContentInternalServerError() *PublicSearchContentInternalServerError {
 	return &PublicSearchContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewPublicSearchContentInternalServerError() *PublicSearchContentInternalSer
 
 /*PublicSearchContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770803</td><td>Failed generate download URL</td></tr></table>
 */
 type PublicSearchContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

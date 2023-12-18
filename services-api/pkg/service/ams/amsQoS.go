@@ -30,35 +30,6 @@ func (aaa *AMSQoSService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use QoSRegionsUpdateShort instead.
-func (aaa *AMSQoSService) QoSRegionsUpdate(input *a_m_s_qo_s.QoSRegionsUpdateParams) error {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AmsQos.QoSRegionsUpdate(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return badRequest
-	}
-	if unauthorized != nil {
-		return unauthorized
-	}
-	if forbidden != nil {
-		return forbidden
-	}
-	if notFound != nil {
-		return notFound
-	}
-	if internalServerError != nil {
-		return internalServerError
-	}
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // Deprecated: 2022-01-10 - please use QoSRegionsGetShort instead.
 func (aaa *AMSQoSService) QoSRegionsGet(input *a_m_s_qo_s.QoSRegionsGetParams) (*amsclientmodels.APIQoSEndpointResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -85,24 +56,28 @@ func (aaa *AMSQoSService) QoSRegionsGet(input *a_m_s_qo_s.QoSRegionsGetParams) (
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AMSQoSService) QoSRegionsUpdateShort(input *a_m_s_qo_s.QoSRegionsUpdateParams) error {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+// Deprecated: 2022-01-10 - please use QoSRegionsUpdateShort instead.
+func (aaa *AMSQoSService) QoSRegionsUpdate(input *a_m_s_qo_s.QoSRegionsUpdateParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
 	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AmsQos.QoSRegionsUpdate(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
 	}
-
-	_, err := aaa.Client.AmsQos.QoSRegionsUpdateShort(input, authInfoWriter)
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
 	if err != nil {
 		return err
 	}
@@ -133,4 +108,29 @@ func (aaa *AMSQoSService) QoSRegionsGetShort(input *a_m_s_qo_s.QoSRegionsGetPara
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AMSQoSService) QoSRegionsUpdateShort(input *a_m_s_qo_s.QoSRegionsUpdateParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AmsQos.QoSRegionsUpdateShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -69,7 +69,7 @@ func NewAdminCreateGroupCreated() *AdminCreateGroupCreated {
 
 /*AdminCreateGroupCreated handles this case with default header values.
 
-  Created
+  groups created
 */
 type AdminCreateGroupCreated struct {
 	Payload *ugcclientmodels.ModelsCreateGroupResponse
@@ -122,7 +122,7 @@ func NewAdminCreateGroupBadRequest() *AdminCreateGroupBadRequest {
 
 /*AdminCreateGroupBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772101</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminCreateGroupBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewAdminCreateGroupUnauthorized() *AdminCreateGroupUnauthorized {
 
 /*AdminCreateGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminCreateGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewAdminCreateGroupInternalServerError() *AdminCreateGroupInternalServerErr
 
 /*AdminCreateGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772102</td><td>Unable to create group</td></tr></table>
 */
 type AdminCreateGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

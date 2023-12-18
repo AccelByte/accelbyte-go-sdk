@@ -45,6 +45,12 @@ func (o *AdminGenerateOfficialContentUploadURLV2Reader) ReadResponse(response ru
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminGenerateOfficialContentUploadURLV2NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminGenerateOfficialContentUploadURLV2InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewAdminGenerateOfficialContentUploadURLV2OK() *AdminGenerateOfficialConten
 
 /*AdminGenerateOfficialContentUploadURLV2OK handles this case with default header values.
 
-  OK
+  official content upload URL generated
 */
 type AdminGenerateOfficialContentUploadURLV2OK struct {
 	Payload *ugcclientmodels.ModelsGenerateContentUploadURLResponse
@@ -122,7 +128,7 @@ func NewAdminGenerateOfficialContentUploadURLV2BadRequest() *AdminGenerateOffici
 
 /*AdminGenerateOfficialContentUploadURLV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type AdminGenerateOfficialContentUploadURLV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewAdminGenerateOfficialContentUploadURLV2Unauthorized() *AdminGenerateOffi
 
 /*AdminGenerateOfficialContentUploadURLV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGenerateOfficialContentUploadURLV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *AdminGenerateOfficialContentUploadURLV2Unauthorized) readResponse(respo
 	return nil
 }
 
+// NewAdminGenerateOfficialContentUploadURLV2NotFound creates a AdminGenerateOfficialContentUploadURLV2NotFound with default headers values
+func NewAdminGenerateOfficialContentUploadURLV2NotFound() *AdminGenerateOfficialContentUploadURLV2NotFound {
+	return &AdminGenerateOfficialContentUploadURLV2NotFound{}
+}
+
+/*AdminGenerateOfficialContentUploadURLV2NotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
+*/
+type AdminGenerateOfficialContentUploadURLV2NotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGenerateOfficialContentUploadURLV2NotFound) Error() string {
+	return fmt.Sprintf("[PATCH /ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/uploadUrl][%d] adminGenerateOfficialContentUploadUrlV2NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminGenerateOfficialContentUploadURLV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGenerateOfficialContentUploadURLV2NotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGenerateOfficialContentUploadURLV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGenerateOfficialContentUploadURLV2InternalServerError creates a AdminGenerateOfficialContentUploadURLV2InternalServerError with default headers values
 func NewAdminGenerateOfficialContentUploadURLV2InternalServerError() *AdminGenerateOfficialContentUploadURLV2InternalServerError {
 	return &AdminGenerateOfficialContentUploadURLV2InternalServerError{}
@@ -228,7 +287,7 @@ func NewAdminGenerateOfficialContentUploadURLV2InternalServerError() *AdminGener
 
 /*AdminGenerateOfficialContentUploadURLV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr><tr><td>772605</td><td>Unable to save ugc content: failed generate upload URL</td></tr></table>
 */
 type AdminGenerateOfficialContentUploadURLV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

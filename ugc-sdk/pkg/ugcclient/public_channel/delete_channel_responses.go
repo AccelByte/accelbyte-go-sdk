@@ -69,7 +69,7 @@ func NewDeleteChannelNoContent() *DeleteChannelNoContent {
 
 /*DeleteChannelNoContent handles this case with default header values.
 
-  No Content
+  Channel deleted
 */
 type DeleteChannelNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewDeleteChannelUnauthorized() *DeleteChannelUnauthorized {
 
 /*DeleteChannelUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteChannelUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewDeleteChannelNotFound() *DeleteChannelNotFound {
 
 /*DeleteChannelNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772502</td><td>Channel not found</td></tr></table>
 */
 type DeleteChannelNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewDeleteChannelInternalServerError() *DeleteChannelInternalServerError {
 
 /*DeleteChannelInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772501</td><td>Unable to delete channel</td></tr></table>
 */
 type DeleteChannelInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

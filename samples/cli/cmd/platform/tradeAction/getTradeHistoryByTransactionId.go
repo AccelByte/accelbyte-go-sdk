@@ -31,14 +31,14 @@ var GetTradeHistoryByTransactionIdCmd = &cobra.Command{
 			Namespace:     namespace,
 			TransactionID: transactionId,
 		}
-		errOK := tradeActionService.GetTradeHistoryByTransactionIDShort(input)
+		ok, errOK := tradeActionService.GetTradeHistoryByTransactionIDShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

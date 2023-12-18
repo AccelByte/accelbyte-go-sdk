@@ -104,10 +104,15 @@ type PublicGetContentByChannelIDV2Params struct {
 	*/
 	Namespace string
 	/*Limit
-	  number of content per page
+	  number of content per page. max limit: -1 (-1 means unlimited).
 
 	*/
 	Limit *int64
+	/*Name
+	  content name
+
+	*/
+	Name *string
 	/*Offset
 	  the offset number to retrieve
 
@@ -211,6 +216,17 @@ func (o *PublicGetContentByChannelIDV2Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithName adds the name to the public get content by channel idv2 params
+func (o *PublicGetContentByChannelIDV2Params) WithName(name *string) *PublicGetContentByChannelIDV2Params {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the public get content by channel idv2 params
+func (o *PublicGetContentByChannelIDV2Params) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the public get content by channel idv2 params
 func (o *PublicGetContentByChannelIDV2Params) WithOffset(offset *int64) *PublicGetContentByChannelIDV2Params {
 	o.SetOffset(offset)
@@ -261,6 +277,22 @@ func (o *PublicGetContentByChannelIDV2Params) WriteToRequest(r runtime.ClientReq
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

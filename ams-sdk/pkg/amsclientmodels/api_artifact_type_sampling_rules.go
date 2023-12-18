@@ -13,22 +13,22 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIArtifactTypeSamplingRulesResponse Api artifact type sampling rules response
+// APIArtifactTypeSamplingRules Api artifact type sampling rules
 //
-// swagger:model Api artifact type sampling rules response.
-type APIArtifactTypeSamplingRulesResponse struct {
+// swagger:model Api artifact type sampling rules.
+type APIArtifactTypeSamplingRules struct {
 
 	// crashed
 	// Required: true
-	Crashed *APIArtifactSamplingRuleResponse `json:"crashed"`
+	Crashed *APIArtifactSamplingRule `json:"crashed"`
 
 	// success
 	// Required: true
-	Success *APIArtifactSamplingRuleResponse `json:"success"`
+	Success *APIArtifactSamplingRule `json:"success"`
 }
 
-// Validate validates this Api artifact type sampling rules response
-func (m *APIArtifactTypeSamplingRulesResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this Api artifact type sampling rules
+func (m *APIArtifactTypeSamplingRules) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCrashed(formats); err != nil {
@@ -44,7 +44,7 @@ func (m *APIArtifactTypeSamplingRulesResponse) Validate(formats strfmt.Registry)
 	return nil
 }
 
-func (m *APIArtifactTypeSamplingRulesResponse) validateCrashed(formats strfmt.Registry) error {
+func (m *APIArtifactTypeSamplingRules) validateCrashed(formats strfmt.Registry) error {
 
 	if err := validate.Required("crashed", "body", m.Crashed); err != nil {
 		return err
@@ -62,7 +62,7 @@ func (m *APIArtifactTypeSamplingRulesResponse) validateCrashed(formats strfmt.Re
 	return nil
 }
 
-func (m *APIArtifactTypeSamplingRulesResponse) validateSuccess(formats strfmt.Registry) error {
+func (m *APIArtifactTypeSamplingRules) validateSuccess(formats strfmt.Registry) error {
 
 	if err := validate.Required("success", "body", m.Success); err != nil {
 		return err
@@ -81,7 +81,7 @@ func (m *APIArtifactTypeSamplingRulesResponse) validateSuccess(formats strfmt.Re
 }
 
 // MarshalBinary interface implementation
-func (m *APIArtifactTypeSamplingRulesResponse) MarshalBinary() ([]byte, error) {
+func (m *APIArtifactTypeSamplingRules) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -89,8 +89,8 @@ func (m *APIArtifactTypeSamplingRulesResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIArtifactTypeSamplingRulesResponse) UnmarshalBinary(b []byte) error {
-	var res APIArtifactTypeSamplingRulesResponse
+func (m *APIArtifactTypeSamplingRules) UnmarshalBinary(b []byte) error {
+	var res APIArtifactTypeSamplingRules
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

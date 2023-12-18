@@ -31,7 +31,7 @@ func (aaa *CatalogChangesService) GetAuthSession() auth.Session {
 }
 
 // Deprecated: 2022-01-10 - please use QueryChangesShort instead.
-func (aaa *CatalogChangesService) QueryChanges(input *catalog_changes.QueryChangesParams) (*platformclientmodels.CatalogChangePagingSlicedResult, error) {
+func (aaa *CatalogChangesService) QueryChanges(input *catalog_changes.QueryChangesParams) (*platformclientmodels.CatalogChangePagingResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -94,6 +94,23 @@ func (aaa *CatalogChangesService) SelectAllRecords(input *catalog_changes.Select
 		return err
 	}
 	_, notFound, err := aaa.Client.CatalogChanges.SelectAllRecords(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use SelectAllRecordsByCriteriaShort instead.
+func (aaa *CatalogChangesService) SelectAllRecordsByCriteria(input *catalog_changes.SelectAllRecordsByCriteriaParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, notFound, err := aaa.Client.CatalogChanges.SelectAllRecordsByCriteria(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -172,7 +189,7 @@ func (aaa *CatalogChangesService) UnselectRecord(input *catalog_changes.Unselect
 	return nil
 }
 
-func (aaa *CatalogChangesService) QueryChangesShort(input *catalog_changes.QueryChangesParams) (*platformclientmodels.CatalogChangePagingSlicedResult, error) {
+func (aaa *CatalogChangesService) QueryChangesShort(input *catalog_changes.QueryChangesParams) (*platformclientmodels.CatalogChangePagingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -265,6 +282,31 @@ func (aaa *CatalogChangesService) SelectAllRecordsShort(input *catalog_changes.S
 	}
 
 	_, err := aaa.Client.CatalogChanges.SelectAllRecordsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *CatalogChangesService) SelectAllRecordsByCriteriaShort(input *catalog_changes.SelectAllRecordsByCriteriaParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.CatalogChanges.SelectAllRecordsByCriteriaShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

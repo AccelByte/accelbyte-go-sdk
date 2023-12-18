@@ -188,6 +188,7 @@
 | `/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link` | GET | PublicWebLinkPlatformShort | [PublicWebLinkPlatformShort](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicWebLinkPlatformShort](../../services-api/pkg/service/iam/users.go) | [PublicWebLinkPlatformShort](../../samples/cli/cmd/iam/users/publicWebLinkPlatform.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/establish` | GET | PublicWebLinkPlatformEstablishShort | [PublicWebLinkPlatformEstablishShort](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicWebLinkPlatformEstablishShort](../../services-api/pkg/service/iam/users.go) | [PublicWebLinkPlatformEstablishShort](../../samples/cli/cmd/iam/users/publicWebLinkPlatformEstablish.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/process` | POST | PublicProcessWebLinkPlatformV3Short | [PublicProcessWebLinkPlatformV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicProcessWebLinkPlatformV3Short](../../services-api/pkg/service/iam/users.go) | [PublicProcessWebLinkPlatformV3Short](../../samples/cli/cmd/iam/users/publicProcessWebLinkPlatformV3.go) |
+| `/iam/v3/public/namespaces/{namespace}/users/platforms` | POST | PublicGetUsersPlatformInfosV3Short | [PublicGetUsersPlatformInfosV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetUsersPlatformInfosV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetUsersPlatformInfosV3Short](../../samples/cli/cmd/iam/users/publicGetUsersPlatformInfosV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/reset` | POST | ResetPasswordV3Short | [ResetPasswordV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [ResetPasswordV3Short](../../services-api/pkg/service/iam/users.go) | [ResetPasswordV3Short](../../samples/cli/cmd/iam/users/resetPasswordV3.go) |
 | [DEPRECATED] `/iam/v3/public/namespaces/{namespace}/users/{userId}` | GET | PublicGetUserByUserIdV3Short | [PublicGetUserByUserIdV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetUserByUserIdV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetUserByUserIdV3Short](../../samples/cli/cmd/iam/users/publicGetUserByUserIdV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/{userId}/bans` | GET | PublicGetUserBanHistoryV3Short | [PublicGetUserBanHistoryV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetUserBanHistoryV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetUserBanHistoryV3Short](../../samples/cli/cmd/iam/users/publicGetUserBanHistoryV3.go) |
@@ -344,6 +345,7 @@
 | `/iam/v3/oauth/platforms/{platformId}/token` | POST | PlatformTokenGrantV3Short | [PlatformTokenGrantV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [PlatformTokenGrantV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [PlatformTokenGrantV3Short](../../samples/cli/cmd/iam/oAuth20/platformTokenGrantV3.go) |
 | `/iam/v3/oauth/revocationlist` | GET | GetRevocationListV3Short | [GetRevocationListV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [GetRevocationListV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [GetRevocationListV3Short](../../samples/cli/cmd/iam/oAuth20/getRevocationListV3.go) |
 | `/iam/v3/oauth/revoke` | POST | TokenRevocationV3Short | [TokenRevocationV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [TokenRevocationV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [TokenRevocationV3Short](../../samples/cli/cmd/iam/oAuth20/tokenRevocationV3.go) |
+| `/iam/v3/oauth/simultaneousLogin` | POST | SimultaneousLoginV3Short | [SimultaneousLoginV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [SimultaneousLoginV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [SimultaneousLoginV3Short](../../samples/cli/cmd/iam/oAuth20/simultaneousLoginV3.go) |
 | `/iam/v3/oauth/token` | POST | TokenGrantV3Short | [TokenGrantV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [TokenGrantV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [TokenGrantV3Short](../../samples/cli/cmd/iam/oAuth20/tokenGrantV3.go) |
 | `/iam/v3/oauth/verify` | POST | VerifyTokenV3Short | [VerifyTokenV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0/o_auth20_client.go) | [VerifyTokenV3Short](../../services-api/pkg/service/iam/oAuth20.go) | [VerifyTokenV3Short](../../samples/cli/cmd/iam/oAuth20/verifyTokenV3.go) |
 
@@ -378,6 +380,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/iam/v4/admin/namespaces/{namespace}/test_users` | POST | AdminCreateTestUsersV4Short | [AdminCreateTestUsersV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminCreateTestUsersV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminCreateTestUsersV4Short](../../samples/cli/cmd/iam/usersV4/adminCreateTestUsersV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/users/bulk/accountType` | PATCH | AdminBulkUpdateUserAccountTypeV4Short | [AdminBulkUpdateUserAccountTypeV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminBulkUpdateUserAccountTypeV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminBulkUpdateUserAccountTypeV4Short](../../samples/cli/cmd/iam/usersV4/adminBulkUpdateUserAccountTypeV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/bulk/validate` | POST | AdminBulkCheckValidUserIDV4Short | [AdminBulkCheckValidUserIDV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminBulkCheckValidUserIDV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminBulkCheckValidUserIDV4Short](../../samples/cli/cmd/iam/usersV4/adminBulkCheckValidUserIDV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}` | PUT | AdminUpdateUserV4Short | [AdminUpdateUserV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminUpdateUserV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminUpdateUserV4Short](../../samples/cli/cmd/iam/usersV4/adminUpdateUserV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/email` | PUT | AdminUpdateUserEmailAddressV4Short | [AdminUpdateUserEmailAddressV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminUpdateUserEmailAddressV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminUpdateUserEmailAddressV4Short](../../samples/cli/cmd/iam/usersV4/adminUpdateUserEmailAddressV4.go) |
@@ -523,6 +526,7 @@
 | `model.BackupCodesResponseV4` | [ModelBackupCodesResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_backup_codes_response_v4.go) |
 | `model.BanCreateRequest` | [ModelBanCreateRequest ](../../iam-sdk/pkg/iamclientmodels/model_ban_create_request.go) |
 | `model.BanUpdateRequest` | [ModelBanUpdateRequest ](../../iam-sdk/pkg/iamclientmodels/model_ban_update_request.go) |
+| `model.BulkAccountTypeUpdateRequestV4` | [ModelBulkAccountTypeUpdateRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_bulk_account_type_update_request_v4.go) |
 | `model.BulkBanCreateRequestV3` | [ModelBulkBanCreateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_bulk_ban_create_request_v3.go) |
 | `model.BulkUnbanCreateRequestV3` | [ModelBulkUnbanCreateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_bulk_unban_create_request_v3.go) |
 | `model.CheckValidUserIDRequestV4` | [ModelCheckValidUserIDRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_check_valid_user_id_request_v4.go) |
@@ -667,6 +671,7 @@
 | `model.UserPasswordUpdateV3Request` | [ModelUserPasswordUpdateV3Request ](../../iam-sdk/pkg/iamclientmodels/model_user_password_update_v3_request.go) |
 | `model.UserPermissionsResponseV3` | [ModelUserPermissionsResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_permissions_response_v3.go) |
 | `model.UserPlatformInfo` | [ModelUserPlatformInfo ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_info.go) |
+| `model.UserPlatformInfos` | [ModelUserPlatformInfos ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_infos.go) |
 | `model.UserPlatformMetadata` | [ModelUserPlatformMetadata ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_metadata.go) |
 | `model.UserPublicInfoResponseV4` | [ModelUserPublicInfoResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_user_public_info_response_v4.go) |
 | `model.UserResponse` | [ModelUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_user_response.go) |
@@ -677,6 +682,8 @@
 | `model.UserVerificationRequest` | [ModelUserVerificationRequest ](../../iam-sdk/pkg/iamclientmodels/model_user_verification_request.go) |
 | `model.UserVerificationRequestV3` | [ModelUserVerificationRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_verification_request_v3.go) |
 | `model.UserWithPlatformInfo` | [ModelUserWithPlatformInfo ](../../iam-sdk/pkg/iamclientmodels/model_user_with_platform_info.go) |
+| `model.UsersPlatformInfosRequestV3` | [ModelUsersPlatformInfosRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_users_platform_infos_request_v3.go) |
+| `model.UsersPlatformInfosResponse` | [ModelUsersPlatformInfosResponse ](../../iam-sdk/pkg/iamclientmodels/model_users_platform_infos_response.go) |
 | `model.ValidUserIDResponseV4` | [ModelValidUserIDResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_valid_user_id_response_v4.go) |
 | `model.ValidationDetail` | [ModelValidationDetail ](../../iam-sdk/pkg/iamclientmodels/model_validation_detail.go) |
 | `model.ValidationDetailPublic` | [ModelValidationDetailPublic ](../../iam-sdk/pkg/iamclientmodels/model_validation_detail_public.go) |

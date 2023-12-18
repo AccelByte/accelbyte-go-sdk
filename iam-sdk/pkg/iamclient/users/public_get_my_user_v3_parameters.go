@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicGetMyUserV3Params creates a new PublicGetMyUserV3Params object
 // with the default values initialized.
 func NewPublicGetMyUserV3Params() *PublicGetMyUserV3Params {
-	var ()
+	var (
+		includeAllPlatformsDefault = bool(false)
+	)
 	return &PublicGetMyUserV3Params{
+		IncludeAllPlatforms: &includeAllPlatformsDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewPublicGetMyUserV3Params() *PublicGetMyUserV3Params {
 // NewPublicGetMyUserV3ParamsWithTimeout creates a new PublicGetMyUserV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGetMyUserV3ParamsWithTimeout(timeout time.Duration) *PublicGetMyUserV3Params {
-	var ()
+	var (
+		includeAllPlatformsDefault = bool(false)
+	)
 	return &PublicGetMyUserV3Params{
+		IncludeAllPlatforms: &includeAllPlatformsDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewPublicGetMyUserV3ParamsWithTimeout(timeout time.Duration) *PublicGetMyUs
 // NewPublicGetMyUserV3ParamsWithContext creates a new PublicGetMyUserV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGetMyUserV3ParamsWithContext(ctx context.Context) *PublicGetMyUserV3Params {
-	var ()
+	var (
+		includeAllPlatformsDefault = bool(false)
+	)
 	return &PublicGetMyUserV3Params{
+		IncludeAllPlatforms: &includeAllPlatformsDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewPublicGetMyUserV3ParamsWithContext(ctx context.Context) *PublicGetMyUser
 // NewPublicGetMyUserV3ParamsWithHTTPClient creates a new PublicGetMyUserV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGetMyUserV3ParamsWithHTTPClient(client *http.Client) *PublicGetMyUserV3Params {
-	var ()
+	var (
+		includeAllPlatformsDefault = bool(false)
+	)
 	return &PublicGetMyUserV3Params{
-		HTTPClient: client,
+		IncludeAllPlatforms: &includeAllPlatformsDefault,
+		HTTPClient:          client,
 	}
 }
 
@@ -64,6 +77,11 @@ type PublicGetMyUserV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*IncludeAllPlatforms
+	  include all linked platform infos
+
+	*/
+	IncludeAllPlatforms *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -118,6 +136,17 @@ func (o *PublicGetMyUserV3Params) SetHTTPClientTransport(roundTripper http.Round
 	}
 }
 
+// WithIncludeAllPlatforms adds the includeAllPlatforms to the public get my user v3 params
+func (o *PublicGetMyUserV3Params) WithIncludeAllPlatforms(includeAllPlatforms *bool) *PublicGetMyUserV3Params {
+	o.SetIncludeAllPlatforms(includeAllPlatforms)
+	return o
+}
+
+// SetIncludeAllPlatforms adds the includeAllPlatforms to the public get my user v3 params
+func (o *PublicGetMyUserV3Params) SetIncludeAllPlatforms(includeAllPlatforms *bool) {
+	o.IncludeAllPlatforms = includeAllPlatforms
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicGetMyUserV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -125,6 +154,22 @@ func (o *PublicGetMyUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.IncludeAllPlatforms != nil {
+
+		// query param includeAllPlatforms
+		var qrIncludeAllPlatforms bool
+		if o.IncludeAllPlatforms != nil {
+			qrIncludeAllPlatforms = *o.IncludeAllPlatforms
+		}
+		qIncludeAllPlatforms := swag.FormatBool(qrIncludeAllPlatforms)
+		if qIncludeAllPlatforms != "" {
+			if err := r.SetQueryParam("includeAllPlatforms", qIncludeAllPlatforms); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// setting the default header value
 	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {

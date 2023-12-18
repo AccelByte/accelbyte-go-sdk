@@ -69,7 +69,7 @@ func NewPublicDownloadContentByShareCodeOK() *PublicDownloadContentByShareCodeOK
 
 /*PublicDownloadContentByShareCodeOK handles this case with default header values.
 
-  OK
+  Get content by sharecode
 */
 type PublicDownloadContentByShareCodeOK struct {
 	Payload *ugcclientmodels.ModelsContentDownloadResponse
@@ -122,7 +122,7 @@ func NewPublicDownloadContentByShareCodeUnauthorized() *PublicDownloadContentByS
 
 /*PublicDownloadContentByShareCodeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicDownloadContentByShareCodeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicDownloadContentByShareCodeNotFound() *PublicDownloadContentByShare
 
 /*PublicDownloadContentByShareCodeNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770300</td><td>ugc content not found</td></tr></table>
 */
 type PublicDownloadContentByShareCodeNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicDownloadContentByShareCodeInternalServerError() *PublicDownloadCon
 
 /*PublicDownloadContentByShareCodeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770301</td><td>Unable to get ugc content/Unable to get creator</td></tr><tr><td>770303</td><td>Failed generate download URL</td></tr></table>
 */
 type PublicDownloadContentByShareCodeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

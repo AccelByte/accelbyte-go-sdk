@@ -45,6 +45,12 @@ func (o *AdminUpdateContentS3ByShareCodeReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminUpdateContentS3ByShareCodeForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminUpdateContentS3ByShareCodeNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +87,7 @@ func NewAdminUpdateContentS3ByShareCodeOK() *AdminUpdateContentS3ByShareCodeOK {
 
 /*AdminUpdateContentS3ByShareCodeOK handles this case with default header values.
 
-  OK
+  Content updated at s3
 */
 type AdminUpdateContentS3ByShareCodeOK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -134,7 +140,7 @@ func NewAdminUpdateContentS3ByShareCodeBadRequest() *AdminUpdateContentS3ByShare
 
 /*AdminUpdateContentS3ByShareCodeBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr><tr><td>770107</td><td>Unable to update ugc content: invalid shareCode format</td></tr></table>
 */
 type AdminUpdateContentS3ByShareCodeBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -187,7 +193,7 @@ func NewAdminUpdateContentS3ByShareCodeUnauthorized() *AdminUpdateContentS3BySha
 
 /*AdminUpdateContentS3ByShareCodeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateContentS3ByShareCodeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -233,6 +239,59 @@ func (o *AdminUpdateContentS3ByShareCodeUnauthorized) readResponse(response runt
 	return nil
 }
 
+// NewAdminUpdateContentS3ByShareCodeForbidden creates a AdminUpdateContentS3ByShareCodeForbidden with default headers values
+func NewAdminUpdateContentS3ByShareCodeForbidden() *AdminUpdateContentS3ByShareCodeForbidden {
+	return &AdminUpdateContentS3ByShareCodeForbidden{}
+}
+
+/*AdminUpdateContentS3ByShareCodeForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type AdminUpdateContentS3ByShareCodeForbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminUpdateContentS3ByShareCodeForbidden) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}][%d] adminUpdateContentS3ByShareCodeForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminUpdateContentS3ByShareCodeForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUpdateContentS3ByShareCodeForbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUpdateContentS3ByShareCodeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminUpdateContentS3ByShareCodeNotFound creates a AdminUpdateContentS3ByShareCodeNotFound with default headers values
 func NewAdminUpdateContentS3ByShareCodeNotFound() *AdminUpdateContentS3ByShareCodeNotFound {
 	return &AdminUpdateContentS3ByShareCodeNotFound{}
@@ -240,7 +299,7 @@ func NewAdminUpdateContentS3ByShareCodeNotFound() *AdminUpdateContentS3ByShareCo
 
 /*AdminUpdateContentS3ByShareCodeNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type AdminUpdateContentS3ByShareCodeNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +352,7 @@ func NewAdminUpdateContentS3ByShareCodeConflict() *AdminUpdateContentS3ByShareCo
 
 /*AdminUpdateContentS3ByShareCodeConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772606</td><td>Share code already used</td></tr></table>
 */
 type AdminUpdateContentS3ByShareCodeConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +405,7 @@ func NewAdminUpdateContentS3ByShareCodeInternalServerError() *AdminUpdateContent
 
 /*AdminUpdateContentS3ByShareCodeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr><tr><td>772605</td><td>Unable to save ugc content: failed generate upload URL</td></tr></table>
 */
 type AdminUpdateContentS3ByShareCodeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

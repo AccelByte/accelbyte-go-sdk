@@ -69,7 +69,7 @@ func NewAdminGetGroupOK() *AdminGetGroupOK {
 
 /*AdminGetGroupOK handles this case with default header values.
 
-  OK
+  Get specific user group
 */
 type AdminGetGroupOK struct {
 	Payload *ugcclientmodels.ModelsCreateGroupResponse
@@ -122,7 +122,7 @@ func NewAdminGetGroupUnauthorized() *AdminGetGroupUnauthorized {
 
 /*AdminGetGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewAdminGetGroupNotFound() *AdminGetGroupNotFound {
 
 /*AdminGetGroupNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773002</td><td>Group not found</td></tr></table>
 */
 type AdminGetGroupNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewAdminGetGroupInternalServerError() *AdminGetGroupInternalServerError {
 
 /*AdminGetGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773001</td><td>Unable get group</td></tr></table>
 */
 type AdminGetGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

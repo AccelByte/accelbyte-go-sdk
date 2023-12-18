@@ -30,8 +30,6 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	FleetArtifactSamplingRulesGet(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, *FleetArtifactSamplingRulesGetBadRequest, *FleetArtifactSamplingRulesGetUnauthorized, *FleetArtifactSamplingRulesGetForbidden, *FleetArtifactSamplingRulesGetNotFound, *FleetArtifactSamplingRulesGetInternalServerError, error)
-	FleetArtifactSamplingRulesGetShort(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, error)
 	ImageList(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, *ImageListUnauthorized, *ImageListForbidden, *ImageListNotFound, *ImageListInternalServerError, error)
 	ImageListShort(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, error)
 	ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, *ImageGetUnauthorized, *ImageGetForbidden, *ImageGetNotFound, *ImageGetInternalServerError, error)
@@ -40,123 +38,6 @@ type ClientService interface {
 	ImagePatchShort(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-Deprecated: 2022-08-10 - Use FleetArtifactSamplingRulesGetShort instead.
-
-FleetArtifactSamplingRulesGet get the sampling rules for a fleet
-Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]
-*/
-func (a *Client) FleetArtifactSamplingRulesGet(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, *FleetArtifactSamplingRulesGetBadRequest, *FleetArtifactSamplingRulesGetUnauthorized, *FleetArtifactSamplingRulesGetForbidden, *FleetArtifactSamplingRulesGetNotFound, *FleetArtifactSamplingRulesGetInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFleetArtifactSamplingRulesGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "FleetArtifactSamplingRulesGet",
-		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FleetArtifactSamplingRulesGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FleetArtifactSamplingRulesGetOK:
-		return v, nil, nil, nil, nil, nil, nil
-
-	case *FleetArtifactSamplingRulesGetBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *FleetArtifactSamplingRulesGetUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *FleetArtifactSamplingRulesGetForbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *FleetArtifactSamplingRulesGetNotFound:
-		return nil, nil, nil, nil, v, nil, nil
-
-	case *FleetArtifactSamplingRulesGetInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-FleetArtifactSamplingRulesGetShort get the sampling rules for a fleet
-Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACTS [READ]
-*/
-func (a *Client) FleetArtifactSamplingRulesGetShort(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFleetArtifactSamplingRulesGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "FleetArtifactSamplingRulesGet",
-		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FleetArtifactSamplingRulesGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *FleetArtifactSamplingRulesGetOK:
-		return v, nil
-	case *FleetArtifactSamplingRulesGetBadRequest:
-		return nil, v
-	case *FleetArtifactSamplingRulesGetUnauthorized:
-		return nil, v
-	case *FleetArtifactSamplingRulesGetForbidden:
-		return nil, v
-	case *FleetArtifactSamplingRulesGetNotFound:
-		return nil, v
-	case *FleetArtifactSamplingRulesGetInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
 }
 
 /*

@@ -36,10 +36,7 @@ func (aaa *PublicDownloadCountLegacyService) AddDownloadCount(input *public_down
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicDownloadCountLegacy.AddDownloadCount(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicDownloadCountLegacy.AddDownloadCount(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

@@ -51,6 +51,12 @@ func (o *PublicRedeemCodeReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewPublicRedeemCodeTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -258,6 +264,59 @@ func (o *PublicRedeemCodeConflict) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *PublicRedeemCodeConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicRedeemCodeTooManyRequests creates a PublicRedeemCodeTooManyRequests with default headers values
+func NewPublicRedeemCodeTooManyRequests() *PublicRedeemCodeTooManyRequests {
+	return &PublicRedeemCodeTooManyRequests{}
+}
+
+/*PublicRedeemCodeTooManyRequests handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
+*/
+type PublicRedeemCodeTooManyRequests struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublicRedeemCodeTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] publicRedeemCodeTooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *PublicRedeemCodeTooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicRedeemCodeTooManyRequests) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicRedeemCodeTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

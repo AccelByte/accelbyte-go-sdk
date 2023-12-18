@@ -81,7 +81,7 @@ func NewAdminUpdateUserContentFileLocationOK() *AdminUpdateUserContentFileLocati
 
 /*AdminUpdateUserContentFileLocationOK handles this case with default header values.
 
-  OK
+  Update user content file location
 */
 type AdminUpdateUserContentFileLocationOK struct {
 	Payload *ugcclientmodels.ModelsUpdateContentResponseV2
@@ -134,7 +134,7 @@ func NewAdminUpdateUserContentFileLocationBadRequest() *AdminUpdateUserContentFi
 
 /*AdminUpdateUserContentFileLocationBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774001</td><td>unable to read response body/unable to update file location</td></tr></table>
 */
 type AdminUpdateUserContentFileLocationBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -187,7 +187,7 @@ func NewAdminUpdateUserContentFileLocationUnauthorized() *AdminUpdateUserContent
 
 /*AdminUpdateUserContentFileLocationUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateUserContentFileLocationUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -240,7 +240,7 @@ func NewAdminUpdateUserContentFileLocationForbidden() *AdminUpdateUserContentFil
 
 /*AdminUpdateUserContentFileLocationForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type AdminUpdateUserContentFileLocationForbidden struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +293,7 @@ func NewAdminUpdateUserContentFileLocationNotFound() *AdminUpdateUserContentFile
 
 /*AdminUpdateUserContentFileLocationNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774002</td><td>unable to update content file location: content not found</td></tr></table>
 */
 type AdminUpdateUserContentFileLocationNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +346,7 @@ func NewAdminUpdateUserContentFileLocationInternalServerError() *AdminUpdateUser
 
 /*AdminUpdateUserContentFileLocationInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774003</td><td>unable to update content file location</td></tr></table>
 */
 type AdminUpdateUserContentFileLocationInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

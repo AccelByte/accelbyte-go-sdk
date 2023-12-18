@@ -1458,9 +1458,7 @@ func (a *Client) UserUnfriendRequestShort(params *UserUnfriendRequestParams, aut
 Deprecated: 2022-08-10 - Use AddFriendsWithoutConfirmationShort instead.
 
 AddFriendsWithoutConfirmation add friends without confirmation
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]` with scope `social`
-
-friends request in a namespace.
+Friends request in a namespace.
 */
 func (a *Client) AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, *AddFriendsWithoutConfirmationBadRequest, *AddFriendsWithoutConfirmationUnauthorized, *AddFriendsWithoutConfirmationForbidden, *AddFriendsWithoutConfirmationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1517,9 +1515,7 @@ func (a *Client) AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirma
 
 /*
 AddFriendsWithoutConfirmationShort add friends without confirmation
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]` with scope `social`
-
-friends request in a namespace.
+Friends request in a namespace.
 */
 func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) (*AddFriendsWithoutConfirmationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1574,9 +1570,7 @@ func (a *Client) AddFriendsWithoutConfirmationShort(params *AddFriendsWithoutCon
 Deprecated: 2022-08-10 - Use BulkDeleteFriendsShort instead.
 
 BulkDeleteFriends delete friends, and incoming/outgoing friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]` with scope `social`
-
-friends request in a namespace.
+Friends request in a namespace.
 */
 func (a *Client) BulkDeleteFriends(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, *BulkDeleteFriendsBadRequest, *BulkDeleteFriendsUnauthorized, *BulkDeleteFriendsForbidden, *BulkDeleteFriendsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1633,9 +1627,7 @@ func (a *Client) BulkDeleteFriends(params *BulkDeleteFriendsParams, authInfo run
 
 /*
 BulkDeleteFriendsShort delete friends, and incoming/outgoing friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [DELETE]` with scope `social`
-
-friends request in a namespace.
+Friends request in a namespace.
 */
 func (a *Client) BulkDeleteFriendsShort(params *BulkDeleteFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDeleteFriendsOK, error) {
 	// TODO: Validate the params before sending
@@ -1814,9 +1806,7 @@ func (a *Client) SyncNativeFriendsShort(params *SyncNativeFriendsParams, authInf
 Deprecated: 2022-08-10 - Use GetListOfFriendsShort instead.
 
 GetListOfFriends get list of friends
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of friends in a namespace.
+Get list of friends in a namespace.
 */
 func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, *GetListOfFriendsBadRequest, *GetListOfFriendsUnauthorized, *GetListOfFriendsForbidden, *GetListOfFriendsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1873,9 +1863,7 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 
 /*
 GetListOfFriendsShort get list of friends
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of friends in a namespace.
+Get list of friends in a namespace.
 */
 func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, error) {
 	// TODO: Validate the params before sending
@@ -1930,9 +1918,7 @@ func (a *Client) GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo 
 Deprecated: 2022-08-10 - Use GetIncomingFriendRequestsShort instead.
 
 GetIncomingFriendRequests get incoming friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of incoming friend requests.
+Get list of incoming friend requests.
 */
 func (a *Client) GetIncomingFriendRequests(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, *GetIncomingFriendRequestsBadRequest, *GetIncomingFriendRequestsUnauthorized, *GetIncomingFriendRequestsForbidden, *GetIncomingFriendRequestsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1989,9 +1975,7 @@ func (a *Client) GetIncomingFriendRequests(params *GetIncomingFriendRequestsPara
 
 /*
 GetIncomingFriendRequestsShort get incoming friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of incoming friend requests.
+Get list of incoming friend requests.
 */
 func (a *Client) GetIncomingFriendRequestsShort(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, error) {
 	// TODO: Validate the params before sending
@@ -2046,9 +2030,7 @@ func (a *Client) GetIncomingFriendRequestsShort(params *GetIncomingFriendRequest
 Deprecated: 2022-08-10 - Use GetOutgoingFriendRequestsShort instead.
 
 GetOutgoingFriendRequests get list of outgoing friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of outgoing friend requests in a namespace.
+Get list of outgoing friend requests in a namespace.
 */
 func (a *Client) GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, *GetOutgoingFriendRequestsBadRequest, *GetOutgoingFriendRequestsUnauthorized, *GetOutgoingFriendRequestsForbidden, *GetOutgoingFriendRequestsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2105,9 +2087,7 @@ func (a *Client) GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsPara
 
 /*
 GetOutgoingFriendRequestsShort get list of outgoing friend requests
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]` with scope `social`
-
-get list of outgoing friend requests in a namespace.
+Get list of outgoing friend requests in a namespace.
 */
 func (a *Client) GetOutgoingFriendRequestsShort(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, error) {
 	// TODO: Validate the params before sending

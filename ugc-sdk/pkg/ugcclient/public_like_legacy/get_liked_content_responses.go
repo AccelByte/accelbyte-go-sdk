@@ -33,14 +33,14 @@ func (o *GetLikedContentReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetLikedContentUnauthorized()
+	case 400:
+		result := NewGetLikedContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetLikedContentNotFound()
+	case 401:
+		result := NewGetLikedContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetLikedContentOK() *GetLikedContentOK {
 
 /*GetLikedContentOK handles this case with default header values.
 
-  OK
+  Get liked contents
 */
 type GetLikedContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *GetLikedContentOK) readResponse(response runtime.ClientResponse, consum
 	return nil
 }
 
+// NewGetLikedContentBadRequest creates a GetLikedContentBadRequest with default headers values
+func NewGetLikedContentBadRequest() *GetLikedContentBadRequest {
+	return &GetLikedContentBadRequest{}
+}
+
+/*GetLikedContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771100</td><td>unable to parse isofficial param</td></tr></table>
+*/
+type GetLikedContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetLikedContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetLikedContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetLikedContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetLikedContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetLikedContentUnauthorized creates a GetLikedContentUnauthorized with default headers values
 func NewGetLikedContentUnauthorized() *GetLikedContentUnauthorized {
 	return &GetLikedContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetLikedContentUnauthorized() *GetLikedContentUnauthorized {
 
 /*GetLikedContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetLikedContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetLikedContentUnauthorized) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewGetLikedContentNotFound creates a GetLikedContentNotFound with default headers values
-func NewGetLikedContentNotFound() *GetLikedContentNotFound {
-	return &GetLikedContentNotFound{}
-}
-
-/*GetLikedContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetLikedContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetLikedContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/liked][%d] getLikedContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetLikedContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetLikedContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetLikedContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetLikedContentInternalServerError creates a GetLikedContentInternalServerError with default headers values
 func NewGetLikedContentInternalServerError() *GetLikedContentInternalServerError {
 	return &GetLikedContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetLikedContentInternalServerError() *GetLikedContentInternalServerError
 
 /*GetLikedContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771101</td><td>Unable to get ugc content: database error</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770803</td><td>Failed generate download URL</td></tr></table>
 */
 type GetLikedContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

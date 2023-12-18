@@ -36,7 +36,7 @@ type ClientService interface {
 	AdminDeleteAllUserContentsShort(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsNoContent, error)
 	AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error)
 	AdminDeleteAllUserGroupShort(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, error)
-	AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error)
+	AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesNotFound, *AdminDeleteAllUserStatesInternalServerError, error)
 	AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, error)
 	DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error)
 	DeleteAllUserChannelShort(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, error)
@@ -377,7 +377,7 @@ Deprecated: 2022-08-10 - Use AdminDeleteAllUserStatesShort instead.
 AdminDeleteAllUserStates remove all user related state: likes, downloads, followers, following
 Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]
 */
-func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error) {
+func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesNotFound, *AdminDeleteAllUserStatesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAllUserStatesParams()
@@ -413,10 +413,10 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 	case *AdminDeleteAllUserStatesNoContent:
 		return v, nil, nil, nil, nil
 
-	case *AdminDeleteAllUserStatesBadRequest:
+	case *AdminDeleteAllUserStatesUnauthorized:
 		return nil, v, nil, nil, nil
 
-	case *AdminDeleteAllUserStatesUnauthorized:
+	case *AdminDeleteAllUserStatesNotFound:
 		return nil, nil, v, nil, nil
 
 	case *AdminDeleteAllUserStatesInternalServerError:
@@ -466,9 +466,9 @@ func (a *Client) AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesP
 
 	case *AdminDeleteAllUserStatesNoContent:
 		return v, nil
-	case *AdminDeleteAllUserStatesBadRequest:
-		return nil, v
 	case *AdminDeleteAllUserStatesUnauthorized:
+		return nil, v
+	case *AdminDeleteAllUserStatesNotFound:
 		return nil, v
 	case *AdminDeleteAllUserStatesInternalServerError:
 		return nil, v

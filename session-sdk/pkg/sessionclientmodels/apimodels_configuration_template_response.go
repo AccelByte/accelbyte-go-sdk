@@ -49,8 +49,7 @@ type ApimodelsConfigurationTemplateResponse struct {
 	DsSource string `json:"dsSource,omitempty"`
 
 	// enablesecret
-	// Required: true
-	EnableSecret *bool `json:"enableSecret"`
+	EnableSecret bool `json:"enableSecret"`
 
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
@@ -75,6 +74,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// last
 	// Required: true
 	Last *string `json:"last"`
+
+	// leaderelectiongraceperiod
+	// Format: int32
+	LeaderElectionGracePeriod int32 `json:"leaderElectionGracePeriod,omitempty"`
 
 	// maxactivesessions
 	// Format: int32
@@ -138,9 +141,6 @@ func (m *ApimodelsConfigurationTemplateResponse) Validate(formats strfmt.Registr
 		res = append(res, err)
 	}
 	if err := m.validateDeployment(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateEnableSecret(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateInactiveTimeout(formats); err != nil {
@@ -207,15 +207,6 @@ func (m *ApimodelsConfigurationTemplateResponse) validateCreatedAt(formats strfm
 func (m *ApimodelsConfigurationTemplateResponse) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsConfigurationTemplateResponse) validateEnableSecret(formats strfmt.Registry) error {
-
-	if err := validate.Required("enableSecret", "body", m.EnableSecret); err != nil {
 		return err
 	}
 

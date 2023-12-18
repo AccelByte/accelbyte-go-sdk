@@ -104,12 +104,12 @@ func (aaa *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.A
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return badRequest
-	}
+	_, unauthorized, notFound, internalServerError, err := aaa.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError

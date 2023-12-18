@@ -44,9 +44,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminUpdatePartyAttributesV1Short instead.
 
 AdminUpdatePartyAttributesV1 admin update party attributes
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]` with scope `social`
-
-update party attributes in a namespace.
+Update party attributes in a namespace.
 */
 func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -109,9 +107,7 @@ func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributes
 
 /*
 AdminUpdatePartyAttributesV1Short admin update party attributes
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]` with scope `social`
-
-update party attributes in a namespace.
+Update party attributes in a namespace.
 */
 func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, error) {
 	// TODO: Validate the params before sending
@@ -170,9 +166,7 @@ func (a *Client) AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttri
 Deprecated: 2022-08-10 - Use AdminJoinPartyV1Short instead.
 
 AdminJoinPartyV1 admin join a player into a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]` with scope `social`
-
-admin join a player into a party.
+Admin join a player into a party.
 */
 func (a *Client) AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, *AdminJoinPartyV1BadRequest, *AdminJoinPartyV1Unauthorized, *AdminJoinPartyV1Forbidden, *AdminJoinPartyV1NotFound, *AdminJoinPartyV1PreconditionFailed, *AdminJoinPartyV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -235,9 +229,7 @@ func (a *Client) AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runti
 
 /*
 AdminJoinPartyV1Short admin join a player into a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]` with scope `social`
-
-admin join a player into a party.
+Admin join a player into a party.
 */
 func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, error) {
 	// TODO: Validate the params before sending

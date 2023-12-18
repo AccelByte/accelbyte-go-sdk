@@ -76,9 +76,9 @@ type PublicGetRolesV3Params struct {
 	*/
 	Before *string
 	/*IsWildcard
-	  - true if the expected result should only returns records with wildcard = true
-	          - false if the expected result should only returns records with wildcard = false
-	          - empty (omitted) if the expected result should returns records with no wildcard filter at all
+	    - true if the expected result should only returns records with wildcard = true
+	- false if the expected result should only returns records with wildcard = false
+	- empty (omitted) if the expected result should returns records with no wildcard filter at all
 
 
 	*/

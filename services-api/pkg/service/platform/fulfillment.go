@@ -90,6 +90,26 @@ func (aaa *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PreCheckFulfillItemShort instead.
+func (aaa *FulfillmentService) PreCheckFulfillItem(input *fulfillment.PreCheckFulfillItemParams) ([]*platformclientmodels.FulfillmentItem, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := aaa.Client.Fulfillment.PreCheckFulfillItem(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use FulfillRewardsShort instead.
 func (aaa *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -119,7 +139,7 @@ func (aaa *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemC
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := aaa.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, conflict, tooManyRequests, err := aaa.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -128,6 +148,9 @@ func (aaa *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemC
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if err != nil {
 		return nil, err
@@ -227,6 +250,31 @@ func (aaa *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodePara
 	}
 
 	ok, err := aaa.Client.Fulfillment.RedeemCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) PreCheckFulfillItemShort(input *fulfillment.PreCheckFulfillItemParams) ([]*platformclientmodels.FulfillmentItem, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Fulfillment.PreCheckFulfillItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

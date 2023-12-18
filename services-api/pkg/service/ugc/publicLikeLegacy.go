@@ -36,12 +36,12 @@ func (aaa *PublicLikeLegacyService) GetLikedContent(input *public_like_legacy.Ge
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.PublicLikeLegacy.GetLikedContent(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicLikeLegacy.GetLikedContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -59,12 +59,15 @@ func (aaa *PublicLikeLegacyService) UpdateContentLikeStatus(input *public_like_l
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicLikeLegacy.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.PublicLikeLegacy.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

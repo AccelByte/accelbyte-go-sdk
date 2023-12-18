@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package images
+package artifacts
 
 import (
 	"context"

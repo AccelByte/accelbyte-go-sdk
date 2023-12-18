@@ -45,6 +45,12 @@ func (o *SingleAdminUpdateContentDirectReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewSingleAdminUpdateContentDirectForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewSingleAdminUpdateContentDirectNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewSingleAdminUpdateContentDirectOK() *SingleAdminUpdateContentDirectOK {
 
 /*SingleAdminUpdateContentDirectOK handles this case with default header values.
 
-  OK
+  Content updated
 */
 type SingleAdminUpdateContentDirectOK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -128,7 +134,7 @@ func NewSingleAdminUpdateContentDirectBadRequest() *SingleAdminUpdateContentDire
 
 /*SingleAdminUpdateContentDirectBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type SingleAdminUpdateContentDirectBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +187,7 @@ func NewSingleAdminUpdateContentDirectUnauthorized() *SingleAdminUpdateContentDi
 
 /*SingleAdminUpdateContentDirectUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminUpdateContentDirectUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,6 +233,59 @@ func (o *SingleAdminUpdateContentDirectUnauthorized) readResponse(response runti
 	return nil
 }
 
+// NewSingleAdminUpdateContentDirectForbidden creates a SingleAdminUpdateContentDirectForbidden with default headers values
+func NewSingleAdminUpdateContentDirectForbidden() *SingleAdminUpdateContentDirectForbidden {
+	return &SingleAdminUpdateContentDirectForbidden{}
+}
+
+/*SingleAdminUpdateContentDirectForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type SingleAdminUpdateContentDirectForbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *SingleAdminUpdateContentDirectForbidden) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}][%d] singleAdminUpdateContentDirectForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *SingleAdminUpdateContentDirectForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SingleAdminUpdateContentDirectForbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *SingleAdminUpdateContentDirectForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewSingleAdminUpdateContentDirectNotFound creates a SingleAdminUpdateContentDirectNotFound with default headers values
 func NewSingleAdminUpdateContentDirectNotFound() *SingleAdminUpdateContentDirectNotFound {
 	return &SingleAdminUpdateContentDirectNotFound{}
@@ -234,7 +293,7 @@ func NewSingleAdminUpdateContentDirectNotFound() *SingleAdminUpdateContentDirect
 
 /*SingleAdminUpdateContentDirectNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type SingleAdminUpdateContentDirectNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +346,7 @@ func NewSingleAdminUpdateContentDirectInternalServerError() *SingleAdminUpdateCo
 
 /*SingleAdminUpdateContentDirectInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type SingleAdminUpdateContentDirectInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

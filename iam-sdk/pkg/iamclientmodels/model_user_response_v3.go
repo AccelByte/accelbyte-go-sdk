@@ -111,12 +111,18 @@ type ModelUserResponseV3 struct {
 	// platformid
 	PlatformID string `json:"platformId,omitempty"`
 
+	// platforminfos
+	PlatformInfos []*ModelUserPlatformInfo `json:"platformInfos,omitempty"`
+
 	// platformuserid
 	PlatformUserID string `json:"platformUserId,omitempty"`
 
 	// roles
 	// Required: true
 	Roles []string `json:"roles"`
+
+	// testaccount
+	TestAccount bool `json:"testAccount"`
 
 	// userid
 	// Required: true

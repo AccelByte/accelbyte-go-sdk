@@ -75,7 +75,7 @@ func NewAdminUpdateChannelOK() *AdminUpdateChannelOK {
 
 /*AdminUpdateChannelOK handles this case with default header values.
 
-  OK
+  Channel updated
 */
 type AdminUpdateChannelOK struct {
 	Payload *ugcclientmodels.ModelsChannelResponse
@@ -128,7 +128,7 @@ func NewAdminUpdateChannelBadRequest() *AdminUpdateChannelBadRequest {
 
 /*AdminUpdateChannelBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770600</td><td>Invalid request body</td></tr></table>
 */
 type AdminUpdateChannelBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +181,7 @@ func NewAdminUpdateChannelUnauthorized() *AdminUpdateChannelUnauthorized {
 
 /*AdminUpdateChannelUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateChannelUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +234,7 @@ func NewAdminUpdateChannelNotFound() *AdminUpdateChannelNotFound {
 
 /*AdminUpdateChannelNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770603</td><td>Channel was not found</td></tr></table>
 */
 type AdminUpdateChannelNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +287,7 @@ func NewAdminUpdateChannelInternalServerError() *AdminUpdateChannelInternalServe
 
 /*AdminUpdateChannelInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770602</td><td>Unable to save channel</td></tr></table>
 */
 type AdminUpdateChannelInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

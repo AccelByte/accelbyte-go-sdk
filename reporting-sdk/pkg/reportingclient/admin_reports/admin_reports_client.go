@@ -145,7 +145,6 @@ func (a *Client) ListReportsShort(params *ListReportsParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use AdminSubmitReportShort instead.
 
 AdminSubmitReport submit a report by admin
-Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 
@@ -153,12 +152,7 @@ Admin can only submit report once for each different user / object reported in t
 Reporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).
 
 Fill the 'reason' field with a 'reason title'
-Supported category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
+Supported category: - UGC - USER - CHAT - EXTENSION
 */
 func (a *Client) AdminSubmitReport(params *AdminSubmitReportParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitReportCreated, *AdminSubmitReportBadRequest, *AdminSubmitReportConflict, *AdminSubmitReportInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +206,6 @@ func (a *Client) AdminSubmitReport(params *AdminSubmitReportParams, authInfo run
 
 /*
 AdminSubmitReportShort submit a report by admin
-Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]
 Submit a report and will return ticket for reported object.
 New ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.
 
@@ -220,12 +213,7 @@ Admin can only submit report once for each different user / object reported in t
 Reporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).
 
 Fill the 'reason' field with a 'reason title'
-Supported category:
-
-  * UGC
-  * USER
-  * CHAT
-  * EXTENSION
+Supported category: - UGC - USER - CHAT - EXTENSION
 */
 func (a *Client) AdminSubmitReportShort(params *AdminSubmitReportParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitReportCreated, error) {
 	// TODO: Validate the params before sending

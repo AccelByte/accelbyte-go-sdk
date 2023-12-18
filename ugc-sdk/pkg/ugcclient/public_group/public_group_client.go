@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, *GetGroupsUnauthorized, *GetGroupsNotFound, *GetGroupsInternalServerError, error)
+	GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, *GetGroupsBadRequest, *GetGroupsUnauthorized, *GetGroupsInternalServerError, error)
 	GetGroupsShort(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, error)
 	CreateGroup(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, *CreateGroupBadRequest, *CreateGroupUnauthorized, *CreateGroupInternalServerError, error)
 	CreateGroupShort(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, error)
@@ -40,9 +40,9 @@ type ClientService interface {
 	UpdateGroupShort(params *UpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupOK, error)
 	DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error)
 	DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, error)
-	GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error)
+	GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentBadRequest, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error)
 	GetGroupContentShort(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, error)
-	PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error)
+	PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2BadRequest, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error)
 	PublicGetGroupContentsV2Short(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -54,7 +54,7 @@ Deprecated: 2022-08-10 - Use GetGroupsShort instead.
 GetGroups get all user groups
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
 */
-func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, *GetGroupsUnauthorized, *GetGroupsNotFound, *GetGroupsInternalServerError, error) {
+func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, *GetGroupsBadRequest, *GetGroupsUnauthorized, *GetGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGroupsParams()
@@ -90,10 +90,10 @@ func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthI
 	case *GetGroupsOK:
 		return v, nil, nil, nil, nil
 
-	case *GetGroupsUnauthorized:
+	case *GetGroupsBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetGroupsNotFound:
+	case *GetGroupsUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetGroupsInternalServerError:
@@ -143,9 +143,9 @@ func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.Client
 
 	case *GetGroupsOK:
 		return v, nil
-	case *GetGroupsUnauthorized:
+	case *GetGroupsBadRequest:
 		return nil, v
-	case *GetGroupsNotFound:
+	case *GetGroupsUnauthorized:
 		return nil, v
 	case *GetGroupsInternalServerError:
 		return nil, v
@@ -596,7 +596,7 @@ Deprecated: 2022-08-10 - Use GetGroupContentShort instead.
 GetGroupContent (legacy) get contents belong to a group
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error) {
+func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentBadRequest, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGroupContentParams()
@@ -624,25 +624,28 @@ func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGroupContentOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetGroupContentBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *GetGroupContentUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *GetGroupContentNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetGroupContentInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -685,6 +688,8 @@ func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo ru
 
 	case *GetGroupContentOK:
 		return v, nil
+	case *GetGroupContentBadRequest:
+		return nil, v
 	case *GetGroupContentUnauthorized:
 		return nil, v
 	case *GetGroupContentNotFound:
@@ -703,7 +708,7 @@ Deprecated: 2022-08-10 - Use PublicGetGroupContentsV2Short instead.
 PublicGetGroupContentsV2 get contents belong to a group
 Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
 */
-func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error) {
+func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2BadRequest, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetGroupContentsV2Params()
@@ -731,25 +736,28 @@ func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetGroupContentsV2OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetGroupContentsV2BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicGetGroupContentsV2Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicGetGroupContentsV2NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicGetGroupContentsV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -792,6 +800,8 @@ func (a *Client) PublicGetGroupContentsV2Short(params *PublicGetGroupContentsV2P
 
 	case *PublicGetGroupContentsV2OK:
 		return v, nil
+	case *PublicGetGroupContentsV2BadRequest:
+		return nil, v
 	case *PublicGetGroupContentsV2Unauthorized:
 		return nil, v
 	case *PublicGetGroupContentsV2NotFound:

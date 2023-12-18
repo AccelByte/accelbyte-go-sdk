@@ -69,7 +69,7 @@ func NewPublicCreateChannelCreated() *PublicCreateChannelCreated {
 
 /*PublicCreateChannelCreated handles this case with default header values.
 
-  Created
+  channel created
 */
 type PublicCreateChannelCreated struct {
 	Payload *ugcclientmodels.ModelsChannelResponse
@@ -122,7 +122,7 @@ func NewPublicCreateChannelBadRequest() *PublicCreateChannelBadRequest {
 
 /*PublicCreateChannelBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770500</td><td>Invalid request body</td></tr></table>
 */
 type PublicCreateChannelBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicCreateChannelUnauthorized() *PublicCreateChannelUnauthorized {
 
 /*PublicCreateChannelUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicCreateChannelUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicCreateChannelInternalServerError() *PublicCreateChannelInternalSer
 
 /*PublicCreateChannelInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770502</td><td>Unable to save channel</td></tr></table>
 */
 type PublicCreateChannelInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, *GetTypeUnauthorized, *GetTypeNotFound, *GetTypeInternalServerError, error)
+	GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, *GetTypeBadRequest, *GetTypeUnauthorized, *GetTypeInternalServerError, error)
 	GetTypeShort(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -42,7 +42,7 @@ Deprecated: 2022-08-10 - Use GetTypeShort instead.
 GetType get types
 Requires valid user token
 */
-func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, *GetTypeUnauthorized, *GetTypeNotFound, *GetTypeInternalServerError, error) {
+func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, *GetTypeBadRequest, *GetTypeUnauthorized, *GetTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTypeParams()
@@ -78,10 +78,10 @@ func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoW
 	case *GetTypeOK:
 		return v, nil, nil, nil, nil
 
-	case *GetTypeUnauthorized:
+	case *GetTypeBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetTypeNotFound:
+	case *GetTypeUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetTypeInternalServerError:
@@ -131,9 +131,9 @@ func (a *Client) GetTypeShort(params *GetTypeParams, authInfo runtime.ClientAuth
 
 	case *GetTypeOK:
 		return v, nil
-	case *GetTypeUnauthorized:
+	case *GetTypeBadRequest:
 		return nil, v
-	case *GetTypeNotFound:
+	case *GetTypeUnauthorized:
 		return nil, v
 	case *GetTypeInternalServerError:
 		return nil, v

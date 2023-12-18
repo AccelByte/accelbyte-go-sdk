@@ -69,7 +69,7 @@ func NewAdminDeleteAllUserGroupNoContent() *AdminDeleteAllUserGroupNoContent {
 
 /*AdminDeleteAllUserGroupNoContent handles this case with default header values.
 
-  No Content
+  Groups deleted
 */
 type AdminDeleteAllUserGroupNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewAdminDeleteAllUserGroupUnauthorized() *AdminDeleteAllUserGroupUnauthoriz
 
 /*AdminDeleteAllUserGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteAllUserGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewAdminDeleteAllUserGroupNotFound() *AdminDeleteAllUserGroupNotFound {
 
 /*AdminDeleteAllUserGroupNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773302</td><td>Groups not found</td></tr></table>
 */
 type AdminDeleteAllUserGroupNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewAdminDeleteAllUserGroupInternalServerError() *AdminDeleteAllUserGroupInt
 
 /*AdminDeleteAllUserGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773301</td><td>Unable to find all user group</td></tr></table>
 */
 type AdminDeleteAllUserGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

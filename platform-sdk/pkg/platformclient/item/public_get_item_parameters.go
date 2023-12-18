@@ -23,10 +23,12 @@ import (
 // with the default values initialized.
 func NewPublicGetItemParams() *PublicGetItemParams {
 	var (
-		populateBundleDefault = bool(false)
+		autoCalcEstimatedPriceDefault = bool(false)
+		populateBundleDefault         = bool(false)
 	)
 	return &PublicGetItemParams{
-		PopulateBundle: &populateBundleDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		PopulateBundle:         &populateBundleDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -36,10 +38,12 @@ func NewPublicGetItemParams() *PublicGetItemParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGetItemParamsWithTimeout(timeout time.Duration) *PublicGetItemParams {
 	var (
-		populateBundleDefault = bool(false)
+		autoCalcEstimatedPriceDefault = bool(false)
+		populateBundleDefault         = bool(false)
 	)
 	return &PublicGetItemParams{
-		PopulateBundle: &populateBundleDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		PopulateBundle:         &populateBundleDefault,
 
 		timeout: timeout,
 	}
@@ -49,10 +53,12 @@ func NewPublicGetItemParamsWithTimeout(timeout time.Duration) *PublicGetItemPara
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGetItemParamsWithContext(ctx context.Context) *PublicGetItemParams {
 	var (
-		populateBundleDefault = bool(false)
+		autoCalcEstimatedPriceDefault = bool(false)
+		populateBundleDefault         = bool(false)
 	)
 	return &PublicGetItemParams{
-		PopulateBundle: &populateBundleDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		PopulateBundle:         &populateBundleDefault,
 
 		Context: ctx,
 	}
@@ -62,11 +68,13 @@ func NewPublicGetItemParamsWithContext(ctx context.Context) *PublicGetItemParams
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGetItemParamsWithHTTPClient(client *http.Client) *PublicGetItemParams {
 	var (
-		populateBundleDefault = bool(false)
+		autoCalcEstimatedPriceDefault = bool(false)
+		populateBundleDefault         = bool(false)
 	)
 	return &PublicGetItemParams{
-		PopulateBundle: &populateBundleDefault,
-		HTTPClient:     client,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		PopulateBundle:         &populateBundleDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -84,6 +92,8 @@ type PublicGetItemParams struct {
 
 	*/
 	Namespace string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*Language*/
 	Language *string
 	/*PopulateBundle
@@ -174,6 +184,17 @@ func (o *PublicGetItemParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public get item params
+func (o *PublicGetItemParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicGetItemParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public get item params
+func (o *PublicGetItemParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
+}
+
 // WithLanguage adds the language to the public get item params
 func (o *PublicGetItemParams) WithLanguage(language *string) *PublicGetItemParams {
 	o.SetLanguage(language)
@@ -234,6 +255,22 @@ func (o *PublicGetItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Language != nil {

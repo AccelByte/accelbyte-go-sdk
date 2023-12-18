@@ -75,7 +75,7 @@ func NewAdminUpdateGroupOK() *AdminUpdateGroupOK {
 
 /*AdminUpdateGroupOK handles this case with default header values.
 
-  OK
+  Group updated
 */
 type AdminUpdateGroupOK struct {
 	Payload *ugcclientmodels.ModelsCreateGroupResponse
@@ -128,7 +128,7 @@ func NewAdminUpdateGroupBadRequest() *AdminUpdateGroupBadRequest {
 
 /*AdminUpdateGroupBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772201</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminUpdateGroupBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +181,7 @@ func NewAdminUpdateGroupUnauthorized() *AdminUpdateGroupUnauthorized {
 
 /*AdminUpdateGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +234,7 @@ func NewAdminUpdateGroupNotFound() *AdminUpdateGroupNotFound {
 
 /*AdminUpdateGroupNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772203</td><td>Group not found</td></tr></table>
 */
 type AdminUpdateGroupNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +287,7 @@ func NewAdminUpdateGroupInternalServerError() *AdminUpdateGroupInternalServerErr
 
 /*AdminUpdateGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772202</td><td>Unable to update group</td></tr></table>
 */
 type AdminUpdateGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

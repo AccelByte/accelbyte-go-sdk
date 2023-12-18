@@ -33,14 +33,14 @@ func (o *AdminGetTypeReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminGetTypeUnauthorized()
+	case 400:
+		result := NewAdminGetTypeBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminGetTypeNotFound()
+	case 401:
+		result := NewAdminGetTypeUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminGetTypeOK() *AdminGetTypeOK {
 
 /*AdminGetTypeOK handles this case with default header values.
 
-  OK
+  Get types
 */
 type AdminGetTypeOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGetTypeResponse
@@ -115,6 +115,59 @@ func (o *AdminGetTypeOK) readResponse(response runtime.ClientResponse, consumer 
 	return nil
 }
 
+// NewAdminGetTypeBadRequest creates a AdminGetTypeBadRequest with default headers values
+func NewAdminGetTypeBadRequest() *AdminGetTypeBadRequest {
+	return &AdminGetTypeBadRequest{}
+}
+
+/*AdminGetTypeBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771801</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetTypeBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetTypeBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetTypeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetTypeBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetTypeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetTypeUnauthorized creates a AdminGetTypeUnauthorized with default headers values
 func NewAdminGetTypeUnauthorized() *AdminGetTypeUnauthorized {
 	return &AdminGetTypeUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminGetTypeUnauthorized() *AdminGetTypeUnauthorized {
 
 /*AdminGetTypeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetTypeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminGetTypeUnauthorized) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
-// NewAdminGetTypeNotFound creates a AdminGetTypeNotFound with default headers values
-func NewAdminGetTypeNotFound() *AdminGetTypeNotFound {
-	return &AdminGetTypeNotFound{}
-}
-
-/*AdminGetTypeNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminGetTypeNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminGetTypeNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/types][%d] adminGetTypeNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminGetTypeNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminGetTypeNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminGetTypeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminGetTypeInternalServerError creates a AdminGetTypeInternalServerError with default headers values
 func NewAdminGetTypeInternalServerError() *AdminGetTypeInternalServerError {
 	return &AdminGetTypeInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminGetTypeInternalServerError() *AdminGetTypeInternalServerError {
 
 /*AdminGetTypeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771802</td><td>Unable get types</td></tr></table>
 */
 type AdminGetTypeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -69,7 +69,7 @@ func NewSingleAdminDeleteContentNoContent() *SingleAdminDeleteContentNoContent {
 
 /*SingleAdminDeleteContentNoContent handles this case with default header values.
 
-  No Content
+  Content deleted
 */
 type SingleAdminDeleteContentNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewSingleAdminDeleteContentUnauthorized() *SingleAdminDeleteContentUnauthor
 
 /*SingleAdminDeleteContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminDeleteContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewSingleAdminDeleteContentNotFound() *SingleAdminDeleteContentNotFound {
 
 /*SingleAdminDeleteContentNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772702</td><td>Content not found</td></tr></table>
 */
 type SingleAdminDeleteContentNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewSingleAdminDeleteContentInternalServerError() *SingleAdminDeleteContentI
 
 /*SingleAdminDeleteContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772701</td><td>Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state</td></tr></table>
 */
 type SingleAdminDeleteContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

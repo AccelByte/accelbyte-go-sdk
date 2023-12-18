@@ -92,8 +92,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use SendMultipleUsersFreeformNotificationV1AdminShort instead.
 
 SendMultipleUsersFreeformNotificationV1Admin send freeform notification to multiple users
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to multiple user.
 Action Code: 50211
 */
@@ -149,8 +147,6 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultip
 
 /*
 SendMultipleUsersFreeformNotificationV1AdminShort send freeform notification to multiple users
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to multiple user.
 Action Code: 50211
 */
@@ -205,8 +201,6 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1AdminShort(params *SendM
 Deprecated: 2022-08-10 - Use SendUsersFreeformNotificationV1AdminShort instead.
 
 SendUsersFreeformNotificationV1Admin send freeform notification to connected users
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace.
 
 Action Code: 50201
@@ -266,8 +260,6 @@ func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformN
 
 /*
 SendUsersFreeformNotificationV1AdminShort send freeform notification to connected users
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace.
 
 Action Code: 50201
@@ -325,8 +317,6 @@ func (a *Client) SendUsersFreeformNotificationV1AdminShort(params *SendUsersFree
 Deprecated: 2022-08-10 - Use SendPartyFreeformNotificationV1AdminShort instead.
 
 SendPartyFreeformNotificationV1Admin send freeform notification to a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a party.
 */
 func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, *SendPartyFreeformNotificationV1AdminBadRequest, *SendPartyFreeformNotificationV1AdminUnauthorized, *SendPartyFreeformNotificationV1AdminForbidden, *SendPartyFreeformNotificationV1AdminNotFound, error) {
@@ -384,8 +374,6 @@ func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformN
 
 /*
 SendPartyFreeformNotificationV1AdminShort send freeform notification to a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a party.
 */
 func (a *Client) SendPartyFreeformNotificationV1AdminShort(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, error) {
@@ -441,8 +429,6 @@ func (a *Client) SendPartyFreeformNotificationV1AdminShort(params *SendPartyFree
 Deprecated: 2022-08-10 - Use SendPartyTemplatedNotificationV1AdminShort instead.
 
 SendPartyTemplatedNotificationV1Admin send templated notification to a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends templated notification to a party.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -505,8 +491,6 @@ func (a *Client) SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplate
 
 /*
 SendPartyTemplatedNotificationV1AdminShort send templated notification to a party
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends templated notification to a party.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -567,8 +551,6 @@ func (a *Client) SendPartyTemplatedNotificationV1AdminShort(params *SendPartyTem
 Deprecated: 2022-08-10 - Use GetAllNotificationTemplatesV1AdminShort instead.
 
 GetAllNotificationTemplatesV1Admin get all notification template in a namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get all templates in a namespace
 
 Action Code: 50203
@@ -631,8 +613,6 @@ func (a *Client) GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTe
 
 /*
 GetAllNotificationTemplatesV1AdminShort get all notification template in a namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get all templates in a namespace
 
 Action Code: 50203
@@ -692,8 +672,6 @@ func (a *Client) GetAllNotificationTemplatesV1AdminShort(params *GetAllNotificat
 Deprecated: 2022-08-10 - Use CreateNotificationTemplateV1AdminShort instead.
 
 CreateNotificationTemplateV1Admin create new notification template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
 handlebars will be the key to be replaced when sending notification. Already existing template with the same
 slug and language can not be created.
@@ -760,8 +738,6 @@ func (a *Client) CreateNotificationTemplateV1Admin(params *CreateNotificationTem
 
 /*
 CreateNotificationTemplateV1AdminShort create new notification template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
 handlebars will be the key to be replaced when sending notification. Already existing template with the same
 slug and language can not be created.
@@ -825,8 +801,6 @@ func (a *Client) CreateNotificationTemplateV1AdminShort(params *CreateNotificati
 Deprecated: 2022-08-10 - Use SendUsersTemplatedNotificationV1AdminShort instead.
 
 SendUsersTemplatedNotificationV1Admin send notification to connected users with template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -891,8 +865,6 @@ func (a *Client) SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplate
 
 /*
 SendUsersTemplatedNotificationV1AdminShort send notification to connected users with template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to all connected users in a namespace with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -955,8 +927,6 @@ func (a *Client) SendUsersTemplatedNotificationV1AdminShort(params *SendUsersTem
 Deprecated: 2022-08-10 - Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead.
 
 GetTemplateSlugLocalizationsTemplateV1Admin get all notification template localization in a slug
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get all templates in a namespace
 
 Action Code: 50205
@@ -1016,8 +986,6 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplate
 
 /*
 GetTemplateSlugLocalizationsTemplateV1AdminShort get all notification template localization in a slug
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get all templates in a namespace
 
 Action Code: 50205
@@ -1075,8 +1043,6 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1AdminShort(params *GetTem
 Deprecated: 2022-08-10 - Use DeleteNotificationTemplateSlugV1AdminShort instead.
 
 DeleteNotificationTemplateSlugV1Admin delete template slug in notification template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
 Delete template slug in notification template
 
 Action Code: 50206
@@ -1136,8 +1102,6 @@ func (a *Client) DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificatio
 
 /*
 DeleteNotificationTemplateSlugV1AdminShort delete template slug in notification template
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
 Delete template slug in notification template
 
 Action Code: 50206
@@ -1195,8 +1159,6 @@ func (a *Client) DeleteNotificationTemplateSlugV1AdminShort(params *DeleteNotifi
 Deprecated: 2022-08-10 - Use GetSingleTemplateLocalizationV1AdminShort instead.
 
 GetSingleTemplateLocalizationV1Admin get a template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get a template localization
 
 Action Code: 50207
@@ -1256,8 +1218,6 @@ func (a *Client) GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateL
 
 /*
 GetSingleTemplateLocalizationV1AdminShort get a template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
 Get a template localization
 
 Action Code: 50207
@@ -1315,9 +1275,7 @@ func (a *Client) GetSingleTemplateLocalizationV1AdminShort(params *GetSingleTemp
 Deprecated: 2022-08-10 - Use UpdateTemplateLocalizationV1AdminShort instead.
 
 UpdateTemplateLocalizationV1Admin update template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]` with scope `social`
-
-update template localization
+Update template localization
 
 Action Code: 50208
 */
@@ -1379,9 +1337,7 @@ func (a *Client) UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocaliz
 
 /*
 UpdateTemplateLocalizationV1AdminShort update template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]` with scope `social`
-
-update template localization
+Update template localization
 
 Action Code: 50208
 */
@@ -1440,9 +1396,7 @@ func (a *Client) UpdateTemplateLocalizationV1AdminShort(params *UpdateTemplateLo
 Deprecated: 2022-08-10 - Use DeleteTemplateLocalizationV1AdminShort instead.
 
 DeleteTemplateLocalizationV1Admin delete template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
-delete template localization
+Delete template localization
 
 Action Code: 50209
 */
@@ -1501,9 +1455,7 @@ func (a *Client) DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocaliz
 
 /*
 DeleteTemplateLocalizationV1AdminShort delete template localization
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
-delete template localization
+Delete template localization
 
 Action Code: 50209
 */
@@ -1560,8 +1512,6 @@ func (a *Client) DeleteTemplateLocalizationV1AdminShort(params *DeleteTemplateLo
 Deprecated: 2022-08-10 - Use PublishTemplateLocalizationV1AdminShort instead.
 
 PublishTemplateLocalizationV1Admin publish template localization draft
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Publish notification template draft. Empty draft can not be published.
 
 Action Code: 50210
@@ -1621,8 +1571,6 @@ func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocal
 
 /*
 PublishTemplateLocalizationV1AdminShort publish template localization draft
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Publish notification template draft. Empty draft can not be published.
 
 Action Code: 50210
@@ -1680,9 +1628,7 @@ func (a *Client) PublishTemplateLocalizationV1AdminShort(params *PublishTemplate
 Deprecated: 2022-08-10 - Use GetAllNotificationTopicsV1AdminShort instead.
 
 GetAllNotificationTopicsV1Admin get topic by namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
-get topic by namespace.
+Get topic by namespace.
 
 Action Code: 50213
 */
@@ -1741,9 +1687,7 @@ func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopic
 
 /*
 GetAllNotificationTopicsV1AdminShort get topic by namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
-get topic by namespace.
+Get topic by namespace.
 
 Action Code: 50213
 */
@@ -1800,8 +1744,6 @@ func (a *Client) GetAllNotificationTopicsV1AdminShort(params *GetAllNotification
 Deprecated: 2022-08-10 - Use CreateNotificationTopicV1AdminShort instead.
 
 CreateNotificationTopicV1Admin create new notification topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Create new notification topic.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -1861,8 +1803,6 @@ func (a *Client) CreateNotificationTopicV1Admin(params *CreateNotificationTopicV
 
 /*
 CreateNotificationTopicV1AdminShort create new notification topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Create new notification topic.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -1921,9 +1861,7 @@ func (a *Client) CreateNotificationTopicV1AdminShort(params *CreateNotificationT
 Deprecated: 2022-08-10 - Use GetNotificationTopicV1AdminShort instead.
 
 GetNotificationTopicV1Admin get topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
-get topic information by topic name.
+Get topic information by topic name.
 
 Action Code: 50215
 */
@@ -1982,9 +1920,7 @@ func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1Admin
 
 /*
 GetNotificationTopicV1AdminShort get topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]` with scope `social`
-
-get topic information by topic name.
+Get topic information by topic name.
 
 Action Code: 50215
 */
@@ -2041,9 +1977,7 @@ func (a *Client) GetNotificationTopicV1AdminShort(params *GetNotificationTopicV1
 Deprecated: 2022-08-10 - Use UpdateNotificationTopicV1AdminShort instead.
 
 UpdateNotificationTopicV1Admin update topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]` with scope `social`
-
-update topic information by topic name.
+Update topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
 Already existing topic can not be created
@@ -2108,9 +2042,7 @@ func (a *Client) UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV
 
 /*
 UpdateNotificationTopicV1AdminShort update topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]` with scope `social`
-
-update topic information by topic name.
+Update topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
 Already existing topic can not be created
@@ -2172,9 +2104,7 @@ func (a *Client) UpdateNotificationTopicV1AdminShort(params *UpdateNotificationT
 Deprecated: 2022-08-10 - Use DeleteNotificationTopicV1AdminShort instead.
 
 DeleteNotificationTopicV1Admin delete topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
-delete topic information by topic name.
+Delete topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
 Already existing topic can not be created
@@ -2236,9 +2166,7 @@ func (a *Client) DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV
 
 /*
 DeleteNotificationTopicV1AdminShort delete topic information by topic name
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]` with scope `social`
-
-delete topic information by topic name.
+Delete topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
 Already existing topic can not be created
@@ -2298,8 +2226,6 @@ func (a *Client) DeleteNotificationTopicV1AdminShort(params *DeleteNotificationT
 Deprecated: 2022-08-10 - Use SendSpecificUserFreeformNotificationV1AdminShort instead.
 
 SendSpecificUserFreeformNotificationV1Admin send freeform notification to a user
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user.
 Action Code: 50211
 */
@@ -2358,8 +2284,6 @@ func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecifi
 
 /*
 SendSpecificUserFreeformNotificationV1AdminShort send freeform notification to a user
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user.
 Action Code: 50211
 */
@@ -2416,8 +2340,6 @@ func (a *Client) SendSpecificUserFreeformNotificationV1AdminShort(params *SendSp
 Deprecated: 2022-08-10 - Use SendSpecificUserTemplatedNotificationV1AdminShort instead.
 
 SendSpecificUserTemplatedNotificationV1Admin send templated notification to specific user
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends templated notification to a user.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -2482,8 +2404,6 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecif
 
 /*
 SendSpecificUserTemplatedNotificationV1AdminShort send templated notification to specific user
-Required permission : `ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends templated notification to a user.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -2546,8 +2466,6 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1AdminShort(params *SendS
 Deprecated: 2022-08-10 - Use GetTopicByNamespaceShort instead.
 
 GetTopicByNamespace get topic by namespace
-Required permission : `NAMESPACE:{namespace}:TOPIC [READ]` with scope `social`
-
 get topic by namespace.
 */
 func (a *Client) GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, *GetTopicByNamespaceUnauthorized, *GetTopicByNamespaceForbidden, *GetTopicByNamespaceNotFound, *GetTopicByNamespaceInternalServerError, error) {
@@ -2605,8 +2523,6 @@ func (a *Client) GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo
 
 /*
 GetTopicByNamespaceShort get topic by namespace
-Required permission : `NAMESPACE:{namespace}:TOPIC [READ]` with scope `social`
-
 get topic by namespace.
 */
 func (a *Client) GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, error) {
@@ -2662,8 +2578,6 @@ func (a *Client) GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, aut
 Deprecated: 2022-08-10 - Use CreateTopicShort instead.
 
 CreateTopic create new notification topic
-Required permission : `NAMESPACE:{namespace}:TOPIC [CREATE]` with scope `social`
-
 Create new notification topic.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -2724,8 +2638,6 @@ func (a *Client) CreateTopic(params *CreateTopicParams, authInfo runtime.ClientA
 
 /*
 CreateTopicShort create new notification topic
-Required permission : `NAMESPACE:{namespace}:TOPIC [CREATE]` with scope `social`
-
 Create new notification topic.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -2784,8 +2696,6 @@ func (a *Client) CreateTopicShort(params *CreateTopicParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use GetTopicByTopicNameShort instead.
 
 GetTopicByTopicName get topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [READ]` with scope `social`
-
 get topic information by topic name.
 */
 func (a *Client) GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, *GetTopicByTopicNameUnauthorized, *GetTopicByTopicNameForbidden, *GetTopicByTopicNameNotFound, *GetTopicByTopicNameInternalServerError, error) {
@@ -2843,8 +2753,6 @@ func (a *Client) GetTopicByTopicName(params *GetTopicByTopicNameParams, authInfo
 
 /*
 GetTopicByTopicNameShort get topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [READ]` with scope `social`
-
 get topic information by topic name.
 */
 func (a *Client) GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByTopicNameOK, error) {
@@ -2900,8 +2808,6 @@ func (a *Client) GetTopicByTopicNameShort(params *GetTopicByTopicNameParams, aut
 Deprecated: 2022-08-10 - Use UpdateTopicByTopicNameShort instead.
 
 UpdateTopicByTopicName update topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [UPDATE]` with scope `social`
-
 update topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -2962,8 +2868,6 @@ func (a *Client) UpdateTopicByTopicName(params *UpdateTopicByTopicNameParams, au
 
 /*
 UpdateTopicByTopicNameShort update topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [UPDATE]` with scope `social`
-
 update topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -3022,8 +2926,6 @@ func (a *Client) UpdateTopicByTopicNameShort(params *UpdateTopicByTopicNameParam
 Deprecated: 2022-08-10 - Use DeleteTopicByTopicNameShort instead.
 
 DeleteTopicByTopicName delete topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [DELETE]` with scope `social`
-
 delete topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -3084,8 +2986,6 @@ func (a *Client) DeleteTopicByTopicName(params *DeleteTopicByTopicNameParams, au
 
 /*
 DeleteTopicByTopicNameShort delete topic information by topic name
-Required permission : `NAMESPACE:{namespace}:TOPIC [DELETE]` with scope `social`
-
 delete topic information by topic name.
 
 topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST.
@@ -3144,8 +3044,6 @@ func (a *Client) DeleteTopicByTopicNameShort(params *DeleteTopicByTopicNameParam
 Deprecated: 2022-08-10 - Use FreeFormNotificationByUserIDShort instead.
 
 FreeFormNotificationByUserID send freeform notification to a user
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user.
 */
 func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, *FreeFormNotificationByUserIDBadRequest, *FreeFormNotificationByUserIDUnauthorized, *FreeFormNotificationByUserIDForbidden, *FreeFormNotificationByUserIDNotFound, error) {
@@ -3203,8 +3101,6 @@ func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUser
 
 /*
 FreeFormNotificationByUserIDShort send freeform notification to a user
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user.
 */
 func (a *Client) FreeFormNotificationByUserIDShort(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, error) {
@@ -3260,8 +3156,6 @@ func (a *Client) FreeFormNotificationByUserIDShort(params *FreeFormNotificationB
 Deprecated: 2022-08-10 - Use NotificationWithTemplateByUserIDShort instead.
 
 NotificationWithTemplateByUserID send notification to a user with template
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.
@@ -3324,8 +3218,6 @@ func (a *Client) NotificationWithTemplateByUserID(params *NotificationWithTempla
 
 /*
 NotificationWithTemplateByUserIDShort send notification to a user with template
-Required permission : `NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]` with scope `social`
-
 Sends notification to a user with predefined template.
 
 In the request body, specify which template slug (template identifier) to use and the template language.

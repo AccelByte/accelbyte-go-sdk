@@ -39,14 +39,14 @@ var GetTradeHistoryByCriteriaCmd = &cobra.Command{
 			Type:      &type_,
 			UserID:    &userId,
 		}
-		errOK := tradeActionService.GetTradeHistoryByCriteriaShort(input)
+		ok, errOK := tradeActionService.GetTradeHistoryByCriteriaShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -69,7 +69,7 @@ func NewCreateGroupCreated() *CreateGroupCreated {
 
 /*CreateGroupCreated handles this case with default header values.
 
-  Created
+  Group Created
 */
 type CreateGroupCreated struct {
 	Payload *ugcclientmodels.ModelsCreateGroupResponse
@@ -122,7 +122,7 @@ func NewCreateGroupBadRequest() *CreateGroupBadRequest {
 
 /*CreateGroupBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772101</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type CreateGroupBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewCreateGroupUnauthorized() *CreateGroupUnauthorized {
 
 /*CreateGroupUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateGroupUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewCreateGroupInternalServerError() *CreateGroupInternalServerError {
 
 /*CreateGroupInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772102</td><td>Unable to create group</td></tr></table>
 */
 type CreateGroupInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

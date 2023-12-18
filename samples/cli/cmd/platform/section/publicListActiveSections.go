@@ -27,17 +27,19 @@ var PublicListActiveSectionsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		autoCalcEstimatedPrice, _ := cmd.Flags().GetBool("autoCalcEstimatedPrice")
 		language, _ := cmd.Flags().GetString("language")
 		region, _ := cmd.Flags().GetString("region")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		viewId, _ := cmd.Flags().GetString("viewId")
 		input := &section.PublicListActiveSectionsParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Language:  &language,
-			Region:    &region,
-			StoreID:   &storeId,
-			ViewID:    &viewId,
+			Namespace:              namespace,
+			UserID:                 userId,
+			AutoCalcEstimatedPrice: &autoCalcEstimatedPrice,
+			Language:               &language,
+			Region:                 &region,
+			StoreID:                &storeId,
+			ViewID:                 &viewId,
 		}
 		ok, errOK := sectionService.PublicListActiveSectionsShort(input)
 		if errOK != nil {
@@ -57,6 +59,7 @@ func init() {
 	_ = PublicListActiveSectionsCmd.MarkFlagRequired("namespace")
 	PublicListActiveSectionsCmd.Flags().String("userId", "", "User id")
 	_ = PublicListActiveSectionsCmd.MarkFlagRequired("userId")
+	PublicListActiveSectionsCmd.Flags().Bool("autoCalcEstimatedPrice", false, "Auto calc estimated price")
 	PublicListActiveSectionsCmd.Flags().String("language", "", "Language")
 	PublicListActiveSectionsCmd.Flags().String("region", "", "Region")
 	PublicListActiveSectionsCmd.Flags().String("storeId", "", "Store id")

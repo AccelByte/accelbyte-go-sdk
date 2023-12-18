@@ -48,18 +48,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetInputValidationsShort instead.
 
 AdminGetInputValidations admin get input validations
-
-
-Required permission 'ADMIN:CONFIGURATION'[READ]
-
-
-
-
 This endpoint is to get list of input validation configuration.
-
-
-
-
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
 func (a *Client) AdminGetInputValidations(params *AdminGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInputValidationsOK, *AdminGetInputValidationsUnauthorized, *AdminGetInputValidationsForbidden, error) {
@@ -111,18 +100,7 @@ func (a *Client) AdminGetInputValidations(params *AdminGetInputValidationsParams
 
 /*
 AdminGetInputValidationsShort admin get input validations
-
-
-Required permission 'ADMIN:CONFIGURATION'[READ]
-
-
-
-
 This endpoint is to get list of input validation configuration.
-
-
-
-
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
 func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInputValidationsOK, error) {
@@ -174,95 +152,31 @@ func (a *Client) AdminGetInputValidationsShort(params *AdminGetInputValidationsP
 Deprecated: 2022-08-10 - Use AdminUpdateInputValidationsShort instead.
 
 AdminUpdateInputValidations admin update input validations
-
-
-Required permission 'ADMIN:CONFIGURATION' [UPDATE]
-
-
-
-
 This endpoint is used to update input validation configuration.
-
-
 Supported `field`:
-
-
-
-                                  * displayName
-
-
-                                  * password
-
-
-                                  * username
-
-
-                                  * email
-
-
-                                  * avatar
-
-
-
+- displayName
+- password
+- username
+- email
+- avatar
 
 If `isCustomRegex` is set to true, `regex` parameter will be used as input validation and the other parameters will be ignored. Otherwise, `regex` parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters.
-
-
-
-
 If `allowUnicode` is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.
-
-
 Supported `letterCase`:
-
-
-
-                                  * lowercase
-
-
-                                  * uppercase
-
-
-                                  * mixed: uppercase and lowercase
-
-
-                                  * mixed: uppercase and/or lowercase
-
+- lowercase
+- uppercase
+- mixed: uppercase and lowercase
+- mixed: uppercase and/or lowercase
 
 flexible special character non words with `allowAllSpecialCharacters`
-
-
-
 if `allowAllSpecialCharacters` is set to true `specialCharacters` will forced to empty.
-
-
 Supported `specialCharacterLocation`:
-
-
-
-                                  * anywhere
-
-
-                                  * middle
-
-
-
+- anywhere
+- middle
 
 If `specialCharacters` is empty, `specialCharacterLocation` and `maxRepeatingSpecialCharacter` will be ignored.
-
-
-
-
 `minCharType` is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.
-
-
-
-
 If `blockedWord` is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account
-
-
-
-
 If `avatarConfig` is set, will use this config and skip all the other validation conditions
 */
 func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, *AdminUpdateInputValidationsUnauthorized, *AdminUpdateInputValidationsForbidden, *AdminUpdateInputValidationsNotFound, error) {
@@ -317,95 +231,31 @@ func (a *Client) AdminUpdateInputValidations(params *AdminUpdateInputValidations
 
 /*
 AdminUpdateInputValidationsShort admin update input validations
-
-
-Required permission 'ADMIN:CONFIGURATION' [UPDATE]
-
-
-
-
 This endpoint is used to update input validation configuration.
-
-
 Supported `field`:
-
-
-
-                                  * displayName
-
-
-                                  * password
-
-
-                                  * username
-
-
-                                  * email
-
-
-                                  * avatar
-
-
-
+- displayName
+- password
+- username
+- email
+- avatar
 
 If `isCustomRegex` is set to true, `regex` parameter will be used as input validation and the other parameters will be ignored. Otherwise, `regex` parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters.
-
-
-
-
 If `allowUnicode` is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.
-
-
 Supported `letterCase`:
-
-
-
-                                  * lowercase
-
-
-                                  * uppercase
-
-
-                                  * mixed: uppercase and lowercase
-
-
-                                  * mixed: uppercase and/or lowercase
-
+- lowercase
+- uppercase
+- mixed: uppercase and lowercase
+- mixed: uppercase and/or lowercase
 
 flexible special character non words with `allowAllSpecialCharacters`
-
-
-
 if `allowAllSpecialCharacters` is set to true `specialCharacters` will forced to empty.
-
-
 Supported `specialCharacterLocation`:
-
-
-
-                                  * anywhere
-
-
-                                  * middle
-
-
-
+- anywhere
+- middle
 
 If `specialCharacters` is empty, `specialCharacterLocation` and `maxRepeatingSpecialCharacter` will be ignored.
-
-
-
-
 `minCharType` is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.
-
-
-
-
 If `blockedWord` is set by admin, any input from user which contain kind of blocked word(s) will be blocked for create/upgrade/update account
-
-
-
-
 If `avatarConfig` is set, will use this config and skip all the other validation conditions
 */
 func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInputValidationsNoContent, error) {
@@ -459,10 +309,6 @@ func (a *Client) AdminUpdateInputValidationsShort(params *AdminUpdateInputValida
 Deprecated: 2022-08-10 - Use AdminResetInputValidationsShort instead.
 
 AdminResetInputValidations admin reset input validations
-
-
-Required permission 'ADMIN:CONFIGURATION' [DELETE]
-
 This endpoint is used to reset input validation to the default input validation configurations
 */
 func (a *Client) AdminResetInputValidations(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, *AdminResetInputValidationsUnauthorized, *AdminResetInputValidationsForbidden, *AdminResetInputValidationsNotFound, error) {
@@ -517,10 +363,6 @@ func (a *Client) AdminResetInputValidations(params *AdminResetInputValidationsPa
 
 /*
 AdminResetInputValidationsShort admin reset input validations
-
-
-Required permission 'ADMIN:CONFIGURATION' [DELETE]
-
 This endpoint is used to reset input validation to the default input validation configurations
 */
 func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidationsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetInputValidationsNoContent, error) {
@@ -574,18 +416,8 @@ func (a *Client) AdminResetInputValidationsShort(params *AdminResetInputValidati
 Deprecated: 2022-08-10 - Use PublicGetInputValidationsShort instead.
 
 PublicGetInputValidations public get input validations
-
-
 No role required
-
-
-
-
 This endpoint is to get list of input validation configuration.
-
-
-
-
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
 func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, *PublicGetInputValidationsNotFound, *PublicGetInputValidationsInternalServerError, error) {
@@ -636,18 +468,8 @@ func (a *Client) PublicGetInputValidations(params *PublicGetInputValidationsPara
 
 /*
 PublicGetInputValidationsShort public get input validations
-
-
 No role required
-
-
-
-
 This endpoint is to get list of input validation configuration.
-
-
-
-
 `regex` parameter will be returned if `isCustomRegex` is true. Otherwise, it will be empty.
 */
 func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidationsParams) (*PublicGetInputValidationsOK, error) {
@@ -698,8 +520,6 @@ func (a *Client) PublicGetInputValidationsShort(params *PublicGetInputValidation
 Deprecated: 2022-08-10 - Use PublicGetInputValidationByFieldShort instead.
 
 PublicGetInputValidationByField public get input validation by field
-
-
 This endpoint is to get input validation configuration by field.
 */
 func (a *Client) PublicGetInputValidationByField(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, *PublicGetInputValidationByFieldNotFound, *PublicGetInputValidationByFieldInternalServerError, error) {
@@ -751,8 +571,6 @@ func (a *Client) PublicGetInputValidationByField(params *PublicGetInputValidatio
 
 /*
 PublicGetInputValidationByFieldShort public get input validation by field
-
-
 This endpoint is to get input validation configuration by field.
 */
 func (a *Client) PublicGetInputValidationByFieldShort(params *PublicGetInputValidationByFieldParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetInputValidationByFieldOK, error) {

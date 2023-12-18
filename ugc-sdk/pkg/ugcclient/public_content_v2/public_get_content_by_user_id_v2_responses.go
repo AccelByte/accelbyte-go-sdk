@@ -33,6 +33,12 @@ func (o *PublicGetContentByUserIDV2Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPublicGetContentByUserIDV2BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPublicGetContentByUserIDV2Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,7 +69,7 @@ func NewPublicGetContentByUserIDV2OK() *PublicGetContentByUserIDV2OK {
 
 /*PublicGetContentByUserIDV2OK handles this case with default header values.
 
-  OK
+  Get content by user ID
 */
 type PublicGetContentByUserIDV2OK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponseV2
@@ -109,6 +115,59 @@ func (o *PublicGetContentByUserIDV2OK) readResponse(response runtime.ClientRespo
 	return nil
 }
 
+// NewPublicGetContentByUserIDV2BadRequest creates a PublicGetContentByUserIDV2BadRequest with default headers values
+func NewPublicGetContentByUserIDV2BadRequest() *PublicGetContentByUserIDV2BadRequest {
+	return &PublicGetContentByUserIDV2BadRequest{}
+}
+
+/*PublicGetContentByUserIDV2BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770900</td><td>invalid paging parameter</td></tr></table>
+*/
+type PublicGetContentByUserIDV2BadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *PublicGetContentByUserIDV2BadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v2/public/namespaces/{namespace}/users/{userId}/contents][%d] publicGetContentByUserIdV2BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *PublicGetContentByUserIDV2BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetContentByUserIDV2BadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicGetContentByUserIDV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicGetContentByUserIDV2Unauthorized creates a PublicGetContentByUserIDV2Unauthorized with default headers values
 func NewPublicGetContentByUserIDV2Unauthorized() *PublicGetContentByUserIDV2Unauthorized {
 	return &PublicGetContentByUserIDV2Unauthorized{}
@@ -116,7 +175,7 @@ func NewPublicGetContentByUserIDV2Unauthorized() *PublicGetContentByUserIDV2Unau
 
 /*PublicGetContentByUserIDV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicGetContentByUserIDV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -169,7 +228,7 @@ func NewPublicGetContentByUserIDV2InternalServerError() *PublicGetContentByUserI
 
 /*PublicGetContentByUserIDV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770901</td><td>Unable to get ugc content: database error/Unable to get creator</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770903</td><td>Failed generate download URL</td></tr></table>
 */
 type PublicGetContentByUserIDV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

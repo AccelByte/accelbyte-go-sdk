@@ -71,7 +71,7 @@ type PublicSearchUserV3Params struct {
 	*/
 	Namespace string
 	/*By
-	  Search by given attribute, possible values are displayName and username
+	  Search by given attribute, possible values are displayName and username and thirdPartyPlatform
 
 	*/
 	By *string
@@ -85,6 +85,16 @@ type PublicSearchUserV3Params struct {
 
 	*/
 	Offset *int64
+	/*PlatformBy
+	  Search platformBy given attribute, possible values are platformDisplayName
+
+	*/
+	PlatformBy *string
+	/*PlatformID
+	  Platform Id that want to be searched, find the values from **Supported platform id** in the api doc
+
+	*/
+	PlatformID *string
 	/*Query
 	  Query, can be either display name or username
 
@@ -188,6 +198,28 @@ func (o *PublicSearchUserV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithPlatformBy adds the platformBy to the public search user v3 params
+func (o *PublicSearchUserV3Params) WithPlatformBy(platformBy *string) *PublicSearchUserV3Params {
+	o.SetPlatformBy(platformBy)
+	return o
+}
+
+// SetPlatformBy adds the platformBy to the public search user v3 params
+func (o *PublicSearchUserV3Params) SetPlatformBy(platformBy *string) {
+	o.PlatformBy = platformBy
+}
+
+// WithPlatformID adds the platformID to the public search user v3 params
+func (o *PublicSearchUserV3Params) WithPlatformID(platformID *string) *PublicSearchUserV3Params {
+	o.SetPlatformID(platformID)
+	return o
+}
+
+// SetPlatformID adds the platformId to the public search user v3 params
+func (o *PublicSearchUserV3Params) SetPlatformID(platformID *string) {
+	o.PlatformID = platformID
+}
+
 // WithQuery adds the query to the public search user v3 params
 func (o *PublicSearchUserV3Params) WithQuery(query *string) *PublicSearchUserV3Params {
 	o.SetQuery(query)
@@ -254,6 +286,38 @@ func (o *PublicSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg s
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PlatformBy != nil {
+
+		// query param platformBy
+		var qrPlatformBy string
+		if o.PlatformBy != nil {
+			qrPlatformBy = *o.PlatformBy
+		}
+		qPlatformBy := qrPlatformBy
+		if qPlatformBy != "" {
+			if err := r.SetQueryParam("platformBy", qPlatformBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PlatformID != nil {
+
+		// query param platformId
+		var qrPlatformID string
+		if o.PlatformID != nil {
+			qrPlatformID = *o.PlatformID
+		}
+		qPlatformID := qrPlatformID
+		if qPlatformID != "" {
+			if err := r.SetQueryParam("platformId", qPlatformID); err != nil {
 				return err
 			}
 		}

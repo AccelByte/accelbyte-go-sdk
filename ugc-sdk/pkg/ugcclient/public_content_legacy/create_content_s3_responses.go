@@ -45,6 +45,12 @@ func (o *CreateContentS3Reader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewCreateContentS3Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewCreateContentS3InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewCreateContentS3Created() *CreateContentS3Created {
 
 /*CreateContentS3Created handles this case with default header values.
 
-  Created
+  Content uploaded to S3 bucket
 */
 type CreateContentS3Created struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -122,7 +128,7 @@ func NewCreateContentS3BadRequest() *CreateContentS3BadRequest {
 
 /*CreateContentS3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770100</td><td>Malformed request/Invalid request body/channel do not exist</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr></table>
 */
 type CreateContentS3BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewCreateContentS3Unauthorized() *CreateContentS3Unauthorized {
 
 /*CreateContentS3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateContentS3Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *CreateContentS3Unauthorized) readResponse(response runtime.ClientRespon
 	return nil
 }
 
+// NewCreateContentS3Forbidden creates a CreateContentS3Forbidden with default headers values
+func NewCreateContentS3Forbidden() *CreateContentS3Forbidden {
+	return &CreateContentS3Forbidden{}
+}
+
+/*CreateContentS3Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770104</td><td>User has been banned to create content</td></tr></table>
+*/
+type CreateContentS3Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *CreateContentS3Forbidden) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3][%d] createContentS3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateContentS3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateContentS3Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *CreateContentS3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewCreateContentS3InternalServerError creates a CreateContentS3InternalServerError with default headers values
 func NewCreateContentS3InternalServerError() *CreateContentS3InternalServerError {
 	return &CreateContentS3InternalServerError{}
@@ -228,7 +287,7 @@ func NewCreateContentS3InternalServerError() *CreateContentS3InternalServerError
 
 /*CreateContentS3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr><tr><td>770105</td><td>Unable to save ugc content: failed generate upload URL</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
 */
 type CreateContentS3InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

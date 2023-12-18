@@ -108,6 +108,29 @@ func (aaa *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_pla
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminPutPlayerRecordsHandlerV1Short instead.
+func (aaa *AdminPlayerRecordService) AdminPutPlayerRecordsHandlerV1(input *admin_player_record.AdminPutPlayerRecordsHandlerV1Params) ([]*cloudsaveclientmodels.ModelsBulkUpdatePlayerRecordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.AdminPlayerRecord.AdminPutPlayerRecordsHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetPlayerRecordsHandlerV1Short instead.
 func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordsHandlerV1(input *admin_player_record.AdminGetPlayerRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetAdminPlayerRecordResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -439,6 +462,31 @@ func (aaa *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admi
 	}
 
 	ok, err := aaa.Client.AdminPlayerRecord.AdminRetrievePlayerRecordsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminPlayerRecordService) AdminPutPlayerRecordsHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordsHandlerV1Params) ([]*cloudsaveclientmodels.ModelsBulkUpdatePlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.AdminPlayerRecord.AdminPutPlayerRecordsHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

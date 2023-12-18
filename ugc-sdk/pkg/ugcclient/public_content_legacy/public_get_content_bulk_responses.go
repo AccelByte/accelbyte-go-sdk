@@ -69,7 +69,7 @@ func NewPublicGetContentBulkOK() *PublicGetContentBulkOK {
 
 /*PublicGetContentBulkOK handles this case with default header values.
 
-  OK
+  Get contents by content Ids
 */
 type PublicGetContentBulkOK struct {
 	Payload []*ugcclientmodels.ModelsContentDownloadResponse
@@ -120,7 +120,7 @@ func NewPublicGetContentBulkBadRequest() *PublicGetContentBulkBadRequest {
 
 /*PublicGetContentBulkBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773900</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type PublicGetContentBulkBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -173,7 +173,7 @@ func NewPublicGetContentBulkUnauthorized() *PublicGetContentBulkUnauthorized {
 
 /*PublicGetContentBulkUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicGetContentBulkUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -226,7 +226,7 @@ func NewPublicGetContentBulkInternalServerError() *PublicGetContentBulkInternalS
 
 /*PublicGetContentBulkInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773901</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>773902</td><td>Failed generate download URL</td></tr></table>
 */
 type PublicGetContentBulkInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

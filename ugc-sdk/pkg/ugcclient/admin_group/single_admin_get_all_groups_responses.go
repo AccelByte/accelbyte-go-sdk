@@ -33,14 +33,14 @@ func (o *SingleAdminGetAllGroupsReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewSingleAdminGetAllGroupsUnauthorized()
+	case 400:
+		result := NewSingleAdminGetAllGroupsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewSingleAdminGetAllGroupsNotFound()
+	case 401:
+		result := NewSingleAdminGetAllGroupsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewSingleAdminGetAllGroupsOK() *SingleAdminGetAllGroupsOK {
 
 /*SingleAdminGetAllGroupsOK handles this case with default header values.
 
-  OK
+  Get all user group
 */
 type SingleAdminGetAllGroupsOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGroupResponse
@@ -115,6 +115,59 @@ func (o *SingleAdminGetAllGroupsOK) readResponse(response runtime.ClientResponse
 	return nil
 }
 
+// NewSingleAdminGetAllGroupsBadRequest creates a SingleAdminGetAllGroupsBadRequest with default headers values
+func NewSingleAdminGetAllGroupsBadRequest() *SingleAdminGetAllGroupsBadRequest {
+	return &SingleAdminGetAllGroupsBadRequest{}
+}
+
+/*SingleAdminGetAllGroupsBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772301</td><td>invalid paging parameter</td></tr></table>
+*/
+type SingleAdminGetAllGroupsBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *SingleAdminGetAllGroupsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SingleAdminGetAllGroupsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SingleAdminGetAllGroupsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *SingleAdminGetAllGroupsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewSingleAdminGetAllGroupsUnauthorized creates a SingleAdminGetAllGroupsUnauthorized with default headers values
 func NewSingleAdminGetAllGroupsUnauthorized() *SingleAdminGetAllGroupsUnauthorized {
 	return &SingleAdminGetAllGroupsUnauthorized{}
@@ -122,7 +175,7 @@ func NewSingleAdminGetAllGroupsUnauthorized() *SingleAdminGetAllGroupsUnauthoriz
 
 /*SingleAdminGetAllGroupsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminGetAllGroupsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *SingleAdminGetAllGroupsUnauthorized) readResponse(response runtime.Clie
 	return nil
 }
 
-// NewSingleAdminGetAllGroupsNotFound creates a SingleAdminGetAllGroupsNotFound with default headers values
-func NewSingleAdminGetAllGroupsNotFound() *SingleAdminGetAllGroupsNotFound {
-	return &SingleAdminGetAllGroupsNotFound{}
-}
-
-/*SingleAdminGetAllGroupsNotFound handles this case with default header values.
-
-  Not Found
-*/
-type SingleAdminGetAllGroupsNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *SingleAdminGetAllGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/groups][%d] singleAdminGetAllGroupsNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *SingleAdminGetAllGroupsNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *SingleAdminGetAllGroupsNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *SingleAdminGetAllGroupsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSingleAdminGetAllGroupsInternalServerError creates a SingleAdminGetAllGroupsInternalServerError with default headers values
 func NewSingleAdminGetAllGroupsInternalServerError() *SingleAdminGetAllGroupsInternalServerError {
 	return &SingleAdminGetAllGroupsInternalServerError{}
@@ -228,7 +228,7 @@ func NewSingleAdminGetAllGroupsInternalServerError() *SingleAdminGetAllGroupsInt
 
 /*SingleAdminGetAllGroupsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772302</td><td>Unable get groups</td></tr></table>
 */
 type SingleAdminGetAllGroupsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -45,6 +45,12 @@ func (o *AdminUpdateScreenshotsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminUpdateScreenshotsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminUpdateScreenshotsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewAdminUpdateScreenshotsOK() *AdminUpdateScreenshotsOK {
 
 /*AdminUpdateScreenshotsOK handles this case with default header values.
 
-  OK
+  Screenshot updated
 */
 type AdminUpdateScreenshotsOK struct {
 	Payload *ugcclientmodels.ModelsUpdateScreenshotResponse
@@ -128,7 +134,7 @@ func NewAdminUpdateScreenshotsBadRequest() *AdminUpdateScreenshotsBadRequest {
 
 /*AdminUpdateScreenshotsBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type AdminUpdateScreenshotsBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +187,7 @@ func NewAdminUpdateScreenshotsUnauthorized() *AdminUpdateScreenshotsUnauthorized
 
 /*AdminUpdateScreenshotsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateScreenshotsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,6 +233,59 @@ func (o *AdminUpdateScreenshotsUnauthorized) readResponse(response runtime.Clien
 	return nil
 }
 
+// NewAdminUpdateScreenshotsForbidden creates a AdminUpdateScreenshotsForbidden with default headers values
+func NewAdminUpdateScreenshotsForbidden() *AdminUpdateScreenshotsForbidden {
+	return &AdminUpdateScreenshotsForbidden{}
+}
+
+/*AdminUpdateScreenshotsForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type AdminUpdateScreenshotsForbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminUpdateScreenshotsForbidden) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUpdateScreenshotsForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminUpdateScreenshotsForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUpdateScreenshotsForbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUpdateScreenshotsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminUpdateScreenshotsNotFound creates a AdminUpdateScreenshotsNotFound with default headers values
 func NewAdminUpdateScreenshotsNotFound() *AdminUpdateScreenshotsNotFound {
 	return &AdminUpdateScreenshotsNotFound{}
@@ -234,7 +293,7 @@ func NewAdminUpdateScreenshotsNotFound() *AdminUpdateScreenshotsNotFound {
 
 /*AdminUpdateScreenshotsNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type AdminUpdateScreenshotsNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +346,7 @@ func NewAdminUpdateScreenshotsInternalServerError() *AdminUpdateScreenshotsInter
 
 /*AdminUpdateScreenshotsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type AdminUpdateScreenshotsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

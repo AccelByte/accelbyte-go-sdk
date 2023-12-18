@@ -45,6 +45,12 @@ func (o *AdminUploadContentDirectReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewAdminUploadContentDirectForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewAdminUploadContentDirectConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewAdminUploadContentDirectCreated() *AdminUploadContentDirectCreated {
 
 /*AdminUploadContentDirectCreated handles this case with default header values.
 
-  Created
+  Content uploaded
 */
 type AdminUploadContentDirectCreated struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -128,7 +134,7 @@ func NewAdminUploadContentDirectBadRequest() *AdminUploadContentDirectBadRequest
 
 /*AdminUploadContentDirectBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770100</td><td>Malformed request/Invalid request body/channel do not exist</td></tr></table>
 */
 type AdminUploadContentDirectBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +187,7 @@ func NewAdminUploadContentDirectUnauthorized() *AdminUploadContentDirectUnauthor
 
 /*AdminUploadContentDirectUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUploadContentDirectUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,6 +233,59 @@ func (o *AdminUploadContentDirectUnauthorized) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewAdminUploadContentDirectForbidden creates a AdminUploadContentDirectForbidden with default headers values
+func NewAdminUploadContentDirectForbidden() *AdminUploadContentDirectForbidden {
+	return &AdminUploadContentDirectForbidden{}
+}
+
+/*AdminUploadContentDirectForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770104</td><td>User has been banned to create content</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
+*/
+type AdminUploadContentDirectForbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminUploadContentDirectForbidden) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminUploadContentDirectForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminUploadContentDirectForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminUploadContentDirectForbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUploadContentDirectForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminUploadContentDirectConflict creates a AdminUploadContentDirectConflict with default headers values
 func NewAdminUploadContentDirectConflict() *AdminUploadContentDirectConflict {
 	return &AdminUploadContentDirectConflict{}
@@ -234,7 +293,7 @@ func NewAdminUploadContentDirectConflict() *AdminUploadContentDirectConflict {
 
 /*AdminUploadContentDirectConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
 */
 type AdminUploadContentDirectConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +346,7 @@ func NewAdminUploadContentDirectInternalServerError() *AdminUploadContentDirectI
 
 /*AdminUploadContentDirectInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr></table>
 */
 type AdminUploadContentDirectInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

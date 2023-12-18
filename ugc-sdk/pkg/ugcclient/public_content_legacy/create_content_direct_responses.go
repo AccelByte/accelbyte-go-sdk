@@ -45,6 +45,12 @@ func (o *CreateContentDirectReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewCreateContentDirectForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewCreateContentDirectInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewCreateContentDirectCreated() *CreateContentDirectCreated {
 
 /*CreateContentDirectCreated handles this case with default header values.
 
-  Created
+  Content uploaded
 */
 type CreateContentDirectCreated struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -122,7 +128,7 @@ func NewCreateContentDirectBadRequest() *CreateContentDirectBadRequest {
 
 /*CreateContentDirectBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770100</td><td>Malformed request/Invalid request body/channel do not exist</td></tr></table>
 */
 type CreateContentDirectBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewCreateContentDirectUnauthorized() *CreateContentDirectUnauthorized {
 
 /*CreateContentDirectUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateContentDirectUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *CreateContentDirectUnauthorized) readResponse(response runtime.ClientRe
 	return nil
 }
 
+// NewCreateContentDirectForbidden creates a CreateContentDirectForbidden with default headers values
+func NewCreateContentDirectForbidden() *CreateContentDirectForbidden {
+	return &CreateContentDirectForbidden{}
+}
+
+/*CreateContentDirectForbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770104</td><td>User has been banned to create content</td></tr></table>
+*/
+type CreateContentDirectForbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *CreateContentDirectForbidden) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] createContentDirectForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *CreateContentDirectForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateContentDirectForbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *CreateContentDirectForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewCreateContentDirectInternalServerError creates a CreateContentDirectInternalServerError with default headers values
 func NewCreateContentDirectInternalServerError() *CreateContentDirectInternalServerError {
 	return &CreateContentDirectInternalServerError{}
@@ -228,7 +287,7 @@ func NewCreateContentDirectInternalServerError() *CreateContentDirectInternalSer
 
 /*CreateContentDirectInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
 */
 type CreateContentDirectInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

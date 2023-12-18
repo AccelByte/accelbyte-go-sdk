@@ -13,10 +13,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIArtifactSamplingRuleResponse Api artifact sampling rule response
+// APIArtifactSamplingRule Api artifact sampling rule
 //
-// swagger:model Api artifact sampling rule response.
-type APIArtifactSamplingRuleResponse struct {
+// swagger:model Api artifact sampling rule.
+type APIArtifactSamplingRule struct {
 
 	// collect
 	// Required: true
@@ -24,12 +24,12 @@ type APIArtifactSamplingRuleResponse struct {
 
 	// percentage
 	// Required: true
-	// Format: double
-	Percentage *float64 `json:"percentage"`
+	// Format: int64
+	Percentage *int64 `json:"percentage"`
 }
 
-// Validate validates this Api artifact sampling rule response
-func (m *APIArtifactSamplingRuleResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this Api artifact sampling rule
+func (m *APIArtifactSamplingRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCollect(formats); err != nil {
@@ -45,7 +45,7 @@ func (m *APIArtifactSamplingRuleResponse) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *APIArtifactSamplingRuleResponse) validateCollect(formats strfmt.Registry) error {
+func (m *APIArtifactSamplingRule) validateCollect(formats strfmt.Registry) error {
 
 	if err := validate.Required("collect", "body", m.Collect); err != nil {
 		return err
@@ -54,7 +54,7 @@ func (m *APIArtifactSamplingRuleResponse) validateCollect(formats strfmt.Registr
 	return nil
 }
 
-func (m *APIArtifactSamplingRuleResponse) validatePercentage(formats strfmt.Registry) error {
+func (m *APIArtifactSamplingRule) validatePercentage(formats strfmt.Registry) error {
 
 	if err := validate.Required("percentage", "body", m.Percentage); err != nil {
 		return err
@@ -64,7 +64,7 @@ func (m *APIArtifactSamplingRuleResponse) validatePercentage(formats strfmt.Regi
 }
 
 // MarshalBinary interface implementation
-func (m *APIArtifactSamplingRuleResponse) MarshalBinary() ([]byte, error) {
+func (m *APIArtifactSamplingRule) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -72,8 +72,8 @@ func (m *APIArtifactSamplingRuleResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIArtifactSamplingRuleResponse) UnmarshalBinary(b []byte) error {
-	var res APIArtifactSamplingRuleResponse
+func (m *APIArtifactSamplingRule) UnmarshalBinary(b []byte) error {
+	var res APIArtifactSamplingRule
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

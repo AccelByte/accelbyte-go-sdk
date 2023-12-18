@@ -84,6 +84,10 @@ type ClientService interface {
 	GetUserEntitlementHistoriesShort(params *GetUserEntitlementHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementHistoriesOK, error)
 	RevokeUserEntitlement(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, *RevokeUserEntitlementNotFound, error)
 	RevokeUserEntitlementShort(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, error)
+	RevokeUserEntitlementByUseCount(params *RevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementByUseCountOK, *RevokeUserEntitlementByUseCountNotFound, error)
+	RevokeUserEntitlementByUseCountShort(params *RevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementByUseCountOK, error)
+	PreCheckRevokeUserEntitlementByUseCount(params *PreCheckRevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckRevokeUserEntitlementByUseCountOK, *PreCheckRevokeUserEntitlementByUseCountNotFound, error)
+	PreCheckRevokeUserEntitlementByUseCountShort(params *PreCheckRevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckRevokeUserEntitlementByUseCountOK, error)
 	RevokeUseCount(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, *RevokeUseCountNotFound, error)
 	RevokeUseCountShort(params *RevokeUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUseCountOK, error)
 	SellUserEntitlement(params *SellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SellUserEntitlementOK, *SellUserEntitlementNotFound, *SellUserEntitlementConflict, error)
@@ -2945,10 +2949,220 @@ func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams,
 }
 
 /*
+Deprecated: 2022-08-10 - Use RevokeUserEntitlementByUseCountShort instead.
+
+RevokeUserEntitlementByUseCount revoke specified count of user entitlement.
+Revoke specified count of user entitlement.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : The revoked entitlement
+*/
+func (a *Client) RevokeUserEntitlementByUseCount(params *RevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementByUseCountOK, *RevokeUserEntitlementByUseCountNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeUserEntitlementByUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeUserEntitlementByUseCount",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke/byUseCount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeUserEntitlementByUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeUserEntitlementByUseCountOK:
+		return v, nil, nil
+
+	case *RevokeUserEntitlementByUseCountNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RevokeUserEntitlementByUseCountShort revoke specified count of user entitlement.
+Revoke specified count of user entitlement.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : The revoked entitlement
+*/
+func (a *Client) RevokeUserEntitlementByUseCountShort(params *RevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementByUseCountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeUserEntitlementByUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "revokeUserEntitlementByUseCount",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke/byUseCount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeUserEntitlementByUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeUserEntitlementByUseCountOK:
+		return v, nil
+	case *RevokeUserEntitlementByUseCountNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PreCheckRevokeUserEntitlementByUseCountShort instead.
+
+PreCheckRevokeUserEntitlementByUseCount check if specified count of user entitlement can be revoked
+Checks if specified use count of user entitlement can be revoked without actually revoking it.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=1 (READ)
+  *  Returns : true if revokable, false otherwise
+*/
+func (a *Client) PreCheckRevokeUserEntitlementByUseCount(params *PreCheckRevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckRevokeUserEntitlementByUseCountOK, *PreCheckRevokeUserEntitlementByUseCountNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPreCheckRevokeUserEntitlementByUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "preCheckRevokeUserEntitlementByUseCount",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke/byUseCount/preCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PreCheckRevokeUserEntitlementByUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PreCheckRevokeUserEntitlementByUseCountOK:
+		return v, nil, nil
+
+	case *PreCheckRevokeUserEntitlementByUseCountNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PreCheckRevokeUserEntitlementByUseCountShort check if specified count of user entitlement can be revoked
+Checks if specified use count of user entitlement can be revoked without actually revoking it.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=1 (READ)
+  *  Returns : true if revokable, false otherwise
+*/
+func (a *Client) PreCheckRevokeUserEntitlementByUseCountShort(params *PreCheckRevokeUserEntitlementByUseCountParams, authInfo runtime.ClientAuthInfoWriter) (*PreCheckRevokeUserEntitlementByUseCountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPreCheckRevokeUserEntitlementByUseCountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "preCheckRevokeUserEntitlementByUseCount",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke/byUseCount/preCheck",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PreCheckRevokeUserEntitlementByUseCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PreCheckRevokeUserEntitlementByUseCountOK:
+		return v, nil
+	case *PreCheckRevokeUserEntitlementByUseCountNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use RevokeUseCountShort instead.
 
 RevokeUseCount revoke specified use count of user entitlement
-Revoke specified use count of user entitlement.
+Revoke specified use count of user entitlement. please use /{entitlementId}/revoke/byUseCount endpoint instead of this endpoint
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
@@ -3000,7 +3214,7 @@ func (a *Client) RevokeUseCount(params *RevokeUseCountParams, authInfo runtime.C
 
 /*
 RevokeUseCountShort revoke specified use count of user entitlement
-Revoke specified use count of user entitlement.
+Revoke specified use count of user entitlement. please use /{entitlementId}/revoke/byUseCount endpoint instead of this endpoint
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)

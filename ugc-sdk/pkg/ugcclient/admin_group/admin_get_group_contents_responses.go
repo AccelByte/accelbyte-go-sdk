@@ -33,6 +33,12 @@ func (o *AdminGetGroupContentsReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminGetGroupContentsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminGetGroupContentsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewAdminGetGroupContentsOK() *AdminGetGroupContentsOK {
 
 /*AdminGetGroupContentsOK handles this case with default header values.
 
-  OK
+  Get content belong to a group
 */
 type AdminGetGroupContentsOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +121,59 @@ func (o *AdminGetGroupContentsOK) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
+// NewAdminGetGroupContentsBadRequest creates a AdminGetGroupContentsBadRequest with default headers values
+func NewAdminGetGroupContentsBadRequest() *AdminGetGroupContentsBadRequest {
+	return &AdminGetGroupContentsBadRequest{}
+}
+
+/*AdminGetGroupContentsBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773101</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetGroupContentsBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetGroupContentsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents][%d] adminGetGroupContentsBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetGroupContentsBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetGroupContentsBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetGroupContentsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetGroupContentsUnauthorized creates a AdminGetGroupContentsUnauthorized with default headers values
 func NewAdminGetGroupContentsUnauthorized() *AdminGetGroupContentsUnauthorized {
 	return &AdminGetGroupContentsUnauthorized{}
@@ -122,7 +181,7 @@ func NewAdminGetGroupContentsUnauthorized() *AdminGetGroupContentsUnauthorized {
 
 /*AdminGetGroupContentsUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetGroupContentsUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +234,7 @@ func NewAdminGetGroupContentsNotFound() *AdminGetGroupContentsNotFound {
 
 /*AdminGetGroupContentsNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773103</td><td>No group content was found</td></tr></table>
 */
 type AdminGetGroupContentsNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +287,7 @@ func NewAdminGetGroupContentsInternalServerError() *AdminGetGroupContentsInterna
 
 /*AdminGetGroupContentsInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773102</td><td>Unable to get ugc content: database error</td></tr><tr><td>770901</td><td>Unable to get ugc content: database error/Unable to get creator</td></tr><tr><td>770903</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetGroupContentsInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

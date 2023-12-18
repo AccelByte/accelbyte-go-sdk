@@ -18,11 +18,11 @@ import (
 // swagger:model Model assign user V4 request.
 type ModelAssignUserV4Request struct {
 
-	// assignednamespaces
+	// namespaces to be assigned on role
 	// Required: true
 	AssignedNamespaces []string `json:"assignedNamespaces"`
 
-	// namespace
+	// user's namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
 

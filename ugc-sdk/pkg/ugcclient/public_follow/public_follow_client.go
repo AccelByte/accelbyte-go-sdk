@@ -30,15 +30,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetFollowedContent(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, *GetFollowedContentUnauthorized, *GetFollowedContentNotFound, *GetFollowedContentInternalServerError, error)
+	GetFollowedContent(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, *GetFollowedContentBadRequest, *GetFollowedContentUnauthorized, *GetFollowedContentInternalServerError, error)
 	GetFollowedContentShort(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, error)
-	GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersUnauthorized, *GetFollowedUsersNotFound, *GetFollowedUsersInternalServerError, error)
+	GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersBadRequest, *GetFollowedUsersUnauthorized, *GetFollowedUsersInternalServerError, error)
 	GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, error)
-	UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusNotFound, *UpdateUserFollowStatusInternalServerError, error)
+	UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusInternalServerError, error)
 	UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, error)
-	GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersUnauthorized, *GetPublicFollowersNotFound, *GetPublicFollowersInternalServerError, error)
+	GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersBadRequest, *GetPublicFollowersUnauthorized, *GetPublicFollowersInternalServerError, error)
 	GetPublicFollowersShort(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, error)
-	GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingUnauthorized, *GetPublicFollowingNotFound, *GetPublicFollowingInternalServerError, error)
+	GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingBadRequest, *GetPublicFollowingUnauthorized, *GetPublicFollowingInternalServerError, error)
 	GetPublicFollowingShort(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -50,7 +50,7 @@ Deprecated: 2022-08-10 - Use GetFollowedContentShort instead.
 GetFollowedContent get contents from followed creators
 Requires valid user token
 */
-func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, *GetFollowedContentUnauthorized, *GetFollowedContentNotFound, *GetFollowedContentInternalServerError, error) {
+func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, *GetFollowedContentBadRequest, *GetFollowedContentUnauthorized, *GetFollowedContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetFollowedContentParams()
@@ -86,10 +86,10 @@ func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo r
 	case *GetFollowedContentOK:
 		return v, nil, nil, nil, nil
 
-	case *GetFollowedContentUnauthorized:
+	case *GetFollowedContentBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetFollowedContentNotFound:
+	case *GetFollowedContentUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetFollowedContentInternalServerError:
@@ -139,9 +139,9 @@ func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authI
 
 	case *GetFollowedContentOK:
 		return v, nil
-	case *GetFollowedContentUnauthorized:
+	case *GetFollowedContentBadRequest:
 		return nil, v
-	case *GetFollowedContentNotFound:
+	case *GetFollowedContentUnauthorized:
 		return nil, v
 	case *GetFollowedContentInternalServerError:
 		return nil, v
@@ -157,7 +157,7 @@ Deprecated: 2022-08-10 - Use GetFollowedUsersShort instead.
 GetFollowedUsers get followed creators
 Requires valid user token
 */
-func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersUnauthorized, *GetFollowedUsersNotFound, *GetFollowedUsersInternalServerError, error) {
+func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersBadRequest, *GetFollowedUsersUnauthorized, *GetFollowedUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetFollowedUsersParams()
@@ -193,10 +193,10 @@ func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runti
 	case *GetFollowedUsersOK:
 		return v, nil, nil, nil, nil
 
-	case *GetFollowedUsersUnauthorized:
+	case *GetFollowedUsersBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetFollowedUsersNotFound:
+	case *GetFollowedUsersUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetFollowedUsersInternalServerError:
@@ -246,9 +246,9 @@ func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo 
 
 	case *GetFollowedUsersOK:
 		return v, nil
-	case *GetFollowedUsersUnauthorized:
+	case *GetFollowedUsersBadRequest:
 		return nil, v
-	case *GetFollowedUsersNotFound:
+	case *GetFollowedUsersUnauthorized:
 		return nil, v
 	case *GetFollowedUsersInternalServerError:
 		return nil, v
@@ -264,7 +264,7 @@ Deprecated: 2022-08-10 - Use UpdateUserFollowStatusShort instead.
 UpdateUserFollowStatus update follow/unfollow status to a user
 Requires valid user token
 */
-func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusNotFound, *UpdateUserFollowStatusInternalServerError, error) {
+func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateUserFollowStatusParams()
@@ -292,28 +292,25 @@ func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateUserFollowStatusOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *UpdateUserFollowStatusBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *UpdateUserFollowStatusUnauthorized:
-		return nil, nil, v, nil, nil, nil
-
-	case *UpdateUserFollowStatusNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *UpdateUserFollowStatusInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -360,8 +357,6 @@ func (a *Client) UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParam
 		return nil, v
 	case *UpdateUserFollowStatusUnauthorized:
 		return nil, v
-	case *UpdateUserFollowStatusNotFound:
-		return nil, v
 	case *UpdateUserFollowStatusInternalServerError:
 		return nil, v
 
@@ -375,7 +370,7 @@ Deprecated: 2022-08-10 - Use GetPublicFollowersShort instead.
 
 GetPublicFollowers get list of followers
 */
-func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersUnauthorized, *GetPublicFollowersNotFound, *GetPublicFollowersInternalServerError, error) {
+func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersBadRequest, *GetPublicFollowersUnauthorized, *GetPublicFollowersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPublicFollowersParams()
@@ -411,10 +406,10 @@ func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo r
 	case *GetPublicFollowersOK:
 		return v, nil, nil, nil, nil
 
-	case *GetPublicFollowersUnauthorized:
+	case *GetPublicFollowersBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetPublicFollowersNotFound:
+	case *GetPublicFollowersUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetPublicFollowersInternalServerError:
@@ -463,9 +458,9 @@ func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authI
 
 	case *GetPublicFollowersOK:
 		return v, nil
-	case *GetPublicFollowersUnauthorized:
+	case *GetPublicFollowersBadRequest:
 		return nil, v
-	case *GetPublicFollowersNotFound:
+	case *GetPublicFollowersUnauthorized:
 		return nil, v
 	case *GetPublicFollowersInternalServerError:
 		return nil, v
@@ -480,7 +475,7 @@ Deprecated: 2022-08-10 - Use GetPublicFollowingShort instead.
 
 GetPublicFollowing get list of following
 */
-func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingUnauthorized, *GetPublicFollowingNotFound, *GetPublicFollowingInternalServerError, error) {
+func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingBadRequest, *GetPublicFollowingUnauthorized, *GetPublicFollowingInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPublicFollowingParams()
@@ -516,10 +511,10 @@ func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo r
 	case *GetPublicFollowingOK:
 		return v, nil, nil, nil, nil
 
-	case *GetPublicFollowingUnauthorized:
+	case *GetPublicFollowingBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetPublicFollowingNotFound:
+	case *GetPublicFollowingUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetPublicFollowingInternalServerError:
@@ -568,9 +563,9 @@ func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authI
 
 	case *GetPublicFollowingOK:
 		return v, nil
-	case *GetPublicFollowingUnauthorized:
+	case *GetPublicFollowingBadRequest:
 		return nil, v
-	case *GetPublicFollowingNotFound:
+	case *GetPublicFollowingUnauthorized:
 		return nil, v
 	case *GetPublicFollowingInternalServerError:
 		return nil, v

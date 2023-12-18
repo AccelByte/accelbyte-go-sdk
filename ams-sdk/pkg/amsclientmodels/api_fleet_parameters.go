@@ -42,6 +42,10 @@ type APIFleetParameters struct {
 	// regions
 	// Required: true
 	Regions []*APIRegionConfig `json:"regions"`
+
+	// samplingrules
+	// Required: true
+	SamplingRules *APIFleetArtifactsSampleRules `json:"samplingRules"`
 }
 
 // Validate validates this Api fleet parameters
@@ -61,6 +65,9 @@ func (m *APIFleetParameters) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSamplingRules(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -144,6 +151,24 @@ func (m *APIFleetParameters) validateRegions(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIFleetParameters) validateSamplingRules(formats strfmt.Registry) error {
+
+	if err := validate.Required("samplingRules", "body", m.SamplingRules); err != nil {
+		return err
+	}
+
+	if m.SamplingRules != nil {
+		if err := m.SamplingRules.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("samplingRules")
+			}
+			return err
+		}
 	}
 
 	return nil

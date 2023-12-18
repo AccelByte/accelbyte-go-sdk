@@ -81,7 +81,7 @@ func NewAdminUpdateTagOK() *AdminUpdateTagOK {
 
 /*AdminUpdateTagOK handles this case with default header values.
 
-  OK
+  Tags updated
 */
 type AdminUpdateTagOK struct {
 	Payload *ugcclientmodels.ModelsCreateTagResponse
@@ -134,7 +134,7 @@ func NewAdminUpdateTagBadRequest() *AdminUpdateTagBadRequest {
 
 /*AdminUpdateTagBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772801</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminUpdateTagBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -187,7 +187,7 @@ func NewAdminUpdateTagUnauthorized() *AdminUpdateTagUnauthorized {
 
 /*AdminUpdateTagUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminUpdateTagUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -240,7 +240,7 @@ func NewAdminUpdateTagNotFound() *AdminUpdateTagNotFound {
 
 /*AdminUpdateTagNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772803</td><td>Tag not found</td></tr></table>
 */
 type AdminUpdateTagNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -293,7 +293,7 @@ func NewAdminUpdateTagConflict() *AdminUpdateTagConflict {
 
 /*AdminUpdateTagConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772804</td><td>Proposed Tag already exist</td></tr></table>
 */
 type AdminUpdateTagConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -346,7 +346,7 @@ func NewAdminUpdateTagInternalServerError() *AdminUpdateTagInternalServerError {
 
 /*AdminUpdateTagInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772802</td><td>Unable update tags</td></tr></table>
 */
 type AdminUpdateTagInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

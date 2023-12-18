@@ -136,6 +136,32 @@ func (aaa *StatCycleConfigurationService) ExportStatCycle(input *stat_cycle_conf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use ImportStatCycleShort instead.
+func (aaa *StatCycleConfigurationService) ImportStatCycle(input *stat_cycle_configuration.ImportStatCycleParams) (*socialclientmodels.StatImportInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.StatCycleConfiguration.ImportStatCycle(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetStatCycleShort instead.
 func (aaa *StatCycleConfigurationService) GetStatCycle(input *stat_cycle_configuration.GetStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -460,6 +486,31 @@ func (aaa *StatCycleConfigurationService) ExportStatCycleShort(input *stat_cycle
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *StatCycleConfigurationService) ImportStatCycleShort(input *stat_cycle_configuration.ImportStatCycleParams) (*socialclientmodels.StatImportInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	created, err := aaa.Client.StatCycleConfiguration.ImportStatCycleShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *StatCycleConfigurationService) GetStatCycleShort(input *stat_cycle_configuration.GetStatCycleParams) (*socialclientmodels.StatCycleInfo, error) {

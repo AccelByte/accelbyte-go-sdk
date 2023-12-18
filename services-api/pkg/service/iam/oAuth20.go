@@ -307,6 +307,32 @@ func (aaa *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3P
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use SimultaneousLoginV3Short instead.
+func (aaa *OAuth20Service) SimultaneousLoginV3(input *o_auth2_0.SimultaneousLoginV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.OAuth20.SimultaneousLoginV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use TokenGrantV3Short instead.
 func (aaa *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3, error) {
 	clientID := aaa.ConfigRepository.GetClientId()
@@ -687,6 +713,31 @@ func (aaa *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocati
 	}
 
 	return nil
+}
+
+func (aaa *OAuth20Service) SimultaneousLoginV3Short(input *o_auth2_0.SimultaneousLoginV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.OAuth20.SimultaneousLoginV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3, error) {

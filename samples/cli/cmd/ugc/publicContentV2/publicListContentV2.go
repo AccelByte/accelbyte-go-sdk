@@ -28,6 +28,7 @@ var PublicListContentV2Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		isOfficial, _ := cmd.Flags().GetBool("isOfficial")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
@@ -41,14 +42,15 @@ var PublicListContentV2Cmd = &cobra.Command{
 		}
 		type_, _ := cmd.Flags().GetString("type")
 		input := &public_content_v2.PublicListContentV2Params{
-			Namespace: namespace,
-			Limit:     &limit,
-			Name:      &name,
-			Offset:    &offset,
-			SortBy:    &sortBy,
-			SubType:   &subType,
-			Tags:      tags,
-			Type:      &type_,
+			Namespace:  namespace,
+			IsOfficial: &isOfficial,
+			Limit:      &limit,
+			Name:       &name,
+			Offset:     &offset,
+			SortBy:     &sortBy,
+			SubType:    &subType,
+			Tags:       tags,
+			Type:       &type_,
 		}
 		ok, errOK := publicContentV2Service.PublicListContentV2Short(input)
 		if errOK != nil {
@@ -66,6 +68,7 @@ var PublicListContentV2Cmd = &cobra.Command{
 func init() {
 	PublicListContentV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicListContentV2Cmd.MarkFlagRequired("namespace")
+	PublicListContentV2Cmd.Flags().Bool("isOfficial", false, "Is official")
 	PublicListContentV2Cmd.Flags().Int64("limit", 20, "Limit")
 	PublicListContentV2Cmd.Flags().String("name", "", "Name")
 	PublicListContentV2Cmd.Flags().Int64("offset", 0, "Offset")

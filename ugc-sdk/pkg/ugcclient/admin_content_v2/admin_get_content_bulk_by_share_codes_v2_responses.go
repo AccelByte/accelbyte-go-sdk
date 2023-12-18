@@ -75,7 +75,7 @@ func NewAdminGetContentBulkByShareCodesV2OK() *AdminGetContentBulkByShareCodesV2
 
 /*AdminGetContentBulkByShareCodesV2OK handles this case with default header values.
 
-  OK
+  Bulk get content by content sharecodes
 */
 type AdminGetContentBulkByShareCodesV2OK struct {
 	Payload []*ugcclientmodels.ModelsContentDownloadResponseV2
@@ -126,7 +126,7 @@ func NewAdminGetContentBulkByShareCodesV2BadRequest() *AdminGetContentBulkByShar
 
 /*AdminGetContentBulkByShareCodesV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773900</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminGetContentBulkByShareCodesV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -179,7 +179,7 @@ func NewAdminGetContentBulkByShareCodesV2Unauthorized() *AdminGetContentBulkBySh
 
 /*AdminGetContentBulkByShareCodesV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetContentBulkByShareCodesV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -232,7 +232,7 @@ func NewAdminGetContentBulkByShareCodesV2Forbidden() *AdminGetContentBulkByShare
 
 /*AdminGetContentBulkByShareCodesV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type AdminGetContentBulkByShareCodesV2Forbidden struct {
 	Payload *ugcclientmodels.ResponseError
@@ -285,7 +285,7 @@ func NewAdminGetContentBulkByShareCodesV2InternalServerError() *AdminGetContentB
 
 /*AdminGetContentBulkByShareCodesV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773901</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>773902</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetContentBulkByShareCodesV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

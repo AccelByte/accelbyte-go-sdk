@@ -18,30 +18,28 @@ import (
 // swagger:model Model user platform info.
 type ModelUserPlatformInfo struct {
 
+	// platformavatarurl
+	PlatformAvatarURL string `json:"platformAvatarUrl,omitempty"`
+
 	// platformdisplayname
-	// Required: true
-	PlatformDisplayName *string `json:"platformDisplayName"`
+	PlatformDisplayName string `json:"platformDisplayName,omitempty"`
+
+	// platformgroup
+	PlatformGroup string `json:"platformGroup,omitempty"`
 
 	// platformid
 	// Required: true
 	PlatformID *string `json:"platformId"`
 
 	// platformuserid
-	// Required: true
-	PlatformUserID *string `json:"platformUserId"`
+	PlatformUserID string `json:"platformUserId,omitempty"`
 }
 
 // Validate validates this Model user platform info
 func (m *ModelUserPlatformInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validatePlatformDisplayName(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validatePlatformID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePlatformUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -51,27 +49,9 @@ func (m *ModelUserPlatformInfo) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelUserPlatformInfo) validatePlatformDisplayName(formats strfmt.Registry) error {
-
-	if err := validate.Required("platformDisplayName", "body", m.PlatformDisplayName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelUserPlatformInfo) validatePlatformID(formats strfmt.Registry) error {
 
 	if err := validate.Required("platformId", "body", m.PlatformID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserPlatformInfo) validatePlatformUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("platformUserId", "body", m.PlatformUserID); err != nil {
 		return err
 	}
 

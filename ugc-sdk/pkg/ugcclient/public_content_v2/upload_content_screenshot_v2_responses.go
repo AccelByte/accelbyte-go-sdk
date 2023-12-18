@@ -45,6 +45,12 @@ func (o *UploadContentScreenshotV2Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewUploadContentScreenshotV2Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewUploadContentScreenshotV2InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewUploadContentScreenshotV2Created() *UploadContentScreenshotV2Created {
 
 /*UploadContentScreenshotV2Created handles this case with default header values.
 
-  Created
+  Screenshot uploaded
 */
 type UploadContentScreenshotV2Created struct {
 	Payload *ugcclientmodels.ModelsCreateScreenshotResponse
@@ -122,7 +128,7 @@ func NewUploadContentScreenshotV2BadRequest() *UploadContentScreenshotV2BadReque
 
 /*UploadContentScreenshotV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type UploadContentScreenshotV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewUploadContentScreenshotV2Unauthorized() *UploadContentScreenshotV2Unauth
 
 /*UploadContentScreenshotV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UploadContentScreenshotV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *UploadContentScreenshotV2Unauthorized) readResponse(response runtime.Cl
 	return nil
 }
 
+// NewUploadContentScreenshotV2Forbidden creates a UploadContentScreenshotV2Forbidden with default headers values
+func NewUploadContentScreenshotV2Forbidden() *UploadContentScreenshotV2Forbidden {
+	return &UploadContentScreenshotV2Forbidden{}
+}
+
+/*UploadContentScreenshotV2Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type UploadContentScreenshotV2Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *UploadContentScreenshotV2Forbidden) Error() string {
+	return fmt.Sprintf("[POST /ugc/v2/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots][%d] uploadContentScreenshotV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UploadContentScreenshotV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UploadContentScreenshotV2Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *UploadContentScreenshotV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewUploadContentScreenshotV2InternalServerError creates a UploadContentScreenshotV2InternalServerError with default headers values
 func NewUploadContentScreenshotV2InternalServerError() *UploadContentScreenshotV2InternalServerError {
 	return &UploadContentScreenshotV2InternalServerError{}
@@ -228,7 +287,7 @@ func NewUploadContentScreenshotV2InternalServerError() *UploadContentScreenshotV
 
 /*UploadContentScreenshotV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr><tr><td>772605</td><td>Unable to save ugc content: failed generate upload URL</td></tr></table>
 */
 type UploadContentScreenshotV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.12.7"
+    "version": "3.12.8"
   },
   "schemes": [
     "https"
@@ -30,6 +30,8 @@
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]",
+        "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]",
@@ -3796,7 +3798,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\nRetrieve player record key and payload in bulk under given namespace.\nMaximum bulk key limit per request 20.\n",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\nRetrieve player record key and payload in bulk under given namespace.\nMaximum bulk key limit per request 20.\n",
         "operationId": "adminGetPlayerRecordsHandlerV1",
         "parameters": [
           {
@@ -3866,7 +3868,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]"
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [READ]"
             ],
             "HasScope": [
               "social"
@@ -3875,6 +3877,84 @@
           }
         ],
         "summary": "Bulk get player records by multiple record keys",
+        "tags": [
+          "AdminPlayerRecord"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\nThis endpoints will create new player record or replace the existing player record in bulk.\nMaximum bulk key limit per request 10.\n",
+        "operationId": "adminPutPlayerRecordsHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUpdatePlayerRecordsRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id of the records",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.BulkUpdatePlayerRecordResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18353\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18356\u003c/td\u003e\u003ctd\u003einvalid request body: size of the request body must be less than [%d]MB\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18354\u003c/td\u003e\u003ctd\u003erecords amount exceeded max limit\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CLOUDSAVE:RECORD [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk update player records",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -8347,6 +8427,52 @@
         "keys"
       ]
     },
+    "models.BulkUpdatePlayerRecordRequestDetail": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "models.BulkUpdatePlayerRecordResponse": {
+      "properties": {
+        "detail": {
+          "type": "object"
+        },
+        "key": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "detail",
+        "key",
+        "success"
+      ]
+    },
+    "models.BulkUpdatePlayerRecordsRequest": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.BulkUpdatePlayerRecordRequestDetail"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.BulkUserIDsRequest": {
       "properties": {
         "userIds": {
@@ -9024,11 +9150,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-01T09:19:21+00:00",
-    "gitHash": "f9ba83a033a17332de769f018432067dbf314595",
+    "buildDate": "2023-12-15T06:37:16+00:00",
+    "gitHash": "b57fbbee95d606d3b6c19bf5995527f4c22086da",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.12.7",
-    "version": "3.12.7",
+    "revisionID": "3.12.8",
+    "version": "3.12.8",
     "version-roles-seeding": "0.0.46"
   }
 }

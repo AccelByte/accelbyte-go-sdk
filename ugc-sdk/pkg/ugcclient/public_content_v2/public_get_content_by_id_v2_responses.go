@@ -69,7 +69,7 @@ func NewPublicGetContentByIDV2OK() *PublicGetContentByIDV2OK {
 
 /*PublicGetContentByIDV2OK handles this case with default header values.
 
-  OK
+  Get content by content ID
 */
 type PublicGetContentByIDV2OK struct {
 	Payload *ugcclientmodels.ModelsContentDownloadResponseV2
@@ -122,7 +122,7 @@ func NewPublicGetContentByIDV2Unauthorized() *PublicGetContentByIDV2Unauthorized
 
 /*PublicGetContentByIDV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicGetContentByIDV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicGetContentByIDV2NotFound() *PublicGetContentByIDV2NotFound {
 
 /*PublicGetContentByIDV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773200</td><td>ugc content not found</td></tr></table>
 */
 type PublicGetContentByIDV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicGetContentByIDV2InternalServerError() *PublicGetContentByIDV2Inter
 
 /*PublicGetContentByIDV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773201</td><td>Unable to get ugc content/Unable to get creator/Unable to get included group</td></tr><tr><td>770301</td><td>Unable to get ugc content/Unable to get creator</td></tr><tr><td>773203</td><td>Failed generate download URL</td></tr></table>
 */
 type PublicGetContentByIDV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -127,6 +127,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	StartDate *string
+	/*TestAccount
+	  A flag to filter test account. if testAccount parameter is not defined, search result will include both real and test accounts
+
+	*/
+	TestAccount *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -291,6 +296,17 @@ func (o *AdminSearchUserV3Params) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
+// WithTestAccount adds the testAccount to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithTestAccount(testAccount *bool) *AdminSearchUserV3Params {
+	o.SetTestAccount(testAccount)
+	return o
+}
+
+// SetTestAccount adds the testAccount to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetTestAccount(testAccount *bool) {
+	o.TestAccount = testAccount
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -442,6 +458,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TestAccount != nil {
+
+		// query param testAccount
+		var qrTestAccount bool
+		if o.TestAccount != nil {
+			qrTestAccount = *o.TestAccount
+		}
+		qTestAccount := swag.FormatBool(qrTestAccount)
+		if qTestAccount != "" {
+			if err := r.SetQueryParam("testAccount", qTestAccount); err != nil {
 				return err
 			}
 		}

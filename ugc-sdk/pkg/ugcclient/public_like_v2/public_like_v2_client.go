@@ -32,7 +32,7 @@ type Client struct {
 type ClientService interface {
 	PublicListContentLikeV2(params *PublicListContentLikeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentLikeV2OK, *PublicListContentLikeV2BadRequest, *PublicListContentLikeV2Unauthorized, *PublicListContentLikeV2InternalServerError, error)
 	PublicListContentLikeV2Short(params *PublicListContentLikeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentLikeV2OK, error)
-	UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, *UpdateContentLikeStatusV2BadRequest, *UpdateContentLikeStatusV2Unauthorized, *UpdateContentLikeStatusV2InternalServerError, error)
+	UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, *UpdateContentLikeStatusV2BadRequest, *UpdateContentLikeStatusV2Unauthorized, *UpdateContentLikeStatusV2NotFound, *UpdateContentLikeStatusV2TooManyRequests, *UpdateContentLikeStatusV2InternalServerError, error)
 	UpdateContentLikeStatusV2Short(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -151,7 +151,7 @@ Deprecated: 2022-08-10 - Use UpdateContentLikeStatusV2Short instead.
 UpdateContentLikeStatusV2 update like/unlike status to a content
 Requires valid user token
 */
-func (a *Client) UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, *UpdateContentLikeStatusV2BadRequest, *UpdateContentLikeStatusV2Unauthorized, *UpdateContentLikeStatusV2InternalServerError, error) {
+func (a *Client) UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, *UpdateContentLikeStatusV2BadRequest, *UpdateContentLikeStatusV2Unauthorized, *UpdateContentLikeStatusV2NotFound, *UpdateContentLikeStatusV2TooManyRequests, *UpdateContentLikeStatusV2InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateContentLikeStatusV2Params()
@@ -179,25 +179,31 @@ func (a *Client) UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateContentLikeStatusV2OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateContentLikeStatusV2BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateContentLikeStatusV2Unauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateContentLikeStatusV2NotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateContentLikeStatusV2TooManyRequests:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateContentLikeStatusV2InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -243,6 +249,10 @@ func (a *Client) UpdateContentLikeStatusV2Short(params *UpdateContentLikeStatusV
 	case *UpdateContentLikeStatusV2BadRequest:
 		return nil, v
 	case *UpdateContentLikeStatusV2Unauthorized:
+		return nil, v
+	case *UpdateContentLikeStatusV2NotFound:
+		return nil, v
+	case *UpdateContentLikeStatusV2TooManyRequests:
 		return nil, v
 	case *UpdateContentLikeStatusV2InternalServerError:
 		return nil, v

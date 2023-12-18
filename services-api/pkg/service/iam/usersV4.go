@@ -55,6 +55,35 @@ func (aaa *UsersV4Service) AdminCreateTestUsersV4(input *users_v4.AdminCreateTes
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkUpdateUserAccountTypeV4Short instead.
+func (aaa *UsersV4Service) AdminBulkUpdateUserAccountTypeV4(input *users_v4.AdminBulkUpdateUserAccountTypeV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminBulkUpdateUserAccountTypeV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminBulkCheckValidUserIDV4Short instead.
 func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1468,6 +1497,31 @@ func (aaa *UsersV4Service) AdminCreateTestUsersV4Short(input *users_v4.AdminCrea
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) AdminBulkUpdateUserAccountTypeV4Short(input *users_v4.AdminBulkUpdateUserAccountTypeV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.UsersV4.AdminBulkUpdateUserAccountTypeV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {

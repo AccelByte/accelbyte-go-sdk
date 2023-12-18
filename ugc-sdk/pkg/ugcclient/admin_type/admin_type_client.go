@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeUnauthorized, *AdminGetTypeNotFound, *AdminGetTypeInternalServerError, error)
+	AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeBadRequest, *AdminGetTypeUnauthorized, *AdminGetTypeInternalServerError, error)
 	AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, error)
 	AdminCreateType(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, *AdminCreateTypeBadRequest, *AdminCreateTypeUnauthorized, *AdminCreateTypeConflict, *AdminCreateTypeInternalServerError, error)
 	AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, error)
@@ -48,7 +48,7 @@ Deprecated: 2022-08-10 - Use AdminGetTypeShort instead.
 AdminGetType get types
 Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
 */
-func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeUnauthorized, *AdminGetTypeNotFound, *AdminGetTypeInternalServerError, error) {
+func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeBadRequest, *AdminGetTypeUnauthorized, *AdminGetTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetTypeParams()
@@ -84,10 +84,10 @@ func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.Clien
 	case *AdminGetTypeOK:
 		return v, nil, nil, nil, nil
 
-	case *AdminGetTypeUnauthorized:
+	case *AdminGetTypeBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *AdminGetTypeNotFound:
+	case *AdminGetTypeUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *AdminGetTypeInternalServerError:
@@ -137,9 +137,9 @@ func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.
 
 	case *AdminGetTypeOK:
 		return v, nil
-	case *AdminGetTypeUnauthorized:
+	case *AdminGetTypeBadRequest:
 		return nil, v
-	case *AdminGetTypeNotFound:
+	case *AdminGetTypeUnauthorized:
 		return nil, v
 	case *AdminGetTypeInternalServerError:
 		return nil, v

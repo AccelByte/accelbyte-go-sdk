@@ -59,12 +59,18 @@ func (aaa *PublicLikeV2Service) UpdateContentLikeStatusV2(input *public_like_v2.
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.PublicLikeV2.UpdateContentLikeStatusV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, tooManyRequests, internalServerError, err := aaa.Client.PublicLikeV2.UpdateContentLikeStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

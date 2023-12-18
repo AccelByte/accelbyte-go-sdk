@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.26.5"
+    "version": "2.26.6"
   },
   "schemes": [
     "https"
@@ -5961,11 +5961,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-01T09:20:08+00:00",
-    "gitHash": "6befffb1b8a36d19ae0162fa7af1f430ae32bb2f",
+    "buildDate": "2023-12-15T06:37:35+00:00",
+    "gitHash": "2d9ba65b4ce06b86c99fdd4dda725ee5679a6030",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.26.5",
+    "version": "2.26.6",
     "version-roles-seeding": "1.0.4"
   }
 }

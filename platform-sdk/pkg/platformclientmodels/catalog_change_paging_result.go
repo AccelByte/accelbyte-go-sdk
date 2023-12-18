@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CatalogChangePagingSlicedResult Catalog change paging sliced result
+// CatalogChangePagingResult Catalog change paging result
 //
-// swagger:model Catalog change paging sliced result.
-type CatalogChangePagingSlicedResult struct {
+// swagger:model Catalog change paging result.
+type CatalogChangePagingResult struct {
 
 	// data
 	// Required: true
@@ -26,10 +26,14 @@ type CatalogChangePagingSlicedResult struct {
 
 	// paging
 	Paging *Paging `json:"paging,omitempty"`
+
+	// total
+	// Format: int64
+	Total int64 `json:"total,omitempty"`
 }
 
-// Validate validates this Catalog change paging sliced result
-func (m *CatalogChangePagingSlicedResult) Validate(formats strfmt.Registry) error {
+// Validate validates this Catalog change paging result
+func (m *CatalogChangePagingResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
@@ -42,7 +46,7 @@ func (m *CatalogChangePagingSlicedResult) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *CatalogChangePagingSlicedResult) validateData(formats strfmt.Registry) error {
+func (m *CatalogChangePagingResult) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -68,7 +72,7 @@ func (m *CatalogChangePagingSlicedResult) validateData(formats strfmt.Registry) 
 }
 
 // MarshalBinary interface implementation
-func (m *CatalogChangePagingSlicedResult) MarshalBinary() ([]byte, error) {
+func (m *CatalogChangePagingResult) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -76,8 +80,8 @@ func (m *CatalogChangePagingSlicedResult) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CatalogChangePagingSlicedResult) UnmarshalBinary(b []byte) error {
-	var res CatalogChangePagingSlicedResult
+func (m *CatalogChangePagingResult) UnmarshalBinary(b []byte) error {
+	var res CatalogChangePagingResult
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

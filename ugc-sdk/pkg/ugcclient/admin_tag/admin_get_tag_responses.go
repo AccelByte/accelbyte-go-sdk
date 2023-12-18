@@ -33,14 +33,14 @@ func (o *AdminGetTagReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminGetTagUnauthorized()
+	case 400:
+		result := NewAdminGetTagBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminGetTagNotFound()
+	case 401:
+		result := NewAdminGetTagUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminGetTagOK() *AdminGetTagOK {
 
 /*AdminGetTagOK handles this case with default header values.
 
-  OK
+  Get Tags
 */
 type AdminGetTagOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedGetTagResponse
@@ -115,6 +115,59 @@ func (o *AdminGetTagOK) readResponse(response runtime.ClientResponse, consumer r
 	return nil
 }
 
+// NewAdminGetTagBadRequest creates a AdminGetTagBadRequest with default headers values
+func NewAdminGetTagBadRequest() *AdminGetTagBadRequest {
+	return &AdminGetTagBadRequest{}
+}
+
+/*AdminGetTagBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771501</td><td>invalid paging parameter</td></tr></table>
+*/
+type AdminGetTagBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetTagBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetTagBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetTagBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetTagBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetTagUnauthorized creates a AdminGetTagUnauthorized with default headers values
 func NewAdminGetTagUnauthorized() *AdminGetTagUnauthorized {
 	return &AdminGetTagUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminGetTagUnauthorized() *AdminGetTagUnauthorized {
 
 /*AdminGetTagUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetTagUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminGetTagUnauthorized) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewAdminGetTagNotFound creates a AdminGetTagNotFound with default headers values
-func NewAdminGetTagNotFound() *AdminGetTagNotFound {
-	return &AdminGetTagNotFound{}
-}
-
-/*AdminGetTagNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminGetTagNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminGetTagNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/tags][%d] adminGetTagNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminGetTagNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminGetTagNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminGetTagNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminGetTagInternalServerError creates a AdminGetTagInternalServerError with default headers values
 func NewAdminGetTagInternalServerError() *AdminGetTagInternalServerError {
 	return &AdminGetTagInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminGetTagInternalServerError() *AdminGetTagInternalServerError {
 
 /*AdminGetTagInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771402</td><td>Unable to save ugc tag</td></tr></table>
 */
 type AdminGetTagInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

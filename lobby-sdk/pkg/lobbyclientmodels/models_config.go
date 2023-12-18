@@ -28,7 +28,7 @@ type ModelsConfig struct {
 	AutoKickOnDisconnect bool `json:"autoKickOnDisconnect"`
 
 	// autokickondisconnectdelay
-	// Format: integer
+	// Format: int64
 	AutoKickOnDisconnectDelay int64 `json:"autoKickOnDisconnectDelay,omitempty"`
 
 	// cancelticketondisconnect
@@ -39,7 +39,7 @@ type ModelsConfig struct {
 	ChatRateLimitBurst int32 `json:"chatRateLimitBurst,omitempty"`
 
 	// chatratelimitduration
-	// Format: integer
+	// Format: int64
 	ChatRateLimitDuration int64 `json:"chatRateLimitDuration,omitempty"`
 
 	// concurrentuserslimit
@@ -63,7 +63,7 @@ type ModelsConfig struct {
 	GeneralRateLimitBurst int32 `json:"generalRateLimitBurst,omitempty"`
 
 	// generalratelimitduration
-	// Format: integer
+	// Format: int64
 	GeneralRateLimitDuration int64 `json:"generalRateLimitDuration,omitempty"`
 
 	// keeppresenceactivityondisconnect
@@ -71,7 +71,7 @@ type ModelsConfig struct {
 
 	// maxdswaittime
 	// Required: true
-	// Format: integer
+	// Format: int64
 	MaxDSWaitTime *int64 `json:"maxDSWaitTime"`
 
 	// maxfriendslimit
@@ -89,12 +89,12 @@ type ModelsConfig struct {
 	ProfanityFilter bool `json:"profanityFilter"`
 
 	// readyconsenttimeout
-	// Format: integer
+	// Format: int64
 	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`
 
 	// unregisterdelay
 	// Required: true
-	// Format: integer
+	// Format: int64
 	UnregisterDelay *int64 `json:"unregisterDelay"`
 }
 

@@ -87,7 +87,7 @@ func NewUpdateContentShareCodeV2OK() *UpdateContentShareCodeV2OK {
 
 /*UpdateContentShareCodeV2OK handles this case with default header values.
 
-  OK
+  Update content sharecode
 */
 type UpdateContentShareCodeV2OK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponseV2
@@ -140,7 +140,7 @@ func NewUpdateContentShareCodeV2BadRequest() *UpdateContentShareCodeV2BadRequest
 
 /*UpdateContentShareCodeV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr><tr><td>772607</td><td>Unable to update ugc content: invalid shareCode format</td></tr></table>
 */
 type UpdateContentShareCodeV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -193,7 +193,7 @@ func NewUpdateContentShareCodeV2Unauthorized() *UpdateContentShareCodeV2Unauthor
 
 /*UpdateContentShareCodeV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateContentShareCodeV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -246,7 +246,7 @@ func NewUpdateContentShareCodeV2Forbidden() *UpdateContentShareCodeV2Forbidden {
 
 /*UpdateContentShareCodeV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type UpdateContentShareCodeV2Forbidden struct {
 	Payload *ugcclientmodels.ResponseError
@@ -299,7 +299,7 @@ func NewUpdateContentShareCodeV2NotFound() *UpdateContentShareCodeV2NotFound {
 
 /*UpdateContentShareCodeV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type UpdateContentShareCodeV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -352,7 +352,7 @@ func NewUpdateContentShareCodeV2Conflict() *UpdateContentShareCodeV2Conflict {
 
 /*UpdateContentShareCodeV2Conflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772606</td><td>Share code already used</td></tr></table>
 */
 type UpdateContentShareCodeV2Conflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -405,7 +405,7 @@ func NewUpdateContentShareCodeV2InternalServerError() *UpdateContentShareCodeV2I
 
 /*UpdateContentShareCodeV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type UpdateContentShareCodeV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

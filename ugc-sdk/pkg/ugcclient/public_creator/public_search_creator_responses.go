@@ -69,7 +69,7 @@ func NewPublicSearchCreatorOK() *PublicSearchCreatorOK {
 
 /*PublicSearchCreatorOK handles this case with default header values.
 
-  OK
+  Search creator
 */
 type PublicSearchCreatorOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedCreatorOverviewResponse
@@ -122,7 +122,7 @@ func NewPublicSearchCreatorBadRequest() *PublicSearchCreatorBadRequest {
 
 /*PublicSearchCreatorBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770800</td><td>invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter</td></tr></table>
 */
 type PublicSearchCreatorBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicSearchCreatorUnauthorized() *PublicSearchCreatorUnauthorized {
 
 /*PublicSearchCreatorUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicSearchCreatorUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicSearchCreatorInternalServerError() *PublicSearchCreatorInternalSer
 
 /*PublicSearchCreatorInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr></table>
 */
 type PublicSearchCreatorInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

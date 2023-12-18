@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddDownloadCount(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, *AddDownloadCountBadRequest, *AddDownloadCountUnauthorized, *AddDownloadCountNotFound, *AddDownloadCountInternalServerError, error)
+	AddDownloadCount(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, *AddDownloadCountUnauthorized, *AddDownloadCountNotFound, *AddDownloadCountInternalServerError, error)
 	AddDownloadCountShort(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -42,7 +42,7 @@ Deprecated: 2022-08-10 - Use AddDownloadCountShort instead.
 AddDownloadCount add unique download count to a content
 Requires valid user token
 */
-func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, *AddDownloadCountBadRequest, *AddDownloadCountUnauthorized, *AddDownloadCountNotFound, *AddDownloadCountInternalServerError, error) {
+func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, *AddDownloadCountUnauthorized, *AddDownloadCountNotFound, *AddDownloadCountInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAddDownloadCountParams()
@@ -70,28 +70,25 @@ func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AddDownloadCountOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *AddDownloadCountBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AddDownloadCountUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AddDownloadCountNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AddDownloadCountInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -134,8 +131,6 @@ func (a *Client) AddDownloadCountShort(params *AddDownloadCountParams, authInfo 
 
 	case *AddDownloadCountOK:
 		return v, nil
-	case *AddDownloadCountBadRequest:
-		return nil, v
 	case *AddDownloadCountUnauthorized:
 		return nil, v
 	case *AddDownloadCountNotFound:

@@ -45,6 +45,18 @@ func (o *AdminCreateContentV2Reader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminCreateContentV2NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 409:
+		result := NewAdminCreateContentV2Conflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminCreateContentV2InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +81,7 @@ func NewAdminCreateContentV2Created() *AdminCreateContentV2Created {
 
 /*AdminCreateContentV2Created handles this case with default header values.
 
-  Created
+  Content created
 */
 type AdminCreateContentV2Created struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponseV2
@@ -122,7 +134,7 @@ func NewAdminCreateContentV2BadRequest() *AdminCreateContentV2BadRequest {
 
 /*AdminCreateContentV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770100</td><td>Malformed request/Invalid request body/channel do not exist</td></tr><tr><td>770107</td><td>Unable to update ugc content: invalid shareCode format</td></tr></table>
 */
 type AdminCreateContentV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +187,7 @@ func NewAdminCreateContentV2Unauthorized() *AdminCreateContentV2Unauthorized {
 
 /*AdminCreateContentV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminCreateContentV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +233,112 @@ func (o *AdminCreateContentV2Unauthorized) readResponse(response runtime.ClientR
 	return nil
 }
 
+// NewAdminCreateContentV2NotFound creates a AdminCreateContentV2NotFound with default headers values
+func NewAdminCreateContentV2NotFound() *AdminCreateContentV2NotFound {
+	return &AdminCreateContentV2NotFound{}
+}
+
+/*AdminCreateContentV2NotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770106</td><td>channel doesn't exist</td></tr></table>
+*/
+type AdminCreateContentV2NotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminCreateContentV2NotFound) Error() string {
+	return fmt.Sprintf("[POST /ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminCreateContentV2NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminCreateContentV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminCreateContentV2NotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminCreateContentV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminCreateContentV2Conflict creates a AdminCreateContentV2Conflict with default headers values
+func NewAdminCreateContentV2Conflict() *AdminCreateContentV2Conflict {
+	return &AdminCreateContentV2Conflict{}
+}
+
+/*AdminCreateContentV2Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
+*/
+type AdminCreateContentV2Conflict struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminCreateContentV2Conflict) Error() string {
+	return fmt.Sprintf("[POST /ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents][%d] adminCreateContentV2Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *AdminCreateContentV2Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminCreateContentV2Conflict) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminCreateContentV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminCreateContentV2InternalServerError creates a AdminCreateContentV2InternalServerError with default headers values
 func NewAdminCreateContentV2InternalServerError() *AdminCreateContentV2InternalServerError {
 	return &AdminCreateContentV2InternalServerError{}
@@ -228,7 +346,7 @@ func NewAdminCreateContentV2InternalServerError() *AdminCreateContentV2InternalS
 
 /*AdminCreateContentV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr><tr><td>770105</td><td>Unable to save ugc content: failed generate upload URL</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
 */
 type AdminCreateContentV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

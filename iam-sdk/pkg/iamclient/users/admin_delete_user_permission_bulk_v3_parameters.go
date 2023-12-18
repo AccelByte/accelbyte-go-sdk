@@ -74,7 +74,7 @@ type AdminDeleteUserPermissionBulkV3Params struct {
 	*/
 	Namespace string
 	/*UserID
-	  User id
+	  User ID, should follow UUID version 4 without hyphen
 
 	*/
 	UserID string

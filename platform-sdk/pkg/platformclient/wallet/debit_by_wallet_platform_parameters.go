@@ -66,8 +66,8 @@ type DebitByWalletPlatformParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
-	/*Body*/
-	Body *platformclientmodels.DebitByWalletPlatformRequest
+	/*Request*/
+	Request *platformclientmodels.DebitByWalletPlatformRequest
 	/*CurrencyCode*/
 	CurrencyCode string
 	/*Namespace
@@ -134,15 +134,15 @@ func (o *DebitByWalletPlatformParams) SetHTTPClientTransport(roundTripper http.R
 	}
 }
 
-// WithBody adds the body to the debit by wallet platform params
-func (o *DebitByWalletPlatformParams) WithBody(body *platformclientmodels.DebitByWalletPlatformRequest) *DebitByWalletPlatformParams {
-	o.SetBody(body)
+// WithRequest adds the request to the debit by wallet platform params
+func (o *DebitByWalletPlatformParams) WithRequest(request *platformclientmodels.DebitByWalletPlatformRequest) *DebitByWalletPlatformParams {
+	o.SetRequest(request)
 	return o
 }
 
-// SetBody adds the body to the debit by wallet platform params
-func (o *DebitByWalletPlatformParams) SetBody(body *platformclientmodels.DebitByWalletPlatformRequest) {
-	o.Body = body
+// SetRequest adds the request to the debit by wallet platform params
+func (o *DebitByWalletPlatformParams) SetRequest(request *platformclientmodels.DebitByWalletPlatformRequest) {
+	o.Request = request
 }
 
 // WithCurrencyCode adds the currencyCode to the debit by wallet platform params
@@ -186,8 +186,8 @@ func (o *DebitByWalletPlatformParams) WriteToRequest(r runtime.ClientRequest, re
 	}
 	var res []error
 
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
+	if o.Request != nil {
+		if err := r.SetBodyParam(o.Request); err != nil {
 			return err
 		}
 	}

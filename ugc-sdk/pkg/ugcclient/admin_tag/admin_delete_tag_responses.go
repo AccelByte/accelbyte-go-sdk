@@ -69,7 +69,7 @@ func NewAdminDeleteTagNoContent() *AdminDeleteTagNoContent {
 
 /*AdminDeleteTagNoContent handles this case with default header values.
 
-  No Content
+  Tags deleted
 */
 type AdminDeleteTagNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewAdminDeleteTagUnauthorized() *AdminDeleteTagUnauthorized {
 
 /*AdminDeleteTagUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminDeleteTagUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewAdminDeleteTagNotFound() *AdminDeleteTagNotFound {
 
 /*AdminDeleteTagNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772003</td><td>Tag not found</td></tr></table>
 */
 type AdminDeleteTagNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewAdminDeleteTagInternalServerError() *AdminDeleteTagInternalServerError {
 
 /*AdminDeleteTagInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772002</td><td>Unable delete tag</td></tr></table>
 */
 type AdminDeleteTagInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

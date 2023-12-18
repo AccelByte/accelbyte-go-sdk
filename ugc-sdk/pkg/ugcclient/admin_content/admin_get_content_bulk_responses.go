@@ -33,6 +33,12 @@ func (o *AdminGetContentBulkReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminGetContentBulkBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminGetContentBulkUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewAdminGetContentBulkOK() *AdminGetContentBulkOK {
 
 /*AdminGetContentBulkOK handles this case with default header values.
 
-  OK
+  Bulk get content by content IDs
 */
 type AdminGetContentBulkOK struct {
 	Payload []*ugcclientmodels.ModelsContentDownloadResponse
@@ -113,6 +119,59 @@ func (o *AdminGetContentBulkOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
+// NewAdminGetContentBulkBadRequest creates a AdminGetContentBulkBadRequest with default headers values
+func NewAdminGetContentBulkBadRequest() *AdminGetContentBulkBadRequest {
+	return &AdminGetContentBulkBadRequest{}
+}
+
+/*AdminGetContentBulkBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773900</td><td>Malformed request/Invalid request body</td></tr></table>
+*/
+type AdminGetContentBulkBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminGetContentBulkBadRequest) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/bulk][%d] adminGetContentBulkBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminGetContentBulkBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetContentBulkBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetContentBulkBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminGetContentBulkUnauthorized creates a AdminGetContentBulkUnauthorized with default headers values
 func NewAdminGetContentBulkUnauthorized() *AdminGetContentBulkUnauthorized {
 	return &AdminGetContentBulkUnauthorized{}
@@ -120,7 +179,7 @@ func NewAdminGetContentBulkUnauthorized() *AdminGetContentBulkUnauthorized {
 
 /*AdminGetContentBulkUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetContentBulkUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -173,7 +232,7 @@ func NewAdminGetContentBulkForbidden() *AdminGetContentBulkForbidden {
 
 /*AdminGetContentBulkForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type AdminGetContentBulkForbidden struct {
 	Payload *ugcclientmodels.ResponseError
@@ -226,7 +285,7 @@ func NewAdminGetContentBulkInternalServerError() *AdminGetContentBulkInternalSer
 
 /*AdminGetContentBulkInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773901</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>773902</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetContentBulkInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

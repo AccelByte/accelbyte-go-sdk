@@ -69,7 +69,7 @@ func NewAdminGetSpecificContentOK() *AdminGetSpecificContentOK {
 
 /*AdminGetSpecificContentOK handles this case with default header values.
 
-  OK
+  Get user specific content
 */
 type AdminGetSpecificContentOK struct {
 	Payload *ugcclientmodels.ModelsContentDownloadResponse
@@ -122,7 +122,7 @@ func NewAdminGetSpecificContentUnauthorized() *AdminGetSpecificContentUnauthoriz
 
 /*AdminGetSpecificContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetSpecificContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewAdminGetSpecificContentNotFound() *AdminGetSpecificContentNotFound {
 
 /*AdminGetSpecificContentNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773200</td><td>ugc content not found</td></tr></table>
 */
 type AdminGetSpecificContentNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewAdminGetSpecificContentInternalServerError() *AdminGetSpecificContentInt
 
 /*AdminGetSpecificContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773201</td><td>Unable to get ugc content/Unable to get creator/Unable to get included group</td></tr><tr><td>773203</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetSpecificContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

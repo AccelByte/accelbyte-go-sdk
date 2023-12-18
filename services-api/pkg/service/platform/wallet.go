@@ -126,6 +126,23 @@ func (aaa *WalletService) ListUserCurrencyTransactions(input *wallet.ListUserCur
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use CheckBalanceShort instead.
+func (aaa *WalletService) CheckBalance(input *wallet.CheckBalanceParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.Wallet.CheckBalance(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use CheckWalletShort instead.
 func (aaa *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -564,6 +581,31 @@ func (aaa *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUs
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) CheckBalanceShort(input *wallet.CheckBalanceParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Wallet.CheckBalanceShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error {

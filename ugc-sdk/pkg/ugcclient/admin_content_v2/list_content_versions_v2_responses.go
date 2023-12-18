@@ -69,7 +69,7 @@ func NewListContentVersionsV2OK() *ListContentVersionsV2OK {
 
 /*ListContentVersionsV2OK handles this case with default header values.
 
-  OK
+  List content's payload verisions
 */
 type ListContentVersionsV2OK struct {
 	Payload *ugcclientmodels.ModelsListContentVersionsResponse
@@ -122,7 +122,7 @@ func NewListContentVersionsV2Unauthorized() *ListContentVersionsV2Unauthorized {
 
 /*ListContentVersionsV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type ListContentVersionsV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewListContentVersionsV2NotFound() *ListContentVersionsV2NotFound {
 
 /*ListContentVersionsV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774004</td><td>ugc content not found</td></tr></table>
 */
 type ListContentVersionsV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewListContentVersionsV2InternalServerError() *ListContentVersionsV2Interna
 
 /*ListContentVersionsV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>774005</td><td>unable to get ugc content</td></tr></table>
 */
 type ListContentVersionsV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

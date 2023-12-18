@@ -45,6 +45,12 @@ func (o *PublicCreateContentV2Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicCreateContentV2NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicCreateContentV2InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,7 +75,7 @@ func NewPublicCreateContentV2Created() *PublicCreateContentV2Created {
 
 /*PublicCreateContentV2Created handles this case with default header values.
 
-  Created
+  Content created
 */
 type PublicCreateContentV2Created struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponseV2
@@ -122,7 +128,7 @@ func NewPublicCreateContentV2BadRequest() *PublicCreateContentV2BadRequest {
 
 /*PublicCreateContentV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770100</td><td>Malformed request/Invalid request body/channel do not exist</td></tr></table>
 */
 type PublicCreateContentV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +181,7 @@ func NewPublicCreateContentV2Unauthorized() *PublicCreateContentV2Unauthorized {
 
 /*PublicCreateContentV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicCreateContentV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -221,6 +227,59 @@ func (o *PublicCreateContentV2Unauthorized) readResponse(response runtime.Client
 	return nil
 }
 
+// NewPublicCreateContentV2NotFound creates a PublicCreateContentV2NotFound with default headers values
+func NewPublicCreateContentV2NotFound() *PublicCreateContentV2NotFound {
+	return &PublicCreateContentV2NotFound{}
+}
+
+/*PublicCreateContentV2NotFound handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770106</td><td>channel doesn't exist</td></tr></table>
+*/
+type PublicCreateContentV2NotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *PublicCreateContentV2NotFound) Error() string {
+	return fmt.Sprintf("[POST /ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents][%d] publicCreateContentV2NotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PublicCreateContentV2NotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicCreateContentV2NotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicCreateContentV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicCreateContentV2InternalServerError creates a PublicCreateContentV2InternalServerError with default headers values
 func NewPublicCreateContentV2InternalServerError() *PublicCreateContentV2InternalServerError {
 	return &PublicCreateContentV2InternalServerError{}
@@ -228,7 +287,7 @@ func NewPublicCreateContentV2InternalServerError() *PublicCreateContentV2Interna
 
 /*PublicCreateContentV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770102</td><td>Unable to check user ban status/Unable to save ugc content: unable to get channel</td></tr><tr><td>770105</td><td>Unable to save ugc content: failed generate upload URL</td></tr><tr><td>770103</td><td>Unable to save ugc content: shareCode exceed the limit</td></tr></table>
 */
 type PublicCreateContentV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

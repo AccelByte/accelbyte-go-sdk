@@ -64,9 +64,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminDebugProfanityFiltersShort instead.
 
 AdminDebugProfanityFilters get the list of filters that would modify the phrase
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get the list of filters that would modify the phrase
+Get the list of filters that would modify the phrase
 */
 func (a *Client) AdminDebugProfanityFilters(params *AdminDebugProfanityFiltersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDebugProfanityFiltersOK, *AdminDebugProfanityFiltersBadRequest, *AdminDebugProfanityFiltersUnauthorized, *AdminDebugProfanityFiltersForbidden, *AdminDebugProfanityFiltersNotFound, *AdminDebugProfanityFiltersInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -126,9 +124,7 @@ func (a *Client) AdminDebugProfanityFilters(params *AdminDebugProfanityFiltersPa
 
 /*
 AdminDebugProfanityFiltersShort get the list of filters that would modify the phrase
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get the list of filters that would modify the phrase
+Get the list of filters that would modify the phrase
 */
 func (a *Client) AdminDebugProfanityFiltersShort(params *AdminDebugProfanityFiltersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDebugProfanityFiltersOK, error) {
 	// TODO: Validate the params before sending
@@ -185,9 +181,7 @@ func (a *Client) AdminDebugProfanityFiltersShort(params *AdminDebugProfanityFilt
 Deprecated: 2022-08-10 - Use AdminGetProfanityListFiltersV1Short instead.
 
 AdminGetProfanityListFiltersV1 get the list of filters inside the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get the list of filters inside the list.
+Get the list of filters inside the list.
 */
 func (a *Client) AdminGetProfanityListFiltersV1(params *AdminGetProfanityListFiltersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityListFiltersV1OK, *AdminGetProfanityListFiltersV1BadRequest, *AdminGetProfanityListFiltersV1Unauthorized, *AdminGetProfanityListFiltersV1Forbidden, *AdminGetProfanityListFiltersV1NotFound, *AdminGetProfanityListFiltersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -247,9 +241,7 @@ func (a *Client) AdminGetProfanityListFiltersV1(params *AdminGetProfanityListFil
 
 /*
 AdminGetProfanityListFiltersV1Short get the list of filters inside the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get the list of filters inside the list.
+Get the list of filters inside the list.
 */
 func (a *Client) AdminGetProfanityListFiltersV1Short(params *AdminGetProfanityListFiltersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityListFiltersV1OK, error) {
 	// TODO: Validate the params before sending
@@ -306,9 +298,7 @@ func (a *Client) AdminGetProfanityListFiltersV1Short(params *AdminGetProfanityLi
 Deprecated: 2022-08-10 - Use AdminAddProfanityFilterIntoListShort instead.
 
 AdminAddProfanityFilterIntoList add a single filter into the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-add a single filter into the list
+Add a single filter into the list
 */
 func (a *Client) AdminAddProfanityFilterIntoList(params *AdminAddProfanityFilterIntoListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddProfanityFilterIntoListOK, *AdminAddProfanityFilterIntoListBadRequest, *AdminAddProfanityFilterIntoListUnauthorized, *AdminAddProfanityFilterIntoListForbidden, *AdminAddProfanityFilterIntoListNotFound, *AdminAddProfanityFilterIntoListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -368,9 +358,7 @@ func (a *Client) AdminAddProfanityFilterIntoList(params *AdminAddProfanityFilter
 
 /*
 AdminAddProfanityFilterIntoListShort add a single filter into the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-add a single filter into the list
+Add a single filter into the list
 */
 func (a *Client) AdminAddProfanityFilterIntoListShort(params *AdminAddProfanityFilterIntoListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddProfanityFilterIntoListOK, error) {
 	// TODO: Validate the params before sending
@@ -427,9 +415,7 @@ func (a *Client) AdminAddProfanityFilterIntoListShort(params *AdminAddProfanityF
 Deprecated: 2022-08-10 - Use AdminAddProfanityFiltersShort instead.
 
 AdminAddProfanityFilters add multiple filters into the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-add multiple filters into the list
+Add multiple filters into the list
 */
 func (a *Client) AdminAddProfanityFilters(params *AdminAddProfanityFiltersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddProfanityFiltersOK, *AdminAddProfanityFiltersBadRequest, *AdminAddProfanityFiltersUnauthorized, *AdminAddProfanityFiltersForbidden, *AdminAddProfanityFiltersNotFound, *AdminAddProfanityFiltersInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -489,9 +475,7 @@ func (a *Client) AdminAddProfanityFilters(params *AdminAddProfanityFiltersParams
 
 /*
 AdminAddProfanityFiltersShort add multiple filters into the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-add multiple filters into the list
+Add multiple filters into the list
 */
 func (a *Client) AdminAddProfanityFiltersShort(params *AdminAddProfanityFiltersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddProfanityFiltersOK, error) {
 	// TODO: Validate the params before sending
@@ -548,9 +532,7 @@ func (a *Client) AdminAddProfanityFiltersShort(params *AdminAddProfanityFiltersP
 Deprecated: 2022-08-10 - Use AdminImportProfanityFiltersFromFileShort instead.
 
 AdminImportProfanityFiltersFromFile import a file with filters
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-import a file with filters
+Import a file with filters
 */
 func (a *Client) AdminImportProfanityFiltersFromFile(params *AdminImportProfanityFiltersFromFileParams, authInfo runtime.ClientAuthInfoWriter) (*AdminImportProfanityFiltersFromFileOK, *AdminImportProfanityFiltersFromFileBadRequest, *AdminImportProfanityFiltersFromFileUnauthorized, *AdminImportProfanityFiltersFromFileForbidden, *AdminImportProfanityFiltersFromFileNotFound, *AdminImportProfanityFiltersFromFileInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -610,9 +592,7 @@ func (a *Client) AdminImportProfanityFiltersFromFile(params *AdminImportProfanit
 
 /*
 AdminImportProfanityFiltersFromFileShort import a file with filters
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-import a file with filters
+Import a file with filters
 */
 func (a *Client) AdminImportProfanityFiltersFromFileShort(params *AdminImportProfanityFiltersFromFileParams, authInfo runtime.ClientAuthInfoWriter) (*AdminImportProfanityFiltersFromFileOK, error) {
 	// TODO: Validate the params before sending
@@ -669,9 +649,7 @@ func (a *Client) AdminImportProfanityFiltersFromFileShort(params *AdminImportPro
 Deprecated: 2022-08-10 - Use AdminDeleteProfanityFilterShort instead.
 
 AdminDeleteProfanityFilter delete the filter from the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]` with scope `social`
-
-delete the filter from the list
+Delete the filter from the list
 */
 func (a *Client) AdminDeleteProfanityFilter(params *AdminDeleteProfanityFilterParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteProfanityFilterOK, *AdminDeleteProfanityFilterBadRequest, *AdminDeleteProfanityFilterUnauthorized, *AdminDeleteProfanityFilterForbidden, *AdminDeleteProfanityFilterNotFound, *AdminDeleteProfanityFilterInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -731,9 +709,7 @@ func (a *Client) AdminDeleteProfanityFilter(params *AdminDeleteProfanityFilterPa
 
 /*
 AdminDeleteProfanityFilterShort delete the filter from the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]` with scope `social`
-
-delete the filter from the list
+Delete the filter from the list
 */
 func (a *Client) AdminDeleteProfanityFilterShort(params *AdminDeleteProfanityFilterParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteProfanityFilterOK, error) {
 	// TODO: Validate the params before sending
@@ -790,9 +766,7 @@ func (a *Client) AdminDeleteProfanityFilterShort(params *AdminDeleteProfanityFil
 Deprecated: 2022-08-10 - Use AdminGetProfanityListsShort instead.
 
 AdminGetProfanityLists get lists
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get lists
+Get lists
 */
 func (a *Client) AdminGetProfanityLists(params *AdminGetProfanityListsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityListsOK, *AdminGetProfanityListsBadRequest, *AdminGetProfanityListsUnauthorized, *AdminGetProfanityListsForbidden, *AdminGetProfanityListsNotFound, *AdminGetProfanityListsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -852,9 +826,7 @@ func (a *Client) AdminGetProfanityLists(params *AdminGetProfanityListsParams, au
 
 /*
 AdminGetProfanityListsShort get lists
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get lists
+Get lists
 */
 func (a *Client) AdminGetProfanityListsShort(params *AdminGetProfanityListsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityListsOK, error) {
 	// TODO: Validate the params before sending
@@ -911,9 +883,7 @@ func (a *Client) AdminGetProfanityListsShort(params *AdminGetProfanityListsParam
 Deprecated: 2022-08-10 - Use AdminCreateProfanityListShort instead.
 
 AdminCreateProfanityList create a new list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-create a new list
+Create a new list
 */
 func (a *Client) AdminCreateProfanityList(params *AdminCreateProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateProfanityListOK, *AdminCreateProfanityListBadRequest, *AdminCreateProfanityListUnauthorized, *AdminCreateProfanityListForbidden, *AdminCreateProfanityListNotFound, *AdminCreateProfanityListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -973,9 +943,7 @@ func (a *Client) AdminCreateProfanityList(params *AdminCreateProfanityListParams
 
 /*
 AdminCreateProfanityListShort create a new list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]` with scope `social`
-
-create a new list
+Create a new list
 */
 func (a *Client) AdminCreateProfanityListShort(params *AdminCreateProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateProfanityListOK, error) {
 	// TODO: Validate the params before sending
@@ -1032,9 +1000,7 @@ func (a *Client) AdminCreateProfanityListShort(params *AdminCreateProfanityListP
 Deprecated: 2022-08-10 - Use AdminUpdateProfanityListShort instead.
 
 AdminUpdateProfanityList update the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]` with scope `social`
-
-update the list
+Update the list
 */
 func (a *Client) AdminUpdateProfanityList(params *AdminUpdateProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateProfanityListOK, *AdminUpdateProfanityListBadRequest, *AdminUpdateProfanityListUnauthorized, *AdminUpdateProfanityListForbidden, *AdminUpdateProfanityListNotFound, *AdminUpdateProfanityListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1094,9 +1060,7 @@ func (a *Client) AdminUpdateProfanityList(params *AdminUpdateProfanityListParams
 
 /*
 AdminUpdateProfanityListShort update the list
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]` with scope `social`
-
-update the list
+Update the list
 */
 func (a *Client) AdminUpdateProfanityListShort(params *AdminUpdateProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateProfanityListOK, error) {
 	// TODO: Validate the params before sending
@@ -1153,9 +1117,7 @@ func (a *Client) AdminUpdateProfanityListShort(params *AdminUpdateProfanityListP
 Deprecated: 2022-08-10 - Use AdminDeleteProfanityListShort instead.
 
 AdminDeleteProfanityList delete a list include all filters inside of it
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]` with scope `social`
-
-delete a list include all filters inside of it
+Delete a list include all filters inside of it
 */
 func (a *Client) AdminDeleteProfanityList(params *AdminDeleteProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteProfanityListOK, *AdminDeleteProfanityListBadRequest, *AdminDeleteProfanityListUnauthorized, *AdminDeleteProfanityListForbidden, *AdminDeleteProfanityListNotFound, *AdminDeleteProfanityListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1215,9 +1177,7 @@ func (a *Client) AdminDeleteProfanityList(params *AdminDeleteProfanityListParams
 
 /*
 AdminDeleteProfanityListShort delete a list include all filters inside of it
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]` with scope `social`
-
-delete a list include all filters inside of it
+Delete a list include all filters inside of it
 */
 func (a *Client) AdminDeleteProfanityListShort(params *AdminDeleteProfanityListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteProfanityListOK, error) {
 	// TODO: Validate the params before sending
@@ -1274,9 +1234,7 @@ func (a *Client) AdminDeleteProfanityListShort(params *AdminDeleteProfanityListP
 Deprecated: 2022-08-10 - Use AdminGetProfanityRuleShort instead.
 
 AdminGetProfanityRule get current profanity rule
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get current profanity rule
+Get current profanity rule
 */
 func (a *Client) AdminGetProfanityRule(params *AdminGetProfanityRuleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityRuleOK, *AdminGetProfanityRuleBadRequest, *AdminGetProfanityRuleUnauthorized, *AdminGetProfanityRuleForbidden, *AdminGetProfanityRuleNotFound, *AdminGetProfanityRuleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1336,9 +1294,7 @@ func (a *Client) AdminGetProfanityRule(params *AdminGetProfanityRuleParams, auth
 
 /*
 AdminGetProfanityRuleShort get current profanity rule
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-get current profanity rule
+Get current profanity rule
 */
 func (a *Client) AdminGetProfanityRuleShort(params *AdminGetProfanityRuleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetProfanityRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -1395,9 +1351,7 @@ func (a *Client) AdminGetProfanityRuleShort(params *AdminGetProfanityRuleParams,
 Deprecated: 2022-08-10 - Use AdminSetProfanityRuleForNamespaceShort instead.
 
 AdminSetProfanityRuleForNamespace set current profanity rule
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]` with scope `social`
-
-set current profanity rule
+Set current profanity rule
 */
 func (a *Client) AdminSetProfanityRuleForNamespace(params *AdminSetProfanityRuleForNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetProfanityRuleForNamespaceOK, *AdminSetProfanityRuleForNamespaceBadRequest, *AdminSetProfanityRuleForNamespaceUnauthorized, *AdminSetProfanityRuleForNamespaceForbidden, *AdminSetProfanityRuleForNamespaceNotFound, *AdminSetProfanityRuleForNamespaceInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1457,9 +1411,7 @@ func (a *Client) AdminSetProfanityRuleForNamespace(params *AdminSetProfanityRule
 
 /*
 AdminSetProfanityRuleForNamespaceShort set current profanity rule
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]` with scope `social`
-
-set current profanity rule
+Set current profanity rule
 */
 func (a *Client) AdminSetProfanityRuleForNamespaceShort(params *AdminSetProfanityRuleForNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetProfanityRuleForNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -1516,9 +1468,7 @@ func (a *Client) AdminSetProfanityRuleForNamespaceShort(params *AdminSetProfanit
 Deprecated: 2022-08-10 - Use AdminVerifyMessageProfanityResponseShort instead.
 
 AdminVerifyMessageProfanityResponse verify a message directly from the ui or other services
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-verify a message directly from the UI or other services
+Verify a message directly from the UI or other services
 */
 func (a *Client) AdminVerifyMessageProfanityResponse(params *AdminVerifyMessageProfanityResponseParams, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyMessageProfanityResponseOK, *AdminVerifyMessageProfanityResponseBadRequest, *AdminVerifyMessageProfanityResponseUnauthorized, *AdminVerifyMessageProfanityResponseForbidden, *AdminVerifyMessageProfanityResponseNotFound, *AdminVerifyMessageProfanityResponseInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1578,9 +1528,7 @@ func (a *Client) AdminVerifyMessageProfanityResponse(params *AdminVerifyMessageP
 
 /*
 AdminVerifyMessageProfanityResponseShort verify a message directly from the ui or other services
-Required permission : `ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]` with scope `social`
-
-verify a message directly from the UI or other services
+Verify a message directly from the UI or other services
 */
 func (a *Client) AdminVerifyMessageProfanityResponseShort(params *AdminVerifyMessageProfanityResponseParams, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyMessageProfanityResponseOK, error) {
 	// TODO: Validate the params before sending

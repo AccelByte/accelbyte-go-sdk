@@ -33,14 +33,14 @@ func (o *SingleAdminGetContentReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewSingleAdminGetContentUnauthorized()
+	case 400:
+		result := NewSingleAdminGetContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewSingleAdminGetContentNotFound()
+	case 401:
+		result := NewSingleAdminGetContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewSingleAdminGetContentOK() *SingleAdminGetContentOK {
 
 /*SingleAdminGetContentOK handles this case with default header values.
 
-  OK
+  Get user's generated contents
 */
 type SingleAdminGetContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *SingleAdminGetContentOK) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
+// NewSingleAdminGetContentBadRequest creates a SingleAdminGetContentBadRequest with default headers values
+func NewSingleAdminGetContentBadRequest() *SingleAdminGetContentBadRequest {
+	return &SingleAdminGetContentBadRequest{}
+}
+
+/*SingleAdminGetContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770900</td><td>invalid paging parameter</td></tr></table>
+*/
+type SingleAdminGetContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *SingleAdminGetContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents][%d] singleAdminGetContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *SingleAdminGetContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SingleAdminGetContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *SingleAdminGetContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewSingleAdminGetContentUnauthorized creates a SingleAdminGetContentUnauthorized with default headers values
 func NewSingleAdminGetContentUnauthorized() *SingleAdminGetContentUnauthorized {
 	return &SingleAdminGetContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewSingleAdminGetContentUnauthorized() *SingleAdminGetContentUnauthorized {
 
 /*SingleAdminGetContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SingleAdminGetContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *SingleAdminGetContentUnauthorized) readResponse(response runtime.Client
 	return nil
 }
 
-// NewSingleAdminGetContentNotFound creates a SingleAdminGetContentNotFound with default headers values
-func NewSingleAdminGetContentNotFound() *SingleAdminGetContentNotFound {
-	return &SingleAdminGetContentNotFound{}
-}
-
-/*SingleAdminGetContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type SingleAdminGetContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *SingleAdminGetContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/contents][%d] singleAdminGetContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *SingleAdminGetContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *SingleAdminGetContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *SingleAdminGetContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSingleAdminGetContentInternalServerError creates a SingleAdminGetContentInternalServerError with default headers values
 func NewSingleAdminGetContentInternalServerError() *SingleAdminGetContentInternalServerError {
 	return &SingleAdminGetContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewSingleAdminGetContentInternalServerError() *SingleAdminGetContentInterna
 
 /*SingleAdminGetContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770901</td><td>Unable to get ugc content: database error/Unable to get creator</td></tr><tr><td>770903</td><td>Failed generate download URL</td></tr></table>
 */
 type SingleAdminGetContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

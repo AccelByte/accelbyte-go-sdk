@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package images
+package artifacts
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/images"
+	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/artifacts"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ams"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,23 +15,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// FleetArtifactSamplingRulesGetCmd represents the FleetArtifactSamplingRulesGet command
-var FleetArtifactSamplingRulesGetCmd = &cobra.Command{
-	Use:   "fleetArtifactSamplingRulesGet",
-	Short: "Fleet artifact sampling rules get",
-	Long:  `Fleet artifact sampling rules get`,
+// ArtifactUsageGetCmd represents the ArtifactUsageGet command
+var ArtifactUsageGetCmd = &cobra.Command{
+	Use:   "artifactUsageGet",
+	Short: "Artifact usage get",
+	Long:  `Artifact usage get`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		imagesService := &ams.ImagesService{
+		artifactsService := &ams.ArtifactsService{
 			Client:          factory.NewAmsClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		fleetID, _ := cmd.Flags().GetString("fleetID")
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &images.FleetArtifactSamplingRulesGetParams{
-			FleetID:   fleetID,
+		input := &artifacts.ArtifactUsageGetParams{
 			Namespace: namespace,
 		}
-		ok, errOK := imagesService.FleetArtifactSamplingRulesGetShort(input)
+		ok, errOK := artifactsService.ArtifactUsageGetShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -45,8 +43,6 @@ var FleetArtifactSamplingRulesGetCmd = &cobra.Command{
 }
 
 func init() {
-	FleetArtifactSamplingRulesGetCmd.Flags().String("fleetID", "", "Fleet ID")
-	_ = FleetArtifactSamplingRulesGetCmd.MarkFlagRequired("fleetID")
-	FleetArtifactSamplingRulesGetCmd.Flags().String("namespace", "", "Namespace")
-	_ = FleetArtifactSamplingRulesGetCmd.MarkFlagRequired("namespace")
+	ArtifactUsageGetCmd.Flags().String("namespace", "", "Namespace")
+	_ = ArtifactUsageGetCmd.MarkFlagRequired("namespace")
 }

@@ -39,6 +39,8 @@ type ClientService interface {
 	BulkGetStatCycleShort(params *BulkGetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycleOK, error)
 	ExportStatCycle(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, *ExportStatCycleUnauthorized, *ExportStatCycleForbidden, *ExportStatCycleInternalServerError, error)
 	ExportStatCycleShort(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, error)
+	ImportStatCycle(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, *ImportStatCycleBadRequest, *ImportStatCycleUnauthorized, *ImportStatCycleForbidden, *ImportStatCycleInternalServerError, error)
+	ImportStatCycleShort(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, error)
 	GetStatCycle(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, *GetStatCycleUnauthorized, *GetStatCycleForbidden, *GetStatCycleNotFound, *GetStatCycleInternalServerError, error)
 	GetStatCycleShort(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, error)
 	UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, *UpdateStatCycleBadRequest, *UpdateStatCycleUnauthorized, *UpdateStatCycleForbidden, *UpdateStatCycleNotFound, *UpdateStatCycleConflict, *UpdateStatCycleUnprocessableEntity, *UpdateStatCycleInternalServerError, error)
@@ -542,6 +544,124 @@ func (a *Client) ExportStatCycleShort(params *ExportStatCycleParams, authInfo ru
 	case *ExportStatCycleForbidden:
 		return nil, v
 	case *ExportStatCycleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ImportStatCycleShort instead.
+
+ImportStatCycle import stat cycle configurations
+Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+*/
+func (a *Client) ImportStatCycle(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, *ImportStatCycleBadRequest, *ImportStatCycleUnauthorized, *ImportStatCycleForbidden, *ImportStatCycleInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStatCycleCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *ImportStatCycleBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *ImportStatCycleUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *ImportStatCycleForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *ImportStatCycleInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImportStatCycleShort import stat cycle configurations
+Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
+
+Other detail info:
+              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
+*/
+func (a *Client) ImportStatCycleShort(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStatCycleCreated:
+		return v, nil
+	case *ImportStatCycleBadRequest:
+		return nil, v
+	case *ImportStatCycleUnauthorized:
+		return nil, v
+	case *ImportStatCycleForbidden:
+		return nil, v
+	case *ImportStatCycleInternalServerError:
 		return nil, v
 
 	default:

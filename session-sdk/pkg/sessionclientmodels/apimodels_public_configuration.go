@@ -65,6 +65,10 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	Joinability *string `json:"joinability"`
 
+	// leaderelectiongraceperiod
+	// Format: int32
+	LeaderElectionGracePeriod int32 `json:"leaderElectionGracePeriod,omitempty"`
+
 	// maxactivesession
 	// Format: int32
 	MaxActiveSession int32 `json:"maxActiveSession,omitempty"`

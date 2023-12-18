@@ -33,14 +33,14 @@ func (o *AdminSearchChannelSpecificContentReader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewAdminSearchChannelSpecificContentUnauthorized()
+	case 400:
+		result := NewAdminSearchChannelSpecificContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminSearchChannelSpecificContentNotFound()
+	case 401:
+		result := NewAdminSearchChannelSpecificContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewAdminSearchChannelSpecificContentOK() *AdminSearchChannelSpecificContent
 
 /*AdminSearchChannelSpecificContentOK handles this case with default header values.
 
-  OK
+  Search contents specific to a channel
 */
 type AdminSearchChannelSpecificContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *AdminSearchChannelSpecificContentOK) readResponse(response runtime.Clie
 	return nil
 }
 
+// NewAdminSearchChannelSpecificContentBadRequest creates a AdminSearchChannelSpecificContentBadRequest with default headers values
+func NewAdminSearchChannelSpecificContentBadRequest() *AdminSearchChannelSpecificContentBadRequest {
+	return &AdminSearchChannelSpecificContentBadRequest{}
+}
+
+/*AdminSearchChannelSpecificContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770800</td><td>invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter</td></tr></table>
+*/
+type AdminSearchChannelSpecificContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminSearchChannelSpecificContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminSearchChannelSpecificContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchChannelSpecificContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminSearchChannelSpecificContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAdminSearchChannelSpecificContentUnauthorized creates a AdminSearchChannelSpecificContentUnauthorized with default headers values
 func NewAdminSearchChannelSpecificContentUnauthorized() *AdminSearchChannelSpecificContentUnauthorized {
 	return &AdminSearchChannelSpecificContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewAdminSearchChannelSpecificContentUnauthorized() *AdminSearchChannelSpeci
 
 /*AdminSearchChannelSpecificContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminSearchChannelSpecificContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *AdminSearchChannelSpecificContentUnauthorized) readResponse(response ru
 	return nil
 }
 
-// NewAdminSearchChannelSpecificContentNotFound creates a AdminSearchChannelSpecificContentNotFound with default headers values
-func NewAdminSearchChannelSpecificContentNotFound() *AdminSearchChannelSpecificContentNotFound {
-	return &AdminSearchChannelSpecificContentNotFound{}
-}
-
-/*AdminSearchChannelSpecificContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminSearchChannelSpecificContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AdminSearchChannelSpecificContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search][%d] adminSearchChannelSpecificContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminSearchChannelSpecificContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminSearchChannelSpecificContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AdminSearchChannelSpecificContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminSearchChannelSpecificContentInternalServerError creates a AdminSearchChannelSpecificContentInternalServerError with default headers values
 func NewAdminSearchChannelSpecificContentInternalServerError() *AdminSearchChannelSpecificContentInternalServerError {
 	return &AdminSearchChannelSpecificContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewAdminSearchChannelSpecificContentInternalServerError() *AdminSearchChann
 
 /*AdminSearchChannelSpecificContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770803</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminSearchChannelSpecificContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

@@ -29,13 +29,17 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 		by, _ := cmd.Flags().GetString("by")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		platformBy, _ := cmd.Flags().GetString("platformBy")
+		platformId, _ := cmd.Flags().GetString("platformId")
 		query, _ := cmd.Flags().GetString("query")
 		input := &users.PublicSearchUserV3Params{
-			Namespace: namespace,
-			By:        &by,
-			Limit:     &limit,
-			Offset:    &offset,
-			Query:     &query,
+			Namespace:  namespace,
+			By:         &by,
+			Limit:      &limit,
+			Offset:     &offset,
+			PlatformBy: &platformBy,
+			PlatformID: &platformId,
+			Query:      &query,
 		}
 		ok, errOK := usersService.PublicSearchUserV3Short(input)
 		if errOK != nil {
@@ -56,5 +60,7 @@ func init() {
 	PublicSearchUserV3Cmd.Flags().String("by", "", "By")
 	PublicSearchUserV3Cmd.Flags().Int64("limit", 20, "Limit")
 	PublicSearchUserV3Cmd.Flags().Int64("offset", 0, "Offset")
+	PublicSearchUserV3Cmd.Flags().String("platformBy", "", "Platform by")
+	PublicSearchUserV3Cmd.Flags().String("platformId", "", "Platform id")
 	PublicSearchUserV3Cmd.Flags().String("query", "", "Query")
 }

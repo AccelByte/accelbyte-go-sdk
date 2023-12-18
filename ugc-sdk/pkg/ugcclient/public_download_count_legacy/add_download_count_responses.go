@@ -33,12 +33,6 @@ func (o *AddDownloadCountReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewAddDownloadCountBadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 401:
 		result := NewAddDownloadCountUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +69,7 @@ func NewAddDownloadCountOK() *AddDownloadCountOK {
 
 /*AddDownloadCountOK handles this case with default header values.
 
-  OK
+  added download count to a content
 */
 type AddDownloadCountOK struct {
 	Payload *ugcclientmodels.ModelsAddDownloadCountResponse
@@ -121,59 +115,6 @@ func (o *AddDownloadCountOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewAddDownloadCountBadRequest creates a AddDownloadCountBadRequest with default headers values
-func NewAddDownloadCountBadRequest() *AddDownloadCountBadRequest {
-	return &AddDownloadCountBadRequest{}
-}
-
-/*AddDownloadCountBadRequest handles this case with default header values.
-
-  Bad Request
-*/
-type AddDownloadCountBadRequest struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *AddDownloadCountBadRequest) Error() string {
-	return fmt.Sprintf("[POST /ugc/v1/public/namespaces/{namespace}/contents/{contentId}/downloadcount][%d] addDownloadCountBadRequest  %+v", 400, o.ToJSONString())
-}
-
-func (o *AddDownloadCountBadRequest) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AddDownloadCountBadRequest) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *AddDownloadCountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAddDownloadCountUnauthorized creates a AddDownloadCountUnauthorized with default headers values
 func NewAddDownloadCountUnauthorized() *AddDownloadCountUnauthorized {
 	return &AddDownloadCountUnauthorized{}
@@ -181,7 +122,7 @@ func NewAddDownloadCountUnauthorized() *AddDownloadCountUnauthorized {
 
 /*AddDownloadCountUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AddDownloadCountUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +175,7 @@ func NewAddDownloadCountNotFound() *AddDownloadCountNotFound {
 
 /*AddDownloadCountNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772903</td><td>Unable to add content download: content not found</td></tr></table>
 */
 type AddDownloadCountNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +228,7 @@ func NewAddDownloadCountInternalServerError() *AddDownloadCountInternalServerErr
 
 /*AddDownloadCountInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772902</td><td>Unable to add content download: database error</td></tr></table>
 */
 type AddDownloadCountInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

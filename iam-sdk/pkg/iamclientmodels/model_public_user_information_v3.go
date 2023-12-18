@@ -38,6 +38,9 @@ type ModelPublicUserInformationV3 struct {
 	// username
 	// Required: true
 	UserName *string `json:"userName"`
+
+	// userplatforminfos
+	UserPlatformInfos []*ModelUserPlatformInfo `json:"userPlatformInfos,omitempty"`
 }
 
 // Validate validates this Model public user information V3

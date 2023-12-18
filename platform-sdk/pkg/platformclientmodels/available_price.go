@@ -26,18 +26,34 @@ type AvailablePrice struct {
 	// Required: true
 	CurrencyNamespace *string `json:"currencyNamespace"`
 
+	// Discount expire date time
+	// Format: date-time
+	DiscountExpireAt *strfmt.DateTime `json:"discountExpireAt,omitempty"`
+
+	// DiscountPurchaseAt
+	// Format: date-time
+	DiscountPurchaseAt *strfmt.DateTime `json:"discountPurchaseAt,omitempty"`
+
 	// current available discounted price, only calc total discounted price with un-owned durable items if it's a flexible bundle item.
 	// Required: true
 	// Format: int32
 	DiscountedPrice *int32 `json:"discountedPrice"`
+
+	// ExpireAt
+	// Format: date-time
+	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
 	// current full price, only calc total price with un-owned durable items if it's a flexible bundle item.
 	// Required: true
 	// Format: int32
 	Price *int32 `json:"price"`
 
-	// only have value when item is flexible bundle
+	// only have value when item is flexible bundle and the price is within the effective range
 	PriceDetails []*SubItemAvailablePrice `json:"priceDetails,omitempty"`
+
+	// PurchaseAt
+	// Format: date-time
+	PurchaseAt *strfmt.DateTime `json:"purchaseAt,omitempty"`
 }
 
 // Validate validates this Available price

@@ -33,14 +33,14 @@ func (o *GetFollowedContentReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetFollowedContentUnauthorized()
+	case 400:
+		result := NewGetFollowedContentBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetFollowedContentNotFound()
+	case 401:
+		result := NewGetFollowedContentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func NewGetFollowedContentOK() *GetFollowedContentOK {
 
 /*GetFollowedContentOK handles this case with default header values.
 
-  OK
+  Get contents from followed creators
 */
 type GetFollowedContentOK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloadResponse
@@ -115,6 +115,59 @@ func (o *GetFollowedContentOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
+// NewGetFollowedContentBadRequest creates a GetFollowedContentBadRequest with default headers values
+func NewGetFollowedContentBadRequest() *GetFollowedContentBadRequest {
+	return &GetFollowedContentBadRequest{}
+}
+
+/*GetFollowedContentBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771311</td><td>invalid paging parameter</td></tr></table>
+*/
+type GetFollowedContentBadRequest struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *GetFollowedContentBadRequest) Error() string {
+	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetFollowedContentBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetFollowedContentBadRequest) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetFollowedContentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetFollowedContentUnauthorized creates a GetFollowedContentUnauthorized with default headers values
 func NewGetFollowedContentUnauthorized() *GetFollowedContentUnauthorized {
 	return &GetFollowedContentUnauthorized{}
@@ -122,7 +175,7 @@ func NewGetFollowedContentUnauthorized() *GetFollowedContentUnauthorized {
 
 /*GetFollowedContentUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetFollowedContentUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -168,59 +221,6 @@ func (o *GetFollowedContentUnauthorized) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewGetFollowedContentNotFound creates a GetFollowedContentNotFound with default headers values
-func NewGetFollowedContentNotFound() *GetFollowedContentNotFound {
-	return &GetFollowedContentNotFound{}
-}
-
-/*GetFollowedContentNotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetFollowedContentNotFound struct {
-	Payload *ugcclientmodels.ResponseError
-}
-
-func (o *GetFollowedContentNotFound) Error() string {
-	return fmt.Sprintf("[GET /ugc/v1/public/namespaces/{namespace}/contents/followed][%d] getFollowedContentNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetFollowedContentNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetFollowedContentNotFound) GetPayload() *ugcclientmodels.ResponseError {
-	return o.Payload
-}
-
-func (o *GetFollowedContentNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(ugcclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetFollowedContentInternalServerError creates a GetFollowedContentInternalServerError with default headers values
 func NewGetFollowedContentInternalServerError() *GetFollowedContentInternalServerError {
 	return &GetFollowedContentInternalServerError{}
@@ -228,7 +228,7 @@ func NewGetFollowedContentInternalServerError() *GetFollowedContentInternalServe
 
 /*GetFollowedContentInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771310</td><td>Unable to get ugc content: database error</td></tr><tr><td>770801</td><td>Unable to get ugc content: database/Unable to get creator</td></tr><tr><td>770803</td><td>Failed generate download URL</td></tr></table>
 */
 type GetFollowedContentInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

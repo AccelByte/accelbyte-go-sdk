@@ -29,6 +29,7 @@ var PublicQueryItemsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		appType, _ := cmd.Flags().GetString("appType")
+		autoCalcEstimatedPrice, _ := cmd.Flags().GetBool("autoCalcEstimatedPrice")
 		baseAppId, _ := cmd.Flags().GetString("baseAppId")
 		categoryPath, _ := cmd.Flags().GetString("categoryPath")
 		features, _ := cmd.Flags().GetString("features")
@@ -49,6 +50,7 @@ var PublicQueryItemsCmd = &cobra.Command{
 		input := &item.PublicQueryItemsParams{
 			Namespace:              namespace,
 			AppType:                &appType,
+			AutoCalcEstimatedPrice: &autoCalcEstimatedPrice,
 			BaseAppID:              &baseAppId,
 			CategoryPath:           &categoryPath,
 			Features:               &features,
@@ -79,6 +81,7 @@ func init() {
 	PublicQueryItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicQueryItemsCmd.MarkFlagRequired("namespace")
 	PublicQueryItemsCmd.Flags().String("appType", "", "App type")
+	PublicQueryItemsCmd.Flags().Bool("autoCalcEstimatedPrice", false, "Auto calc estimated price")
 	PublicQueryItemsCmd.Flags().String("baseAppId", "", "Base app id")
 	PublicQueryItemsCmd.Flags().String("categoryPath", "", "Category path")
 	PublicQueryItemsCmd.Flags().String("features", "", "Features")

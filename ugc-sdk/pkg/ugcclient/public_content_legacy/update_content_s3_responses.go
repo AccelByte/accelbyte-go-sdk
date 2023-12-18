@@ -45,6 +45,12 @@ func (o *UpdateContentS3Reader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewUpdateContentS3Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewUpdateContentS3NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewUpdateContentS3OK() *UpdateContentS3OK {
 
 /*UpdateContentS3OK handles this case with default header values.
 
-  OK
+  Content updated at S3 bucket
 */
 type UpdateContentS3OK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -128,7 +134,7 @@ func NewUpdateContentS3BadRequest() *UpdateContentS3BadRequest {
 
 /*UpdateContentS3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type UpdateContentS3BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +187,7 @@ func NewUpdateContentS3Unauthorized() *UpdateContentS3Unauthorized {
 
 /*UpdateContentS3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateContentS3Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,6 +233,59 @@ func (o *UpdateContentS3Unauthorized) readResponse(response runtime.ClientRespon
 	return nil
 }
 
+// NewUpdateContentS3Forbidden creates a UpdateContentS3Forbidden with default headers values
+func NewUpdateContentS3Forbidden() *UpdateContentS3Forbidden {
+	return &UpdateContentS3Forbidden{}
+}
+
+/*UpdateContentS3Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type UpdateContentS3Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *UpdateContentS3Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}][%d] updateContentS3Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *UpdateContentS3Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateContentS3Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *UpdateContentS3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewUpdateContentS3NotFound creates a UpdateContentS3NotFound with default headers values
 func NewUpdateContentS3NotFound() *UpdateContentS3NotFound {
 	return &UpdateContentS3NotFound{}
@@ -234,7 +293,7 @@ func NewUpdateContentS3NotFound() *UpdateContentS3NotFound {
 
 /*UpdateContentS3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type UpdateContentS3NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +346,7 @@ func NewUpdateContentS3InternalServerError() *UpdateContentS3InternalServerError
 
 /*UpdateContentS3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr><tr><td>772605</td><td>Unable to save ugc content: failed generate upload URL</td></tr></table>
 */
 type UpdateContentS3InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

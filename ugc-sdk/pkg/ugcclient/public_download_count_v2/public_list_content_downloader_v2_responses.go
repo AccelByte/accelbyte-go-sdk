@@ -69,7 +69,7 @@ func NewPublicListContentDownloaderV2OK() *PublicListContentDownloaderV2OK {
 
 /*PublicListContentDownloaderV2OK handles this case with default header values.
 
-  OK
+  List content downloader
 */
 type PublicListContentDownloaderV2OK struct {
 	Payload *ugcclientmodels.ModelsPaginatedContentDownloaderResponse
@@ -122,7 +122,7 @@ func NewPublicListContentDownloaderV2BadRequest() *PublicListContentDownloaderV2
 
 /*PublicListContentDownloaderV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770800</td><td>invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter</td></tr></table>
 */
 type PublicListContentDownloaderV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewPublicListContentDownloaderV2Unauthorized() *PublicListContentDownloader
 
 /*PublicListContentDownloaderV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicListContentDownloaderV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewPublicListContentDownloaderV2InternalServerError() *PublicListContentDow
 
 /*PublicListContentDownloaderV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772904</td><td>Unable to list content downloader: database error</td></tr></table>
 */
 type PublicListContentDownloaderV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

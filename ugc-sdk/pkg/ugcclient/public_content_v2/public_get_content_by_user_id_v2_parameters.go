@@ -104,7 +104,7 @@ type PublicGetContentByUserIDV2Params struct {
 	*/
 	UserID string
 	/*Limit
-	  number of content per page
+	  number of content per page. max limit: -1 (-1 means unlimited).
 
 	*/
 	Limit *int64

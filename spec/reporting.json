@@ -8,7 +8,7 @@
     },
     "description": "Justice Reporting Service",
     "title": "justice-reporting-service",
-    "version": "0.1.29"
+    "version": "0.1.30"
   },
   "schemes": [
     "https"
@@ -22,22 +22,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]": "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]": "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:REASON [READ]": "ADMIN:NAMESPACE:{namespace}:REASON [READ]",
-        "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]": "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]": "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]": "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:RULE [READ]": "ADMIN:NAMESPACE:{namespace}:RULE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]": "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]": "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:TICKET [READ]": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
-        "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]",
-        "ADMIN:REPORTINGCONFIG [CREATE]": "ADMIN:REPORTINGCONFIG [CREATE]",
-        "ADMIN:REPORTINGCONFIG [READ]": "ADMIN:REPORTINGCONFIG [READ]"
+        "ADMIN:NAMESPACE:{namespace}:TICKET [READ]": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -62,7 +47,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:REPORTINGCONFIG [READ]\nGet a list of auto moderation actions",
+        "description": "Get a list of auto moderation actions",
         "operationId": "adminFindActionList",
         "produces": [
           "application/json"
@@ -89,22 +74,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:REPORTINGCONFIG [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Find Auto Moderation Action List",
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:REPORTINGCONFIG [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:REPORTINGCONFIG [CREATE]\nCreate auto moderation action",
+        "description": "Create auto moderation action",
         "operationId": "adminCreateModAction",
         "parameters": [
           {
@@ -141,15 +130,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:REPORTINGCONFIG [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create Auto Moderation Action data",
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:REPORTINGCONFIG [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -158,7 +151,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:REPORTINGCONFIG [READ]\nGet a list of extension category data with the specified name",
+        "description": "Get a list of extension category data with the specified name",
         "operationId": "adminFindExtensionCategoryList",
         "parameters": [
           {
@@ -211,22 +204,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:REPORTINGCONFIG [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Find Extension Category List",
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:REPORTINGCONFIG [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:REPORTINGCONFIG [CREATE]\nCreate extension category data",
+        "description": "Create extension category data",
         "operationId": "adminCreateExtensionCategory",
         "parameters": [
           {
@@ -263,15 +260,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:REPORTINGCONFIG [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create Extension Category",
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:REPORTINGCONFIG [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -280,7 +281,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]\nTimeInterval is in nanoseconds.\nWhen there\u0026#39;s no configuration set, the response is the default value (configurable through envar).\n",
+        "description": "TimeInterval is in nanoseconds.\nWhen there\u0026#39;s no configuration set, the response is the default value (configurable through envar).\n",
         "operationId": "Get",
         "parameters": [
           {
@@ -319,22 +320,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get configuration",
         "tags": [
           "Admin Configurations"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]\nThe behaviour of this endpoint is upsert based on the namespace.\nSo, you can use this for both creating \u0026amp; updating the configuration.\nTimeInterval is in nanoseconds.\n",
+        "description": "The behaviour of this endpoint is upsert based on the namespace.\nSo, you can use this for both creating \u0026amp; updating the configuration.\nTimeInterval is in nanoseconds.\n",
         "operationId": "Upsert",
         "parameters": [
           {
@@ -377,15 +382,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create/Update configuration",
         "tags": [
           "Admin Configurations"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -394,7 +403,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\nReturn list of reason groups ID and title under given namespace. To fetch the reasons inside a group, use get reason group endpoint.",
+        "description": "Return list of reason groups ID and title under given namespace. \nTo fetch the reasons inside a group, use get reason group endpoint.",
         "operationId": "adminListReasonGroups",
         "parameters": [
           {
@@ -435,22 +444,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "List reason groups under a namespace",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]\nCreate a reason group for easier query. You can query reasons by specifying the group title in the list reasons query.\nReason group title is case insensitive, meaning you can\u0026#39;t have \u0026lt;b\u0026gt;reason\u0026lt;/b\u0026gt; if you already create a reason titled \u0026lt;b\u0026gt;Reason\u0026lt;/b\u0026gt;",
+        "description": "Create a reason group for easier query. You can query reasons by specifying \nthe group title in the list reasons query. Reason group title is case insensitive, \nmeaning you can\u0026#39;t have **reason** if you already create a reason titled **Reason**",
         "operationId": "createReasonGroup",
         "parameters": [
           {
@@ -499,15 +512,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create a reason group",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -516,7 +533,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
+        "description": "This endpoint delete a reason group for a namespace with ID.",
         "operationId": "deleteReasonGroup",
         "parameters": [
           {
@@ -549,22 +566,25 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete a reason group",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]",
         "operationId": "getReasonGroup",
         "parameters": [
           {
@@ -606,22 +626,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get reason group",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]\nReason group title is case insensitive, meaning you can\u0026#39;t have \u0026lt;b\u0026gt;reason\u0026lt;/b\u0026gt; if you already create a reason titled \u0026lt;b\u0026gt;Reason\u0026lt;/b\u0026gt;\nIf no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).",
+        "description": "Reason group title is case insensitive, meaning you can\u0026#39;t have **reason** if you already create a reason titled **Reason**\nIf no reasonIds passed when updating, the current reasons under the reason group will be kept (reasons will not be removed from the group).",
         "operationId": "updateReasonGroup",
         "parameters": [
           {
@@ -677,15 +701,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update a reason group",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -694,6 +722,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "This endpoint get reasons with pagination",
         "operationId": "adminGetReasons",
         "parameters": [
           {
@@ -758,13 +787,20 @@
         "summary": "Get list of reasons",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [CREATE]",
+        "description": "This endpoint create a reason for a namespace.",
         "operationId": "createReason",
         "parameters": [
           {
@@ -813,15 +849,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create a report reason",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -830,7 +870,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint get all reasons without pagination.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\u0026lt;/p\u0026gt;",
+        "description": "This endpoint get all reasons without pagination.",
         "operationId": "adminGetAllReasons",
         "parameters": [
           {
@@ -859,15 +899,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all reasons",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       }
     },
@@ -876,7 +920,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint get reasons not used by moderation rules.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]\u0026lt;/p\u0026gt;",
+        "description": "This endpoint get reasons not used by moderation rules.",
         "operationId": "adminGetUnusedReasons",
         "parameters": [
           {
@@ -922,15 +966,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get list of reasons that not used by moderation rules",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       }
     },
@@ -939,7 +987,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [DELETE]",
+        "description": "This endpoint delete a reason for a namespace with ID.",
         "operationId": "deleteReason",
         "parameters": [
           {
@@ -971,22 +1019,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete a report reason",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [READ]",
+        "description": "This endpoint get a single reason.",
         "operationId": "adminGetReason",
         "parameters": [
           {
@@ -1027,22 +1079,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get a single reason",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [READ]"
+            ]
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]",
+        "description": "This endpoint update a reason for a namespace with ID.",
         "operationId": "updateReason",
         "parameters": [
           {
@@ -1097,15 +1153,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update a report reason",
         "tags": [
           "Admin Reasons"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:REASON [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1183,13 +1243,20 @@
         "summary": "List reports",
         "tags": [
           "Admin Reports"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]\nSubmit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nAdmin can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Submit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nAdmin can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: - UGC - USER - CHAT - EXTENSION ",
         "operationId": "adminSubmitReport",
         "parameters": [
           {
@@ -1238,15 +1305,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Submit a report by admin",
         "tags": [
           "Admin Reports"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1255,7 +1326,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint create moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [CREATE]\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;HideContent\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt; Supported Actions:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;hideContent\u0026lt;/b\u0026gt;: Hide the content\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;banAccount\u0026lt;/b\u0026gt;: Ban the user account\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;deleteChat\u0026lt;/b\u0026gt;: Delete chat\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "description": "This endpoint create moderation rule.\nSupported Category: - UGC - USER - CHAT - EXTENSION \nSupported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\n                    \n * HideContent \n                    \nSupported Actions:\n                    \n * **hideContent**: Hide the content \n * **banAccount**: Ban the user account \n * **deleteChat**: Delete chat \n",
         "operationId": "createModerationRule",
         "parameters": [
           {
@@ -1301,15 +1372,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Create auto moderation rule",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1318,7 +1393,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint delete moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [DELETE]",
+        "description": "This endpoint delete moderation rule.",
         "operationId": "deleteModerationRule",
         "parameters": [
           {
@@ -1356,22 +1431,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete auto moderation rule",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [DELETE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint update moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]\n\u0026lt;p\u0026gt; Supported Category:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Supported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;HideContent\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt; Supported Actions:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;hideContent\u0026lt;/b\u0026gt;: Hide the content\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;banAccount\u0026lt;/b\u0026gt;: Ban the user account\u0026lt;/li\u0026gt;\n  \u0026lt;li\u0026gt;\u0026lt;b\u0026gt;deleteChat\u0026lt;/b\u0026gt;: Delete chat\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "description": "This endpoint update moderation rule.\nSupported Category:- UGC - USER - CHAT - EXTENSION \nSupported Action (GOING TO DEPRECATE, for replacement please use \u0026#34;actions\u0026#34;):\n * HideContent \n                    \nSupported Actions:\n * **hideContent**: Hide the content \n * **banAccount**: Ban the user account \n * **deleteChat**: Delete chat \n",
         "operationId": "updateModerationRule",
         "parameters": [
           {
@@ -1432,15 +1511,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update auto moderation rule",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1449,7 +1532,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint enable/disable moderation rule status.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]",
+        "description": "This endpoint enable/disable moderation rule status.",
         "operationId": "updateModerationRuleStatus",
         "parameters": [
           {
@@ -1501,15 +1584,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Enable/Disable auto moderation rule",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1518,7 +1605,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint get moderation rules.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]",
+        "description": "This endpoint get moderation rules.",
         "operationId": "getModerationRules",
         "parameters": [
           {
@@ -1583,15 +1670,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get auto moderation rules",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1600,7 +1691,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint get moderation rule.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt; Required Permission: ADMIN:NAMESPACE:{namespace}:RULE [READ]",
+        "description": "This endpoint get moderation rule.",
         "operationId": "getModerationRuleDetails",
         "parameters": [
           {
@@ -1641,15 +1732,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get auto moderation rule",
         "tags": [
           "Admin Moderation Rule"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:RULE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1658,7 +1753,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]\nTickets list can be ordered by:\n- createdAt\n- reportsCount\n- status (currently there are OPEN, AUTO_MODERATED and CLOSED statuses, desc order will put ticket with CLOSED status at the top)",
+        "description": "Tickets list can be ordered by:\n- createdAt\n- reportsCount\n- status (currently there are OPEN, AUTO_MODERATED and CLOSED statuses, desc order will put ticket with CLOSED status at the top)",
         "operationId": "listTickets",
         "parameters": [
           {
@@ -1735,15 +1830,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "List report tickets",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1752,7 +1851,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
+        "description": "Ticket statistic can be filtered by:\n- category\n- extension category",
         "operationId": "ticketStatistic",
         "parameters": [
           {
@@ -1794,15 +1893,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Ticket statistic",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1811,7 +1914,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]\nThis endpoint will delete ticket and all its reports.\n",
+        "description": "This endpoint will delete ticket and all its reports.\n",
         "operationId": "deleteTicket",
         "parameters": [
           {
@@ -1849,22 +1952,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete single ticket",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
+        "description": "This endpoint will return ticket detail with ticket id.",
         "operationId": "getTicketDetail",
         "parameters": [
           {
@@ -1905,15 +2012,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get single ticket",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1922,7 +2033,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [READ]\nList reports ordered by createdAt in descending order.",
+        "description": "List reports ordered by createdAt in descending order.",
         "operationId": "getReportsByTicket",
         "parameters": [
           {
@@ -1969,15 +2080,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get reports by ticket ID",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1986,7 +2101,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]\nUpdate ticket resolution status to either OPEN or CLOSED. It is mandatory to provide notes",
+        "description": "Update ticket resolution status to either OPEN or CLOSED. It is mandatory to provide notes",
         "operationId": "updateTicketResolutions",
         "parameters": [
           {
@@ -2029,15 +2144,19 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Update ticket resolution to a given status",
         "tags": [
           "Admin Tickets"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -2173,7 +2292,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "User need to be authenticated to access this endpoint.\nSubmit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nUser can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;UGC\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;USER\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CHAT\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;EXTENSION\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "User need to be authenticated to access this endpoint.\nSubmit a report and will return ticket for reported object.\nNew ticket will be created if no OPEN ticket present for reported object (based by objectId and objectType) in a namespace.\n\nUser can only submit report once for each different user / object reported in the same OPEN ticket. \nReporting the same user / object in the same OPEN ticket will return HTTP code 409 (conflict).\n\nFill the \u0026#39;reason\u0026#39; field with a \u0026#39;reason title\u0026#39;\nSupported category: - UGC - USER - CHAT - EXTENSION ",
         "operationId": "submitReport",
         "parameters": [
           {
@@ -3231,11 +3350,11 @@
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-01T09:21:34+00:00",
-    "gitHash": "708d1a79c0cfe7c814a807208674602ef289c060",
+    "buildDate": "2023-12-15T07:55:18+00:00",
+    "gitHash": "2535a7ae749edb6814b4cdbe6eb7e82464f9ebf2",
     "name": "justice-reporting-service",
     "realm": "demo",
-    "version": "0.1.29",
+    "version": "0.1.30",
     "version-roles-seeding": "0.0.3"
   }
 }

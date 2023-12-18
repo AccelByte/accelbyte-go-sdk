@@ -134,16 +134,9 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetRolesShort instead.
 
 GetRoles get roles
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles [GET]_**
 */
 func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, *GetRolesUnauthorized, *GetRolesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -194,16 +187,9 @@ func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInf
 
 /*
 GetRolesShort get roles
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles [GET]_**
 */
 func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, error) {
 	// TODO: Validate the params before sending
@@ -254,31 +240,14 @@ func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAu
 Deprecated: 2022-08-10 - Use CreateRoleShort instead.
 
 CreateRole create role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [CREATE]' or 'ADMIN:ROLE [CREATE]'
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
 
 If role is an administrator role (i.e. AdminRole == true), it will list out the role's members.
 
-
-
-
 Administrator role can be created only when at least 1 manager is specified.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles [POST]_**
 */
 func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, *CreateRoleBadRequest, *CreateRoleUnauthorized, *CreateRoleForbidden, error) {
 	// TODO: Validate the params before sending
@@ -332,31 +301,14 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 
 /*
 CreateRoleShort create role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [CREATE]' or 'ADMIN:ROLE [CREATE]'
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
 
 If role is an administrator role (i.e. AdminRole == true), it will list out the role's members.
 
-
-
-
 Administrator role can be created only when at least 1 manager is specified.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles [POST]_**
 */
 func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, error) {
 	// TODO: Validate the params before sending
@@ -409,16 +361,9 @@ func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use GetRoleShort instead.
 
 GetRole get role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [GET]_**
 */
 func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, *GetRoleUnauthorized, *GetRoleForbidden, *GetRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -472,16 +417,9 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 
 /*
 GetRoleShort get role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [GET]_**
 */
 func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, error) {
 	// TODO: Validate the params before sending
@@ -534,16 +472,9 @@ func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuth
 Deprecated: 2022-08-10 - Use UpdateRoleShort instead.
 
 UpdateRole update role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [PATCH]_**
 */
 func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, *UpdateRoleBadRequest, *UpdateRoleUnauthorized, *UpdateRoleForbidden, *UpdateRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -600,16 +531,9 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 
 /*
 UpdateRoleShort update role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [PATCH]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [PATCH]_**
 */
 func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, error) {
 	// TODO: Validate the params before sending
@@ -664,16 +588,9 @@ func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use DeleteRoleShort instead.
 
 DeleteRole delete role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [DELETE]' or 'ADMIN:ROLE [DELETE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [DELETE]_**
 */
 func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, *DeleteRoleUnauthorized, *DeleteRoleForbidden, *DeleteRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -727,16 +644,9 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 
 /*
 DeleteRoleShort delete role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [DELETE]' or 'ADMIN:ROLE [DELETE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId} [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId} [DELETE]_**
 */
 func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, error) {
 	// TODO: Validate the params before sending
@@ -789,21 +699,11 @@ func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use GetRoleAdminStatusShort instead.
 
 GetRoleAdminStatus get role admin status
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]
-
-
 Admin roles has its members listed in the role.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [GET]_**
 */
 func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, *GetRoleAdminStatusBadRequest, *GetRoleAdminStatusUnauthorized, *GetRoleAdminStatusForbidden, *GetRoleAdminStatusNotFound, error) {
 	// TODO: Validate the params before sending
@@ -860,21 +760,11 @@ func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo r
 
 /*
 GetRoleAdminStatusShort get role admin status
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]
-
-
 Admin roles has its members listed in the role.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [GET]_**
 */
 func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -929,26 +819,13 @@ func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authI
 Deprecated: 2022-08-10 - Use SetRoleAsAdminShort instead.
 
 SetRoleAsAdmin set role as admin role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Admin roles has its members listed in the role.
-
-
-
 
 Role can be set as admin role only when it has at least 1 manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [POST]_**
 */
 func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, *SetRoleAsAdminBadRequest, *SetRoleAsAdminUnauthorized, *SetRoleAsAdminForbidden, *SetRoleAsAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1005,26 +882,13 @@ func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.C
 
 /*
 SetRoleAsAdminShort set role as admin role
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Admin roles has its members listed in the role.
-
-
-
 
 Role can be set as admin role only when it has at least 1 manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [POST]_**
 */
 func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1079,16 +943,9 @@ func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runt
 Deprecated: 2022-08-10 - Use RemoveRoleAdminShort instead.
 
 RemoveRoleAdmin remove role admin status
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [DELETE]_**
 */
 func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, *RemoveRoleAdminBadRequest, *RemoveRoleAdminUnauthorized, *RemoveRoleAdminForbidden, *RemoveRoleAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1145,16 +1002,9 @@ func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime
 
 /*
 RemoveRoleAdminShort remove role admin status
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/admin [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/admin [DELETE]_**
 */
 func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1209,21 +1059,11 @@ func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo ru
 Deprecated: 2022-08-10 - Use GetRoleManagersShort instead.
 
 GetRoleManagers get role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-
-
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [GET]_**
 */
 func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, *GetRoleManagersBadRequest, *GetRoleManagersUnauthorized, *GetRoleManagersForbidden, *GetRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1280,21 +1120,11 @@ func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime
 
 /*
 GetRoleManagersShort get role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-
-
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [GET]_**
 */
 func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, error) {
 	// TODO: Validate the params before sending
@@ -1349,21 +1179,11 @@ func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo ru
 Deprecated: 2022-08-10 - Use AddRoleManagersShort instead.
 
 AddRoleManagers add role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [POST]_**
 */
 func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, *AddRoleManagersBadRequest, *AddRoleManagersUnauthorized, *AddRoleManagersForbidden, *AddRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1420,21 +1240,11 @@ func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime
 
 /*
 AddRoleManagersShort add role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [POST]_**
 */
 func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1489,16 +1299,9 @@ func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo ru
 Deprecated: 2022-08-10 - Use RemoveRoleManagersShort instead.
 
 RemoveRoleManagers remove role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [DELETE]_**
 */
 func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, *RemoveRoleManagersBadRequest, *RemoveRoleManagersUnauthorized, *RemoveRoleManagersForbidden, *RemoveRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1555,16 +1358,9 @@ func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo r
 
 /*
 RemoveRoleManagersShort remove role managers
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/managers [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/managers [DELETE]_**
 */
 func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1619,16 +1415,9 @@ func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authI
 Deprecated: 2022-08-10 - Use GetRoleMembersShort instead.
 
 GetRoleMembers get role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [GET]_**
 */
 func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, *GetRoleMembersBadRequest, *GetRoleMembersUnauthorized, *GetRoleMembersForbidden, *GetRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1685,16 +1474,9 @@ func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.C
 
 /*
 GetRoleMembersShort get role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE [READ]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [GET]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [GET]_**
 */
 func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, error) {
 	// TODO: Validate the params before sending
@@ -1749,26 +1531,13 @@ func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runt
 Deprecated: 2022-08-10 - Use AddRoleMembersShort instead.
 
 AddRoleMembers add role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Admin roles has its members listed in the role.
-
-
-
 
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [POST]_**
 */
 func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, *AddRoleMembersBadRequest, *AddRoleMembersUnauthorized, *AddRoleMembersForbidden, *AddRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1825,26 +1594,13 @@ func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.C
 
 /*
 AddRoleMembersShort add role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
 Admin roles has its members listed in the role.
-
-
-
 
 Role can only be assigned to other users by the role's manager.
 
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [POST]_**
 */
 func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1899,16 +1655,9 @@ func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runt
 Deprecated: 2022-08-10 - Use RemoveRoleMembersShort instead.
 
 RemoveRoleMembers remove role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [DELETE]_**
 */
 func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, *RemoveRoleMembersBadRequest, *RemoveRoleMembersUnauthorized, *RemoveRoleMembersForbidden, *RemoveRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1965,16 +1714,9 @@ func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo run
 
 /*
 RemoveRoleMembersShort remove role members
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/members [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/members [DELETE]_**
 */
 func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2029,106 +1771,35 @@ func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInf
 Deprecated: 2022-08-10 - Use UpdateRolePermissionsShort instead.
 
 UpdateRolePermissions update role permissions
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
 
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
 
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/permissions [POST]_**
 */
 func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, *UpdateRolePermissionsBadRequest, *UpdateRolePermissionsUnauthorized, *UpdateRolePermissionsForbidden, *UpdateRolePermissionsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2185,106 +1856,35 @@ func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, auth
 
 /*
 UpdateRolePermissionsShort update role permissions
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
 
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
 
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions [POST]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/permissions [POST]_**
 */
 func (a *Client) UpdateRolePermissionsShort(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2339,109 +1939,36 @@ func (a *Client) UpdateRolePermissionsShort(params *UpdateRolePermissionsParams,
 Deprecated: 2022-08-10 - Use AddRolePermissionShort instead.
 
 AddRolePermission add role permission
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' Or 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission
 
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
 
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+- Seconds: 0-59 * / , -
+- Minutes: 0-59 * / , -
+- Hours: 0-23 * / , -
+- Day of month: 1-31 * / , - L W
+- Month: 1-12 JAN-DEC * / , -
+- Day of week: 0-6 SUN-SAT * / , - L #
+- Year: 1970-2099 * / , -
 
 Special characters:
+- **: all values in the fields, e.g. * in seconds fields indicates every second
+- /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+- ,: separate items of a list, e.g. MON,WED,FRI in day of week
+- -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+- L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+- W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+- #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
-
-
-                                  * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
+### Endpoint migration guide
+- **Substitute endpoint(update): _/iam/v3/admin/roles/{roleId}/permissions [PUT]_**
+- **Substitute endpoint(create): _/iam/v3/admin/roles/{roleId}/permissions [POST]_**
 */
 func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, *AddRolePermissionBadRequest, *AddRolePermissionUnauthorized, *AddRolePermissionForbidden, *AddRolePermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2498,109 +2025,36 @@ func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo run
 
 /*
 AddRolePermissionShort add role permission
-
-
 ## The endpoint is going to be deprecated
-
-
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' Or 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission
 
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
 
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+- Seconds: 0-59 * / , -
+- Minutes: 0-59 * / , -
+- Hours: 0-23 * / , -
+- Day of month: 1-31 * / , - L W
+- Month: 1-12 JAN-DEC * / , -
+- Day of week: 0-6 SUN-SAT * / , - L #
+- Year: 1970-2099 * / , -
 
 Special characters:
+- **: all values in the fields, e.g. * in seconds fields indicates every second
+- /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+- ,: separate items of a list, e.g. MON,WED,FRI in day of week
+- -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+- L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+- W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+- #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
-
-
-Endpoint migration guide
-
-
-                                  * Substitute endpoint(update): /iam/v3/admin/roles/{roleId}/permissions [PUT]
-
-
-                                  * Substitute endpoint(create): /iam/v3/admin/roles/{roleId}/permissions [POST]
+### Endpoint migration guide
+- **Substitute endpoint(update): _/iam/v3/admin/roles/{roleId}/permissions [PUT]_**
+- **Substitute endpoint(create): _/iam/v3/admin/roles/{roleId}/permissions [POST]_**
 */
 func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2655,19 +2109,10 @@ func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInf
 Deprecated: 2022-08-10 - Use DeleteRolePermissionShort instead.
 
 DeleteRolePermission delete role permission
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
-
-
-                                  * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]_**
+- **Substitute endpoint: _/iam/v4/admin/roles/{roleId}/permissions [DELETE]_**
 */
 func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, *DeleteRolePermissionBadRequest, *DeleteRolePermissionUnauthorized, *DeleteRolePermissionForbidden, *DeleteRolePermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2724,19 +2169,10 @@ func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authIn
 
 /*
 DeleteRolePermissionShort delete role permission
-
-
 ## The endpoint is going to be deprecated
-
-
-Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-Endpoint migration guide
-
-
-                                  * Substitute endpoint: /iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]
-
-
-                                  * Substitute endpoint: /iam/v4/admin/roles/{roleId}/permissions [DELETE]
+### Endpoint migration guide
+- **Substitute endpoint: _/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action} [DELETE]_**
+- **Substitute endpoint: _/iam/v4/admin/roles/{roleId}/permissions [DELETE]_**
 */
 func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2791,9 +2227,6 @@ func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, a
 Deprecated: 2022-08-10 - Use AdminGetRolesV3Short instead.
 
 AdminGetRolesV3 get roles
-Required permission 'ADMIN:ROLE [READ]'
-
-
 action code: 10414
 */
 func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, *AdminGetRolesV3InternalServerError, error) {
@@ -2851,9 +2284,6 @@ func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime
 
 /*
 AdminGetRolesV3Short get roles
-Required permission 'ADMIN:ROLE [READ]'
-
-
 action code: 10414
 */
 func (a *Client) AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, error) {
@@ -2909,8 +2339,6 @@ func (a *Client) AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo ru
 Deprecated: 2022-08-10 - Use AdminCreateRoleV3Short instead.
 
 AdminCreateRoleV3 create role
-Required permission 'ADMIN:ROLE [CREATE]'
-
 Create role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - permissions: specify the permission that this role have
@@ -2919,7 +2347,6 @@ Create role request body:
 - adminRole: specify if role is for admin user (default false)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
 - deletable: specify if role can be deleted or not (default true)
-
 
 action code: 10401
 */
@@ -2978,8 +2405,6 @@ func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo run
 
 /*
 AdminCreateRoleV3Short create role
-Required permission 'ADMIN:ROLE [CREATE]'
-
 Create role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - permissions: specify the permission that this role have
@@ -2988,7 +2413,6 @@ Create role request body:
 - adminRole: specify if role is for admin user (default false)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
 - deletable: specify if role can be deleted or not (default true)
-
 
 action code: 10401
 */
@@ -3045,9 +2469,6 @@ func (a *Client) AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInf
 Deprecated: 2022-08-10 - Use AdminGetRoleV3Short instead.
 
 AdminGetRoleV3 get role
-Required permission 'ADMIN:ROLE [READ]'
-
-
 action code: 10419
 */
 func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, *AdminGetRoleV3InternalServerError, error) {
@@ -3108,9 +2529,6 @@ func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.C
 
 /*
 AdminGetRoleV3Short get role
-Required permission 'ADMIN:ROLE [READ]'
-
-
 action code: 10419
 */
 func (a *Client) AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, error) {
@@ -3168,7 +2586,6 @@ func (a *Client) AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runt
 Deprecated: 2022-08-10 - Use AdminDeleteRoleV3Short instead.
 
 AdminDeleteRoleV3 delete role
-Required permission ''ADMIN:ROLE [DELETE]''
 action code: 10403
 */
 func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3Conflict, *AdminDeleteRoleV3InternalServerError, error) {
@@ -3232,7 +2649,6 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 
 /*
 AdminDeleteRoleV3Short delete role
-Required permission ''ADMIN:ROLE [DELETE]''
 action code: 10403
 */
 func (a *Client) AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, error) {
@@ -3292,13 +2708,10 @@ func (a *Client) AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInf
 Deprecated: 2022-08-10 - Use AdminUpdateRoleV3Short instead.
 
 AdminUpdateRoleV3 update role
-Required permission 'ADMIN:ROLE [UPDATE]'
-
 Update role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
 - deletable: specify if role can be deleted or not (optional)
-
 
 action code: 10402
 */
@@ -3360,13 +2773,10 @@ func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo run
 
 /*
 AdminUpdateRoleV3Short update role
-Required permission 'ADMIN:ROLE [UPDATE]'
-
 Update role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
 - deletable: specify if role can be deleted or not (optional)
-
 
 action code: 10402
 */
@@ -3425,18 +2835,7 @@ func (a *Client) AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInf
 Deprecated: 2022-08-10 - Use AdminGetRoleAdminStatusV3Short instead.
 
 AdminGetRoleAdminStatusV3 get role admin status
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 action code: 10420
 */
 func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, *AdminGetRoleAdminStatusV3InternalServerError, error) {
@@ -3497,18 +2896,7 @@ func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Para
 
 /*
 AdminGetRoleAdminStatusV3Short get role admin status
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 action code: 10420
 */
 func (a *Client) AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, error) {
@@ -3566,22 +2954,8 @@ func (a *Client) AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV
 Deprecated: 2022-08-10 - Use AdminUpdateAdminRoleStatusV3Short instead.
 
 AdminUpdateAdminRoleStatusV3 set role as admin role
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can be set as admin role only when it has at least 1 manager.
-
-
-
 action code: 10412
 */
 func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, *AdminUpdateAdminRoleStatusV3BadRequest, *AdminUpdateAdminRoleStatusV3Unauthorized, *AdminUpdateAdminRoleStatusV3Forbidden, *AdminUpdateAdminRoleStatusV3NotFound, *AdminUpdateAdminRoleStatusV3InternalServerError, error) {
@@ -3642,22 +3016,8 @@ func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatus
 
 /*
 AdminUpdateAdminRoleStatusV3Short set role as admin role
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can be set as admin role only when it has at least 1 manager.
-
-
-
 action code: 10412
 */
 func (a *Client) AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, error) {
@@ -3715,10 +3075,6 @@ func (a *Client) AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleS
 Deprecated: 2022-08-10 - Use AdminRemoveRoleAdminV3Short instead.
 
 AdminRemoveRoleAdminV3 remove role admin status
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
 code: 10413
 */
 func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, *AdminRemoveRoleAdminV3BadRequest, *AdminRemoveRoleAdminV3Unauthorized, *AdminRemoveRoleAdminV3Forbidden, *AdminRemoveRoleAdminV3NotFound, *AdminRemoveRoleAdminV3InternalServerError, error) {
@@ -3779,10 +3135,6 @@ func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, au
 
 /*
 AdminRemoveRoleAdminV3Short remove role admin status
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
 code: 10413
 */
 func (a *Client) AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, error) {
@@ -3840,17 +3192,7 @@ func (a *Client) AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Param
 Deprecated: 2022-08-10 - Use AdminGetRoleManagersV3Short instead.
 
 AdminGetRoleManagersV3 get role managers
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
 action code: 10415
 */
 func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, *AdminGetRoleManagersV3InternalServerError, error) {
@@ -3911,17 +3253,7 @@ func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, au
 
 /*
 AdminGetRoleManagersV3Short get role managers
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
 action code: 10415
 */
 func (a *Client) AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, error) {
@@ -3979,17 +3311,7 @@ func (a *Client) AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Param
 Deprecated: 2022-08-10 - Use AdminAddRoleManagersV3Short instead.
 
 AdminAddRoleManagersV3 add role managers
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
 action code: 10408
 */
 func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, *AdminAddRoleManagersV3BadRequest, *AdminAddRoleManagersV3Unauthorized, *AdminAddRoleManagersV3Forbidden, *AdminAddRoleManagersV3NotFound, *AdminAddRoleManagersV3Conflict, error) {
@@ -4050,17 +3372,7 @@ func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, au
 
 /*
 AdminAddRoleManagersV3Short add role managers
-
-
 Role can only be assigned to other users by the role's manager.
-
-
-
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
 action code: 10408
 */
 func (a *Client) AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, error) {
@@ -4118,16 +3430,7 @@ func (a *Client) AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Param
 Deprecated: 2022-08-10 - Use AdminRemoveRoleManagersV3Short instead.
 
 AdminRemoveRoleManagersV3 remove role managers
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10409
 */
 func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, *AdminRemoveRoleManagersV3InternalServerError, error) {
@@ -4188,16 +3491,7 @@ func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Para
 
 /*
 AdminRemoveRoleManagersV3Short remove role managers
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10409
 */
 func (a *Client) AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, error) {
@@ -4255,18 +3549,7 @@ func (a *Client) AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV
 Deprecated: 2022-08-10 - Use AdminGetRoleMembersV3Short instead.
 
 AdminGetRoleMembersV3 get role members
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 action code: 10416
 */
 func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, *AdminGetRoleMembersV3InternalServerError, error) {
@@ -4327,18 +3610,7 @@ func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, auth
 
 /*
 AdminGetRoleMembersV3Short get role members
-
-
-Required permission 'ADMIN:ROLE [READ]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 action code: 10416
 */
 func (a *Client) AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, error) {
@@ -4396,21 +3668,8 @@ func (a *Client) AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params,
 Deprecated: 2022-08-10 - Use AdminAddRoleMembersV3Short instead.
 
 AdminAddRoleMembersV3 add role members
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10410
 */
 func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, *AdminAddRoleMembersV3InternalServerError, error) {
@@ -4474,21 +3733,8 @@ func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, auth
 
 /*
 AdminAddRoleMembersV3Short add role members
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10410
 */
 func (a *Client) AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, error) {
@@ -4548,21 +3794,8 @@ func (a *Client) AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params,
 Deprecated: 2022-08-10 - Use AdminRemoveRoleMembersV3Short instead.
 
 AdminRemoveRoleMembersV3 remove role members
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10411
 */
 func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, *AdminRemoveRoleMembersV3InternalServerError, error) {
@@ -4623,21 +3856,8 @@ func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params
 
 /*
 AdminRemoveRoleMembersV3Short remove role members
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 Admin roles has its members listed in the role.
-
-
-
-
 Role can only be assigned to other users by the role's manager.
-
-
 action code: 10411
 */
 func (a *Client) AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, error) {
@@ -4695,98 +3915,30 @@ func (a *Client) AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3P
 Deprecated: 2022-08-10 - Use AdminUpdateRolePermissionsV3Short instead.
 
 AdminUpdateRolePermissionsV3 update role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
-
-
-
 action code: 10405
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+1. Minutes: 0-59 * / , -
+1. Hours: 0-23 * / , -
+1. Day of month: 1-31 * / , - L W
+1. Month: 1-12 JAN-DEC * / , -
+1. Day of week: 0-6 SUN-SAT * / , - L #
+1. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+1. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+1. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+1. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+1. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+1. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+1. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, *AdminUpdateRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4846,98 +3998,30 @@ func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissions
 
 /*
 AdminUpdateRolePermissionsV3Short update role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
-
-
-
 action code: 10405
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+1. Minutes: 0-59 * / , -
+1. Hours: 0-23 * / , -
+1. Day of month: 1-31 * / , - L W
+1. Month: 1-12 JAN-DEC * / , -
+1. Day of week: 0-6 SUN-SAT * / , - L #
+1. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+1. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+1. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+1. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+1. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+1. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+1. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -4994,98 +4078,30 @@ func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermis
 Deprecated: 2022-08-10 - Use AdminAddRolePermissionsV3Short instead.
 
 AdminAddRolePermissionsV3 add role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will ATTACH permission(s) into the role
-
-
-
 action code: 10404
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+1. Minutes: 0-59 * / , -
+1. Hours: 0-23 * / , -
+1. Day of month: 1-31 * / , - L W
+1. Month: 1-12 JAN-DEC * / , -
+1. Day of week: 0-6 SUN-SAT * / , - L #
+1. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+1. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+1. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+1. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+1. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+1. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+1. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, *AdminAddRolePermissionsV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5145,98 +4161,30 @@ func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Para
 
 /*
 AdminAddRolePermissionsV3Short add role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will ATTACH permission(s) into the role
-
-
-
 action code: 10404
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+1. Minutes: 0-59 * / , -
+1. Hours: 0-23 * / , -
+1. Day of month: 1-31 * / , - L W
+1. Month: 1-12 JAN-DEC * / , -
+1. Day of week: 0-6 SUN-SAT * / , - L #
+1. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+1. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+1. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+1. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+1. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+1. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+1. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5293,7 +4241,6 @@ func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV
 Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionsV3Short instead.
 
 AdminDeleteRolePermissionsV3 delete role
-Required permission 'ADMIN:ROLE [UPDATE]'
 */
 func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, *AdminDeleteRolePermissionsV3Unauthorized, *AdminDeleteRolePermissionsV3Forbidden, *AdminDeleteRolePermissionsV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -5347,7 +4294,6 @@ func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissions
 
 /*
 AdminDeleteRolePermissionsV3Short delete role
-Required permission 'ADMIN:ROLE [UPDATE]'
 */
 func (a *Client) AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5400,7 +4346,6 @@ func (a *Client) AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermis
 Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionV3Short instead.
 
 AdminDeleteRolePermissionV3 delete role permission
-Required permission 'ADMIN:ROLE [UPDATE]'
 action code: 10406
 */
 func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, *AdminDeleteRolePermissionV3BadRequest, *AdminDeleteRolePermissionV3Unauthorized, *AdminDeleteRolePermissionV3Forbidden, *AdminDeleteRolePermissionV3NotFound, *AdminDeleteRolePermissionV3InternalServerError, error) {
@@ -5461,7 +4406,6 @@ func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3
 
 /*
 AdminDeleteRolePermissionV3Short delete role permission
-Required permission 'ADMIN:ROLE [UPDATE]'
 action code: 10406
 */
 func (a *Client) AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, error) {
@@ -5519,10 +4463,7 @@ func (a *Client) AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermiss
 Deprecated: 2022-08-10 - Use PublicGetRolesV3Short instead.
 
 PublicGetRolesV3 get roles
-
 This endpoint is used to get all non-admin role.
-
-
 action code: 10418
 */
 func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, *PublicGetRolesV3BadRequest, error) {
@@ -5571,10 +4512,7 @@ func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runti
 
 /*
 PublicGetRolesV3Short get roles
-
 This endpoint is used to get all non-admin role.
-
-
 action code: 10418
 */
 func (a *Client) PublicGetRolesV3Short(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, error) {
@@ -5624,7 +4562,6 @@ func (a *Client) PublicGetRolesV3Short(params *PublicGetRolesV3Params, authInfo 
 Deprecated: 2022-08-10 - Use PublicGetRoleV3Short instead.
 
 PublicGetRoleV3 get public role
-
 This endpoint is used to get non-admin role based on specify roleId.
 action code : 10417
 */
@@ -5677,7 +4614,6 @@ func (a *Client) PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime
 
 /*
 PublicGetRoleV3Short get public role
-
 This endpoint is used to get non-admin role based on specify roleId.
 action code : 10417
 */
@@ -5730,8 +4666,6 @@ func (a *Client) PublicGetRoleV3Short(params *PublicGetRoleV3Params, authInfo ru
 Deprecated: 2022-08-10 - Use AdminGetRolesV4Short instead.
 
 AdminGetRolesV4 get roles
-Required permission ADMIN:ROLE [READ]
-
 action code: 10414
 */
 func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, *AdminGetRolesV4InternalServerError, error) {
@@ -5789,8 +4723,6 @@ func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime
 
 /*
 AdminGetRolesV4Short get roles
-Required permission ADMIN:ROLE [READ]
-
 action code: 10414
 */
 func (a *Client) AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, error) {
@@ -5846,8 +4778,6 @@ func (a *Client) AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo ru
 Deprecated: 2022-08-10 - Use AdminCreateRoleV4Short instead.
 
 AdminCreateRoleV4 create role
-Required permission: ADMIN:ROLE [CREATE]
-
 Create role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
@@ -5911,8 +4841,6 @@ func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo run
 
 /*
 AdminCreateRoleV4Short create role
-Required permission: ADMIN:ROLE [CREATE]
-
 Create role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
@@ -5974,8 +4902,6 @@ func (a *Client) AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInf
 Deprecated: 2022-08-10 - Use AdminGetRoleV4Short instead.
 
 AdminGetRoleV4 get role
-Required permission ADMIN:ROLE [READ]
-
 action code: 10419
 */
 func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, *AdminGetRoleV4InternalServerError, error) {
@@ -6036,8 +4962,6 @@ func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.C
 
 /*
 AdminGetRoleV4Short get role
-Required permission ADMIN:ROLE [READ]
-
 action code: 10419
 */
 func (a *Client) AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, error) {
@@ -6095,10 +5019,7 @@ func (a *Client) AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runt
 Deprecated: 2022-08-10 - Use AdminDeleteRoleV4Short instead.
 
 AdminDeleteRoleV4 delete role
-Required permission ADMIN:ROLE [DELETE]
-
 Removes role ID from user's Roles and NamespaceRoles before deleting the role.
-
 action code: 10403
 */
 func (a *Client) AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, *AdminDeleteRoleV4BadRequest, *AdminDeleteRoleV4Unauthorized, *AdminDeleteRoleV4Forbidden, *AdminDeleteRoleV4NotFound, *AdminDeleteRoleV4InternalServerError, error) {
@@ -6159,10 +5080,7 @@ func (a *Client) AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo run
 
 /*
 AdminDeleteRoleV4Short delete role
-Required permission ADMIN:ROLE [DELETE]
-
 Removes role ID from user's Roles and NamespaceRoles before deleting the role.
-
 action code: 10403
 */
 func (a *Client) AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, error) {
@@ -6220,8 +5138,6 @@ func (a *Client) AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInf
 Deprecated: 2022-08-10 - Use AdminUpdateRoleV4Short instead.
 
 AdminUpdateRoleV4 update role
-Required permission ADMIN:ROLE [UPDATE]
-
 Update role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
@@ -6285,8 +5201,6 @@ func (a *Client) AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo run
 
 /*
 AdminUpdateRoleV4Short update role
-Required permission ADMIN:ROLE [UPDATE]
-
 Update role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
@@ -6348,98 +5262,30 @@ func (a *Client) AdminUpdateRoleV4Short(params *AdminUpdateRoleV4Params, authInf
 Deprecated: 2022-08-10 - Use AdminUpdateRolePermissionsV4Short instead.
 
 AdminUpdateRolePermissionsV4 update role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
-
-
-
 action code: 10405
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, *AdminUpdateRolePermissionsV4BadRequest, *AdminUpdateRolePermissionsV4Unauthorized, *AdminUpdateRolePermissionsV4Forbidden, *AdminUpdateRolePermissionsV4NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6496,98 +5342,30 @@ func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissions
 
 /*
 AdminUpdateRolePermissionsV4Short update role permissions
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will REPLACE role's permissions with the ones defined in body
-
-
-
 action code: 10405
-
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, error) {
 	// TODO: Validate the params before sending
@@ -6642,98 +5420,31 @@ func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermis
 Deprecated: 2022-08-10 - Use AdminAddRolePermissionsV4Short instead.
 
 AdminAddRolePermissionsV4 add role permissions v4
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will ATTACH permission(s) into the role
-
-
-
 action code: 10404
 
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, *AdminAddRolePermissionsV4BadRequest, *AdminAddRolePermissionsV4Unauthorized, *AdminAddRolePermissionsV4Forbidden, *AdminAddRolePermissionsV4NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6790,98 +5501,31 @@ func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Para
 
 /*
 AdminAddRolePermissionsV4Short add role permissions v4
-
-
-Required permission 'ADMIN:ROLE [UPDATE]'
-
-
-
-
 This endpoint will ATTACH permission(s) into the role
-
-
-
 action code: 10404
 
-
-
 Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.
-
-
-
-
 Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.
-
-
-
-
 In ranged schedule, first element will be start date, and second one will be end date
-
-
-
-
 If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive
-
-
-
-
 Syntax reference
-
-
-
-
 Fields:
-
-
-
-
-                                  1. Seconds: 0-59 * / , -
-
-
-                                  2. Minutes: 0-59 * / , -
-
-
-                                  3. Hours: 0-23 * / , -
-
-
-                                  4. Day of month: 1-31 * / , - L W
-
-
-                                  5. Month: 1-12 JAN-DEC * / , -
-
-
-                                  6. Day of week: 0-6 SUN-SAT * / , - L #
-
-
-                                  7. Year: 1970-2099 * / , -
-
-
-
+1. Seconds: 0-59 * / , -
+2. Minutes: 0-59 * / , -
+3. Hours: 0-23 * / , -
+4. Day of month: 1-31 * / , - L W
+5. Month: 1-12 JAN-DEC * / , -
+6. Day of week: 0-6 SUN-SAT * / , - L #
+7. Year: 1970-2099 * / , -
 
 Special characters:
-
-
-
-
-                                  1. *: all values in the fields, e.g. * in seconds fields indicates every second
-
-
-                                  2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
-
-
-                                  3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
-
-
-                                  4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
-
-
-                                  5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
-
-
-                                  6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
-
-
-                                  7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+1. *: all values in the fields, e.g. * in seconds fields indicates every second
+2. /: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter
+3. ,: separate items of a list, e.g. MON,WED,FRI in day of week
+4. -: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive
+5. L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.
+6. W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."
+7. #: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
 */
 func (a *Client) AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, error) {
 	// TODO: Validate the params before sending
@@ -6936,7 +5580,6 @@ func (a *Client) AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV
 Deprecated: 2022-08-10 - Use AdminDeleteRolePermissionsV4Short instead.
 
 AdminDeleteRolePermissionsV4 delete role permission v4
-Required permission ADMIN:ROLE [UPDATE]
 */
 func (a *Client) AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, *AdminDeleteRolePermissionsV4Unauthorized, *AdminDeleteRolePermissionsV4Forbidden, *AdminDeleteRolePermissionsV4NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6990,7 +5633,6 @@ func (a *Client) AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissions
 
 /*
 AdminDeleteRolePermissionsV4Short delete role permission v4
-Required permission ADMIN:ROLE [UPDATE]
 */
 func (a *Client) AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -7043,7 +5685,6 @@ func (a *Client) AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermis
 Deprecated: 2022-08-10 - Use AdminListAssignedUsersV4Short instead.
 
 AdminListAssignedUsersV4 get role's assigned users
-Required permission ADMIN:ROLE [READ]
 Query all users that has the specified role.
 action code: 10416
 */
@@ -7102,7 +5743,6 @@ func (a *Client) AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params
 
 /*
 AdminListAssignedUsersV4Short get role's assigned users
-Required permission ADMIN:ROLE [READ]
 Query all users that has the specified role.
 action code: 10416
 */
@@ -7159,12 +5799,10 @@ func (a *Client) AdminListAssignedUsersV4Short(params *AdminListAssignedUsersV4P
 Deprecated: 2022-08-10 - Use AdminAssignUserToRoleV4Short instead.
 
 AdminAssignUserToRoleV4 assign user to role
-Required permission ADMIN:ROLE [UPDATE]
-
 Parameters:
-- userId: string (required)
-- namespace: string (userâs namespace) (required)
-- assignedNamespaces: array of string (namespaces to be assigned on role) (required)
+- **userId**: string (required)
+- **namespace**: string (userâs namespace) (required)
+- **assignedNamespaces**: array of string (namespaces to be assigned on role) (required)
 
 action code: 10410
 */
@@ -7229,12 +5867,10 @@ func (a *Client) AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, 
 
 /*
 AdminAssignUserToRoleV4Short assign user to role
-Required permission ADMIN:ROLE [UPDATE]
-
 Parameters:
-- userId: string (required)
-- namespace: string (userâs namespace) (required)
-- assignedNamespaces: array of string (namespaces to be assigned on role) (required)
+- **userId**: string (required)
+- **namespace**: string (userâs namespace) (required)
+- **assignedNamespaces**: array of string (namespaces to be assigned on role) (required)
 
 action code: 10410
 */
@@ -7295,8 +5931,6 @@ func (a *Client) AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Par
 Deprecated: 2022-08-10 - Use AdminRevokeUserFromRoleV4Short instead.
 
 AdminRevokeUserFromRoleV4 revoke user from role
-Required permission ADMIN:ROLE [UPDATE]
-
 Current implementation will revoke user from role in all assigned namespaces.
 
 Parameters:
@@ -7360,8 +5994,6 @@ func (a *Client) AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Para
 
 /*
 AdminRevokeUserFromRoleV4Short revoke user from role
-Required permission ADMIN:ROLE [UPDATE]
-
 Current implementation will revoke user from role in all assigned namespaces.
 
 Parameters:

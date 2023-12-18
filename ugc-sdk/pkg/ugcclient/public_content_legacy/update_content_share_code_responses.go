@@ -87,7 +87,7 @@ func NewUpdateContentShareCodeOK() *UpdateContentShareCodeOK {
 
 /*UpdateContentShareCodeOK handles this case with default header values.
 
-  OK
+  Content updated by sharecodes
 */
 type UpdateContentShareCodeOK struct {
 	Payload *ugcclientmodels.ModelsCreateContentResponse
@@ -140,7 +140,7 @@ func NewUpdateContentShareCodeBadRequest() *UpdateContentShareCodeBadRequest {
 
 /*UpdateContentShareCodeBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type UpdateContentShareCodeBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -193,7 +193,7 @@ func NewUpdateContentShareCodeUnauthorized() *UpdateContentShareCodeUnauthorized
 
 /*UpdateContentShareCodeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateContentShareCodeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -246,7 +246,7 @@ func NewUpdateContentShareCodeForbidden() *UpdateContentShareCodeForbidden {
 
 /*UpdateContentShareCodeForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>
 */
 type UpdateContentShareCodeForbidden struct {
 	Payload *ugcclientmodels.ResponseError
@@ -299,7 +299,7 @@ func NewUpdateContentShareCodeNotFound() *UpdateContentShareCodeNotFound {
 
 /*UpdateContentShareCodeNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type UpdateContentShareCodeNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -352,7 +352,7 @@ func NewUpdateContentShareCodeConflict() *UpdateContentShareCodeConflict {
 
 /*UpdateContentShareCodeConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772606</td><td>Share code already used</td></tr></table>
 */
 type UpdateContentShareCodeConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -405,7 +405,7 @@ func NewUpdateContentShareCodeInternalServerError() *UpdateContentShareCodeInter
 
 /*UpdateContentShareCodeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type UpdateContentShareCodeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

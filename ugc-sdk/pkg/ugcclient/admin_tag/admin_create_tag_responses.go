@@ -75,7 +75,7 @@ func NewAdminCreateTagCreated() *AdminCreateTagCreated {
 
 /*AdminCreateTagCreated handles this case with default header values.
 
-  Created
+  Tags created
 */
 type AdminCreateTagCreated struct {
 	Payload *ugcclientmodels.ModelsCreateTagResponse
@@ -128,7 +128,7 @@ func NewAdminCreateTagBadRequest() *AdminCreateTagBadRequest {
 
 /*AdminCreateTagBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771401</td><td>Malformed request/Invalid request body</td></tr></table>
 */
 type AdminCreateTagBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +181,7 @@ func NewAdminCreateTagUnauthorized() *AdminCreateTagUnauthorized {
 
 /*AdminCreateTagUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminCreateTagUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -234,7 +234,7 @@ func NewAdminCreateTagConflict() *AdminCreateTagConflict {
 
 /*AdminCreateTagConflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771403</td><td>Conflicted resource indentifier</td></tr></table>
 */
 type AdminCreateTagConflict struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +287,7 @@ func NewAdminCreateTagInternalServerError() *AdminCreateTagInternalServerError {
 
 /*AdminCreateTagInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>771402</td><td>Unable to save ugc tag</td></tr></table>
 */
 type AdminCreateTagInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

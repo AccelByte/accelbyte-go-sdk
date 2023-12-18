@@ -45,6 +45,7 @@ var QueryChangesCmd = &cobra.Command{
 		type_, _ := cmd.Flags().GetString("type")
 		updatedAtEnd, _ := cmd.Flags().GetString("updatedAtEnd")
 		updatedAtStart, _ := cmd.Flags().GetString("updatedAtStart")
+		withTotal, _ := cmd.Flags().GetBool("withTotal")
 		input := &catalog_changes.QueryChangesParams{
 			Namespace:      namespace,
 			StoreID:        storeId,
@@ -59,6 +60,7 @@ var QueryChangesCmd = &cobra.Command{
 			Type:           &type_,
 			UpdatedAtEnd:   &updatedAtEnd,
 			UpdatedAtStart: &updatedAtStart,
+			WithTotal:      &withTotal,
 		}
 		ok, errOK := catalogChangesService.QueryChangesShort(input)
 		if errOK != nil {
@@ -89,4 +91,5 @@ func init() {
 	QueryChangesCmd.Flags().String("type", "", "Type")
 	QueryChangesCmd.Flags().String("updatedAtEnd", "", "Updated at end")
 	QueryChangesCmd.Flags().String("updatedAtStart", "", "Updated at start")
+	QueryChangesCmd.Flags().Bool("withTotal", false, "With total")
 }

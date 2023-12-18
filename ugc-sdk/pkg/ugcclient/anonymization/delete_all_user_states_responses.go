@@ -69,7 +69,7 @@ func NewDeleteAllUserStatesNoContent() *DeleteAllUserStatesNoContent {
 
 /*DeleteAllUserStatesNoContent handles this case with default header values.
 
-  No Content
+  User stats deleted
 */
 type DeleteAllUserStatesNoContent struct {
 }
@@ -95,7 +95,7 @@ func NewDeleteAllUserStatesBadRequest() *DeleteAllUserStatesBadRequest {
 
 /*DeleteAllUserStatesBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773602</td><td>user states are not found: content not found</td></tr></table>
 */
 type DeleteAllUserStatesBadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -148,7 +148,7 @@ func NewDeleteAllUserStatesUnauthorized() *DeleteAllUserStatesUnauthorized {
 
 /*DeleteAllUserStatesUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteAllUserStatesUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -201,7 +201,7 @@ func NewDeleteAllUserStatesInternalServerError() *DeleteAllUserStatesInternalSer
 
 /*DeleteAllUserStatesInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>773601</td><td>Unable to get all user contents/Unable to delete user states</td></tr></table>
 */
 type DeleteAllUserStatesInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

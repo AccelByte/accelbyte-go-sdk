@@ -45,6 +45,12 @@ func (o *PublicUpdateContentV2Reader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewPublicUpdateContentV2Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicUpdateContentV2NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewPublicUpdateContentV2OK() *PublicUpdateContentV2OK {
 
 /*PublicUpdateContentV2OK handles this case with default header values.
 
-  OK
+  Content updated
 */
 type PublicUpdateContentV2OK struct {
 	Payload *ugcclientmodels.ModelsUpdateContentResponseV2
@@ -128,7 +134,7 @@ func NewPublicUpdateContentV2BadRequest() *PublicUpdateContentV2BadRequest {
 
 /*PublicUpdateContentV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772601</td><td>Malformed request</td></tr></table>
 */
 type PublicUpdateContentV2BadRequest struct {
 	Payload *ugcclientmodels.ResponseError
@@ -181,7 +187,7 @@ func NewPublicUpdateContentV2Unauthorized() *PublicUpdateContentV2Unauthorized {
 
 /*PublicUpdateContentV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type PublicUpdateContentV2Unauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -227,6 +233,59 @@ func (o *PublicUpdateContentV2Unauthorized) readResponse(response runtime.Client
 	return nil
 }
 
+// NewPublicUpdateContentV2Forbidden creates a PublicUpdateContentV2Forbidden with default headers values
+func NewPublicUpdateContentV2Forbidden() *PublicUpdateContentV2Forbidden {
+	return &PublicUpdateContentV2Forbidden{}
+}
+
+/*PublicUpdateContentV2Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772604</td><td>User has been banned to update content</td></tr></table>
+*/
+type PublicUpdateContentV2Forbidden struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *PublicUpdateContentV2Forbidden) Error() string {
+	return fmt.Sprintf("[PATCH /ugc/v2/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}][%d] publicUpdateContentV2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *PublicUpdateContentV2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicUpdateContentV2Forbidden) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicUpdateContentV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPublicUpdateContentV2NotFound creates a PublicUpdateContentV2NotFound with default headers values
 func NewPublicUpdateContentV2NotFound() *PublicUpdateContentV2NotFound {
 	return &PublicUpdateContentV2NotFound{}
@@ -234,7 +293,7 @@ func NewPublicUpdateContentV2NotFound() *PublicUpdateContentV2NotFound {
 
 /*PublicUpdateContentV2NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772603</td><td>Content not found</td></tr></table>
 */
 type PublicUpdateContentV2NotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -287,7 +346,7 @@ func NewPublicUpdateContentV2InternalServerError() *PublicUpdateContentV2Interna
 
 /*PublicUpdateContentV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>772602</td><td>Unable to check user ban status/Unable to get updated ugc content</td></tr></table>
 */
 type PublicUpdateContentV2InternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

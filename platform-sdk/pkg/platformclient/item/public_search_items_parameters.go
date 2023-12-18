@@ -38,12 +38,14 @@ const (
 // with the default values initialized.
 func NewPublicSearchItemsParams() *PublicSearchItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		autoCalcEstimatedPriceDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
 	)
 	return &PublicSearchItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -53,12 +55,14 @@ func NewPublicSearchItemsParams() *PublicSearchItemsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicSearchItemsParamsWithTimeout(timeout time.Duration) *PublicSearchItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		autoCalcEstimatedPriceDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
 	)
 	return &PublicSearchItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -68,12 +72,14 @@ func NewPublicSearchItemsParamsWithTimeout(timeout time.Duration) *PublicSearchI
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicSearchItemsParamsWithContext(ctx context.Context) *PublicSearchItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		autoCalcEstimatedPriceDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
 	)
 	return &PublicSearchItemsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
 
 		Context: ctx,
 	}
@@ -83,13 +89,15 @@ func NewPublicSearchItemsParamsWithContext(ctx context.Context) *PublicSearchIte
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicSearchItemsParamsWithHTTPClient(client *http.Client) *PublicSearchItemsParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		autoCalcEstimatedPriceDefault = bool(false)
+		limitDefault                  = int32(20)
+		offsetDefault                 = int32(0)
 	)
 	return &PublicSearchItemsParams{
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		AutoCalcEstimatedPrice: &autoCalcEstimatedPriceDefault,
+		Limit:                  &limitDefault,
+		Offset:                 &offsetDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -102,6 +110,8 @@ type PublicSearchItemsParams struct {
 	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
+	/*AutoCalcEstimatedPrice*/
+	AutoCalcEstimatedPrice *bool
 	/*ItemType*/
 	ItemType *string
 	/*Limit
@@ -188,6 +198,17 @@ func (o *PublicSearchItemsParams) WithNamespace(namespace string) *PublicSearchI
 // SetNamespace adds the namespace to the public search items params
 func (o *PublicSearchItemsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public search items params
+func (o *PublicSearchItemsParams) WithAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) *PublicSearchItemsParams {
+	o.SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice)
+	return o
+}
+
+// SetAutoCalcEstimatedPrice adds the autoCalcEstimatedPrice to the public search items params
+func (o *PublicSearchItemsParams) SetAutoCalcEstimatedPrice(autoCalcEstimatedPrice *bool) {
+	o.AutoCalcEstimatedPrice = autoCalcEstimatedPrice
 }
 
 // WithItemType adds the itemType to the public search items params
@@ -278,6 +299,22 @@ func (o *PublicSearchItemsParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.AutoCalcEstimatedPrice != nil {
+
+		// query param autoCalcEstimatedPrice
+		var qrAutoCalcEstimatedPrice bool
+		if o.AutoCalcEstimatedPrice != nil {
+			qrAutoCalcEstimatedPrice = *o.AutoCalcEstimatedPrice
+		}
+		qAutoCalcEstimatedPrice := swag.FormatBool(qrAutoCalcEstimatedPrice)
+		if qAutoCalcEstimatedPrice != "" {
+			if err := r.SetQueryParam("autoCalcEstimatedPrice", qAutoCalcEstimatedPrice); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.ItemType != nil {

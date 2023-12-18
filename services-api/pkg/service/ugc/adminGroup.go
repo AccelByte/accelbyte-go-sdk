@@ -36,12 +36,12 @@ func (aaa *AdminGroupService) SingleAdminGetAllGroups(input *admin_group.SingleA
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.SingleAdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminGroup.SingleAdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -154,7 +154,10 @@ func (aaa *AdminGroupService) SingleAdminGetGroupContents(input *admin_group.Sin
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.SingleAdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.SingleAdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -177,12 +180,12 @@ func (aaa *AdminGroupService) AdminGetAllGroups(input *admin_group.AdminGetAllGr
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.AdminGroup.AdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -272,7 +275,10 @@ func (aaa *AdminGroupService) AdminGetGroupContents(input *admin_group.AdminGetG
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -295,7 +301,10 @@ func (aaa *AdminGroupService) AdminGetOfficialGroupContentsV2(input *admin_group
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetOfficialGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetOfficialGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -318,7 +327,10 @@ func (aaa *AdminGroupService) AdminGetUserGroupContentsV2(input *admin_group.Adm
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetUserGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.AdminGroup.AdminGetUserGroupContentsV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

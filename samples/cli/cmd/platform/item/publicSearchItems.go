@@ -28,20 +28,22 @@ var PublicSearchItemsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		keyword, _ := cmd.Flags().GetString("keyword")
 		language, _ := cmd.Flags().GetString("language")
+		autoCalcEstimatedPrice, _ := cmd.Flags().GetBool("autoCalcEstimatedPrice")
 		itemType, _ := cmd.Flags().GetString("itemType")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		region, _ := cmd.Flags().GetString("region")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.PublicSearchItemsParams{
-			Namespace: namespace,
-			ItemType:  &itemType,
-			Limit:     &limit,
-			Offset:    &offset,
-			Region:    &region,
-			StoreID:   &storeId,
-			Keyword:   keyword,
-			Language:  language,
+			Namespace:              namespace,
+			AutoCalcEstimatedPrice: &autoCalcEstimatedPrice,
+			ItemType:               &itemType,
+			Limit:                  &limit,
+			Offset:                 &offset,
+			Region:                 &region,
+			StoreID:                &storeId,
+			Keyword:                keyword,
+			Language:               language,
 		}
 		ok, errOK := itemService.PublicSearchItemsShort(input)
 		if errOK != nil {
@@ -59,6 +61,7 @@ var PublicSearchItemsCmd = &cobra.Command{
 func init() {
 	PublicSearchItemsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("namespace")
+	PublicSearchItemsCmd.Flags().Bool("autoCalcEstimatedPrice", false, "Auto calc estimated price")
 	PublicSearchItemsCmd.Flags().String("itemType", "", "Item type")
 	PublicSearchItemsCmd.Flags().Int32("limit", 20, "Limit")
 	PublicSearchItemsCmd.Flags().Int32("offset", 0, "Offset")

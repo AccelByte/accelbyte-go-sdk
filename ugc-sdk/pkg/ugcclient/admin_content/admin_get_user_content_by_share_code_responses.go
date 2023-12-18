@@ -69,7 +69,7 @@ func NewAdminGetUserContentByShareCodeOK() *AdminGetUserContentByShareCodeOK {
 
 /*AdminGetUserContentByShareCodeOK handles this case with default header values.
 
-  OK
+  Get content by sharecode
 */
 type AdminGetUserContentByShareCodeOK struct {
 	Payload *ugcclientmodels.ModelsContentDownloadResponse
@@ -122,7 +122,7 @@ func NewAdminGetUserContentByShareCodeUnauthorized() *AdminGetUserContentByShare
 
 /*AdminGetUserContentByShareCodeUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminGetUserContentByShareCodeUnauthorized struct {
 	Payload *ugcclientmodels.ResponseError
@@ -175,7 +175,7 @@ func NewAdminGetUserContentByShareCodeNotFound() *AdminGetUserContentByShareCode
 
 /*AdminGetUserContentByShareCodeNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770300</td><td>ugc content not found</td></tr></table>
 */
 type AdminGetUserContentByShareCodeNotFound struct {
 	Payload *ugcclientmodels.ResponseError
@@ -228,7 +228,7 @@ func NewAdminGetUserContentByShareCodeInternalServerError() *AdminGetUserContent
 
 /*AdminGetUserContentByShareCodeInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>770301</td><td>Unable to get ugc content/Unable to get creator</td></tr><tr><td>770303</td><td>Failed generate download URL</td></tr></table>
 */
 type AdminGetUserContentByShareCodeInternalServerError struct {
 	Payload *ugcclientmodels.ResponseError

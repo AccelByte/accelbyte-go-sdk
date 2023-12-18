@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsUnauthorized, *GetChannelsNotFound, *GetChannelsInternalServerError, error)
+	GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsBadRequest, *GetChannelsUnauthorized, *GetChannelsInternalServerError, error)
 	GetChannelsShort(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, error)
 	PublicCreateChannel(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, *PublicCreateChannelBadRequest, *PublicCreateChannelUnauthorized, *PublicCreateChannelInternalServerError, error)
 	PublicCreateChannelShort(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, error)
@@ -48,7 +48,7 @@ Deprecated: 2022-08-10 - Use GetChannelsShort instead.
 GetChannels get channels
 Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
 */
-func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsUnauthorized, *GetChannelsNotFound, *GetChannelsInternalServerError, error) {
+func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsBadRequest, *GetChannelsUnauthorized, *GetChannelsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetChannelsParams()
@@ -84,10 +84,10 @@ func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientA
 	case *GetChannelsOK:
 		return v, nil, nil, nil, nil
 
-	case *GetChannelsUnauthorized:
+	case *GetChannelsBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *GetChannelsNotFound:
+	case *GetChannelsUnauthorized:
 		return nil, nil, v, nil, nil
 
 	case *GetChannelsInternalServerError:
@@ -137,9 +137,9 @@ func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.Cl
 
 	case *GetChannelsOK:
 		return v, nil
-	case *GetChannelsUnauthorized:
+	case *GetChannelsBadRequest:
 		return nil, v
-	case *GetChannelsNotFound:
+	case *GetChannelsUnauthorized:
 		return nil, v
 	case *GetChannelsInternalServerError:
 		return nil, v

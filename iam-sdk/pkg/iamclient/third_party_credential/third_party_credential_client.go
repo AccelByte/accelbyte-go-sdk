@@ -58,7 +58,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead.
 
 RetrieveAllThirdPartyLoginPlatformCredentialV3 get all third party platform credential
-This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+This is the API to Get All Active 3rd Platform Credential.
 */
 func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, *RetrieveAllThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveAllThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -115,7 +115,7 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 
 /*
 RetrieveAllThirdPartyLoginPlatformCredentialV3Short get all third party platform credential
-This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+This is the API to Get All Active 3rd Platform Credential.
 */
 func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
@@ -170,7 +170,7 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *Ret
 Deprecated: 2022-08-10 - Use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead.
 
 RetrieveAllActiveThirdPartyLoginPlatformCredentialV3 get all active third party platform active credential
-This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+This is the API to Get All Active 3rd Platform Credential.
 */
 func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -227,7 +227,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 
 /*
 RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short get all active third party platform active credential
-This is the API to Get All Active 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ] resource
+This is the API to Get All Active 3rd Platform Credential.
 */
 func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
@@ -282,7 +282,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(param
 Deprecated: 2022-08-10 - Use RetrieveThirdPartyLoginPlatformCredentialV3Short instead.
 
 RetrieveThirdPartyLoginPlatformCredentialV3 retrieve third party platform credential
-This is the API to Get 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ] resource
+This is the API to Get 3rd Platform Credential.
 */
 func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, *RetrieveThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -339,7 +339,7 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 
 /*
 RetrieveThirdPartyLoginPlatformCredentialV3Short retrieve third party platform credential
-This is the API to Get 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ] resource
+This is the API to Get 3rd Platform Credential.
 */
 func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
@@ -394,104 +394,28 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *Retrie
 Deprecated: 2022-08-10 - Use AddThirdPartyLoginPlatformCredentialV3Short instead.
 
 AddThirdPartyLoginPlatformCredentialV3 add third party platform credential
-
-
 This is the API to Add 3rd Platform Credential.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.
-
-
-
-
-The secret for apple is base64 encoded private key.
-
-
-
-
-No secret for awscognito , we only need to configure AWS Cognito Region and User Pool
-
-
-
-
-The secret for discord is client secret of the twitch client id.
-
-
-
-
-The secret for epicgames is client secret of the epicgames client id.
-
-
-
-
-The secret for facebook is client secret of the facebook client id.
-
-
-
-
-The secret for google is client secret of the google OAuth client.
-
-
-
-
-No secret for nintendo , we only need to configure app id of the game
-
-
-
-
-No secret for netflix , we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
-
-
-
-
-The secret for oculus is app secret of the oculus app.
-
-
-
-
-The secret for ps4, ps5, and ps4web is client secret of the psn web server.
-
-
-
-
-The secret for steam is the Steam Web API Key.
-
-
-
-
-The secret for steamopenid is the Steam Web API Key.
-
-
-
-
-The secret for twitch is client secret of the twitch client.
-
-
-
-
-The secret for live is the Relying Party Private Key in base64 encode PEM format.
-
-
-
-
-The secret for xblwebapi is client secret of the xbl client.
-
-
-
+- The secret for **apple** is base64 encoded private key.
+- No secret for **awscognito**, we only need to configure AWS Cognito Region and User Pool
+- The secret for **discord** is client secret of the twitch client id.
+- The secret for **epicgames** is client secret of the epicgames client id.
+- The secret for **facebook** is client secret of the facebook client id.
+- The secret for **google** is client secret of the google OAuth client.
+- No secret for **nintendo**, we only need to configure app id of the game
+- No secret for **netflix**, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
+- The secret for **oculus** is app secret of the oculus app.
+- The secret for **ps4, ps5, and ps4web** is client secret of the psn web server.
+- The secret for **steam** is the Steam Web API Key.
+- The secret for **steamopenid** is the Steam Web API Key.
+- The secret for **twitch** is client secret of the twitch client.
+- The secret for **live** is the Relying Party Private Key in base64 encode PEM format.
+- The secret for **xblwebapi** is client secret of the xbl client.
 
 If generic oauth flow is set to true:
-
-
-
-
-                                  * Current supported value for TokenAuthenticationType are code, idToken and bearerToken
-
-
-                                  * `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
+- Current supported value for TokenAuthenticationType are **code, idToken and bearerToken**
+- `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 Its a JSON format with key should be `name`, `email` and `avatarUrl`
-since IAM will look up for these key when extracting user info. default claims keys : userIdentity/sub, name, email and avatarUrl/picture
+since IAM will look up for these key when extracting user info. **default claims keys : userIdentity/sub, name, email and avatarUrl/picture**
 */
 func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, *AddThirdPartyLoginPlatformCredentialV3BadRequest, *AddThirdPartyLoginPlatformCredentialV3Unauthorized, *AddThirdPartyLoginPlatformCredentialV3Forbidden, *AddThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -548,104 +472,28 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 
 /*
 AddThirdPartyLoginPlatformCredentialV3Short add third party platform credential
-
-
 This is the API to Add 3rd Platform Credential.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.
-
-
-
-
-The secret for apple is base64 encoded private key.
-
-
-
-
-No secret for awscognito , we only need to configure AWS Cognito Region and User Pool
-
-
-
-
-The secret for discord is client secret of the twitch client id.
-
-
-
-
-The secret for epicgames is client secret of the epicgames client id.
-
-
-
-
-The secret for facebook is client secret of the facebook client id.
-
-
-
-
-The secret for google is client secret of the google OAuth client.
-
-
-
-
-No secret for nintendo , we only need to configure app id of the game
-
-
-
-
-No secret for netflix , we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
-
-
-
-
-The secret for oculus is app secret of the oculus app.
-
-
-
-
-The secret for ps4, ps5, and ps4web is client secret of the psn web server.
-
-
-
-
-The secret for steam is the Steam Web API Key.
-
-
-
-
-The secret for steamopenid is the Steam Web API Key.
-
-
-
-
-The secret for twitch is client secret of the twitch client.
-
-
-
-
-The secret for live is the Relying Party Private Key in base64 encode PEM format.
-
-
-
-
-The secret for xblwebapi is client secret of the xbl client.
-
-
-
+- The secret for **apple** is base64 encoded private key.
+- No secret for **awscognito**, we only need to configure AWS Cognito Region and User Pool
+- The secret for **discord** is client secret of the twitch client id.
+- The secret for **epicgames** is client secret of the epicgames client id.
+- The secret for **facebook** is client secret of the facebook client id.
+- The secret for **google** is client secret of the google OAuth client.
+- No secret for **nintendo**, we only need to configure app id of the game
+- No secret for **netflix**, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
+- The secret for **oculus** is app secret of the oculus app.
+- The secret for **ps4, ps5, and ps4web** is client secret of the psn web server.
+- The secret for **steam** is the Steam Web API Key.
+- The secret for **steamopenid** is the Steam Web API Key.
+- The secret for **twitch** is client secret of the twitch client.
+- The secret for **live** is the Relying Party Private Key in base64 encode PEM format.
+- The secret for **xblwebapi** is client secret of the xbl client.
 
 If generic oauth flow is set to true:
-
-
-
-
-                                  * Current supported value for TokenAuthenticationType are code, idToken and bearerToken
-
-
-                                  * `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
+- Current supported value for TokenAuthenticationType are **code, idToken and bearerToken**
+- `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 Its a JSON format with key should be `name`, `email` and `avatarUrl`
-since IAM will look up for these key when extracting user info. default claims keys : userIdentity/sub, name, email and avatarUrl/picture
+since IAM will look up for these key when extracting user info. **default claims keys : userIdentity/sub, name, email and avatarUrl/picture**
 */
 func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, error) {
 	// TODO: Validate the params before sending
@@ -700,7 +548,7 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPar
 Deprecated: 2022-08-10 - Use DeleteThirdPartyLoginPlatformCredentialV3Short instead.
 
 DeleteThirdPartyLoginPlatformCredentialV3 delete third party platform credential
-This is the API to Delete 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE] resource
+This is the API to Delete 3rd Platform Credential.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, *DeleteThirdPartyLoginPlatformCredentialV3Unauthorized, *DeleteThirdPartyLoginPlatformCredentialV3Forbidden, *DeleteThirdPartyLoginPlatformCredentialV3NotFound, *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -757,7 +605,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 
 /*
 DeleteThirdPartyLoginPlatformCredentialV3Short delete third party platform credential
-This is the API to Delete 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE] resource
+This is the API to Delete 3rd Platform Credential.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -812,104 +660,28 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteTh
 Deprecated: 2022-08-10 - Use UpdateThirdPartyLoginPlatformCredentialV3Short instead.
 
 UpdateThirdPartyLoginPlatformCredentialV3 update third party platform credential
-
-
 This is the API to Add 3rd Platform Credential.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.
-
-
-
-
-The secret for apple is base64 encoded private key.
-
-
-
-
-No secret for awscognito , we only need to configure AWS Cognito Region and User Pool
-
-
-
-
-The secret for discord is client secret of the twitch client id.
-
-
-
-
-The secret for epicgames is client secret of the epicgames client id.
-
-
-
-
-The secret for facebook is client secret of the facebook client id.
-
-
-
-
-The secret for google is client secret of the google OAuth client.
-
-
-
-
-No secret for nintendo , we only need to configure app id of the game
-
-
-
-
-No secret for netflix , we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
-
-
-
-
-The secret for oculus is app secret of the oculus app.
-
-
-
-
-The secret for ps4, ps5, and ps4web is client secret of the psn web server.
-
-
-
-
-The secret for steam is the Steam Web API Key.
-
-
-
-
-The secret for steamopenid is the Steam Web API Key.
-
-
-
-
-The secret for twitch is client secret of the twitch client.
-
-
-
-
-The secret for live is the Relying Party Private Key in base64 encode PEM format.
-
-
-
-
-The secret for xblwebapi is client secret of the xbl client.
-
-
-
+- The secret for **apple** is base64 encoded private key.
+- No secret for **awscognito**, we only need to configure AWS Cognito Region and User Pool
+- The secret for **discord** is client secret of the twitch client id.
+- The secret for **epicgames** is client secret of the epicgames client id.
+- The secret for **facebook** is client secret of the facebook client id.
+- The secret for **google** is client secret of the google OAuth client.
+- No secret for **nintendo**, we only need to configure app id of the game
+- No secret for **netflix**, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
+- The secret for **oculus** is app secret of the oculus app.
+- The secret for **ps4, ps5, and ps4web** is client secret of the psn web server.
+- The secret for **steam** is the Steam Web API Key.
+- The secret for **steamopenid** is the Steam Web API Key.
+- The secret for **twitch** is client secret of the twitch client.
+- The secret for **live** is the Relying Party Private Key in base64 encode PEM format.
+- The secret for **xblwebapi** is client secret of the xbl client.
 
 If generic oauth flow is set to true:
-
-
-
-
-                                  * Current supported value for TokenAuthenticationType is code, idToken and bearerToken
-
-
-                                  * `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
+- Current supported value for TokenAuthenticationType is **code, idToken and bearerToken**
+- `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 Its a JSON format with key should be `name`, `email` and `avatarUrl`
-since IAM will look up for these key when extracting user info. default claims keys : userIdentity/sub, name, email and avatarUrl/picture
+since IAM will look up for these key when extracting user info.**default claims keys : userIdentity/sub, name, email and avatarUrl/picture**
 */
 func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, *UpdateThirdPartyLoginPlatformCredentialV3BadRequest, *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized, *UpdateThirdPartyLoginPlatformCredentialV3Forbidden, *UpdateThirdPartyLoginPlatformCredentialV3NotFound, *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -969,104 +741,28 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 
 /*
 UpdateThirdPartyLoginPlatformCredentialV3Short update third party platform credential
-
-
 This is the API to Add 3rd Platform Credential.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.
-
-
-
-
-The secret for apple is base64 encoded private key.
-
-
-
-
-No secret for awscognito , we only need to configure AWS Cognito Region and User Pool
-
-
-
-
-The secret for discord is client secret of the twitch client id.
-
-
-
-
-The secret for epicgames is client secret of the epicgames client id.
-
-
-
-
-The secret for facebook is client secret of the facebook client id.
-
-
-
-
-The secret for google is client secret of the google OAuth client.
-
-
-
-
-No secret for nintendo , we only need to configure app id of the game
-
-
-
-
-No secret for netflix , we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
-
-
-
-
-The secret for oculus is app secret of the oculus app.
-
-
-
-
-The secret for ps4, ps5, and ps4web is client secret of the psn web server.
-
-
-
-
-The secret for steam is the Steam Web API Key.
-
-
-
-
-The secret for steamopenid is the Steam Web API Key.
-
-
-
-
-The secret for twitch is client secret of the twitch client.
-
-
-
-
-The secret for live is the Relying Party Private Key in base64 encode PEM format.
-
-
-
-
-The secret for xblwebapi is client secret of the xbl client.
-
-
-
+- The secret for **apple** is base64 encoded private key.
+- No secret for **awscognito**, we only need to configure AWS Cognito Region and User Pool
+- The secret for **discord** is client secret of the twitch client id.
+- The secret for **epicgames** is client secret of the epicgames client id.
+- The secret for **facebook** is client secret of the facebook client id.
+- The secret for **google** is client secret of the google OAuth client.
+- No secret for **nintendo**, we only need to configure app id of the game
+- No secret for **netflix**, we configure the Root, Public, Private Key certificate pem file and target environment; value: [sandbox, production]
+- The secret for **oculus** is app secret of the oculus app.
+- The secret for **ps4, ps5, and ps4web** is client secret of the psn web server.
+- The secret for **steam** is the Steam Web API Key.
+- The secret for **steamopenid** is the Steam Web API Key.
+- The secret for **twitch** is client secret of the twitch client.
+- The secret for **live** is the Relying Party Private Key in base64 encode PEM format.
+- The secret for **xblwebapi** is client secret of the xbl client.
 
 If generic oauth flow is set to true:
-
-
-
-
-                                  * Current supported value for TokenAuthenticationType is code, idToken and bearerToken
-
-
-                                  * `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
+- Current supported value for TokenAuthenticationType is **code, idToken and bearerToken**
+- `TokenClaimsMapping` is used to extract user info from idToken claims or user info endpoint response accessed using bearerToken.
 Its a JSON format with key should be `name`, `email` and `avatarUrl`
-since IAM will look up for these key when extracting user info. default claims keys : userIdentity/sub, name, email and avatarUrl/picture
+since IAM will look up for these key when extracting user info.**default claims keys : userIdentity/sub, name, email and avatarUrl/picture**
 */
 func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1123,14 +819,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateTh
 Deprecated: 2022-08-10 - Use UpdateThirdPartyLoginPlatformDomainV3Short instead.
 
 UpdateThirdPartyLoginPlatformDomainV3 set third party platform credential's domain
-
-
 This is the API to set 3rd Platform domain.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE] resource.
 */
 func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, *UpdateThirdPartyLoginPlatformDomainV3BadRequest, *UpdateThirdPartyLoginPlatformDomainV3Unauthorized, *UpdateThirdPartyLoginPlatformDomainV3Forbidden, *UpdateThirdPartyLoginPlatformDomainV3NotFound, *UpdateThirdPartyLoginPlatformDomainV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1190,14 +879,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyL
 
 /*
 UpdateThirdPartyLoginPlatformDomainV3Short set third party platform credential's domain
-
-
 This is the API to set 3rd Platform domain.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE] resource.
 */
 func (a *Client) UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1254,14 +936,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdP
 Deprecated: 2022-08-10 - Use DeleteThirdPartyLoginPlatformDomainV3Short instead.
 
 DeleteThirdPartyLoginPlatformDomainV3 unregister third party platform credential's domain
-
-
 This is the API to unregister 3rd Platform domain.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE] resource.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1321,14 +996,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyL
 
 /*
 DeleteThirdPartyLoginPlatformDomainV3Short unregister third party platform credential's domain
-
-
 This is the API to unregister 3rd Platform domain.
-
-
-
-
-It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE] resource.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error) {
 	// TODO: Validate the params before sending

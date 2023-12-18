@@ -42,7 +42,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetShort instead.
 
 Get get configuration
-Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
 TimeInterval is in nanoseconds.
 When there's no configuration set, the response is the default value (configurable through envar).
 */
@@ -92,7 +91,6 @@ func (a *Client) Get(params *GetParams, authInfo runtime.ClientAuthInfoWriter) (
 
 /*
 GetShort get configuration
-Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [READ]
 TimeInterval is in nanoseconds.
 When there's no configuration set, the response is the default value (configurable through envar).
 */
@@ -143,7 +141,6 @@ func (a *Client) GetShort(params *GetParams, authInfo runtime.ClientAuthInfoWrit
 Deprecated: 2022-08-10 - Use UpsertShort instead.
 
 Upsert create/update configuration
-Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
 The behaviour of this endpoint is upsert based on the namespace.
 So, you can use this for both creating & updating the configuration.
 TimeInterval is in nanoseconds.
@@ -197,7 +194,6 @@ func (a *Client) Upsert(params *UpsertParams, authInfo runtime.ClientAuthInfoWri
 
 /*
 UpsertShort create/update configuration
-Required permission: ADMIN:NAMESPACE:{namespace}:REPORTINGCONFIG [CREATE]
 The behaviour of this endpoint is upsert based on the namespace.
 So, you can use this for both creating & updating the configuration.
 TimeInterval is in nanoseconds.

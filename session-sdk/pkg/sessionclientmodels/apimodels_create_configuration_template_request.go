@@ -70,6 +70,10 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// Required: true
 	Joinability *string `json:"joinability"`
 
+	// leaderelectiongraceperiod
+	// Format: int32
+	LeaderElectionGracePeriod int32 `json:"leaderElectionGracePeriod,omitempty"`
+
 	// maxactivesessions
 	// Format: int32
 	MaxActiveSessions int32 `json:"maxActiveSessions,omitempty"`

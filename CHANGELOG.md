@@ -1,5 +1,7 @@
 <a name="v0.60.0"></a>
 ## [v0.60.0]
+### docs
+- **migrations:** add migration-guide-v0.59-to-v0.60.md
 ### feat
 - **:** support extend delegate token
 - **api:** bootstrap chat service support
@@ -11,6 +13,14 @@
 - **docs:** generate chat service
 - **:** validate extend namespace
 - **integration-test:** add client version value
+- **cli:** regenerate cli ams
+- **:** update CHANGELOG.md and go sum getting started
+
+
+<a name="v0.59.3"></a>
+## [v0.59.3]
+### chore
+- **:** validate extend namespace
 
 
 <a name="v0.59.2"></a>

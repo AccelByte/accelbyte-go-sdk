@@ -1,0 +1,96 @@
+library(
+  identifier: 'jenkins-shared-library@master',
+  retriever: modernSCM(
+    [
+      $class: 'GitSCMSource',
+      remote: 'https://github.com/dhanarab/jenkins-pipeline-library.git'
+    ]
+  )
+)
+
+bitbucketCredentialsHttps = "bitbucket-build-extend-https"
+bitbucketCredentialsSsh = "bitbucket-build-extend-ssh"
+
+bitbucketCommitHref = null
+
+pipeline {
+  agent {
+    label "justice-codegen-sdk"
+  }
+  stages {
+    stage('Prepare') {
+      steps {
+        script {
+          gitRepositoryName = git.getRepositoryName()
+          gitCommitHash = git.getCommitHash()
+          bitbucketCommitHref = "https://api.bitbucket.org/2.0/repositories/accelbyte/${gitRepositoryName}/commit/${gitCommitHash}"
+          bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        }
+      }
+    }
+    stage('Test') {
+      parallel {
+        stage('CLI Tests') {
+          steps {
+            sshagent(credentials: [bitbucketCredentialsSsh]) {
+              sh "rm -rf .justice-codegen-sdk-mock-server"
+              sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
+            }
+            sh "make test_cli SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
+          }
+          post {
+            always {
+              script {
+                archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
+                step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
+              }
+            }
+          }
+        }
+        stage('Integration Tests') {
+          options {
+            lock("justice-starter-serversdktest")
+          }
+          steps {
+            withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-starter-test-env', variable: 'ENV_FILE_PATH')]) {
+              sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
+            }
+          }
+        }
+      }
+    }
+  }
+  post {
+    success {
+      script {
+        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+
+        //gitRepositoryName = git.getRepositoryName()
+        //gitBranchName = sh(script: "echo ${env.GIT_BRANCH} | grep -oP '(?<=origin/).+'", returnStdout: true).trim()
+        //gitCommitHashShort = git.getCommitHashShort()
+        //gitCommitMessage = git.getCommitMessage()
+        //
+        //message = """
+        //    :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *updated*
+        //
+        //    |*${gitRepositoryName}:*
+        //    |`${gitBranchName}` `${gitCommitHashShort}`
+        //    |${gitCommitMessage}
+        //
+        //    |""".stripMargin()
+        //slackSend(channel: "#activity-justice-codegen-sdk", color: '#36B37E', message: message)
+      }
+    }
+    failure {
+      script {
+        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "FAILED", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+
+        message = """
+            :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
+
+            |""".stripMargin()
+        slackSend(channel: "#activity-justice-codegen-sdk", color: '#FF0000', message: message)
+      }
+    }
+  }
+}

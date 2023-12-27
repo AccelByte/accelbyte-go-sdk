@@ -48,7 +48,7 @@ var (
 
 func checkAmsAccount() error {
 	_, err := accountService.AccountGetShort(&account.AccountGetParams{Namespace: integration.NamespaceTest})
-	if err == account.NewAccountGetNotFound() {
+	if err != nil {
 		_, errCreate := accountService.AccountCreateShort(&account.AccountCreateParams{
 			Body:      &amsclientmodels.APIAccountCreateRequest{Name: &accountName},
 			Namespace: integration.NamespaceTest,

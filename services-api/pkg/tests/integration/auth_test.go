@@ -5,6 +5,7 @@
 package integration_test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -19,6 +20,9 @@ var (
 
 func TestIntegrationLoginPlatform(t *testing.T) {
 	t.Parallel()
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
 
 	// prepare and use the helper
 	platformToken, errGetPlatformToken := PostPhantauthPlatformToken(t)

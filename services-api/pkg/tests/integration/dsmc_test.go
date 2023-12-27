@@ -55,8 +55,8 @@ func createSessionBrowser() string {
 }
 
 func TestIntegrationSessionDSMC(t *testing.T) {
-	// Login Client - Arrange
-	InitLoginClient()
+	// Login User - Arrange
+	Init()
 
 	SessionBrowserID := createSessionBrowser()
 	getUserId := GetUserID() // use user token to get userId
@@ -91,13 +91,10 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		SessionID:           &SessionBrowserID,
 	}
 
-	// use client token again
-	InitLoginClient()
-
 	// Get the existing config
 	configs, errConfigs := dsmcConfigService.ListConfigShort(&config.ListConfigParams{})
 	if errConfigs != nil {
-		t.Errorf("failed to get the dsmc configs. %s", errConfigs.Error())
+		assert.Fail(t, "failed to get the dsmc configs. ", errConfigs.Error())
 	}
 
 	bodySessionDsmc.Configuration = &configs.Configs[0].Namespace

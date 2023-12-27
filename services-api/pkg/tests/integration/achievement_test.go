@@ -116,9 +116,9 @@ func TestIntegrationAchievement(t *testing.T) {
 	// ESAC
 
 	// Assert
-	assert.Equal(t, true, *updated.Hidden)
 	assert.Nil(t, errUpdate, "err should be nil")
 	assert.NotNil(t, updated, "response should not be nil")
+	assert.Equal(t, true, *updated.Hidden)
 
 	// CASE Get all achievements
 	inputGetAll := &achievements.AdminListAchievementsParams{

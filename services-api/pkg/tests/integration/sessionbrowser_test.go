@@ -110,9 +110,6 @@ func TestIntegrationSessionBrowser(t *testing.T) {
 	assert.NotNil(t, updated, "response should not be nil")
 	assert.Equal(t, *updated.GameSessionSetting.MaxPlayer, defaultInt32)
 
-	// Use client token
-	InitLoginClient()
-
 	// CASE Delete a session
 	inputDelete := &session.AdminDeleteSessionParams{
 		Namespace: integration.NamespaceTest,

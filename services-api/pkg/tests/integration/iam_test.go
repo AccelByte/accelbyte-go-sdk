@@ -38,10 +38,11 @@ var (
 			return http.ErrUseLastResponse
 		},
 	}
-	tokenRepository = auth.DefaultTokenRepositoryImpl()
-	oAuth20Service  = &iam.OAuth20Service{
+	tokenRepository  = auth.DefaultTokenRepositoryImpl()
+	configRepository = auth.DefaultConfigRepositoryImpl()
+	oAuth20Service   = &iam.OAuth20Service{
 		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		ConfigRepository: configRepository,
 		TokenRepository:  tokenRepository,
 	}
 	userService = &iam.UsersService{
@@ -105,21 +106,6 @@ func Init() {
 		if errStore != nil {
 			logrus.Error("failed stored the token")
 		}
-	}
-}
-
-func InitLoginClient() {
-	id := os.Getenv("AB_CLIENT_ID")
-	secret := os.Getenv("AB_CLIENT_SECRET")
-	err := oAuth20Service.LoginClient(&id, &secret)
-	if err != nil {
-		logrus.Error("failed login")
-	} else {
-		token, errStore := oAuth20Service.TokenRepository.GetToken()
-		if errStore != nil {
-			logrus.Error("failed stored the token")
-		}
-		logrus.Infof("token: %s", *token.AccessToken)
 	}
 }
 

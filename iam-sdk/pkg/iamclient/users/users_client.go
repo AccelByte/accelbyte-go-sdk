@@ -242,6 +242,8 @@ type ClientService interface {
 	AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error)
 	AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error)
 	AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error)
+	AdminDeleteUserLinkingHistoryByPlatformIDV3(params *AdminDeleteUserLinkingHistoryByPlatformIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent, *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest, *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized, *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden, *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound, *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError, error)
+	AdminDeleteUserLinkingHistoryByPlatformIDV3Short(params *AdminDeleteUserLinkingHistoryByPlatformIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent, error)
 	AdminGetThirdPartyPlatformTokenLinkStatusV3(params *AdminGetThirdPartyPlatformTokenLinkStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyPlatformTokenLinkStatusV3OK, *AdminGetThirdPartyPlatformTokenLinkStatusV3BadRequest, *AdminGetThirdPartyPlatformTokenLinkStatusV3Unauthorized, *AdminGetThirdPartyPlatformTokenLinkStatusV3Forbidden, *AdminGetThirdPartyPlatformTokenLinkStatusV3NotFound, *AdminGetThirdPartyPlatformTokenLinkStatusV3InternalServerError, error)
 	AdminGetThirdPartyPlatformTokenLinkStatusV3Short(params *AdminGetThirdPartyPlatformTokenLinkStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyPlatformTokenLinkStatusV3OK, error)
 	AdminGetUserSinglePlatformAccount(params *AdminGetUserSinglePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserSinglePlatformAccountOK, *AdminGetUserSinglePlatformAccountBadRequest, *AdminGetUserSinglePlatformAccountUnauthorized, *AdminGetUserSinglePlatformAccountForbidden, *AdminGetUserSinglePlatformAccountNotFound, *AdminGetUserSinglePlatformAccountInternalServerError, error)
@@ -3597,7 +3599,7 @@ GetUserMapping get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
 If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace
+If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
 */
 func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, *GetUserMappingBadRequest, *GetUserMappingUnauthorized, *GetUserMappingForbidden, *GetUserMappingNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3661,7 +3663,7 @@ GetUserMappingShort get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
 If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace
+If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
 */
 func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, error) {
 	// TODO: Validate the params before sending
@@ -12847,7 +12849,7 @@ AdminGetUserMapping get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
 If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace
+If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
 */
 func (a *Client) AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, *AdminGetUserMappingBadRequest, *AdminGetUserMappingUnauthorized, *AdminGetUserMappingForbidden, *AdminGetUserMappingNotFound, error) {
 	// TODO: Validate the params before sending
@@ -12907,7 +12909,7 @@ AdminGetUserMappingShort get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
 If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace
+If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
 */
 func (a *Client) AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error) {
 	// TODO: Validate the params before sending
@@ -13502,6 +13504,123 @@ func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, aut
 	case *AdminPlatformLinkV3Conflict:
 		return nil, v
 	case *AdminPlatformLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminDeleteUserLinkingHistoryByPlatformIDV3Short instead.
+
+AdminDeleteUserLinkingHistoryByPlatformIDV3 admin remove user's platform linking history.
+This API is for admin to delete user's linking history with target platform id
+*/
+func (a *Client) AdminDeleteUserLinkingHistoryByPlatformIDV3(params *AdminDeleteUserLinkingHistoryByPlatformIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent, *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest, *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized, *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden, *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound, *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserLinkingHistoryByPlatformIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserLinkingHistoryByPlatformIDV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserLinkingHistoryByPlatformIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminDeleteUserLinkingHistoryByPlatformIDV3Short admin remove user's platform linking history.
+This API is for admin to delete user's linking history with target platform id
+*/
+func (a *Client) AdminDeleteUserLinkingHistoryByPlatformIDV3Short(params *AdminDeleteUserLinkingHistoryByPlatformIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserLinkingHistoryByPlatformIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserLinkingHistoryByPlatformIDV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserLinkingHistoryByPlatformIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent:
+		return v, nil
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest:
+		return nil, v
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound:
+		return nil, v
+	case *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError:
 		return nil, v
 
 	default:
@@ -14409,6 +14528,10 @@ This endpoint ONLY accept **Client Token**
 This endpoint is utilized for specific scenarios where **email notifications are disabled**
 The user's email will be marked as verified
 
+Note:
+- emailAddress or password field are optional
+- request body can't be empty
+
 action code : 10103
 */
 func (a *Client) AdminTrustlyUpdateUserIdentity(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, *AdminTrustlyUpdateUserIdentityBadRequest, *AdminTrustlyUpdateUserIdentityUnauthorized, *AdminTrustlyUpdateUserIdentityForbidden, *AdminTrustlyUpdateUserIdentityNotFound, *AdminTrustlyUpdateUserIdentityConflict, *AdminTrustlyUpdateUserIdentityInternalServerError, error) {
@@ -14475,6 +14598,10 @@ AdminTrustlyUpdateUserIdentityShort update user identity
 This endpoint ONLY accept **Client Token**
 This endpoint is utilized for specific scenarios where **email notifications are disabled**
 The user's email will be marked as verified
+
+Note:
+- emailAddress or password field are optional
+- request body can't be empty
 
 action code : 10103
 */

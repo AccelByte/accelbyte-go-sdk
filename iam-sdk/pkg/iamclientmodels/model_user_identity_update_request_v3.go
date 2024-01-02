@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ModelUserIdentityUpdateRequestV3 Model user identity update request V3
@@ -19,46 +18,19 @@ import (
 type ModelUserIdentityUpdateRequestV3 struct {
 
 	// emailaddress
-	// Required: true
-	EmailAddress *string `json:"emailAddress"`
+	EmailAddress string `json:"emailAddress,omitempty"`
 
 	// password
-	// Required: true
-	Password *string `json:"password"`
+	Password string `json:"password,omitempty"`
 }
 
 // Validate validates this Model user identity update request V3
 func (m *ModelUserIdentityUpdateRequestV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmailAddress(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePassword(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelUserIdentityUpdateRequestV3) validateEmailAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserIdentityUpdateRequestV3) validatePassword(formats strfmt.Registry) error {
-
-	if err := validate.Required("password", "body", m.Password); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -43,7 +43,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetPlatformCredentialsShort instead.
 
-AdminGetPlatformCredentials get platform credentials. these are used to sync psn sessions. requires admin:namespace:{namespace}:session:platformcredential [read]
+AdminGetPlatformCredentials get platform credentials. these are used to sync psn sessions.
 Get platform credentials used for Native Session sync.
 PSN:
 - clientID: Auth Server (Client Credential) ClientID
@@ -107,7 +107,7 @@ func (a *Client) AdminGetPlatformCredentials(params *AdminGetPlatformCredentials
 }
 
 /*
-AdminGetPlatformCredentialsShort get platform credentials. these are used to sync psn sessions. requires admin:namespace:{namespace}:session:platformcredential [read]
+AdminGetPlatformCredentialsShort get platform credentials. these are used to sync psn sessions.
 Get platform credentials used for Native Session sync.
 PSN:
 - clientID: Auth Server (Client Credential) ClientID
@@ -168,7 +168,7 @@ func (a *Client) AdminGetPlatformCredentialsShort(params *AdminGetPlatformCreden
 /*
 Deprecated: 2022-08-10 - Use AdminUpdatePlatformCredentialsShort instead.
 
-AdminUpdatePlatformCredentials update platform credentials. currently only used to sync psn sessions. requires admin:namespace:{namespace}:session:platformcredential [update]
+AdminUpdatePlatformCredentials update platform credentials. currently only used to sync psn sessions.
 Update platform credentials for Native Session sync. Currently supports PSN platform.
 Send an empty body to clear data.
 PSN:
@@ -233,7 +233,7 @@ func (a *Client) AdminUpdatePlatformCredentials(params *AdminUpdatePlatformCrede
 }
 
 /*
-AdminUpdatePlatformCredentialsShort update platform credentials. currently only used to sync psn sessions. requires admin:namespace:{namespace}:session:platformcredential [update]
+AdminUpdatePlatformCredentialsShort update platform credentials. currently only used to sync psn sessions.
 Update platform credentials for Native Session sync. Currently supports PSN platform.
 Send an empty body to clear data.
 PSN:
@@ -296,7 +296,7 @@ func (a *Client) AdminUpdatePlatformCredentialsShort(params *AdminUpdatePlatform
 Deprecated: 2022-08-10 - Use AdminDeletePlatformCredentialsShort instead.
 
 AdminDeletePlatformCredentials delete platform credentials.
-Delete platform credentials used for Native Session sync. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]
+Delete platform credentials used for Native Session sync.
 */
 func (a *Client) AdminDeletePlatformCredentials(params *AdminDeletePlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsNoContent, *AdminDeletePlatformCredentialsBadRequest, *AdminDeletePlatformCredentialsUnauthorized, *AdminDeletePlatformCredentialsForbidden, *AdminDeletePlatformCredentialsNotFound, *AdminDeletePlatformCredentialsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -356,7 +356,7 @@ func (a *Client) AdminDeletePlatformCredentials(params *AdminDeletePlatformCrede
 
 /*
 AdminDeletePlatformCredentialsShort delete platform credentials.
-Delete platform credentials used for Native Session sync. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]
+Delete platform credentials used for Native Session sync.
 */
 func (a *Client) AdminDeletePlatformCredentialsShort(params *AdminDeletePlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsNoContent, error) {
 	// TODO: Validate the params before sending

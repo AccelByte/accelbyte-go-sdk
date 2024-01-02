@@ -26,12 +26,12 @@ var PublicGetRecentPlayerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &recent_player.PublicGetRecentPlayerParams{
 			Namespace: namespace,
-			UserID:    userId,
 			Limit:     &limit,
+			UserID:    &userId,
 		}
 		ok, errOK := recentPlayerService.PublicGetRecentPlayerShort(input)
 		if errOK != nil {
@@ -49,7 +49,6 @@ var PublicGetRecentPlayerCmd = &cobra.Command{
 func init() {
 	PublicGetRecentPlayerCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetRecentPlayerCmd.MarkFlagRequired("namespace")
-	PublicGetRecentPlayerCmd.Flags().String("userId", "", "User id")
-	_ = PublicGetRecentPlayerCmd.MarkFlagRequired("userId")
 	PublicGetRecentPlayerCmd.Flags().Int64("limit", 20, "Limit")
+	PublicGetRecentPlayerCmd.Flags().String("userId", "", "User id")
 }

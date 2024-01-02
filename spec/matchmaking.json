@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.27.2"
+    "version": "2.28.0"
   },
   "schemes": [
     "https"
@@ -3230,6 +3230,9 @@
     },
     "models.Channel": {
       "properties": {
+        "blocked_player_option": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -3297,6 +3300,7 @@
         }
       },
       "required": [
+        "blocked_player_option",
         "deployment",
         "description",
         "find_match_timeout_seconds",
@@ -3318,6 +3322,14 @@
     },
     "models.ChannelRequest": {
       "properties": {
+        "blocked_player_option": {
+          "enum": [
+            "blockedPlayerCanMatch",
+            "blockedPlayerCanMatchOnDifferentTeam",
+            "blockedPlayerCannotMatch"
+          ],
+          "type": "string"
+        },
         "deployment": {
           "type": "string",
           "x-nullable": false
@@ -3397,6 +3409,9 @@
     },
     "models.ChannelV1": {
       "properties": {
+        "blocked_player_option": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -3464,6 +3479,7 @@
         }
       },
       "required": [
+        "blocked_player_option",
         "deployment",
         "description",
         "findMatchTimeoutSeconds",
@@ -3521,6 +3537,9 @@
     },
     "models.CreateChannelResponse": {
       "properties": {
+        "blocked_player_option": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -3588,6 +3607,7 @@
         }
       },
       "required": [
+        "blocked_player_option",
         "deployment",
         "description",
         "find_match_timeout_seconds",
@@ -4830,6 +4850,14 @@
     },
     "models.UpdateChannelRequest": {
       "properties": {
+        "blocked_player_option": {
+          "enum": [
+            "blockedPlayerCanMatch",
+            "blockedPlayerCanMatchOnDifferentTeam",
+            "blockedPlayerCannotMatch"
+          ],
+          "type": "string"
+        },
         "deployment": {
           "type": "string",
           "x-nullable": true
@@ -5319,9 +5347,9 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-06T03:31:29+00:00",
-    "gitHash": "24f09b0310aee0536f944c81eea6dce8ea955f3e",
-    "version": "2.27.2",
+    "buildDate": "2023-12-19T03:55:48+00:00",
+    "gitHash": "ba331c9c85722921b690db004f9ecdf52a773d61",
+    "version": "2.28.0",
     "version-roles-seeding": "0.0.23"
   }
 }

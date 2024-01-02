@@ -46,9 +46,8 @@ type EntitlementDecrementResult struct {
 	Features []string `json:"features"`
 
 	// entitlement granted at
-	// Required: true
 	// Format: date-time
-	GrantedAt strfmt.DateTime `json:"grantedAt"`
+	GrantedAt *strfmt.DateTime `json:"grantedAt,omitempty"`
 
 	// grantedCode, the granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -69,12 +68,18 @@ type EntitlementDecrementResult struct {
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
 	// entitlement name
-	// Required: true
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// entitlement namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// Whether entitlement have origin
+	NoOrigin bool `json:"noOrigin"`
+
+	// entitlement origin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	Origin string `json:"origin,omitempty"`
 
 	// replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.
 	Replayed bool `json:"replayed"`
@@ -90,8 +95,7 @@ type EntitlementDecrementResult struct {
 
 	// entitlement source
 	// Enum: ['ACHIEVEMENT', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD']
-	// Required: true
-	Source *string `json:"source"`
+	Source string `json:"source,omitempty"`
 
 	// Whether the CONSUMABLE entitlement is stackable
 	Stackable bool `json:"stackable"`
@@ -110,8 +114,7 @@ type EntitlementDecrementResult struct {
 
 	// entitlement type
 	// Enum: ['CONSUMABLE', 'DURABLE']
-	// Required: true
-	Type *string `json:"type"`
+	Type string `json:"type,omitempty"`
 
 	// entitlement updated at
 	// Required: true
@@ -123,8 +126,7 @@ type EntitlementDecrementResult struct {
 	UseCount int32 `json:"useCount,omitempty"`
 
 	// userId for this entitlement
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Entitlement decrement result
@@ -137,9 +139,6 @@ func (m *EntitlementDecrementResult) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateGrantedAt(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -149,25 +148,13 @@ func (m *EntitlementDecrementResult) Validate(formats strfmt.Registry) error {
 	if err := m.validateItemNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -283,19 +270,6 @@ func (m *EntitlementDecrementResult) validateCreatedAt(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *EntitlementDecrementResult) validateGrantedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("grantedAt", "body", strfmt.DateTime(m.GrantedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("grantedAt", "body", "date-time", m.GrantedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *EntitlementDecrementResult) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -323,21 +297,68 @@ func (m *EntitlementDecrementResult) validateItemNamespace(formats strfmt.Regist
 	return nil
 }
 
-func (m *EntitlementDecrementResult) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *EntitlementDecrementResult) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 
+	return nil
+}
+
+var entitlementDecrementResultTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		entitlementDecrementResultTypeOriginPropEnum = append(entitlementDecrementResultTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// EntitlementDecrementResultOriginEPIC captures enum value "EPIC"
+	EntitlementDecrementResultOriginEPIC string = "EPIC"
+
+	// EntitlementDecrementResultOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	EntitlementDecrementResultOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// EntitlementDecrementResultOriginIOS captures enum value "IOS"
+	EntitlementDecrementResultOriginIOS string = "IOS"
+
+	// EntitlementDecrementResultOriginNINTENDO captures enum value "NINTENDO"
+	EntitlementDecrementResultOriginNINTENDO string = "NINTENDO"
+
+	// EntitlementDecrementResultOriginOCULUS captures enum value "OCULUS"
+	EntitlementDecrementResultOriginOCULUS string = "OCULUS"
+
+	// EntitlementDecrementResultOriginOTHER captures enum value "OTHER"
+	EntitlementDecrementResultOriginOTHER string = "OTHER"
+
+	// EntitlementDecrementResultOriginPLAYSTATION captures enum value "PLAYSTATION"
+	EntitlementDecrementResultOriginPLAYSTATION string = "PLAYSTATION"
+
+	// EntitlementDecrementResultOriginSTEAM captures enum value "STEAM"
+	EntitlementDecrementResultOriginSTEAM string = "STEAM"
+
+	// EntitlementDecrementResultOriginSYSTEM captures enum value "SYSTEM"
+	EntitlementDecrementResultOriginSYSTEM string = "SYSTEM"
+
+	// EntitlementDecrementResultOriginTWITCH captures enum value "TWITCH"
+	EntitlementDecrementResultOriginTWITCH string = "TWITCH"
+
+	// EntitlementDecrementResultOriginXBOX captures enum value "XBOX"
+	EntitlementDecrementResultOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *EntitlementDecrementResult) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeOriginPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -388,20 +409,6 @@ func (m *EntitlementDecrementResult) validateSourceEnum(path, location string, v
 	if err := validate.EnumCase(path, location, value, entitlementDecrementResultTypeSourcePropEnum, true); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (m *EntitlementDecrementResult) validateSource(formats strfmt.Registry) error {
-
-	if err := validate.Required("source", "body", m.Source); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateSourceEnum("source", "body", *m.Source); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -486,20 +493,6 @@ func (m *EntitlementDecrementResult) validateTypeEnum(path, location string, val
 	return nil
 }
 
-func (m *EntitlementDecrementResult) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *EntitlementDecrementResult) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
@@ -507,15 +500,6 @@ func (m *EntitlementDecrementResult) validateUpdatedAt(formats strfmt.Registry) 
 	}
 
 	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *EntitlementDecrementResult) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
 	}
 

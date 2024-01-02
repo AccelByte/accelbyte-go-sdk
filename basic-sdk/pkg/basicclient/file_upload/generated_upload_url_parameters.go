@@ -75,7 +75,7 @@ type GeneratedUploadURLParams struct {
 	*/
 	Namespace string
 	/*FileType
-	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp
+	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp, mp4, webm
 
 	*/
 	FileType string

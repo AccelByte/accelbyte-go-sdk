@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.42.0"
+    "version": "4.43.0"
   },
   "schemes": [
     "https"
@@ -150,6 +150,8 @@
         "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]": "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]",
@@ -3565,6 +3567,25 @@
             "type": "integer"
           },
           {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Oculus",
+              "Other",
+              "Playstation",
+              "Steam",
+              "System",
+              "Twitch",
+              "Xbox"
+            ],
+            "in": "query",
+            "name": "origin",
+            "required": false,
+            "type": "string"
+          },
+          {
             "in": "query",
             "name": "userId",
             "required": false,
@@ -3678,6 +3699,110 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/entitlements/config/entitlementOrigin/enable": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Enable Entitlement origin feature.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG\u0026#34;, action=4 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "enableEntitlementOriginFeature",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Enable entitlement origin feature",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/entitlements/config/info": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get entitlement config info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getEntitlementConfigInfo",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "in": "query",
+            "name": "withoutCache",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get entitlement config info",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG"
         }
       }
     },
@@ -9905,6 +10030,148 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/platforms/{platform}/entitlement/config": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get platform entitlement config list.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getPlatformEntitlementConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Oculus",
+              "Other",
+              "Playstation",
+              "Steam",
+              "Xbox"
+            ],
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementPlatformConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get platform entitlement config list",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update platform entitlement config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: platform entitlement config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePlatformEntitlementConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Oculus",
+              "Other",
+              "Playstation",
+              "Steam",
+              "Xbox"
+            ],
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementPlatformConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementPlatformConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31147\u003c/td\u003e\u003ctd\u003eOrigin [Steam] and System need exist in allowPlatformOrigin\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update platform entitlement config",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/platforms/{platform}/wallet/config": {
       "get": {
         "consumes": [
@@ -13513,7 +13780,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create a chained operations\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: chain action history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "description": "This API is used to create a chained operations\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: chain action history\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;FULFILL_ITEM operation supported item type\u0026lt;/i\u0026gt;: INGAMEITEM,LOOTBOX,OPTIONBOX\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
         "operationId": "commit",
         "parameters": [
           {
@@ -14506,6 +14773,14 @@
             "type": "array"
           },
           {
+            "default": false,
+            "in": "query",
+            "name": "fuzzyMatchName",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "collectionFormat": "multi",
             "in": "query",
             "items": {
@@ -14530,6 +14805,25 @@
             "name": "offset",
             "required": false,
             "type": "integer"
+          },
+          {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Oculus",
+              "Other",
+              "Playstation",
+              "Steam",
+              "System",
+              "Twitch",
+              "Xbox"
+            ],
+            "in": "query",
+            "name": "origin",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -14842,6 +15136,12 @@
             "name": "entitlementClazz",
             "required": false,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -14908,6 +15208,12 @@
             "name": "ids",
             "required": false,
             "type": "array"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -14990,6 +15296,12 @@
             "name": "entitlementClazz",
             "required": false,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -15068,6 +15380,12 @@
             "type": "array"
           },
           {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
+          },
+          {
             "collectionFormat": "multi",
             "in": "query",
             "items": {
@@ -15136,6 +15454,12 @@
             "name": "itemIds",
             "required": true,
             "type": "array"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -15263,6 +15587,12 @@
             "name": "entitlementClazz",
             "required": false,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -15323,6 +15653,12 @@
             "name": "ids",
             "required": false,
             "type": "array"
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -15395,6 +15731,12 @@
             ],
             "in": "query",
             "name": "entitlementClazz",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "platform",
             "required": false,
             "type": "string"
           }
@@ -15714,7 +16056,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/EntitlementDecrement"
+              "$ref": "#/definitions/AdminEntitlementDecrement"
             }
           }
         ],
@@ -15741,7 +16083,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -16272,7 +16614,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/EntitlementSoldRequest"
+              "$ref": "#/definitions/AdminEntitlementSoldRequest"
             }
           }
         ],
@@ -16293,7 +16635,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -16614,7 +16956,7 @@
             "authorization": []
           }
         ],
-        "summary": "Fulfill rewards",
+        "summary": "Fulfill rewards without content",
         "tags": [
           "Fulfillment"
         ],
@@ -25947,6 +26289,7 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
       "get": {
+        "deprecated": true,
         "description": "Get user entitlement by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementByItemId",
         "parameters": [
@@ -26024,6 +26367,7 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
       "get": {
+        "deprecated": true,
         "description": "Get user entitlement by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementBySku",
         "parameters": [
@@ -26560,7 +26904,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31173\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not consumable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -26639,7 +26983,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31180\u003c/td\u003e\u003ctd\u003eDuplicate request id: [{requestId}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31181\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not sellable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -29172,7 +29516,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Fulfill rewards.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT\u0026#34;, action=1 (CREATED)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Fulfill rewards.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT\u0026#34;, action=1 (CREATED)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment result\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;rewards Item unsupported Type\u0026lt;/i\u0026gt;: SUBSCRIPTION\u0026lt;/ul\u0026gt;",
         "operationId": "fulfillRewardsV2",
         "parameters": [
           {
@@ -29306,7 +29650,7 @@
       "description": "Represents the request to commit a chained trade action.",
       "properties": {
         "operations": {
-          "example": "[\n    {\n        \"type\": \"DEBIT_WALLET\",\n        \"debitPayload\": {\n            \"currencyCode\": \"string\",\n            \"walletPlatform\": \"Other\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"CREDIT_WALLET\",\n        \"creditPayload\": {\n            \"currencyCode\": \"string\",\n            \"expireAt\": null,\n            \"balanceOrigin\": \"System\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"FULFILL_ITEM\",\n        \"fulFillItemPayload\": {\n            \"itemIdentityType\": \"ITEM_ID\",\n            \"itemIdentity\": \"string\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"REVOKE_ENTITLEMENT\",\n        \"revokeEntitlementPayload\": {\n            \"entitlementId\": \"string\",\n            \"count\": 1\n        }\n    }\n]\n",
+          "example": "[\n    {\n        \"type\": \"DEBIT_WALLET\",\n        \"debitPayload\": {\n            \"currencyCode\": \"string\",\n            \"walletPlatform\": \"Other\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"CREDIT_WALLET\",\n        \"creditPayload\": {\n            \"currencyCode\": \"string\",\n            \"expireAt\": null,\n            \"balanceOrigin\": \"System\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"FULFILL_ITEM\",\n        \"fulFillItemPayload\": {\n            \"itemIdentityType\": \"ITEM_ID\",\n            \"itemIdentity\": \"string\",\n            \"entitlementOrigin\": \"string\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"REVOKE_ENTITLEMENT\",\n        \"revokeEntitlementPayload\": {\n            \"entitlementId\": \"string\",\n            \"count\": 1\n        }\n    }\n]\n",
           "items": {
             "$ref": "#/definitions/OperationRequest"
           },
@@ -29338,6 +29682,51 @@
           "type": "string"
         },
         "usageCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AdminEntitlementDecrement": {
+      "description": "A DTO object for admin entitlement decrement.",
+      "properties": {
+        "options": {
+          "description": "options, it is only available when entitlement clazz is OPTIONBOX and value should be item id.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "platform": {
+          "description": "user platform",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, it will return original successful response",
+          "type": "string"
+        },
+        "useCount": {
+          "description": "the count to decrease, 1 for default, option box entitlement only allow 1",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AdminEntitlementSoldRequest": {
+      "description": "A DTO object for sell entitlement.",
+      "properties": {
+        "platform": {
+          "description": "user platform",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, it will return original successful response",
+          "type": "string"
+        },
+        "useCount": {
+          "description": "the use count to sell, 1 for default, durable entitlement only allow 1",
           "format": "int32",
           "type": "integer"
         }
@@ -29379,7 +29768,7 @@
           "description": "Creation options"
         },
         "platform": {
-          "description": "platform",
+          "description": "platform the platform which user are playing now and use for payment eg: user purchase item on Steam, it should be 'Steam'",
           "enum": [
             "Epic",
             "GooglePlay",
@@ -29568,6 +29957,28 @@
         },
         "namespace": {
           "description": "entitlement namespace",
+          "type": "string"
+        },
+        "noOrigin": {
+          "description": "Whether entitlement have origin",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "sku": {
@@ -32443,6 +32854,20 @@
     },
     "DLCRecord": {
       "properties": {
+        "entitlementOriginSyncResult": {
+          "items": {
+            "$ref": "#/definitions/entitlement origin sync result"
+          },
+          "type": "array"
+        },
+        "entitlementOriginSyncStatus": {
+          "enum": [
+            "NOT_SYNCED",
+            "SYNCED",
+            "SYNCED_FAILED"
+          ],
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -32819,6 +33244,18 @@
       },
       "type": "object"
     },
+    "EntitlementConfigInfo": {
+      "properties": {
+        "enableEntitlementOriginFeature": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementDecrement": {
       "description": "A DTO object for entitlement decrement.",
       "properties": {
@@ -32894,7 +33331,7 @@
           "description": "entitlement granted at",
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -32922,6 +33359,28 @@
         },
         "namespace": {
           "description": "entitlement namespace",
+          "type": "string"
+        },
+        "noOrigin": {
+          "description": "Whether entitlement have origin",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "replayed": {
@@ -33012,17 +33471,12 @@
       "required": [
         "clazz",
         "createdAt",
-        "grantedAt",
         "id",
         "itemId",
         "itemNamespace",
-        "name",
         "namespace",
-        "source",
         "status",
-        "type",
-        "updatedAt",
-        "userId"
+        "updatedAt"
       ],
       "type": "object"
     },
@@ -33050,6 +33504,23 @@
         "language": {
           "description": "language value from language tag, allowed format: en, en-US.\u003cp\u003eSupported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)\u003c/p\u003e",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
+          "type": "string"
+        },
+        "origin": {
+          "description": "entitlement Origin, The platform of the entitlement.",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "quantity": {
@@ -33139,6 +33610,23 @@
         },
         "operator": {
           "description": "The operator",
+          "type": "string"
+        },
+        "origin": {
+          "description": "The origin where the entitlement is granted",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "reason": {
@@ -33238,6 +33726,26 @@
         "namespace": {
           "type": "string"
         },
+        "noOrigin": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
         "sku": {
           "type": "string"
         },
@@ -33334,7 +33842,7 @@
           "description": "entitlement granted at",
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -33362,6 +33870,28 @@
         },
         "namespace": {
           "description": "entitlement namespace",
+          "type": "string"
+        },
+        "noOrigin": {
+          "description": "Whether entitlement have origin",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "sku": {
@@ -33436,17 +33966,12 @@
       "required": [
         "clazz",
         "createdAt",
-        "grantedAt",
         "id",
         "itemId",
         "itemNamespace",
-        "name",
         "namespace",
-        "source",
         "status",
-        "type",
-        "updatedAt",
-        "userId"
+        "updatedAt"
       ],
       "type": "object"
     },
@@ -33495,6 +34020,72 @@
         },
         "paging": {
           "$ref": "#/definitions/Paging"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementPlatformConfigInfo": {
+      "properties": {
+        "allowedPlatformOrigins": {
+          "description": "allowed entitlement origins",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "description": "created at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "id": {
+          "description": "config id",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "platform": {
+          "description": "platform",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "updated at",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "allowedPlatformOrigins",
+        "namespace",
+        "platform"
+      ],
+      "type": "object"
+    },
+    "EntitlementPlatformConfigUpdate": {
+      "description": "A DTO object for updating entitlement platform config API call.",
+      "properties": {
+        "allowedPlatformOrigins": {
+          "items": {
+            "enum": [
+              "Epic",
+              "GooglePlay",
+              "IOS",
+              "Nintendo",
+              "Oculus",
+              "Other",
+              "Playstation",
+              "Steam",
+              "System",
+              "Twitch",
+              "Xbox"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -33660,6 +34251,28 @@
           "description": "entitlement namespace",
           "type": "string"
         },
+        "noOrigin": {
+          "description": "Whether entitlement have origin",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
         "stackable": {
           "description": "Whether the CONSUMABLE entitlement is stackable",
           "type": "boolean",
@@ -33725,6 +34338,27 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "origin": {
+          "description": "origin of the entitlement",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "description": "update reason",
+          "type": "string"
         },
         "startDate": {
           "description": "start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
@@ -34160,6 +34794,23 @@
           "format": "int32",
           "type": "integer"
         },
+        "entitlementOrigin": {
+          "description": "Entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
         "itemIdentity": {
           "type": "string"
         },
@@ -34236,6 +34887,23 @@
             "$ref": "#/definitions/CreditSummary"
           },
           "type": "array"
+        },
+        "entitlementOrigin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
         },
         "entitlementSummaries": {
           "description": "entitlement granted",
@@ -34392,6 +35060,23 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": true
+        },
+        "entitlementOrigin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
         },
         "itemId": {
           "description": "itemId",
@@ -36816,6 +37501,22 @@
         },
         "customRevocation": {
           "type": "object"
+        },
+        "entitlementOrigin": {
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
         },
         "entitlementRevocations": {
           "items": {
@@ -42248,6 +42949,23 @@
     },
     "RevokeItem": {
       "properties": {
+        "entitlementOrigin": {
+          "description": "platform ,it is used to revoke entitlements of the specified allowed platforms, only available in ENTITLEMENT item",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
         "itemIdentity": {
           "description": "item identity",
           "type": "string"
@@ -42490,6 +43208,48 @@
       },
       "type": "object"
     },
+    "RewardMigrationResult": {
+      "properties": {
+        "itemId": {
+          "description": "item id",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "total number that need be migrated",
+          "format": "int32",
+          "type": "integer"
+        },
+        "reason": {
+          "description": "failed reason",
+          "type": "string"
+        },
+        "sku": {
+          "description": "item sku",
+          "type": "string"
+        },
+        "status": {
+          "description": "status of migration,SUCCESS FAIL",
+          "enum": [
+            "FAIL",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "syncedCount": {
+          "description": "it includes:\n\nthe count of update no origin entitlement to designated origin\n\nthe count of fulfill not enough entitlement",
+          "format": "int32",
+          "type": "integer"
+        },
+        "syncedEntitlementIds": {
+          "description": "synced entitlement ids",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RewardPagingSlicedResult": {
       "properties": {
         "data": {
@@ -42557,6 +43317,23 @@
     "RewardsRequest": {
       "description": "A DTO object for rewards request API call.",
       "properties": {
+        "entitlementOrigin": {
+          "description": "entitlement origin ,and default value is System",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
+          "type": "string"
+        },
         "metadata": {
           "additionalProperties": {
             "type": "object"
@@ -43094,7 +43871,7 @@
           "description": "entitlement granted at",
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -43122,6 +43899,28 @@
         },
         "namespace": {
           "description": "entitlement namespace",
+          "type": "string"
+        },
+        "noOrigin": {
+          "description": "Whether entitlement have origin",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "origin": {
+          "description": "entitlement origin",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "System",
+            "Twitch",
+            "Xbox"
+          ],
           "type": "string"
         },
         "sku": {
@@ -43201,17 +44000,12 @@
       "required": [
         "clazz",
         "createdAt",
-        "grantedAt",
         "id",
         "itemId",
         "itemNamespace",
-        "name",
         "namespace",
-        "source",
         "status",
-        "type",
-        "updatedAt",
-        "userId"
+        "updatedAt"
       ],
       "type": "object"
     },
@@ -44950,6 +45744,20 @@
     },
     "UserDLCRecord": {
       "properties": {
+        "entitlementOriginSyncResult": {
+          "items": {
+            "$ref": "#/definitions/entitlement origin sync result"
+          },
+          "type": "array"
+        },
+        "entitlementOriginSyncStatus": {
+          "enum": [
+            "NOT_SYNCED",
+            "SYNCED",
+            "SYNCED_FAILED"
+          ],
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -45705,6 +46513,26 @@
         }
       },
       "type": "object"
+    },
+    "entitlement origin sync result": {
+      "properties": {
+        "reason": {
+          "description": "failed reason ,only record when call item endpoint failed",
+          "type": "string"
+        },
+        "reward": {
+          "$ref": "#/definitions/PlatformReward",
+          "description": "DLC Reward"
+        },
+        "summary": {
+          "description": "Entitlement Origin Sync and compensation result",
+          "items": {
+            "$ref": "#/definitions/RewardMigrationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
     }
   },
   "x-docs": {
@@ -45714,16 +46542,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-12-15T11:07:29+00:00",
-    "buildID": "4.42.0",
+    "buildDate": "2023-12-29T11:58:59+00:00",
+    "buildID": "4.43.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.10.199-190.747.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "11d0e2edee",
-    "gitTag": "4.42.0",
+    "gitHash": "1184024a1d",
+    "gitTag": "4.43.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.42.0",
-    "version-roles-seeding": "1.0.3"
+    "version": "4.43.0",
+    "version-roles-seeding": "1.0.16"
   }
 }

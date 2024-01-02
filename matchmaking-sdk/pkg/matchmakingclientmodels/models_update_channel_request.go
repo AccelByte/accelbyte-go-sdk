@@ -7,6 +7,8 @@
 package matchmakingclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,6 +19,10 @@ import (
 //
 // swagger:model Models update channel request.
 type ModelsUpdateChannelRequest struct {
+
+	// blocked_player_option
+	// Enum: ['blockedPlayerCanMatch', 'blockedPlayerCanMatchOnDifferentTeam', 'blockedPlayerCannotMatch']
+	BlockedPlayerOption string `json:"blocked_player_option,omitempty"`
 
 	// deployment
 	// Required: true
@@ -111,6 +117,38 @@ func (m *ModelsUpdateChannelRequest) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var modelsUpdateChannelRequestTypeBlockedPlayerOptionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["BLOCKEDPLAYERCANMATCH", "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM", "BLOCKEDPLAYERCANNOTMATCH"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsUpdateChannelRequestTypeBlockedPlayerOptionPropEnum = append(modelsUpdateChannelRequestTypeBlockedPlayerOptionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCH captures enum value "BLOCKEDPLAYERCANMATCH"
+	ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCH string = "BLOCKEDPLAYERCANMATCH"
+
+	// ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCHONDIFFERENTTEAM captures enum value "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM"
+	ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCHONDIFFERENTTEAM string = "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM"
+
+	// ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANNOTMATCH captures enum value "BLOCKEDPLAYERCANNOTMATCH"
+	ModelsUpdateChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANNOTMATCH string = "BLOCKEDPLAYERCANNOTMATCH"
+)
+
+// prop value enum
+func (m *ModelsUpdateChannelRequest) validateBlockedPlayerOptionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsUpdateChannelRequestTypeBlockedPlayerOptionPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

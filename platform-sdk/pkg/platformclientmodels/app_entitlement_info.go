@@ -46,6 +46,13 @@ type AppEntitlementInfo struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// Whether entitlement have origin
+	NoOrigin bool `json:"noOrigin"`
+
+	// entitlement origin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	Origin string `json:"origin,omitempty"`
+
 	// unique sku no for item
 	Sku string `json:"sku,omitempty"`
 
@@ -143,6 +150,62 @@ func (m *AppEntitlementInfo) validateNamespace(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var appEntitlementInfoTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		appEntitlementInfoTypeOriginPropEnum = append(appEntitlementInfoTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// AppEntitlementInfoOriginEPIC captures enum value "EPIC"
+	AppEntitlementInfoOriginEPIC string = "EPIC"
+
+	// AppEntitlementInfoOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	AppEntitlementInfoOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// AppEntitlementInfoOriginIOS captures enum value "IOS"
+	AppEntitlementInfoOriginIOS string = "IOS"
+
+	// AppEntitlementInfoOriginNINTENDO captures enum value "NINTENDO"
+	AppEntitlementInfoOriginNINTENDO string = "NINTENDO"
+
+	// AppEntitlementInfoOriginOCULUS captures enum value "OCULUS"
+	AppEntitlementInfoOriginOCULUS string = "OCULUS"
+
+	// AppEntitlementInfoOriginOTHER captures enum value "OTHER"
+	AppEntitlementInfoOriginOTHER string = "OTHER"
+
+	// AppEntitlementInfoOriginPLAYSTATION captures enum value "PLAYSTATION"
+	AppEntitlementInfoOriginPLAYSTATION string = "PLAYSTATION"
+
+	// AppEntitlementInfoOriginSTEAM captures enum value "STEAM"
+	AppEntitlementInfoOriginSTEAM string = "STEAM"
+
+	// AppEntitlementInfoOriginSYSTEM captures enum value "SYSTEM"
+	AppEntitlementInfoOriginSYSTEM string = "SYSTEM"
+
+	// AppEntitlementInfoOriginTWITCH captures enum value "TWITCH"
+	AppEntitlementInfoOriginTWITCH string = "TWITCH"
+
+	// AppEntitlementInfoOriginXBOX captures enum value "XBOX"
+	AppEntitlementInfoOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *AppEntitlementInfo) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, appEntitlementInfoTypeOriginPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

@@ -28,6 +28,10 @@ type FulfillmentRequest struct {
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
+	// entitlement origin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`
+
 	// itemId
 	ItemID string `json:"itemId,omitempty"`
 
@@ -83,6 +87,62 @@ func (m *FulfillmentRequest) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var fulfillmentRequestTypeEntitlementOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		fulfillmentRequestTypeEntitlementOriginPropEnum = append(fulfillmentRequestTypeEntitlementOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// FulfillmentRequestEntitlementOriginEPIC captures enum value "EPIC"
+	FulfillmentRequestEntitlementOriginEPIC string = "EPIC"
+
+	// FulfillmentRequestEntitlementOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	FulfillmentRequestEntitlementOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// FulfillmentRequestEntitlementOriginIOS captures enum value "IOS"
+	FulfillmentRequestEntitlementOriginIOS string = "IOS"
+
+	// FulfillmentRequestEntitlementOriginNINTENDO captures enum value "NINTENDO"
+	FulfillmentRequestEntitlementOriginNINTENDO string = "NINTENDO"
+
+	// FulfillmentRequestEntitlementOriginOCULUS captures enum value "OCULUS"
+	FulfillmentRequestEntitlementOriginOCULUS string = "OCULUS"
+
+	// FulfillmentRequestEntitlementOriginOTHER captures enum value "OTHER"
+	FulfillmentRequestEntitlementOriginOTHER string = "OTHER"
+
+	// FulfillmentRequestEntitlementOriginPLAYSTATION captures enum value "PLAYSTATION"
+	FulfillmentRequestEntitlementOriginPLAYSTATION string = "PLAYSTATION"
+
+	// FulfillmentRequestEntitlementOriginSTEAM captures enum value "STEAM"
+	FulfillmentRequestEntitlementOriginSTEAM string = "STEAM"
+
+	// FulfillmentRequestEntitlementOriginSYSTEM captures enum value "SYSTEM"
+	FulfillmentRequestEntitlementOriginSYSTEM string = "SYSTEM"
+
+	// FulfillmentRequestEntitlementOriginTWITCH captures enum value "TWITCH"
+	FulfillmentRequestEntitlementOriginTWITCH string = "TWITCH"
+
+	// FulfillmentRequestEntitlementOriginXBOX captures enum value "XBOX"
+	FulfillmentRequestEntitlementOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *FulfillmentRequest) validateEntitlementOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, fulfillmentRequestTypeEntitlementOriginPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

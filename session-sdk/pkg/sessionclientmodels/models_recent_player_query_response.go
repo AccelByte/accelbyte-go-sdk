@@ -22,7 +22,7 @@ type ModelsRecentPlayerQueryResponse struct {
 
 	// data
 	// Required: true
-	Data []*ModelsUserInfo `json:"data"`
+	Data []*ModelsUserInfoResponse `json:"data"`
 }
 
 // Validate validates this Models recent player query response

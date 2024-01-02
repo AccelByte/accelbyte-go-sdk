@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.32.5"
+    "version": "3.33.0"
   },
   "schemes": [
     "https"
@@ -41,6 +41,7 @@
   "paths": {
     "/friends/namespaces/{namespace}/me": {
       "get": {
+        "description": "Get list of friends in a namespace.",
         "operationId": "getUserFriendsUpdated",
         "parameters": [
           {
@@ -118,11 +119,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/incoming": {
       "get": {
+        "description": "Get list of incoming friends in a namespace.",
         "operationId": "getUserIncomingFriends",
         "parameters": [
           {
@@ -200,11 +207,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/incoming-time": {
       "get": {
+        "description": "Get list of incoming friends with requested time info in a namespace.",
         "operationId": "getUserIncomingFriendsWithTime",
         "parameters": [
           {
@@ -282,11 +295,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/outgoing": {
       "get": {
+        "description": "Get list of outgoing friends in a namespace.",
         "operationId": "getUserOutgoingFriends",
         "parameters": [
           {
@@ -364,11 +383,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/outgoing-time": {
       "get": {
+        "description": "Get list of outgoing friends with requested time info in a namespace.",
         "operationId": "getUserOutgoingFriendsWithTime",
         "parameters": [
           {
@@ -446,11 +471,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/platforms": {
       "get": {
+        "description": "Get list of friends with platform data in a namespace.",
         "operationId": "getUserFriendsWithPlatform",
         "parameters": [
           {
@@ -525,6 +556,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -606,6 +642,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -614,6 +655,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "User accept friend.",
         "operationId": "userAcceptFriendRequest",
         "parameters": [
           {
@@ -680,6 +722,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -688,6 +735,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "User cancel a friend request.",
         "operationId": "userCancelFriendRequest",
         "parameters": [
           {
@@ -754,6 +802,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -762,6 +815,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "User reject a friend request.",
         "operationId": "userRejectFriendRequest",
         "parameters": [
           {
@@ -828,11 +882,17 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/friends/namespaces/{namespace}/me/status/{friendId}": {
       "get": {
+        "description": "User get friendship status.",
         "operationId": "userGetFriendshipStatus",
         "parameters": [
           {
@@ -894,6 +954,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -902,6 +967,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "User unfriend a friend.",
         "operationId": "userUnfriendRequest",
         "parameters": [
           {
@@ -968,6 +1034,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -1145,7 +1216,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Sync friends using server to server call to native first party servere.\n\t\t\tSupported platforms:\n\t\t\tsteam: The platform_token’s value is the binary ticket returned by Steam. \n\t\t\t \t\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: {identity}:{ticket}\n\t\t\t\t\tthe {identity} was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain : in this {identity}\n\t\t\tps4: The platform_token’s value is the authorization code returned by Sony OAuth.\n\t\t\tps5: The platform_token’s value is the authorization code returned by Sony OAuth.",
+        "description": "Sync friends using server to server call to native first party servere.\n\t\t\t\tSupported platforms:\n\t\t\t\tsteam: The platform_token’s value is the binary ticket returned by Steam. \n\t\t\t\t\t\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: {identity}:{ticket}\n\t\t\t\t\t\tthe {identity} was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain : in this {identity}\n\t\t\t\tps4: The platform_token’s value is the authorization code returned by Sony OAuth.\n\t\t\t\tps5: The platform_token’s value is the authorization code returned by Sony OAuth.",
         "operationId": "syncNativeFriends",
         "parameters": [
           {
@@ -1215,6 +1286,11 @@
         "tags": [
           "friends",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6044,7 +6120,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load personal party data in a namespace based on Party ID \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50101",
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;load personal party data in a namespace based on Party ID \u0026lt;br/\u0026gt;\n\t\t\t\tAction Code: 50101",
         "operationId": "publicGetPartyDataV1",
         "parameters": [
           {
@@ -6111,6 +6187,11 @@
         "summary": "get party data by party id",
         "tags": [
           "party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6119,7 +6200,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;update party attributes in a namespace.",
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;update party attributes in a namespace.",
         "operationId": "publicUpdatePartyAttributesV1",
         "parameters": [
           {
@@ -6201,6 +6282,11 @@
         "summary": "update party attributes",
         "tags": [
           "party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6209,7 +6295,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Set party limit, only party leader can call this endpoint.",
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;Set party limit, only party leader can call this endpoint.",
         "operationId": "publicSetPartyLimitV1",
         "parameters": [
           {
@@ -6282,6 +6368,11 @@
         "summary": "set party limit",
         "tags": [
           "party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6290,7 +6381,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load blocked players in a namespace based on user id \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50101",
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;load blocked players in a namespace based on user id \u0026lt;br/\u0026gt;\n\t\t\t\tAction Code: 50101",
         "operationId": "publicGetPlayerBlockedPlayersV1",
         "parameters": [
           {
@@ -6350,6 +6441,11 @@
         "summary": "get blocked players by user id",
         "tags": [
           "player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6358,7 +6454,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load get players who blocked this player in a namespace based on user id \u0026lt;br/\u0026gt;\n\t\t\tAction Code: 50101",
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;load get players who blocked this player in a namespace based on user id \u0026lt;br/\u0026gt;\n\t\t\t\tAction Code: 50101",
         "operationId": "publicGetPlayerBlockedByPlayersV1",
         "parameters": [
           {
@@ -6418,6 +6514,11 @@
         "summary": "get players who blocked this player by user id",
         "tags": [
           "player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6488,6 +6589,11 @@
         "summary": "Query users presence",
         "tags": [
           "presence"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -9605,11 +9711,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-05T15:51:55+00:00",
-    "gitHash": "a00931e528a1f287b46d3e1efb00d71b2506db05",
+    "buildDate": "2023-12-19T03:55:31+00:00",
+    "gitHash": "a047eb0d562620f34eb89142b5c3568bec470dd2",
     "name": "justice-lobby-server",
-    "revisionID": "3.32.5",
-    "version": "3.32.5",
+    "revisionID": "3.33.0",
+    "version": "3.33.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "1.0.1"
   }

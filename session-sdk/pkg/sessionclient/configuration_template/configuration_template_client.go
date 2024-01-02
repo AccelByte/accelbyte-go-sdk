@@ -59,7 +59,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetConfigurationAlertV1Short instead.
 
-AdminGetConfigurationAlertV1 get configuration alert. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetConfigurationAlertV1 get configuration alert.
 Get a configuration alert.
 */
 func (a *Client) AdminGetConfigurationAlertV1(params *AdminGetConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationAlertV1OK, *AdminGetConfigurationAlertV1BadRequest, *AdminGetConfigurationAlertV1Unauthorized, *AdminGetConfigurationAlertV1Forbidden, *AdminGetConfigurationAlertV1NotFound, *AdminGetConfigurationAlertV1InternalServerError, error) {
@@ -119,7 +119,7 @@ func (a *Client) AdminGetConfigurationAlertV1(params *AdminGetConfigurationAlert
 }
 
 /*
-AdminGetConfigurationAlertV1Short get configuration alert. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetConfigurationAlertV1Short get configuration alert.
 Get a configuration alert.
 */
 func (a *Client) AdminGetConfigurationAlertV1Short(params *AdminGetConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationAlertV1OK, error) {
@@ -176,7 +176,7 @@ func (a *Client) AdminGetConfigurationAlertV1Short(params *AdminGetConfiguration
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateConfigurationAlertV1Short instead.
 
-AdminUpdateConfigurationAlertV1 update configuration alert. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateConfigurationAlertV1 update configuration alert.
 Update configuration alert
 configuration alert mandatory :
 - namespace
@@ -239,7 +239,7 @@ func (a *Client) AdminUpdateConfigurationAlertV1(params *AdminUpdateConfiguratio
 }
 
 /*
-AdminUpdateConfigurationAlertV1Short update configuration alert. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateConfigurationAlertV1Short update configuration alert.
 Update configuration alert
 configuration alert mandatory :
 - namespace
@@ -299,7 +299,7 @@ func (a *Client) AdminUpdateConfigurationAlertV1Short(params *AdminUpdateConfigu
 /*
 Deprecated: 2022-08-10 - Use AdminCreateConfigurationAlertV1Short instead.
 
-AdminCreateConfigurationAlertV1 create configuration alert. requires admin:namespace:{namespace}:session:configuration [update]
+AdminCreateConfigurationAlertV1 create configuration alert.
 Create configuration alert
 configuration alert mandatory :
 - namespace
@@ -365,7 +365,7 @@ func (a *Client) AdminCreateConfigurationAlertV1(params *AdminCreateConfiguratio
 }
 
 /*
-AdminCreateConfigurationAlertV1Short create configuration alert. requires admin:namespace:{namespace}:session:configuration [update]
+AdminCreateConfigurationAlertV1Short create configuration alert.
 Create configuration alert
 configuration alert mandatory :
 - namespace
@@ -427,7 +427,7 @@ func (a *Client) AdminCreateConfigurationAlertV1Short(params *AdminCreateConfigu
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteConfigurationAlertV1Short instead.
 
-AdminDeleteConfigurationAlertV1 delete configuration alert requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteConfigurationAlertV1 delete configuration alert.
 Delete configuration alert.
 */
 func (a *Client) AdminDeleteConfigurationAlertV1(params *AdminDeleteConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationAlertV1NoContent, *AdminDeleteConfigurationAlertV1BadRequest, *AdminDeleteConfigurationAlertV1Unauthorized, *AdminDeleteConfigurationAlertV1Forbidden, *AdminDeleteConfigurationAlertV1InternalServerError, error) {
@@ -484,7 +484,7 @@ func (a *Client) AdminDeleteConfigurationAlertV1(params *AdminDeleteConfiguratio
 }
 
 /*
-AdminDeleteConfigurationAlertV1Short delete configuration alert requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteConfigurationAlertV1Short delete configuration alert.
 Delete configuration alert.
 */
 func (a *Client) AdminDeleteConfigurationAlertV1Short(params *AdminDeleteConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationAlertV1NoContent, error) {
@@ -539,7 +539,7 @@ func (a *Client) AdminDeleteConfigurationAlertV1Short(params *AdminDeleteConfigu
 /*
 Deprecated: 2022-08-10 - Use AdminCreateConfigurationTemplateV1Short instead.
 
-AdminCreateConfigurationTemplateV1 create configuration template. requires admin:namespace:{namespace}:session:configuration [create]
+AdminCreateConfigurationTemplateV1 create configuration template.
 Create template configuration to be applied across party and session.
 Session configuration mandatory :
 - name
@@ -578,7 +578,6 @@ example payload :
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
-- LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value > 0 if leader disconnect will be wait until value reach and leader will be change after reach
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -637,7 +636,7 @@ func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigura
 }
 
 /*
-AdminCreateConfigurationTemplateV1Short create configuration template. requires admin:namespace:{namespace}:session:configuration [create]
+AdminCreateConfigurationTemplateV1Short create configuration template.
 Create template configuration to be applied across party and session.
 Session configuration mandatory :
 - name
@@ -676,7 +675,6 @@ example payload :
 - DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically.
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
-- LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value > 0 if leader disconnect will be wait until value reach and leader will be change after reach
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
 	// TODO: Validate the params before sending
@@ -732,7 +730,7 @@ func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConf
 /*
 Deprecated: 2022-08-10 - Use AdminGetAllConfigurationTemplatesV1Short instead.
 
-AdminGetAllConfigurationTemplatesV1 get configuration templates. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetAllConfigurationTemplatesV1 get configuration templates.
 Get all template configurations in specified namespace.
 */
 func (a *Client) AdminGetAllConfigurationTemplatesV1(params *AdminGetAllConfigurationTemplatesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigurationTemplatesV1OK, *AdminGetAllConfigurationTemplatesV1BadRequest, *AdminGetAllConfigurationTemplatesV1Unauthorized, *AdminGetAllConfigurationTemplatesV1Forbidden, *AdminGetAllConfigurationTemplatesV1InternalServerError, error) {
@@ -789,7 +787,7 @@ func (a *Client) AdminGetAllConfigurationTemplatesV1(params *AdminGetAllConfigur
 }
 
 /*
-AdminGetAllConfigurationTemplatesV1Short get configuration templates. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetAllConfigurationTemplatesV1Short get configuration templates.
 Get all template configurations in specified namespace.
 */
 func (a *Client) AdminGetAllConfigurationTemplatesV1Short(params *AdminGetAllConfigurationTemplatesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigurationTemplatesV1OK, error) {
@@ -844,7 +842,7 @@ func (a *Client) AdminGetAllConfigurationTemplatesV1Short(params *AdminGetAllCon
 /*
 Deprecated: 2022-08-10 - Use AdminGetConfigurationTemplateV1Short instead.
 
-AdminGetConfigurationTemplateV1 get configuration template. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetConfigurationTemplateV1 get configuration template.
 Get a template configuration.
 */
 func (a *Client) AdminGetConfigurationTemplateV1(params *AdminGetConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationTemplateV1OK, *AdminGetConfigurationTemplateV1BadRequest, *AdminGetConfigurationTemplateV1Unauthorized, *AdminGetConfigurationTemplateV1Forbidden, *AdminGetConfigurationTemplateV1NotFound, *AdminGetConfigurationTemplateV1InternalServerError, error) {
@@ -904,7 +902,7 @@ func (a *Client) AdminGetConfigurationTemplateV1(params *AdminGetConfigurationTe
 }
 
 /*
-AdminGetConfigurationTemplateV1Short get configuration template. requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetConfigurationTemplateV1Short get configuration template.
 Get a template configuration.
 */
 func (a *Client) AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigurationTemplateV1OK, error) {
@@ -961,7 +959,7 @@ func (a *Client) AdminGetConfigurationTemplateV1Short(params *AdminGetConfigurat
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateConfigurationTemplateV1Short instead.
 
-AdminUpdateConfigurationTemplateV1 update configuration template. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateConfigurationTemplateV1 update configuration template.
 Modify template configuration
 Session configuration mandatory :
 - name
@@ -1058,7 +1056,7 @@ func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigura
 }
 
 /*
-AdminUpdateConfigurationTemplateV1Short update configuration template. requires admin:namespace:{namespace}:session:configuration [update]
+AdminUpdateConfigurationTemplateV1Short update configuration template.
 Modify template configuration
 Session configuration mandatory :
 - name
@@ -1152,7 +1150,7 @@ func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConf
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteConfigurationTemplateV1Short instead.
 
-AdminDeleteConfigurationTemplateV1 delete configuration template. requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteConfigurationTemplateV1 delete configuration template.
 Delete a template configuration.
 */
 func (a *Client) AdminDeleteConfigurationTemplateV1(params *AdminDeleteConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationTemplateV1NoContent, *AdminDeleteConfigurationTemplateV1BadRequest, *AdminDeleteConfigurationTemplateV1Unauthorized, *AdminDeleteConfigurationTemplateV1Forbidden, *AdminDeleteConfigurationTemplateV1InternalServerError, error) {
@@ -1209,7 +1207,7 @@ func (a *Client) AdminDeleteConfigurationTemplateV1(params *AdminDeleteConfigura
 }
 
 /*
-AdminDeleteConfigurationTemplateV1Short delete configuration template. requires admin:namespace:{namespace}:session:configuration [delete]
+AdminDeleteConfigurationTemplateV1Short delete configuration template.
 Delete a template configuration.
 */
 func (a *Client) AdminDeleteConfigurationTemplateV1Short(params *AdminDeleteConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationTemplateV1NoContent, error) {
@@ -1264,7 +1262,7 @@ func (a *Client) AdminDeleteConfigurationTemplateV1Short(params *AdminDeleteConf
 /*
 Deprecated: 2022-08-10 - Use AdminGetDSMCConfigurationShort instead.
 
-AdminGetDSMCConfiguration get dsmc configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetDSMCConfiguration get dsmc configuration .
 Get a dsmc configuration.
 */
 func (a *Client) AdminGetDSMCConfiguration(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, *AdminGetDSMCConfigurationBadRequest, *AdminGetDSMCConfigurationUnauthorized, *AdminGetDSMCConfigurationForbidden, *AdminGetDSMCConfigurationNotFound, *AdminGetDSMCConfigurationInternalServerError, error) {
@@ -1324,7 +1322,7 @@ func (a *Client) AdminGetDSMCConfiguration(params *AdminGetDSMCConfigurationPara
 }
 
 /*
-AdminGetDSMCConfigurationShort get dsmc configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetDSMCConfigurationShort get dsmc configuration .
 Get a dsmc configuration.
 */
 func (a *Client) AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationOK, error) {
@@ -1381,7 +1379,7 @@ func (a *Client) AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfiguratio
 /*
 Deprecated: 2022-08-10 - Use AdminSyncDSMCConfigurationShort instead.
 
-AdminSyncDSMCConfiguration sync dsmc configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminSyncDSMCConfiguration sync dsmc configuration.
 sync dsmc configuration.
 */
 func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, *AdminSyncDSMCConfigurationBadRequest, *AdminSyncDSMCConfigurationUnauthorized, *AdminSyncDSMCConfigurationForbidden, *AdminSyncDSMCConfigurationNotFound, *AdminSyncDSMCConfigurationInternalServerError, error) {
@@ -1441,7 +1439,7 @@ func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationPa
 }
 
 /*
-AdminSyncDSMCConfigurationShort sync dsmc configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminSyncDSMCConfigurationShort sync dsmc configuration.
 sync dsmc configuration.
 */
 func (a *Client) AdminSyncDSMCConfigurationShort(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, error) {

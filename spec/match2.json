@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.13.0"
+    "version": "2.14.0"
   },
   "schemes": [
     "https"
@@ -16,40 +16,14 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]": "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
-        "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]": "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []": "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []",
-        "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]": "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]",
-        "NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]": "NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]": "NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]": "NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]",
-        "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]": "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
     "HasScope": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -96,7 +70,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]\n\nRequired Scope: social\n\nList environment variables.\n",
+        "description": "List environment variables.\n",
         "operationId": "EnvironmentVariableList",
         "produces": [
           "application/json"
@@ -123,12 +97,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -136,6 +104,13 @@
         "tags": [
           "Environment-Variables",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -144,7 +119,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]\n\nRequired Scope: social\n\nCreate backfill ticket\n",
+        "description": "Create backfill ticket.\n",
         "operationId": "CreateBackfill",
         "parameters": [
           {
@@ -212,12 +187,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -225,6 +194,13 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -233,7 +209,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]\n\nRequired Scope: social\n\nGet backfill proposal\n",
+        "description": "Get backfill proposal\n",
         "operationId": "GetBackfillProposal",
         "parameters": [
           {
@@ -294,12 +270,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -307,6 +277,13 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -315,7 +292,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]\n\nRequired Scope: social\n\nDelete backfill ticket\n",
+        "description": "Delete backfill ticket.\n",
         "operationId": "DeleteBackfill",
         "parameters": [
           {
@@ -367,12 +344,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -380,13 +351,20 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]\n\nRequired Scope: social\n\nGet backfill ticket by ID\n",
+        "description": "Get backfill ticket by ID\n",
         "operationId": "GetBackfill",
         "parameters": [
           {
@@ -447,12 +425,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL []"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -460,6 +432,13 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [READ]"
+            ]
+          }
         ]
       }
     },
@@ -468,7 +447,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]\n\nRequired Scope: social\n\nAccept backfill proposal\n",
+        "description": "Accept backfill proposal.\n",
         "operationId": "AcceptBackfill",
         "parameters": [
           {
@@ -537,12 +516,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -550,6 +523,13 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -558,7 +538,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]\n\nRequired Scope: social\n\nReject backfill proposal\n",
+        "description": "Reject backfill proposal\n",
         "operationId": "RejectBackfill",
         "parameters": [
           {
@@ -624,12 +604,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -637,6 +611,13 @@
         "tags": [
           "Backfill",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -645,7 +626,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]\n\nRequired Scope: social\n\nList existing match functions.\n",
+        "description": "List existing match functions.\n",
         "operationId": "MatchFunctionList",
         "parameters": [
           {
@@ -701,12 +682,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -714,13 +689,20 @@
         "tags": [
           "Match-Functions",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking function.\n",
+        "description": "Creates a new matchmaking function.\n",
         "operationId": "CreateMatchFunction",
         "parameters": [
           {
@@ -779,12 +761,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -792,6 +768,13 @@
         "tags": [
           "Match-Functions",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -800,7 +783,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]\n\nRequired Scope: social\n\nDeletes an existing match function.\n",
+        "description": "Deletes an existing match function.\n",
         "operationId": "DeleteMatchFunction",
         "parameters": [
           {
@@ -852,12 +835,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -865,13 +842,20 @@
         "tags": [
           "Match-Functions",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": " Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]\n\nRequired Scope: social\n\nUpdate existing matchmaking function.\n",
+        "description": "Update existing matchmaking function.\n",
         "operationId": "UpdateMatchFunction",
         "parameters": [
           {
@@ -940,12 +924,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -953,6 +931,13 @@
         "tags": [
           "Match-Functions",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -961,7 +946,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]\n\nRequired Scope: social\n\nList matchmaking pools.\n",
+        "description": "List matchmaking pools.\n",
         "operationId": "MatchPoolList",
         "parameters": [
           {
@@ -1023,12 +1008,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1036,13 +1015,20 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{ \n              \u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n  \u0026#34;match_function_overrides\u0026#34;: {\n    \u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n                \u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n              }\n}\n",
+        "description": "Creates a new matchmaking pool.\n\nA pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).\nEach pool has its own matchmaking rules and/or logic.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{ \n              \u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n  \u0026#34;match_function_overrides\u0026#34;: {\n    \u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n                \u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n              }\n}\n",
         "operationId": "CreateMatchPool",
         "parameters": [
           {
@@ -1101,12 +1087,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1114,6 +1094,13 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1122,7 +1109,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]\n\nRequired Scope: social\n\nDeletes an existing matchmaking pool.\n",
+        "description": "Deletes an existing matchmaking pool.\n",
         "operationId": "DeleteMatchPool",
         "parameters": [
           {
@@ -1174,12 +1161,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1187,13 +1168,20 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]\n\nRequired Scope: social\n\nGet details for a specific match pool\n",
+        "description": "Get details for a specific match pool\n",
         "operationId": "MatchPoolDetails",
         "parameters": [
           {
@@ -1242,12 +1230,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1255,13 +1237,20 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking pool.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{\n\t\u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n\t\u0026#34;match_function_overrides\u0026#34;: {\n\t\t\u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n\t\t\u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n\t}\n}\n",
+        "description": "Updates an existing matchmaking pool.\n\nticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.\n\nMatch Function holds information about the name of the match logic server that matchmaking can refers to. By default we provide (\u0026#34;default\u0026#34; and \u0026#34;basic\u0026#34;). \nMatch Function will be used as reference value for Match Function Overrides if not set.\nIn case Customer would like to use matchmaking service default match logic, then specify it in \u0026#34;match_function_overrides\u0026#34;.\t\t\t\t\nThis sample configuration will let matchmaking service will use \u0026#34;default\u0026#34; match logic for make matches, while validation will hit both \u0026#34;default\u0026#34; and \u0026#34;custom\u0026#34; match logics.\ne.g.\n{\n\t\u0026#34;match_function\u0026#34;: \u0026#34;custom\u0026#34;,\n\t\u0026#34;match_function_overrides\u0026#34;: {\n\t\t\u0026#34;validation\u0026#34;: []{\u0026#34;default\u0026#34;,\u0026#34;custom\u0026#34;},\n\t\t\u0026#34;make_matches\u0026#34;: \u0026#34;default\u0026#34;,\n\t}\n}\n",
         "operationId": "UpdateMatchPool",
         "parameters": [
           {
@@ -1330,12 +1319,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1343,6 +1326,13 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1351,7 +1341,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]\n\nRequired Scope: social\n\nGet metric for a specific match pool\n\nResult: queueTime in seconds\n",
+        "description": "Get metric for a specific match pool\n\nResult: queueTime in seconds\n",
         "operationId": "MatchPoolMetric",
         "parameters": [
           {
@@ -1406,12 +1396,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1419,6 +1403,13 @@
         "tags": [
           "Match-Pools",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1427,7 +1418,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]\n\nRequired Scope: social\n\nGet player metric for a specific match pool\n",
+        "description": "Get player metric for a specific match pool\n",
         "operationId": "GetPlayerMetric",
         "parameters": [
           {
@@ -1482,12 +1473,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1495,6 +1480,13 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1503,7 +1495,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]\n\nRequired Scope: social\n\nGet tickets in queue for a specific match pool\n\nResult: number of tickets and list of ticket detail in a match pool.\n",
+        "description": "Get tickets in queue for a specific match pool\n\nResult: number of tickets and list of ticket detail in a match pool.\n",
         "operationId": "adminGetMatchPoolTickets",
         "parameters": [
           {
@@ -1572,12 +1564,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1585,6 +1571,13 @@
         "tags": [
           "Match-Pools",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1593,7 +1586,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]\n\nRequired Scope: social\n\nCreates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
+        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -1661,12 +1654,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1674,6 +1661,13 @@
         "tags": [
           "Match-Tickets",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1682,7 +1676,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]\n\nRequired Scope: social\n\nGet my match tickets.\n",
+        "description": "Get my match tickets.\n",
         "operationId": "GetMyMatchTickets",
         "parameters": [
           {
@@ -1742,12 +1736,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1755,6 +1743,13 @@
         "tags": [
           "Match-Tickets",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1763,7 +1758,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]\n\nRequired Scope: social\n\nDeletes an existing matchmaking ticket.\n",
+        "description": "Deletes an existing matchmaking ticket.\n",
         "operationId": "DeleteMatchTicket",
         "parameters": [
           {
@@ -1815,12 +1810,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1828,13 +1817,20 @@
         "tags": [
           "Match-Tickets",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]\n\nRequired Scope: social\n\nGet details for a specific match ticket\n",
+        "description": "Get details for a specific match ticket\n",
         "operationId": "MatchTicketDetails",
         "parameters": [
           {
@@ -1889,12 +1885,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1902,6 +1892,13 @@
         "tags": [
           "Match-Tickets",
           "public"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1910,7 +1907,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]\n\nRequired Scope: social\n\nList rule sets.\n",
+        "description": "List rule sets.\n",
         "operationId": "RuleSetList",
         "parameters": [
           {
@@ -1972,12 +1969,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1985,13 +1976,20 @@
         "tags": [
           "Rule-Sets",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]\n\nRequired Scope: social\n\nCreates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
+        "description": "Creates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
         "operationId": "CreateRuleSet",
         "parameters": [
           {
@@ -2050,12 +2048,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2063,6 +2055,13 @@
         "tags": [
           "Rule-Sets",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -2071,7 +2070,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]\n\nRequired Scope: social\n\nDeletes an existing rule set.\n",
+        "description": "Deletes an existing rule set.\n",
         "operationId": "DeleteRuleSet",
         "parameters": [
           {
@@ -2123,12 +2122,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2136,13 +2129,20 @@
         "tags": [
           "Rule-Sets",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]\n\nRequired Scope: social\n\nGet details for a specific rule set\n",
+        "description": "Get details for a specific rule set\n",
         "operationId": "RuleSetDetails",
         "parameters": [
           {
@@ -2191,12 +2191,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2204,13 +2198,20 @@
         "tags": [
           "Rule-Sets",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]\n\nRequired Scope: social\n\nUpdates an existing matchmaking rule set.\n\t\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
+        "description": "Updates an existing matchmaking rule set.\n\t\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
         "operationId": "UpdateRuleSet",
         "parameters": [
           {
@@ -2279,12 +2280,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2292,6 +2287,13 @@
         "tags": [
           "Rule-Sets",
           "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3410,9 +3412,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-05T09:09:07+00:00",
-    "gitHash": "06e20e6edfb67de5a1080c9c38284654f8594c0c",
-    "version": "2.13.0",
+    "buildDate": "2023-12-19T06:25:21+00:00",
+    "gitHash": "a27a9812268a470891df6497c7f04f29360219ef",
+    "version": "2.14.0",
     "version-roles-seeding": "1.0.12"
   }
 }

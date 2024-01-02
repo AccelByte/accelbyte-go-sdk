@@ -78,9 +78,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminQuerySessionShort instead.
 
 AdminQuerySession query to available game session
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Query to available game session
 */
 func (a *Client) AdminQuerySession(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, *AdminQuerySessionBadRequest, *AdminQuerySessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -131,9 +129,7 @@ func (a *Client) AdminQuerySession(params *AdminQuerySessionParams, authInfo run
 
 /*
 AdminQuerySessionShort query to available game session
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Query to available game session
 */
 func (a *Client) AdminQuerySessionShort(params *AdminQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQuerySessionOK, error) {
 	// TODO: Validate the params before sending
@@ -184,9 +180,7 @@ func (a *Client) AdminQuerySessionShort(params *AdminQuerySessionParams, authInf
 Deprecated: 2022-08-10 - Use GetTotalActiveSessionShort instead.
 
 GetTotalActiveSession get all active session
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session
 */
 func (a *Client) GetTotalActiveSession(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, *GetTotalActiveSessionBadRequest, *GetTotalActiveSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -237,9 +231,7 @@ func (a *Client) GetTotalActiveSession(params *GetTotalActiveSessionParams, auth
 
 /*
 GetTotalActiveSessionShort get all active session
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session
 */
 func (a *Client) GetTotalActiveSessionShort(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, error) {
 	// TODO: Validate the params before sending
@@ -290,9 +282,7 @@ func (a *Client) GetTotalActiveSessionShort(params *GetTotalActiveSessionParams,
 Deprecated: 2022-08-10 - Use GetActiveCustomGameSessionsShort instead.
 
 GetActiveCustomGameSessions get all active session for custom game, this return only dedicated session type
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session for custom game, this return only dedicated session type
 */
 func (a *Client) GetActiveCustomGameSessions(params *GetActiveCustomGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveCustomGameSessionsOK, *GetActiveCustomGameSessionsBadRequest, *GetActiveCustomGameSessionsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -343,9 +333,7 @@ func (a *Client) GetActiveCustomGameSessions(params *GetActiveCustomGameSessions
 
 /*
 GetActiveCustomGameSessionsShort get all active session for custom game, this return only dedicated session type
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session for custom game, this return only dedicated session type
 */
 func (a *Client) GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveCustomGameSessionsOK, error) {
 	// TODO: Validate the params before sending
@@ -396,9 +384,7 @@ func (a *Client) GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSes
 Deprecated: 2022-08-10 - Use GetActiveMatchmakingGameSessionsShort instead.
 
 GetActiveMatchmakingGameSessions get all active session for matchmaking game, this return only dedicated session type
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session for matchmaking game, this return only dedicated session type
 */
 func (a *Client) GetActiveMatchmakingGameSessions(params *GetActiveMatchmakingGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveMatchmakingGameSessionsOK, *GetActiveMatchmakingGameSessionsBadRequest, *GetActiveMatchmakingGameSessionsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -449,9 +435,7 @@ func (a *Client) GetActiveMatchmakingGameSessions(params *GetActiveMatchmakingGa
 
 /*
 GetActiveMatchmakingGameSessionsShort get all active session for matchmaking game, this return only dedicated session type
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
+Get all active session for matchmaking game, this return only dedicated session type
 */
 func (a *Client) GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmakingGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveMatchmakingGameSessionsOK, error) {
 	// TODO: Validate the params before sending
@@ -502,10 +486,6 @@ func (a *Client) GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmak
 Deprecated: 2022-08-10 - Use AdminGetSessionShort instead.
 
 AdminGetSession admin get specified session by session id
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Get the session by session ID for admin user
 */
 func (a *Client) AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error) {
@@ -557,10 +537,6 @@ func (a *Client) AdminGetSession(params *AdminGetSessionParams, authInfo runtime
 
 /*
 AdminGetSessionShort admin get specified session by session id
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Get the session by session ID for admin user
 */
 func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error) {
@@ -612,10 +588,6 @@ func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminDeleteSessionShort instead.
 
 AdminDeleteSession admin delete specified session by session id
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Admin delete the session by session ID
 */
 func (a *Client) AdminDeleteSession(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, *AdminDeleteSessionBadRequest, *AdminDeleteSessionNotFound, *AdminDeleteSessionInternalServerError, error) {
@@ -670,10 +642,6 @@ func (a *Client) AdminDeleteSession(params *AdminDeleteSessionParams, authInfo r
 
 /*
 AdminDeleteSessionShort admin delete specified session by session id
-Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Admin delete the session by session ID
 */
 func (a *Client) AdminDeleteSessionShort(params *AdminDeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteSessionOK, error) {
@@ -727,10 +695,6 @@ func (a *Client) AdminDeleteSessionShort(params *AdminDeleteSessionParams, authI
 Deprecated: 2022-08-10 - Use AdminSearchSessionsV2Short instead.
 
 AdminSearchSessionsV2 search sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]
-
-Required Scope: social
-
 Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace & other filter (partyID, userID, matchID).
 Query with filter namespace only will not group whole session data while query with filter namespace & other filter will include session data.
 */
@@ -789,10 +753,6 @@ func (a *Client) AdminSearchSessionsV2(params *AdminSearchSessionsV2Params, auth
 
 /*
 AdminSearchSessionsV2Short search sessions
-Required Permission: ADMIN:NAMESPACE:{namespace}:SESSION [Read]
-
-Required Scope: social
-
 Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace & other filter (partyID, userID, matchID).
 Query with filter namespace only will not group whole session data while query with filter namespace & other filter will include session data.
 */
@@ -849,10 +809,6 @@ func (a *Client) AdminSearchSessionsV2Short(params *AdminSearchSessionsV2Params,
 Deprecated: 2022-08-10 - Use GetSessionHistoryDetailedShort instead.
 
 GetSessionHistoryDetailed get session history detailed
-Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]
-
-Required Scope: social
-
 Get session history detailed.
 
 if party_id value empty/null, field will not show in response body.
@@ -912,10 +868,6 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 
 /*
 GetSessionHistoryDetailedShort get session history detailed
-Required Permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [Read]
-
-Required Scope: social
-
 Get session history detailed.
 
 if party_id value empty/null, field will not show in response body.
@@ -973,10 +925,6 @@ func (a *Client) GetSessionHistoryDetailedShort(params *GetSessionHistoryDetaile
 Deprecated: 2022-08-10 - Use UserQuerySessionShort instead.
 
 UserQuerySession query to available game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Query available game session
 */
 func (a *Client) UserQuerySession(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, *UserQuerySessionBadRequest, *UserQuerySessionInternalServerError, error) {
@@ -1028,10 +976,6 @@ func (a *Client) UserQuerySession(params *UserQuerySessionParams, authInfo runti
 
 /*
 UserQuerySessionShort query to available game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Query available game session
 */
 func (a *Client) UserQuerySessionShort(params *UserQuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*UserQuerySessionOK, error) {
@@ -1083,10 +1027,6 @@ func (a *Client) UserQuerySessionShort(params *UserQuerySessionParams, authInfo 
 Deprecated: 2022-08-10 - Use CreateSessionShort instead.
 
 CreateSession register a new game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]
-
-Required scope: social
-
 This end point intended to be called directly by P2P game client host or by DSMC
 */
 func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error) {
@@ -1144,10 +1084,6 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 
 /*
 CreateSessionShort register a new game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]
-
-Required scope: social
-
 This end point intended to be called directly by P2P game client host or by DSMC
 */
 func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error) {
@@ -1203,10 +1139,6 @@ func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtim
 Deprecated: 2022-08-10 - Use GetSessionByUserIDsShort instead.
 
 GetSessionByUserIDs query game sessions by comma separated user ids
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Query game sessions by comma separated user ids
 */
 func (a *Client) GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, *GetSessionByUserIDsBadRequest, *GetSessionByUserIDsInternalServerError, error) {
@@ -1258,10 +1190,6 @@ func (a *Client) GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo
 
 /*
 GetSessionByUserIDsShort query game sessions by comma separated user ids
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Query game sessions by comma separated user ids
 */
 func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, error) {
@@ -1313,10 +1241,6 @@ func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, aut
 Deprecated: 2022-08-10 - Use GetSessionShort instead.
 
 GetSession get specified session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Get the session by session ID
 */
 func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionNotFound, *GetSessionInternalServerError, error) {
@@ -1368,10 +1292,6 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 
 /*
 GetSessionShort get specified session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Get the session by session ID
 */
 func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error) {
@@ -1423,10 +1343,6 @@ func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use UpdateSessionShort instead.
 
 UpdateSession update session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Update game session, used to update the current player
 */
 func (a *Client) UpdateSession(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, *UpdateSessionBadRequest, *UpdateSessionNotFound, *UpdateSessionInternalServerError, error) {
@@ -1481,10 +1397,6 @@ func (a *Client) UpdateSession(params *UpdateSessionParams, authInfo runtime.Cli
 
 /*
 UpdateSessionShort update session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Update game session, used to update the current player
 */
 func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, error) {
@@ -1538,10 +1450,6 @@ func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtim
 Deprecated: 2022-08-10 - Use DeleteSessionShort instead.
 
 DeleteSession delete specified (p2p) session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Delete the session (p2p) by session ID
 */
 func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, *DeleteSessionBadRequest, *DeleteSessionNotFound, *DeleteSessionInternalServerError, error) {
@@ -1596,10 +1504,6 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 
 /*
 DeleteSessionShort delete specified (p2p) session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Delete the session (p2p) by session ID
 */
 func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, error) {
@@ -1653,10 +1557,6 @@ func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtim
 Deprecated: 2022-08-10 - Use JoinSessionShort instead.
 
 JoinSession join specified session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Join the specified session by session ID. Possible the game required a password to join
 */
 func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error) {
@@ -1714,10 +1614,6 @@ func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientA
 
 /*
 JoinSessionShort join specified session by session id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]
-
-Required scope: social
-
 Join the specified session by session ID. Possible the game required a password to join
 */
 func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, error) {
@@ -1773,10 +1669,6 @@ func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use DeleteSessionLocalDSShort instead.
 
 DeleteSessionLocalDS only use for local ds entry, will error when calling non local ds entry
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Only use for local DS entry, will error when calling non local DS entry
 */
 func (a *Client) DeleteSessionLocalDS(params *DeleteSessionLocalDSParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionLocalDSOK, *DeleteSessionLocalDSBadRequest, *DeleteSessionLocalDSNotFound, *DeleteSessionLocalDSInternalServerError, error) {
@@ -1831,10 +1723,6 @@ func (a *Client) DeleteSessionLocalDS(params *DeleteSessionLocalDSParams, authIn
 
 /*
 DeleteSessionLocalDSShort only use for local ds entry, will error when calling non local ds entry
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]
-
-Required scope: social
-
 Only use for local DS entry, will error when calling non local DS entry
 */
 func (a *Client) DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionLocalDSOK, error) {
@@ -1888,10 +1776,6 @@ func (a *Client) DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, a
 Deprecated: 2022-08-10 - Use AddPlayerToSessionShort instead.
 
 AddPlayerToSession add player to game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Add player to game session
 */
 func (a *Client) AddPlayerToSession(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, *AddPlayerToSessionBadRequest, *AddPlayerToSessionNotFound, *AddPlayerToSessionInternalServerError, error) {
@@ -1946,10 +1830,6 @@ func (a *Client) AddPlayerToSession(params *AddPlayerToSessionParams, authInfo r
 
 /*
 AddPlayerToSessionShort add player to game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Add player to game session
 */
 func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, error) {
@@ -2003,10 +1883,6 @@ func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authI
 Deprecated: 2022-08-10 - Use RemovePlayerFromSessionShort instead.
 
 RemovePlayerFromSession remove player from game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Remove player from game session
 */
 func (a *Client) RemovePlayerFromSession(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, *RemovePlayerFromSessionBadRequest, *RemovePlayerFromSessionNotFound, *RemovePlayerFromSessionInternalServerError, error) {
@@ -2061,10 +1937,6 @@ func (a *Client) RemovePlayerFromSession(params *RemovePlayerFromSessionParams, 
 
 /*
 RemovePlayerFromSessionShort remove player from game session
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Remove player from game session
 */
 func (a *Client) RemovePlayerFromSessionShort(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, error) {
@@ -2118,10 +1990,6 @@ func (a *Client) RemovePlayerFromSessionShort(params *RemovePlayerFromSessionPar
 Deprecated: 2022-08-10 - Use UpdateSettingsShort instead.
 
 UpdateSettings update settings
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Update game session, used to update OtherSettings
 */
 func (a *Client) UpdateSettings(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, *UpdateSettingsBadRequest, *UpdateSettingsNotFound, *UpdateSettingsInternalServerError, error) {
@@ -2176,10 +2044,6 @@ func (a *Client) UpdateSettings(params *UpdateSettingsParams, authInfo runtime.C
 
 /*
 UpdateSettingsShort update settings
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]
-
-Required scope: social
-
 Update game session, used to update OtherSettings
 */
 func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSettingsOK, error) {
@@ -2233,10 +2097,6 @@ func (a *Client) UpdateSettingsShort(params *UpdateSettingsParams, authInfo runt
 Deprecated: 2022-08-10 - Use GetRecentPlayerShort instead.
 
 GetRecentPlayer query recent players with given user id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]
-
-Required scope: social
-
 Query recent player by user ID
 */
 func (a *Client) GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRecentPlayerOK, *GetRecentPlayerBadRequest, *GetRecentPlayerInternalServerError, error) {
@@ -2288,10 +2148,6 @@ func (a *Client) GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime
 
 /*
 GetRecentPlayerShort query recent players with given user id
-Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]
-
-Required scope: social
-
 Query recent player by user ID
 */
 func (a *Client) GetRecentPlayerShort(params *GetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRecentPlayerOK, error) {

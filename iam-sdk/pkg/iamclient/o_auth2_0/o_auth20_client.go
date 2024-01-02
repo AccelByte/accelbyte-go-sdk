@@ -83,7 +83,7 @@ The third party platform and platform group covered for this is:
 - epicgames
 - twitch
 - awscognito
--
+- amazon
 - eaorigin
 - snapchat
 - twitch
@@ -154,7 +154,7 @@ The third party platform and platform group covered for this is:
 - epicgames
 - twitch
 - awscognito
--
+- amazon
 - eaorigin
 - snapchat
 - twitch
@@ -235,7 +235,7 @@ func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.Clien
 		Method:             "POST",
 		PathPattern:        "/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevokeUserV3Reader{formats: a.formats},
@@ -292,7 +292,7 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 		Method:             "POST",
 		PathPattern:        "/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevokeUserV3Reader{formats: a.formats},

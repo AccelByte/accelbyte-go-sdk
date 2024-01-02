@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/session/gameSession"
 	"github.com/AccelByte/sample-apps/cmd/session/globalConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/session/maxActive"
+	"github.com/AccelByte/sample-apps/cmd/session/nativeSession"
 	"github.com/AccelByte/sample-apps/cmd/session/operations"
 	"github.com/AccelByte/sample-apps/cmd/session/party"
 	"github.com/AccelByte/sample-apps/cmd/session/platformCredential"
@@ -56,6 +57,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.AdminDeleteBulkGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminSetDSReadyCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
+	SessionCmd.AddCommand(nativeSession.AdminGetListNativeSessionCmd)
 	SessionCmd.AddCommand(party.AdminQueryPartiesCmd)
 	SessionCmd.AddCommand(platformCredential.AdminGetPlatformCredentialsCmd)
 	SessionCmd.AddCommand(platformCredential.AdminUpdatePlatformCredentialsCmd)

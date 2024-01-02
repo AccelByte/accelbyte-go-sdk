@@ -46,10 +46,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateMatchTicketShort instead.
 
 CreateMatchTicket create a matchmaking ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]
-
-Required Scope: social
-
 Creates a new request for matchmaking.
 
 Cross Platform: Allow player to play game with "any" registered platforms.
@@ -139,10 +135,6 @@ func (a *Client) CreateMatchTicket(params *CreateMatchTicketParams, authInfo run
 
 /*
 CreateMatchTicketShort create a matchmaking ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [CREATE]
-
-Required Scope: social
-
 Creates a new request for matchmaking.
 
 Cross Platform: Allow player to play game with "any" registered platforms.
@@ -228,10 +220,6 @@ func (a *Client) CreateMatchTicketShort(params *CreateMatchTicketParams, authInf
 Deprecated: 2022-08-10 - Use GetMyMatchTicketsShort instead.
 
 GetMyMatchTickets get my match tickets
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
-
-Required Scope: social
-
 Get my match tickets.
 */
 func (a *Client) GetMyMatchTickets(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, *GetMyMatchTicketsUnauthorized, *GetMyMatchTicketsForbidden, *GetMyMatchTicketsInternalServerError, error) {
@@ -286,10 +274,6 @@ func (a *Client) GetMyMatchTickets(params *GetMyMatchTicketsParams, authInfo run
 
 /*
 GetMyMatchTicketsShort get my match tickets
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
-
-Required Scope: social
-
 Get my match tickets.
 */
 func (a *Client) GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, error) {
@@ -343,10 +327,6 @@ func (a *Client) GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInf
 Deprecated: 2022-08-10 - Use MatchTicketDetailsShort instead.
 
 MatchTicketDetails get details for a specific match ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
-
-Required Scope: social
-
 Get details for a specific match ticket
 */
 func (a *Client) MatchTicketDetails(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, *MatchTicketDetailsUnauthorized, *MatchTicketDetailsForbidden, *MatchTicketDetailsNotFound, *MatchTicketDetailsInternalServerError, error) {
@@ -404,10 +384,6 @@ func (a *Client) MatchTicketDetails(params *MatchTicketDetailsParams, authInfo r
 
 /*
 MatchTicketDetailsShort get details for a specific match ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [READ]
-
-Required Scope: social
-
 Get details for a specific match ticket
 */
 func (a *Client) MatchTicketDetailsShort(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, error) {
@@ -463,10 +439,6 @@ func (a *Client) MatchTicketDetailsShort(params *MatchTicketDetailsParams, authI
 Deprecated: 2022-08-10 - Use DeleteMatchTicketShort instead.
 
 DeleteMatchTicket delete a match ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]
-
-Required Scope: social
-
 Deletes an existing matchmaking ticket.
 */
 func (a *Client) DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketInternalServerError, error) {
@@ -524,10 +496,6 @@ func (a *Client) DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo run
 
 /*
 DeleteMatchTicketShort delete a match ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:TICKET [DELETE]
-
-Required Scope: social
-
 Deletes an existing matchmaking ticket.
 */
 func (a *Client) DeleteMatchTicketShort(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, error) {

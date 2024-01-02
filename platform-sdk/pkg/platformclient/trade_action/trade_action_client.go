@@ -50,6 +50,7 @@ Other detail info:
 
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=1 (CREATE)
   *  Returns : chain action history
+  *  FULFILL_ITEM operation supported item type : INGAMEITEM,LOOTBOX,OPTIONBOX
 
 
 
@@ -118,6 +119,7 @@ Other detail info:
 
   * Required permission : resource=ADMIN:NAMESPACE:{namespace}:TRADE, action=1 (CREATE)
   *  Returns : chain action history
+  *  FULFILL_ITEM operation supported item type : INGAMEITEM,LOOTBOX,OPTIONBOX
 
 
 

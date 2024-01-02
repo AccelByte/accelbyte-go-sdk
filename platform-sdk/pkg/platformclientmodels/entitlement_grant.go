@@ -38,6 +38,10 @@ type EntitlementGrant struct {
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
 
+	// entitlement Origin, The platform of the entitlement.
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	Origin string `json:"origin,omitempty"`
+
 	// quantity
 	// Required: true
 	// Format: int32
@@ -93,6 +97,62 @@ func (m *EntitlementGrant) validateItemNamespace(formats strfmt.Registry) error 
 		return err
 	}
 
+	return nil
+}
+
+var entitlementGrantTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		entitlementGrantTypeOriginPropEnum = append(entitlementGrantTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// EntitlementGrantOriginEPIC captures enum value "EPIC"
+	EntitlementGrantOriginEPIC string = "EPIC"
+
+	// EntitlementGrantOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	EntitlementGrantOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// EntitlementGrantOriginIOS captures enum value "IOS"
+	EntitlementGrantOriginIOS string = "IOS"
+
+	// EntitlementGrantOriginNINTENDO captures enum value "NINTENDO"
+	EntitlementGrantOriginNINTENDO string = "NINTENDO"
+
+	// EntitlementGrantOriginOCULUS captures enum value "OCULUS"
+	EntitlementGrantOriginOCULUS string = "OCULUS"
+
+	// EntitlementGrantOriginOTHER captures enum value "OTHER"
+	EntitlementGrantOriginOTHER string = "OTHER"
+
+	// EntitlementGrantOriginPLAYSTATION captures enum value "PLAYSTATION"
+	EntitlementGrantOriginPLAYSTATION string = "PLAYSTATION"
+
+	// EntitlementGrantOriginSTEAM captures enum value "STEAM"
+	EntitlementGrantOriginSTEAM string = "STEAM"
+
+	// EntitlementGrantOriginSYSTEM captures enum value "SYSTEM"
+	EntitlementGrantOriginSYSTEM string = "SYSTEM"
+
+	// EntitlementGrantOriginTWITCH captures enum value "TWITCH"
+	EntitlementGrantOriginTWITCH string = "TWITCH"
+
+	// EntitlementGrantOriginXBOX captures enum value "XBOX"
+	EntitlementGrantOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *EntitlementGrant) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementGrantTypeOriginPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

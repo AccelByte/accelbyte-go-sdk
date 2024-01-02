@@ -71,6 +71,8 @@ type GetUserEntitlementOwnershipByItemIdsParams struct {
 	UserID string
 	/*Ids*/
 	Ids []string
+	/*Platform*/
+	Platform *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -158,6 +160,17 @@ func (o *GetUserEntitlementOwnershipByItemIdsParams) SetIds(ids []string) {
 	o.Ids = ids
 }
 
+// WithPlatform adds the platform to the get user entitlement ownership by item ids params
+func (o *GetUserEntitlementOwnershipByItemIdsParams) WithPlatform(platform *string) *GetUserEntitlementOwnershipByItemIdsParams {
+	o.SetPlatform(platform)
+	return o
+}
+
+// SetPlatform adds the platform to the get user entitlement ownership by item ids params
+func (o *GetUserEntitlementOwnershipByItemIdsParams) SetPlatform(platform *string) {
+	o.Platform = platform
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetUserEntitlementOwnershipByItemIdsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -182,6 +195,22 @@ func (o *GetUserEntitlementOwnershipByItemIdsParams) WriteToRequest(r runtime.Cl
 	// query array param ids
 	if err := r.SetQueryParam("ids", joinedIds...); err != nil {
 		return err
+	}
+
+	if o.Platform != nil {
+
+		// query param platform
+		var qrPlatform string
+		if o.Platform != nil {
+			qrPlatform = *o.Platform
+		}
+		qPlatform := qrPlatform
+		if qPlatform != "" {
+			if err := r.SetQueryParam("platform", qPlatform); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

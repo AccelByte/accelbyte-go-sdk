@@ -39,7 +39,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetDSMCConfigurationDefaultShort instead.
 
-AdminGetDSMCConfigurationDefault get dsmc default configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetDSMCConfigurationDefault get dsmc default configuration.
 Get dsmc default configuration.
 */
 func (a *Client) AdminGetDSMCConfigurationDefault(params *AdminGetDSMCConfigurationDefaultParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationDefaultOK, *AdminGetDSMCConfigurationDefaultBadRequest, *AdminGetDSMCConfigurationDefaultUnauthorized, *AdminGetDSMCConfigurationDefaultForbidden, *AdminGetDSMCConfigurationDefaultNotFound, *AdminGetDSMCConfigurationDefaultInternalServerError, error) {
@@ -99,7 +99,7 @@ func (a *Client) AdminGetDSMCConfigurationDefault(params *AdminGetDSMCConfigurat
 }
 
 /*
-AdminGetDSMCConfigurationDefaultShort get dsmc default configuration . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetDSMCConfigurationDefaultShort get dsmc default configuration.
 Get dsmc default configuration.
 */
 func (a *Client) AdminGetDSMCConfigurationDefaultShort(params *AdminGetDSMCConfigurationDefaultParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationDefaultOK, error) {

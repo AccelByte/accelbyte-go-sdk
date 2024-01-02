@@ -25,6 +25,10 @@ type FulFillItemPayload struct {
 	// Format: int32
 	Count *int32 `json:"count"`
 
+	// Entitlement origin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`
+
 	// itemidentity
 	// Required: true
 	ItemIdentity *string `json:"itemIdentity"`
@@ -61,6 +65,62 @@ func (m *FulFillItemPayload) validateCount(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var fulFillItemPayloadTypeEntitlementOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		fulFillItemPayloadTypeEntitlementOriginPropEnum = append(fulFillItemPayloadTypeEntitlementOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// FulFillItemPayloadEntitlementOriginEPIC captures enum value "EPIC"
+	FulFillItemPayloadEntitlementOriginEPIC string = "EPIC"
+
+	// FulFillItemPayloadEntitlementOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	FulFillItemPayloadEntitlementOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// FulFillItemPayloadEntitlementOriginIOS captures enum value "IOS"
+	FulFillItemPayloadEntitlementOriginIOS string = "IOS"
+
+	// FulFillItemPayloadEntitlementOriginNINTENDO captures enum value "NINTENDO"
+	FulFillItemPayloadEntitlementOriginNINTENDO string = "NINTENDO"
+
+	// FulFillItemPayloadEntitlementOriginOCULUS captures enum value "OCULUS"
+	FulFillItemPayloadEntitlementOriginOCULUS string = "OCULUS"
+
+	// FulFillItemPayloadEntitlementOriginOTHER captures enum value "OTHER"
+	FulFillItemPayloadEntitlementOriginOTHER string = "OTHER"
+
+	// FulFillItemPayloadEntitlementOriginPLAYSTATION captures enum value "PLAYSTATION"
+	FulFillItemPayloadEntitlementOriginPLAYSTATION string = "PLAYSTATION"
+
+	// FulFillItemPayloadEntitlementOriginSTEAM captures enum value "STEAM"
+	FulFillItemPayloadEntitlementOriginSTEAM string = "STEAM"
+
+	// FulFillItemPayloadEntitlementOriginSYSTEM captures enum value "SYSTEM"
+	FulFillItemPayloadEntitlementOriginSYSTEM string = "SYSTEM"
+
+	// FulFillItemPayloadEntitlementOriginTWITCH captures enum value "TWITCH"
+	FulFillItemPayloadEntitlementOriginTWITCH string = "TWITCH"
+
+	// FulFillItemPayloadEntitlementOriginXBOX captures enum value "XBOX"
+	FulFillItemPayloadEntitlementOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *FulFillItemPayload) validateEntitlementOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, fulFillItemPayloadTypeEntitlementOriginPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

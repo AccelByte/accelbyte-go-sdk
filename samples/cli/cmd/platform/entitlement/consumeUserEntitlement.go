@@ -32,7 +32,7 @@ var ConsumeUserEntitlementCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.EntitlementDecrement
+		var body *platformclientmodels.AdminEntitlementDecrement
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

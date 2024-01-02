@@ -41,7 +41,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetMemberActiveSessionShort instead.
 
-AdminGetMemberActiveSession get member active session . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetMemberActiveSession get member active session.
 
 Get Member Active Session.
 */
@@ -96,7 +96,7 @@ func (a *Client) AdminGetMemberActiveSession(params *AdminGetMemberActiveSession
 }
 
 /*
-AdminGetMemberActiveSessionShort get member active session . requires admin:namespace:{namespace}:session:configuration [read]
+AdminGetMemberActiveSessionShort get member active session.
 
 Get Member Active Session.
 */
@@ -150,7 +150,7 @@ func (a *Client) AdminGetMemberActiveSessionShort(params *AdminGetMemberActiveSe
 /*
 Deprecated: 2022-08-10 - Use AdminReconcileMaxActiveSessionShort instead.
 
-AdminReconcileMaxActiveSession reconcile max active session . requires admin:namespace:{namespace}:session:configuration [update]
+AdminReconcileMaxActiveSession reconcile max active session.
 
 Reconcile Max Active Session.
 */
@@ -205,7 +205,7 @@ func (a *Client) AdminReconcileMaxActiveSession(params *AdminReconcileMaxActiveS
 }
 
 /*
-AdminReconcileMaxActiveSessionShort reconcile max active session . requires admin:namespace:{namespace}:session:configuration [update]
+AdminReconcileMaxActiveSessionShort reconcile max active session.
 
 Reconcile Max Active Session.
 */

@@ -50,11 +50,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateBackfillShort instead.
 
 CreateBackfill create a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]
-
-Required Scope: social
-
-Create backfill ticket
+Create backfill ticket.
 */
 func (a *Client) CreateBackfill(params *CreateBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBackfillCreated, *CreateBackfillBadRequest, *CreateBackfillUnauthorized, *CreateBackfillForbidden, *CreateBackfillNotFound, *CreateBackfillConflict, *CreateBackfillInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -117,11 +113,7 @@ func (a *Client) CreateBackfill(params *CreateBackfillParams, authInfo runtime.C
 
 /*
 CreateBackfillShort create a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [CREATE]
-
-Required Scope: social
-
-Create backfill ticket
+Create backfill ticket.
 */
 func (a *Client) CreateBackfillShort(params *CreateBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBackfillCreated, error) {
 	// TODO: Validate the params before sending
@@ -180,10 +172,6 @@ func (a *Client) CreateBackfillShort(params *CreateBackfillParams, authInfo runt
 Deprecated: 2022-08-10 - Use GetBackfillProposalShort instead.
 
 GetBackfillProposal get backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]
-
-Required Scope: social
-
 Get backfill proposal
 */
 func (a *Client) GetBackfillProposal(params *GetBackfillProposalParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillProposalOK, *GetBackfillProposalBadRequest, *GetBackfillProposalUnauthorized, *GetBackfillProposalForbidden, *GetBackfillProposalNotFound, *GetBackfillProposalInternalServerError, error) {
@@ -244,10 +232,6 @@ func (a *Client) GetBackfillProposal(params *GetBackfillProposalParams, authInfo
 
 /*
 GetBackfillProposalShort get backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]
-
-Required Scope: social
-
 Get backfill proposal
 */
 func (a *Client) GetBackfillProposalShort(params *GetBackfillProposalParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillProposalOK, error) {
@@ -305,10 +289,6 @@ func (a *Client) GetBackfillProposalShort(params *GetBackfillProposalParams, aut
 Deprecated: 2022-08-10 - Use GetBackfillShort instead.
 
 GetBackfill get a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]
-
-Required Scope: social
-
 Get backfill ticket by ID
 */
 func (a *Client) GetBackfill(params *GetBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillOK, *GetBackfillBadRequest, *GetBackfillUnauthorized, *GetBackfillForbidden, *GetBackfillNotFound, *GetBackfillInternalServerError, error) {
@@ -369,10 +349,6 @@ func (a *Client) GetBackfill(params *GetBackfillParams, authInfo runtime.ClientA
 
 /*
 GetBackfillShort get a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [GET]
-
-Required Scope: social
-
 Get backfill ticket by ID
 */
 func (a *Client) GetBackfillShort(params *GetBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillOK, error) {
@@ -430,11 +406,7 @@ func (a *Client) GetBackfillShort(params *GetBackfillParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use DeleteBackfillShort instead.
 
 DeleteBackfill delete a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]
-
-Required Scope: social
-
-Delete backfill ticket
+Delete backfill ticket.
 */
 func (a *Client) DeleteBackfill(params *DeleteBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBackfillNoContent, *DeleteBackfillUnauthorized, *DeleteBackfillForbidden, *DeleteBackfillNotFound, *DeleteBackfillInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -491,11 +463,7 @@ func (a *Client) DeleteBackfill(params *DeleteBackfillParams, authInfo runtime.C
 
 /*
 DeleteBackfillShort delete a backfill ticket
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [DELETE]
-
-Required Scope: social
-
-Delete backfill ticket
+Delete backfill ticket.
 */
 func (a *Client) DeleteBackfillShort(params *DeleteBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBackfillNoContent, error) {
 	// TODO: Validate the params before sending
@@ -550,11 +518,7 @@ func (a *Client) DeleteBackfillShort(params *DeleteBackfillParams, authInfo runt
 Deprecated: 2022-08-10 - Use AcceptBackfillShort instead.
 
 AcceptBackfill accept a backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]
-
-Required Scope: social
-
-Accept backfill proposal
+Accept backfill proposal.
 */
 func (a *Client) AcceptBackfill(params *AcceptBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptBackfillOK, *AcceptBackfillBadRequest, *AcceptBackfillUnauthorized, *AcceptBackfillForbidden, *AcceptBackfillNotFound, *AcceptBackfillInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -614,11 +578,7 @@ func (a *Client) AcceptBackfill(params *AcceptBackfillParams, authInfo runtime.C
 
 /*
 AcceptBackfillShort accept a backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]
-
-Required Scope: social
-
-Accept backfill proposal
+Accept backfill proposal.
 */
 func (a *Client) AcceptBackfillShort(params *AcceptBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptBackfillOK, error) {
 	// TODO: Validate the params before sending
@@ -675,10 +635,6 @@ func (a *Client) AcceptBackfillShort(params *AcceptBackfillParams, authInfo runt
 Deprecated: 2022-08-10 - Use RejectBackfillShort instead.
 
 RejectBackfill reject a backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]
-
-Required Scope: social
-
 Reject backfill proposal
 */
 func (a *Client) RejectBackfill(params *RejectBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*RejectBackfillOK, *RejectBackfillBadRequest, *RejectBackfillUnauthorized, *RejectBackfillForbidden, *RejectBackfillNotFound, *RejectBackfillInternalServerError, error) {
@@ -739,10 +695,6 @@ func (a *Client) RejectBackfill(params *RejectBackfillParams, authInfo runtime.C
 
 /*
 RejectBackfillShort reject a backfill proposal
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [UPDATE]
-
-Required Scope: social
-
 Reject backfill proposal
 */
 func (a *Client) RejectBackfillShort(params *RejectBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*RejectBackfillOK, error) {

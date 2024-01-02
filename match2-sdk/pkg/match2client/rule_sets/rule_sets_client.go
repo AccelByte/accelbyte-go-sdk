@@ -48,10 +48,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use RuleSetListShort instead.
 
 RuleSetList list existing rule sets
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
-
-Required Scope: social
-
 List rule sets.
 */
 func (a *Client) RuleSetList(params *RuleSetListParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetListOK, *RuleSetListUnauthorized, *RuleSetListForbidden, *RuleSetListInternalServerError, error) {
@@ -106,10 +102,6 @@ func (a *Client) RuleSetList(params *RuleSetListParams, authInfo runtime.ClientA
 
 /*
 RuleSetListShort list existing rule sets
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
-
-Required Scope: social
-
 List rule sets.
 */
 func (a *Client) RuleSetListShort(params *RuleSetListParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetListOK, error) {
@@ -163,10 +155,6 @@ func (a *Client) RuleSetListShort(params *RuleSetListParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use CreateRuleSetShort instead.
 
 CreateRuleSet create a match rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
-
-Required Scope: social
-
 Creates a new rules set.
 
 A rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)
@@ -232,10 +220,6 @@ func (a *Client) CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.Cli
 
 /*
 CreateRuleSetShort create a match rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [CREATE]
-
-Required Scope: social
-
 Creates a new rules set.
 
 A rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)
@@ -298,10 +282,6 @@ func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtim
 Deprecated: 2022-08-10 - Use RuleSetDetailsShort instead.
 
 RuleSetDetails get details for a specific rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
-
-Required Scope: social
-
 Get details for a specific rule set
 */
 func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, *RuleSetDetailsUnauthorized, *RuleSetDetailsForbidden, *RuleSetDetailsInternalServerError, error) {
@@ -356,10 +336,6 @@ func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.C
 
 /*
 RuleSetDetailsShort get details for a specific rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [READ]
-
-Required Scope: social
-
 Get details for a specific rule set
 */
 func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, error) {
@@ -413,10 +389,6 @@ func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runt
 Deprecated: 2022-08-10 - Use UpdateRuleSetShort instead.
 
 UpdateRuleSet update a match rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
-
-Required Scope: social
-
 Updates an existing matchmaking rule set.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
@@ -479,10 +451,6 @@ func (a *Client) UpdateRuleSet(params *UpdateRuleSetParams, authInfo runtime.Cli
 
 /*
 UpdateRuleSetShort update a match rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [UPDATE]
-
-Required Scope: social
-
 Updates an existing matchmaking rule set.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
@@ -542,10 +510,6 @@ func (a *Client) UpdateRuleSetShort(params *UpdateRuleSetParams, authInfo runtim
 Deprecated: 2022-08-10 - Use DeleteRuleSetShort instead.
 
 DeleteRuleSet delete a rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
-
-Required Scope: social
-
 Deletes an existing rule set.
 */
 func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, *DeleteRuleSetUnauthorized, *DeleteRuleSetForbidden, *DeleteRuleSetNotFound, *DeleteRuleSetInternalServerError, error) {
@@ -603,10 +567,6 @@ func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.Cli
 
 /*
 DeleteRuleSetShort delete a rule set
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:RULES [DELETE]
-
-Required Scope: social
-
 Deletes an existing rule set.
 */
 func (a *Client) DeleteRuleSetShort(params *DeleteRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRuleSetNoContent, error) {

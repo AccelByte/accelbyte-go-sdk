@@ -38,18 +38,35 @@ const (
 	QueryUserEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Get the enum in QueryUserEntitlementsParams
+const (
+	QueryUserEntitlementsEpicConstant        = "Epic"
+	QueryUserEntitlementsGooglePlayConstant  = "GooglePlay"
+	QueryUserEntitlementsIOSConstant         = "IOS"
+	QueryUserEntitlementsNintendoConstant    = "Nintendo"
+	QueryUserEntitlementsOculusConstant      = "Oculus"
+	QueryUserEntitlementsOtherConstant       = "Other"
+	QueryUserEntitlementsPlaystationConstant = "Playstation"
+	QueryUserEntitlementsSteamConstant       = "Steam"
+	QueryUserEntitlementsSystemConstant      = "System"
+	QueryUserEntitlementsTwitchConstant      = "Twitch"
+	QueryUserEntitlementsXboxConstant        = "Xbox"
+)
+
 // NewQueryUserEntitlementsParams creates a new QueryUserEntitlementsParams object
 // with the default values initialized.
 func NewQueryUserEntitlementsParams() *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault     = bool(true)
+		fuzzyMatchNameDefault = bool(false)
+		limitDefault          = int32(20)
+		offsetDefault         = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:     &activeOnlyDefault,
+		FuzzyMatchName: &fuzzyMatchNameDefault,
+		Limit:          &limitDefault,
+		Offset:         &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -59,14 +76,16 @@ func NewQueryUserEntitlementsParams() *QueryUserEntitlementsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryUserEntitlementsParamsWithTimeout(timeout time.Duration) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault     = bool(true)
+		fuzzyMatchNameDefault = bool(false)
+		limitDefault          = int32(20)
+		offsetDefault         = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:     &activeOnlyDefault,
+		FuzzyMatchName: &fuzzyMatchNameDefault,
+		Limit:          &limitDefault,
+		Offset:         &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -76,14 +95,16 @@ func NewQueryUserEntitlementsParamsWithTimeout(timeout time.Duration) *QueryUser
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryUserEntitlementsParamsWithContext(ctx context.Context) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault     = bool(true)
+		fuzzyMatchNameDefault = bool(false)
+		limitDefault          = int32(20)
+		offsetDefault         = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:     &activeOnlyDefault,
+		FuzzyMatchName: &fuzzyMatchNameDefault,
+		Limit:          &limitDefault,
+		Offset:         &offsetDefault,
 
 		Context: ctx,
 	}
@@ -93,15 +114,17 @@ func NewQueryUserEntitlementsParamsWithContext(ctx context.Context) *QueryUserEn
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryUserEntitlementsParamsWithHTTPClient(client *http.Client) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault     = bool(true)
+		fuzzyMatchNameDefault = bool(false)
+		limitDefault          = int32(20)
+		offsetDefault         = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		ActiveOnly:     &activeOnlyDefault,
+		FuzzyMatchName: &fuzzyMatchNameDefault,
+		Limit:          &limitDefault,
+		Offset:         &offsetDefault,
+		HTTPClient:     client,
 	}
 }
 
@@ -126,12 +149,16 @@ type QueryUserEntitlementsParams struct {
 	EntitlementName *string
 	/*Features*/
 	Features []string
+	/*FuzzyMatchName*/
+	FuzzyMatchName *bool
 	/*ItemID*/
 	ItemID []string
 	/*Limit*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32
+	/*Origin*/
+	Origin *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -263,6 +290,17 @@ func (o *QueryUserEntitlementsParams) SetFeatures(features []string) {
 	o.Features = features
 }
 
+// WithFuzzyMatchName adds the fuzzyMatchName to the query user entitlements params
+func (o *QueryUserEntitlementsParams) WithFuzzyMatchName(fuzzyMatchName *bool) *QueryUserEntitlementsParams {
+	o.SetFuzzyMatchName(fuzzyMatchName)
+	return o
+}
+
+// SetFuzzyMatchName adds the fuzzyMatchName to the query user entitlements params
+func (o *QueryUserEntitlementsParams) SetFuzzyMatchName(fuzzyMatchName *bool) {
+	o.FuzzyMatchName = fuzzyMatchName
+}
+
 // WithItemID adds the itemID to the query user entitlements params
 func (o *QueryUserEntitlementsParams) WithItemID(itemID []string) *QueryUserEntitlementsParams {
 	o.SetItemID(itemID)
@@ -294,6 +332,17 @@ func (o *QueryUserEntitlementsParams) WithOffset(offset *int32) *QueryUserEntitl
 // SetOffset adds the offset to the query user entitlements params
 func (o *QueryUserEntitlementsParams) SetOffset(offset *int32) {
 	o.Offset = offset
+}
+
+// WithOrigin adds the origin to the query user entitlements params
+func (o *QueryUserEntitlementsParams) WithOrigin(origin *string) *QueryUserEntitlementsParams {
+	o.SetOrigin(origin)
+	return o
+}
+
+// SetOrigin adds the origin to the query user entitlements params
+func (o *QueryUserEntitlementsParams) SetOrigin(origin *string) {
+	o.Origin = origin
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -386,6 +435,22 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
+	if o.FuzzyMatchName != nil {
+
+		// query param fuzzyMatchName
+		var qrFuzzyMatchName bool
+		if o.FuzzyMatchName != nil {
+			qrFuzzyMatchName = *o.FuzzyMatchName
+		}
+		qFuzzyMatchName := swag.FormatBool(qrFuzzyMatchName)
+		if qFuzzyMatchName != "" {
+			if err := r.SetQueryParam("fuzzyMatchName", qFuzzyMatchName); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	valuesItemID := o.ItemID
 
 	joinedItemID := swag.JoinByFormat(valuesItemID, "multi")
@@ -420,6 +485,22 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Origin != nil {
+
+		// query param origin
+		var qrOrigin string
+		if o.Origin != nil {
+			qrOrigin = *o.Origin
+		}
+		qOrigin := qrOrigin
+		if qOrigin != "" {
+			if err := r.SetQueryParam("origin", qOrigin); err != nil {
 				return err
 			}
 		}

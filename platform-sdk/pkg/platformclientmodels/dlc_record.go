@@ -20,6 +20,13 @@ import (
 // swagger:model DLC record.
 type DLCRecord struct {
 
+	// entitlementoriginsyncresult
+	EntitlementOriginSyncResult []*EntitlementOriginSyncResult `json:"entitlementOriginSyncResult,omitempty"`
+
+	// entitlementoriginsyncstatus
+	// Enum: ['NOT_SYNCED', 'SYNCED', 'SYNCED_FAILED']
+	EntitlementOriginSyncStatus string `json:"entitlementOriginSyncStatus,omitempty"`
+
 	// id
 	ID string `json:"id,omitempty"`
 
@@ -65,6 +72,38 @@ func (m *DLCRecord) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var dlcRecordTypeEntitlementOriginSyncStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["NOT_SYNCED", "SYNCED", "SYNCED_FAILED"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dlcRecordTypeEntitlementOriginSyncStatusPropEnum = append(dlcRecordTypeEntitlementOriginSyncStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// DLCRecordEntitlementOriginSyncStatusNOTSYNCED captures enum value "NOT_SYNCED"
+	DLCRecordEntitlementOriginSyncStatusNOTSYNCED string = "NOT_SYNCED"
+
+	// DLCRecordEntitlementOriginSyncStatusSYNCED captures enum value "SYNCED"
+	DLCRecordEntitlementOriginSyncStatusSYNCED string = "SYNCED"
+
+	// DLCRecordEntitlementOriginSyncStatusSYNCEDFAILED captures enum value "SYNCED_FAILED"
+	DLCRecordEntitlementOriginSyncStatusSYNCEDFAILED string = "SYNCED_FAILED"
+)
+
+// prop value enum
+func (m *DLCRecord) validateEntitlementOriginSyncStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dlcRecordTypeEntitlementOriginSyncStatusPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

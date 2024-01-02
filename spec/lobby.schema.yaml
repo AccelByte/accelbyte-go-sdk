@@ -954,6 +954,29 @@ definitions:
     x-pair: personalChatRequest
     x-tag: Party
     x-type: response
+  refreshTokenRequest:
+    properties:
+      id:
+        type: string
+      token:
+        type: string
+    required:
+    - id
+    - token
+    type: object
+    x-pair: refreshTokenResponse
+    x-tag: Token
+    x-type: request
+  refreshTokenResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: refreshTokenRequest
+    x-tag: Token
+    x-type: response
   rejectFriendsNotif:
     properties:
       userId:

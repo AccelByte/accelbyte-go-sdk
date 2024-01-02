@@ -39,7 +39,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminListEnvironmentVariablesShort instead.
 
-AdminListEnvironmentVariables list of environment variables. requires admin:session:configuration:environmentvariable [read]
+AdminListEnvironmentVariables list of environment variables.
 List of environment variables.
 */
 func (a *Client) AdminListEnvironmentVariables(params *AdminListEnvironmentVariablesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListEnvironmentVariablesOK, *AdminListEnvironmentVariablesUnauthorized, *AdminListEnvironmentVariablesForbidden, error) {
@@ -90,7 +90,7 @@ func (a *Client) AdminListEnvironmentVariables(params *AdminListEnvironmentVaria
 }
 
 /*
-AdminListEnvironmentVariablesShort list of environment variables. requires admin:session:configuration:environmentvariable [read]
+AdminListEnvironmentVariablesShort list of environment variables.
 List of environment variables.
 */
 func (a *Client) AdminListEnvironmentVariablesShort(params *AdminListEnvironmentVariablesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListEnvironmentVariablesOK, error) {

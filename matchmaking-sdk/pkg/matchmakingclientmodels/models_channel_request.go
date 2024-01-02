@@ -7,6 +7,8 @@
 package matchmakingclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,6 +19,10 @@ import (
 //
 // swagger:model Models channel request.
 type ModelsChannelRequest struct {
+
+	// blocked_player_option
+	// Enum: ['blockedPlayerCanMatch', 'blockedPlayerCanMatchOnDifferentTeam', 'blockedPlayerCannotMatch']
+	BlockedPlayerOption string `json:"blocked_player_option,omitempty"`
 
 	// deployment
 	// Required: true
@@ -106,6 +112,38 @@ func (m *ModelsChannelRequest) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var modelsChannelRequestTypeBlockedPlayerOptionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["BLOCKEDPLAYERCANMATCH", "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM", "BLOCKEDPLAYERCANNOTMATCH"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsChannelRequestTypeBlockedPlayerOptionPropEnum = append(modelsChannelRequestTypeBlockedPlayerOptionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCH captures enum value "BLOCKEDPLAYERCANMATCH"
+	ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCH string = "BLOCKEDPLAYERCANMATCH"
+
+	// ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCHONDIFFERENTTEAM captures enum value "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM"
+	ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANMATCHONDIFFERENTTEAM string = "BLOCKEDPLAYERCANMATCHONDIFFERENTTEAM"
+
+	// ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANNOTMATCH captures enum value "BLOCKEDPLAYERCANNOTMATCH"
+	ModelsChannelRequestBlockedPlayerOptionBLOCKEDPLAYERCANNOTMATCH string = "BLOCKEDPLAYERCANNOTMATCH"
+)
+
+// prop value enum
+func (m *ModelsChannelRequest) validateBlockedPlayerOptionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsChannelRequestTypeBlockedPlayerOptionPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

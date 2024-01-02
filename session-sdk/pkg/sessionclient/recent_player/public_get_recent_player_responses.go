@@ -64,7 +64,7 @@ func (o *PublicGetRecentPlayerReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /session/v1/public/namespaces/{namespace}/recent-player/{userId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /session/v1/public/namespaces/{namespace}/recent-player returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -82,7 +82,7 @@ type PublicGetRecentPlayerOK struct {
 }
 
 func (o *PublicGetRecentPlayerOK) Error() string {
-	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player/{userId}][%d] publicGetRecentPlayerOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player][%d] publicGetRecentPlayerOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *PublicGetRecentPlayerOK) ToJSONString() string {
@@ -135,7 +135,7 @@ type PublicGetRecentPlayerBadRequest struct {
 }
 
 func (o *PublicGetRecentPlayerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player/{userId}][%d] publicGetRecentPlayerBadRequest  %+v", 400, o.ToJSONString())
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player][%d] publicGetRecentPlayerBadRequest  %+v", 400, o.ToJSONString())
 }
 
 func (o *PublicGetRecentPlayerBadRequest) ToJSONString() string {
@@ -188,7 +188,7 @@ type PublicGetRecentPlayerUnauthorized struct {
 }
 
 func (o *PublicGetRecentPlayerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player/{userId}][%d] publicGetRecentPlayerUnauthorized  %+v", 401, o.ToJSONString())
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player][%d] publicGetRecentPlayerUnauthorized  %+v", 401, o.ToJSONString())
 }
 
 func (o *PublicGetRecentPlayerUnauthorized) ToJSONString() string {
@@ -241,7 +241,7 @@ type PublicGetRecentPlayerNotFound struct {
 }
 
 func (o *PublicGetRecentPlayerNotFound) Error() string {
-	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player/{userId}][%d] publicGetRecentPlayerNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player][%d] publicGetRecentPlayerNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *PublicGetRecentPlayerNotFound) ToJSONString() string {
@@ -294,7 +294,7 @@ type PublicGetRecentPlayerInternalServerError struct {
 }
 
 func (o *PublicGetRecentPlayerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player/{userId}][%d] publicGetRecentPlayerInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/recent-player][%d] publicGetRecentPlayerInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *PublicGetRecentPlayerInternalServerError) ToJSONString() string {

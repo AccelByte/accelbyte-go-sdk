@@ -40,10 +40,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use EnvironmentVariableListShort instead.
 
 EnvironmentVariableList list environment variables
-Required Permission: ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]
-
-Required Scope: social
-
 List environment variables.
 */
 func (a *Client) EnvironmentVariableList(params *EnvironmentVariableListParams, authInfo runtime.ClientAuthInfoWriter) (*EnvironmentVariableListOK, *EnvironmentVariableListUnauthorized, *EnvironmentVariableListForbidden, error) {
@@ -95,10 +91,6 @@ func (a *Client) EnvironmentVariableList(params *EnvironmentVariableListParams, 
 
 /*
 EnvironmentVariableListShort list environment variables
-Required Permission: ADMIN:MATCHMAKING:CONFIGURATION:ENVIRONMENTVARIABLE [READ]
-
-Required Scope: social
-
 List environment variables.
 */
 func (a *Client) EnvironmentVariableListShort(params *EnvironmentVariableListParams, authInfo runtime.ClientAuthInfoWriter) (*EnvironmentVariableListOK, error) {

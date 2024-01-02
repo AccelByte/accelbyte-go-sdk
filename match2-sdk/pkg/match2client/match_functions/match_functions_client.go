@@ -46,10 +46,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use MatchFunctionListShort instead.
 
 MatchFunctionList list existing match functions
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]
-
-Required Scope: social
-
 List existing match functions.
 */
 func (a *Client) MatchFunctionList(params *MatchFunctionListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchFunctionListOK, *MatchFunctionListUnauthorized, *MatchFunctionListForbidden, *MatchFunctionListInternalServerError, error) {
@@ -104,10 +100,6 @@ func (a *Client) MatchFunctionList(params *MatchFunctionListParams, authInfo run
 
 /*
 MatchFunctionListShort list existing match functions
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]
-
-Required Scope: social
-
 List existing match functions.
 */
 func (a *Client) MatchFunctionListShort(params *MatchFunctionListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchFunctionListOK, error) {
@@ -161,10 +153,6 @@ func (a *Client) MatchFunctionListShort(params *MatchFunctionListParams, authInf
 Deprecated: 2022-08-10 - Use CreateMatchFunctionShort instead.
 
 CreateMatchFunction create a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking function.
 */
 func (a *Client) CreateMatchFunction(params *CreateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchFunctionCreated, *CreateMatchFunctionBadRequest, *CreateMatchFunctionUnauthorized, *CreateMatchFunctionForbidden, *CreateMatchFunctionConflict, *CreateMatchFunctionInternalServerError, error) {
@@ -225,10 +213,6 @@ func (a *Client) CreateMatchFunction(params *CreateMatchFunctionParams, authInfo
 
 /*
 CreateMatchFunctionShort create a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking function.
 */
 func (a *Client) CreateMatchFunctionShort(params *CreateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchFunctionCreated, error) {
@@ -286,10 +270,6 @@ func (a *Client) CreateMatchFunctionShort(params *CreateMatchFunctionParams, aut
 Deprecated: 2022-08-10 - Use UpdateMatchFunctionShort instead.
 
 UpdateMatchFunction update a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]
-
-Required Scope: social
-
 Update existing matchmaking function.
 */
 func (a *Client) UpdateMatchFunction(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, *UpdateMatchFunctionBadRequest, *UpdateMatchFunctionUnauthorized, *UpdateMatchFunctionNotFound, *UpdateMatchFunctionConflict, *UpdateMatchFunctionInternalServerError, error) {
@@ -350,10 +330,6 @@ func (a *Client) UpdateMatchFunction(params *UpdateMatchFunctionParams, authInfo
 
 /*
 UpdateMatchFunctionShort update a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [UPDATE]
-
-Required Scope: social
-
 Update existing matchmaking function.
 */
 func (a *Client) UpdateMatchFunctionShort(params *UpdateMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchFunctionOK, error) {
@@ -411,10 +387,6 @@ func (a *Client) UpdateMatchFunctionShort(params *UpdateMatchFunctionParams, aut
 Deprecated: 2022-08-10 - Use DeleteMatchFunctionShort instead.
 
 DeleteMatchFunction delete a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]
-
-Required Scope: social
-
 Deletes an existing match function.
 */
 func (a *Client) DeleteMatchFunction(params *DeleteMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchFunctionOK, *DeleteMatchFunctionUnauthorized, *DeleteMatchFunctionForbidden, *DeleteMatchFunctionNotFound, *DeleteMatchFunctionInternalServerError, error) {
@@ -472,10 +444,6 @@ func (a *Client) DeleteMatchFunction(params *DeleteMatchFunctionParams, authInfo
 
 /*
 DeleteMatchFunctionShort delete a match function
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]
-
-Required Scope: social
-
 Deletes an existing match function.
 */
 func (a *Client) DeleteMatchFunctionShort(params *DeleteMatchFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchFunctionOK, error) {

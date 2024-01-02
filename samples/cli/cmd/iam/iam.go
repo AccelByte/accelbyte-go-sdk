@@ -211,6 +211,7 @@ func init() {
 	IamCmd.AddCommand(users.AdminLinkPlatformAccountCmd)
 	IamCmd.AddCommand(users.AdminPlatformUnlinkV3Cmd)
 	IamCmd.AddCommand(users.AdminPlatformLinkV3Cmd)
+	IamCmd.AddCommand(users.AdminDeleteUserLinkingHistoryByPlatformIDV3Cmd)
 	IamCmd.AddCommand(users.AdminGetThirdPartyPlatformTokenLinkStatusV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserSinglePlatformAccountCmd)
 	IamCmd.AddCommand(users.AdminDeleteUserRolesV3Cmd)

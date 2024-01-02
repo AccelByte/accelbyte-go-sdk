@@ -7,6 +7,8 @@
 package ugcclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,10 @@ type ModelsCreateContentResponse struct {
 	// channelid
 	// Required: true
 	ChannelID *string `json:"channelId"`
+
+	// contentstatus
+	// Enum: ['PUBLISHED', 'UNDER_REVIEW']
+	ContentStatus string `json:"contentStatus,omitempty"`
 
 	// contenttype
 	ContentType string `json:"contentType,omitempty"`
@@ -74,7 +80,7 @@ type ModelsCreateContentResponse struct {
 	// previewurl
 	PreviewURL []*ModelsPreviewURL `json:"previewURL,omitempty"`
 
-	// sharecode
+	// shareCode will be empty if content is under review
 	// Required: true
 	ShareCode *string `json:"shareCode"`
 
@@ -167,6 +173,35 @@ func (m *ModelsCreateContentResponse) validateChannelID(formats strfmt.Registry)
 		return err
 	}
 
+	return nil
+}
+
+var modelsCreateContentResponseTypeContentStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PUBLISHED", "UNDER_REVIEW"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsCreateContentResponseTypeContentStatusPropEnum = append(modelsCreateContentResponseTypeContentStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsCreateContentResponseContentStatusPUBLISHED captures enum value "PUBLISHED"
+	ModelsCreateContentResponseContentStatusPUBLISHED string = "PUBLISHED"
+
+	// ModelsCreateContentResponseContentStatusUNDERREVIEW captures enum value "UNDER_REVIEW"
+	ModelsCreateContentResponseContentStatusUNDERREVIEW string = "UNDER_REVIEW"
+)
+
+// prop value enum
+func (m *ModelsCreateContentResponse) validateContentStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsCreateContentResponseTypeContentStatusPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

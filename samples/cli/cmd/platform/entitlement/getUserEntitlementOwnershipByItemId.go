@@ -29,10 +29,12 @@ var GetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		itemId, _ := cmd.Flags().GetString("itemId")
 		entitlementClazz, _ := cmd.Flags().GetString("entitlementClazz")
+		platform, _ := cmd.Flags().GetString("platform")
 		input := &entitlement.GetUserEntitlementOwnershipByItemIDParams{
 			Namespace:        namespace,
 			UserID:           userId,
 			EntitlementClazz: &entitlementClazz,
+			Platform:         &platform,
 			ItemID:           itemId,
 		}
 		ok, errOK := entitlementService.GetUserEntitlementOwnershipByItemIDShort(input)
@@ -54,6 +56,7 @@ func init() {
 	GetUserEntitlementOwnershipByItemIdCmd.Flags().String("userId", "", "User id")
 	_ = GetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
 	GetUserEntitlementOwnershipByItemIdCmd.Flags().String("entitlementClazz", "", "Entitlement clazz")
+	GetUserEntitlementOwnershipByItemIdCmd.Flags().String("platform", "", "Platform")
 	GetUserEntitlementOwnershipByItemIdCmd.Flags().String("itemId", "", "Item id")
 	_ = GetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

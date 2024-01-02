@@ -39,7 +39,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use PublicGetRecentPlayerShort instead.
 
-PublicGetRecentPlayer query recent player with given user id. requires namespace:{namespace}:session:player [read]
+PublicGetRecentPlayer query recent player with given user id.
 Query recent player with given user id.
 */
 func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, *PublicGetRecentPlayerBadRequest, *PublicGetRecentPlayerUnauthorized, *PublicGetRecentPlayerNotFound, *PublicGetRecentPlayerInternalServerError, error) {
@@ -59,7 +59,7 @@ func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetRecentPlayer",
 		Method:             "GET",
-		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-player/{userId}",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-player",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -96,7 +96,7 @@ func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, auth
 }
 
 /*
-PublicGetRecentPlayerShort query recent player with given user id. requires namespace:{namespace}:session:player [read]
+PublicGetRecentPlayerShort query recent player with given user id.
 Query recent player with given user id.
 */
 func (a *Client) PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, error) {
@@ -116,7 +116,7 @@ func (a *Client) PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetRecentPlayer",
 		Method:             "GET",
-		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-player/{userId}",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-player",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

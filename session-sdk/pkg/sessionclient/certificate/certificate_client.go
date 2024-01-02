@@ -39,7 +39,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use HandleUploadXboxPFXCertificateShort instead.
 
-HandleUploadXboxPFXCertificate upload certificates for xbox. requires admin:namespace:{namespace}:session:certificates [update]
+HandleUploadXboxPFXCertificate upload certificates for xbox.
 Upload certificates for xbox. Certificate must be in the valid form of PFX format.
 */
 func (a *Client) HandleUploadXboxPFXCertificate(params *HandleUploadXboxPFXCertificateParams, authInfo runtime.ClientAuthInfoWriter) (*HandleUploadXboxPFXCertificateOK, *HandleUploadXboxPFXCertificateBadRequest, *HandleUploadXboxPFXCertificateUnauthorized, *HandleUploadXboxPFXCertificateForbidden, *HandleUploadXboxPFXCertificateNotFound, *HandleUploadXboxPFXCertificateInternalServerError, error) {
@@ -99,7 +99,7 @@ func (a *Client) HandleUploadXboxPFXCertificate(params *HandleUploadXboxPFXCerti
 }
 
 /*
-HandleUploadXboxPFXCertificateShort upload certificates for xbox. requires admin:namespace:{namespace}:session:certificates [update]
+HandleUploadXboxPFXCertificateShort upload certificates for xbox.
 Upload certificates for xbox. Certificate must be in the valid form of PFX format.
 */
 func (a *Client) HandleUploadXboxPFXCertificateShort(params *HandleUploadXboxPFXCertificateParams, authInfo runtime.ClientAuthInfoWriter) (*HandleUploadXboxPFXCertificateOK, error) {

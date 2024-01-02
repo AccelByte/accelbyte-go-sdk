@@ -1928,6 +1928,11 @@
         "summary": "public get muted at topics",
         "tags": [
           "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -2011,6 +2016,11 @@
         "summary": "public get list of topic",
         "tags": [
           "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -2185,6 +2195,11 @@
         "summary": "public get chat history",
         "tags": [
           "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -6812,11 +6827,11 @@
     "path": "/chat/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-06T04:07:37+00:00",
-    "gitHash": "ec601a04d2ffc7d1a49f7933946a84115353c53d",
+    "buildDate": "2023-12-19T10:39:14+00:00",
+    "gitHash": "bcf6d683a02e531e6107840c58a1d37c564eb700",
     "name": "justice-chat-service",
-    "revisionID": "0.4.14",
-    "version": "0.4.14",
+    "revisionID": "0.4.15",
+    "version": "0.4.15",
     "version-roles-seeding": "0.0.18"
   }
 }

@@ -26,6 +26,10 @@ type ItemRevocation struct {
 	// customrevocation
 	CustomRevocation interface{} `json:"customRevocation,omitempty"`
 
+	// entitlementorigin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`
+
 	// entitlementrevocations
 	EntitlementRevocations []*EntitlementRevocation `json:"entitlementRevocations,omitempty"`
 
@@ -66,6 +70,62 @@ func (m *ItemRevocation) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var itemRevocationTypeEntitlementOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		itemRevocationTypeEntitlementOriginPropEnum = append(itemRevocationTypeEntitlementOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// ItemRevocationEntitlementOriginEPIC captures enum value "EPIC"
+	ItemRevocationEntitlementOriginEPIC string = "EPIC"
+
+	// ItemRevocationEntitlementOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	ItemRevocationEntitlementOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// ItemRevocationEntitlementOriginIOS captures enum value "IOS"
+	ItemRevocationEntitlementOriginIOS string = "IOS"
+
+	// ItemRevocationEntitlementOriginNINTENDO captures enum value "NINTENDO"
+	ItemRevocationEntitlementOriginNINTENDO string = "NINTENDO"
+
+	// ItemRevocationEntitlementOriginOCULUS captures enum value "OCULUS"
+	ItemRevocationEntitlementOriginOCULUS string = "OCULUS"
+
+	// ItemRevocationEntitlementOriginOTHER captures enum value "OTHER"
+	ItemRevocationEntitlementOriginOTHER string = "OTHER"
+
+	// ItemRevocationEntitlementOriginPLAYSTATION captures enum value "PLAYSTATION"
+	ItemRevocationEntitlementOriginPLAYSTATION string = "PLAYSTATION"
+
+	// ItemRevocationEntitlementOriginSTEAM captures enum value "STEAM"
+	ItemRevocationEntitlementOriginSTEAM string = "STEAM"
+
+	// ItemRevocationEntitlementOriginSYSTEM captures enum value "SYSTEM"
+	ItemRevocationEntitlementOriginSYSTEM string = "SYSTEM"
+
+	// ItemRevocationEntitlementOriginTWITCH captures enum value "TWITCH"
+	ItemRevocationEntitlementOriginTWITCH string = "TWITCH"
+
+	// ItemRevocationEntitlementOriginXBOX captures enum value "XBOX"
+	ItemRevocationEntitlementOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *ItemRevocation) validateEntitlementOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, itemRevocationTypeEntitlementOriginPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

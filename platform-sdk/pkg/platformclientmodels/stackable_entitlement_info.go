@@ -46,9 +46,8 @@ type StackableEntitlementInfo struct {
 	Features []string `json:"features"`
 
 	// entitlement granted at
-	// Required: true
 	// Format: date-time
-	GrantedAt strfmt.DateTime `json:"grantedAt"`
+	GrantedAt *strfmt.DateTime `json:"grantedAt,omitempty"`
 
 	// grantedCode, the granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -69,20 +68,25 @@ type StackableEntitlementInfo struct {
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
 	// entitlement name
-	// Required: true
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// entitlement namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// Whether entitlement have origin
+	NoOrigin bool `json:"noOrigin"`
+
+	// entitlement origin
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	Origin string `json:"origin,omitempty"`
 
 	// sku for purchased item
 	Sku string `json:"sku,omitempty"`
 
 	// entitlement source
 	// Enum: ['ACHIEVEMENT', 'GIFT', 'IAP', 'OTHER', 'PROMOTION', 'PURCHASE', 'REDEEM_CODE', 'REFERRAL_BONUS', 'REWARD']
-	// Required: true
-	Source *string `json:"source"`
+	Source string `json:"source,omitempty"`
 
 	// whether the CONSUMABLE entitlement is stackable
 	Stackable bool `json:"stackable"`
@@ -105,8 +109,7 @@ type StackableEntitlementInfo struct {
 
 	// entitlement type
 	// Enum: ['CONSUMABLE', 'DURABLE']
-	// Required: true
-	Type *string `json:"type"`
+	Type string `json:"type,omitempty"`
 
 	// entitlement updated at
 	// Required: true
@@ -118,8 +121,7 @@ type StackableEntitlementInfo struct {
 	UseCount int32 `json:"useCount,omitempty"`
 
 	// userId for this entitlement
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Stackable entitlement info
@@ -132,9 +134,6 @@ func (m *StackableEntitlementInfo) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateGrantedAt(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -144,25 +143,13 @@ func (m *StackableEntitlementInfo) Validate(formats strfmt.Registry) error {
 	if err := m.validateItemNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -278,19 +265,6 @@ func (m *StackableEntitlementInfo) validateCreatedAt(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *StackableEntitlementInfo) validateGrantedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("grantedAt", "body", strfmt.DateTime(m.GrantedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("grantedAt", "body", "date-time", m.GrantedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *StackableEntitlementInfo) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -318,21 +292,68 @@ func (m *StackableEntitlementInfo) validateItemNamespace(formats strfmt.Registry
 	return nil
 }
 
-func (m *StackableEntitlementInfo) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *StackableEntitlementInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
 	}
 
+	return nil
+}
+
+var stackableEntitlementInfoTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		stackableEntitlementInfoTypeOriginPropEnum = append(stackableEntitlementInfoTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// StackableEntitlementInfoOriginEPIC captures enum value "EPIC"
+	StackableEntitlementInfoOriginEPIC string = "EPIC"
+
+	// StackableEntitlementInfoOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	StackableEntitlementInfoOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// StackableEntitlementInfoOriginIOS captures enum value "IOS"
+	StackableEntitlementInfoOriginIOS string = "IOS"
+
+	// StackableEntitlementInfoOriginNINTENDO captures enum value "NINTENDO"
+	StackableEntitlementInfoOriginNINTENDO string = "NINTENDO"
+
+	// StackableEntitlementInfoOriginOCULUS captures enum value "OCULUS"
+	StackableEntitlementInfoOriginOCULUS string = "OCULUS"
+
+	// StackableEntitlementInfoOriginOTHER captures enum value "OTHER"
+	StackableEntitlementInfoOriginOTHER string = "OTHER"
+
+	// StackableEntitlementInfoOriginPLAYSTATION captures enum value "PLAYSTATION"
+	StackableEntitlementInfoOriginPLAYSTATION string = "PLAYSTATION"
+
+	// StackableEntitlementInfoOriginSTEAM captures enum value "STEAM"
+	StackableEntitlementInfoOriginSTEAM string = "STEAM"
+
+	// StackableEntitlementInfoOriginSYSTEM captures enum value "SYSTEM"
+	StackableEntitlementInfoOriginSYSTEM string = "SYSTEM"
+
+	// StackableEntitlementInfoOriginTWITCH captures enum value "TWITCH"
+	StackableEntitlementInfoOriginTWITCH string = "TWITCH"
+
+	// StackableEntitlementInfoOriginXBOX captures enum value "XBOX"
+	StackableEntitlementInfoOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *StackableEntitlementInfo) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, stackableEntitlementInfoTypeOriginPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -383,20 +404,6 @@ func (m *StackableEntitlementInfo) validateSourceEnum(path, location string, val
 	if err := validate.EnumCase(path, location, value, stackableEntitlementInfoTypeSourcePropEnum, true); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (m *StackableEntitlementInfo) validateSource(formats strfmt.Registry) error {
-
-	if err := validate.Required("source", "body", m.Source); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateSourceEnum("source", "body", *m.Source); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -481,20 +488,6 @@ func (m *StackableEntitlementInfo) validateTypeEnum(path, location string, value
 	return nil
 }
 
-func (m *StackableEntitlementInfo) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *StackableEntitlementInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
@@ -502,15 +495,6 @@ func (m *StackableEntitlementInfo) validateUpdatedAt(formats strfmt.Registry) er
 	}
 
 	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *StackableEntitlementInfo) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
 	}
 

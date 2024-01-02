@@ -12,10 +12,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ModelsUserInfo Models user info
+// ModelsUserInfoResponse Models user info response
 //
-// swagger:model Models user info.
-type ModelsUserInfo struct {
+// swagger:model Models user info response.
+type ModelsUserInfoResponse struct {
+
+	// lastplayedtime
+	// Format: date-time
+	LastPlayedTime *strfmt.DateTime `json:"lastPlayedTime,omitempty"`
 
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
@@ -27,8 +31,8 @@ type ModelsUserInfo struct {
 	UserID string `json:"userID,omitempty"`
 }
 
-// Validate validates this Models user info
-func (m *ModelsUserInfo) Validate(formats strfmt.Registry) error {
+// Validate validates this Models user info response
+func (m *ModelsUserInfoResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -38,7 +42,7 @@ func (m *ModelsUserInfo) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsUserInfo) MarshalBinary() ([]byte, error) {
+func (m *ModelsUserInfoResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -46,8 +50,8 @@ func (m *ModelsUserInfo) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsUserInfo) UnmarshalBinary(b []byte) error {
-	var res ModelsUserInfo
+func (m *ModelsUserInfoResponse) UnmarshalBinary(b []byte) error {
+	var res ModelsUserInfoResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

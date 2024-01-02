@@ -491,7 +491,7 @@ func (a *Client) PreCheckFulfillItemShort(params *PreCheckFulfillItemParams, aut
 /*
 Deprecated: 2022-08-10 - Use FulfillRewardsShort instead.
 
-FulfillRewards fulfill rewards
+FulfillRewards fulfill rewards without content
  [SERVICE COMMUNICATION ONLY] Fulfill rewards.
 Other detail info:
 
@@ -549,7 +549,7 @@ func (a *Client) FulfillRewards(params *FulfillRewardsParams, authInfo runtime.C
 }
 
 /*
-FulfillRewardsShort fulfill rewards
+FulfillRewardsShort fulfill rewards without content
  [SERVICE COMMUNICATION ONLY] Fulfill rewards.
 Other detail info:
 
@@ -732,6 +732,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
   *  Returns : fulfillment result
+  *  rewards Item unsupported Type : SUBSCRIPTION
 */
 func (a *Client) FulfillRewardsV2(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, *FulfillRewardsV2BadRequest, *FulfillRewardsV2NotFound, *FulfillRewardsV2Conflict, error) {
 	// TODO: Validate the params before sending
@@ -790,6 +791,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)
   *  Returns : fulfillment result
+  *  rewards Item unsupported Type : SUBSCRIPTION
 */
 func (a *Client) FulfillRewardsV2Short(params *FulfillRewardsV2Params, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsV2OK, error) {
 	// TODO: Validate the params before sending

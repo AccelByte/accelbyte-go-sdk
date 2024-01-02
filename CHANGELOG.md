@@ -1,3 +1,10 @@
+<a name="v0.61.0"></a>
+## [v0.61.0]
+### chore
+- **integration-test:** refactor test for ags starter support
+- **ci:** add nightly file for ags starter
+
+
 <a name="v0.60.0"></a>
 ## [v0.60.0]
 ### docs

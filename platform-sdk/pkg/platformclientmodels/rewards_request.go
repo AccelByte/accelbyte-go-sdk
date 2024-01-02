@@ -21,6 +21,10 @@ import (
 // swagger:model Rewards request.
 type RewardsRequest struct {
 
+	// entitlement origin ,and default value is System
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`
+
 	// additional fulfillment information
 	Metadata interface{} `json:"metadata,omitempty"`
 
@@ -50,6 +54,62 @@ func (m *RewardsRequest) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var rewardsRequestTypeEntitlementOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		rewardsRequestTypeEntitlementOriginPropEnum = append(rewardsRequestTypeEntitlementOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// RewardsRequestEntitlementOriginEPIC captures enum value "EPIC"
+	RewardsRequestEntitlementOriginEPIC string = "EPIC"
+
+	// RewardsRequestEntitlementOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	RewardsRequestEntitlementOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// RewardsRequestEntitlementOriginIOS captures enum value "IOS"
+	RewardsRequestEntitlementOriginIOS string = "IOS"
+
+	// RewardsRequestEntitlementOriginNINTENDO captures enum value "NINTENDO"
+	RewardsRequestEntitlementOriginNINTENDO string = "NINTENDO"
+
+	// RewardsRequestEntitlementOriginOCULUS captures enum value "OCULUS"
+	RewardsRequestEntitlementOriginOCULUS string = "OCULUS"
+
+	// RewardsRequestEntitlementOriginOTHER captures enum value "OTHER"
+	RewardsRequestEntitlementOriginOTHER string = "OTHER"
+
+	// RewardsRequestEntitlementOriginPLAYSTATION captures enum value "PLAYSTATION"
+	RewardsRequestEntitlementOriginPLAYSTATION string = "PLAYSTATION"
+
+	// RewardsRequestEntitlementOriginSTEAM captures enum value "STEAM"
+	RewardsRequestEntitlementOriginSTEAM string = "STEAM"
+
+	// RewardsRequestEntitlementOriginSYSTEM captures enum value "SYSTEM"
+	RewardsRequestEntitlementOriginSYSTEM string = "SYSTEM"
+
+	// RewardsRequestEntitlementOriginTWITCH captures enum value "TWITCH"
+	RewardsRequestEntitlementOriginTWITCH string = "TWITCH"
+
+	// RewardsRequestEntitlementOriginXBOX captures enum value "XBOX"
+	RewardsRequestEntitlementOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *RewardsRequest) validateEntitlementOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, rewardsRequestTypeEntitlementOriginPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

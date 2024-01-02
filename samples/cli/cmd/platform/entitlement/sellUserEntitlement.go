@@ -32,7 +32,7 @@ var SellUserEntitlementCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
-		var body *platformclientmodels.EntitlementSoldRequest
+		var body *platformclientmodels.AdminEntitlementSoldRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

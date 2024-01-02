@@ -813,6 +813,28 @@ func (lobbyService *LobbyServiceWebsocket) PersonalChatResponse(code int64, id s
 	return nil
 }
 
+func (lobbyService *LobbyServiceWebsocket) RefreshTokenRequest(id *string, token *string) error {
+	logrus.Debug("RefreshTokenRequest")
+	text := fmt.Sprintf("type: %s\n%s\nid: %v\ntoken: %v", model.TypeRefreshTokenRequest, utils.GenerateMessageID(), id, token)
+	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (lobbyService *LobbyServiceWebsocket) RefreshTokenResponse(code int64, id string) error {
+	logrus.Debug("RefreshTokenResponse")
+	text := fmt.Sprintf("type: %s\n%s\ncode: %v\nid: %v", model.TypeRefreshTokenResponse, utils.GenerateMessageID(), code, id)
+	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (lobbyService *LobbyServiceWebsocket) RejectFriendsNotif(userId string) error {
 	logrus.Debug("RejectFriendsNotif")
 	text := fmt.Sprintf("type: %s\n%s\nuserId: %v", model.TypeRejectFriendsNotif, utils.GenerateMessageID(), userId)

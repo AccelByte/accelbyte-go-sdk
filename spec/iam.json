@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.7.0"
+    "version": "7.8.0"
   },
   "schemes": [
     "https"
@@ -2900,7 +2900,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "## The endpoint is going to be deprecated \n### Endpoint migration guide\n- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET]_**\n\nThis endpoint requires the client access token as the bearer token\nThis endpoint will support publisher access to game and game access to publisher\nIf targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace\nIf targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace",
+        "description": "## The endpoint is going to be deprecated \n### Endpoint migration guide\n- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace} [GET]_**\n\nThis endpoint requires the client access token as the bearer token\nThis endpoint will support publisher access to game and game access to publisher\nIf targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace\nIf targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.",
         "operationId": "GetUserMapping",
         "parameters": [
           {
@@ -12945,7 +12945,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}": {
       "get": {
-        "description": "This endpoint requires the client access token as the bearer token\nThis endpoint will support publisher access to game and game access to publisher\nIf targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace\nIf targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace",
+        "description": "This endpoint requires the client access token as the bearer token\nThis endpoint will support publisher access to game and game access to publisher\nIf targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace\nIf targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.",
         "operationId": "AdminGetUserMapping",
         "parameters": [
           {
@@ -13371,6 +13371,89 @@
           }
         ],
         "summary": "Link user's account with platform",
+        "tags": [
+          "Users"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link/histories": {
+      "delete": {
+        "description": "This API is for admin to delete user\u0026#39;s linking history with target platform id",
+        "operationId": "AdminDeleteUserLinkingHistoryByPlatformIDV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Target platform id",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin remove user's platform linking history.",
         "tags": [
           "Users"
         ],
@@ -14003,7 +14086,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint ONLY accept **Client Token**\nThis endpoint is utilized for specific scenarios where **email notifications are disabled**\nThe user\u0026#39;s email will be marked as verified\n\t\naction code : 10103 ",
+        "description": "This endpoint ONLY accept **Client Token**\nThis endpoint is utilized for specific scenarios where **email notifications are disabled**\nThe user\u0026#39;s email will be marked as verified\n\nNote:\n- emailAddress or password field are optional\n- request body can\u0026#39;t be empty\n\t\naction code : 10103 ",
         "operationId": "AdminTrustlyUpdateUserIdentity",
         "parameters": [
           {
@@ -16145,7 +16228,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Admin Retrieve User Third Party Platform Token\nThis endpoint used for retrieving third party platform token for user that login using third party,\nif user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members.\n\nNotes:\nThe third party platform and platform group covered for this is:\n- (psn) ps4web\n- (psn) ps4\n- (psn) ps5\n- epicgames\n- twitch\n- awscognito\n- \u0026lt;amazon/li\u0026gt;\n- eaorigin\n- snapchat\n- twitch\n- live",
+        "description": "Admin Retrieve User Third Party Platform Token\nThis endpoint used for retrieving third party platform token for user that login using third party,\nif user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members.\n\nNotes:\nThe third party platform and platform group covered for this is:\n- (psn) ps4web\n- (psn) ps4\n- (psn) ps5\n- epicgames\n- twitch\n- awscognito\n- amazon\n- eaorigin\n- snapchat\n- twitch\n- live",
         "operationId": "AdminRetrieveUserThirdPartyPlatformTokenV3",
         "parameters": [
           {
@@ -16220,7 +16303,7 @@
     "/iam/v3/oauth/admin/namespaces/{namespace}/users/{userId}/revoke": {
       "post": {
         "consumes": [
-          "application/json"
+          "*/*"
         ],
         "description": "This endpoint revokes all access tokens and refresh tokens a user has prior the revocation time.\nThis endpoint requires authorized requests header with valid access token.\nIt is a convenient feature for the developer (or admin) who wanted to revokes all user\u0026#39;s access tokens and refresh tokens generated before some period of time.\naction code : 10707",
         "operationId": "RevokeUserV3",
@@ -32211,11 +32294,7 @@
         "password": {
           "type": "string"
         }
-      },
-      "required": [
-        "emailAddress",
-        "password"
-      ]
+      }
     },
     "model.UserInfoResponse": {
       "properties": {
@@ -33790,11 +33869,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-15T11:08:14+00:00",
-    "gitHash": "6ce249b9c100051b6e36d653c27c1ed35d7a4617",
+    "buildDate": "2023-12-29T11:59:16+00:00",
+    "gitHash": "1aa95f9e0faef68fff742fbc15bdcd832446ce04",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.7.0",
-    "version-roles-seeding": "1.0.6"
+    "version": "7.8.0",
+    "version-roles-seeding": "1.0.23"
   }
 }

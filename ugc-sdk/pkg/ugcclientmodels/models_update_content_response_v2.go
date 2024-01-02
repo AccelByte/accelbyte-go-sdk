@@ -7,6 +7,8 @@
 package ugcclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,11 @@ type ModelsUpdateContentResponseV2 struct {
 	// channelid
 	// Required: true
 	ChannelID *string `json:"channelId"`
+
+	// contentstatus
+	// Enum: ['PUBLISHED', 'UNDER_REVIEW']
+	// Required: true
+	ContentStatus *string `json:"contentStatus"`
 
 	// S3 content type
 	ContentType string `json:"contentType,omitempty"`
@@ -95,6 +102,9 @@ func (m *ModelsUpdateContentResponseV2) Validate(formats strfmt.Registry) error 
 	if err := m.validateChannelID(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateContentStatus(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateCreatedTime(formats); err != nil {
 		res = append(res, err)
 	}
@@ -138,6 +148,49 @@ func (m *ModelsUpdateContentResponseV2) Validate(formats strfmt.Registry) error 
 func (m *ModelsUpdateContentResponseV2) validateChannelID(formats strfmt.Registry) error {
 
 	if err := validate.Required("channelId", "body", m.ChannelID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var modelsUpdateContentResponseV2TypeContentStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PUBLISHED", "UNDER_REVIEW"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsUpdateContentResponseV2TypeContentStatusPropEnum = append(modelsUpdateContentResponseV2TypeContentStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsUpdateContentResponseV2ContentStatusPUBLISHED captures enum value "PUBLISHED"
+	ModelsUpdateContentResponseV2ContentStatusPUBLISHED string = "PUBLISHED"
+
+	// ModelsUpdateContentResponseV2ContentStatusUNDERREVIEW captures enum value "UNDER_REVIEW"
+	ModelsUpdateContentResponseV2ContentStatusUNDERREVIEW string = "UNDER_REVIEW"
+)
+
+// prop value enum
+func (m *ModelsUpdateContentResponseV2) validateContentStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsUpdateContentResponseV2TypeContentStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ModelsUpdateContentResponseV2) validateContentStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("contentStatus", "body", m.ContentStatus); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateContentStatusEnum("contentStatus", "body", *m.ContentStatus); err != nil {
 		return err
 	}
 

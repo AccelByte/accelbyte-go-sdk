@@ -30,11 +30,13 @@ var GetUserEntitlementBySkuCmd = &cobra.Command{
 		sku, _ := cmd.Flags().GetString("sku")
 		activeOnly, _ := cmd.Flags().GetBool("activeOnly")
 		entitlementClazz, _ := cmd.Flags().GetString("entitlementClazz")
+		platform, _ := cmd.Flags().GetString("platform")
 		input := &entitlement.GetUserEntitlementBySkuParams{
 			Namespace:        namespace,
 			UserID:           userId,
 			ActiveOnly:       &activeOnly,
 			EntitlementClazz: &entitlementClazz,
+			Platform:         &platform,
 			Sku:              sku,
 		}
 		ok, errOK := entitlementService.GetUserEntitlementBySkuShort(input)
@@ -57,6 +59,7 @@ func init() {
 	_ = GetUserEntitlementBySkuCmd.MarkFlagRequired("userId")
 	GetUserEntitlementBySkuCmd.Flags().Bool("activeOnly", false, "Active only")
 	GetUserEntitlementBySkuCmd.Flags().String("entitlementClazz", "", "Entitlement clazz")
+	GetUserEntitlementBySkuCmd.Flags().String("platform", "", "Platform")
 	GetUserEntitlementBySkuCmd.Flags().String("sku", "", "Sku")
 	_ = GetUserEntitlementBySkuCmd.MarkFlagRequired("sku")
 }

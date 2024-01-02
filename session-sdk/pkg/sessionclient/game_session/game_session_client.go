@@ -86,7 +86,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminQueryGameSessionsShort instead.
 
 AdminQueryGameSessions get all game sessions.
-Get all game sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]
+Get all game sessions.
 */
 func (a *Client) AdminQueryGameSessions(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, *AdminQueryGameSessionsBadRequest, *AdminQueryGameSessionsUnauthorized, *AdminQueryGameSessionsForbidden, *AdminQueryGameSessionsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -143,7 +143,7 @@ func (a *Client) AdminQueryGameSessions(params *AdminQueryGameSessionsParams, au
 
 /*
 AdminQueryGameSessionsShort get all game sessions.
-Get all game sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]
+Get all game sessions.
 */
 func (a *Client) AdminQueryGameSessionsShort(params *AdminQueryGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryGameSessionsOK, error) {
 	// TODO: Validate the params before sending
@@ -333,7 +333,7 @@ func (a *Client) AdminQueryGameSessionsByAttributesShort(params *AdminQueryGameS
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteBulkGameSessionsShort instead.
 
-AdminDeleteBulkGameSessions delete bulk game sessions. requires admin:namespace:{namespace}:session:game [delete]
+AdminDeleteBulkGameSessions delete bulk game sessions.
 Delete bulk game sessions.
 */
 func (a *Client) AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, *AdminDeleteBulkGameSessionsBadRequest, *AdminDeleteBulkGameSessionsUnauthorized, *AdminDeleteBulkGameSessionsForbidden, *AdminDeleteBulkGameSessionsInternalServerError, error) {
@@ -390,7 +390,7 @@ func (a *Client) AdminDeleteBulkGameSessions(params *AdminDeleteBulkGameSessions
 }
 
 /*
-AdminDeleteBulkGameSessionsShort delete bulk game sessions. requires admin:namespace:{namespace}:session:game [delete]
+AdminDeleteBulkGameSessionsShort delete bulk game sessions.
 Delete bulk game sessions.
 */
 func (a *Client) AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error) {
@@ -557,7 +557,7 @@ func (a *Client) AdminSetDSReadyShort(params *AdminSetDSReadyParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateGameSessionMemberShort instead.
 
-AdminUpdateGameSessionMember update status of a game session member. requires admin:namespace:{namespace}:session:game [update]
+AdminUpdateGameSessionMember update status of a game session member.
 Update a game session member status.
 */
 func (a *Client) AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error) {
@@ -617,7 +617,7 @@ func (a *Client) AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemb
 }
 
 /*
-AdminUpdateGameSessionMemberShort update status of a game session member. requires admin:namespace:{namespace}:session:game [update]
+AdminUpdateGameSessionMemberShort update status of a game session member.
 Update a game session member status.
 */
 func (a *Client) AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, error) {
@@ -674,7 +674,7 @@ func (a *Client) AdminUpdateGameSessionMemberShort(params *AdminUpdateGameSessio
 /*
 Deprecated: 2022-08-10 - Use CreateGameSessionShort instead.
 
-CreateGameSession create a game session. requires namespace:{namespace}:session:game [create]
+CreateGameSession create a game session.
 Create a game session.
 Session configuration name is mandatory, this API will refer following values from the session template if they're not provided in the request:
 - type
@@ -760,7 +760,7 @@ func (a *Client) CreateGameSession(params *CreateGameSessionParams, authInfo run
 }
 
 /*
-CreateGameSessionShort create a game session. requires namespace:{namespace}:session:game [create]
+CreateGameSessionShort create a game session.
 Create a game session.
 Session configuration name is mandatory, this API will refer following values from the session template if they're not provided in the request:
 - type
@@ -980,7 +980,7 @@ func (a *Client) PublicQueryGameSessionsByAttributesShort(params *PublicQueryGam
 /*
 Deprecated: 2022-08-10 - Use PublicSessionJoinCodeShort instead.
 
-PublicSessionJoinCode join a session by code. requires namespace:{namespace}:session:game:player [create]
+PublicSessionJoinCode join a session by code.
 Join a session by code. The user can join a session as long as the code is valid
 */
 func (a *Client) PublicSessionJoinCode(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, *PublicSessionJoinCodeBadRequest, *PublicSessionJoinCodeUnauthorized, *PublicSessionJoinCodeForbidden, *PublicSessionJoinCodeNotFound, *PublicSessionJoinCodeInternalServerError, error) {
@@ -1040,7 +1040,7 @@ func (a *Client) PublicSessionJoinCode(params *PublicSessionJoinCodeParams, auth
 }
 
 /*
-PublicSessionJoinCodeShort join a session by code. requires namespace:{namespace}:session:game:player [create]
+PublicSessionJoinCodeShort join a session by code.
 Join a session by code. The user can join a session as long as the code is valid
 */
 func (a *Client) PublicSessionJoinCodeShort(params *PublicSessionJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSessionJoinCodeOK, error) {
@@ -1097,7 +1097,7 @@ func (a *Client) PublicSessionJoinCodeShort(params *PublicSessionJoinCodeParams,
 /*
 Deprecated: 2022-08-10 - Use GetGameSessionByPodNameShort instead.
 
-GetGameSessionByPodName get game session detail. requires namespace:{namespace}:session:game [read]
+GetGameSessionByPodName get game session detail.
 Get game session detail by podname.
 Session service has several DSInformation status to track DS request to DSMC:
 - NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
@@ -1162,7 +1162,7 @@ func (a *Client) GetGameSessionByPodName(params *GetGameSessionByPodNameParams, 
 }
 
 /*
-GetGameSessionByPodNameShort get game session detail. requires namespace:{namespace}:session:game [read]
+GetGameSessionByPodNameShort get game session detail.
 Get game session detail by podname.
 Session service has several DSInformation status to track DS request to DSMC:
 - NEED_TO_REQUEST: number of active players hasn't reached session's minPlayers therefore DS has not yet requested.
@@ -1224,7 +1224,7 @@ func (a *Client) GetGameSessionByPodNameShort(params *GetGameSessionByPodNamePar
 /*
 Deprecated: 2022-08-10 - Use GetGameSessionShort instead.
 
-GetGameSession get game session detail. requires namespace:{namespace}:session:game [read]
+GetGameSession get game session detail.
 Get game session detail.
 Session will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.
 Session service has several DSInformation status to track DS request to DSMC:
@@ -1290,7 +1290,7 @@ func (a *Client) GetGameSession(params *GetGameSessionParams, authInfo runtime.C
 }
 
 /*
-GetGameSessionShort get game session detail. requires namespace:{namespace}:session:game [read]
+GetGameSessionShort get game session detail.
 Get game session detail.
 Session will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.
 Session service has several DSInformation status to track DS request to DSMC:
@@ -1353,7 +1353,7 @@ func (a *Client) GetGameSessionShort(params *GetGameSessionParams, authInfo runt
 /*
 Deprecated: 2022-08-10 - Use UpdateGameSessionShort instead.
 
-UpdateGameSession update a game session. requires namespace:{namespace}:session:game [update]
+UpdateGameSession update a game session.
 Updates a game session, this endpoint will override stored gamesession data.
 To update only specified fields, please use following endpoint:
 method : PATCH
@@ -1418,7 +1418,7 @@ func (a *Client) UpdateGameSession(params *UpdateGameSessionParams, authInfo run
 }
 
 /*
-UpdateGameSessionShort update a game session. requires namespace:{namespace}:session:game [update]
+UpdateGameSessionShort update a game session.
 Updates a game session, this endpoint will override stored gamesession data.
 To update only specified fields, please use following endpoint:
 method : PATCH
@@ -1480,7 +1480,7 @@ func (a *Client) UpdateGameSessionShort(params *UpdateGameSessionParams, authInf
 /*
 Deprecated: 2022-08-10 - Use DeleteGameSessionShort instead.
 
-DeleteGameSession delete a game session. requires namespace:{namespace}:session:game [delete]
+DeleteGameSession delete a game session.
 Delete a game session.
 */
 func (a *Client) DeleteGameSession(params *DeleteGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameSessionNoContent, *DeleteGameSessionUnauthorized, *DeleteGameSessionForbidden, *DeleteGameSessionInternalServerError, error) {
@@ -1534,7 +1534,7 @@ func (a *Client) DeleteGameSession(params *DeleteGameSessionParams, authInfo run
 }
 
 /*
-DeleteGameSessionShort delete a game session. requires namespace:{namespace}:session:game [delete]
+DeleteGameSessionShort delete a game session.
 Delete a game session.
 */
 func (a *Client) DeleteGameSessionShort(params *DeleteGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameSessionNoContent, error) {
@@ -1587,7 +1587,7 @@ func (a *Client) DeleteGameSessionShort(params *DeleteGameSessionParams, authInf
 /*
 Deprecated: 2022-08-10 - Use PatchUpdateGameSessionShort instead.
 
-PatchUpdateGameSession patch update a game session. requires namespace:{namespace}:session:game [update]
+PatchUpdateGameSession patch update a game session.
 Update specified fields from game session data.
 */
 func (a *Client) PatchUpdateGameSession(params *PatchUpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*PatchUpdateGameSessionOK, *PatchUpdateGameSessionBadRequest, *PatchUpdateGameSessionUnauthorized, *PatchUpdateGameSessionForbidden, *PatchUpdateGameSessionNotFound, *PatchUpdateGameSessionInternalServerError, error) {
@@ -1647,7 +1647,7 @@ func (a *Client) PatchUpdateGameSession(params *PatchUpdateGameSessionParams, au
 }
 
 /*
-PatchUpdateGameSessionShort patch update a game session. requires namespace:{namespace}:session:game [update]
+PatchUpdateGameSessionShort patch update a game session.
 Update specified fields from game session data.
 */
 func (a *Client) PatchUpdateGameSessionShort(params *PatchUpdateGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*PatchUpdateGameSessionOK, error) {
@@ -1704,7 +1704,7 @@ func (a *Client) PatchUpdateGameSessionShort(params *PatchUpdateGameSessionParam
 /*
 Deprecated: 2022-08-10 - Use UpdateGameSessionBackfillTicketIDShort instead.
 
-UpdateGameSessionBackfillTicketID update game session backfill ticket id . requires namespace:{namespace}:session:game [update]
+UpdateGameSessionBackfillTicketID update game session backfill ticket id .
 Update game session backfill ticket id. Will override game session backfill ticket based on given request parameter
 */
 func (a *Client) UpdateGameSessionBackfillTicketID(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, *UpdateGameSessionBackfillTicketIDUnauthorized, *UpdateGameSessionBackfillTicketIDForbidden, *UpdateGameSessionBackfillTicketIDNotFound, *UpdateGameSessionBackfillTicketIDInternalServerError, error) {
@@ -1761,7 +1761,7 @@ func (a *Client) UpdateGameSessionBackfillTicketID(params *UpdateGameSessionBack
 }
 
 /*
-UpdateGameSessionBackfillTicketIDShort update game session backfill ticket id . requires namespace:{namespace}:session:game [update]
+UpdateGameSessionBackfillTicketIDShort update game session backfill ticket id .
 Update game session backfill ticket id. Will override game session backfill ticket based on given request parameter
 */
 func (a *Client) UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessionBackfillTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameSessionBackfillTicketIDOK, error) {
@@ -1816,7 +1816,7 @@ func (a *Client) UpdateGameSessionBackfillTicketIDShort(params *UpdateGameSessio
 /*
 Deprecated: 2022-08-10 - Use GameSessionGenerateCodeShort instead.
 
-GameSessionGenerateCode generate a game session code. requires namespace:{namespace}:session:game [update]
+GameSessionGenerateCode generate a game session code.
 Generate a new code for the game session. Only leader can generate a code.
 */
 func (a *Client) GameSessionGenerateCode(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, *GameSessionGenerateCodeBadRequest, *GameSessionGenerateCodeUnauthorized, *GameSessionGenerateCodeForbidden, *GameSessionGenerateCodeNotFound, *GameSessionGenerateCodeInternalServerError, error) {
@@ -1876,7 +1876,7 @@ func (a *Client) GameSessionGenerateCode(params *GameSessionGenerateCodeParams, 
 }
 
 /*
-GameSessionGenerateCodeShort generate a game session code. requires namespace:{namespace}:session:game [update]
+GameSessionGenerateCodeShort generate a game session code.
 Generate a new code for the game session. Only leader can generate a code.
 */
 func (a *Client) GameSessionGenerateCodeShort(params *GameSessionGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GameSessionGenerateCodeOK, error) {
@@ -1933,7 +1933,7 @@ func (a *Client) GameSessionGenerateCodeShort(params *GameSessionGenerateCodePar
 /*
 Deprecated: 2022-08-10 - Use PublicRevokeGameSessionCodeShort instead.
 
-PublicRevokeGameSessionCode revoke game session code. requires namespace:{namespace}:session:game [update]
+PublicRevokeGameSessionCode revoke game session code.
 Revoke code of the game session. Only leader can revoke a code.
 */
 func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, *PublicRevokeGameSessionCodeBadRequest, *PublicRevokeGameSessionCodeUnauthorized, *PublicRevokeGameSessionCodeForbidden, *PublicRevokeGameSessionCodeNotFound, *PublicRevokeGameSessionCodeInternalServerError, error) {
@@ -1993,7 +1993,7 @@ func (a *Client) PublicRevokeGameSessionCode(params *PublicRevokeGameSessionCode
 }
 
 /*
-PublicRevokeGameSessionCodeShort revoke game session code. requires namespace:{namespace}:session:game [update]
+PublicRevokeGameSessionCodeShort revoke game session code.
 Revoke code of the game session. Only leader can revoke a code.
 */
 func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessionCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokeGameSessionCodeNoContent, error) {
@@ -2050,7 +2050,7 @@ func (a *Client) PublicRevokeGameSessionCodeShort(params *PublicRevokeGameSessio
 /*
 Deprecated: 2022-08-10 - Use PublicGameSessionInviteShort instead.
 
-PublicGameSessionInvite invite a user to a game session. requires namespace:{namespace}:session:game:player [create]
+PublicGameSessionInvite invite a user to a game session.
 Invite a user to a game session.
 platformID represents the native platform of the invitee. API will return the corresponding native platform's userID.
 supported platforms:
@@ -2115,7 +2115,7 @@ func (a *Client) PublicGameSessionInvite(params *PublicGameSessionInviteParams, 
 }
 
 /*
-PublicGameSessionInviteShort invite a user to a game session. requires namespace:{namespace}:session:game:player [create]
+PublicGameSessionInviteShort invite a user to a game session.
 Invite a user to a game session.
 platformID represents the native platform of the invitee. API will return the corresponding native platform's userID.
 supported platforms:
@@ -2177,7 +2177,7 @@ func (a *Client) PublicGameSessionInviteShort(params *PublicGameSessionInvitePar
 /*
 Deprecated: 2022-08-10 - Use JoinGameSessionShort instead.
 
-JoinGameSession join a game session. requires namespace:{namespace}:session:game:player [create]
+JoinGameSession join a game session.
 Join a game session.
 */
 func (a *Client) JoinGameSession(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, *JoinGameSessionBadRequest, *JoinGameSessionUnauthorized, *JoinGameSessionForbidden, *JoinGameSessionNotFound, *JoinGameSessionInternalServerError, error) {
@@ -2237,7 +2237,7 @@ func (a *Client) JoinGameSession(params *JoinGameSessionParams, authInfo runtime
 }
 
 /*
-JoinGameSessionShort join a game session. requires namespace:{namespace}:session:game:player [create]
+JoinGameSessionShort join a game session.
 Join a game session.
 */
 func (a *Client) JoinGameSessionShort(params *JoinGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinGameSessionOK, error) {
@@ -2294,7 +2294,7 @@ func (a *Client) JoinGameSessionShort(params *JoinGameSessionParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use PublicPromoteGameSessionLeaderShort instead.
 
-PublicPromoteGameSessionLeader promote new game session leader. requires namespace:{namespace}:session:game [update]
+PublicPromoteGameSessionLeader promote new game session leader.
 Promote game session member to become the new game session leader.
 
 This API requires the NAMESPACE:{namespace}:SESSION:GAME [UPDATE] permission.
@@ -2366,7 +2366,7 @@ func (a *Client) PublicPromoteGameSessionLeader(params *PublicPromoteGameSession
 }
 
 /*
-PublicPromoteGameSessionLeaderShort promote new game session leader. requires namespace:{namespace}:session:game [update]
+PublicPromoteGameSessionLeaderShort promote new game session leader.
 Promote game session member to become the new game session leader.
 
 This API requires the NAMESPACE:{namespace}:SESSION:GAME [UPDATE] permission.
@@ -2435,7 +2435,7 @@ func (a *Client) PublicPromoteGameSessionLeaderShort(params *PublicPromoteGameSe
 /*
 Deprecated: 2022-08-10 - Use LeaveGameSessionShort instead.
 
-LeaveGameSession leave a game session. requires namespace:{namespace}:session:game:player [delete]
+LeaveGameSession leave a game session.
 Leave a game session.
 */
 func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, *LeaveGameSessionBadRequest, *LeaveGameSessionUnauthorized, *LeaveGameSessionForbidden, *LeaveGameSessionNotFound, *LeaveGameSessionInternalServerError, error) {
@@ -2495,7 +2495,7 @@ func (a *Client) LeaveGameSession(params *LeaveGameSessionParams, authInfo runti
 }
 
 /*
-LeaveGameSessionShort leave a game session. requires namespace:{namespace}:session:game:player [delete]
+LeaveGameSessionShort leave a game session.
 Leave a game session.
 */
 func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*LeaveGameSessionNoContent, error) {
@@ -2552,7 +2552,7 @@ func (a *Client) LeaveGameSessionShort(params *LeaveGameSessionParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use PublicGameSessionRejectShort instead.
 
-PublicGameSessionReject reject a game session invitation. requires namespace:{namespace}:session:game:player [delete]
+PublicGameSessionReject reject a game session invitation.
 Reject a game session invitation.
 */
 func (a *Client) PublicGameSessionReject(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, *PublicGameSessionRejectBadRequest, *PublicGameSessionRejectUnauthorized, *PublicGameSessionRejectForbidden, *PublicGameSessionRejectNotFound, *PublicGameSessionRejectInternalServerError, error) {
@@ -2612,7 +2612,7 @@ func (a *Client) PublicGameSessionReject(params *PublicGameSessionRejectParams, 
 }
 
 /*
-PublicGameSessionRejectShort reject a game session invitation. requires namespace:{namespace}:session:game:player [delete]
+PublicGameSessionRejectShort reject a game session invitation.
 Reject a game session invitation.
 */
 func (a *Client) PublicGameSessionRejectShort(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, error) {
@@ -2669,7 +2669,7 @@ func (a *Client) PublicGameSessionRejectShort(params *PublicGameSessionRejectPar
 /*
 Deprecated: 2022-08-10 - Use GetSessionServerSecretShort instead.
 
-GetSessionServerSecret get server secret. requires namespace:{namespace}:session:game:secret [read]
+GetSessionServerSecret get server secret.
 
 Used by game Client to Get Secret
 constraints
@@ -2746,7 +2746,7 @@ func (a *Client) GetSessionServerSecret(params *GetSessionServerSecretParams, au
 }
 
 /*
-GetSessionServerSecretShort get server secret. requires namespace:{namespace}:session:game:secret [read]
+GetSessionServerSecretShort get server secret.
 
 Used by game Client to Get Secret
 constraints
@@ -2821,7 +2821,7 @@ func (a *Client) GetSessionServerSecretShort(params *GetSessionServerSecretParam
 /*
 Deprecated: 2022-08-10 - Use AppendTeamGameSessionShort instead.
 
-AppendTeamGameSession append new member or team to session. requires namespace:{namespace}:session:game [update]
+AppendTeamGameSession append new member or team to session.
 Append new member or team to session
 */
 func (a *Client) AppendTeamGameSession(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, *AppendTeamGameSessionUnauthorized, *AppendTeamGameSessionForbidden, *AppendTeamGameSessionNotFound, *AppendTeamGameSessionInternalServerError, error) {
@@ -2878,7 +2878,7 @@ func (a *Client) AppendTeamGameSession(params *AppendTeamGameSessionParams, auth
 }
 
 /*
-AppendTeamGameSessionShort append new member or team to session. requires namespace:{namespace}:session:game [update]
+AppendTeamGameSessionShort append new member or team to session.
 Append new member or team to session
 */
 func (a *Client) AppendTeamGameSessionShort(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, error) {

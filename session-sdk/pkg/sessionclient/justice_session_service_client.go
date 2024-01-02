@@ -22,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/game_session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/global_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/max_active"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/native_session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/platform_credential"
@@ -84,6 +85,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.GameSession = game_session.New(transport, formats)
 	cli.GlobalConfiguration = global_configuration.New(transport, formats)
 	cli.MaxActive = max_active.New(transport, formats)
+	cli.NativeSession = native_session.New(transport, formats)
 	cli.Party = party.New(transport, formats)
 	cli.PlatformCredential = platform_credential.New(transport, formats)
 	cli.Player = player.New(transport, formats)
@@ -164,6 +166,8 @@ type JusticeSessionService struct {
 
 	MaxActive max_active.ClientService
 
+	NativeSession native_session.ClientService
+
 	Party party.ClientService
 
 	PlatformCredential platform_credential.ClientService
@@ -190,6 +194,7 @@ func (c *JusticeSessionService) SetTransport(transport runtime.ClientTransport) 
 	c.GameSession.SetTransport(transport)
 	c.GlobalConfiguration.SetTransport(transport)
 	c.MaxActive.SetTransport(transport)
+	c.NativeSession.SetTransport(transport)
 	c.Party.SetTransport(transport)
 	c.PlatformCredential.SetTransport(transport)
 	c.Player.SetTransport(transport)

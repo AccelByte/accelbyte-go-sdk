@@ -45,7 +45,7 @@ type AdminOrderCreate struct {
 	// Creation options
 	Options *OrderCreationOptions `json:"options,omitempty"`
 
-	// platform
+	// platform the platform which user are playing now and use for payment eg: user purchase item on Steam, it should be 'Steam'
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
 	Platform string `json:"platform,omitempty"`
 

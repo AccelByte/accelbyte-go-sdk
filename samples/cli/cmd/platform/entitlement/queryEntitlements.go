@@ -40,6 +40,7 @@ var QueryEntitlementsCmd = &cobra.Command{
 		}
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		origin, _ := cmd.Flags().GetString("origin")
 		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.QueryEntitlementsParams{
 			Namespace:        namespace,
@@ -50,6 +51,7 @@ var QueryEntitlementsCmd = &cobra.Command{
 			ItemID:           itemId,
 			Limit:            &limit,
 			Offset:           &offset,
+			Origin:           &origin,
 			UserID:           &userId,
 		}
 		ok, errOK := entitlementService.QueryEntitlementsShort(input)
@@ -75,5 +77,6 @@ func init() {
 	QueryEntitlementsCmd.Flags().String("itemId", "", "Item id")
 	QueryEntitlementsCmd.Flags().Int32("limit", 20, "Limit")
 	QueryEntitlementsCmd.Flags().Int32("offset", 0, "Offset")
+	QueryEntitlementsCmd.Flags().String("origin", "", "Origin")
 	QueryEntitlementsCmd.Flags().String("userId", "", "User id")
 }

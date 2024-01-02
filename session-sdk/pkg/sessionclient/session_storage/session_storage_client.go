@@ -47,7 +47,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminReadSessionStorageShort instead.
 
-AdminReadSessionStorage read session storage . requires admin:namespace:{namespace}:session:storage [read]
+AdminReadSessionStorage read session storage.
 
 Read Session Storage.
 */
@@ -105,7 +105,7 @@ func (a *Client) AdminReadSessionStorage(params *AdminReadSessionStorageParams, 
 }
 
 /*
-AdminReadSessionStorageShort read session storage . requires admin:namespace:{namespace}:session:storage [read]
+AdminReadSessionStorageShort read session storage.
 
 Read Session Storage.
 */
@@ -161,7 +161,7 @@ func (a *Client) AdminReadSessionStorageShort(params *AdminReadSessionStoragePar
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteUserSessionStorageShort instead.
 
-AdminDeleteUserSessionStorage delete session storage. requires admin:namespace:{namespace}:session:storage [delete]
+AdminDeleteUserSessionStorage delete session storage.
 
 Delete Session Storage.
 */
@@ -219,7 +219,7 @@ func (a *Client) AdminDeleteUserSessionStorage(params *AdminDeleteUserSessionSto
 }
 
 /*
-AdminDeleteUserSessionStorageShort delete session storage. requires admin:namespace:{namespace}:session:storage [delete]
+AdminDeleteUserSessionStorageShort delete session storage.
 
 Delete Session Storage.
 */
@@ -275,7 +275,7 @@ func (a *Client) AdminDeleteUserSessionStorageShort(params *AdminDeleteUserSessi
 /*
 Deprecated: 2022-08-10 - Use AdminReadUserSessionStorageShort instead.
 
-AdminReadUserSessionStorage read session storage user. requires admin:namespace:{namespace}:session:storage [read]
+AdminReadUserSessionStorage read session storage user.
 
 Read Session Storage User.
 */
@@ -333,7 +333,7 @@ func (a *Client) AdminReadUserSessionStorage(params *AdminReadUserSessionStorage
 }
 
 /*
-AdminReadUserSessionStorageShort read session storage user. requires admin:namespace:{namespace}:session:storage [read]
+AdminReadUserSessionStorageShort read session storage user.
 
 Read Session Storage User.
 */
@@ -389,7 +389,7 @@ func (a *Client) AdminReadUserSessionStorageShort(params *AdminReadUserSessionSt
 /*
 Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageLeaderShort instead.
 
-PublicUpdateInsertSessionStorageLeader update insert session storage leader . requires namespace:{namespace}:session:storage [create]
+PublicUpdateInsertSessionStorageLeader update insert session storage leader.
 
 Update Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.
 can store generic json
@@ -458,7 +458,7 @@ func (a *Client) PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInse
 }
 
 /*
-PublicUpdateInsertSessionStorageLeaderShort update insert session storage leader . requires namespace:{namespace}:session:storage [create]
+PublicUpdateInsertSessionStorageLeaderShort update insert session storage leader.
 
 Update Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.
 can store generic json
@@ -524,7 +524,7 @@ func (a *Client) PublicUpdateInsertSessionStorageLeaderShort(params *PublicUpdat
 /*
 Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageShort instead.
 
-PublicUpdateInsertSessionStorage update insert session storage user . requires namespace:{namespace}:session:storage [create]
+PublicUpdateInsertSessionStorage update insert session storage user.
 
 Update Insert Session Storage User. user can only update or insert user session storage data itself.
 can store generic json
@@ -593,7 +593,7 @@ func (a *Client) PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSess
 }
 
 /*
-PublicUpdateInsertSessionStorageShort update insert session storage user . requires namespace:{namespace}:session:storage [create]
+PublicUpdateInsertSessionStorageShort update insert session storage user.
 
 Update Insert Session Storage User. user can only update or insert user session storage data itself.
 can store generic json

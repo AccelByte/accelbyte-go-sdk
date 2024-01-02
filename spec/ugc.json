@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.19.0"
+    "version": "2.19.1"
   },
   "schemes": [
     "https"
@@ -22,6 +22,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]",
@@ -9652,6 +9653,253 @@
         ]
       }
     },
+    "/ugc/v2/admin/namespaces/{namespace}/staging-contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminListStagingContents",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of configs per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "default value: createdTime:desc\n\t\t\t\tavailable value:\n\t\t\t\t\u003cul\u003e\n\t\t\t\t\t\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\t\t\t\t\t\u003cli\u003eupdatedTime, updatedTime:desc, updatedTime:asc\u003c/li\u003e\n\t\t\t\t\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by content status [\u003ci\u003ePENDING\u003c/i\u003e, \u003ci\u003eREJECTED\u003c/i\u003e]",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list user's staging content",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedListStagingContentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774301\u003c/td\u003e\u003ctd\u003einvalid paging parameter\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774302\u003c/td\u003e\u003ctd\u003eunable to get staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774303\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List staging contents",
+        "tags": [
+          "Admin Staging Content"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/staging-contents/{contentId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminGetStagingContentByID",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "staging content",
+            "schema": {
+              "$ref": "#/definitions/models.StagingContentResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774401\u003c/td\u003e\u003ctd\u003estaging content not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774402\u003c/td\u003e\u003ctd\u003eunable to get staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774403\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get staging content by id",
+        "tags": [
+          "Admin Staging Content"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/staging-contents/{contentId}/approve": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminApproveStagingContent",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ApproveStagingContentRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "content approval created",
+            "schema": {
+              "$ref": "#/definitions/models.StagingContentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774405\u003c/td\u003e\u003ctd\u003eInvalid request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774406\u003c/td\u003e\u003ctd\u003estaging content not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774407\u003c/td\u003e\u003ctd\u003eunable to approve staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774408\u003c/td\u003e\u003ctd\u003enable to save ugc content: shareCode exceed the limit\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Approve or reject content",
+        "tags": [
+          "Admin Staging Content"
+        ]
+      }
+    },
     "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/sharecodes/{shareCode}": {
       "put": {
         "consumes": [
@@ -10474,6 +10722,102 @@
         "summary": "Get contents belong to a group",
         "tags": [
           "Admin Group"
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/users/{userId}/staging-contents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "AdminListUserStagingContents",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of configs per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "default value: createdTime:desc\n\t\t\t\t\tavailable value:\n\t\t\t\t\t\u003cul\u003e\n\t\t\t\t\t\t\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\t\t\t\t\t\t\u003cli\u003eupdatedTime, updatedTime:desc, updatedTime:asc\u003c/li\u003e\n\t\t\t\t\t\t\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by content status [\u003ci\u003ePENDING\u003c/i\u003e, \u003ci\u003eREJECTED\u003c/i\u003e]",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list user's staging content",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedListStagingContentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774301\u003c/td\u003e\u003ctd\u003einvalid paging parameter\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774302\u003c/td\u003e\u003ctd\u003eunable to get staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774303\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List user staging contents",
+        "tags": [
+          "Admin Staging Content"
         ]
       }
     },
@@ -12488,6 +12832,350 @@
           "Public Group"
         ]
       }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "ListUserStagingContents",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "number of configs per page",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "default value: createdTime:desc\n\t\t\t\tavailable value:\n\t\t\t\t\u003cul\u003e\n\t\t\t\t\t\u003cli\u003ecreatedTime, createdTime:desc, createdTime:asc\u003c/li\u003e\n\t\t\t\t\t\u003cli\u003eupdatedTime, updatedTime:desc, updatedTime:asc\u003c/li\u003e\n\t\t\t\t\t\u003c/ul\u003e",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "filter by content status [\u003ci\u003ePENDING\u003c/i\u003e, \u003ci\u003eREJECTED\u003c/i\u003e]",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list user's staging content",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedListStagingContentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774301\u003c/td\u003e\u003ctd\u003einvalid paging parameter\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774302\u003c/td\u003e\u003ctd\u003eunable to get staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774303\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "List user staging contents",
+        "tags": [
+          "Public Staging Content"
+        ]
+      }
+    },
+    "/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents/{contentId}": {
+      "delete": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u0026lt;/b\u0026gt;.",
+        "operationId": "DeleteUserStagingContentByID",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "staging content deleted"
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774417\u003c/td\u003e\u003ctd\u003estaging content not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774418\u003c/td\u003e\u003ctd\u003eunable to delete staging content\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete user staging content by id",
+        "tags": [
+          "Public Staging Content"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "operationId": "GetUserStagingContentByID",
+        "parameters": [
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "staging content",
+            "schema": {
+              "$ref": "#/definitions/models.StagingContentResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774401\u003c/td\u003e\u003ctd\u003estaging content not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774402\u003c/td\u003e\u003ctd\u003eunable to get staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774403\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user staging content by id",
+        "tags": [
+          "Public Staging Content"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u0026lt;/b\u0026gt;.",
+        "operationId": "UpdateStagingContent",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateStagingContentRequest"
+            }
+          },
+          {
+            "description": "content ID",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "staging content updated",
+            "schema": {
+              "$ref": "#/definitions/models.StagingContentResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774411\u003c/td\u003e\u003ctd\u003eInvalid request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774412\u003c/td\u003e\u003ctd\u003euser has been banned to update content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774413\u003c/td\u003e\u003ctd\u003estaging content not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774414\u003c/td\u003e\u003ctd\u003eunable to update staging content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e774415\u003c/td\u003e\u003ctd\u003eunable to generate presigned URL\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update staging content",
+        "tags": [
+          "Public Staging Content"
+        ]
+      }
     }
   },
   "definitions": {
@@ -12629,6 +13317,20 @@
           "type": "string"
         }
       }
+    },
+    "models.ApproveStagingContentRequest": {
+      "properties": {
+        "approved": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "approved"
+      ]
     },
     "models.ChannelRequest": {
       "properties": {
@@ -13142,6 +13844,13 @@
         "channelId": {
           "type": "string"
         },
+        "contentStatus": {
+          "enum": [
+            "PUBLISHED",
+            "UNDER_REVIEW"
+          ],
+          "type": "string"
+        },
         "contentType": {
           "type": "string"
         },
@@ -13195,6 +13904,7 @@
           "type": "array"
         },
         "shareCode": {
+          "description": "shareCode will be empty if content is under review",
           "type": "string"
         },
         "subType": {
@@ -13241,6 +13951,13 @@
         "channelId": {
           "type": "string"
         },
+        "contentStatus": {
+          "enum": [
+            "PUBLISHED",
+            "UNDER_REVIEW"
+          ],
+          "type": "string"
+        },
         "contentType": {
           "description": "S3 content type",
           "type": "string"
@@ -13284,6 +14001,7 @@
           "type": "array"
         },
         "shareCode": {
+          "description": "shareCode will be empty if content is under review",
           "type": "string"
         },
         "subType": {
@@ -13307,6 +14025,7 @@
       },
       "required": [
         "channelId",
+        "contentStatus",
         "createdTime",
         "fileLocation",
         "id",
@@ -13834,6 +14553,23 @@
         "paging"
       ]
     },
+    "models.PaginatedListStagingContentResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.StagingContentResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.PagingCursor": {
       "properties": {
         "first": {
@@ -13974,6 +14710,83 @@
         "url"
       ]
     },
+    "models.StagingContentResponse": {
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "payloadURL": {
+          "type": "string"
+        },
+        "screenshots": {
+          "items": {
+            "$ref": "#/definitions/models.ScreenshotResponse"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "APPROVED",
+            "PENDING",
+            "REJECTED"
+          ],
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updatedTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "channelId",
+        "createdTime",
+        "id",
+        "name",
+        "namespace",
+        "status",
+        "tags",
+        "userId"
+      ]
+    },
     "models.UpdateChannelRequest": {
       "properties": {
         "name": {
@@ -14074,6 +14887,13 @@
         "channelId": {
           "type": "string"
         },
+        "contentStatus": {
+          "enum": [
+            "PUBLISHED",
+            "UNDER_REVIEW"
+          ],
+          "type": "string"
+        },
         "contentType": {
           "description": "S3 content type",
           "type": "string"
@@ -14140,6 +14960,7 @@
       },
       "required": [
         "channelId",
+        "contentStatus",
         "createdTime",
         "fileLocation",
         "id",
@@ -14200,6 +15021,19 @@
       },
       "required": [
         "screenshots"
+      ]
+    },
+    "models.UpdateStagingContentRequest": {
+      "properties": {
+        "fileExtension": {
+          "type": "string"
+        },
+        "fileLocation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fileLocation"
       ]
     },
     "models.UserFollowRequest": {
@@ -14304,11 +15138,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-15T06:38:12+00:00",
-    "gitHash": "368d0fa4778865b985cb6b974ac9733d138b8ab7",
+    "buildDate": "2023-12-29T06:36:16+00:00",
+    "gitHash": "beb31b95277bf2f311acbc5793ddc99b4518d0ef",
     "name": "justice-ugc-service",
     "realm": "demo",
-    "version": "2.19.0",
-    "version-roles-seeding": "0.0.13"
+    "version": "2.19.1",
+    "version-roles-seeding": "1.0.21"
   }
 }

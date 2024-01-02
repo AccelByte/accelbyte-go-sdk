@@ -54,10 +54,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use MatchPoolListShort instead.
 
 MatchPoolList list match pools
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
-
-Required Scope: social
-
 List matchmaking pools.
 */
 func (a *Client) MatchPoolList(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, *MatchPoolListUnauthorized, *MatchPoolListForbidden, *MatchPoolListInternalServerError, error) {
@@ -112,10 +108,6 @@ func (a *Client) MatchPoolList(params *MatchPoolListParams, authInfo runtime.Cli
 
 /*
 MatchPoolListShort list match pools
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
-
-Required Scope: social
-
 List matchmaking pools.
 */
 func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, error) {
@@ -169,10 +161,6 @@ func (a *Client) MatchPoolListShort(params *MatchPoolListParams, authInfo runtim
 Deprecated: 2022-08-10 - Use CreateMatchPoolShort instead.
 
 CreateMatchPool create a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking pool.
 
 A pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).
@@ -251,10 +239,6 @@ func (a *Client) CreateMatchPool(params *CreateMatchPoolParams, authInfo runtime
 
 /*
 CreateMatchPoolShort create a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [CREATE]
-
-Required Scope: social
-
 Creates a new matchmaking pool.
 
 A pool is isolated from other pools (i.e. tickets may be matched with other tickets in the same pool, but not with tickets in other pools).
@@ -330,10 +314,6 @@ func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo ru
 Deprecated: 2022-08-10 - Use MatchPoolDetailsShort instead.
 
 MatchPoolDetails get details for a specific match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
-
-Required Scope: social
-
 Get details for a specific match pool
 */
 func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsInternalServerError, error) {
@@ -388,10 +368,6 @@ func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runti
 
 /*
 MatchPoolDetailsShort get details for a specific match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [READ]
-
-Required Scope: social
-
 Get details for a specific match pool
 */
 func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error) {
@@ -445,10 +421,6 @@ func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo 
 Deprecated: 2022-08-10 - Use UpdateMatchPoolShort instead.
 
 UpdateMatchPool update a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
-
-Required Scope: social
-
 Updates an existing matchmaking pool.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
@@ -524,10 +496,6 @@ func (a *Client) UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime
 
 /*
 UpdateMatchPoolShort update a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [UPDATE]
-
-Required Scope: social
-
 Updates an existing matchmaking pool.
 
 ticket_expiration_seconds and backfill_ticket_expiration_seconds will be set to 300 seconds (5 minutes) by default if not filled.
@@ -600,10 +568,6 @@ func (a *Client) UpdateMatchPoolShort(params *UpdateMatchPoolParams, authInfo ru
 Deprecated: 2022-08-10 - Use DeleteMatchPoolShort instead.
 
 DeleteMatchPool delete a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
-
-Required Scope: social
-
 Deletes an existing matchmaking pool.
 */
 func (a *Client) DeleteMatchPool(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, *DeleteMatchPoolUnauthorized, *DeleteMatchPoolForbidden, *DeleteMatchPoolNotFound, *DeleteMatchPoolInternalServerError, error) {
@@ -661,10 +625,6 @@ func (a *Client) DeleteMatchPool(params *DeleteMatchPoolParams, authInfo runtime
 
 /*
 DeleteMatchPoolShort delete a match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL [DELETE]
-
-Required Scope: social
-
 Deletes an existing matchmaking pool.
 */
 func (a *Client) DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, error) {
@@ -720,10 +680,6 @@ func (a *Client) DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo ru
 Deprecated: 2022-08-10 - Use MatchPoolMetricShort instead.
 
 MatchPoolMetric get metrics for a specific match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
-
-Required Scope: social
-
 Get metric for a specific match pool
 
 Result: queueTime in seconds
@@ -783,10 +739,6 @@ func (a *Client) MatchPoolMetric(params *MatchPoolMetricParams, authInfo runtime
 
 /*
 MatchPoolMetricShort get metrics for a specific match pool
-Required Permission: NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
-
-Required Scope: social
-
 Get metric for a specific match pool
 
 Result: queueTime in seconds
@@ -844,10 +796,6 @@ func (a *Client) MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo ru
 Deprecated: 2022-08-10 - Use GetPlayerMetricShort instead.
 
 GetPlayerMetric get metrics player for a specific match pool
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
-
-Required Scope: social
-
 Get player metric for a specific match pool
 */
 func (a *Client) GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, *GetPlayerMetricUnauthorized, *GetPlayerMetricForbidden, *GetPlayerMetricNotFound, *GetPlayerMetricInternalServerError, error) {
@@ -905,10 +853,6 @@ func (a *Client) GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime
 
 /*
 GetPlayerMetricShort get metrics player for a specific match pool
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]
-
-Required Scope: social
-
 Get player metric for a specific match pool
 */
 func (a *Client) GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error) {
@@ -964,10 +908,6 @@ func (a *Client) GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminGetMatchPoolTicketsShort instead.
 
 AdminGetMatchPoolTickets get tickets in queue for a specific match pool
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]
-
-Required Scope: social
-
 Get tickets in queue for a specific match pool
 
 Result: number of tickets and list of ticket detail in a match pool.
@@ -1027,10 +967,6 @@ func (a *Client) AdminGetMatchPoolTickets(params *AdminGetMatchPoolTicketsParams
 
 /*
 AdminGetMatchPoolTicketsShort get tickets in queue for a specific match pool
-Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:POOL:TICKETS [READ]
-
-Required Scope: social
-
 Get tickets in queue for a specific match pool
 
 Result: number of tickets and list of ticket detail in a match pool.

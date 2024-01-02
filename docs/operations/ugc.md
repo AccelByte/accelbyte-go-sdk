@@ -201,6 +201,14 @@
 | `/ugc/v2/admin/namespaces/{namespace}/configs` | GET | AdminGetConfigsShort | [AdminGetConfigsShort](../../ugc-sdk/pkg/ugcclient/admin_config/admin_config_client.go) | [AdminGetConfigsShort](../../services-api/pkg/service/ugc/adminConfig.go) | [AdminGetConfigsShort](../../samples/cli/cmd/ugc/adminConfig/adminGetConfigs.go) |
 | `/ugc/v2/admin/namespaces/{namespace}/configs/{key}` | PATCH | AdminUpdateConfigShort | [AdminUpdateConfigShort](../../ugc-sdk/pkg/ugcclient/admin_config/admin_config_client.go) | [AdminUpdateConfigShort](../../services-api/pkg/service/ugc/adminConfig.go) | [AdminUpdateConfigShort](../../samples/cli/cmd/ugc/adminConfig/adminUpdateConfig.go) |
 
+### Admin Staging Content Wrapper:  [AdminStagingContent](../../services-api/pkg/service/ugc/adminStagingContent.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/ugc/v2/admin/namespaces/{namespace}/staging-contents` | GET | AdminListStagingContentsShort | [AdminListStagingContentsShort](../../ugc-sdk/pkg/ugcclient/admin_staging_content/admin_staging_content_client.go) | [AdminListStagingContentsShort](../../services-api/pkg/service/ugc/adminStagingContent.go) | [AdminListStagingContentsShort](../../samples/cli/cmd/ugc/adminStagingContent/adminListStagingContents.go) |
+| `/ugc/v2/admin/namespaces/{namespace}/staging-contents/{contentId}` | GET | AdminGetStagingContentByIDShort | [AdminGetStagingContentByIDShort](../../ugc-sdk/pkg/ugcclient/admin_staging_content/admin_staging_content_client.go) | [AdminGetStagingContentByIDShort](../../services-api/pkg/service/ugc/adminStagingContent.go) | [AdminGetStagingContentByIDShort](../../samples/cli/cmd/ugc/adminStagingContent/adminGetStagingContentByID.go) |
+| `/ugc/v2/admin/namespaces/{namespace}/staging-contents/{contentId}/approve` | POST | AdminApproveStagingContentShort | [AdminApproveStagingContentShort](../../ugc-sdk/pkg/ugcclient/admin_staging_content/admin_staging_content_client.go) | [AdminApproveStagingContentShort](../../services-api/pkg/service/ugc/adminStagingContent.go) | [AdminApproveStagingContentShort](../../samples/cli/cmd/ugc/adminStagingContent/adminApproveStagingContent.go) |
+| `/ugc/v2/admin/namespaces/{namespace}/users/{userId}/staging-contents` | GET | AdminListUserStagingContentsShort | [AdminListUserStagingContentsShort](../../ugc-sdk/pkg/ugcclient/admin_staging_content/admin_staging_content_client.go) | [AdminListUserStagingContentsShort](../../services-api/pkg/service/ugc/adminStagingContent.go) | [AdminListUserStagingContentsShort](../../samples/cli/cmd/ugc/adminStagingContent/adminListUserStagingContents.go) |
+
 ### Public Content V2 Wrapper:  [PublicContentV2](../../services-api/pkg/service/ugc/publicContentV2.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -235,6 +243,14 @@
 | `/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/like` | GET | PublicListContentLikeV2Short | [PublicListContentLikeV2Short](../../ugc-sdk/pkg/ugcclient/public_like_v2/public_like_v2_client.go) | [PublicListContentLikeV2Short](../../services-api/pkg/service/ugc/publicLikeV2.go) | [PublicListContentLikeV2Short](../../samples/cli/cmd/ugc/publicLikeV2/publicListContentLikeV2.go) |
 | `/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/like` | PUT | UpdateContentLikeStatusV2Short | [UpdateContentLikeStatusV2Short](../../ugc-sdk/pkg/ugcclient/public_like_v2/public_like_v2_client.go) | [UpdateContentLikeStatusV2Short](../../services-api/pkg/service/ugc/publicLikeV2.go) | [UpdateContentLikeStatusV2Short](../../samples/cli/cmd/ugc/publicLikeV2/updateContentLikeStatusV2.go) |
 
+### Public Staging Content Wrapper:  [PublicStagingContent](../../services-api/pkg/service/ugc/publicStagingContent.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents` | GET | ListUserStagingContentsShort | [ListUserStagingContentsShort](../../ugc-sdk/pkg/ugcclient/public_staging_content/public_staging_content_client.go) | [ListUserStagingContentsShort](../../services-api/pkg/service/ugc/publicStagingContent.go) | [ListUserStagingContentsShort](../../samples/cli/cmd/ugc/publicStagingContent/listUserStagingContents.go) |
+| `/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents/{contentId}` | GET | GetUserStagingContentByIDShort | [GetUserStagingContentByIDShort](../../ugc-sdk/pkg/ugcclient/public_staging_content/public_staging_content_client.go) | [GetUserStagingContentByIDShort](../../services-api/pkg/service/ugc/publicStagingContent.go) | [GetUserStagingContentByIDShort](../../samples/cli/cmd/ugc/publicStagingContent/getUserStagingContentByID.go) |
+| `/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents/{contentId}` | PUT | UpdateStagingContentShort | [UpdateStagingContentShort](../../ugc-sdk/pkg/ugcclient/public_staging_content/public_staging_content_client.go) | [UpdateStagingContentShort](../../services-api/pkg/service/ugc/publicStagingContent.go) | [UpdateStagingContentShort](../../samples/cli/cmd/ugc/publicStagingContent/updateStagingContent.go) |
+| `/ugc/v2/public/namespaces/{namespace}/users/{userId}/staging-contents/{contentId}` | DELETE | DeleteUserStagingContentByIDShort | [DeleteUserStagingContentByIDShort](../../ugc-sdk/pkg/ugcclient/public_staging_content/public_staging_content_client.go) | [DeleteUserStagingContentByIDShort](../../services-api/pkg/service/ugc/publicStagingContent.go) | [DeleteUserStagingContentByIDShort](../../samples/cli/cmd/ugc/publicStagingContent/deleteUserStagingContentByID.go) |
+
 
 &nbsp;  
 
@@ -247,6 +263,7 @@
 | `models.AdminGetContentBulkRequest` | [ModelsAdminGetContentBulkRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_admin_get_content_bulk_request.go) |
 | `models.AdminUpdateContentRequest` | [ModelsAdminUpdateContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_admin_update_content_request.go) |
 | `models.AdminUpdateContentRequestV2` | [ModelsAdminUpdateContentRequestV2 ](../../ugc-sdk/pkg/ugcclientmodels/models_admin_update_content_request_v2.go) |
+| `models.ApproveStagingContentRequest` | [ModelsApproveStagingContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_approve_staging_content_request.go) |
 | `models.ChannelRequest` | [ModelsChannelRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_channel_request.go) |
 | `models.ChannelResponse` | [ModelsChannelResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_channel_response.go) |
 | `models.ConfigResponse` | [ModelsConfigResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_config_response.go) |
@@ -291,6 +308,7 @@
 | `models.PaginatedGetTagResponse` | [ModelsPaginatedGetTagResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_paginated_get_tag_response.go) |
 | `models.PaginatedGetTypeResponse` | [ModelsPaginatedGetTypeResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_paginated_get_type_response.go) |
 | `models.PaginatedGroupResponse` | [ModelsPaginatedGroupResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_paginated_group_response.go) |
+| `models.PaginatedListStagingContentResponse` | [ModelsPaginatedListStagingContentResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_paginated_list_staging_content_response.go) |
 | `models.PagingCursor` | [ModelsPagingCursor ](../../ugc-sdk/pkg/ugcclientmodels/models_paging_cursor.go) |
 | `models.PayloadURL` | [ModelsPayloadURL ](../../ugc-sdk/pkg/ugcclientmodels/models_payload_url.go) |
 | `models.PreviewURL` | [ModelsPreviewURL ](../../ugc-sdk/pkg/ugcclientmodels/models_preview_url.go) |
@@ -298,6 +316,7 @@
 | `models.PublicCreateContentRequestS3` | [ModelsPublicCreateContentRequestS3 ](../../ugc-sdk/pkg/ugcclientmodels/models_public_create_content_request_s3.go) |
 | `models.PublicGetContentBulkRequest` | [ModelsPublicGetContentBulkRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_public_get_content_bulk_request.go) |
 | `models.ScreenshotResponse` | [ModelsScreenshotResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_screenshot_response.go) |
+| `models.StagingContentResponse` | [ModelsStagingContentResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_staging_content_response.go) |
 | `models.UpdateChannelRequest` | [ModelsUpdateChannelRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_channel_request.go) |
 | `models.UpdateConfigRequest` | [ModelsUpdateConfigRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_config_request.go) |
 | `models.UpdateContentRequest` | [ModelsUpdateContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_content_request.go) |
@@ -307,6 +326,7 @@
 | `models.UpdateFileLocationRequest` | [ModelsUpdateFileLocationRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_file_location_request.go) |
 | `models.UpdateScreenshotRequest` | [ModelsUpdateScreenshotRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot_request.go) |
 | `models.UpdateScreenshotResponse` | [ModelsUpdateScreenshotResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot_response.go) |
+| `models.UpdateStagingContentRequest` | [ModelsUpdateStagingContentRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_update_staging_content_request.go) |
 | `models.UserFollowRequest` | [ModelsUserFollowRequest ](../../ugc-sdk/pkg/ugcclientmodels/models_user_follow_request.go) |
 | `models.UserFollowResponse` | [ModelsUserFollowResponse ](../../ugc-sdk/pkg/ugcclientmodels/models_user_follow_response.go) |
 | `models.createScreenshotRequestItem` | [ModelsCreateScreenshotRequestItem ](../../ugc-sdk/pkg/ugcclientmodels/models_create_screenshot_request_item.go) |

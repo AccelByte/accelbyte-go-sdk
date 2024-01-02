@@ -74,6 +74,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetUserFriendsUpdatedShort instead.
 
 GetUserFriendsUpdated get list of friends
+Get list of friends in a namespace.
 */
 func (a *Client) GetUserFriendsUpdated(params *GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsUpdatedOK, *GetUserFriendsUpdatedBadRequest, *GetUserFriendsUpdatedUnauthorized, *GetUserFriendsUpdatedForbidden, *GetUserFriendsUpdatedNotFound, *GetUserFriendsUpdatedInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -133,6 +134,7 @@ func (a *Client) GetUserFriendsUpdated(params *GetUserFriendsUpdatedParams, auth
 
 /*
 GetUserFriendsUpdatedShort get list of friends
+Get list of friends in a namespace.
 */
 func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsUpdatedOK, error) {
 	// TODO: Validate the params before sending
@@ -189,6 +191,7 @@ func (a *Client) GetUserFriendsUpdatedShort(params *GetUserFriendsUpdatedParams,
 Deprecated: 2022-08-10 - Use GetUserIncomingFriendsShort instead.
 
 GetUserIncomingFriends get list of incoming friends
+Get list of incoming friends in a namespace.
 */
 func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, *GetUserIncomingFriendsBadRequest, *GetUserIncomingFriendsUnauthorized, *GetUserIncomingFriendsForbidden, *GetUserIncomingFriendsNotFound, *GetUserIncomingFriendsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -248,6 +251,7 @@ func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, au
 
 /*
 GetUserIncomingFriendsShort get list of incoming friends
+Get list of incoming friends in a namespace.
 */
 func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, error) {
 	// TODO: Validate the params before sending
@@ -304,6 +308,7 @@ func (a *Client) GetUserIncomingFriendsShort(params *GetUserIncomingFriendsParam
 Deprecated: 2022-08-10 - Use GetUserIncomingFriendsWithTimeShort instead.
 
 GetUserIncomingFriendsWithTime get list of incoming friends with requested time info
+Get list of incoming friends with requested time info in a namespace.
 */
 func (a *Client) GetUserIncomingFriendsWithTime(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, *GetUserIncomingFriendsWithTimeBadRequest, *GetUserIncomingFriendsWithTimeUnauthorized, *GetUserIncomingFriendsWithTimeForbidden, *GetUserIncomingFriendsWithTimeNotFound, *GetUserIncomingFriendsWithTimeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -363,6 +368,7 @@ func (a *Client) GetUserIncomingFriendsWithTime(params *GetUserIncomingFriendsWi
 
 /*
 GetUserIncomingFriendsWithTimeShort get list of incoming friends with requested time info
+Get list of incoming friends with requested time info in a namespace.
 */
 func (a *Client) GetUserIncomingFriendsWithTimeShort(params *GetUserIncomingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsWithTimeOK, error) {
 	// TODO: Validate the params before sending
@@ -419,6 +425,7 @@ func (a *Client) GetUserIncomingFriendsWithTimeShort(params *GetUserIncomingFrie
 Deprecated: 2022-08-10 - Use GetUserOutgoingFriendsShort instead.
 
 GetUserOutgoingFriends get list of outgoing friends
+Get list of outgoing friends in a namespace.
 */
 func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, *GetUserOutgoingFriendsBadRequest, *GetUserOutgoingFriendsUnauthorized, *GetUserOutgoingFriendsForbidden, *GetUserOutgoingFriendsNotFound, *GetUserOutgoingFriendsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -478,6 +485,7 @@ func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, au
 
 /*
 GetUserOutgoingFriendsShort get list of outgoing friends
+Get list of outgoing friends in a namespace.
 */
 func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, error) {
 	// TODO: Validate the params before sending
@@ -534,6 +542,7 @@ func (a *Client) GetUserOutgoingFriendsShort(params *GetUserOutgoingFriendsParam
 Deprecated: 2022-08-10 - Use GetUserOutgoingFriendsWithTimeShort instead.
 
 GetUserOutgoingFriendsWithTime get list of outgoing friends with requested time info
+Get list of outgoing friends with requested time info in a namespace.
 */
 func (a *Client) GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, *GetUserOutgoingFriendsWithTimeBadRequest, *GetUserOutgoingFriendsWithTimeUnauthorized, *GetUserOutgoingFriendsWithTimeForbidden, *GetUserOutgoingFriendsWithTimeNotFound, *GetUserOutgoingFriendsWithTimeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -593,6 +602,7 @@ func (a *Client) GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWi
 
 /*
 GetUserOutgoingFriendsWithTimeShort get list of outgoing friends with requested time info
+Get list of outgoing friends with requested time info in a namespace.
 */
 func (a *Client) GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFriendsWithTimeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsWithTimeOK, error) {
 	// TODO: Validate the params before sending
@@ -649,6 +659,7 @@ func (a *Client) GetUserOutgoingFriendsWithTimeShort(params *GetUserOutgoingFrie
 Deprecated: 2022-08-10 - Use GetUserFriendsWithPlatformShort instead.
 
 GetUserFriendsWithPlatform get list of friends with platform data
+Get list of friends with platform data in a namespace.
 */
 func (a *Client) GetUserFriendsWithPlatform(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, *GetUserFriendsWithPlatformBadRequest, *GetUserFriendsWithPlatformUnauthorized, *GetUserFriendsWithPlatformForbidden, *GetUserFriendsWithPlatformNotFound, *GetUserFriendsWithPlatformInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -708,6 +719,7 @@ func (a *Client) GetUserFriendsWithPlatform(params *GetUserFriendsWithPlatformPa
 
 /*
 GetUserFriendsWithPlatformShort get list of friends with platform data
+Get list of friends with platform data in a namespace.
 */
 func (a *Client) GetUserFriendsWithPlatformShort(params *GetUserFriendsWithPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsWithPlatformOK, error) {
 	// TODO: Validate the params before sending
@@ -888,6 +900,7 @@ func (a *Client) UserRequestFriendShort(params *UserRequestFriendParams, authInf
 Deprecated: 2022-08-10 - Use UserAcceptFriendRequestShort instead.
 
 UserAcceptFriendRequest user accept friend
+User accept friend.
 */
 func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -947,6 +960,7 @@ func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, 
 
 /*
 UserAcceptFriendRequestShort user accept friend
+User accept friend.
 */
 func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1003,6 +1017,7 @@ func (a *Client) UserAcceptFriendRequestShort(params *UserAcceptFriendRequestPar
 Deprecated: 2022-08-10 - Use UserCancelFriendRequestShort instead.
 
 UserCancelFriendRequest user cancel a friend request
+User cancel a friend request.
 */
 func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, *UserCancelFriendRequestBadRequest, *UserCancelFriendRequestUnauthorized, *UserCancelFriendRequestForbidden, *UserCancelFriendRequestNotFound, *UserCancelFriendRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1062,6 +1077,7 @@ func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, 
 
 /*
 UserCancelFriendRequestShort user cancel a friend request
+User cancel a friend request.
 */
 func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1118,6 +1134,7 @@ func (a *Client) UserCancelFriendRequestShort(params *UserCancelFriendRequestPar
 Deprecated: 2022-08-10 - Use UserRejectFriendRequestShort instead.
 
 UserRejectFriendRequest user reject a friend request
+User reject a friend request.
 */
 func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, *UserRejectFriendRequestBadRequest, *UserRejectFriendRequestUnauthorized, *UserRejectFriendRequestForbidden, *UserRejectFriendRequestNotFound, *UserRejectFriendRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1177,6 +1194,7 @@ func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, 
 
 /*
 UserRejectFriendRequestShort user reject a friend request
+User reject a friend request.
 */
 func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1233,6 +1251,7 @@ func (a *Client) UserRejectFriendRequestShort(params *UserRejectFriendRequestPar
 Deprecated: 2022-08-10 - Use UserGetFriendshipStatusShort instead.
 
 UserGetFriendshipStatus user get friendship status
+User get friendship status.
 */
 func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, *UserGetFriendshipStatusBadRequest, *UserGetFriendshipStatusUnauthorized, *UserGetFriendshipStatusForbidden, *UserGetFriendshipStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1289,6 +1308,7 @@ func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, 
 
 /*
 UserGetFriendshipStatusShort user get friendship status
+User get friendship status.
 */
 func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -1343,6 +1363,7 @@ func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusPar
 Deprecated: 2022-08-10 - Use UserUnfriendRequestShort instead.
 
 UserUnfriendRequest user unfriend a friend
+User unfriend a friend.
 */
 func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, *UserUnfriendRequestBadRequest, *UserUnfriendRequestUnauthorized, *UserUnfriendRequestForbidden, *UserUnfriendRequestNotFound, *UserUnfriendRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1402,6 +1423,7 @@ func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo
 
 /*
 UserUnfriendRequestShort user unfriend a friend
+User unfriend a friend.
 */
 func (a *Client) UserUnfriendRequestShort(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, error) {
 	// TODO: Validate the params before sending

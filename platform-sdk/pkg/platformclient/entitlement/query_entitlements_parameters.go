@@ -38,6 +38,21 @@ const (
 	QueryEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Get the enum in QueryEntitlementsParams
+const (
+	QueryEntitlementsEpicConstant        = "Epic"
+	QueryEntitlementsGooglePlayConstant  = "GooglePlay"
+	QueryEntitlementsIOSConstant         = "IOS"
+	QueryEntitlementsNintendoConstant    = "Nintendo"
+	QueryEntitlementsOculusConstant      = "Oculus"
+	QueryEntitlementsOtherConstant       = "Other"
+	QueryEntitlementsPlaystationConstant = "Playstation"
+	QueryEntitlementsSteamConstant       = "Steam"
+	QueryEntitlementsSystemConstant      = "System"
+	QueryEntitlementsTwitchConstant      = "Twitch"
+	QueryEntitlementsXboxConstant        = "Xbox"
+)
+
 // NewQueryEntitlementsParams creates a new QueryEntitlementsParams object
 // with the default values initialized.
 func NewQueryEntitlementsParams() *QueryEntitlementsParams {
@@ -128,6 +143,8 @@ type QueryEntitlementsParams struct {
 	Limit *int32
 	/*Offset*/
 	Offset *int32
+	/*Origin*/
+	Origin *string
 	/*UserID*/
 	UserID *string
 
@@ -272,6 +289,17 @@ func (o *QueryEntitlementsParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithOrigin adds the origin to the query entitlements params
+func (o *QueryEntitlementsParams) WithOrigin(origin *string) *QueryEntitlementsParams {
+	o.SetOrigin(origin)
+	return o
+}
+
+// SetOrigin adds the origin to the query entitlements params
+func (o *QueryEntitlementsParams) SetOrigin(origin *string) {
+	o.Origin = origin
+}
+
 // WithUserID adds the userID to the query entitlements params
 func (o *QueryEntitlementsParams) WithUserID(userID *string) *QueryEntitlementsParams {
 	o.SetUserID(userID)
@@ -394,6 +422,22 @@ func (o *QueryEntitlementsParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Origin != nil {
+
+		// query param origin
+		var qrOrigin string
+		if o.Origin != nil {
+			qrOrigin = *o.Origin
+		}
+		qOrigin := qrOrigin
+		if qOrigin != "" {
+			if err := r.SetQueryParam("origin", qOrigin); err != nil {
 				return err
 			}
 		}

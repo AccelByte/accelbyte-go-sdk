@@ -49,7 +49,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminQueryPlayerAttributesShort instead.
 
-AdminQueryPlayerAttributes query player attributes. requires admin:namespace:{namespace}:session:player:{userid} [read]
+AdminQueryPlayerAttributes query player attributes.
 Admin get attributes of players.
 
 Field descriptions:
@@ -117,7 +117,7 @@ func (a *Client) AdminQueryPlayerAttributes(params *AdminQueryPlayerAttributesPa
 }
 
 /*
-AdminQueryPlayerAttributesShort query player attributes. requires admin:namespace:{namespace}:session:player:{userid} [read]
+AdminQueryPlayerAttributesShort query player attributes.
 Admin get attributes of players.
 
 Field descriptions:
@@ -183,7 +183,7 @@ func (a *Client) AdminQueryPlayerAttributesShort(params *AdminQueryPlayerAttribu
 /*
 Deprecated: 2022-08-10 - Use AdminGetPlayerAttributesShort instead.
 
-AdminGetPlayerAttributes get player attributes. requires admin:namespace:{namespace}:session:player:{userid} [read]
+AdminGetPlayerAttributes get player attributes.
 Admin get attributes of a player.
 
 Field descriptions:
@@ -251,7 +251,7 @@ func (a *Client) AdminGetPlayerAttributes(params *AdminGetPlayerAttributesParams
 }
 
 /*
-AdminGetPlayerAttributesShort get player attributes. requires admin:namespace:{namespace}:session:player:{userid} [read]
+AdminGetPlayerAttributesShort get player attributes.
 Admin get attributes of a player.
 
 Field descriptions:
@@ -317,7 +317,7 @@ func (a *Client) AdminGetPlayerAttributesShort(params *AdminGetPlayerAttributesP
 /*
 Deprecated: 2022-08-10 - Use PublicGetBulkPlayerCurrentPlatformShort instead.
 
-PublicGetBulkPlayerCurrentPlatform get player current platform in bulk. requires namespace:{namespace}:session:player [read]
+PublicGetBulkPlayerCurrentPlatform get player current platform in bulk.
 Get bulk players current platform.
 */
 func (a *Client) PublicGetBulkPlayerCurrentPlatform(params *PublicGetBulkPlayerCurrentPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBulkPlayerCurrentPlatformOK, *PublicGetBulkPlayerCurrentPlatformBadRequest, *PublicGetBulkPlayerCurrentPlatformUnauthorized, *PublicGetBulkPlayerCurrentPlatformNotFound, *PublicGetBulkPlayerCurrentPlatformInternalServerError, error) {
@@ -374,7 +374,7 @@ func (a *Client) PublicGetBulkPlayerCurrentPlatform(params *PublicGetBulkPlayerC
 }
 
 /*
-PublicGetBulkPlayerCurrentPlatformShort get player current platform in bulk. requires namespace:{namespace}:session:player [read]
+PublicGetBulkPlayerCurrentPlatformShort get player current platform in bulk.
 Get bulk players current platform.
 */
 func (a *Client) PublicGetBulkPlayerCurrentPlatformShort(params *PublicGetBulkPlayerCurrentPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBulkPlayerCurrentPlatformOK, error) {
@@ -429,7 +429,7 @@ func (a *Client) PublicGetBulkPlayerCurrentPlatformShort(params *PublicGetBulkPl
 /*
 Deprecated: 2022-08-10 - Use PublicGetPlayerAttributesShort instead.
 
-PublicGetPlayerAttributes get player attributes. requires namespace:{namespace}:session:player [read]
+PublicGetPlayerAttributes get player attributes.
 Get player attributes.
 
 Field descriptions:
@@ -497,7 +497,7 @@ func (a *Client) PublicGetPlayerAttributes(params *PublicGetPlayerAttributesPara
 }
 
 /*
-PublicGetPlayerAttributesShort get player attributes. requires namespace:{namespace}:session:player [read]
+PublicGetPlayerAttributesShort get player attributes.
 Get player attributes.
 
 Field descriptions:
@@ -563,7 +563,7 @@ func (a *Client) PublicGetPlayerAttributesShort(params *PublicGetPlayerAttribute
 /*
 Deprecated: 2022-08-10 - Use PublicStorePlayerAttributesShort instead.
 
-PublicStorePlayerAttributes store player attributes. requires namespace:{namespace}:session:player [create]
+PublicStorePlayerAttributes store player attributes.
 This API behaves to upsert player's attributes.
 
 Field descriptions:
@@ -628,7 +628,7 @@ func (a *Client) PublicStorePlayerAttributes(params *PublicStorePlayerAttributes
 }
 
 /*
-PublicStorePlayerAttributesShort store player attributes. requires namespace:{namespace}:session:player [create]
+PublicStorePlayerAttributesShort store player attributes.
 This API behaves to upsert player's attributes.
 
 Field descriptions:
@@ -692,7 +692,7 @@ func (a *Client) PublicStorePlayerAttributesShort(params *PublicStorePlayerAttri
 /*
 Deprecated: 2022-08-10 - Use PublicDeletePlayerAttributesShort instead.
 
-PublicDeletePlayerAttributes remove player attributes. requires namespace:{namespace}:session:player [delete]
+PublicDeletePlayerAttributes remove player attributes.
 Reset player attributes.
 */
 func (a *Client) PublicDeletePlayerAttributes(params *PublicDeletePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerAttributesNoContent, *PublicDeletePlayerAttributesBadRequest, *PublicDeletePlayerAttributesUnauthorized, *PublicDeletePlayerAttributesNotFound, *PublicDeletePlayerAttributesInternalServerError, error) {
@@ -749,7 +749,7 @@ func (a *Client) PublicDeletePlayerAttributes(params *PublicDeletePlayerAttribut
 }
 
 /*
-PublicDeletePlayerAttributesShort remove player attributes. requires namespace:{namespace}:session:player [delete]
+PublicDeletePlayerAttributesShort remove player attributes.
 Reset player attributes.
 */
 func (a *Client) PublicDeletePlayerAttributesShort(params *PublicDeletePlayerAttributesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerAttributesNoContent, error) {

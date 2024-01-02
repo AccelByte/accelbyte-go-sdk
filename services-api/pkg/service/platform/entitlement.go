@@ -58,6 +58,34 @@ func (aaa *EntitlementService) QueryEntitlements1(input *entitlement.QueryEntitl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use EnableEntitlementOriginFeatureShort instead.
+func (aaa *EntitlementService) EnableEntitlementOriginFeature(input *entitlement.EnableEntitlementOriginFeatureParams) (*platformclientmodels.EntitlementConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.EnableEntitlementOriginFeature(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetEntitlementConfigInfoShort instead.
+func (aaa *EntitlementService) GetEntitlementConfigInfo(input *entitlement.GetEntitlementConfigInfoParams) (*platformclientmodels.EntitlementConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.GetEntitlementConfigInfo(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GrantEntitlementsShort instead.
 func (aaa *EntitlementService) GrantEntitlements(input *entitlement.GrantEntitlementsParams) (*platformclientmodels.BulkEntitlementGrantResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -99,6 +127,37 @@ func (aaa *EntitlementService) GetEntitlement(input *entitlement.GetEntitlementP
 		return nil, err
 	}
 	ok, notFound, err := aaa.Client.Entitlement.GetEntitlement(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetPlatformEntitlementConfigShort instead.
+func (aaa *EntitlementService) GetPlatformEntitlementConfig(input *entitlement.GetPlatformEntitlementConfigParams) (*platformclientmodels.EntitlementPlatformConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.GetPlatformEntitlementConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdatePlatformEntitlementConfigShort instead.
+func (aaa *EntitlementService) UpdatePlatformEntitlementConfig(input *entitlement.UpdatePlatformEntitlementConfigParams) (*platformclientmodels.EntitlementPlatformConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Entitlement.UpdatePlatformEntitlementConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -868,6 +927,56 @@ func (aaa *EntitlementService) QueryEntitlements1Short(input *entitlement.QueryE
 	return ok.GetPayload(), nil
 }
 
+func (aaa *EntitlementService) EnableEntitlementOriginFeatureShort(input *entitlement.EnableEntitlementOriginFeatureParams) (*platformclientmodels.EntitlementConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Entitlement.EnableEntitlementOriginFeatureShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) GetEntitlementConfigInfoShort(input *entitlement.GetEntitlementConfigInfoParams) (*platformclientmodels.EntitlementConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Entitlement.GetEntitlementConfigInfoShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *EntitlementService) GrantEntitlementsShort(input *entitlement.GrantEntitlementsParams) (*platformclientmodels.BulkEntitlementGrantResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -936,6 +1045,56 @@ func (aaa *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitle
 	}
 
 	ok, err := aaa.Client.Entitlement.GetEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) GetPlatformEntitlementConfigShort(input *entitlement.GetPlatformEntitlementConfigParams) (*platformclientmodels.EntitlementPlatformConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Entitlement.GetPlatformEntitlementConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) UpdatePlatformEntitlementConfigShort(input *entitlement.UpdatePlatformEntitlementConfigParams) (*platformclientmodels.EntitlementPlatformConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	ok, err := aaa.Client.Entitlement.UpdatePlatformEntitlementConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

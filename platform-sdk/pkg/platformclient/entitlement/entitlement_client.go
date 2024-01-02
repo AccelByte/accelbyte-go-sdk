@@ -34,12 +34,20 @@ type ClientService interface {
 	QueryEntitlementsShort(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryEntitlements1(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error)
 	QueryEntitlements1Short(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error)
+	EnableEntitlementOriginFeature(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error)
+	EnableEntitlementOriginFeatureShort(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error)
+	GetEntitlementConfigInfo(params *GetEntitlementConfigInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementConfigInfoOK, error)
+	GetEntitlementConfigInfoShort(params *GetEntitlementConfigInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementConfigInfoOK, error)
 	GrantEntitlements(params *GrantEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*GrantEntitlementsOK, *GrantEntitlementsUnprocessableEntity, error)
 	GrantEntitlementsShort(params *GrantEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*GrantEntitlementsOK, error)
 	RevokeEntitlements(params *RevokeEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeEntitlementsOK, *RevokeEntitlementsUnprocessableEntity, error)
 	RevokeEntitlementsShort(params *RevokeEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeEntitlementsOK, error)
 	GetEntitlement(params *GetEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementOK, *GetEntitlementNotFound, error)
 	GetEntitlementShort(params *GetEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementOK, error)
+	GetPlatformEntitlementConfig(params *GetPlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformEntitlementConfigOK, error)
+	GetPlatformEntitlementConfigShort(params *GetPlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformEntitlementConfigOK, error)
+	UpdatePlatformEntitlementConfig(params *UpdatePlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformEntitlementConfigOK, *UpdatePlatformEntitlementConfigNotFound, error)
+	UpdatePlatformEntitlementConfigShort(params *UpdatePlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformEntitlementConfigOK, error)
 	QueryUserEntitlements(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error)
 	QueryUserEntitlementsShort(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error)
 	GrantUserEntitlement(params *GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserEntitlementCreated, *GrantUserEntitlementNotFound, *GrantUserEntitlementUnprocessableEntity, error)
@@ -329,6 +337,206 @@ func (a *Client) QueryEntitlements1Short(params *QueryEntitlements1Params, authI
 	switch v := result.(type) {
 
 	case *QueryEntitlements1OK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use EnableEntitlementOriginFeatureShort instead.
+
+EnableEntitlementOriginFeature enable entitlement origin feature
+Enable Entitlement origin feature.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=4 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) EnableEntitlementOriginFeature(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableEntitlementOriginFeatureParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "enableEntitlementOriginFeature",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/config/entitlementOrigin/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableEntitlementOriginFeatureReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableEntitlementOriginFeatureOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+EnableEntitlementOriginFeatureShort enable entitlement origin feature
+Enable Entitlement origin feature.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=4 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) EnableEntitlementOriginFeatureShort(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableEntitlementOriginFeatureParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "enableEntitlementOriginFeature",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/config/entitlementOrigin/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableEntitlementOriginFeatureReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableEntitlementOriginFeatureOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetEntitlementConfigInfoShort instead.
+
+GetEntitlementConfigInfo get entitlement config info
+Get entitlement config info.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=2 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) GetEntitlementConfigInfo(params *GetEntitlementConfigInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementConfigInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEntitlementConfigInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEntitlementConfigInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/config/info",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEntitlementConfigInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEntitlementConfigInfoOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetEntitlementConfigInfoShort get entitlement config info
+Get entitlement config info.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=2 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) GetEntitlementConfigInfoShort(params *GetEntitlementConfigInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementConfigInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEntitlementConfigInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEntitlementConfigInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/config/info",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEntitlementConfigInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEntitlementConfigInfoOK:
 		return v, nil
 
 	default:
@@ -646,6 +854,211 @@ func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runt
 	case *GetEntitlementOK:
 		return v, nil
 	case *GetEntitlementNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetPlatformEntitlementConfigShort instead.
+
+GetPlatformEntitlementConfig get platform entitlement config list
+Get platform entitlement config list.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=2 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) GetPlatformEntitlementConfig(params *GetPlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformEntitlementConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlatformEntitlementConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPlatformEntitlementConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/platforms/{platform}/entitlement/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlatformEntitlementConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlatformEntitlementConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetPlatformEntitlementConfigShort get platform entitlement config list
+Get platform entitlement config list.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=2 (READ)
+  *  Returns : entitlement info
+*/
+func (a *Client) GetPlatformEntitlementConfigShort(params *GetPlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformEntitlementConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlatformEntitlementConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPlatformEntitlementConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/platforms/{platform}/entitlement/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlatformEntitlementConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlatformEntitlementConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdatePlatformEntitlementConfigShort instead.
+
+UpdatePlatformEntitlementConfig update platform entitlement config
+Update platform entitlement config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=4 (UPDATE)
+  *  Returns : platform entitlement config
+*/
+func (a *Client) UpdatePlatformEntitlementConfig(params *UpdatePlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformEntitlementConfigOK, *UpdatePlatformEntitlementConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePlatformEntitlementConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePlatformEntitlementConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/platforms/{platform}/entitlement/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePlatformEntitlementConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePlatformEntitlementConfigOK:
+		return v, nil, nil
+
+	case *UpdatePlatformEntitlementConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdatePlatformEntitlementConfigShort update platform entitlement config
+Update platform entitlement config.
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG", action=4 (UPDATE)
+  *  Returns : platform entitlement config
+*/
+func (a *Client) UpdatePlatformEntitlementConfigShort(params *UpdatePlatformEntitlementConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformEntitlementConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePlatformEntitlementConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePlatformEntitlementConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/platforms/{platform}/entitlement/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePlatformEntitlementConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePlatformEntitlementConfigOK:
+		return v, nil
+	case *UpdatePlatformEntitlementConfigNotFound:
 		return nil, v
 
 	default:

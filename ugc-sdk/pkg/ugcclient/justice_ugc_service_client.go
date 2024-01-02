@@ -20,6 +20,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_staging_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
@@ -33,6 +34,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like_legacy"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like_v2"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_staging_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_type"
 )
@@ -89,6 +91,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.AdminContent = admin_content.New(transport, formats)
 	cli.AdminContentV2 = admin_content_v2.New(transport, formats)
 	cli.AdminGroup = admin_group.New(transport, formats)
+	cli.AdminStagingContent = admin_staging_content.New(transport, formats)
 	cli.AdminTag = admin_tag.New(transport, formats)
 	cli.AdminType = admin_type.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
@@ -102,6 +105,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.PublicGroup = public_group.New(transport, formats)
 	cli.PublicLikeLegacy = public_like_legacy.New(transport, formats)
 	cli.PublicLikeV2 = public_like_v2.New(transport, formats)
+	cli.PublicStagingContent = public_staging_content.New(transport, formats)
 	cli.PublicTag = public_tag.New(transport, formats)
 	cli.PublicType = public_type.New(transport, formats)
 
@@ -174,6 +178,8 @@ type JusticeUgcService struct {
 
 	AdminGroup admin_group.ClientService
 
+	AdminStagingContent admin_staging_content.ClientService
+
 	AdminTag admin_tag.ClientService
 
 	AdminType admin_type.ClientService
@@ -200,6 +206,8 @@ type JusticeUgcService struct {
 
 	PublicLikeV2 public_like_v2.ClientService
 
+	PublicStagingContent public_staging_content.ClientService
+
 	PublicTag public_tag.ClientService
 
 	PublicType public_type.ClientService
@@ -216,6 +224,7 @@ func (c *JusticeUgcService) SetTransport(transport runtime.ClientTransport) {
 	c.AdminContent.SetTransport(transport)
 	c.AdminContentV2.SetTransport(transport)
 	c.AdminGroup.SetTransport(transport)
+	c.AdminStagingContent.SetTransport(transport)
 	c.AdminTag.SetTransport(transport)
 	c.AdminType.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
@@ -229,6 +238,7 @@ func (c *JusticeUgcService) SetTransport(transport runtime.ClientTransport) {
 	c.PublicGroup.SetTransport(transport)
 	c.PublicLikeLegacy.SetTransport(transport)
 	c.PublicLikeV2.SetTransport(transport)
+	c.PublicStagingContent.SetTransport(transport)
 	c.PublicTag.SetTransport(transport)
 	c.PublicType.SetTransport(transport)
 }

@@ -2851,6 +2851,35 @@ func (aaa *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Par
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminDeleteUserLinkingHistoryByPlatformIDV3Short instead.
+func (aaa *UsersService) AdminDeleteUserLinkingHistoryByPlatformIDV3(input *users.AdminDeleteUserLinkingHistoryByPlatformIDV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDeleteUserLinkingHistoryByPlatformIDV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetThirdPartyPlatformTokenLinkStatusV3Short instead.
 func (aaa *UsersService) AdminGetThirdPartyPlatformTokenLinkStatusV3(input *users.AdminGetThirdPartyPlatformTokenLinkStatusV3Params) (*iamclientmodels.ModelTokenThirdPartyLinkStatusResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -6928,6 +6957,31 @@ func (aaa *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLink
 	}
 
 	_, err := aaa.Client.Users.AdminPlatformLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersService) AdminDeleteUserLinkingHistoryByPlatformIDV3Short(input *users.AdminDeleteUserLinkingHistoryByPlatformIDV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.Users.AdminDeleteUserLinkingHistoryByPlatformIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

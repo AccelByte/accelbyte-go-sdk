@@ -81,6 +81,8 @@ type GetUserEntitlementOwnershipByItemIDParams struct {
 	UserID string
 	/*EntitlementClazz*/
 	EntitlementClazz *string
+	/*Platform*/
+	Platform *string
 	/*ItemID*/
 	ItemID string
 
@@ -170,6 +172,17 @@ func (o *GetUserEntitlementOwnershipByItemIDParams) SetEntitlementClazz(entitlem
 	o.EntitlementClazz = entitlementClazz
 }
 
+// WithPlatform adds the platform to the get user entitlement ownership by item id params
+func (o *GetUserEntitlementOwnershipByItemIDParams) WithPlatform(platform *string) *GetUserEntitlementOwnershipByItemIDParams {
+	o.SetPlatform(platform)
+	return o
+}
+
+// SetPlatform adds the platform to the get user entitlement ownership by item id params
+func (o *GetUserEntitlementOwnershipByItemIDParams) SetPlatform(platform *string) {
+	o.Platform = platform
+}
+
 // WithItemID adds the itemID to the get user entitlement ownership by item id params
 func (o *GetUserEntitlementOwnershipByItemIDParams) WithItemID(itemID string) *GetUserEntitlementOwnershipByItemIDParams {
 	o.SetItemID(itemID)
@@ -209,6 +222,22 @@ func (o *GetUserEntitlementOwnershipByItemIDParams) WriteToRequest(r runtime.Cli
 		qEntitlementClazz := qrEntitlementClazz
 		if qEntitlementClazz != "" {
 			if err := r.SetQueryParam("entitlementClazz", qEntitlementClazz); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Platform != nil {
+
+		// query param platform
+		var qrPlatform string
+		if o.Platform != nil {
+			qrPlatform = *o.Platform
+		}
+		qPlatform := qrPlatform
+		if qPlatform != "" {
+			if err := r.SetQueryParam("platform", qPlatform); err != nil {
 				return err
 			}
 		}

@@ -67,7 +67,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminQueryPartiesShort instead.
 
-AdminQueryParties query parties. requires admin:namespace:{namespace}:session:party [read]
+AdminQueryParties query parties.
 Query parties.
 */
 func (a *Client) AdminQueryParties(params *AdminQueryPartiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPartiesOK, *AdminQueryPartiesBadRequest, *AdminQueryPartiesUnauthorized, *AdminQueryPartiesInternalServerError, error) {
@@ -121,7 +121,7 @@ func (a *Client) AdminQueryParties(params *AdminQueryPartiesParams, authInfo run
 }
 
 /*
-AdminQueryPartiesShort query parties. requires admin:namespace:{namespace}:session:party [read]
+AdminQueryPartiesShort query parties.
 Query parties.
 */
 func (a *Client) AdminQueryPartiesShort(params *AdminQueryPartiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPartiesOK, error) {
@@ -174,7 +174,7 @@ func (a *Client) AdminQueryPartiesShort(params *AdminQueryPartiesParams, authInf
 /*
 Deprecated: 2022-08-10 - Use PublicPartyJoinCodeShort instead.
 
-PublicPartyJoinCode join a party by code. requires namespace:{namespace}:session:party:player [create]
+PublicPartyJoinCode join a party by code.
 Join a party by code. The user can join a party as long as the code is valid
 */
 func (a *Client) PublicPartyJoinCode(params *PublicPartyJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinCodeOK, *PublicPartyJoinCodeBadRequest, *PublicPartyJoinCodeUnauthorized, *PublicPartyJoinCodeForbidden, *PublicPartyJoinCodeNotFound, *PublicPartyJoinCodeInternalServerError, error) {
@@ -234,7 +234,7 @@ func (a *Client) PublicPartyJoinCode(params *PublicPartyJoinCodeParams, authInfo
 }
 
 /*
-PublicPartyJoinCodeShort join a party by code. requires namespace:{namespace}:session:party:player [create]
+PublicPartyJoinCodeShort join a party by code.
 Join a party by code. The user can join a party as long as the code is valid
 */
 func (a *Client) PublicPartyJoinCodeShort(params *PublicPartyJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinCodeOK, error) {
@@ -291,7 +291,7 @@ func (a *Client) PublicPartyJoinCodeShort(params *PublicPartyJoinCodeParams, aut
 /*
 Deprecated: 2022-08-10 - Use PublicGetPartyShort instead.
 
-PublicGetParty get party details. requires namespace:{namespace}:session:party [read]
+PublicGetParty get party details.
 Get party details.
 */
 func (a *Client) PublicGetParty(params *PublicGetPartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyOK, *PublicGetPartyUnauthorized, *PublicGetPartyNotFound, *PublicGetPartyInternalServerError, error) {
@@ -345,7 +345,7 @@ func (a *Client) PublicGetParty(params *PublicGetPartyParams, authInfo runtime.C
 }
 
 /*
-PublicGetPartyShort get party details. requires namespace:{namespace}:session:party [read]
+PublicGetPartyShort get party details.
 Get party details.
 */
 func (a *Client) PublicGetPartyShort(params *PublicGetPartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyOK, error) {
@@ -398,7 +398,7 @@ func (a *Client) PublicGetPartyShort(params *PublicGetPartyParams, authInfo runt
 /*
 Deprecated: 2022-08-10 - Use PublicUpdatePartyShort instead.
 
-PublicUpdateParty update a party. requires namespace:{namespace}:session:party [update]
+PublicUpdateParty update a party.
 Updates party blob, this endpoint will override stored party data.
 
 Join type can only be updated by the party's leader.
@@ -468,7 +468,7 @@ func (a *Client) PublicUpdateParty(params *PublicUpdatePartyParams, authInfo run
 }
 
 /*
-PublicUpdatePartyShort update a party. requires namespace:{namespace}:session:party [update]
+PublicUpdatePartyShort update a party.
 Updates party blob, this endpoint will override stored party data.
 
 Join type can only be updated by the party's leader.
@@ -535,7 +535,7 @@ func (a *Client) PublicUpdatePartyShort(params *PublicUpdatePartyParams, authInf
 /*
 Deprecated: 2022-08-10 - Use PublicPatchUpdatePartyShort instead.
 
-PublicPatchUpdateParty patch update a party. requires namespace:{namespace}:session:party [update]
+PublicPatchUpdateParty patch update a party.
 Update specified fields from party data. Note: Join type can only be updated by the party's leader.
 
 Reserved attributes key:
@@ -600,7 +600,7 @@ func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, au
 }
 
 /*
-PublicPatchUpdatePartyShort patch update a party. requires namespace:{namespace}:session:party [update]
+PublicPatchUpdatePartyShort patch update a party.
 Update specified fields from party data. Note: Join type can only be updated by the party's leader.
 
 Reserved attributes key:
@@ -662,7 +662,7 @@ func (a *Client) PublicPatchUpdatePartyShort(params *PublicPatchUpdatePartyParam
 /*
 Deprecated: 2022-08-10 - Use PublicGeneratePartyCodeShort instead.
 
-PublicGeneratePartyCode generate party code. requires namespace:{namespace}:session:party [update]
+PublicGeneratePartyCode generate party code.
 Generate a new code for the party. Only leader can generate a code.
 */
 func (a *Client) PublicGeneratePartyCode(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, *PublicGeneratePartyCodeBadRequest, *PublicGeneratePartyCodeUnauthorized, *PublicGeneratePartyCodeForbidden, *PublicGeneratePartyCodeNotFound, *PublicGeneratePartyCodeInternalServerError, error) {
@@ -722,7 +722,7 @@ func (a *Client) PublicGeneratePartyCode(params *PublicGeneratePartyCodeParams, 
 }
 
 /*
-PublicGeneratePartyCodeShort generate party code. requires namespace:{namespace}:session:party [update]
+PublicGeneratePartyCodeShort generate party code.
 Generate a new code for the party. Only leader can generate a code.
 */
 func (a *Client) PublicGeneratePartyCodeShort(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, error) {
@@ -779,7 +779,7 @@ func (a *Client) PublicGeneratePartyCodeShort(params *PublicGeneratePartyCodePar
 /*
 Deprecated: 2022-08-10 - Use PublicRevokePartyCodeShort instead.
 
-PublicRevokePartyCode revoke party code. requires namespace:{namespace}:session:party [update]
+PublicRevokePartyCode revoke party code.
 Revoke code of the party. Only leader can revoke a code.
 */
 func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, *PublicRevokePartyCodeBadRequest, *PublicRevokePartyCodeUnauthorized, *PublicRevokePartyCodeForbidden, *PublicRevokePartyCodeNotFound, *PublicRevokePartyCodeInternalServerError, error) {
@@ -839,7 +839,7 @@ func (a *Client) PublicRevokePartyCode(params *PublicRevokePartyCodeParams, auth
 }
 
 /*
-PublicRevokePartyCodeShort revoke party code. requires namespace:{namespace}:session:party [update]
+PublicRevokePartyCodeShort revoke party code.
 Revoke code of the party. Only leader can revoke a code.
 */
 func (a *Client) PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRevokePartyCodeNoContent, error) {
@@ -896,7 +896,7 @@ func (a *Client) PublicRevokePartyCodeShort(params *PublicRevokePartyCodeParams,
 /*
 Deprecated: 2022-08-10 - Use PublicPartyInviteShort instead.
 
-PublicPartyInvite invite a user to a party. requires namespace:{namespace}:session:party:player [create]
+PublicPartyInvite invite a user to a party.
 Invite a user to a party.
 platformID represents the native platform of the invitee. API will return the corresponding native platform's userID.
 supported platforms:
@@ -961,7 +961,7 @@ func (a *Client) PublicPartyInvite(params *PublicPartyInviteParams, authInfo run
 }
 
 /*
-PublicPartyInviteShort invite a user to a party. requires namespace:{namespace}:session:party:player [create]
+PublicPartyInviteShort invite a user to a party.
 Invite a user to a party.
 platformID represents the native platform of the invitee. API will return the corresponding native platform's userID.
 supported platforms:
@@ -1023,7 +1023,7 @@ func (a *Client) PublicPartyInviteShort(params *PublicPartyInviteParams, authInf
 /*
 Deprecated: 2022-08-10 - Use PublicPromotePartyLeaderShort instead.
 
-PublicPromotePartyLeader promote new party leader. requires namespace:{namespace}:session:party [update]
+PublicPromotePartyLeader promote new party leader.
 Promotes a party member to be a party leader. Only leader can promote a new leader.
 */
 func (a *Client) PublicPromotePartyLeader(params *PublicPromotePartyLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPromotePartyLeaderOK, *PublicPromotePartyLeaderBadRequest, *PublicPromotePartyLeaderUnauthorized, *PublicPromotePartyLeaderForbidden, *PublicPromotePartyLeaderNotFound, *PublicPromotePartyLeaderInternalServerError, error) {
@@ -1083,7 +1083,7 @@ func (a *Client) PublicPromotePartyLeader(params *PublicPromotePartyLeaderParams
 }
 
 /*
-PublicPromotePartyLeaderShort promote new party leader. requires namespace:{namespace}:session:party [update]
+PublicPromotePartyLeaderShort promote new party leader.
 Promotes a party member to be a party leader. Only leader can promote a new leader.
 */
 func (a *Client) PublicPromotePartyLeaderShort(params *PublicPromotePartyLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPromotePartyLeaderOK, error) {
@@ -1140,7 +1140,7 @@ func (a *Client) PublicPromotePartyLeaderShort(params *PublicPromotePartyLeaderP
 /*
 Deprecated: 2022-08-10 - Use PublicPartyJoinShort instead.
 
-PublicPartyJoin join a party. requires namespace:{namespace}:session:party:player [create]
+PublicPartyJoin join a party.
 Join a party. The user can either join a party they have been invited to, or any party with an "open" joinable setting.
 */
 func (a *Client) PublicPartyJoin(params *PublicPartyJoinParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinOK, *PublicPartyJoinBadRequest, *PublicPartyJoinUnauthorized, *PublicPartyJoinForbidden, *PublicPartyJoinNotFound, *PublicPartyJoinInternalServerError, error) {
@@ -1200,7 +1200,7 @@ func (a *Client) PublicPartyJoin(params *PublicPartyJoinParams, authInfo runtime
 }
 
 /*
-PublicPartyJoinShort join a party. requires namespace:{namespace}:session:party:player [create]
+PublicPartyJoinShort join a party.
 Join a party. The user can either join a party they have been invited to, or any party with an "open" joinable setting.
 */
 func (a *Client) PublicPartyJoinShort(params *PublicPartyJoinParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinOK, error) {
@@ -1257,7 +1257,7 @@ func (a *Client) PublicPartyJoinShort(params *PublicPartyJoinParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use PublicPartyLeaveShort instead.
 
-PublicPartyLeave leave a party. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyLeave leave a party.
 Leave a party
 */
 func (a *Client) PublicPartyLeave(params *PublicPartyLeaveParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyLeaveNoContent, *PublicPartyLeaveUnauthorized, *PublicPartyLeaveNotFound, *PublicPartyLeaveInternalServerError, error) {
@@ -1311,7 +1311,7 @@ func (a *Client) PublicPartyLeave(params *PublicPartyLeaveParams, authInfo runti
 }
 
 /*
-PublicPartyLeaveShort leave a party. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyLeaveShort leave a party.
 Leave a party
 */
 func (a *Client) PublicPartyLeaveShort(params *PublicPartyLeaveParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyLeaveNoContent, error) {
@@ -1364,7 +1364,7 @@ func (a *Client) PublicPartyLeaveShort(params *PublicPartyLeaveParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use PublicPartyRejectShort instead.
 
-PublicPartyReject reject a party invitation. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyReject reject a party invitation.
 Reject a party invitation.
 */
 func (a *Client) PublicPartyReject(params *PublicPartyRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyRejectNoContent, *PublicPartyRejectBadRequest, *PublicPartyRejectUnauthorized, *PublicPartyRejectForbidden, *PublicPartyRejectNotFound, *PublicPartyRejectInternalServerError, error) {
@@ -1424,7 +1424,7 @@ func (a *Client) PublicPartyReject(params *PublicPartyRejectParams, authInfo run
 }
 
 /*
-PublicPartyRejectShort reject a party invitation. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyRejectShort reject a party invitation.
 Reject a party invitation.
 */
 func (a *Client) PublicPartyRejectShort(params *PublicPartyRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyRejectNoContent, error) {
@@ -1481,7 +1481,7 @@ func (a *Client) PublicPartyRejectShort(params *PublicPartyRejectParams, authInf
 /*
 Deprecated: 2022-08-10 - Use PublicPartyKickShort instead.
 
-PublicPartyKick kick a player from a party. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyKick kick a player from a party.
 Kick a player from a party. Requires invoker to be the party leader.
 */
 func (a *Client) PublicPartyKick(params *PublicPartyKickParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyKickOK, *PublicPartyKickBadRequest, *PublicPartyKickUnauthorized, *PublicPartyKickForbidden, *PublicPartyKickNotFound, *PublicPartyKickInternalServerError, error) {
@@ -1541,7 +1541,7 @@ func (a *Client) PublicPartyKick(params *PublicPartyKickParams, authInfo runtime
 }
 
 /*
-PublicPartyKickShort kick a player from a party. requires namespace:{namespace}:session:party:player [delete]
+PublicPartyKickShort kick a player from a party.
 Kick a player from a party. Requires invoker to be the party leader.
 */
 func (a *Client) PublicPartyKickShort(params *PublicPartyKickParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyKickOK, error) {
@@ -1598,7 +1598,7 @@ func (a *Client) PublicPartyKickShort(params *PublicPartyKickParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use PublicCreatePartyShort instead.
 
-PublicCreateParty create a party. requires namespace:{namespace}:session:party [create]
+PublicCreateParty create a party.
 A join code will be autogenerated if the party is joinable.
 Creator will be removed from previous party (if any) and automatically join into the created party as a leader.
 Party members will be sent invitation to join the party.
@@ -1676,7 +1676,7 @@ func (a *Client) PublicCreateParty(params *PublicCreatePartyParams, authInfo run
 }
 
 /*
-PublicCreatePartyShort create a party. requires namespace:{namespace}:session:party [create]
+PublicCreatePartyShort create a party.
 A join code will be autogenerated if the party is joinable.
 Creator will be removed from previous party (if any) and automatically join into the created party as a leader.
 Party members will be sent invitation to join the party.

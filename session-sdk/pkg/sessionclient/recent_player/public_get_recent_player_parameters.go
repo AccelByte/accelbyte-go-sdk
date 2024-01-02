@@ -82,16 +82,16 @@ type PublicGetRecentPlayerParams struct {
 
 	*/
 	Namespace string
-	/*UserID
-	  User ID
-
-	*/
-	UserID string
 	/*Limit
 	  Recent Player Limit
 
 	*/
 	Limit *int64
+	/*UserID
+	  recent player UserID. If this field empty, will use UserID from token
+
+	*/
+	UserID *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -157,17 +157,6 @@ func (o *PublicGetRecentPlayerParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithUserID adds the userID to the public get recent player params
-func (o *PublicGetRecentPlayerParams) WithUserID(userID string) *PublicGetRecentPlayerParams {
-	o.SetUserID(userID)
-	return o
-}
-
-// SetUserID adds the userId to the public get recent player params
-func (o *PublicGetRecentPlayerParams) SetUserID(userID string) {
-	o.UserID = userID
-}
-
 // WithLimit adds the limit to the public get recent player params
 func (o *PublicGetRecentPlayerParams) WithLimit(limit *int64) *PublicGetRecentPlayerParams {
 	o.SetLimit(limit)
@@ -177,6 +166,17 @@ func (o *PublicGetRecentPlayerParams) WithLimit(limit *int64) *PublicGetRecentPl
 // SetLimit adds the limit to the public get recent player params
 func (o *PublicGetRecentPlayerParams) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithUserID adds the userID to the public get recent player params
+func (o *PublicGetRecentPlayerParams) WithUserID(userID *string) *PublicGetRecentPlayerParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the public get recent player params
+func (o *PublicGetRecentPlayerParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -192,11 +192,6 @@ func (o *PublicGetRecentPlayerParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
-	// path param userId
-	if err := r.SetPathParam("userId", o.UserID); err != nil {
-		return err
-	}
-
 	if o.Limit != nil {
 
 		// query param limit
@@ -207,6 +202,22 @@ func (o *PublicGetRecentPlayerParams) WriteToRequest(r runtime.ClientRequest, re
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UserID != nil {
+
+		// query param userId
+		var qrUserID string
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

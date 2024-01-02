@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.12.3"
+    "version": "3.13.0"
   },
   "schemes": [
     "https"
@@ -17,8 +17,6 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]": "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]",
-        "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]": "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]",
         "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]": "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
@@ -125,9 +123,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get dsmc default configuration . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get dsmc default configuration.",
         "tags": [
           "DSMC Default Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -166,9 +171,16 @@
             "authorization": []
           }
         ],
-        "summary": "List of environment variables. Requires ADMIN:SESSION:CONFIGURATION:ENVIRONMENTVARIABLE [READ]",
+        "summary": "List of environment variables.",
         "tags": [
           "Environment Variable"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:SESSION:CONFIGURATION:ENVIRONMENTVARIABLE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -207,9 +219,16 @@
             "authorization": []
           }
         ],
-        "summary": "Delete of global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [DELETE]",
+        "summary": "Delete of global configuration data.",
         "tags": [
           "Global Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:SESSION:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
@@ -246,9 +265,16 @@
             "authorization": []
           }
         ],
-        "summary": "Record of global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [READ]",
+        "summary": "Record of global configuration data.",
         "tags": [
           "Global Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "put": {
@@ -296,9 +322,16 @@
             "authorization": []
           }
         ],
-        "summary": "Upsert global configuration data. Requires ADMIN:NAMESPACE:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Upsert global configuration data.",
         "tags": [
           "Global Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:SESSION:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -355,9 +388,16 @@
             "authorization": []
           }
         ],
-        "summary": "Delete configuration alert Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]",
+        "summary": "Delete configuration alert.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
@@ -421,9 +461,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get configuration alert.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "post": {
@@ -502,9 +549,16 @@
             "authorization": []
           }
         ],
-        "summary": "Create configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Create configuration alert.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       },
       "put": {
@@ -577,9 +631,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update configuration alert. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Update configuration alert.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -672,9 +733,16 @@
             "authorization": []
           }
         ],
-        "summary": "Upload certificates for xbox. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CERTIFICATES [UPDATE]",
+        "summary": "Upload certificates for xbox.",
         "tags": [
           "Certificate"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CERTIFICATES [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -683,7 +751,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n- LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value \u0026gt; 0 if leader disconnect will be wait until value reach and leader will be change after reach\n",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -749,9 +817,16 @@
             "authorization": []
           }
         ],
-        "summary": "Create configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [CREATE]",
+        "summary": "Create configuration template.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -843,9 +918,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get configuration templates. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get configuration templates.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -909,9 +991,16 @@
             "authorization": []
           }
         ],
-        "summary": "Delete configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]",
+        "summary": "Delete configuration template.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
@@ -982,16 +1071,23 @@
             "authorization": []
           }
         ],
-        "summary": "Get configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get configuration template.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n    - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n    - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n    - https://s2s.np.playstation.net (Production)\n    - localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n",
+        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability (example value : OPEN, CLOSED, INVITE_ONLY)\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -1064,9 +1160,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update configuration template. Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Update configuration template.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1075,7 +1178,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tGet Member Active Session.\n",
+        "description": "\n\t\t\tGet Member Active Session.\n\t\t",
         "operationId": "adminGetMemberActiveSession",
         "parameters": [
           {
@@ -1134,9 +1237,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get Member Active Session . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get Member Active Session.",
         "tags": [
           "Max Active"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1145,7 +1255,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tReconcile Max Active Session.\n",
+        "description": "\n\t\t\tReconcile Max Active Session.\n\t\t\t",
         "operationId": "adminReconcileMaxActiveSession",
         "parameters": [
           {
@@ -1203,9 +1313,16 @@
             "authorization": []
           }
         ],
-        "summary": "Reconcile Max Active Session . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]",
+        "summary": "Reconcile Max Active Session.",
         "tags": [
           "Max Active"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1271,9 +1388,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get dsmc configuration . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "Get dsmc configuration .",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1339,9 +1463,16 @@
             "authorization": []
           }
         ],
-        "summary": "sync dsmc configuration . Requires ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]",
+        "summary": "sync dsmc configuration.",
         "tags": [
           "Configuration Template"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:CONFIGURATION [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1350,7 +1481,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get all game sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]",
+        "description": "Get all game sessions.",
         "operationId": "adminQueryGameSessions",
         "parameters": [
           {
@@ -1502,22 +1633,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get all game sessions.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Query game sessions by admin.\n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nquery parameter \\\u0026#34;availability\\\u0026#34; to filter sessions\u0026#39; availability:\nall: return all sessions regardless it\u0026#39;s full\nfull: only return active sessions\ndefault behavior (unset or else): return only available sessions (not full)\n",
+        "description": "Query game sessions by admin.\n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nquery parameter \\\u0026#34;availability\\\u0026#34; to filter sessions\u0026#39; availability:\nall: return all sessions regardless it\u0026#39;s full\nfull: only return active sessions\ndefault behavior (unset or else): return only available sessions (not full)\n",
         "operationId": "adminQueryGameSessionsByAttributes",
         "parameters": [
           {
@@ -1581,6 +1716,13 @@
         "summary": "Query game sessions by admin",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1649,9 +1791,16 @@
             "authorization": []
           }
         ],
-        "summary": "Delete bulk game sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [DELETE]",
+        "summary": "Delete bulk game sessions.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -1726,6 +1875,13 @@
         "summary": "Admin set the DS ready to accept connection",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1812,9 +1968,93 @@
             "authorization": []
           }
         ],
-        "summary": "Update status of a game session member. Requires ADMIN:NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Update status of a game session member.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/native-sessions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "List of native sessions.",
+        "operationId": "adminGetListNativeSession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Order of the result by createdAt. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.NativeSessionPagingResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List of native sessions.",
+        "tags": [
+          "Native Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:NATIVE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1936,9 +2176,16 @@
             "authorization": []
           }
         ],
-        "summary": "Query parties. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PARTY [READ]",
+        "summary": "Query parties.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PARTY [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1947,7 +2194,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete platform credentials used for Native Session sync. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]",
+        "description": "Delete platform credentials used for Native Session sync.",
         "operationId": "adminDeletePlatformCredentials",
         "parameters": [
           {
@@ -1998,22 +2245,26 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete platform credentials.",
         "tags": [
           "Platform Credential"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Get platform credentials used for Native Session sync.\nPSN:\n - clientID: Auth Server (Client Credential) ClientID\n - clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.\n - scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)\n",
+        "description": "Get platform credentials used for Native Session sync.\nPSN:\n- clientID: Auth Server (Client Credential) ClientID\n- clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.\n- scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)\n",
         "operationId": "adminGetPlatformCredentials",
         "parameters": [
           {
@@ -2074,16 +2325,23 @@
             "authorization": []
           }
         ],
-        "summary": "Get platform credentials. These are used to sync PSN sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [READ]",
+        "summary": "Get platform credentials. These are used to sync PSN sessions.",
         "tags": [
           "Platform Credential"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [READ]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update platform credentials for Native Session sync. Currently supports PSN platform.\n      Send an empty body to clear data.\nPSN:\n - clientID: Auth Server (Client Credential) ClientID\n - clientSecret: Auth Server (Client Credential) Secret\n - scope: psn:s2s.service (For Sync non PSN member to PSN Session)\n",
+        "description": "Update platform credentials for Native Session sync. Currently supports PSN platform.\nSend an empty body to clear data.\nPSN:\n- clientID: Auth Server (Client Credential) ClientID\n- clientSecret: Auth Server (Client Credential) Secret\n- scope: psn:s2s.service (For Sync non PSN member to PSN Session)\n",
         "operationId": "adminUpdatePlatformCredentials",
         "parameters": [
           {
@@ -2153,9 +2411,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update platform credentials. Currently only used to sync PSN sessions. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [UPDATE]",
+        "summary": "Update platform credentials. Currently only used to sync PSN sessions.",
         "tags": [
           "Platform Credential"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -2164,7 +2429,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tDelete Session Storage.\n",
+        "description": "\n\t\t\tDelete Session Storage.\n\t\t\t",
         "operationId": "adminDeleteUserSessionStorage",
         "parameters": [
           {
@@ -2219,16 +2484,23 @@
             "authorization": []
           }
         ],
-        "summary": "Delete Session Storage. Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [DELETE]",
+        "summary": "Delete Session Storage.",
         "tags": [
           "Session Storage"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tRead Session Storage.\n",
+        "description": "\n\t\t\tRead Session Storage.\n\t\t\t",
         "operationId": "adminReadSessionStorage",
         "parameters": [
           {
@@ -2287,9 +2559,16 @@
             "authorization": []
           }
         ],
-        "summary": "Read Session Storage . Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]",
+        "summary": "Read Session Storage.",
         "tags": [
           "Session Storage"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2298,7 +2577,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tRead Session Storage User.\n",
+        "description": "\n\t\t\tRead Session Storage User.\n\t\t\t",
         "operationId": "adminReadUserSessionStorage",
         "parameters": [
           {
@@ -2364,9 +2643,16 @@
             "authorization": []
           }
         ],
-        "summary": "Read Session Storage User. Requires ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]",
+        "summary": "Read Session Storage User.",
         "tags": [
           "Session Storage"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:STORAGE [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2435,9 +2721,16 @@
             "authorization": []
           }
         ],
-        "summary": "Query player attributes. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]",
+        "summary": "Query player attributes.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2504,9 +2797,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get player attributes. Requires ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]",
+        "summary": "Get player attributes.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2515,7 +2815,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a game session.\n      Session configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n   - type\n   - joinability\n         - autoJoin. If enabled (set to true), players provided in the request will automatically joined the initial game session creation. Game session will not send any invite and players dont need to act upon it.\n   - minPlayers\n   - maxPlayers\n   - inviteTimeout\n   - inactiveTimeout\n   - dsSource\n   - tieTeamsSessionLifetime\n\nWhen the tieTeamsSessionLifetime is true, the lifetime of any partyId inside teams attribute will be tied to the game session.\nOnly applies when the teams partyId is a game session.\n\n      When the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\n      Session service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\n      By default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n         - A DS will be requested from AMS instead of DSMC.\n         - The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n         - The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows:\n           [preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
+        "description": "Create a game session.\nSession configuration name is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n- type\n- joinability\n- autoJoin. If enabled (set to true), players provided in the request will automatically joined the initial game session creation. Game session will not send any invite and players dont need to act upon it.\n- minPlayers\n- maxPlayers\n- inviteTimeout\n- inactiveTimeout\n- dsSource\n- tieTeamsSessionLifetime\n\nWhen the tieTeamsSessionLifetime is true, the lifetime of any partyId inside teams attribute will be tied to the game session.\nOnly applies when the teams partyId is a game session.\n\nWhen the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\n\nActive user is a user who present within the session, has status CONNECTED/JOINED.\n\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nBy default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n- A DS will be requested from AMS instead of DSMC.\n- The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n- The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows:\n\t[preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
         "operationId": "createGameSession",
         "parameters": [
           {
@@ -2575,9 +2875,16 @@
             "authorization": []
           }
         ],
-        "summary": "Create a game session. Requires NAMESPACE:{namespace}:SESSION:GAME [CREATE]",
+        "summary": "Create a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -2586,7 +2893,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query game sessions.\n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nquery parameter \\\u0026#34;availability\\\u0026#34; to filter sessions\u0026#39; availability:\nall: return all sessions regardless it\u0026#39;s full\nfull: only return active sessions\ndefault behavior (unset or else): return only available sessions (not full)\n",
+        "description": "Query game sessions.\n\nBy default, API will return a list of available game sessions (joinability: open).\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n\nquery parameter \\\u0026#34;availability\\\u0026#34; to filter sessions\u0026#39; availability:\nall: return all sessions regardless it\u0026#39;s full\nfull: only return active sessions\ndefault behavior (unset or else): return only available sessions (not full)\n",
         "operationId": "publicQueryGameSessionsByAttributes",
         "parameters": [
           {
@@ -2650,6 +2957,11 @@
         "summary": "Query game sessions",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -2724,9 +3036,16 @@
             "authorization": []
           }
         ],
-        "summary": "Join a session by code. Requires NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]",
+        "summary": "Join a session by code.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -2735,7 +3054,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get game session detail by podname.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Get game session detail by podname.\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "getGameSessionByPodName",
         "parameters": [
           {
@@ -2799,9 +3118,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get game session detail. Requires NAMESPACE:{namespace}:SESSION:GAME [READ]",
+        "summary": "Get game session detail.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2859,16 +3185,23 @@
             "authorization": []
           }
         ],
-        "summary": "Delete a game session. Requires NAMESPACE:{namespace}:SESSION:GAME [DELETE]",
+        "summary": "Delete a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Get game session detail.\nSession will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Get game session detail.\nSession will only be accessible from active players in the session, and client with the permission, except the joinability is set to OPEN.\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "getGameSession",
         "parameters": [
           {
@@ -2932,9 +3265,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get game session detail. Requires NAMESPACE:{namespace}:SESSION:GAME [READ]",
+        "summary": "Get game session detail.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [READ]"
+            ]
+          }
         ]
       },
       "patch": {
@@ -3014,16 +3354,23 @@
             "authorization": []
           }
         ],
-        "summary": "Patch update a game session. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Patch update a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Updates a game session, this endpoint will override stored gamesession data.\n      To update only specified fields, please use following endpoint:\n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nTo update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.\n      ",
+        "description": "Updates a game session, this endpoint will override stored gamesession data.\nTo update only specified fields, please use following endpoint:\nmethod : PATCH\nAPI\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nTo update DS attributes (clientVersion, deployment, requestedRegions) it will only be applied only as long as no DS has been requested, otherwise ignored.\n",
         "operationId": "updateGameSession",
         "parameters": [
           {
@@ -3096,9 +3443,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update a game session. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Update a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3174,9 +3528,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update game session backfill ticket id . Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Update game session backfill ticket id .",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3246,9 +3607,16 @@
             "authorization": []
           }
         ],
-        "summary": "Revoke game session code. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Revoke game session code.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       },
       "post": {
@@ -3316,9 +3684,16 @@
             "authorization": []
           }
         ],
-        "summary": "Generate a game session code. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Generate a game session code.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3394,9 +3769,16 @@
             "authorization": []
           }
         ],
-        "summary": "Invite a user to a game session. Requires NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]",
+        "summary": "Invite a user to a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -3466,9 +3848,16 @@
             "authorization": []
           }
         ],
-        "summary": "Join a game session. Requires NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]",
+        "summary": "Join a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -3553,9 +3942,16 @@
             "authorization": []
           }
         ],
-        "summary": "Promote new game session leader. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Promote new game session leader.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3622,9 +4018,16 @@
             "authorization": []
           }
         ],
-        "summary": "Leave a game session. Requires NAMESPACE:{namespace}:SESSION:GAME:PLAYER [DELETE]",
+        "summary": "Leave a game session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -3694,9 +4097,16 @@
             "authorization": []
           }
         ],
-        "summary": "Reject a game session invitation. Requires NAMESPACE:{namespace}:SESSION:GAME:PLAYER [DELETE]",
+        "summary": "Reject a game session invitation.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -3763,9 +4173,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get Server Secret. Requires NAMESPACE:{namespace}:SESSION:GAME:SECRET [READ]",
+        "summary": "Get Server Secret.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:SECRET [READ]"
+            ]
+          }
         ]
       }
     },
@@ -3841,9 +4258,16 @@
             "authorization": []
           }
         ],
-        "summary": "Append new member or team to session. Requires NAMESPACE:{namespace}:SESSION:GAME [UPDATE]",
+        "summary": "Append new member or team to session.",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -3918,9 +4342,16 @@
             "authorization": []
           }
         ],
-        "summary": "Join a party by code. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]",
+        "summary": "Join a party by code.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -3981,9 +4412,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get party details. Requires NAMESPACE:{namespace}:SESSION:PARTY [READ]",
+        "summary": "Get party details.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [READ]"
+            ]
+          }
         ]
       },
       "patch": {
@@ -4063,16 +4501,23 @@
             "authorization": []
           }
         ],
-        "summary": "Patch update a party. Requires NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]",
+        "summary": "Patch update a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Updates party blob, this endpoint will override stored party data.\n\nJoin type can only be updated by the party\u0026#39;s leader.\nTo update only specified fields, please use following endpoint:\n  method : PATCH\n  API\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
+        "description": "Updates party blob, this endpoint will override stored party data.\n\nJoin type can only be updated by the party\u0026#39;s leader.\nTo update only specified fields, please use following endpoint:\nmethod : PATCH\nAPI\t : /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
         "operationId": "publicUpdateParty",
         "parameters": [
           {
@@ -4145,9 +4590,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update a party. Requires NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]",
+        "summary": "Update a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -4214,9 +4666,16 @@
             "authorization": []
           }
         ],
-        "summary": "Revoke party code. Requires NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]",
+        "summary": "Revoke party code.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]"
+            ]
+          }
         ]
       },
       "post": {
@@ -4284,9 +4743,16 @@
             "authorization": []
           }
         ],
-        "summary": "Generate party code. Requires NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]",
+        "summary": "Generate party code.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -4365,9 +4831,16 @@
             "authorization": []
           }
         ],
-        "summary": "Invite a user to a party. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]",
+        "summary": "Invite a user to a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -4449,9 +4922,16 @@
             "authorization": []
           }
         ],
-        "summary": "Promote new party leader. Requires NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]",
+        "summary": "Promote new party leader.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -4521,9 +5001,16 @@
             "authorization": []
           }
         ],
-        "summary": "Join a party. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]",
+        "summary": "Join a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -4581,9 +5068,16 @@
             "authorization": []
           }
         ],
-        "summary": "Leave a party. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]",
+        "summary": "Leave a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -4653,9 +5147,16 @@
             "authorization": []
           }
         ],
-        "summary": "Reject a party invitation. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]",
+        "summary": "Reject a party invitation.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -4735,9 +5236,16 @@
             "authorization": []
           }
         ],
-        "summary": "Kick a player from a party. Requires NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]",
+        "summary": "Kick a player from a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY:PLAYER [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -4746,7 +5254,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "A join code will be autogenerated if the party is joinable.\nCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\nParty members will be sent invitation to join the party.\n      Session configuration name is optional.\nDefault configuration name if empty:\n{\n\t\u0026#34;name\u0026#34;: \u0026#34;default\u0026#34;,\n\t\u0026#34;type\u0026#34;: \u0026#34;NONE\u0026#34;,\n\t\u0026#34;joinability\u0026#34;: \u0026#34;OPEN\u0026#34;,\n\t\u0026#34;minPlayers\u0026#34;: 1,\n\t\u0026#34;maxPlayers\u0026#34;: 8,\n\t\u0026#34;inviteTimeout\u0026#34;: 60,\n\t\u0026#34;inactiveTimeout\u0026#34;: 60,\n\t\u0026#34;textChat\u0026#34;: false\n}\n\nSupported platforms:\n      1. STEAM\n2. PSN\n3. XBOX\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
+        "description": "A join code will be autogenerated if the party is joinable.\nCreator will be removed from previous party (if any) and automatically join into the created party as a leader.\nParty members will be sent invitation to join the party.\nSession configuration name is optional.\nDefault configuration name if empty:\n{\n\t\u0026#34;name\u0026#34;: \u0026#34;default\u0026#34;,\n\t\u0026#34;type\u0026#34;: \u0026#34;NONE\u0026#34;,\n\t\u0026#34;joinability\u0026#34;: \u0026#34;OPEN\u0026#34;,\n\t\u0026#34;minPlayers\u0026#34;: 1,\n\t\u0026#34;maxPlayers\u0026#34;: 8,\n\t\u0026#34;inviteTimeout\u0026#34;: 60,\n\t\u0026#34;inactiveTimeout\u0026#34;: 60,\n\t\u0026#34;textChat\u0026#34;: false\n}\n\nSupported platforms:\n1. STEAM\n2. PSN\n3. XBOX\n\nReserved attributes key:\n1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of\n\tthe session regardless the leader changes.\n2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.\n",
         "operationId": "publicCreateParty",
         "parameters": [
           {
@@ -4800,13 +5308,20 @@
             "authorization": []
           }
         ],
-        "summary": "Create a party. Requires NAMESPACE:{namespace}:SESSION:PARTY [CREATE]",
+        "summary": "Create a party.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PARTY [CREATE]"
+            ]
+          }
         ]
       }
     },
-    "/session/v1/public/namespaces/{namespace}/recent-player/{userId}": {
+    "/session/v1/public/namespaces/{namespace}/recent-player": {
       "get": {
         "consumes": [
           "application/json"
@@ -4822,18 +5337,17 @@
             "type": "string"
           },
           {
-            "description": "User ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
             "default": 20,
             "description": "Recent Player Limit",
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "recent player UserID. If this field empty, will use UserID from token",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
           }
         ],
         "produces": [
@@ -4876,9 +5390,16 @@
             "authorization": []
           }
         ],
-        "summary": "Query recent player with given user id. Requires NAMESPACE:{namespace}:SESSION:PLAYER [READ]",
+        "summary": "Query recent player with given user id.",
         "tags": [
           "Recent Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [READ]"
+            ]
+          }
         ]
       }
     },
@@ -4887,7 +5408,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tUpdate Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;leader\u0026#34;: {\n\t\t\t\t\t\u0026#34;leader\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n",
+        "description": "\n\t\t\tUpdate Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;leader\u0026#34;: {\n\t\t\t\t\t\u0026#34;leader\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n\t\t\t",
         "operationId": "publicUpdateInsertSessionStorageLeader",
         "parameters": [
           {
@@ -4961,9 +5482,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update Insert Session Storage Leader . Requires NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]",
+        "summary": "Update Insert Session Storage Leader.",
         "tags": [
           "Session Storage"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -4972,7 +5500,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tUpdate Insert Session Storage User. user can only update or insert user session storage data itself.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;storage\u0026#34;: {\n\t\t\t\t\t\u0026#34;storage\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n",
+        "description": "\n\t\t\tUpdate Insert Session Storage User. user can only update or insert user session storage data itself.\n\t\t\tcan store generic json\n\t\t\texample json can store : \n\t\t\t{\n\t\t\t\t\u0026#34;storage\u0026#34;: {\n\t\t\t\t\t\u0026#34;storage\u0026#34;: 1\n\t\t\t\t},\n\t\t\t\t\u0026#34;data\u0026#34;: 123\n\t\t\t}\n\t\t\t",
         "operationId": "publicUpdateInsertSessionStorage",
         "parameters": [
           {
@@ -5053,9 +5581,16 @@
             "authorization": []
           }
         ],
-        "summary": "Update Insert Session Storage User . Requires NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]",
+        "summary": "Update Insert Session Storage User.",
         "tags": [
           "Session Storage"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:STORAGE [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -5124,9 +5659,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get player current platform in bulk. Requires NAMESPACE:{namespace}:SESSION:PLAYER [READ]",
+        "summary": "Get player current platform in bulk.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [READ]"
+            ]
+          }
         ]
       }
     },
@@ -5180,9 +5722,16 @@
             "authorization": []
           }
         ],
-        "summary": "Remove player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [DELETE]",
+        "summary": "Remove player attributes.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
@@ -5237,9 +5786,16 @@
             "authorization": []
           }
         ],
-        "summary": "Get player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [READ]",
+        "summary": "Get player attributes.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [READ]"
+            ]
+          }
         ]
       },
       "post": {
@@ -5300,9 +5856,16 @@
             "authorization": []
           }
         ],
-        "summary": "Store player attributes. Requires NAMESPACE:{namespace}:SESSION:PLAYER [CREATE]",
+        "summary": "Store player attributes.",
         "tags": [
           "Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -5311,7 +5874,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query user\u0026#39;s game sessions.\nBy default, API will return a list of user\u0026#39;s active game sessions (INVITED,JOINED,CONNECTED).\n\nSession service has several DSInformation status to track DS request to DSMC:\n   - NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n   - REQUESTED: DS is being requested to DSMC.\n   - AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n   - FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
+        "description": "Query user\u0026#39;s game sessions.\nBy default, API will return a list of user\u0026#39;s active game sessions (INVITED,JOINED,CONNECTED).\n\nSession service has several DSInformation status to track DS request to DSMC:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to create the DS.\n",
         "operationId": "publicQueryMyGameSessions",
         "parameters": [
           {
@@ -5377,6 +5940,11 @@
         "summary": "Query user's game sessions",
         "tags": [
           "Game Session"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -5451,6 +6019,11 @@
         "summary": "Query my parties. Require valid JWT.",
         "tags": [
           "Party"
+        ],
+        "x-security": [
+          {
+            "userPermissions": []
+          }
         ]
       }
     }
@@ -6221,6 +6794,23 @@
         "leaderID",
         "members",
         "partyID"
+      ]
+    },
+    "apimodels.NativeSessionPagingResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.NativeSession"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
       ]
     },
     "apimodels.Pagination": {
@@ -7009,6 +7599,73 @@
         "updatedAt"
       ]
     },
+    "model.NativeSession": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "DeletedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "PushContextID": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "members": {
+          "items": {
+            "$ref": "#/definitions/model.NativeSessionMember"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "nativeSessionPlatforms": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "CreatedAt",
+        "DeletedAt",
+        "PushContextID",
+        "id",
+        "members",
+        "namespace",
+        "nativeSessionPlatforms",
+        "persistent"
+      ]
+    },
+    "model.NativeSessionMember": {
+      "properties": {
+        "platformID": {
+          "type": "string"
+        },
+        "platformUserID": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformID",
+        "platformUserID",
+        "userID"
+      ]
+    },
     "models.DSMConfigRecord": {
       "properties": {
         "claim_timeout": {
@@ -7308,7 +7965,7 @@
       "properties": {
         "data": {
           "items": {
-            "$ref": "#/definitions/models.UserInfo"
+            "$ref": "#/definitions/models.UserInfoResponse"
           },
           "type": "array"
         }
@@ -7343,8 +8000,13 @@
         }
       }
     },
-    "models.UserInfo": {
+    "models.UserInfoResponse": {
       "properties": {
+        "lastPlayedTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
         "namespace": {
           "type": "string"
         },
@@ -7407,9 +8069,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-06T04:31:57+00:00",
-    "gitHash": "b273ec3249d7194f4eb882025785c623ae3be813",
-    "version": "3.12.3",
-    "version-roles-seeding": "1.0.13"
+    "buildDate": "2023-12-19T06:25:32+00:00",
+    "gitHash": "6c45aa3af6409de299877fa3bbcea7f93f344378",
+    "version": "3.13.0",
+    "version-roles-seeding": "1.0.20"
   }
 }

@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.21.0"
+    "version": "1.22.0"
   },
   "schemes": [
     "https"
@@ -459,11 +459,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2023-12-01T14:08:24+00:00",
-    "gitHash": "688bc563e3c3ddd3c906f70e22495227b3e21068",
+    "buildDate": "2024-01-02T01:45:16+00:00",
+    "gitHash": "d9b247168f196ca7f323ff46566915f12ee7f08d",
     "name": "analytics-game-telemetry",
     "realm": "demo",
-    "version": "1.21.0",
+    "version": "1.22.0",
     "version-roles-seeding": "1.0.18"
   }
 }

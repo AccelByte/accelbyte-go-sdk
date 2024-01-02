@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminContent"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminContentV2"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminGroup"
+	"github.com/AccelByte/sample-apps/cmd/ugc/adminStagingContent"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminTag"
 	"github.com/AccelByte/sample-apps/cmd/ugc/adminType"
 	"github.com/AccelByte/sample-apps/cmd/ugc/anonymization"
@@ -25,6 +26,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicGroup"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicLikeLegacy"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicLikeV2"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicStagingContent"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicTag"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicType"
 	"github.com/spf13/cobra"
@@ -156,6 +158,9 @@ func init() {
 	UgcCmd.AddCommand(adminContentV2.AdminDeleteContentScreenshotV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.ListContentVersionsV2Cmd)
 	UgcCmd.AddCommand(adminGroup.AdminGetOfficialGroupContentsV2Cmd)
+	UgcCmd.AddCommand(adminStagingContent.AdminListStagingContentsCmd)
+	UgcCmd.AddCommand(adminStagingContent.AdminGetStagingContentByIDCmd)
+	UgcCmd.AddCommand(adminStagingContent.AdminApproveStagingContentCmd)
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateContentByShareCodeV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminDeleteContentByShareCodeV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminDeleteUserContentV2Cmd)
@@ -165,6 +170,7 @@ func init() {
 	UgcCmd.AddCommand(adminContentV2.AdminGetContentByUserIDV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateContentHideStatusV2Cmd)
 	UgcCmd.AddCommand(adminGroup.AdminGetUserGroupContentsV2Cmd)
+	UgcCmd.AddCommand(adminStagingContent.AdminListUserStagingContentsCmd)
 	UgcCmd.AddCommand(publicContentV2.PublicGetContentByChannelIDV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicListContentV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.PublicBulkGetContentByIDV2Cmd)
@@ -188,4 +194,8 @@ func init() {
 	UgcCmd.AddCommand(publicContentV2.UploadContentScreenshotV2Cmd)
 	UgcCmd.AddCommand(publicContentV2.DeleteContentScreenshotV2Cmd)
 	UgcCmd.AddCommand(publicGroup.PublicGetGroupContentsV2Cmd)
+	UgcCmd.AddCommand(publicStagingContent.ListUserStagingContentsCmd)
+	UgcCmd.AddCommand(publicStagingContent.GetUserStagingContentByIDCmd)
+	UgcCmd.AddCommand(publicStagingContent.UpdateStagingContentCmd)
+	UgcCmd.AddCommand(publicStagingContent.DeleteUserStagingContentByIDCmd)
 }

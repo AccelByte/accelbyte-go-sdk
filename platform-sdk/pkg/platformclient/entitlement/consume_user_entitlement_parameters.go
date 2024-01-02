@@ -67,7 +67,7 @@ type ConsumeUserEntitlementParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *platformclientmodels.EntitlementDecrement
+	Body *platformclientmodels.AdminEntitlementDecrement
 	/*EntitlementID*/
 	EntitlementID string
 	/*Namespace*/
@@ -129,13 +129,13 @@ func (o *ConsumeUserEntitlementParams) SetHTTPClientTransport(roundTripper http.
 }
 
 // WithBody adds the body to the consume user entitlement params
-func (o *ConsumeUserEntitlementParams) WithBody(body *platformclientmodels.EntitlementDecrement) *ConsumeUserEntitlementParams {
+func (o *ConsumeUserEntitlementParams) WithBody(body *platformclientmodels.AdminEntitlementDecrement) *ConsumeUserEntitlementParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the consume user entitlement params
-func (o *ConsumeUserEntitlementParams) SetBody(body *platformclientmodels.EntitlementDecrement) {
+func (o *ConsumeUserEntitlementParams) SetBody(body *platformclientmodels.AdminEntitlementDecrement) {
 	o.Body = body
 }
 

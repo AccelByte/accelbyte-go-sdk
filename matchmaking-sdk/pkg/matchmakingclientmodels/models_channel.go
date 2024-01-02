@@ -18,6 +18,10 @@ import (
 // swagger:model Models channel.
 type ModelsChannel struct {
 
+	// blocked_player_option
+	// Required: true
+	BlockedPlayerOption *string `json:"blocked_player_option"`
+
 	// deployment
 	// Required: true
 	Deployment *string `json:"deployment"`
@@ -101,6 +105,9 @@ type ModelsChannel struct {
 func (m *ModelsChannel) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateBlockedPlayerOption(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDeployment(formats); err != nil {
 		res = append(res, err)
 	}
@@ -156,6 +163,15 @@ func (m *ModelsChannel) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsChannel) validateBlockedPlayerOption(formats strfmt.Registry) error {
+
+	if err := validate.Required("blocked_player_option", "body", m.BlockedPlayerOption); err != nil {
+		return err
+	}
+
 	return nil
 }
 

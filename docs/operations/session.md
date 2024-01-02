@@ -81,6 +81,11 @@
 | `/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/teams` | POST | AppendTeamGameSessionShort | [AppendTeamGameSessionShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [AppendTeamGameSessionShort](../../services-api/pkg/service/session/gameSession.go) | [AppendTeamGameSessionShort](../../samples/cli/cmd/session/gameSession/appendTeamGameSession.go) |
 | `/session/v1/public/namespaces/{namespace}/users/me/gamesessions` | GET | PublicQueryMyGameSessionsShort | [PublicQueryMyGameSessionsShort](../../session-sdk/pkg/sessionclient/game_session/game_session_client.go) | [PublicQueryMyGameSessionsShort](../../services-api/pkg/service/session/gameSession.go) | [PublicQueryMyGameSessionsShort](../../samples/cli/cmd/session/gameSession/publicQueryMyGameSessions.go) |
 
+### Native Session Wrapper:  [NativeSession](../../services-api/pkg/service/session/nativeSession.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/namespaces/{namespace}/native-sessions` | GET | AdminGetListNativeSessionShort | [AdminGetListNativeSessionShort](../../session-sdk/pkg/sessionclient/native_session/native_session_client.go) | [AdminGetListNativeSessionShort](../../services-api/pkg/service/session/nativeSession.go) | [AdminGetListNativeSessionShort](../../samples/cli/cmd/session/nativeSession/adminGetListNativeSession.go) |
+
 ### Party Wrapper:  [Party](../../services-api/pkg/service/session/party.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -129,7 +134,7 @@
 ### Recent Player Wrapper:  [RecentPlayer](../../services-api/pkg/service/session/recentPlayer.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/session/v1/public/namespaces/{namespace}/recent-player/{userId}` | GET | PublicGetRecentPlayerShort | [PublicGetRecentPlayerShort](../../session-sdk/pkg/sessionclient/recent_player/recent_player_client.go) | [PublicGetRecentPlayerShort](../../services-api/pkg/service/session/recentPlayer.go) | [PublicGetRecentPlayerShort](../../samples/cli/cmd/session/recentPlayer/publicGetRecentPlayer.go) |
+| `/session/v1/public/namespaces/{namespace}/recent-player` | GET | PublicGetRecentPlayerShort | [PublicGetRecentPlayerShort](../../session-sdk/pkg/sessionclient/recent_player/recent_player_client.go) | [PublicGetRecentPlayerShort](../../services-api/pkg/service/session/recentPlayer.go) | [PublicGetRecentPlayerShort](../../samples/cli/cmd/session/recentPlayer/publicGetRecentPlayer.go) |
 
 
 &nbsp;  
@@ -156,6 +161,7 @@
 | `apimodels.GlobalConfigurationResponse` | [ApimodelsGlobalConfigurationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_global_configuration_response.go) |
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |
 | `apimodels.KickResponse` | [ApimodelsKickResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_kick_response.go) |
+| `apimodels.NativeSessionPagingResponse` | [ApimodelsNativeSessionPagingResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_native_session_paging_response.go) |
 | `apimodels.Pagination` | [ApimodelsPagination ](../../session-sdk/pkg/sessionclientmodels/apimodels_pagination.go) |
 | `apimodels.PartyQueryResponse` | [ApimodelsPartyQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_query_response.go) |
 | `apimodels.PartySessionResponse` | [ApimodelsPartySessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_session_response.go) |
@@ -180,6 +186,8 @@
 | `apimodels.UpdateGameSessionRequest` | [ApimodelsUpdateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_request.go) |
 | `apimodels.UpdatePartyRequest` | [ApimodelsUpdatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_party_request.go) |
 | `apimodels.UserResponse` | [ApimodelsUserResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_user_response.go) |
+| `model.NativeSession` | [ModelNativeSession ](../../session-sdk/pkg/sessionclientmodels/model_native_session.go) |
+| `model.NativeSessionMember` | [ModelNativeSessionMember ](../../session-sdk/pkg/sessionclientmodels/model_native_session_member.go) |
 | `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../session-sdk/pkg/sessionclientmodels/models_d_s_m_config_record.go) |
 | `models.DefaultDSMCConfig` | [ModelsDefaultDSMCConfig ](../../session-sdk/pkg/sessionclientmodels/models_default_d_s_m_c_config.go) |
 | `models.GameServer` | [ModelsGameServer ](../../session-sdk/pkg/sessionclientmodels/models_game_server.go) |
@@ -192,6 +200,6 @@
 | `models.RecentPlayerQueryResponse` | [ModelsRecentPlayerQueryResponse ](../../session-sdk/pkg/sessionclientmodels/models_recent_player_query_response.go) |
 | `models.RequestReconcileMaxActiveSession` | [ModelsRequestReconcileMaxActiveSession ](../../session-sdk/pkg/sessionclientmodels/models_request_reconcile_max_active_session.go) |
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
-| `models.UserInfo` | [ModelsUserInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_info.go) |
+| `models.UserInfoResponse` | [ModelsUserInfoResponse ](../../session-sdk/pkg/sessionclientmodels/models_user_info_response.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

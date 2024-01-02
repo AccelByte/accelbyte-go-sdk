@@ -27,6 +27,13 @@ type EntitlementUpdate struct {
 	// nullFieldList
 	NullFieldList []string `json:"nullFieldList,omitempty"`
 
+	// origin of the entitlement
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	Origin string `json:"origin,omitempty"`
+
+	// update reason
+	Reason string `json:"reason,omitempty"`
+
 	// start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
 	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
@@ -46,6 +53,62 @@ func (m *EntitlementUpdate) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var entitlementUpdateTypeOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		entitlementUpdateTypeOriginPropEnum = append(entitlementUpdateTypeOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// EntitlementUpdateOriginEPIC captures enum value "EPIC"
+	EntitlementUpdateOriginEPIC string = "EPIC"
+
+	// EntitlementUpdateOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	EntitlementUpdateOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// EntitlementUpdateOriginIOS captures enum value "IOS"
+	EntitlementUpdateOriginIOS string = "IOS"
+
+	// EntitlementUpdateOriginNINTENDO captures enum value "NINTENDO"
+	EntitlementUpdateOriginNINTENDO string = "NINTENDO"
+
+	// EntitlementUpdateOriginOCULUS captures enum value "OCULUS"
+	EntitlementUpdateOriginOCULUS string = "OCULUS"
+
+	// EntitlementUpdateOriginOTHER captures enum value "OTHER"
+	EntitlementUpdateOriginOTHER string = "OTHER"
+
+	// EntitlementUpdateOriginPLAYSTATION captures enum value "PLAYSTATION"
+	EntitlementUpdateOriginPLAYSTATION string = "PLAYSTATION"
+
+	// EntitlementUpdateOriginSTEAM captures enum value "STEAM"
+	EntitlementUpdateOriginSTEAM string = "STEAM"
+
+	// EntitlementUpdateOriginSYSTEM captures enum value "SYSTEM"
+	EntitlementUpdateOriginSYSTEM string = "SYSTEM"
+
+	// EntitlementUpdateOriginTWITCH captures enum value "TWITCH"
+	EntitlementUpdateOriginTWITCH string = "TWITCH"
+
+	// EntitlementUpdateOriginXBOX captures enum value "XBOX"
+	EntitlementUpdateOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *EntitlementUpdate) validateOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementUpdateTypeOriginPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

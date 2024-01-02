@@ -41,6 +41,7 @@ var ExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 		if errItemIds != nil {
 			return errItemIds
 		}
+		platform, _ := cmd.Flags().GetString("platform")
 		skusString := cmd.Flag("skus").Value.String()
 		var skus []string
 		errSkus := json.Unmarshal([]byte(skusString), &skus)
@@ -52,6 +53,7 @@ var ExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 			UserID:    userId,
 			AppIds:    appIds,
 			ItemIds:   itemIds,
+			Platform:  &platform,
 			Skus:      skus,
 		}
 		ok, errOK := entitlementService.ExistsAnyUserActiveEntitlementShort(input)
@@ -74,5 +76,6 @@ func init() {
 	_ = ExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
 	ExistsAnyUserActiveEntitlementCmd.Flags().String("appIds", "", "App ids")
 	ExistsAnyUserActiveEntitlementCmd.Flags().String("itemIds", "", "Item ids")
+	ExistsAnyUserActiveEntitlementCmd.Flags().String("platform", "", "Platform")
 	ExistsAnyUserActiveEntitlementCmd.Flags().String("skus", "", "Skus")
 }

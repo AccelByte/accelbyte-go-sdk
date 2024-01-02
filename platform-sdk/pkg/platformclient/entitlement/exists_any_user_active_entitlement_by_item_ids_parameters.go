@@ -69,6 +69,8 @@ type ExistsAnyUserActiveEntitlementByItemIdsParams struct {
 	Namespace string
 	/*UserID*/
 	UserID string
+	/*Platform*/
+	Platform *string
 	/*ItemIds*/
 	ItemIds []string
 
@@ -147,6 +149,17 @@ func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetUserID(userID string)
 	o.UserID = userID
 }
 
+// WithPlatform adds the platform to the exists any user active entitlement by item ids params
+func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) WithPlatform(platform *string) *ExistsAnyUserActiveEntitlementByItemIdsParams {
+	o.SetPlatform(platform)
+	return o
+}
+
+// SetPlatform adds the platform to the exists any user active entitlement by item ids params
+func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetPlatform(platform *string) {
+	o.Platform = platform
+}
+
 // WithItemIds adds the itemIds to the exists any user active entitlement by item ids params
 func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) WithItemIds(itemIds []string) *ExistsAnyUserActiveEntitlementByItemIdsParams {
 	o.SetItemIds(itemIds)
@@ -174,6 +187,22 @@ func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) WriteToRequest(r runtime
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.Platform != nil {
+
+		// query param platform
+		var qrPlatform string
+		if o.Platform != nil {
+			qrPlatform = *o.Platform
+		}
+		qPlatform := qrPlatform
+		if qPlatform != "" {
+			if err := r.SetQueryParam("platform", qPlatform); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	valuesItemIds := o.ItemIds

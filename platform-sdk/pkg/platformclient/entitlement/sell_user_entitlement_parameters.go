@@ -67,7 +67,7 @@ type SellUserEntitlementParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *platformclientmodels.EntitlementSoldRequest
+	Body *platformclientmodels.AdminEntitlementSoldRequest
 	/*EntitlementID*/
 	EntitlementID string
 	/*Namespace*/
@@ -129,13 +129,13 @@ func (o *SellUserEntitlementParams) SetHTTPClientTransport(roundTripper http.Rou
 }
 
 // WithBody adds the body to the sell user entitlement params
-func (o *SellUserEntitlementParams) WithBody(body *platformclientmodels.EntitlementSoldRequest) *SellUserEntitlementParams {
+func (o *SellUserEntitlementParams) WithBody(body *platformclientmodels.AdminEntitlementSoldRequest) *SellUserEntitlementParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the sell user entitlement params
-func (o *SellUserEntitlementParams) SetBody(body *platformclientmodels.EntitlementSoldRequest) {
+func (o *SellUserEntitlementParams) SetBody(body *platformclientmodels.AdminEntitlementSoldRequest) {
 	o.Body = body
 }
 

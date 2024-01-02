@@ -51,71 +51,71 @@ touch "tmp.dat"
 #- 2 GetServerLogs
 samples/cli/sample-apps Dslogmanager getServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'tJVcVF1UXIwZop9l' \
-    --logType '8wkHvjFJyT7WCYFM' \
-    --offset '35' \
-    --origin 'JfbEcRZdmS8ege8x' \
+    --podName 'X2JDmUf1iglZGTpp' \
+    --logType 'rdHctn6anbfI34SV' \
+    --offset '9' \
+    --origin 'nOUIeHJ4qY5JhOyP' \
     > test.out 2>&1
 eval_tap $? 2 'GetServerLogs' test.out
 
 #- 3 ListTerminatedServers
 samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --namespace $AB_NAMESPACE \
-    --deployment 'f7KaUw7mS8Hnv3wP' \
-    --endDate '0Jx8cpL2zBeh08uV' \
-    --gameMode 'botnJ4u3trtDJT8R' \
-    --limit '62' \
-    --next 'IIaV75yaNX6Yn2u8' \
-    --partyId 'G7RJMrfey8xgQtiE' \
-    --podName '24eMoxw9zmB1dYTC' \
-    --previous 'oupjgLpSi3WI74L6' \
-    --provider 'gfK0WTIkO7pkIkhD' \
-    --region 'YhM2NPivGQPX3L9q' \
-    --sessionId '127KKZakIOlLdOEX' \
-    --source 'eLk9VM9MsKO8Ses4' \
-    --startDate 'pDctYgFfJlegpMJZ' \
-    --status 'mV60l5cEt0gMYLZJ' \
-    --userId '2IiAWVHwLgMtIG36' \
+    --deployment 'coSVcO0i7BhQM6Up' \
+    --endDate 'TINKapLK3n8zurCp' \
+    --gameMode 'cFrWzRnUrVnCno0d' \
+    --limit '28' \
+    --next 'NwM9a0MRsQnWDyS3' \
+    --partyId 'Uzw1EA2gP23fOBlo' \
+    --podName 'UhAF683V8rSbm9bO' \
+    --previous 'zIhYewiJTYWVOXzC' \
+    --provider '3KndOdBCDlJuZvgB' \
+    --region 'JVX2sTOLYBiwT6sW' \
+    --sessionId 'dIxsrni2ovreeQyg' \
+    --source 'qXZ2ZI25hjlzPTLX' \
+    --startDate '2tmwmOJLSFtqDbsm' \
+    --status 'ZeEN0aA6kR1Xyk2h' \
+    --userId 'k6nRJGxWypzyjZgf' \
     > test.out 2>&1
 eval_tap $? 3 'ListTerminatedServers' test.out
 
 #- 4 DownloadServerLogs
 samples/cli/sample-apps Dslogmanager downloadServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'M7uTFupeuAVnp3Y7' \
+    --podName 'H9k56PLsLgPfHeqD' \
     > test.out 2>&1
 eval_tap $? 4 'DownloadServerLogs' test.out
 
 #- 5 CheckServerLogs
 samples/cli/sample-apps Dslogmanager checkServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'fkKaxB2rSzWGgqcp' \
+    --podName '8gePPosu7Yl8lYsu' \
     > test.out 2>&1
 eval_tap $? 5 'CheckServerLogs' test.out
 
 #- 6 BatchDownloadServerLogs
 samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
-    --body '{"Downloads": [{"alloc_id": "MlLE1VqviXfa2MPr", "namespace": "HIBpDzPiCG12qmOT", "pod_name": "QitdSVYLOwObe9i3"}, {"alloc_id": "huSCAGzEoRdFU96D", "namespace": "bhIMKZuSYZD5IT4K", "pod_name": "9DwxJ84Nvh9ZbgN0"}, {"alloc_id": "JjzPRhbixwg9csUZ", "namespace": "muYmQL04Sk3XM14o", "pod_name": "N6RUhIOD8tM47pJY"}]}' \
+    --body '{"Downloads": [{"alloc_id": "Rh1xuolSxrruvRot", "namespace": "x7Tl7gPzCNYGCiWW", "pod_name": "lqSHuqWZZ4J9F8zz"}, {"alloc_id": "2vslUsfPFQx4JN7q", "namespace": "faJGpCjfoUkF6mwA", "pod_name": "tKlmbsAUOheRBcAI"}, {"alloc_id": "5JsbLMgAGwcOZM7U", "namespace": "5UvfP7okTQJhtPh3", "pod_name": "nV3l4hF4fyAnsMHn"}]}' \
     > test.out 2>&1
 eval_tap $? 6 'BatchDownloadServerLogs' test.out
 
 #- 7 ListAllTerminatedServers
 samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
-    --deployment 'VBHQMvmUCSjkCaWC' \
-    --endDate 'vFu93Nm0IRg76c4r' \
-    --gameMode 'gzaYrALfmSIpueh2' \
-    --limit '52' \
-    --namespace '9VYiitmdNoBzdeN2' \
-    --next 'D6mzvEpqIb4eQM0e' \
-    --partyId 'e9qBcBHU8WJG4dBD' \
-    --podName 'PvhIJHkGy1CiWHEI' \
-    --previous '08nyoikVaGPZDgC9' \
-    --provider 'i6N7gaTFJjf4H0Vv' \
-    --region 'IDqiQDmkXHujzOz3' \
-    --sessionId 'wOhYgPBoYVArcWRC' \
-    --startDate 'e4XvElk1MzwycDKD' \
-    --status '7iFkHqO8QBToKFxt' \
-    --userId '966qArsthQIW8XXW' \
+    --deployment 'MrnVAU13jtRQjeBR' \
+    --endDate 'n4BnTEr4Qn2VIUHg' \
+    --gameMode 'X1VG17KWYEFhOKoy' \
+    --limit '62' \
+    --namespace 'VoVhHbMKeONA7QRr' \
+    --next 'VlugI1yELiZUuFY9' \
+    --partyId 'GKSazbzzQDfvC9KK' \
+    --podName 'jjXai8EPduxgGQY7' \
+    --previous 'VsqiX7VGvdYfbmIw' \
+    --provider 'XBXL0B7pGXd4o28V' \
+    --region 'oVSbbtKqT6HQT4tJ' \
+    --sessionId 'PKtVMW2KoluGigUf' \
+    --startDate 'RJeFBMSza0rJ1B14' \
+    --status 'ChxdgDjsgG05eFnZ' \
+    --userId 'E6a1KX1DUWAPaCen' \
     > test.out 2>&1
 eval_tap $? 7 'ListAllTerminatedServers' test.out
 

@@ -1551,6 +1551,33 @@ func serveStandalone() {
 
 			return
 		}
+	case model.TypeRefreshTokenRequest:
+		m := make(map[string]string)
+		if len(getArgs) >= 1 {
+			m = getParam(getArgs)
+		}
+		id := m["id"]
+		token := m["token"]
+		err := lobbyService.RefreshTokenRequest(&id, &token)
+		if err != nil {
+			logrus.Error(err)
+
+			return
+		}
+	case model.TypeRefreshTokenResponse:
+		m := make(map[string]string)
+		if len(getArgs) >= 1 {
+			m = getParam(getArgs)
+		}
+		codeString := m["code"]
+		code, _ := strconv.ParseInt(codeString, 10, 64)
+		id := m["id"]
+		err := lobbyService.RefreshTokenResponse(code, id)
+		if err != nil {
+			logrus.Error(err)
+
+			return
+		}
 	case model.TypeRejectFriendsNotif:
 		m := make(map[string]string)
 		if len(getArgs) >= 1 {

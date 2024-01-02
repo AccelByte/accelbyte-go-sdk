@@ -20,6 +20,10 @@ import (
 // swagger:model Revoke item.
 type RevokeItem struct {
 
+	// platform ,it is used to revoke entitlements of the specified allowed platforms, only available in ENTITLEMENT item
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
+	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`
+
 	// item identity
 	ItemIdentity string `json:"itemIdentity,omitempty"`
 
@@ -38,6 +42,62 @@ func (m *RevokeItem) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var revokeItemTypeEntitlementOriginPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "SYSTEM", "TWITCH", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		revokeItemTypeEntitlementOriginPropEnum = append(revokeItemTypeEntitlementOriginPropEnum, v)
+	}
+}
+
+const (
+
+	// RevokeItemEntitlementOriginEPIC captures enum value "EPIC"
+	RevokeItemEntitlementOriginEPIC string = "EPIC"
+
+	// RevokeItemEntitlementOriginGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	RevokeItemEntitlementOriginGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// RevokeItemEntitlementOriginIOS captures enum value "IOS"
+	RevokeItemEntitlementOriginIOS string = "IOS"
+
+	// RevokeItemEntitlementOriginNINTENDO captures enum value "NINTENDO"
+	RevokeItemEntitlementOriginNINTENDO string = "NINTENDO"
+
+	// RevokeItemEntitlementOriginOCULUS captures enum value "OCULUS"
+	RevokeItemEntitlementOriginOCULUS string = "OCULUS"
+
+	// RevokeItemEntitlementOriginOTHER captures enum value "OTHER"
+	RevokeItemEntitlementOriginOTHER string = "OTHER"
+
+	// RevokeItemEntitlementOriginPLAYSTATION captures enum value "PLAYSTATION"
+	RevokeItemEntitlementOriginPLAYSTATION string = "PLAYSTATION"
+
+	// RevokeItemEntitlementOriginSTEAM captures enum value "STEAM"
+	RevokeItemEntitlementOriginSTEAM string = "STEAM"
+
+	// RevokeItemEntitlementOriginSYSTEM captures enum value "SYSTEM"
+	RevokeItemEntitlementOriginSYSTEM string = "SYSTEM"
+
+	// RevokeItemEntitlementOriginTWITCH captures enum value "TWITCH"
+	RevokeItemEntitlementOriginTWITCH string = "TWITCH"
+
+	// RevokeItemEntitlementOriginXBOX captures enum value "XBOX"
+	RevokeItemEntitlementOriginXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *RevokeItem) validateEntitlementOriginEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, revokeItemTypeEntitlementOriginPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

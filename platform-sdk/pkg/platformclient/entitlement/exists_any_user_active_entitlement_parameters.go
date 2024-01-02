@@ -73,6 +73,8 @@ type ExistsAnyUserActiveEntitlementParams struct {
 	AppIds []string
 	/*ItemIds*/
 	ItemIds []string
+	/*Platform*/
+	Platform *string
 	/*Skus*/
 	Skus []string
 
@@ -173,6 +175,17 @@ func (o *ExistsAnyUserActiveEntitlementParams) SetItemIds(itemIds []string) {
 	o.ItemIds = itemIds
 }
 
+// WithPlatform adds the platform to the exists any user active entitlement params
+func (o *ExistsAnyUserActiveEntitlementParams) WithPlatform(platform *string) *ExistsAnyUserActiveEntitlementParams {
+	o.SetPlatform(platform)
+	return o
+}
+
+// SetPlatform adds the platform to the exists any user active entitlement params
+func (o *ExistsAnyUserActiveEntitlementParams) SetPlatform(platform *string) {
+	o.Platform = platform
+}
+
 // WithSkus adds the skus to the exists any user active entitlement params
 func (o *ExistsAnyUserActiveEntitlementParams) WithSkus(skus []string) *ExistsAnyUserActiveEntitlementParams {
 	o.SetSkus(skus)
@@ -216,6 +229,22 @@ func (o *ExistsAnyUserActiveEntitlementParams) WriteToRequest(r runtime.ClientRe
 	// query array param itemIds
 	if err := r.SetQueryParam("itemIds", joinedItemIds...); err != nil {
 		return err
+	}
+
+	if o.Platform != nil {
+
+		// query param platform
+		var qrPlatform string
+		if o.Platform != nil {
+			qrPlatform = *o.Platform
+		}
+		qPlatform := qrPlatform
+		if qPlatform != "" {
+			if err := r.SetQueryParam("platform", qPlatform); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	valuesSkus := o.Skus

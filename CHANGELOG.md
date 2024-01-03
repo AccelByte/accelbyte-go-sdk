@@ -1,8 +1,11 @@
 <a name="v0.61.0"></a>
 ## [v0.61.0]
+### docs
+- **migrations:** add migration-guide-v0.60-to-v0.61.md
 ### chore
 - **integration-test:** refactor test for ags starter support
 - **ci:** add nightly file for ags starter
+- **:** update CHANGELOG.md and go sum getting started
 
 
 <a name="v0.60.0"></a>

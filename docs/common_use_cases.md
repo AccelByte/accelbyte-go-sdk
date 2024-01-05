@@ -1800,7 +1800,7 @@ if errDelete != nil {
 ### Save Inbox Message
 
 ```go
-expiredAt := int64(1704251627)
+expiredAt := time.Now().Add(time.Hour).Unix()
 scopeChat := chatclientmodels.ModelsSaveInboxMessageRequestScopeUSER
 statusChat := chatclientmodels.ModelsSaveInboxMessageRequestStatusDRAFT
 userIdChat := GetUserID()

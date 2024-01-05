@@ -23,42 +23,27 @@ import (
 )
 
 var (
-	sessionDSMCService = &dsmc.SessionService{
-		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: tokenRepository,
-	}
-	dsmcConfigService = &dsmc.ConfigService{
-		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: tokenRepository,
-	}
-	deploymentConfigService = &dsmc.DeploymentConfigService{
-		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: tokenRepository,
-	}
 	deployment     = "default"
-	gameMode       = "GAME_MODE"
 	emptyString    = ""
 	emptyInterface interface{}
 )
 
-func createSessionBrowser() string {
+func TestIntegrationSessionDSMC(t *testing.T) {
+	t.Skipf("temporarily disabled") // Armada is deprecated
+
+	// Login User - Arrange
+	Init()
+
 	inputSession := &sessionBrowser.CreateSessionParams{
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
 	ok, err := sessionService.CreateSessionShort(inputSession)
 	if err != nil {
-		return ""
+		assert.Fail(t, "failed to get session. ", err.Error())
 	}
 
-	return *ok.SessionID
-}
-
-func TestIntegrationSessionDSMC(t *testing.T) {
-	// Login User - Arrange
-	Init()
-
-	SessionBrowserID := createSessionBrowser()
+	SessionBrowserID := *ok.SessionID
 	getUserId := GetUserID() // use user token to get userId
 	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
 	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
@@ -78,6 +63,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
 	namespace = integration.NamespaceTest
+	gameMode := "GAME_MODE"
 	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
@@ -92,6 +78,11 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	}
 
 	// Get the existing config
+	dsmcConfigService := &dsmc.ConfigService{
+		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
+
 	configs, errConfigs := dsmcConfigService.ListConfigShort(&config.ListConfigParams{})
 	if errConfigs != nil {
 		assert.Fail(t, "failed to get the dsmc configs. ", errConfigs.Error())
@@ -100,6 +91,10 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	bodySessionDsmc.Configuration = &configs.Configs[0].Namespace
 
 	// Check the deployment
+	deploymentConfigService := &dsmc.DeploymentConfigService{
+		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
 	input := &deployment_config.GetDeploymentParams{
 		Deployment: deployment,
 		Namespace:  integration.NamespaceTest,
@@ -111,10 +106,14 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 
 	bodySessionDsmc.ClientVersion = getDeployment.GameVersion
 
-	// CASE Create a session
 	inputCreate := &session.CreateSessionParams{
 		Body:      bodySessionDsmc,
 		Namespace: integration.NamespaceTest,
+	}
+
+	sessionDSMCService := &dsmc.SessionService{
+		Client:          factory.NewDsmcClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
 	}
 
 	created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate)
@@ -123,13 +122,11 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	}
 	createdSessionID := *created.Session.ID
 	t.Logf("Session DSMC: %v created", createdSessionID)
-	// ESAC
 
 	// Assert
 	assert.Nil(t, errCreate, "err should be nil")
 	assert.NotNil(t, created, "response should not be nil")
 
-	// CASE Get a session
 	inputGet := &session.GetSessionParams{
 		Namespace: integration.NamespaceTest,
 		SessionID: createdSessionID,
@@ -140,13 +137,11 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		assert.FailNow(t, errGet.Error())
 	}
 	t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
-	// ESAC
 
 	// Assert
 	assert.Nil(t, errGet, "err should be nil")
 	assert.NotNil(t, get, "response should not be nil")
 
-	// CASE Claim a DS (Dedicated Server)
 	time.Sleep(5 * time.Second)
 
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
@@ -170,7 +165,6 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		return
 	}
 	t.Logf("Id Session DSMC: %v claimed a server", createdSessionID)
-	// ESAC
 
 	// Assert
 	assert.Nil(t, errClaim, "err should be nil")

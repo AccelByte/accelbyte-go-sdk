@@ -17,30 +17,25 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/qosm"
 )
 
-var (
-	qosmConfigRepo = auth.DefaultConfigRepositoryImpl()
-	qosmTokenRepo  = tokenRepository
-	qosmClient     = factory.NewQosmClient(qosmConfigRepo)
-	serverService  = &qosm.ServerService{
-		Client:          qosmClient,
-		TokenRepository: qosmTokenRepo,
-	}
-	publicService = &qosm.PublicService{
-		Client:          qosmClient,
-		TokenRepository: qosmTokenRepo,
-	}
-)
-
 // ListServer + Heartbeat
 func TestIntegrationListServerHeartbeat(t *testing.T) {
+	t.Skipf("temporarily disabled") // Armada is deprecated
+
 	// Login User - Arrange
 	Init()
 
-	// CASE ListServer
+	qosmConfigRepo := auth.DefaultConfigRepositoryImpl()
+	qosmClient := factory.NewQosmClient(qosmConfigRepo)
+	qosmTokenRepo := tokenRepository
+
+	publicService := &qosm.PublicService{
+		Client:          qosmClient,
+		TokenRepository: qosmTokenRepo,
+	}
+
 	inputListServer := &public.ListServerParams{}
 
 	listServerOk, errListSertver := publicService.ListServerShort(inputListServer)
-	// ESAC
 
 	// Assert
 	assert.Nil(t, errListSertver, "err should be nil")
@@ -49,19 +44,23 @@ func TestIntegrationListServerHeartbeat(t *testing.T) {
 		t.Skip("response 'Servers' is empty")
 	}
 
-	// CASE Heartbeat
 	firstServer := listServerOk.Servers[0]
 	heartbeatRequest := qosmclientmodels.ModelsHeartbeatRequest{
 		IP:     firstServer.IP,
 		Port:   firstServer.Port,
 		Region: firstServer.Region,
 	}
+
+	serverService := &qosm.ServerService{
+		Client:          qosmClient,
+		TokenRepository: qosmTokenRepo,
+	}
+
 	inputHeartbeat := &server.HeartbeatParams{
 		Body: &heartbeatRequest,
 	}
 
 	err := serverService.HeartbeatShort(inputHeartbeat)
-	// ESAC
 
 	// Assert
 	assert.Nil(t, err, "err should be nil")

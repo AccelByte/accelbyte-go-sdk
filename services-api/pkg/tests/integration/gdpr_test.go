@@ -5,6 +5,7 @@
 package integration_test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
@@ -27,6 +28,10 @@ var (
 )
 
 func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -45,6 +50,10 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 }
 
 func TestIntegrationAdminListDataRetrieval(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -62,6 +71,10 @@ func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 }
 
 func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -83,6 +96,10 @@ func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
 }
 
 func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 

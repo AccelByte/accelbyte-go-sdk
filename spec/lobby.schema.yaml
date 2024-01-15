@@ -252,7 +252,7 @@ definitions:
       availability:
         type: array
         items:
-          type: integer
+          type: string
       code:
         type: integer
       friendIds:

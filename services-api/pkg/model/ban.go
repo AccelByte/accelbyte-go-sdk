@@ -16,11 +16,6 @@ type UserBannedNotification struct {
 	Enable    bool   `json:"enable"`
 }
 
-// Type implements Message interface
-func (UserBannedNotification) Type() string {
-	return TypeUserBannedNotification
-}
-
 // UserUnbannedNotification is the response models
 // for when user is unbanned
 type UserUnbannedNotification struct {

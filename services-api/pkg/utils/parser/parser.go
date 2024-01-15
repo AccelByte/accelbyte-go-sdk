@@ -680,16 +680,12 @@ func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsP
 		}
 	}
 
-	var userAvailability []int
+	var userAvailability []string
 	statusAvailability := strings.TrimPrefix(content["availability"], "[")
 	statusAvailability = strings.TrimSuffix(statusAvailability, "]")
 	for _, payload := range strings.Split(statusAvailability, ",") {
 		if payload != "" {
-			intPayload, errParsing := strconv.Atoi(payload)
-			if errParsing != nil {
-				return nil, errParsing
-			}
-			userAvailability = append(userAvailability, intPayload)
+			userAvailability = append(userAvailability, payload)
 		}
 	}
 
@@ -699,6 +695,15 @@ func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsP
 	for _, payload := range strings.Split(statusActivity, ",") {
 		if payload != "" {
 			userActivity = append(userActivity, payload)
+		}
+	}
+
+	var userPlatform []string
+	statusPlatform := strings.TrimPrefix(content["platform"], "[")
+	statusPlatform = strings.TrimSuffix(statusPlatform, "]")
+	for _, payload := range strings.Split(statusPlatform, ",") {
+		if payload != "" {
+			userPlatform = append(userPlatform, payload)
 		}
 	}
 
@@ -716,6 +721,7 @@ func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsP
 		UserID:       userIDs,
 		Availability: userAvailability,
 		Activity:     userActivity,
+		Platform:     userPlatform,
 		LastSeenAt:   userLastSeenAt,
 	}
 
@@ -747,15 +753,11 @@ func unmarshalNotifyFriendsResponse(reader *bufio.Reader) (*model.FriendsPresenc
 		return nil, err
 	}
 
-	availability, err := strconv.Atoi(content["availability"])
-	if err != nil {
-		return nil, err
-	}
-
 	response := &model.FriendsPresenceNotif{
 		UserID:       content["userID"],
-		Availability: availability,
+		Availability: content["availability"],
 		Activity:     content["activity"],
+		Platform:     content["platform"],
 	}
 
 	return response, nil
@@ -938,7 +940,7 @@ func unmarshalListIncomingFriendsResponse(reader *bufio.Reader) (*model.ListInco
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
-		UserIDs: userIDs,
+		UserIds: userIDs,
 	}
 
 	return response, nil
@@ -968,7 +970,7 @@ func unmarshalListOutgoingFriendsResponse(reader *bufio.Reader) (*model.ListOutg
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
-		UserIDs: userIDs,
+		FriendIds: userIDs,
 	}
 
 	return response, nil
@@ -1117,7 +1119,7 @@ func unmarshalListOfFriendsResponse(reader *bufio.Reader) (*model.ListOfFriendsR
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
-		UserIDs: userIDs,
+		FriendIds: userIDs,
 	}
 
 	return response, nil
@@ -1294,8 +1296,8 @@ func unmarshalBlockPlayerResponse(reader *bufio.Reader) (*model.BlockPlayerRespo
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
-		Namespace:     content["namespace"],
-		BlockedUserID: content["blockedUserId"],
+		Namespace:   content["namespace"],
+		BlockUserID: content["blockedUserId"],
 	}
 
 	return response, nil

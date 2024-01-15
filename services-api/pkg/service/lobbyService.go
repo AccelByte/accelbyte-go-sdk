@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package service
 
 import (
@@ -230,7 +232,7 @@ func (lobbyService *LobbyServiceWebsocket) FriendsStatusRequest(id *string) erro
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) FriendsStatusResponse(activity []string, availability []int64, code int64, friendIds []string, id string, lastSeenAt []string) error {
+func (lobbyService *LobbyServiceWebsocket) FriendsStatusResponse(activity []string, availability []string, code int64, friendIds []string, id string, lastSeenAt []string) error {
 	logrus.Debug("FriendsStatusResponse")
 	text := fmt.Sprintf("type: %s\n%s\nactivity: %v\navailability: %v\ncode: %v\nfriendIds: %v\nid: %v\nlastSeenAt: %v", model.TypeFriendsStatusResponse, utils.GenerateMessageID(), activity, availability, code, friendIds, id, lastSeenAt)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))

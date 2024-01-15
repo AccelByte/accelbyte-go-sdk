@@ -2,10 +2,13 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package model
 
 import (
 	"fmt"
+	"time"
 )
 
 // Message types enum
@@ -275,11 +278,6 @@ type Heartbeat struct {
 	*BaseRequest
 }
 
-// Type implements Message interface
-func (Heartbeat) Type() string {
-	return TypeHeartbeat
-}
-
 // GetOfflineNotificationRequest message comment
 type GetOfflineNotificationRequest struct {
 	*BaseRequest
@@ -329,26 +327,15 @@ func (ListFriendsPresenceRequest) Type() string {
 type ListFriendsPresenceResponse struct {
 	*BaseResponse
 	UserID       []string
-	Availability []int
+	Availability []string
 	Activity     []string
+	Platform     []string
 	LastSeenAt   []string
 }
 
 // Type implements Message interface
 func (ListFriendsPresenceResponse) Type() string {
 	return TypeFriendsPresenceResponse
-}
-
-// SetUserStatusRequest message command to set user status (Request)
-type SetUserStatusRequest struct {
-	*BaseRequest
-	Availability int    `json:"availability"`
-	Activity     string `json:"activity"`
-}
-
-// Type implements Message interface
-func (SetUserStatusRequest) Type() string {
-	return TypeSetUserStatusRequest
 }
 
 // ResetUserStatusRequest request directly from client to reset user status when the client get disconnected
@@ -362,21 +349,12 @@ func (ResetUserStatusRequest) Type() string {
 	return TypeClientResetRequest
 }
 
-// SetUserStatusResponse message command to set user status (Response)
-type SetUserStatusResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (SetUserStatusResponse) Type() string {
-	return TypeSetUserStatusResponse
-}
-
 // FriendsPresenceNotif message command to notify friends
 type FriendsPresenceNotif struct {
 	UserID       string
-	Availability int
+	Availability string
 	Activity     string
+	Platform     string
 	LastSeenAt   string
 }
 
@@ -404,42 +382,10 @@ type StartMatchmakingRequest struct {
 	ExtraAttributes string
 }
 
-// Type implements Message interface
-func (StartMatchmakingRequest) Type() string {
-	return TypeStartMatchmakingRequest
-}
-
 // StartMatchmakingResponse message message to reply start matchmaking request
 type StartMatchmakingResponse struct {
 	*BaseResponse
 	Message string
-}
-
-// Type implements Message interface
-func (StartMatchmakingResponse) Type() string {
-	return TypeStartMatchmakingResponse
-}
-
-// CancelMatchmakingRequest message message to request matchmaking cancel
-type CancelMatchmakingRequest struct {
-	*BaseRequest
-	GameMode    string
-	IsTempParty bool
-}
-
-// Type implements Message interface
-func (CancelMatchmakingRequest) Type() string {
-	return TypeCancelMatchmakingRequest
-}
-
-// CancelMatchmakingResponse message message to reply start matchmaking request
-type CancelMatchmakingResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (CancelMatchmakingResponse) Type() string {
-	return TypeCancelMatchmakingResponse
 }
 
 // MatchmakingNotification is the message of matchmaking result
@@ -457,64 +403,6 @@ func (MatchmakingNotification) Type() string {
 	return TypeMatchmakingNotif
 }
 
-// SetReadyConsentRequest is the message of set ready consent request
-type SetReadyConsentRequest struct {
-	*BaseRequest
-	MatchID string
-}
-
-// Type implements Message interface
-func (SetReadyConsentRequest) Type() string {
-	return TypeSetReadyConsentRequest
-}
-
-// SetReadyConsentResponse is the message of set ready consent response
-type SetReadyConsentResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (SetReadyConsentResponse) Type() string {
-	return TypeSetReadyConsentResponse
-}
-
-// SetReadyConsentNotif is the message of set ready consent response
-type SetReadyConsentNotif struct {
-	MatchID string
-	UserID  string
-}
-
-// Type implements Message interface
-func (SetReadyConsentNotif) Type() string {
-	return TypeSetReadyConsentNotif
-}
-
-// RematchmakingNotif is the message of rematchmaking notification
-type RematchmakingNotif struct {
-	BanDuration int
-}
-
-// Type implements Message interface
-func (RematchmakingNotif) Type() string {
-	return TypeRematchmakingNotif
-}
-
-// RequestFriendsRequest message command to request friends (Request)
-type RequestFriendsRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (RequestFriendsRequest) Type() string {
-	return TypeRequestFriendsRequest
-}
-
-// RequestFriendsResponse message command to request friends (Response)
-type RequestFriendsResponse struct {
-	*BaseResponse
-}
-
 // TypeInfoRequestRequest message command to get info
 type TypeInfoRequestRequest struct {
 	*BaseResponse
@@ -529,233 +417,6 @@ func (TypeInfoRequestRequest) Type() string {
 // TypeInfoRequestResponse message command to get info
 type TypeInfoRequestResponse struct {
 	*BaseResponse
-}
-
-// Type implements Message interface
-func (RequestFriendsResponse) Type() string {
-	return TypeRequestFriendsResponse
-}
-
-// RequestFriendsNotif message notification when someone requesting friends relation
-type RequestFriendsNotif struct {
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (RequestFriendsNotif) Type() string {
-	return TypeRequestFriendsNotif
-}
-
-// ListIncomingFriendsRequest message command to get list of incoming friends (Request)
-type ListIncomingFriendsRequest struct {
-	*BaseRequest
-}
-
-// Type implements Message interface
-func (ListIncomingFriendsRequest) Type() string {
-	return TypeListIncomingFriendsRequest
-}
-
-// ListIncomingFriendsResponse message command to get list of Incoming friends (Response)
-type ListIncomingFriendsResponse struct {
-	*BaseResponse
-	UserIDs []string
-}
-
-// Type implements Message interface
-func (ListIncomingFriendsResponse) Type() string {
-	return TypeListIncomingFriendsResponse
-}
-
-// ListOutgoingFriendsRequest message command to get list of Outgoing friends (Request)
-type ListOutgoingFriendsRequest struct {
-	*BaseRequest
-}
-
-// Type implements Message interface
-func (ListOutgoingFriendsRequest) Type() string {
-	return TypeListOutgoingFriendsRequest
-}
-
-// ListOutgoingFriendsResponse message command to get list of Outgoing friends (Response)
-type ListOutgoingFriendsResponse struct {
-	*BaseResponse
-	UserIDs []string
-}
-
-// Type implements Message interface
-func (ListOutgoingFriendsResponse) Type() string {
-	return TypeListOutgoingFriendsResponse
-}
-
-// AcceptFriendsRequest message command to accept friends request (Request)
-type AcceptFriendsRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (AcceptFriendsRequest) Type() string {
-	return TypeAcceptFriendsRequest
-}
-
-// AcceptFriendsResponse message command to accept friends request (Response)
-type AcceptFriendsResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (AcceptFriendsResponse) Type() string {
-	return TypeAcceptFriendsResponse
-}
-
-// AcceptFriendsNotif is notification message when someone accept friends request
-type AcceptFriendsNotif struct {
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (AcceptFriendsNotif) Type() string {
-	return TypeAcceptFriendsNotif
-}
-
-// RejectFriendsRequest message command to reject friends request (Request)
-type RejectFriendsRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (RejectFriendsRequest) Type() string {
-	return TypeRejectFriendsRequest
-}
-
-// RejectFriendsRequest notification message to tell that friend-request is rejected
-type RejectFriendsNotif struct {
-	UserID string `json:"userId"`
-}
-
-// Type implements Message interface
-func (RejectFriendsNotif) Type() string {
-	return TypeRejectFriendsNotif
-}
-
-// RejectFriendsResponse message command to reject friends request (Response)
-type RejectFriendsResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (RejectFriendsResponse) Type() string {
-	return TypeRejectFriendsResponse
-}
-
-// CancelFriendsRequest message command to cancel friends request (Request)
-type CancelFriendsRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (CancelFriendsRequest) Type() string {
-	return TypeCancelFriendsRequest
-}
-
-// CancelFriendsResponse message command to cancel friends request (Response)
-type CancelFriendsResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (CancelFriendsResponse) Type() string {
-	return TypeCancelFriendsResponse
-}
-
-// CancelFriendsNotif message command to tell user who send friend request that the friend
-// cancel the request
-type CancelFriendsNotif struct {
-	// UserID ID of the user who cancel the friend-request
-	UserID string `json:"userId"`
-}
-
-// Type implements Message interface
-func (CancelFriendsNotif) Type() string {
-	return TypeCancelFriendsNotif
-}
-
-// UnfriendRequest message command to unfriends (Request)
-type UnfriendRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (UnfriendRequest) Type() string {
-	return TypeUnfriendRequest
-}
-
-// UnfriendResponse message command to unfriends (Response)
-type UnfriendResponse struct {
-	*BaseResponse
-}
-
-// Type implements Message interface
-func (UnfriendResponse) Type() string {
-	return TypeUnfriendResponse
-}
-
-// UnfriendNotif is notification message when someone unfriend a friend
-type UnfriendNotif struct {
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (UnfriendNotif) Type() string {
-	return TypeUnfriendNotif
-}
-
-// ListOfFriendsRequest message command to get list of friends (Request)
-type ListOfFriendsRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (ListOfFriendsRequest) Type() string {
-	return TypeListOfFriendsRequest
-}
-
-// ListOfFriendsResponse message command to get list of friends (Response)
-type ListOfFriendsResponse struct {
-	*BaseResponse
-	UserIDs []string
-}
-
-// Type implements Message interface
-func (ListOfFriendsResponse) Type() string {
-	return TypeListOfFriendsResponse
-}
-
-// GetFriendshipStatusRequest message command to get friendship status (Request)
-type GetFriendshipStatusRequest struct {
-	*BaseRequest
-	FriendID string `json:"friendId"`
-}
-
-// Type implements Message interface
-func (GetFriendshipStatusRequest) Type() string {
-	return TypeGetFriendshipStatusRequest
-}
-
-// GetFriendshipStatusResponse message command to get friendship status (Response)
-type GetFriendshipStatusResponse struct {
-	*BaseResponse
-	FriendshipStatus string `json:"friendshipStatus"`
-}
-
-// Type implements Message interface
-func (GetFriendshipStatusResponse) Type() string {
-	return TypeGetFriendshipStatusResponse
 }
 
 // CreateDSRequest message command to create a DS (Request)
@@ -833,30 +494,6 @@ type SystemComponentsStatus struct {
 	Components map[string]bool
 }
 
-// BlockPlayerRequest is the message of BlockPlayerRequest
-type BlockPlayerRequest struct {
-	*BaseRequest
-	Namespace     string
-	BlockedUserID string
-}
-
-// Type implements Message interface
-func (BlockPlayerRequest) Type() string {
-	return TypeBlockPlayerRequest
-}
-
-// BlockPlayerResponse is the message of BlockPlayerResponse
-type BlockPlayerResponse struct {
-	*BaseResponse
-	Namespace     string
-	BlockedUserID string
-}
-
-// Type implements Message interface
-func (BlockPlayerResponse) Type() string {
-	return TypeBlockPlayerResponse
-}
-
 // PlayerBlockedNotification is the message of PlayerBlockedNotification
 type PlayerBlockedNotification struct {
 	UserID        string
@@ -866,30 +503,6 @@ type PlayerBlockedNotification struct {
 // Type implements Message interface
 func (PlayerBlockedNotification) Type() string {
 	return TypeBlockPlayerNotif
-}
-
-// UnblockPlayerRequest is the message of UnblockPlayerRequest
-type UnblockPlayerRequest struct {
-	*BaseRequest
-	Namespace       string
-	UnblockedUserID string
-}
-
-// Type implements Message interface
-func (UnblockPlayerRequest) Type() string {
-	return TypeUnblockPlayerRequest
-}
-
-// UnblockPlayerResponse is the message of UnblockPlayerResponse
-type UnblockPlayerResponse struct {
-	*BaseResponse
-	Namespace       string
-	UnblockedUserID string
-}
-
-// Type implements Message interface
-func (UnblockPlayerResponse) Type() string {
-	return TypeUnblockPlayerResponse
 }
 
 // PlayerUnblockedNotification is the message of PlayerUnblockedNotification
@@ -903,73 +516,1132 @@ func (PlayerUnblockedNotification) Type() string {
 	return TypeUnblockPlayerNotif
 }
 
-type SetSessionAttributeRequest struct {
-	*BaseRequest
-	Namespace string
-	Key       string
-	Value     string
-}
-
-func (SetSessionAttributeRequest) Type() string {
-	return TypeSetSessionAttributeRequest
-}
-
-type SetSessionAttributeResponse struct {
-	*BaseResponse
-}
-
-func (SetSessionAttributeResponse) Type() string {
-	return TypeSetSessionAttributeResponse
-}
-
-type GetSessionAttributeRequest struct {
-	*BaseRequest
-	Key string
-}
-
-func (GetSessionAttributeRequest) Type() string {
-	return TypeGetSessionAttributeRequest
-}
-
-type GetSessionAttributeResponse struct {
-	*BaseResponse
-	Value string
-}
-
-func (GetSessionAttributeResponse) Type() string {
-	return TypeGetSessionAttributeResponse
-}
-
-type GetAllSessionAttributeRequest struct {
-	*BaseRequest
-}
-
-func (GetAllSessionAttributeRequest) Type() string {
-	return TypeGetAllSessionAttributeRequest
-}
-
 type GetAllSessionAttributeResponse struct {
 	*BaseResponse
 	Attributes map[string]string
 }
 
+// --- START FROM HERE, THE MODELS ARE GENERATED BASED ON lobby.schema.yaml FILE ---
+
+// AcceptFriendsNotif
+type AcceptFriendsNotif struct {
+	FriendID string
+}
+
+// Type implements Message interface
+func (AcceptFriendsNotif) Type() string {
+	return TypeAcceptFriendsNotif
+}
+
+// AcceptFriendsRequest
+type AcceptFriendsRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (AcceptFriendsRequest) Type() string {
+	return TypeAcceptFriendsRequest
+}
+
+// AcceptFriendsResponse
+type AcceptFriendsResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (AcceptFriendsResponse) Type() string {
+	return TypeAcceptFriendsResponse
+}
+
+// BlockPlayerNotif
+type BlockPlayerNotif struct {
+	BlockedUserID string
+	UserID        string
+}
+
+// Type implements Message interface
+func (BlockPlayerNotif) Type() string {
+	return TypeBlockPlayerNotif
+}
+
+// BlockPlayerRequest
+type BlockPlayerRequest struct {
+	BlockUserID string
+	*BaseResponse
+	Namespace string
+}
+
+// Type implements Message interface
+func (BlockPlayerRequest) Type() string {
+	return TypeBlockPlayerRequest
+}
+
+// BlockPlayerResponse
+type BlockPlayerResponse struct {
+	BlockUserID string
+	*BaseResponse
+	Namespace string
+}
+
+// Type implements Message interface
+func (BlockPlayerResponse) Type() string {
+	return TypeBlockPlayerResponse
+}
+
+// CancelFriendsNotif
+type CancelFriendsNotif struct {
+	UserID string
+}
+
+// Type implements Message interface
+func (CancelFriendsNotif) Type() string {
+	return TypeCancelFriendsNotif
+}
+
+// CancelFriendsRequest
+type CancelFriendsRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (CancelFriendsRequest) Type() string {
+	return TypeCancelFriendsRequest
+}
+
+// CancelFriendsResponse
+type CancelFriendsResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (CancelFriendsResponse) Type() string {
+	return TypeCancelFriendsResponse
+}
+
+// CancelMatchmakingRequest
+type CancelMatchmakingRequest struct {
+	GameMode string
+	*BaseResponse
+	IsTempParty bool
+}
+
+// Type implements Message interface
+func (CancelMatchmakingRequest) Type() string {
+	return TypeCancelMatchmakingRequest
+}
+
+// CancelMatchmakingResponse
+type CancelMatchmakingResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (CancelMatchmakingResponse) Type() string {
+	return TypeCancelMatchmakingResponse
+}
+
+// ChannelChatNotif
+type ChannelChatNotif struct {
+	ChannelSlug string
+	From        string
+	Payload     string
+	SentAt      time.Time
+}
+
+// Type implements Message interface
+func (ChannelChatNotif) Type() string {
+	return TypeChannelChatNotif
+}
+
+// ClientResetRequest
+type ClientResetRequest struct {
+	Namespace string
+	UserID    string
+}
+
+// Type implements Message interface
+func (ClientResetRequest) Type() string {
+	return TypeClientResetRequest
+}
+
+// ConnectNotif
+type ConnectNotif struct {
+	LobbySessionID string
+}
+
+// Type implements Message interface
+func (ConnectNotif) Type() string {
+	return TypeConnectNotif
+}
+
+// DisconnectNotif
+type DisconnectNotif struct {
+	ConnectionID string
+	Namespace    string
+}
+
+// Type implements Message interface
+func (DisconnectNotif) Type() string {
+	return TypeDisconnectNotif
+}
+
+// DsNotif
+type DsNotif struct {
+	AlternateIps          []string
+	CustomAttribute       string
+	Deployment            string
+	GameVersion           string
+	ImageVersion          string
+	IP                    string
+	IsOK                  bool
+	IsOverrideGameVersion bool
+	LastUpdate            string
+	MatchID               string
+	Message               string
+	Namespace             string
+	PodName               string
+	Port                  int
+	Ports                 string
+	Protocol              string
+	Provider              string
+	Region                string
+	SessionID             string
+	Status                string
+}
+
+// Type implements Message interface
+func (DsNotif) Type() string {
+	return TypeDsNotif
+}
+
+// ErrorNotif
+type ErrorNotif struct {
+	Message string
+}
+
+// Type implements Message interface
+func (ErrorNotif) Type() string {
+	return TypeErrorNotif
+}
+
+// ExitAllChannel
+type ExitAllChannel struct {
+	Namespace string
+	UserID    string
+}
+
+// Type implements Message interface
+func (ExitAllChannel) Type() string {
+	return TypeExitAllChannel
+}
+
+// FriendsStatusRequest
+type FriendsStatusRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (FriendsStatusRequest) Type() string {
+	return TypeFriendsStatusRequest
+}
+
+// FriendsStatusResponse
+type FriendsStatusResponse struct {
+	Activity     []string
+	Availability []string
+	FriendIds    []string
+	*BaseResponse
+	LastSeenAt []string
+}
+
+// Type implements Message interface
+func (FriendsStatusResponse) Type() string {
+	return TypeFriendsStatusResponse
+}
+
+// GetAllSessionAttributeRequest
+type GetAllSessionAttributeRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (GetAllSessionAttributeRequest) Type() string {
+	return TypeGetAllSessionAttributeRequest
+}
+
+// Type implements Message interface
 func (GetAllSessionAttributeResponse) Type() string {
 	return TypeGetAllSessionAttributeResponse
 }
 
-type UserMetricRequest struct {
-	*BaseRequest
+// GetFriendshipStatusRequest
+type GetFriendshipStatusRequest struct {
+	FriendID string
+	*BaseResponse
 }
 
+// Type implements Message interface
+func (GetFriendshipStatusRequest) Type() string {
+	return TypeGetFriendshipStatusRequest
+}
+
+// GetFriendshipStatusResponse
+type GetFriendshipStatusResponse struct {
+	FriendshipStatus string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (GetFriendshipStatusResponse) Type() string {
+	return TypeGetFriendshipStatusResponse
+}
+
+// GetSessionAttributeRequest
+type GetSessionAttributeRequest struct {
+	*BaseResponse
+	Key string
+}
+
+// Type implements Message interface
+func (GetSessionAttributeRequest) Type() string {
+	return TypeGetSessionAttributeRequest
+}
+
+// GetSessionAttributeResponse
+type GetSessionAttributeResponse struct {
+	*BaseResponse
+	Value string
+}
+
+// Type implements Message interface
+func (GetSessionAttributeResponse) Type() string {
+	return TypeGetSessionAttributeResponse
+}
+
+// Type implements Message interface
+func (Heartbeat) Type() string {
+	return TypeHeartbeat
+}
+
+// JoinDefaultChannelRequest
+type JoinDefaultChannelRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (JoinDefaultChannelRequest) Type() string {
+	return TypeJoinDefaultChannelRequest
+}
+
+// JoinDefaultChannelResponse
+type JoinDefaultChannelResponse struct {
+	ChannelSlug string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (JoinDefaultChannelResponse) Type() string {
+	return TypeJoinDefaultChannelResponse
+}
+
+// ListIncomingFriendsRequest
+type ListIncomingFriendsRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListIncomingFriendsRequest) Type() string {
+	return TypeListIncomingFriendsRequest
+}
+
+// ListIncomingFriendsResponse
+type ListIncomingFriendsResponse struct {
+	*BaseResponse
+	UserIds []string
+}
+
+// Type implements Message interface
+func (ListIncomingFriendsResponse) Type() string {
+	return TypeListIncomingFriendsResponse
+}
+
+// ListOfFriendsRequest
+type ListOfFriendsRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListOfFriendsRequest) Type() string {
+	return TypeListOfFriendsRequest
+}
+
+// ListOfFriendsResponse
+type ListOfFriendsResponse struct {
+	FriendIds []string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListOfFriendsResponse) Type() string {
+	return TypeListOfFriendsResponse
+}
+
+// ListOnlineFriendsRequest
+type ListOnlineFriendsRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListOnlineFriendsRequest) Type() string {
+	return TypeListOnlineFriendsRequest
+}
+
+// ListOutgoingFriendsRequest
+type ListOutgoingFriendsRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListOutgoingFriendsRequest) Type() string {
+	return TypeListOutgoingFriendsRequest
+}
+
+// ListOutgoingFriendsResponse
+type ListOutgoingFriendsResponse struct {
+	FriendIds []string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (ListOutgoingFriendsResponse) Type() string {
+	return TypeListOutgoingFriendsResponse
+}
+
+// MatchmakingNotif
+type MatchmakingNotif struct {
+	CounterPartyMember []string
+	MatchID            string
+	Message            string
+	PartyMember        []string
+	ReadyDuration      int
+	Status             string
+}
+
+// Type implements Message interface
+func (MatchmakingNotif) Type() string {
+	return TypeMatchmakingNotif
+}
+
+// MessageNotif
+type MessageNotif struct {
+	From string
+	*BaseResponse
+	Payload string
+	SentAt  int
+	To      string
+	Topic   string
+}
+
+// Type implements Message interface
+func (MessageNotif) Type() string {
+	return TypeMessageNotif
+}
+
+// OfflineNotificationRequest
+type OfflineNotificationRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (OfflineNotificationRequest) Type() string {
+	return TypeOfflineNotificationRequest
+}
+
+// OfflineNotificationResponse
+type OfflineNotificationResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (OfflineNotificationResponse) Type() string {
+	return TypeOfflineNotificationResponse
+}
+
+// OnlineFriends
+type OnlineFriends struct {
+	*BaseResponse
+	OnlineFriendIds []string
+}
+
+// Type implements Message interface
+func (OnlineFriends) Type() string {
+	return TypeOnlineFriends
+}
+
+// Type implements Message interface
+func (PartyChatNotif) Type() string {
+	return TypePartyChatNotif
+}
+
+// Type implements Message interface
+func (PartyChatRequest) Type() string {
+	return TypePartyChatRequest
+}
+
+// PartyChatResponse
+type PartyChatResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyChatResponse) Type() string {
+	return TypePartyChatResponse
+}
+
+// PartyCreateRequest
+type PartyCreateRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyCreateRequest) Type() string {
+	return TypePartyCreateRequest
+}
+
+// PartyCreateResponse
+type PartyCreateResponse struct {
+	*BaseResponse
+	InvitationToken string
+	Invitees        string
+	LeaderID        string
+	Members         string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyCreateResponse) Type() string {
+	return TypePartyCreateResponse
+}
+
+// PartyDataUpdateNotif
+type PartyDataUpdateNotif struct {
+	CustomAttributes string
+	Invitees         []string
+	Leader           string
+	Members          []string
+	Namespace        string
+	PartyID          string
+	UpdatedAt        int
+}
+
+// Type implements Message interface
+func (PartyDataUpdateNotif) Type() string {
+	return TypePartyDataUpdateNotif
+}
+
+// PartyGetInvitedNotif
+type PartyGetInvitedNotif struct {
+	From            string
+	InvitationToken string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyGetInvitedNotif) Type() string {
+	return TypePartyGetInvitedNotif
+}
+
+// PartyInfoRequest
+type PartyInfoRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyInfoRequest) Type() string {
+	return TypePartyInfoRequest
+}
+
+// PartyInfoResponse
+type PartyInfoResponse struct {
+	CustomAttributes string
+	*BaseResponse
+	InvitationToken string
+	Invitees        string
+	LeaderID        string
+	Members         string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyInfoResponse) Type() string {
+	return TypePartyInfoResponse
+}
+
+// PartyInviteNotif
+type PartyInviteNotif struct {
+	InviteeID string
+	InviterID string
+}
+
+// Type implements Message interface
+func (PartyInviteNotif) Type() string {
+	return TypePartyInviteNotif
+}
+
+// PartyInviteRequest
+type PartyInviteRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyInviteRequest) Type() string {
+	return TypePartyInviteRequest
+}
+
+// PartyInviteResponse
+type PartyInviteResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyInviteResponse) Type() string {
+	return TypePartyInviteResponse
+}
+
+// PartyJoinNotif
+type PartyJoinNotif struct {
+	UserID string
+}
+
+// Type implements Message interface
+func (PartyJoinNotif) Type() string {
+	return TypePartyJoinNotif
+}
+
+// PartyJoinRequest
+type PartyJoinRequest struct {
+	*BaseResponse
+	InvitationToken string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyJoinRequest) Type() string {
+	return TypePartyJoinRequest
+}
+
+// PartyJoinResponse
+type PartyJoinResponse struct {
+	*BaseResponse
+	InvitationToken string
+	Invitees        string
+	LeaderID        string
+	Members         string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyJoinResponse) Type() string {
+	return TypePartyJoinResponse
+}
+
+// PartyKickNotif
+type PartyKickNotif struct {
+	LeaderID string
+	PartyID  string
+	UserID   string
+}
+
+// Type implements Message interface
+func (PartyKickNotif) Type() string {
+	return TypePartyKickNotif
+}
+
+// PartyKickRequest
+type PartyKickRequest struct {
+	*BaseResponse
+	MemberID string
+}
+
+// Type implements Message interface
+func (PartyKickRequest) Type() string {
+	return TypePartyKickRequest
+}
+
+// PartyKickResponse
+type PartyKickResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyKickResponse) Type() string {
+	return TypePartyKickResponse
+}
+
+// PartyLeaveNotif
+type PartyLeaveNotif struct {
+	LeaderID string
+	UserID   string
+}
+
+// Type implements Message interface
+func (PartyLeaveNotif) Type() string {
+	return TypePartyLeaveNotif
+}
+
+// PartyLeaveRequest
+type PartyLeaveRequest struct {
+	*BaseResponse
+	IgnoreUserRegistry bool
+}
+
+// Type implements Message interface
+func (PartyLeaveRequest) Type() string {
+	return TypePartyLeaveRequest
+}
+
+// PartyLeaveResponse
+type PartyLeaveResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PartyLeaveResponse) Type() string {
+	return TypePartyLeaveResponse
+}
+
+// PartyPromoteLeaderRequest
+type PartyPromoteLeaderRequest struct {
+	*BaseResponse
+	NewLeaderUserID string
+}
+
+// Type implements Message interface
+func (PartyPromoteLeaderRequest) Type() string {
+	return TypePartyPromoteLeaderRequest
+}
+
+// PartyPromoteLeaderResponse
+type PartyPromoteLeaderResponse struct {
+	*BaseResponse
+	InvitationToken string
+	Invitees        string
+	LeaderID        string
+	Members         string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyPromoteLeaderResponse) Type() string {
+	return TypePartyPromoteLeaderResponse
+}
+
+// PartyRejectNotif
+type PartyRejectNotif struct {
+	LeaderID string
+	PartyID  string
+	UserID   string
+}
+
+// Type implements Message interface
+func (PartyRejectNotif) Type() string {
+	return TypePartyRejectNotif
+}
+
+// PartyRejectRequest
+type PartyRejectRequest struct {
+	*BaseResponse
+	InvitationToken string
+	PartyID         string
+}
+
+// Type implements Message interface
+func (PartyRejectRequest) Type() string {
+	return TypePartyRejectRequest
+}
+
+// PartyRejectResponse
+type PartyRejectResponse struct {
+	*BaseResponse
+	PartyID string
+}
+
+// Type implements Message interface
+func (PartyRejectResponse) Type() string {
+	return TypePartyRejectResponse
+}
+
+// PersonalChatHistoryRequest
+type PersonalChatHistoryRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PersonalChatHistoryRequest) Type() string {
+	return TypePersonalChatHistoryRequest
+}
+
+// PersonalChatHistoryResponse
+type PersonalChatHistoryResponse struct {
+	Chat     string
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PersonalChatHistoryResponse) Type() string {
+	return TypePersonalChatHistoryResponse
+}
+
+// Type implements Message interface
+func (PersonalChatNotif) Type() string {
+	return TypePersonalChatNotif
+}
+
+// Type implements Message interface
+func (PersonalChatRequest) Type() string {
+	return TypePersonalChatRequest
+}
+
+// PersonalChatResponse
+type PersonalChatResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (PersonalChatResponse) Type() string {
+	return TypePersonalChatResponse
+}
+
+// RefreshTokenRequest
+type RefreshTokenRequest struct {
+	*BaseResponse
+	Token string
+}
+
+// Type implements Message interface
+func (RefreshTokenRequest) Type() string {
+	return TypeRefreshTokenRequest
+}
+
+// RefreshTokenResponse
+type RefreshTokenResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (RefreshTokenResponse) Type() string {
+	return TypeRefreshTokenResponse
+}
+
+// RejectFriendsNotif
+type RejectFriendsNotif struct {
+	UserID string
+}
+
+// Type implements Message interface
+func (RejectFriendsNotif) Type() string {
+	return TypeRejectFriendsNotif
+}
+
+// RejectFriendsRequest
+type RejectFriendsRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (RejectFriendsRequest) Type() string {
+	return TypeRejectFriendsRequest
+}
+
+// RejectFriendsResponse
+type RejectFriendsResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (RejectFriendsResponse) Type() string {
+	return TypeRejectFriendsResponse
+}
+
+// RematchmakingNotif
+type RematchmakingNotif struct {
+	BanDuration int
+}
+
+// Type implements Message interface
+func (RematchmakingNotif) Type() string {
+	return TypeRematchmakingNotif
+}
+
+// RequestFriendsNotif
+type RequestFriendsNotif struct {
+	FriendID string
+}
+
+// Type implements Message interface
+func (RequestFriendsNotif) Type() string {
+	return TypeRequestFriendsNotif
+}
+
+// RequestFriendsRequest
+type RequestFriendsRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (RequestFriendsRequest) Type() string {
+	return TypeRequestFriendsRequest
+}
+
+// RequestFriendsResponse
+type RequestFriendsResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (RequestFriendsResponse) Type() string {
+	return TypeRequestFriendsResponse
+}
+
+// SendChannelChatRequest
+type SendChannelChatRequest struct {
+	ChannelSlug string
+	*BaseResponse
+	Payload string
+}
+
+// Type implements Message interface
+func (SendChannelChatRequest) Type() string {
+	return TypeSendChannelChatRequest
+}
+
+// SendChannelChatResponse
+type SendChannelChatResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (SendChannelChatResponse) Type() string {
+	return TypeSendChannelChatResponse
+}
+
+// SetReadyConsentNotif
+type SetReadyConsentNotif struct {
+	MatchID string
+	UserID  string
+}
+
+// Type implements Message interface
+func (SetReadyConsentNotif) Type() string {
+	return TypeSetReadyConsentNotif
+}
+
+// SetReadyConsentRequest
+type SetReadyConsentRequest struct {
+	*BaseResponse
+	MatchID string
+}
+
+// Type implements Message interface
+func (SetReadyConsentRequest) Type() string {
+	return TypeSetReadyConsentRequest
+}
+
+// SetReadyConsentResponse
+type SetReadyConsentResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (SetReadyConsentResponse) Type() string {
+	return TypeSetReadyConsentResponse
+}
+
+// SetSessionAttributeRequest
+type SetSessionAttributeRequest struct {
+	*BaseResponse
+	Key       string
+	Namespace string
+	Value     string
+}
+
+// Type implements Message interface
+func (SetSessionAttributeRequest) Type() string {
+	return TypeSetSessionAttributeRequest
+}
+
+// SetSessionAttributeResponse
+type SetSessionAttributeResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (SetSessionAttributeResponse) Type() string {
+	return TypeSetSessionAttributeResponse
+}
+
+// SetUserStatusRequest
+type SetUserStatusRequest struct {
+	Activity     string
+	Availability int
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (SetUserStatusRequest) Type() string {
+	return TypeSetUserStatusRequest
+}
+
+// SetUserStatusResponse
+type SetUserStatusResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (SetUserStatusResponse) Type() string {
+	return TypeSetUserStatusResponse
+}
+
+// ShutdownNotif
+type ShutdownNotif struct {
+	Message string
+}
+
+// Type implements Message interface
+func (ShutdownNotif) Type() string {
+	return TypeShutdownNotif
+}
+
+// SignalingP2PNotif
+type SignalingP2PNotif struct {
+	DestinationID string
+	Message       string
+}
+
+// Type implements Message interface
+func (SignalingP2PNotif) Type() string {
+	return TypeSignalingP2PNotif
+}
+
+// Type implements Message interface
+func (StartMatchmakingRequest) Type() string {
+	return TypeStartMatchmakingRequest
+}
+
+// Type implements Message interface
+func (StartMatchmakingResponse) Type() string {
+	return TypeStartMatchmakingResponse
+}
+
+// UnblockPlayerNotif
+type UnblockPlayerNotif struct {
+	UnblockedUserID string
+	UserID          string
+}
+
+// Type implements Message interface
+func (UnblockPlayerNotif) Type() string {
+	return TypeUnblockPlayerNotif
+}
+
+// UnblockPlayerRequest
+type UnblockPlayerRequest struct {
+	*BaseResponse
+	Namespace       string
+	UnblockedUserID string
+}
+
+// Type implements Message interface
+func (UnblockPlayerRequest) Type() string {
+	return TypeUnblockPlayerRequest
+}
+
+// UnblockPlayerResponse
+type UnblockPlayerResponse struct {
+	*BaseResponse
+	Namespace       string
+	UnblockedUserID string
+}
+
+// Type implements Message interface
+func (UnblockPlayerResponse) Type() string {
+	return TypeUnblockPlayerResponse
+}
+
+// UnfriendNotif
+type UnfriendNotif struct {
+	FriendID string
+}
+
+// Type implements Message interface
+func (UnfriendNotif) Type() string {
+	return TypeUnfriendNotif
+}
+
+// UnfriendRequest
+type UnfriendRequest struct {
+	FriendID string
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (UnfriendRequest) Type() string {
+	return TypeUnfriendRequest
+}
+
+// UnfriendResponse
+type UnfriendResponse struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
+func (UnfriendResponse) Type() string {
+	return TypeUnfriendResponse
+}
+
+// Type implements Message interface
+func (UserBannedNotification) Type() string {
+	return TypeUserBannedNotification
+}
+
+// UserMetricRequest
+type UserMetricRequest struct {
+	*BaseResponse
+}
+
+// Type implements Message interface
 func (UserMetricRequest) Type() string {
 	return TypeUserMetricRequest
 }
 
+// UserMetricResponse
 type UserMetricResponse struct {
 	*BaseResponse
 	PlayerCount int
 }
 
+// Type implements Message interface
 func (UserMetricResponse) Type() string {
 	return TypeUserMetricResponse
+}
+
+// UserStatusNotif
+type UserStatusNotif struct {
+	Activity     string
+	Availability int
+	LastSeenAt   string
+	UserID       string
+}
+
+// Type implements Message interface
+func (UserStatusNotif) Type() string {
+	return TypeUserStatusNotif
 }

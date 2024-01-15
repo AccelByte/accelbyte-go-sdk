@@ -22,8 +22,13 @@ import (
 // NewAdminRetrievePlayerRecordsParams creates a new AdminRetrievePlayerRecordsParams object
 // with the default values initialized.
 func NewAdminRetrievePlayerRecordsParams() *AdminRetrievePlayerRecordsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminRetrievePlayerRecordsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewAdminRetrievePlayerRecordsParams() *AdminRetrievePlayerRecordsParams {
 // NewAdminRetrievePlayerRecordsParamsWithTimeout creates a new AdminRetrievePlayerRecordsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminRetrievePlayerRecordsParamsWithTimeout(timeout time.Duration) *AdminRetrievePlayerRecordsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminRetrievePlayerRecordsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewAdminRetrievePlayerRecordsParamsWithTimeout(timeout time.Duration) *Admi
 // NewAdminRetrievePlayerRecordsParamsWithContext creates a new AdminRetrievePlayerRecordsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminRetrievePlayerRecordsParamsWithContext(ctx context.Context) *AdminRetrievePlayerRecordsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminRetrievePlayerRecordsParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewAdminRetrievePlayerRecordsParamsWithContext(ctx context.Context) *AdminR
 // NewAdminRetrievePlayerRecordsParamsWithHTTPClient creates a new AdminRetrievePlayerRecordsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminRetrievePlayerRecordsParamsWithHTTPClient(client *http.Client) *AdminRetrievePlayerRecordsParams {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminRetrievePlayerRecordsParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,22 +86,22 @@ type AdminRetrievePlayerRecordsParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user ID who own the record
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64

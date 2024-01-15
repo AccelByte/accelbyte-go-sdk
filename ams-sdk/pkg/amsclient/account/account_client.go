@@ -30,23 +30,475 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminAccountGet(params *AdminAccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountGetOK, *AdminAccountGetUnauthorized, *AdminAccountGetForbidden, *AdminAccountGetNotFound, *AdminAccountGetInternalServerError, error)
+	AdminAccountGetShort(params *AdminAccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountGetOK, error)
+	AdminAccountCreate(params *AdminAccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountCreateCreated, *AdminAccountCreateUnauthorized, *AdminAccountCreateForbidden, *AdminAccountCreateInternalServerError, error)
+	AdminAccountCreateShort(params *AdminAccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountCreateCreated, error)
+	AdminAccountLinkTokenGet(params *AdminAccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenGetOK, *AdminAccountLinkTokenGetUnauthorized, *AdminAccountLinkTokenGetForbidden, *AdminAccountLinkTokenGetNotFound, *AdminAccountLinkTokenGetInternalServerError, error)
+	AdminAccountLinkTokenGetShort(params *AdminAccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenGetOK, error)
+	AdminAccountLinkTokenPost(params *AdminAccountLinkTokenPostParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenPostCreated, *AdminAccountLinkTokenPostUnauthorized, *AdminAccountLinkTokenPostForbidden, *AdminAccountLinkTokenPostInternalServerError, error)
+	AdminAccountLinkTokenPostShort(params *AdminAccountLinkTokenPostParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenPostCreated, error)
 	AccountGet(params *AccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountGetOK, *AccountGetUnauthorized, *AccountGetForbidden, *AccountGetNotFound, *AccountGetInternalServerError, error)
 	AccountGetShort(params *AccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountGetOK, error)
-	AccountCreate(params *AccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AccountCreateCreated, *AccountCreateUnauthorized, *AccountCreateForbidden, *AccountCreateInternalServerError, error)
-	AccountCreateShort(params *AccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AccountCreateCreated, error)
-	AccountLinkTokenGet(params *AccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkTokenGetOK, *AccountLinkTokenGetUnauthorized, *AccountLinkTokenGetForbidden, *AccountLinkTokenGetNotFound, *AccountLinkTokenGetInternalServerError, error)
-	AccountLinkTokenGetShort(params *AccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkTokenGetOK, error)
-	AccountLink(params *AccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkCreated, *AccountLinkUnauthorized, *AccountLinkForbidden, *AccountLinkInternalServerError, error)
-	AccountLinkShort(params *AccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminAccountGetShort instead.
+
+AdminAccountGet get the account associated with the namespace
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+*/
+func (a *Client) AdminAccountGet(params *AdminAccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountGetOK, *AdminAccountGetUnauthorized, *AdminAccountGetForbidden, *AdminAccountGetNotFound, *AdminAccountGetInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountGetOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminAccountGetUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminAccountGetForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminAccountGetNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminAccountGetInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminAccountGetShort get the account associated with the namespace
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+*/
+func (a *Client) AdminAccountGetShort(params *AdminAccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountGetOK:
+		return v, nil
+	case *AdminAccountGetUnauthorized:
+		return nil, v
+	case *AdminAccountGetForbidden:
+		return nil, v
+	case *AdminAccountGetNotFound:
+		return nil, v
+	case *AdminAccountGetInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminAccountCreateShort instead.
+
+AdminAccountCreate create a new ams account
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
+*/
+func (a *Client) AdminAccountCreate(params *AdminAccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountCreateCreated, *AdminAccountCreateUnauthorized, *AdminAccountCreateForbidden, *AdminAccountCreateInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountCreateParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountCreate",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountCreateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountCreateCreated:
+		return v, nil, nil, nil, nil
+
+	case *AdminAccountCreateUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminAccountCreateForbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminAccountCreateInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminAccountCreateShort create a new ams account
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
+*/
+func (a *Client) AdminAccountCreateShort(params *AdminAccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountCreateCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountCreateParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountCreate",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountCreateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountCreateCreated:
+		return v, nil
+	case *AdminAccountCreateUnauthorized:
+		return nil, v
+	case *AdminAccountCreateForbidden:
+		return nil, v
+	case *AdminAccountCreateInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminAccountLinkTokenGetShort instead.
+
+AdminAccountLinkTokenGet get a link to account token
+The link token returned can be used to connect another namespace to the account in which the provided namespace is linked. This route fails if there is no account linked to the specified namespace.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+*/
+func (a *Client) AdminAccountLinkTokenGet(params *AdminAccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenGetOK, *AdminAccountLinkTokenGetUnauthorized, *AdminAccountLinkTokenGetForbidden, *AdminAccountLinkTokenGetNotFound, *AdminAccountLinkTokenGetInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountLinkTokenGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountLinkTokenGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountLinkTokenGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountLinkTokenGetOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminAccountLinkTokenGetUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminAccountLinkTokenGetForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminAccountLinkTokenGetNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminAccountLinkTokenGetInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminAccountLinkTokenGetShort get a link to account token
+The link token returned can be used to connect another namespace to the account in which the provided namespace is linked. This route fails if there is no account linked to the specified namespace.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+*/
+func (a *Client) AdminAccountLinkTokenGetShort(params *AdminAccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountLinkTokenGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountLinkTokenGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountLinkTokenGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountLinkTokenGetOK:
+		return v, nil
+	case *AdminAccountLinkTokenGetUnauthorized:
+		return nil, v
+	case *AdminAccountLinkTokenGetForbidden:
+		return nil, v
+	case *AdminAccountLinkTokenGetNotFound:
+		return nil, v
+	case *AdminAccountLinkTokenGetInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminAccountLinkTokenPostShort instead.
+
+AdminAccountLinkTokenPost link an account to a namespace
+This route will attempt to register the account to namespace linkage in AMS and requires a valid account link token. This route fails if an account is already linked
+
+AdminAccountLink
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
+*/
+func (a *Client) AdminAccountLinkTokenPost(params *AdminAccountLinkTokenPostParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenPostCreated, *AdminAccountLinkTokenPostUnauthorized, *AdminAccountLinkTokenPostForbidden, *AdminAccountLinkTokenPostInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountLinkTokenPostParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountLinkTokenPost",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountLinkTokenPostReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountLinkTokenPostCreated:
+		return v, nil, nil, nil, nil
+
+	case *AdminAccountLinkTokenPostUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminAccountLinkTokenPostForbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminAccountLinkTokenPostInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminAccountLinkTokenPostShort link an account to a namespace
+This route will attempt to register the account to namespace linkage in AMS and requires a valid account link token. This route fails if an account is already linked
+
+AdminAccountLink
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
+*/
+func (a *Client) AdminAccountLinkTokenPostShort(params *AdminAccountLinkTokenPostParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAccountLinkTokenPostCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAccountLinkTokenPostParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAccountLinkTokenPost",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAccountLinkTokenPostReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAccountLinkTokenPostCreated:
+		return v, nil
+	case *AdminAccountLinkTokenPostUnauthorized:
+		return nil, v
+	case *AdminAccountLinkTokenPostForbidden:
+		return nil, v
+	case *AdminAccountLinkTokenPostInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AccountGetShort instead.
 
-AccountGet get the account associated with the namespace.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+AccountGet get the account associated with the namespace
+Required Permission: NAMESPACE:{namespace}:AMS:ACCOUNT [READ]
 */
 func (a *Client) AccountGet(params *AccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountGetOK, *AccountGetUnauthorized, *AccountGetForbidden, *AccountGetNotFound, *AccountGetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -65,7 +517,7 @@ func (a *Client) AccountGet(params *AccountGetParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AccountGet",
 		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		PathPattern:        "/ams/v1/namespaces/{namespace}/account",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -102,8 +554,8 @@ func (a *Client) AccountGet(params *AccountGetParams, authInfo runtime.ClientAut
 }
 
 /*
-AccountGetShort get the account associated with the namespace.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+AccountGetShort get the account associated with the namespace
+Required Permission: NAMESPACE:{namespace}:AMS:ACCOUNT [READ]
 */
 func (a *Client) AccountGetShort(params *AccountGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountGetOK, error) {
 	// TODO: Validate the params before sending
@@ -122,7 +574,7 @@ func (a *Client) AccountGetShort(params *AccountGetParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AccountGet",
 		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
+		PathPattern:        "/ams/v1/namespaces/{namespace}/account",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -147,332 +599,6 @@ func (a *Client) AccountGetShort(params *AccountGetParams, authInfo runtime.Clie
 	case *AccountGetNotFound:
 		return nil, v
 	case *AccountGetInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use AccountCreateShort instead.
-
-AccountCreate create a new ams account
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
-*/
-func (a *Client) AccountCreate(params *AccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AccountCreateCreated, *AccountCreateUnauthorized, *AccountCreateForbidden, *AccountCreateInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountCreateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountCreate",
-		Method:             "POST",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountCreateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountCreateCreated:
-		return v, nil, nil, nil, nil
-
-	case *AccountCreateUnauthorized:
-		return nil, v, nil, nil, nil
-
-	case *AccountCreateForbidden:
-		return nil, nil, v, nil, nil
-
-	case *AccountCreateInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-AccountCreateShort create a new ams account
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
-*/
-func (a *Client) AccountCreateShort(params *AccountCreateParams, authInfo runtime.ClientAuthInfoWriter) (*AccountCreateCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountCreateParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountCreate",
-		Method:             "POST",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountCreateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountCreateCreated:
-		return v, nil
-	case *AccountCreateUnauthorized:
-		return nil, v
-	case *AccountCreateForbidden:
-		return nil, v
-	case *AccountCreateInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use AccountLinkTokenGetShort instead.
-
-AccountLinkTokenGet get a linking token for another namespace to use to link to the account to which this namespace is linked.  fails if no account linked.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
-*/
-func (a *Client) AccountLinkTokenGet(params *AccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkTokenGetOK, *AccountLinkTokenGetUnauthorized, *AccountLinkTokenGetForbidden, *AccountLinkTokenGetNotFound, *AccountLinkTokenGetInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountLinkTokenGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountLinkTokenGet",
-		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountLinkTokenGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountLinkTokenGetOK:
-		return v, nil, nil, nil, nil, nil
-
-	case *AccountLinkTokenGetUnauthorized:
-		return nil, v, nil, nil, nil, nil
-
-	case *AccountLinkTokenGetForbidden:
-		return nil, nil, v, nil, nil, nil
-
-	case *AccountLinkTokenGetNotFound:
-		return nil, nil, nil, v, nil, nil
-
-	case *AccountLinkTokenGetInternalServerError:
-		return nil, nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-AccountLinkTokenGetShort get a linking token for another namespace to use to link to the account to which this namespace is linked.  fails if no account linked.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
-*/
-func (a *Client) AccountLinkTokenGetShort(params *AccountLinkTokenGetParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkTokenGetOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountLinkTokenGetParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountLinkTokenGet",
-		Method:             "GET",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountLinkTokenGetReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountLinkTokenGetOK:
-		return v, nil
-	case *AccountLinkTokenGetUnauthorized:
-		return nil, v
-	case *AccountLinkTokenGetForbidden:
-		return nil, v
-	case *AccountLinkTokenGetNotFound:
-		return nil, v
-	case *AccountLinkTokenGetInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-Deprecated: 2022-08-10 - Use AccountLinkShort instead.
-
-AccountLink link an account to the namespace.  will attempt to register the linkage in ams shipyard.  requires a valid link token for the account. fails if an account is already linked
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
-*/
-func (a *Client) AccountLink(params *AccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkCreated, *AccountLinkUnauthorized, *AccountLinkForbidden, *AccountLinkInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountLinkParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountLink",
-		Method:             "POST",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountLinkReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountLinkCreated:
-		return v, nil, nil, nil, nil
-
-	case *AccountLinkUnauthorized:
-		return nil, v, nil, nil, nil
-
-	case *AccountLinkForbidden:
-		return nil, nil, v, nil, nil
-
-	case *AccountLinkInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-AccountLinkShort link an account to the namespace.  will attempt to register the linkage in ams shipyard.  requires a valid link token for the account. fails if an account is already linked
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]
-*/
-func (a *Client) AccountLinkShort(params *AccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*AccountLinkCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAccountLinkParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AccountLink",
-		Method:             "POST",
-		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/account/link",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AccountLinkReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AccountLinkCreated:
-		return v, nil
-	case *AccountLinkUnauthorized:
-		return nil, v
-	case *AccountLinkForbidden:
-		return nil, v
-	case *AccountLinkInternalServerError:
 		return nil, v
 
 	default:

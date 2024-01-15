@@ -41,7 +41,9 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use LocalWatchdogConnectShort instead.
 
-LocalWatchdogConnect connect a (local) watchdog to support local ds development scenarios
+LocalWatchdogConnect connect a local watchdog
+This is to support local ds development scenarios
+
 Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]
 */
 func (a *Client) LocalWatchdogConnect(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error) {
@@ -86,7 +88,9 @@ func (a *Client) LocalWatchdogConnect(params *LocalWatchdogConnectParams, authIn
 }
 
 /*
-LocalWatchdogConnectShort connect a (local) watchdog to support local ds development scenarios
+LocalWatchdogConnectShort connect a local watchdog
+This is to support local ds development scenarios
+
 Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]
 */
 func (a *Client) LocalWatchdogConnectShort(params *LocalWatchdogConnectParams, authInfo runtime.ClientAuthInfoWriter) (*LocalWatchdogConnectOK, error) {

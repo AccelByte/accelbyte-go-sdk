@@ -18,19 +18,19 @@ import (
 // swagger:model Models upload binary record response.
 type ModelsUploadBinaryRecordResponse struct {
 
-	// content_type
+	// File type of game binary record
 	// Required: true
 	ContentType *string `json:"content_type"`
 
-	// file_location
+	// File location of the binary record
 	// Required: true
 	FileLocation *string `json:"file_location"`
 
-	// url
+	// URL for accessing the binary record
 	// Required: true
 	URL *string `json:"url"`
 
-	// version
+	// Version of the binary file
 	// Required: true
 	// Format: int32
 	Version *int32 `json:"version"`

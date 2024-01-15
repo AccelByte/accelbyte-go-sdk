@@ -28,7 +28,7 @@ type APIQoSServer struct {
 
 	// last_update
 	// Required: true
-	LastUpdate *APITime `json:"last_update"`
+	LastUpdate *string `json:"last_update"`
 
 	// port
 	// Required: true
@@ -95,15 +95,6 @@ func (m *APIQoSServer) validateLastUpdate(formats strfmt.Registry) error {
 
 	if err := validate.Required("last_update", "body", m.LastUpdate); err != nil {
 		return err
-	}
-
-	if m.LastUpdate != nil {
-		if err := m.LastUpdate.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("last_update")
-			}
-			return err
-		}
 	}
 
 	return nil

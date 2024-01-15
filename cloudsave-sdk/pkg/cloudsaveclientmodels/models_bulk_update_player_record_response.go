@@ -18,15 +18,15 @@ import (
 // swagger:model Models bulk update player record response.
 type ModelsBulkUpdatePlayerRecordResponse struct {
 
-	// detail
+	// Detail if the update operation failed
 	// Required: true
 	Detail interface{} `json:"detail"`
 
-	// key
+	// Player record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// success
+	// Success state of the update operation
 	// Required: true
 	Success *bool `json:"success"`
 }

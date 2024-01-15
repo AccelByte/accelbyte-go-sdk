@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -27,15 +29,16 @@ type ModelsPlayerRecordResponse struct {
 	// Required: true
 	IsPublic *bool `json:"is_public"`
 
-	// key
+	// Player record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// namespace
+	// Namespace of the game
 	// Required: true
 	Namespace *string `json:"namespace"`
 
 	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 
 	// updated_at
@@ -43,11 +46,11 @@ type ModelsPlayerRecordResponse struct {
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at"`
 
-	// user_id
+	// User ID who owns the record
 	// Required: true
 	UserID *string `json:"user_id"`
 
-	// value
+	// Player record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }
@@ -118,6 +121,35 @@ func (m *ModelsPlayerRecordResponse) validateNamespace(formats strfmt.Registry) 
 		return err
 	}
 
+	return nil
+}
+
+var modelsPlayerRecordResponseTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsPlayerRecordResponseTypeSetByPropEnum = append(modelsPlayerRecordResponseTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsPlayerRecordResponseSetByCLIENT captures enum value "CLIENT"
+	ModelsPlayerRecordResponseSetByCLIENT string = "CLIENT"
+
+	// ModelsPlayerRecordResponseSetBySERVER captures enum value "SERVER"
+	ModelsPlayerRecordResponseSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsPlayerRecordResponse) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsPlayerRecordResponseTypeSetByPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

@@ -69,7 +69,7 @@ type PostGameBinaryRecordV1Params struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsPublicGameBinaryRecordCreate
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

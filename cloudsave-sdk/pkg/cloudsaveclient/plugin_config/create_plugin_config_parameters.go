@@ -69,7 +69,7 @@ type CreatePluginConfigParams struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsPluginRequest
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

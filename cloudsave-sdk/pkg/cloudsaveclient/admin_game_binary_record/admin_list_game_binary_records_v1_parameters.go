@@ -22,8 +22,13 @@ import (
 // NewAdminListGameBinaryRecordsV1Params creates a new AdminListGameBinaryRecordsV1Params object
 // with the default values initialized.
 func NewAdminListGameBinaryRecordsV1Params() *AdminListGameBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminListGameBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewAdminListGameBinaryRecordsV1Params() *AdminListGameBinaryRecordsV1Params
 // NewAdminListGameBinaryRecordsV1ParamsWithTimeout creates a new AdminListGameBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminListGameBinaryRecordsV1ParamsWithTimeout(timeout time.Duration) *AdminListGameBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminListGameBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewAdminListGameBinaryRecordsV1ParamsWithTimeout(timeout time.Duration) *Ad
 // NewAdminListGameBinaryRecordsV1ParamsWithContext creates a new AdminListGameBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminListGameBinaryRecordsV1ParamsWithContext(ctx context.Context) *AdminListGameBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminListGameBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewAdminListGameBinaryRecordsV1ParamsWithContext(ctx context.Context) *Admi
 // NewAdminListGameBinaryRecordsV1ParamsWithHTTPClient creates a new AdminListGameBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminListGameBinaryRecordsV1ParamsWithHTTPClient(client *http.Client) *AdminListGameBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &AdminListGameBinaryRecordsV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,22 +86,22 @@ type AdminListGameBinaryRecordsV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64
 	/*Query
-	  key
+	  query, search game records by key
 
 	*/
 	Query *string

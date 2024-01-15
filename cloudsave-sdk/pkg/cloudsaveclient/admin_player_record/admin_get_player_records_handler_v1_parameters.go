@@ -69,12 +69,12 @@ type AdminGetPlayerRecordsHandlerV1Params struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkGetPlayerRecordsRequest
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user id of the record
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string

@@ -64,10 +64,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListAdminGameRecordV1Short instead.
 
 AdminListAdminGameRecordV1 list key of admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of records key by namespace
 */
 func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, *AdminListAdminGameRecordV1BadRequest, *AdminListAdminGameRecordV1Unauthorized, *AdminListAdminGameRecordV1Forbidden, *AdminListAdminGameRecordV1InternalServerError, error) {
@@ -125,10 +121,6 @@ func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Pa
 
 /*
 AdminListAdminGameRecordV1Short list key of admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of records key by namespace
 */
 func (a *Client) AdminListAdminGameRecordV1Short(params *AdminListAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminGameRecordV1OK, error) {
@@ -184,14 +176,6 @@ func (a *Client) AdminListAdminGameRecordV1Short(params *AdminListAdminGameRecor
 Deprecated: 2022-08-10 - Use AdminBulkGetAdminGameRecordV1Short instead.
 
 AdminBulkGetAdminGameRecordV1 bulk get admin game records
-Required Permission | `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin game records. Maximum key per request 20.
 */
 func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, *AdminBulkGetAdminGameRecordV1BadRequest, *AdminBulkGetAdminGameRecordV1Unauthorized, *AdminBulkGetAdminGameRecordV1Forbidden, *AdminBulkGetAdminGameRecordV1NotFound, *AdminBulkGetAdminGameRecordV1InternalServerError, error) {
@@ -252,14 +236,6 @@ func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameReco
 
 /*
 AdminBulkGetAdminGameRecordV1Short bulk get admin game records
-Required Permission | `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin game records. Maximum key per request 20.
 */
 func (a *Client) AdminBulkGetAdminGameRecordV1Short(params *AdminBulkGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminGameRecordV1OK, error) {
@@ -317,10 +293,6 @@ func (a *Client) AdminBulkGetAdminGameRecordV1Short(params *AdminBulkGetAdminGam
 Deprecated: 2022-08-10 - Use AdminGetAdminGameRecordV1Short instead.
 
 AdminGetAdminGameRecordV1 get admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a record by its key in namespace-level.
 */
 func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, *AdminGetAdminGameRecordV1Unauthorized, *AdminGetAdminGameRecordV1Forbidden, *AdminGetAdminGameRecordV1NotFound, *AdminGetAdminGameRecordV1InternalServerError, error) {
@@ -378,10 +350,6 @@ func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Para
 
 /*
 AdminGetAdminGameRecordV1Short get admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a record by its key in namespace-level.
 */
 func (a *Client) AdminGetAdminGameRecordV1Short(params *AdminGetAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminGameRecordV1OK, error) {
@@ -437,68 +405,35 @@ func (a *Client) AdminGetAdminGameRecordV1Short(params *AdminGetAdminGameRecordV
 Deprecated: 2022-08-10 - Use AdminPutAdminGameRecordV1Short instead.
 
 AdminPutAdminGameRecordV1 create or replace admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin game record or replace the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1BadRequest, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1Forbidden, *AdminPutAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -555,68 +490,35 @@ func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Para
 
 /*
 AdminPutAdminGameRecordV1Short create or replace admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin game record or replace the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPutAdminGameRecordV1Short(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, error) {
 	// TODO: Validate the params before sending
@@ -671,91 +573,48 @@ func (a *Client) AdminPutAdminGameRecordV1Short(params *AdminPutAdminGameRecordV
 Deprecated: 2022-08-10 - Use AdminPostAdminGameRecordV1Short instead.
 
 AdminPostAdminGameRecordV1 create or append admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin game record or append the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1BadRequest, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1Forbidden, *AdminPostAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -812,91 +671,48 @@ func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Pa
 
 /*
 AdminPostAdminGameRecordV1Short create or append admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin game record or append the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPostAdminGameRecordV1Short(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, error) {
 	// TODO: Validate the params before sending
@@ -951,10 +767,6 @@ func (a *Client) AdminPostAdminGameRecordV1Short(params *AdminPostAdminGameRecor
 Deprecated: 2022-08-10 - Use AdminDeleteAdminGameRecordV1Short instead.
 
 AdminDeleteAdminGameRecordV1 delete admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 This endpoints delete game record in namespace-level
 */
 func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, *AdminDeleteAdminGameRecordV1Unauthorized, *AdminDeleteAdminGameRecordV1Forbidden, *AdminDeleteAdminGameRecordV1NotFound, *AdminDeleteAdminGameRecordV1InternalServerError, error) {
@@ -1012,10 +824,6 @@ func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecord
 
 /*
 AdminDeleteAdminGameRecordV1Short delete admin game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 This endpoints delete game record in namespace-level
 */
 func (a *Client) AdminDeleteAdminGameRecordV1Short(params *AdminDeleteAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminGameRecordV1NoContent, error) {
@@ -1071,14 +879,6 @@ func (a *Client) AdminDeleteAdminGameRecordV1Short(params *AdminDeleteAdminGameR
 Deprecated: 2022-08-10 - Use BulkGetAdminPlayerRecordByUserIdsV1Short instead.
 
 BulkGetAdminPlayerRecordByUserIdsV1 bulk get admin player record by multiple user id
-Required Permission | `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin player record by userIds, max allowed 20 at a time.
 */
 func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, *BulkGetAdminPlayerRecordByUserIdsV1BadRequest, *BulkGetAdminPlayerRecordByUserIdsV1Unauthorized, *BulkGetAdminPlayerRecordByUserIdsV1Forbidden, *BulkGetAdminPlayerRecordByUserIdsV1NotFound, *BulkGetAdminPlayerRecordByUserIdsV1InternalServerError, error) {
@@ -1139,14 +939,6 @@ func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerR
 
 /*
 BulkGetAdminPlayerRecordByUserIdsV1Short bulk get admin player record by multiple user id
-Required Permission | `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin player record by userIds, max allowed 20 at a time.
 */
 func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1Short(params *BulkGetAdminPlayerRecordByUserIdsV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetAdminPlayerRecordByUserIdsV1OK, error) {
@@ -1204,10 +996,6 @@ func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1Short(params *BulkGetAdminPl
 Deprecated: 2022-08-10 - Use AdminListAdminUserRecordsV1Short instead.
 
 AdminListAdminUserRecordsV1 list key of admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of admin player records key and userID under given namespace.
 */
 func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, *AdminListAdminUserRecordsV1BadRequest, *AdminListAdminUserRecordsV1Unauthorized, *AdminListAdminUserRecordsV1Forbidden, *AdminListAdminUserRecordsV1InternalServerError, error) {
@@ -1265,10 +1053,6 @@ func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1
 
 /*
 AdminListAdminUserRecordsV1Short list key of admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of admin player records key and userID under given namespace.
 */
 func (a *Client) AdminListAdminUserRecordsV1Short(params *AdminListAdminUserRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAdminUserRecordsV1OK, error) {
@@ -1324,14 +1108,6 @@ func (a *Client) AdminListAdminUserRecordsV1Short(params *AdminListAdminUserReco
 Deprecated: 2022-08-10 - Use AdminBulkGetAdminPlayerRecordV1Short instead.
 
 AdminBulkGetAdminPlayerRecordV1 bulk get admin player records
-Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
---------------------|---------------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin player records. Maximum key per request 20.
 */
 func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, *AdminBulkGetAdminPlayerRecordV1BadRequest, *AdminBulkGetAdminPlayerRecordV1Unauthorized, *AdminBulkGetAdminPlayerRecordV1Forbidden, *AdminBulkGetAdminPlayerRecordV1NotFound, *AdminBulkGetAdminPlayerRecordV1InternalServerError, error) {
@@ -1392,14 +1168,6 @@ func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayer
 
 /*
 AdminBulkGetAdminPlayerRecordV1Short bulk get admin player records
-Required Permission | `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
---------------------|---------------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get admin player records. Maximum key per request 20.
 */
 func (a *Client) AdminBulkGetAdminPlayerRecordV1Short(params *AdminBulkGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetAdminPlayerRecordV1OK, error) {
@@ -1457,10 +1225,6 @@ func (a *Client) AdminBulkGetAdminPlayerRecordV1Short(params *AdminBulkGetAdminP
 Deprecated: 2022-08-10 - Use AdminGetAdminPlayerRecordV1Short instead.
 
 AdminGetAdminPlayerRecordV1 get admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a admin record in user-level (arbitrary JSON data) by its key.
 */
 func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, *AdminGetAdminPlayerRecordV1Unauthorized, *AdminGetAdminPlayerRecordV1Forbidden, *AdminGetAdminPlayerRecordV1NotFound, *AdminGetAdminPlayerRecordV1InternalServerError, error) {
@@ -1518,10 +1282,6 @@ func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1
 
 /*
 AdminGetAdminPlayerRecordV1Short get admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a admin record in user-level (arbitrary JSON data) by its key.
 */
 func (a *Client) AdminGetAdminPlayerRecordV1Short(params *AdminGetAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAdminPlayerRecordV1OK, error) {
@@ -1577,69 +1337,36 @@ func (a *Client) AdminGetAdminPlayerRecordV1Short(params *AdminGetAdminPlayerRec
 Deprecated: 2022-08-10 - Use AdminPutAdminPlayerRecordV1Short instead.
 
 AdminPutAdminPlayerRecordV1 create or replace admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin player record or replace the existing admin player record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1BadRequest, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1Forbidden, *AdminPutAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1696,69 +1423,36 @@ func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1
 
 /*
 AdminPutAdminPlayerRecordV1Short create or replace admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin player record or replace the existing admin player record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPutAdminPlayerRecordV1Short(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, error) {
 	// TODO: Validate the params before sending
@@ -1813,91 +1507,48 @@ func (a *Client) AdminPutAdminPlayerRecordV1Short(params *AdminPutAdminPlayerRec
 Deprecated: 2022-08-10 - Use AdminPostPlayerAdminRecordV1Short instead.
 
 AdminPostPlayerAdminRecordV1 create or append admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin player record or append the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1BadRequest, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1Forbidden, *AdminPostPlayerAdminRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1954,91 +1605,48 @@ func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecord
 
 /*
 AdminPostPlayerAdminRecordV1Short create or append admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new admin player record or append the existing admin game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
+- `{ "": "value" }`
 */
 func (a *Client) AdminPostPlayerAdminRecordV1Short(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, error) {
 	// TODO: Validate the params before sending
@@ -2093,10 +1701,6 @@ func (a *Client) AdminPostPlayerAdminRecordV1Short(params *AdminPostPlayerAdminR
 Deprecated: 2022-08-10 - Use AdminDeleteAdminPlayerRecordV1Short instead.
 
 AdminDeleteAdminPlayerRecordV1 delete admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 Delete a record (arbitrary JSON data) in user-level with given key.
 */
 func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, *AdminDeleteAdminPlayerRecordV1Unauthorized, *AdminDeleteAdminPlayerRecordV1Forbidden, *AdminDeleteAdminPlayerRecordV1NotFound, *AdminDeleteAdminPlayerRecordV1InternalServerError, error) {
@@ -2154,10 +1758,6 @@ func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRe
 
 /*
 AdminDeleteAdminPlayerRecordV1Short delete admin player record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 Delete a record (arbitrary JSON data) in user-level with given key.
 */
 func (a *Client) AdminDeleteAdminPlayerRecordV1Short(params *AdminDeleteAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAdminPlayerRecordV1NoContent, error) {

@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,15 +20,16 @@ import (
 // swagger:model Models game binary record create.
 type ModelsGameBinaryRecordCreate struct {
 
-	// file_type
+	// File type of the game binary record
 	// Required: true
 	FileType *string `json:"file_type"`
 
-	// key
+	// Game binary record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// set_by
+	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	// Required: true
 	SetBy *string `json:"set_by"`
 }
@@ -69,9 +72,43 @@ func (m *ModelsGameBinaryRecordCreate) validateKey(formats strfmt.Registry) erro
 	return nil
 }
 
+var modelsGameBinaryRecordCreateTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsGameBinaryRecordCreateTypeSetByPropEnum = append(modelsGameBinaryRecordCreateTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsGameBinaryRecordCreateSetByCLIENT captures enum value "CLIENT"
+	ModelsGameBinaryRecordCreateSetByCLIENT string = "CLIENT"
+
+	// ModelsGameBinaryRecordCreateSetBySERVER captures enum value "SERVER"
+	ModelsGameBinaryRecordCreateSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsGameBinaryRecordCreate) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsGameBinaryRecordCreateTypeSetByPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsGameBinaryRecordCreate) validateSetBy(formats strfmt.Registry) error {
 
 	if err := validate.Required("set_by", "body", m.SetBy); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSetByEnum("set_by", "body", *m.SetBy); err != nil {
 		return err
 	}
 

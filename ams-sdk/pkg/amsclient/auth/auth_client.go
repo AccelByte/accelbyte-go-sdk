@@ -39,7 +39,8 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AuthCheckShort instead.
 
-AuthCheck check if fleet commander is authorized to talk to ams with this iam
+AuthCheck checks if fleet commander can auth with ams
+Check if fleet commander is authorized to talk to AMS with this IAM
 */
 func (a *Client) AuthCheck(params *AuthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*AuthCheckOK, *AuthCheckUnauthorized, *AuthCheckForbidden, *AuthCheckInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -92,7 +93,8 @@ func (a *Client) AuthCheck(params *AuthCheckParams, authInfo runtime.ClientAuthI
 }
 
 /*
-AuthCheckShort check if fleet commander is authorized to talk to ams with this iam
+AuthCheckShort checks if fleet commander can auth with ams
+Check if fleet commander is authorized to talk to AMS with this IAM
 */
 func (a *Client) AuthCheckShort(params *AuthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*AuthCheckOK, error) {
 	// TODO: Validate the params before sending

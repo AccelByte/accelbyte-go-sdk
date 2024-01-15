@@ -89,6 +89,10 @@ type ModelsCreateChannelResponse struct {
 	// Required: true
 	SocialMatchmaking *bool `json:"social_matchmaking"`
 
+	// sub_gamemode_selection
+	// Required: true
+	SubGamemodeSelection *string `json:"sub_gamemode_selection"`
+
 	// ticket_observability_enable
 	TicketObservabilityEnable bool `json:"ticket_observability_enable"`
 
@@ -151,6 +155,9 @@ func (m *ModelsCreateChannelResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateSocialMatchmaking(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSubGamemodeSelection(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
@@ -313,6 +320,15 @@ func (m *ModelsCreateChannelResponse) validateSlug(formats strfmt.Registry) erro
 func (m *ModelsCreateChannelResponse) validateSocialMatchmaking(formats strfmt.Registry) error {
 
 	if err := validate.Required("social_matchmaking", "body", m.SocialMatchmaking); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateChannelResponse) validateSubGamemodeSelection(formats strfmt.Registry) error {
+
+	if err := validate.Required("sub_gamemode_selection", "body", m.SubGamemodeSelection); err != nil {
 		return err
 	}
 

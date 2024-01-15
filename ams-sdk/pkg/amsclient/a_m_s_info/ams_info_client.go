@@ -34,6 +34,8 @@ type ClientService interface {
 	InfoRegionsShort(params *InfoRegionsParams, authInfo runtime.ClientAuthInfoWriter) (*InfoRegionsOK, error)
 	InfoSupportedInstances(params *InfoSupportedInstancesParams, authInfo runtime.ClientAuthInfoWriter) (*InfoSupportedInstancesOK, *InfoSupportedInstancesUnauthorized, *InfoSupportedInstancesForbidden, *InfoSupportedInstancesInternalServerError, error)
 	InfoSupportedInstancesShort(params *InfoSupportedInstancesParams, authInfo runtime.ClientAuthInfoWriter) (*InfoSupportedInstancesOK, error)
+	UploadURLGet(params *UploadURLGetParams, authInfo runtime.ClientAuthInfoWriter) (*UploadURLGetOK, error)
+	UploadURLGetShort(params *UploadURLGetParams, authInfo runtime.ClientAuthInfoWriter) (*UploadURLGetOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,7 +43,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use InfoRegionsShort instead.
 
-InfoRegions get the list of available ams regions.
+InfoRegions get a list of the available ams regions
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]
 */
 func (a *Client) InfoRegions(params *InfoRegionsParams, authInfo runtime.ClientAuthInfoWriter) (*InfoRegionsOK, *InfoRegionsUnauthorized, *InfoRegionsForbidden, *InfoRegionsInternalServerError, error) {
@@ -95,7 +97,7 @@ func (a *Client) InfoRegions(params *InfoRegionsParams, authInfo runtime.ClientA
 }
 
 /*
-InfoRegionsShort get the list of available ams regions.
+InfoRegionsShort get a list of the available ams regions
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]
 */
 func (a *Client) InfoRegionsShort(params *InfoRegionsParams, authInfo runtime.ClientAuthInfoWriter) (*InfoRegionsOK, error) {
@@ -246,6 +248,96 @@ func (a *Client) InfoSupportedInstancesShort(params *InfoSupportedInstancesParam
 		return nil, v
 	case *InfoSupportedInstancesInternalServerError:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UploadURLGetShort instead.
+
+UploadURLGet get an url for uploading an image
+*/
+func (a *Client) UploadURLGet(params *UploadURLGetParams, authInfo runtime.ClientAuthInfoWriter) (*UploadURLGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadURLGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UploadURLGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/upload-url",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadURLGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadURLGetOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UploadURLGetShort get an url for uploading an image
+*/
+func (a *Client) UploadURLGetShort(params *UploadURLGetParams, authInfo runtime.ClientAuthInfoWriter) (*UploadURLGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadURLGetParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UploadURLGet",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/upload-url",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UploadURLGetReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadURLGetOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

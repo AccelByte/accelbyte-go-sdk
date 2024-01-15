@@ -43,7 +43,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use FleetServerHistoryShort instead.
 
-FleetServerHistory get history records of a specific dedicated server for a fleet
+FleetServerHistory get history records of a dedicated server in a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServerHistory(params *FleetServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerHistoryOK, *FleetServerHistoryBadRequest, *FleetServerHistoryUnauthorized, *FleetServerHistoryForbidden, *FleetServerHistoryInternalServerError, error) {
@@ -100,7 +100,7 @@ func (a *Client) FleetServerHistory(params *FleetServerHistoryParams, authInfo r
 }
 
 /*
-FleetServerHistoryShort get history records of a specific dedicated server for a fleet
+FleetServerHistoryShort get history records of a dedicated server in a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServerHistoryShort(params *FleetServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerHistoryOK, error) {
@@ -155,7 +155,7 @@ func (a *Client) FleetServerHistoryShort(params *FleetServerHistoryParams, authI
 /*
 Deprecated: 2022-08-10 - Use FleetServerInfoShort instead.
 
-FleetServerInfo get information about a specific dedicated server
+FleetServerInfo get information about a dedicated server
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServerInfo(params *FleetServerInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerInfoOK, *FleetServerInfoUnauthorized, *FleetServerInfoForbidden, *FleetServerInfoNotFound, *FleetServerInfoInternalServerError, error) {
@@ -212,7 +212,7 @@ func (a *Client) FleetServerInfo(params *FleetServerInfoParams, authInfo runtime
 }
 
 /*
-FleetServerInfoShort get information about a specific dedicated server
+FleetServerInfoShort get information about a dedicated server
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServerInfoShort(params *FleetServerInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerInfoOK, error) {
@@ -267,7 +267,7 @@ func (a *Client) FleetServerInfoShort(params *FleetServerInfoParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use ServerHistoryShort instead.
 
-ServerHistory get history records of a specific dedicated server
+ServerHistory get history records of a dedicated server
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) ServerHistory(params *ServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHistoryOK, *ServerHistoryBadRequest, *ServerHistoryUnauthorized, *ServerHistoryForbidden, *ServerHistoryInternalServerError, error) {
@@ -324,7 +324,7 @@ func (a *Client) ServerHistory(params *ServerHistoryParams, authInfo runtime.Cli
 }
 
 /*
-ServerHistoryShort get history records of a specific dedicated server
+ServerHistoryShort get history records of a dedicated server
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) ServerHistoryShort(params *ServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHistoryOK, error) {

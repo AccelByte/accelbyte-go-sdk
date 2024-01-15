@@ -18,17 +18,33 @@ import (
 // swagger:model Models custom function.
 type ModelsCustomFunction struct {
 
+	// enable/disable after bulk read game binary record custom validation
+	// Required: true
+	AfterBulkReadGameBinaryRecord *bool `json:"afterBulkReadGameBinaryRecord"`
+
 	// enable/disable after bulk read game record custom validation
 	// Required: true
 	AfterBulkReadGameRecord *bool `json:"afterBulkReadGameRecord"`
+
+	// enable/disable after bulk read player binary record custom validation
+	// Required: true
+	AfterBulkReadPlayerBinaryRecord *bool `json:"afterBulkReadPlayerBinaryRecord"`
 
 	// enable/disable after bulk read player record custom validation
 	// Required: true
 	AfterBulkReadPlayerRecord *bool `json:"afterBulkReadPlayerRecord"`
 
+	// enable/disable after read game binary record custom validation
+	// Required: true
+	AfterReadGameBinaryRecord *bool `json:"afterReadGameBinaryRecord"`
+
 	// enable/disable after read game record custom validation
 	// Required: true
 	AfterReadGameRecord *bool `json:"afterReadGameRecord"`
+
+	// enable/disable after read player binary record custom validation
+	// Required: true
+	AfterReadPlayerBinaryRecord *bool `json:"afterReadPlayerBinaryRecord"`
 
 	// enable/disable after read player record custom validation
 	// Required: true
@@ -42,9 +58,17 @@ type ModelsCustomFunction struct {
 	// Required: true
 	BeforeWriteAdminPlayerRecord *bool `json:"beforeWriteAdminPlayerRecord"`
 
+	// enable/disable before write game binary record custom validation
+	// Required: true
+	BeforeWriteGameBinaryRecord *bool `json:"beforeWriteGameBinaryRecord"`
+
 	// enable/disable before write game record custom validation
 	// Required: true
 	BeforeWriteGameRecord *bool `json:"beforeWriteGameRecord"`
+
+	// enable/disable before write player binary record custom validation
+	// Required: true
+	BeforeWritePlayerBinaryRecord *bool `json:"beforeWritePlayerBinaryRecord"`
 
 	// enable/disable before write player record custom validation
 	// Required: true
@@ -55,13 +79,25 @@ type ModelsCustomFunction struct {
 func (m *ModelsCustomFunction) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAfterBulkReadGameBinaryRecord(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateAfterBulkReadGameRecord(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateAfterBulkReadPlayerBinaryRecord(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateAfterBulkReadPlayerRecord(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateAfterReadGameBinaryRecord(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateAfterReadGameRecord(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateAfterReadPlayerBinaryRecord(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateAfterReadPlayerRecord(formats); err != nil {
@@ -73,7 +109,13 @@ func (m *ModelsCustomFunction) Validate(formats strfmt.Registry) error {
 	if err := m.validateBeforeWriteAdminPlayerRecord(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateBeforeWriteGameBinaryRecord(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateBeforeWriteGameRecord(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateBeforeWritePlayerBinaryRecord(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateBeforeWritePlayerRecord(formats); err != nil {
@@ -86,9 +128,27 @@ func (m *ModelsCustomFunction) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsCustomFunction) validateAfterBulkReadGameBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("afterBulkReadGameBinaryRecord", "body", m.AfterBulkReadGameBinaryRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCustomFunction) validateAfterBulkReadGameRecord(formats strfmt.Registry) error {
 
 	if err := validate.Required("afterBulkReadGameRecord", "body", m.AfterBulkReadGameRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCustomFunction) validateAfterBulkReadPlayerBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("afterBulkReadPlayerBinaryRecord", "body", m.AfterBulkReadPlayerBinaryRecord); err != nil {
 		return err
 	}
 
@@ -104,9 +164,27 @@ func (m *ModelsCustomFunction) validateAfterBulkReadPlayerRecord(formats strfmt.
 	return nil
 }
 
+func (m *ModelsCustomFunction) validateAfterReadGameBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("afterReadGameBinaryRecord", "body", m.AfterReadGameBinaryRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCustomFunction) validateAfterReadGameRecord(formats strfmt.Registry) error {
 
 	if err := validate.Required("afterReadGameRecord", "body", m.AfterReadGameRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCustomFunction) validateAfterReadPlayerBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("afterReadPlayerBinaryRecord", "body", m.AfterReadPlayerBinaryRecord); err != nil {
 		return err
 	}
 
@@ -140,9 +218,27 @@ func (m *ModelsCustomFunction) validateBeforeWriteAdminPlayerRecord(formats strf
 	return nil
 }
 
+func (m *ModelsCustomFunction) validateBeforeWriteGameBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("beforeWriteGameBinaryRecord", "body", m.BeforeWriteGameBinaryRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCustomFunction) validateBeforeWriteGameRecord(formats strfmt.Registry) error {
 
 	if err := validate.Required("beforeWriteGameRecord", "body", m.BeforeWriteGameRecord); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCustomFunction) validateBeforeWritePlayerBinaryRecord(formats strfmt.Registry) error {
+
+	if err := validate.Required("beforeWritePlayerBinaryRecord", "body", m.BeforeWritePlayerBinaryRecord); err != nil {
 		return err
 	}
 

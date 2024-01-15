@@ -24,7 +24,7 @@ type APIArtifactResponse struct {
 
 	// createdon
 	// Required: true
-	CreatedOn *APITime `json:"createdOn"`
+	CreatedOn *string `json:"createdOn"`
 
 	// dsid
 	// Required: true
@@ -32,7 +32,11 @@ type APIArtifactResponse struct {
 
 	// expireson
 	// Required: true
-	ExpiresOn *APITime `json:"expiresOn"`
+	ExpiresOn *string `json:"expiresOn"`
+
+	// filename
+	// Required: true
+	Filename *string `json:"filename"`
 
 	// fleetid
 	// Required: true
@@ -52,16 +56,12 @@ type APIArtifactResponse struct {
 
 	// sizebytes
 	// Required: true
-	// Format: int32
-	SizeBytes *int32 `json:"sizeBytes"`
+	// Format: int64
+	SizeBytes *int64 `json:"sizeBytes"`
 
 	// status
 	// Required: true
 	Status *string `json:"status"`
-
-	// storagepath
-	// Required: true
-	StoragePath *string `json:"storagePath"`
 }
 
 // Validate validates this Api artifact response
@@ -80,6 +80,9 @@ func (m *APIArtifactResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateExpiresOn(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateFilename(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateFleetID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -96,9 +99,6 @@ func (m *APIArtifactResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateStoragePath(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,15 +123,6 @@ func (m *APIArtifactResponse) validateCreatedOn(formats strfmt.Registry) error {
 		return err
 	}
 
-	if m.CreatedOn != nil {
-		if err := m.CreatedOn.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("createdOn")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -150,13 +141,13 @@ func (m *APIArtifactResponse) validateExpiresOn(formats strfmt.Registry) error {
 		return err
 	}
 
-	if m.ExpiresOn != nil {
-		if err := m.ExpiresOn.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("expiresOn")
-			}
-			return err
-		}
+	return nil
+}
+
+func (m *APIArtifactResponse) validateFilename(formats strfmt.Registry) error {
+
+	if err := validate.Required("filename", "body", m.Filename); err != nil {
+		return err
 	}
 
 	return nil
@@ -210,15 +201,6 @@ func (m *APIArtifactResponse) validateSizeBytes(formats strfmt.Registry) error {
 func (m *APIArtifactResponse) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIArtifactResponse) validateStoragePath(formats strfmt.Registry) error {
-
-	if err := validate.Required("storagePath", "body", m.StoragePath); err != nil {
 		return err
 	}
 

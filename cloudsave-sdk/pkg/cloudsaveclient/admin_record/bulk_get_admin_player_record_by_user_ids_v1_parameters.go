@@ -69,12 +69,12 @@ type BulkGetAdminPlayerRecordByUserIdsV1Params struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkUserIDsRequest
 	/*Key
-	  key of admin record
+	  key of record
 
 	*/
 	Key string
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

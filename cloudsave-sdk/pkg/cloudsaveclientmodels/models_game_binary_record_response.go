@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -30,11 +32,12 @@ type ModelsGameBinaryRecordResponse struct {
 	// Required: true
 	Key *string `json:"key"`
 
-	// namespace
+	// Namespace of the game
 	// Required: true
 	Namespace *string `json:"namespace"`
 
 	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 
 	// updated_at
@@ -94,6 +97,35 @@ func (m *ModelsGameBinaryRecordResponse) validateNamespace(formats strfmt.Regist
 		return err
 	}
 
+	return nil
+}
+
+var modelsGameBinaryRecordResponseTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsGameBinaryRecordResponseTypeSetByPropEnum = append(modelsGameBinaryRecordResponseTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsGameBinaryRecordResponseSetByCLIENT captures enum value "CLIENT"
+	ModelsGameBinaryRecordResponseSetByCLIENT string = "CLIENT"
+
+	// ModelsGameBinaryRecordResponseSetBySERVER captures enum value "SERVER"
+	ModelsGameBinaryRecordResponseSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsGameBinaryRecordResponse) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsGameBinaryRecordResponseTypeSetByPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

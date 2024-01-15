@@ -116,7 +116,7 @@ func NewUpdateCurrencyNotFound() *UpdateCurrencyNotFound {
 
 /*UpdateCurrencyNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>36141</td><td>Currency [{currencyCode}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>36141</td><td>Currency [{currencyCode}] does not exist in namespace [{namespace}]</td></tr><tr><td>36172</td><td>Real Currency [{currencyCode}] not allowed in game namespace [{namespace}]</td></tr></table>
 */
 type UpdateCurrencyNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

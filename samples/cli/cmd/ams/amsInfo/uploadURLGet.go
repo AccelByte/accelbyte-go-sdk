@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package account
+package amsInfo
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/account"
+	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclient/a_m_s_info"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ams"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,34 +15,29 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// AccountLinkTokenGetCmd represents the AccountLinkTokenGet command
-var AccountLinkTokenGetCmd = &cobra.Command{
-	Use:   "accountLinkTokenGet",
-	Short: "Account link token get",
-	Long:  `Account link token get`,
+// UploadURLGetCmd represents the UploadURLGet command
+var UploadURLGetCmd = &cobra.Command{
+	Use:   "uploadURLGet",
+	Short: "Upload URL get",
+	Long:  `Upload URL get`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		accountService := &ams.AccountService{
+		amsInfoService := &ams.AMSInfoService{
 			Client:          factory.NewAmsClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &account.AccountLinkTokenGetParams{
-			Namespace: namespace,
-		}
-		ok, errOK := accountService.AccountLinkTokenGetShort(input)
+		input := &a_m_s_info.UploadURLGetParams{}
+		errOK := amsInfoService.UploadURLGetShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success: %+v", ok)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},
 }
 
 func init() {
-	AccountLinkTokenGetCmd.Flags().String("namespace", "", "Namespace")
-	_ = AccountLinkTokenGetCmd.MarkFlagRequired("namespace")
 }

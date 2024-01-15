@@ -48,14 +48,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetGameRecordsBulkShort instead.
 
 GetGameRecordsBulk bulk get game records
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get game records. Maximum key per request 20.
 */
 func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, *GetGameRecordsBulkBadRequest, *GetGameRecordsBulkUnauthorized, *GetGameRecordsBulkForbidden, *GetGameRecordsBulkNotFound, *GetGameRecordsBulkInternalServerError, error) {
@@ -116,14 +108,6 @@ func (a *Client) GetGameRecordsBulk(params *GetGameRecordsBulkParams, authInfo r
 
 /*
 GetGameRecordsBulkShort bulk get game records
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Bulk get game records. Maximum key per request 20.
 */
 func (a *Client) GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordsBulkOK, error) {
@@ -181,13 +165,6 @@ func (a *Client) GetGameRecordsBulkShort(params *GetGameRecordsBulkParams, authI
 Deprecated: 2022-08-10 - Use GetGameRecordHandlerV1Short instead.
 
 GetGameRecordHandlerV1 get game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------
-Required Scope      | `social`
-
-
-
-
 Get game record by its key.
 */
 func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1BadRequest, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1Forbidden, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error) {
@@ -248,13 +225,6 @@ func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, au
 
 /*
 GetGameRecordHandlerV1Short get game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
---------------------|-------------------------------------------------
-Required Scope      | `social`
-
-
-
-
 Get game record by its key.
 */
 func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, error) {
@@ -312,80 +282,41 @@ func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Param
 Deprecated: 2022-08-10 - Use PutGameRecordHandlerV1Short instead.
 
 PutGameRecordHandlerV1 create or replace game record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -445,80 +376,41 @@ func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, au
 
 /*
 PutGameRecordHandlerV1Short create or replace game record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -576,102 +468,53 @@ func (a *Client) PutGameRecordHandlerV1Short(params *PutGameRecordHandlerV1Param
 Deprecated: 2022-08-10 - Use PostGameRecordHandlerV1Short instead.
 
 PostGameRecordHandlerV1 create or append game record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or append the existing game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -731,102 +574,53 @@ func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, 
 
 /*
 PostGameRecordHandlerV1Short create or append game record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or append the existing game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -884,14 +678,6 @@ func (a *Client) PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Par
 Deprecated: 2022-08-10 - Use DeleteGameRecordHandlerV1Short instead.
 
 DeleteGameRecordHandlerV1 delete game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
---------------------|---------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Delete records by its key
 */
 func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1Forbidden, *DeleteGameRecordHandlerV1InternalServerError, error) {
@@ -949,14 +735,6 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 
 /*
 DeleteGameRecordHandlerV1Short delete game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
---------------------|---------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
 Delete records by its key
 */
 func (a *Client) DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, error) {

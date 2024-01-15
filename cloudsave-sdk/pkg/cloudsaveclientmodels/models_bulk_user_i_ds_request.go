@@ -18,7 +18,7 @@ import (
 // swagger:model Models bulk user I ds request.
 type ModelsBulkUserIDsRequest struct {
 
-	// userids
+	// User IDs who own the record
 	// Required: true
 	UserIds []string `json:"userIds"`
 }

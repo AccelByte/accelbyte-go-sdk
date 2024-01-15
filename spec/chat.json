@@ -1929,11 +1929,7 @@
         "tags": [
           "topic"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/chat/public/namespaces/{namespace}/topic": {
@@ -2017,11 +2013,7 @@
         "tags": [
           "topic"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/chat/public/namespaces/{namespace}/topic/{topic}/ban-members": {
@@ -2196,11 +2188,7 @@
         "tags": [
           "topic"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/chat/public/namespaces/{namespace}/topic/{topic}/chats/{chatId}": {
@@ -5651,7 +5639,15 @@
           "format": "int64",
           "type": "integer"
         },
+        "defaultDictionaryLoaded": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "enableClanChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "useDefaultDictionary": {
           "type": "boolean",
           "x-omitempty": false
         }
@@ -6827,11 +6823,11 @@
     "path": "/chat/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-19T10:39:14+00:00",
-    "gitHash": "bcf6d683a02e531e6107840c58a1d37c564eb700",
+    "buildDate": "2024-01-03T06:09:20+00:00",
+    "gitHash": "3d97000e5096dd321cf9de7f382ca57413077f81",
     "name": "justice-chat-service",
-    "revisionID": "0.4.15",
-    "version": "0.4.15",
+    "revisionID": "0.4.16",
+    "version": "0.4.16",
     "version-roles-seeding": "0.0.18"
   }
 }

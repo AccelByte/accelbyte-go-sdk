@@ -48,7 +48,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListFulfillmentScriptsShort instead.
 
 ListFulfillmentScripts list all fulfillment scripts
-List all fulfillment scripts.
+[Not Supported Yet In Starter] List all fulfillment scripts.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
@@ -96,7 +96,7 @@ func (a *Client) ListFulfillmentScripts(params *ListFulfillmentScriptsParams, au
 
 /*
 ListFulfillmentScriptsShort list all fulfillment scripts
-List all fulfillment scripts.
+ [Not Supported Yet In Starter] List all fulfillment scripts.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
@@ -146,7 +146,7 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 Deprecated: 2022-08-10 - Use GetFulfillmentScriptShort instead.
 
 GetFulfillmentScript get fulfillment script by id
-Get fulfillment script by id.
+ [Not Supported Yet In Starter] Get fulfillment script by id.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
@@ -198,7 +198,7 @@ func (a *Client) GetFulfillmentScript(params *GetFulfillmentScriptParams, authIn
 
 /*
 GetFulfillmentScriptShort get fulfillment script by id
-Get fulfillment script by id.
+ [Not Supported Yet In Starter] Get fulfillment script by id.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=2 (READ)
@@ -251,7 +251,7 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 Deprecated: 2022-08-10 - Use CreateFulfillmentScriptShort instead.
 
 CreateFulfillmentScript create fulfillment script
- [AGS Premium Feature] Create fulfillment script.
+ [Not Supported Yet In Starter] Create fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=1 (CREATE)
@@ -306,7 +306,7 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 
 /*
 CreateFulfillmentScriptShort create fulfillment script
- [AGS Premium Feature] Create fulfillment script.
+ [Not Supported Yet In Starter] Create fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=1 (CREATE)
@@ -362,7 +362,7 @@ func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptPar
 Deprecated: 2022-08-10 - Use DeleteFulfillmentScriptShort instead.
 
 DeleteFulfillmentScript delete fulfillment script
-Delete fulfillment script.
+ [Not Supported Yet In Starter] Delete fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=8 (DELETE)
@@ -410,7 +410,7 @@ func (a *Client) DeleteFulfillmentScript(params *DeleteFulfillmentScriptParams, 
 
 /*
 DeleteFulfillmentScriptShort delete fulfillment script
-Delete fulfillment script.
+ [Not Supported Yet In Starter] Delete fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=8 (DELETE)
@@ -460,7 +460,7 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 Deprecated: 2022-08-10 - Use UpdateFulfillmentScriptShort instead.
 
 UpdateFulfillmentScript update fulfillment script
- [AGS Premium Feature] Update fulfillment script.
+ [Not Supported Yet In Starter] Update fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=4 (UPDATE)
@@ -511,7 +511,7 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 
 /*
 UpdateFulfillmentScriptShort update fulfillment script
- [AGS Premium Feature] Update fulfillment script.
+ [Not Supported Yet In Starter] Update fulfillment script.
 Other detail info:
 
   * Required permission : resource="ADMIN:FULFILLMENT", action=4 (UPDATE)

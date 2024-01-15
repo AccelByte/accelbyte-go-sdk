@@ -30,13 +30,13 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, *ArtifactGetNoContent, *ArtifactGetBadRequest, *ArtifactGetUnauthorized, *ArtifactGetForbidden, *ArtifactGetInternalServerError, error)
+	ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, *ArtifactGetBadRequest, *ArtifactGetUnauthorized, *ArtifactGetForbidden, *ArtifactGetInternalServerError, error)
 	ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, error)
 	ArtifactUsageGet(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, *ArtifactUsageGetUnauthorized, *ArtifactUsageGetForbidden, *ArtifactUsageGetInternalServerError, error)
 	ArtifactUsageGetShort(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, error)
-	ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, *ArtifactDeleteNoContent, *ArtifactDeleteBadRequest, *ArtifactDeleteUnauthorized, *ArtifactDeleteForbidden, *ArtifactDeleteInternalServerError, error)
+	ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, *ArtifactDeleteBadRequest, *ArtifactDeleteUnauthorized, *ArtifactDeleteForbidden, *ArtifactDeleteNotFound, *ArtifactDeleteInternalServerError, error)
 	ArtifactDeleteShort(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, error)
-	ArtifactGetURL(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, *ArtifactGetURLNoContent, *ArtifactGetURLBadRequest, *ArtifactGetURLUnauthorized, *ArtifactGetURLForbidden, *ArtifactGetURLInternalServerError, error)
+	ArtifactGetURL(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, *ArtifactGetURLBadRequest, *ArtifactGetURLUnauthorized, *ArtifactGetURLForbidden, *ArtifactGetURLNotFound, *ArtifactGetURLInternalServerError, error)
 	ArtifactGetURLShort(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, error)
 	FleetArtifactSamplingRulesGet(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, *FleetArtifactSamplingRulesGetBadRequest, *FleetArtifactSamplingRulesGetUnauthorized, *FleetArtifactSamplingRulesGetForbidden, *FleetArtifactSamplingRulesGetNotFound, *FleetArtifactSamplingRulesGetInternalServerError, error)
 	FleetArtifactSamplingRulesGetShort(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, error)
@@ -50,9 +50,11 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ArtifactGetShort instead.
 
 ArtifactGet get all artifacts matching the provided criteria
+Get all artifacts matching the provided search criteria. When criteria is not specified the data returned won't have been filtered on those parameters
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]
 */
-func (a *Client) ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, *ArtifactGetNoContent, *ArtifactGetBadRequest, *ArtifactGetUnauthorized, *ArtifactGetForbidden, *ArtifactGetInternalServerError, error) {
+func (a *Client) ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, *ArtifactGetBadRequest, *ArtifactGetUnauthorized, *ArtifactGetForbidden, *ArtifactGetInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewArtifactGetParams()
@@ -80,36 +82,35 @@ func (a *Client) ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ArtifactGetOK:
-		return v, nil, nil, nil, nil, nil, nil
-
-	case *ArtifactGetNoContent:
-		return nil, v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *ArtifactGetBadRequest:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *ArtifactGetUnauthorized:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *ArtifactGetForbidden:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *ArtifactGetInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
 ArtifactGetShort get all artifacts matching the provided criteria
+Get all artifacts matching the provided search criteria. When criteria is not specified the data returned won't have been filtered on those parameters
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]
 */
 func (a *Client) ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, error) {
@@ -147,8 +148,6 @@ func (a *Client) ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.Cl
 
 	case *ArtifactGetOK:
 		return v, nil
-	case *ArtifactGetNoContent:
-		return nil, v
 	case *ArtifactGetBadRequest:
 		return nil, v
 	case *ArtifactGetUnauthorized:
@@ -166,7 +165,7 @@ func (a *Client) ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.Cl
 /*
 Deprecated: 2022-08-10 - Use ArtifactUsageGetShort instead.
 
-ArtifactUsageGet retrieves artifact storage usage for the namespace
+ArtifactUsageGet retrieve artifact storage usage for the namespace
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]
 */
 func (a *Client) ArtifactUsageGet(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, *ArtifactUsageGetUnauthorized, *ArtifactUsageGetForbidden, *ArtifactUsageGetInternalServerError, error) {
@@ -220,7 +219,7 @@ func (a *Client) ArtifactUsageGet(params *ArtifactUsageGetParams, authInfo runti
 }
 
 /*
-ArtifactUsageGetShort retrieves artifact storage usage for the namespace
+ArtifactUsageGetShort retrieve artifact storage usage for the namespace
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]
 */
 func (a *Client) ArtifactUsageGetShort(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, error) {
@@ -273,10 +272,10 @@ func (a *Client) ArtifactUsageGetShort(params *ArtifactUsageGetParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use ArtifactDeleteShort instead.
 
-ArtifactDelete deletes the specified artifact
+ArtifactDelete delete a specified artifact
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]
 */
-func (a *Client) ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, *ArtifactDeleteNoContent, *ArtifactDeleteBadRequest, *ArtifactDeleteUnauthorized, *ArtifactDeleteForbidden, *ArtifactDeleteInternalServerError, error) {
+func (a *Client) ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, *ArtifactDeleteBadRequest, *ArtifactDeleteUnauthorized, *ArtifactDeleteForbidden, *ArtifactDeleteNotFound, *ArtifactDeleteInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewArtifactDeleteParams()
@@ -312,16 +311,16 @@ func (a *Client) ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.C
 	case *ArtifactDeleteAccepted:
 		return v, nil, nil, nil, nil, nil, nil
 
-	case *ArtifactDeleteNoContent:
+	case *ArtifactDeleteBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
 
-	case *ArtifactDeleteBadRequest:
+	case *ArtifactDeleteUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
 
-	case *ArtifactDeleteUnauthorized:
+	case *ArtifactDeleteForbidden:
 		return nil, nil, nil, v, nil, nil, nil
 
-	case *ArtifactDeleteForbidden:
+	case *ArtifactDeleteNotFound:
 		return nil, nil, nil, nil, v, nil, nil
 
 	case *ArtifactDeleteInternalServerError:
@@ -333,7 +332,7 @@ func (a *Client) ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.C
 }
 
 /*
-ArtifactDeleteShort deletes the specified artifact
+ArtifactDeleteShort delete a specified artifact
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]
 */
 func (a *Client) ArtifactDeleteShort(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, error) {
@@ -371,13 +370,13 @@ func (a *Client) ArtifactDeleteShort(params *ArtifactDeleteParams, authInfo runt
 
 	case *ArtifactDeleteAccepted:
 		return v, nil
-	case *ArtifactDeleteNoContent:
-		return nil, v
 	case *ArtifactDeleteBadRequest:
 		return nil, v
 	case *ArtifactDeleteUnauthorized:
 		return nil, v
 	case *ArtifactDeleteForbidden:
+		return nil, v
+	case *ArtifactDeleteNotFound:
 		return nil, v
 	case *ArtifactDeleteInternalServerError:
 		return nil, v
@@ -393,7 +392,7 @@ Deprecated: 2022-08-10 - Use ArtifactGetURLShort instead.
 ArtifactGetURL get a signed url for a specific artifact
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]
 */
-func (a *Client) ArtifactGetURL(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, *ArtifactGetURLNoContent, *ArtifactGetURLBadRequest, *ArtifactGetURLUnauthorized, *ArtifactGetURLForbidden, *ArtifactGetURLInternalServerError, error) {
+func (a *Client) ArtifactGetURL(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, *ArtifactGetURLBadRequest, *ArtifactGetURLUnauthorized, *ArtifactGetURLForbidden, *ArtifactGetURLNotFound, *ArtifactGetURLInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewArtifactGetURLParams()
@@ -429,16 +428,16 @@ func (a *Client) ArtifactGetURL(params *ArtifactGetURLParams, authInfo runtime.C
 	case *ArtifactGetURLOK:
 		return v, nil, nil, nil, nil, nil, nil
 
-	case *ArtifactGetURLNoContent:
+	case *ArtifactGetURLBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
 
-	case *ArtifactGetURLBadRequest:
+	case *ArtifactGetURLUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
 
-	case *ArtifactGetURLUnauthorized:
+	case *ArtifactGetURLForbidden:
 		return nil, nil, nil, v, nil, nil, nil
 
-	case *ArtifactGetURLForbidden:
+	case *ArtifactGetURLNotFound:
 		return nil, nil, nil, nil, v, nil, nil
 
 	case *ArtifactGetURLInternalServerError:
@@ -488,13 +487,13 @@ func (a *Client) ArtifactGetURLShort(params *ArtifactGetURLParams, authInfo runt
 
 	case *ArtifactGetURLOK:
 		return v, nil
-	case *ArtifactGetURLNoContent:
-		return nil, v
 	case *ArtifactGetURLBadRequest:
 		return nil, v
 	case *ArtifactGetURLUnauthorized:
 		return nil, v
 	case *ArtifactGetURLForbidden:
+		return nil, v
+	case *ArtifactGetURLNotFound:
 		return nil, v
 	case *ArtifactGetURLInternalServerError:
 		return nil, v

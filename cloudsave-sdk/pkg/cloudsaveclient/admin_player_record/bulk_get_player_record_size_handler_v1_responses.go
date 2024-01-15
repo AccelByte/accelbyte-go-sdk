@@ -128,7 +128,7 @@ func NewBulkGetPlayerRecordSizeHandlerV1BadRequest() *BulkGetPlayerRecordSizeHan
 
 /*BulkGetPlayerRecordSizeHandlerV1BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18342</td><td>invalid request body</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18125</td><td>invalid request body</td></tr></table>
 */
 type BulkGetPlayerRecordSizeHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
@@ -287,7 +287,7 @@ func NewBulkGetPlayerRecordSizeHandlerV1InternalServerError() *BulkGetPlayerReco
 
 /*BulkGetPlayerRecordSizeHandlerV1InternalServerError handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18343</td><td>unable to get record</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18124</td><td>unable to get record</td></tr></table>
 */
 type BulkGetPlayerRecordSizeHandlerV1InternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

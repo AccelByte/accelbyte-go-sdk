@@ -18,11 +18,11 @@ import (
 // swagger:model Models bulk update player record request detail.
 type ModelsBulkUpdatePlayerRecordRequestDetail struct {
 
-	// key
+	// Player record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// value
+	// Player record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }

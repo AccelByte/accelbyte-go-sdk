@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.8.0"
+    "version": "7.8.3"
   },
   "schemes": [
     "https"
@@ -32989,7 +32989,6 @@
         }
       },
       "required": [
-        "platformId",
         "userIds"
       ]
     },
@@ -33693,6 +33692,9 @@
     },
     "oauthmodel.TokenThirdPartyResponse": {
       "properties": {
+        "platformUserId": {
+          "type": "string"
+        },
         "platform_token": {
           "type": "string"
         },
@@ -33869,11 +33871,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-29T11:59:16+00:00",
-    "gitHash": "1aa95f9e0faef68fff742fbc15bdcd832446ce04",
+    "buildDate": "2024-01-12T11:30:37+00:00",
+    "gitHash": "46bdc318f23a15ca95fa76a24455f99332ec020c",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.8.0",
+    "version": "7.8.3",
     "version-roles-seeding": "1.0.23"
   }
 }

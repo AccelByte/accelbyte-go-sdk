@@ -65,7 +65,7 @@ type GetPluginConfigParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

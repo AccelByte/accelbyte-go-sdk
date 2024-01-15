@@ -86,22 +86,22 @@ type AdminListAdminUserRecordsV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user ID who own the record
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string
 	/*Limit
-	  limit. default value: 25
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset. default value: 0
+	  the number of offset, default 0
 
 	*/
 	Offset *int64

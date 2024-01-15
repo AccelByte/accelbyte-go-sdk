@@ -33,12 +33,6 @@ func (o *ArtifactGetReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
-	case 204:
-		result := NewArtifactGetNoContent()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 400:
 		result := NewArtifactGetBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -119,59 +113,6 @@ func (o *ArtifactGetOK) readResponse(response runtime.ClientResponse, consumer r
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewArtifactGetNoContent creates a ArtifactGetNoContent with default headers values
-func NewArtifactGetNoContent() *ArtifactGetNoContent {
-	return &ArtifactGetNoContent{}
-}
-
-/*ArtifactGetNoContent handles this case with default header values.
-
-  no artifacts found with specified criteria
-*/
-type ArtifactGetNoContent struct {
-	Payload *amsclientmodels.ResponseErrorResponse
-}
-
-func (o *ArtifactGetNoContent) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/artifacts][%d] artifactGetNoContent  %+v", 204, o.ToJSONString())
-}
-
-func (o *ArtifactGetNoContent) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *ArtifactGetNoContent) GetPayload() *amsclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *ArtifactGetNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(amsclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

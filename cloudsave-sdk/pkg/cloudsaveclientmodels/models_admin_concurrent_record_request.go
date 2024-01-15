@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,15 +20,16 @@ import (
 // swagger:model Models admin concurrent record request.
 type ModelsAdminConcurrentRecordRequest struct {
 
-	// set_by
+	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	// Required: true
 	SetBy *string `json:"set_by"`
 
-	// updatedat
+	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
 
-	// value
+	// Record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }
@@ -48,9 +51,43 @@ func (m *ModelsAdminConcurrentRecordRequest) Validate(formats strfmt.Registry) e
 	return nil
 }
 
+var modelsAdminConcurrentRecordRequestTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsAdminConcurrentRecordRequestTypeSetByPropEnum = append(modelsAdminConcurrentRecordRequestTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsAdminConcurrentRecordRequestSetByCLIENT captures enum value "CLIENT"
+	ModelsAdminConcurrentRecordRequestSetByCLIENT string = "CLIENT"
+
+	// ModelsAdminConcurrentRecordRequestSetBySERVER captures enum value "SERVER"
+	ModelsAdminConcurrentRecordRequestSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsAdminConcurrentRecordRequest) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsAdminConcurrentRecordRequestTypeSetByPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsAdminConcurrentRecordRequest) validateSetBy(formats strfmt.Registry) error {
 
 	if err := validate.Required("set_by", "body", m.SetBy); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSetByEnum("set_by", "body", *m.SetBy); err != nil {
 		return err
 	}
 

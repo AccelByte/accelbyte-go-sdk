@@ -69,12 +69,12 @@ type AdminPutPlayerRecordsHandlerV1Params struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkUpdatePlayerRecordsRequest
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user id of the records
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string

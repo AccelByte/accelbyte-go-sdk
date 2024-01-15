@@ -18,11 +18,11 @@ import (
 // swagger:model Models public game binary record create.
 type ModelsPublicGameBinaryRecordCreate struct {
 
-	// file_type
+	// File type of game binary record
 	// Required: true
 	FileType *string `json:"file_type"`
 
-	// key
+	// Game binary record identifier
 	// Required: true
 	Key *string `json:"key"`
 }

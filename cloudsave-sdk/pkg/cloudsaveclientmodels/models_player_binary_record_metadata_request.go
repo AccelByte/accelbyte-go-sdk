@@ -7,9 +7,12 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ModelsPlayerBinaryRecordMetadataRequest Models player binary record metadata request
@@ -17,10 +20,11 @@ import (
 // swagger:model Models player binary record metadata request.
 type ModelsPlayerBinaryRecordMetadataRequest struct {
 
-	// is_public
+	// Indicate whether the player record is public or not
 	IsPublic bool `json:"is_public"`
 
 	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 }
 
@@ -30,6 +34,35 @@ func (m *ModelsPlayerBinaryRecordMetadataRequest) Validate(formats strfmt.Regist
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var modelsPlayerBinaryRecordMetadataRequestTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsPlayerBinaryRecordMetadataRequestTypeSetByPropEnum = append(modelsPlayerBinaryRecordMetadataRequestTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsPlayerBinaryRecordMetadataRequestSetByCLIENT captures enum value "CLIENT"
+	ModelsPlayerBinaryRecordMetadataRequestSetByCLIENT string = "CLIENT"
+
+	// ModelsPlayerBinaryRecordMetadataRequestSetBySERVER captures enum value "SERVER"
+	ModelsPlayerBinaryRecordMetadataRequestSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsPlayerBinaryRecordMetadataRequest) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsPlayerBinaryRecordMetadataRequestTypeSetByPropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

@@ -43,7 +43,9 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use ImageListShort instead.
 
-ImageList get a list of images which exist (uploaded, uploading, or building) in the linked account.  fails if no account is linked
+ImageList get a list of existing images
+Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
 */
 func (a *Client) ImageList(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, *ImageListUnauthorized, *ImageListForbidden, *ImageListNotFound, *ImageListInternalServerError, error) {
@@ -100,7 +102,9 @@ func (a *Client) ImageList(params *ImageListParams, authInfo runtime.ClientAuthI
 }
 
 /*
-ImageListShort get a list of images which exist (uploaded, uploading, or building) in the linked account.  fails if no account is linked
+ImageListShort get a list of existing images
+Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
 */
 func (a *Client) ImageListShort(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, error) {
@@ -155,7 +159,7 @@ func (a *Client) ImageListShort(params *ImageListParams, authInfo runtime.Client
 /*
 Deprecated: 2022-08-10 - Use ImageGetShort instead.
 
-ImageGet get details about an image.
+ImageGet get image details.
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
 */
 func (a *Client) ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, *ImageGetUnauthorized, *ImageGetForbidden, *ImageGetNotFound, *ImageGetInternalServerError, error) {
@@ -212,7 +216,7 @@ func (a *Client) ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInf
 }
 
 /*
-ImageGetShort get details about an image.
+ImageGetShort get image details.
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
 */
 func (a *Client) ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, error) {
@@ -267,7 +271,9 @@ func (a *Client) ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAu
 /*
 Deprecated: 2022-08-10 - Use ImagePatchShort instead.
 
-ImagePatch edit the image name, toggle isprotected, or add/remove tags
+ImagePatch edit the image
+This allows editing of the image name, toggling `IsProtected`, or adding & removal of tags
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]
 */
 func (a *Client) ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, *ImagePatchUnauthorized, *ImagePatchForbidden, *ImagePatchNotFound, *ImagePatchInternalServerError, error) {
@@ -324,7 +330,9 @@ func (a *Client) ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAut
 }
 
 /*
-ImagePatchShort edit the image name, toggle isprotected, or add/remove tags
+ImagePatchShort edit the image
+This allows editing of the image name, toggling `IsProtected`, or adding & removal of tags
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]
 */
 func (a *Client) ImagePatchShort(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, error) {

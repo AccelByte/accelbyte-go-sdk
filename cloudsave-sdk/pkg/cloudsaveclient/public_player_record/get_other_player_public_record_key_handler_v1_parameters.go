@@ -22,8 +22,13 @@ import (
 // NewGetOtherPlayerPublicRecordKeyHandlerV1Params creates a new GetOtherPlayerPublicRecordKeyHandlerV1Params object
 // with the default values initialized.
 func NewGetOtherPlayerPublicRecordKeyHandlerV1Params() *GetOtherPlayerPublicRecordKeyHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOtherPlayerPublicRecordKeyHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewGetOtherPlayerPublicRecordKeyHandlerV1Params() *GetOtherPlayerPublicReco
 // NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithTimeout creates a new GetOtherPlayerPublicRecordKeyHandlerV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithTimeout(timeout time.Duration) *GetOtherPlayerPublicRecordKeyHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOtherPlayerPublicRecordKeyHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithTimeout(timeout time.Dur
 // NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithContext creates a new GetOtherPlayerPublicRecordKeyHandlerV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithContext(ctx context.Context) *GetOtherPlayerPublicRecordKeyHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOtherPlayerPublicRecordKeyHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithContext(ctx context.Cont
 // NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithHTTPClient creates a new GetOtherPlayerPublicRecordKeyHandlerV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetOtherPlayerPublicRecordKeyHandlerV1ParamsWithHTTPClient(client *http.Client) *GetOtherPlayerPublicRecordKeyHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &GetOtherPlayerPublicRecordKeyHandlerV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,22 +86,22 @@ type GetOtherPlayerPublicRecordKeyHandlerV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user ID
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64

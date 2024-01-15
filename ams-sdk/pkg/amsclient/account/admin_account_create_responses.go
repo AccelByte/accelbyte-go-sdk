@@ -19,34 +19,34 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclientmodels"
 )
 
-// AccountCreateReader is a Reader for the AccountCreate structure.
-type AccountCreateReader struct {
+// AdminAccountCreateReader is a Reader for the AdminAccountCreate structure.
+type AdminAccountCreateReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *AccountCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *AdminAccountCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 201:
-		result := NewAccountCreateCreated()
+		result := NewAdminAccountCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewAccountCreateUnauthorized()
+		result := NewAdminAccountCreateUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewAccountCreateForbidden()
+		result := NewAdminAccountCreateForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 500:
-		result := NewAccountCreateInternalServerError()
+		result := NewAdminAccountCreateInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -62,24 +62,24 @@ func (o *AccountCreateReader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewAccountCreateCreated creates a AccountCreateCreated with default headers values
-func NewAccountCreateCreated() *AccountCreateCreated {
-	return &AccountCreateCreated{}
+// NewAdminAccountCreateCreated creates a AdminAccountCreateCreated with default headers values
+func NewAdminAccountCreateCreated() *AdminAccountCreateCreated {
+	return &AdminAccountCreateCreated{}
 }
 
-/*AccountCreateCreated handles this case with default header values.
+/*AdminAccountCreateCreated handles this case with default header values.
 
   account Created
 */
-type AccountCreateCreated struct {
+type AdminAccountCreateCreated struct {
 	Payload *amsclientmodels.APIAccountCreateResponse
 }
 
-func (o *AccountCreateCreated) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] accountCreateCreated  %+v", 201, o.ToJSONString())
+func (o *AdminAccountCreateCreated) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] adminAccountCreateCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AccountCreateCreated) ToJSONString() string {
+func (o *AdminAccountCreateCreated) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -94,11 +94,11 @@ func (o *AccountCreateCreated) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountCreateCreated) GetPayload() *amsclientmodels.APIAccountCreateResponse {
+func (o *AdminAccountCreateCreated) GetPayload() *amsclientmodels.APIAccountCreateResponse {
 	return o.Payload
 }
 
-func (o *AccountCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -115,24 +115,24 @@ func (o *AccountCreateCreated) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
-// NewAccountCreateUnauthorized creates a AccountCreateUnauthorized with default headers values
-func NewAccountCreateUnauthorized() *AccountCreateUnauthorized {
-	return &AccountCreateUnauthorized{}
+// NewAdminAccountCreateUnauthorized creates a AdminAccountCreateUnauthorized with default headers values
+func NewAdminAccountCreateUnauthorized() *AdminAccountCreateUnauthorized {
+	return &AdminAccountCreateUnauthorized{}
 }
 
-/*AccountCreateUnauthorized handles this case with default header values.
+/*AdminAccountCreateUnauthorized handles this case with default header values.
 
   no authorization provided
 */
-type AccountCreateUnauthorized struct {
+type AdminAccountCreateUnauthorized struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountCreateUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] accountCreateUnauthorized  %+v", 401, o.ToJSONString())
+func (o *AdminAccountCreateUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] adminAccountCreateUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AccountCreateUnauthorized) ToJSONString() string {
+func (o *AdminAccountCreateUnauthorized) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -147,11 +147,11 @@ func (o *AccountCreateUnauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountCreateUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountCreateUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountCreateUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountCreateUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -168,24 +168,24 @@ func (o *AccountCreateUnauthorized) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewAccountCreateForbidden creates a AccountCreateForbidden with default headers values
-func NewAccountCreateForbidden() *AccountCreateForbidden {
-	return &AccountCreateForbidden{}
+// NewAdminAccountCreateForbidden creates a AdminAccountCreateForbidden with default headers values
+func NewAdminAccountCreateForbidden() *AdminAccountCreateForbidden {
+	return &AdminAccountCreateForbidden{}
 }
 
-/*AccountCreateForbidden handles this case with default header values.
+/*AdminAccountCreateForbidden handles this case with default header values.
 
   insufficient permissions
 */
-type AccountCreateForbidden struct {
+type AdminAccountCreateForbidden struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountCreateForbidden) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] accountCreateForbidden  %+v", 403, o.ToJSONString())
+func (o *AdminAccountCreateForbidden) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] adminAccountCreateForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AccountCreateForbidden) ToJSONString() string {
+func (o *AdminAccountCreateForbidden) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -200,11 +200,11 @@ func (o *AccountCreateForbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountCreateForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountCreateForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountCreateForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountCreateForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -221,24 +221,24 @@ func (o *AccountCreateForbidden) readResponse(response runtime.ClientResponse, c
 	return nil
 }
 
-// NewAccountCreateInternalServerError creates a AccountCreateInternalServerError with default headers values
-func NewAccountCreateInternalServerError() *AccountCreateInternalServerError {
-	return &AccountCreateInternalServerError{}
+// NewAdminAccountCreateInternalServerError creates a AdminAccountCreateInternalServerError with default headers values
+func NewAdminAccountCreateInternalServerError() *AdminAccountCreateInternalServerError {
+	return &AdminAccountCreateInternalServerError{}
 }
 
-/*AccountCreateInternalServerError handles this case with default header values.
+/*AdminAccountCreateInternalServerError handles this case with default header values.
 
   internal server error
 */
-type AccountCreateInternalServerError struct {
+type AdminAccountCreateInternalServerError struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountCreateInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] accountCreateInternalServerError  %+v", 500, o.ToJSONString())
+func (o *AdminAccountCreateInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account][%d] adminAccountCreateInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AccountCreateInternalServerError) ToJSONString() string {
+func (o *AdminAccountCreateInternalServerError) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -253,11 +253,11 @@ func (o *AccountCreateInternalServerError) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountCreateInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountCreateInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountCreateInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountCreateInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

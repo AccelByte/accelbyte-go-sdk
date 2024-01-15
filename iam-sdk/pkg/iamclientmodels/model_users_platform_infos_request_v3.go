@@ -19,8 +19,7 @@ import (
 type ModelUsersPlatformInfosRequestV3 struct {
 
 	// platformid
-	// Required: true
-	PlatformID *string `json:"platformId"`
+	PlatformID string `json:"platformId,omitempty"`
 
 	// max count 100
 	// Required: true
@@ -31,9 +30,6 @@ type ModelUsersPlatformInfosRequestV3 struct {
 func (m *ModelUsersPlatformInfosRequestV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validatePlatformID(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateUserIds(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,15 +37,6 @@ func (m *ModelUsersPlatformInfosRequestV3) Validate(formats strfmt.Registry) err
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelUsersPlatformInfosRequestV3) validatePlatformID(formats strfmt.Registry) error {
-
-	if err := validate.Required("platformId", "body", m.PlatformID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

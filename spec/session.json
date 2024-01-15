@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.13.0"
+    "version": "3.13.3"
   },
   "schemes": [
     "https"
@@ -2958,11 +2958,7 @@
         "tags": [
           "Game Session"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/session/v1/public/namespaces/{namespace}/gamesessions/join/code": {
@@ -5941,11 +5937,7 @@
         "tags": [
           "Game Session"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/session/v1/public/namespaces/{namespace}/users/me/parties": {
@@ -6020,11 +6012,7 @@
         "tags": [
           "Party"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     }
   },
@@ -8069,9 +8057,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-19T06:25:32+00:00",
-    "gitHash": "6c45aa3af6409de299877fa3bbcea7f93f344378",
-    "version": "3.13.0",
+    "buildDate": "2024-01-03T03:46:53+00:00",
+    "gitHash": "75f61979366ef95965cf66c41aff79b20f9f8dc1",
+    "version": "3.13.3",
     "version-roles-seeding": "1.0.20"
   }
 }

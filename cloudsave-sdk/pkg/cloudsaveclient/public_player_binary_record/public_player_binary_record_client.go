@@ -62,9 +62,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use BulkGetPlayerPublicBinaryRecordsV1Short instead.
 
 BulkGetPlayerPublicBinaryRecordsV1 bulk get player public records
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Bulk get other player's public binary record by userIds, max allowed 20 at a time. Only record with `isPublic=true` can be
 retrieved using this endpoint.
 */
@@ -123,9 +120,6 @@ func (a *Client) BulkGetPlayerPublicBinaryRecordsV1(params *BulkGetPlayerPublicB
 
 /*
 BulkGetPlayerPublicBinaryRecordsV1Short bulk get player public records
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Bulk get other player's public binary record by userIds, max allowed 20 at a time. Only record with `isPublic=true` can be
 retrieved using this endpoint.
 */
@@ -182,9 +176,6 @@ func (a *Client) BulkGetPlayerPublicBinaryRecordsV1Short(params *BulkGetPlayerPu
 Deprecated: 2022-08-10 - Use ListMyBinaryRecordsV1Short instead.
 
 ListMyBinaryRecordsV1 query my binary records
-Required valid user token
-Required scope: `social`
-
 Retrieve list of my binary records by namespace.
 */
 func (a *Client) ListMyBinaryRecordsV1(params *ListMyBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListMyBinaryRecordsV1OK, *ListMyBinaryRecordsV1BadRequest, *ListMyBinaryRecordsV1Unauthorized, *ListMyBinaryRecordsV1Forbidden, *ListMyBinaryRecordsV1InternalServerError, error) {
@@ -242,9 +233,6 @@ func (a *Client) ListMyBinaryRecordsV1(params *ListMyBinaryRecordsV1Params, auth
 
 /*
 ListMyBinaryRecordsV1Short query my binary records
-Required valid user token
-Required scope: `social`
-
 Retrieve list of my binary records by namespace.
 */
 func (a *Client) ListMyBinaryRecordsV1Short(params *ListMyBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListMyBinaryRecordsV1OK, error) {
@@ -300,9 +288,6 @@ func (a *Client) ListMyBinaryRecordsV1Short(params *ListMyBinaryRecordsV1Params,
 Deprecated: 2022-08-10 - Use BulkGetMyBinaryRecordV1Short instead.
 
 BulkGetMyBinaryRecordV1 get player records bulk
-Required valid user token
-Required scope: `social`
-
 Retrieve player record key and payload in bulk under given namespace.
 Maximum bulk key limit per request 20
 */
@@ -361,9 +346,6 @@ func (a *Client) BulkGetMyBinaryRecordV1(params *BulkGetMyBinaryRecordV1Params, 
 
 /*
 BulkGetMyBinaryRecordV1Short get player records bulk
-Required valid user token
-Required scope: `social`
-
 Retrieve player record key and payload in bulk under given namespace.
 Maximum bulk key limit per request 20
 */
@@ -420,18 +402,12 @@ func (a *Client) BulkGetMyBinaryRecordV1Short(params *BulkGetMyBinaryRecordV1Par
 Deprecated: 2022-08-10 - Use PostPlayerBinaryRecordV1Short instead.
 
 PostPlayerBinaryRecordV1 create player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a player binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -497,18 +473,12 @@ func (a *Client) PostPlayerBinaryRecordV1(params *PostPlayerBinaryRecordV1Params
 
 /*
 PostPlayerBinaryRecordV1Short create player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a player binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -571,9 +541,6 @@ func (a *Client) PostPlayerBinaryRecordV1Short(params *PostPlayerBinaryRecordV1P
 Deprecated: 2022-08-10 - Use ListOtherPlayerPublicBinaryRecordsV1Short instead.
 
 ListOtherPlayerPublicBinaryRecordsV1 query other player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Retrieve list of other player public binary records under given namespace.
 */
 func (a *Client) ListOtherPlayerPublicBinaryRecordsV1(params *ListOtherPlayerPublicBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListOtherPlayerPublicBinaryRecordsV1OK, *ListOtherPlayerPublicBinaryRecordsV1BadRequest, *ListOtherPlayerPublicBinaryRecordsV1Unauthorized, *ListOtherPlayerPublicBinaryRecordsV1Forbidden, *ListOtherPlayerPublicBinaryRecordsV1InternalServerError, error) {
@@ -631,9 +598,6 @@ func (a *Client) ListOtherPlayerPublicBinaryRecordsV1(params *ListOtherPlayerPub
 
 /*
 ListOtherPlayerPublicBinaryRecordsV1Short query other player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Retrieve list of other player public binary records under given namespace.
 */
 func (a *Client) ListOtherPlayerPublicBinaryRecordsV1Short(params *ListOtherPlayerPublicBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListOtherPlayerPublicBinaryRecordsV1OK, error) {
@@ -689,9 +653,6 @@ func (a *Client) ListOtherPlayerPublicBinaryRecordsV1Short(params *ListOtherPlay
 Deprecated: 2022-08-10 - Use BulkGetOtherPlayerPublicBinaryRecordsV1Short instead.
 
 BulkGetOtherPlayerPublicBinaryRecordsV1 bulk get other player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Retrieve other player public binary record in bulk under given namespace.
 Maximum bulk key limit per request 20
 */
@@ -750,9 +711,6 @@ func (a *Client) BulkGetOtherPlayerPublicBinaryRecordsV1(params *BulkGetOtherPla
 
 /*
 BulkGetOtherPlayerPublicBinaryRecordsV1Short bulk get other player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Retrieve other player public binary record in bulk under given namespace.
 Maximum bulk key limit per request 20
 */
@@ -809,10 +767,8 @@ func (a *Client) BulkGetOtherPlayerPublicBinaryRecordsV1Short(params *BulkGetOth
 Deprecated: 2022-08-10 - Use GetPlayerBinaryRecordV1Short instead.
 
 GetPlayerBinaryRecordV1 get player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
 Get a player binary record by its key.
-Private Record: Only user who own the record could retrieve it.
+**Private Record**: Only user who own the record could retrieve it.
 */
 func (a *Client) GetPlayerBinaryRecordV1(params *GetPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerBinaryRecordV1OK, *GetPlayerBinaryRecordV1Unauthorized, *GetPlayerBinaryRecordV1Forbidden, *GetPlayerBinaryRecordV1NotFound, *GetPlayerBinaryRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -869,10 +825,8 @@ func (a *Client) GetPlayerBinaryRecordV1(params *GetPlayerBinaryRecordV1Params, 
 
 /*
 GetPlayerBinaryRecordV1Short get player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
 Get a player binary record by its key.
-Private Record: Only user who own the record could retrieve it.
+**Private Record**: Only user who own the record could retrieve it.
 */
 func (a *Client) GetPlayerBinaryRecordV1Short(params *GetPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerBinaryRecordV1OK, error) {
 	// TODO: Validate the params before sending
@@ -927,9 +881,6 @@ func (a *Client) GetPlayerBinaryRecordV1Short(params *GetPlayerBinaryRecordV1Par
 Deprecated: 2022-08-10 - Use PutPlayerBinaryRecordV1Short instead.
 
 PutPlayerBinaryRecordV1 update player binary record file
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record file by its key
 */
 func (a *Client) PutPlayerBinaryRecordV1(params *PutPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerBinaryRecordV1OK, *PutPlayerBinaryRecordV1BadRequest, *PutPlayerBinaryRecordV1Unauthorized, *PutPlayerBinaryRecordV1Forbidden, *PutPlayerBinaryRecordV1NotFound, *PutPlayerBinaryRecordV1InternalServerError, error) {
@@ -990,9 +941,6 @@ func (a *Client) PutPlayerBinaryRecordV1(params *PutPlayerBinaryRecordV1Params, 
 
 /*
 PutPlayerBinaryRecordV1Short update player binary record file
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record file by its key
 */
 func (a *Client) PutPlayerBinaryRecordV1Short(params *PutPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerBinaryRecordV1OK, error) {
@@ -1050,9 +998,6 @@ func (a *Client) PutPlayerBinaryRecordV1Short(params *PutPlayerBinaryRecordV1Par
 Deprecated: 2022-08-10 - Use DeletePlayerBinaryRecordV1Short instead.
 
 DeletePlayerBinaryRecordV1 delete player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a player binary record. Only player who own the record can delete it
 */
 func (a *Client) DeletePlayerBinaryRecordV1(params *DeletePlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerBinaryRecordV1NoContent, *DeletePlayerBinaryRecordV1BadRequest, *DeletePlayerBinaryRecordV1Unauthorized, *DeletePlayerBinaryRecordV1Forbidden, *DeletePlayerBinaryRecordV1NotFound, *DeletePlayerBinaryRecordV1InternalServerError, error) {
@@ -1113,9 +1058,6 @@ func (a *Client) DeletePlayerBinaryRecordV1(params *DeletePlayerBinaryRecordV1Pa
 
 /*
 DeletePlayerBinaryRecordV1Short delete player binary record
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a player binary record. Only player who own the record can delete it
 */
 func (a *Client) DeletePlayerBinaryRecordV1Short(params *DeletePlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerBinaryRecordV1NoContent, error) {
@@ -1173,9 +1115,6 @@ func (a *Client) DeletePlayerBinaryRecordV1Short(params *DeletePlayerBinaryRecor
 Deprecated: 2022-08-10 - Use PutPlayerBinaryRecorMetadataV1Short instead.
 
 PutPlayerBinaryRecorMetadataV1 update player binary record metadata
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record metadata by its key
 */
 func (a *Client) PutPlayerBinaryRecorMetadataV1(params *PutPlayerBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerBinaryRecorMetadataV1OK, *PutPlayerBinaryRecorMetadataV1BadRequest, *PutPlayerBinaryRecorMetadataV1Unauthorized, *PutPlayerBinaryRecorMetadataV1Forbidden, *PutPlayerBinaryRecorMetadataV1NotFound, *PutPlayerBinaryRecorMetadataV1InternalServerError, error) {
@@ -1236,9 +1175,6 @@ func (a *Client) PutPlayerBinaryRecorMetadataV1(params *PutPlayerBinaryRecorMeta
 
 /*
 PutPlayerBinaryRecorMetadataV1Short update player binary record metadata
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record metadata by its key
 */
 func (a *Client) PutPlayerBinaryRecorMetadataV1Short(params *PutPlayerBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerBinaryRecorMetadataV1OK, error) {
@@ -1296,15 +1232,9 @@ func (a *Client) PutPlayerBinaryRecorMetadataV1Short(params *PutPlayerBinaryReco
 Deprecated: 2022-08-10 - Use PostPlayerBinaryPresignedURLV1Short instead.
 
 PostPlayerBinaryPresignedURLV1 request presigned url for upload player binary records
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
@@ -1366,15 +1296,9 @@ func (a *Client) PostPlayerBinaryPresignedURLV1(params *PostPlayerBinaryPresigne
 
 /*
 PostPlayerBinaryPresignedURLV1Short request presigned url for upload player binary records
-Required permission: `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
@@ -1433,9 +1357,6 @@ func (a *Client) PostPlayerBinaryPresignedURLV1Short(params *PostPlayerBinaryPre
 Deprecated: 2022-08-10 - Use GetPlayerPublicBinaryRecordsV1Short instead.
 
 GetPlayerPublicBinaryRecordsV1 get player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Get other player's public binary record. Only record with `isPublic=true` can be
 retrieved using this endpoint.
 */
@@ -1494,9 +1415,6 @@ func (a *Client) GetPlayerPublicBinaryRecordsV1(params *GetPlayerPublicBinaryRec
 
 /*
 GetPlayerPublicBinaryRecordsV1Short get player public binary record
-Required Permission: `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]`
-Required Scope: `social`
-
 Get other player's public binary record. Only record with `isPublic=true` can be
 retrieved using this endpoint.
 */

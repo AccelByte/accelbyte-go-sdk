@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,18 +20,19 @@ import (
 // swagger:model Models player binary record create.
 type ModelsPlayerBinaryRecordCreate struct {
 
-	// file_type
+	// File type of the binary record
 	// Required: true
 	FileType *string `json:"file_type"`
 
-	// is_public
+	// Indicate whether the player record is a public record or not
 	IsPublic bool `json:"is_public"`
 
-	// key
+	// Player binary record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// set_by
+	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	// Required: true
 	SetBy *string `json:"set_by"`
 }
@@ -72,9 +75,43 @@ func (m *ModelsPlayerBinaryRecordCreate) validateKey(formats strfmt.Registry) er
 	return nil
 }
 
+var modelsPlayerBinaryRecordCreateTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsPlayerBinaryRecordCreateTypeSetByPropEnum = append(modelsPlayerBinaryRecordCreateTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsPlayerBinaryRecordCreateSetByCLIENT captures enum value "CLIENT"
+	ModelsPlayerBinaryRecordCreateSetByCLIENT string = "CLIENT"
+
+	// ModelsPlayerBinaryRecordCreateSetBySERVER captures enum value "SERVER"
+	ModelsPlayerBinaryRecordCreateSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsPlayerBinaryRecordCreate) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsPlayerBinaryRecordCreateTypeSetByPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsPlayerBinaryRecordCreate) validateSetBy(formats strfmt.Registry) error {
 
 	if err := validate.Required("set_by", "body", m.SetBy); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSetByEnum("set_by", "body", *m.SetBy); err != nil {
 		return err
 	}
 

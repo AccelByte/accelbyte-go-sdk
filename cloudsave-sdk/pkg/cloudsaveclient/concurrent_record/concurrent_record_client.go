@@ -44,96 +44,47 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use PutGameRecordConcurrentHandlerV1Short instead.
 
 PutGameRecordConcurrentHandlerV1 create or replace game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
---------------------|---------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
@@ -198,96 +149,47 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 
 /*
 PutGameRecordConcurrentHandlerV1Short create or replace game record
-Required Permission | `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
---------------------|---------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
@@ -349,96 +251,47 @@ func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConc
 Deprecated: 2022-08-10 - Use PutPlayerRecordConcurrentHandlerV1Short instead.
 
 PutPlayerRecordConcurrentHandlerV1 create or replace player private record
-Required Permission | `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
---------------------|-----------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new player record or replace the existing player record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
@@ -506,96 +359,47 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcu
 
 /*
 PutPlayerRecordConcurrentHandlerV1Short create or replace player private record
-Required Permission | `NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
---------------------|-----------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new player record or replace the existing player record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
@@ -659,96 +463,47 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecord
 Deprecated: 2022-08-10 - Use PutPlayerPublicRecordConcurrentHandlerV1Short instead.
 
 PutPlayerPublicRecordConcurrentHandlerV1 create or replace player public record
-Required Permission | `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]`
---------------------|------------------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new player public record or replace the existing player public record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
@@ -816,96 +571,47 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 
 /*
 PutPlayerPublicRecordConcurrentHandlerV1Short create or replace player public record
-Required Permission | `NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]`
---------------------|------------------------------------------------------------------------
-Required Scope      | `social`
-
-
-
-
-
-
-
-
 ## Description
-
-
 
 This endpoints will create new player public record or replace the existing player public record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Reserved Word
 
-
-
-Reserved Word List: __META
+Reserved Word List: **__META**
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
 
 
-
-
 ## Optimistic Concurrency Control
-
-
 
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)

@@ -44,7 +44,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreatePaymentOrderByDedicatedShort instead.
 
 CreatePaymentOrderByDedicated create payment order by dedicated server
-
+ [Not Supported Yet In Starter]
 
 This API is used to create payment order from non justice service. e.g. from dedicated server, the result contains the payment station url.
 
@@ -272,7 +272,7 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 
 /*
 CreatePaymentOrderByDedicatedShort create payment order by dedicated server
-
+ [Not Supported Yet In Starter]
 
 This API is used to create payment order from non justice service. e.g. from dedicated server, the result contains the payment station url.
 
@@ -497,7 +497,7 @@ func (a *Client) CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderBy
 Deprecated: 2022-08-10 - Use RefundPaymentOrderByDedicatedShort instead.
 
 RefundPaymentOrderByDedicated refund payment order by dedicated server
-
+ [Not Supported Yet In Starter]
 
 This API is used to refund payment order by paymentOrderNo from non justice service. e.g. dedicated server.
 
@@ -698,7 +698,7 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 
 /*
 RefundPaymentOrderByDedicatedShort refund payment order by dedicated server
-
+ [Not Supported Yet In Starter]
 
 This API is used to refund payment order by paymentOrderNo from non justice service. e.g. dedicated server.
 
@@ -897,7 +897,7 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 Deprecated: 2022-08-10 - Use SyncPaymentOrdersShort instead.
 
 SyncPaymentOrders sync payment orders
-Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
+ [Not Supported Yet In Starter] Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
 Other detail info:
 
   * Required permission : resource="ADMIN:PAYMENT", action=2 (READ)
@@ -946,7 +946,7 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 
 /*
 SyncPaymentOrdersShort sync payment orders
-Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
+ [Not Supported Yet In Starter] Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
 Other detail info:
 
   * Required permission : resource="ADMIN:PAYMENT", action=2 (READ)

@@ -19,40 +19,40 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclientmodels"
 )
 
-// AccountLinkTokenGetReader is a Reader for the AccountLinkTokenGet structure.
-type AccountLinkTokenGetReader struct {
+// AdminAccountLinkTokenGetReader is a Reader for the AdminAccountLinkTokenGet structure.
+type AdminAccountLinkTokenGetReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *AccountLinkTokenGetReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *AdminAccountLinkTokenGetReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewAccountLinkTokenGetOK()
+		result := NewAdminAccountLinkTokenGetOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewAccountLinkTokenGetUnauthorized()
+		result := NewAdminAccountLinkTokenGetUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewAccountLinkTokenGetForbidden()
+		result := NewAdminAccountLinkTokenGetForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 404:
-		result := NewAccountLinkTokenGetNotFound()
+		result := NewAdminAccountLinkTokenGetNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 500:
-		result := NewAccountLinkTokenGetInternalServerError()
+		result := NewAdminAccountLinkTokenGetInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,24 +68,24 @@ func (o *AccountLinkTokenGetReader) ReadResponse(response runtime.ClientResponse
 	}
 }
 
-// NewAccountLinkTokenGetOK creates a AccountLinkTokenGetOK with default headers values
-func NewAccountLinkTokenGetOK() *AccountLinkTokenGetOK {
-	return &AccountLinkTokenGetOK{}
+// NewAdminAccountLinkTokenGetOK creates a AdminAccountLinkTokenGetOK with default headers values
+func NewAdminAccountLinkTokenGetOK() *AdminAccountLinkTokenGetOK {
+	return &AdminAccountLinkTokenGetOK{}
 }
 
-/*AccountLinkTokenGetOK handles this case with default header values.
+/*AdminAccountLinkTokenGetOK handles this case with default header values.
 
   success
 */
-type AccountLinkTokenGetOK struct {
+type AdminAccountLinkTokenGetOK struct {
 	Payload *amsclientmodels.APIAccountLinkTokenResponse
 }
 
-func (o *AccountLinkTokenGetOK) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] accountLinkTokenGetOK  %+v", 200, o.ToJSONString())
+func (o *AdminAccountLinkTokenGetOK) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenGetOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *AccountLinkTokenGetOK) ToJSONString() string {
+func (o *AdminAccountLinkTokenGetOK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -100,11 +100,11 @@ func (o *AccountLinkTokenGetOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountLinkTokenGetOK) GetPayload() *amsclientmodels.APIAccountLinkTokenResponse {
+func (o *AdminAccountLinkTokenGetOK) GetPayload() *amsclientmodels.APIAccountLinkTokenResponse {
 	return o.Payload
 }
 
-func (o *AccountLinkTokenGetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkTokenGetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -121,24 +121,24 @@ func (o *AccountLinkTokenGetOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewAccountLinkTokenGetUnauthorized creates a AccountLinkTokenGetUnauthorized with default headers values
-func NewAccountLinkTokenGetUnauthorized() *AccountLinkTokenGetUnauthorized {
-	return &AccountLinkTokenGetUnauthorized{}
+// NewAdminAccountLinkTokenGetUnauthorized creates a AdminAccountLinkTokenGetUnauthorized with default headers values
+func NewAdminAccountLinkTokenGetUnauthorized() *AdminAccountLinkTokenGetUnauthorized {
+	return &AdminAccountLinkTokenGetUnauthorized{}
 }
 
-/*AccountLinkTokenGetUnauthorized handles this case with default header values.
+/*AdminAccountLinkTokenGetUnauthorized handles this case with default header values.
 
   no authorization provided
 */
-type AccountLinkTokenGetUnauthorized struct {
+type AdminAccountLinkTokenGetUnauthorized struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountLinkTokenGetUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] accountLinkTokenGetUnauthorized  %+v", 401, o.ToJSONString())
+func (o *AdminAccountLinkTokenGetUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenGetUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AccountLinkTokenGetUnauthorized) ToJSONString() string {
+func (o *AdminAccountLinkTokenGetUnauthorized) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -153,11 +153,11 @@ func (o *AccountLinkTokenGetUnauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountLinkTokenGetUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkTokenGetUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountLinkTokenGetUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkTokenGetUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -174,24 +174,24 @@ func (o *AccountLinkTokenGetUnauthorized) readResponse(response runtime.ClientRe
 	return nil
 }
 
-// NewAccountLinkTokenGetForbidden creates a AccountLinkTokenGetForbidden with default headers values
-func NewAccountLinkTokenGetForbidden() *AccountLinkTokenGetForbidden {
-	return &AccountLinkTokenGetForbidden{}
+// NewAdminAccountLinkTokenGetForbidden creates a AdminAccountLinkTokenGetForbidden with default headers values
+func NewAdminAccountLinkTokenGetForbidden() *AdminAccountLinkTokenGetForbidden {
+	return &AdminAccountLinkTokenGetForbidden{}
 }
 
-/*AccountLinkTokenGetForbidden handles this case with default header values.
+/*AdminAccountLinkTokenGetForbidden handles this case with default header values.
 
   insufficient permissions
 */
-type AccountLinkTokenGetForbidden struct {
+type AdminAccountLinkTokenGetForbidden struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountLinkTokenGetForbidden) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] accountLinkTokenGetForbidden  %+v", 403, o.ToJSONString())
+func (o *AdminAccountLinkTokenGetForbidden) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenGetForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AccountLinkTokenGetForbidden) ToJSONString() string {
+func (o *AdminAccountLinkTokenGetForbidden) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -206,11 +206,11 @@ func (o *AccountLinkTokenGetForbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountLinkTokenGetForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkTokenGetForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountLinkTokenGetForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkTokenGetForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -227,24 +227,24 @@ func (o *AccountLinkTokenGetForbidden) readResponse(response runtime.ClientRespo
 	return nil
 }
 
-// NewAccountLinkTokenGetNotFound creates a AccountLinkTokenGetNotFound with default headers values
-func NewAccountLinkTokenGetNotFound() *AccountLinkTokenGetNotFound {
-	return &AccountLinkTokenGetNotFound{}
+// NewAdminAccountLinkTokenGetNotFound creates a AdminAccountLinkTokenGetNotFound with default headers values
+func NewAdminAccountLinkTokenGetNotFound() *AdminAccountLinkTokenGetNotFound {
+	return &AdminAccountLinkTokenGetNotFound{}
 }
 
-/*AccountLinkTokenGetNotFound handles this case with default header values.
+/*AdminAccountLinkTokenGetNotFound handles this case with default header values.
 
   account not linked
 */
-type AccountLinkTokenGetNotFound struct {
+type AdminAccountLinkTokenGetNotFound struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountLinkTokenGetNotFound) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] accountLinkTokenGetNotFound  %+v", 404, o.ToJSONString())
+func (o *AdminAccountLinkTokenGetNotFound) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenGetNotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *AccountLinkTokenGetNotFound) ToJSONString() string {
+func (o *AdminAccountLinkTokenGetNotFound) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -259,11 +259,11 @@ func (o *AccountLinkTokenGetNotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountLinkTokenGetNotFound) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkTokenGetNotFound) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountLinkTokenGetNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkTokenGetNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -280,24 +280,24 @@ func (o *AccountLinkTokenGetNotFound) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewAccountLinkTokenGetInternalServerError creates a AccountLinkTokenGetInternalServerError with default headers values
-func NewAccountLinkTokenGetInternalServerError() *AccountLinkTokenGetInternalServerError {
-	return &AccountLinkTokenGetInternalServerError{}
+// NewAdminAccountLinkTokenGetInternalServerError creates a AdminAccountLinkTokenGetInternalServerError with default headers values
+func NewAdminAccountLinkTokenGetInternalServerError() *AdminAccountLinkTokenGetInternalServerError {
+	return &AdminAccountLinkTokenGetInternalServerError{}
 }
 
-/*AccountLinkTokenGetInternalServerError handles this case with default header values.
+/*AdminAccountLinkTokenGetInternalServerError handles this case with default header values.
 
   internal server error
 */
-type AccountLinkTokenGetInternalServerError struct {
+type AdminAccountLinkTokenGetInternalServerError struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AccountLinkTokenGetInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] accountLinkTokenGetInternalServerError  %+v", 500, o.ToJSONString())
+func (o *AdminAccountLinkTokenGetInternalServerError) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenGetInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AccountLinkTokenGetInternalServerError) ToJSONString() string {
+func (o *AdminAccountLinkTokenGetInternalServerError) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -312,11 +312,11 @@ func (o *AccountLinkTokenGetInternalServerError) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AccountLinkTokenGetInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkTokenGetInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AccountLinkTokenGetInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkTokenGetInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

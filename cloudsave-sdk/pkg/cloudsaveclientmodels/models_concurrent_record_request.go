@@ -18,11 +18,11 @@ import (
 // swagger:model Models concurrent record request.
 type ModelsConcurrentRecordRequest struct {
 
-	// updatedat
+	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
 
-	// value
+	// Record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }

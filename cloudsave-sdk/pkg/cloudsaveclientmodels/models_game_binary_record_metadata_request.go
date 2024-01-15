@@ -7,6 +7,8 @@
 package cloudsaveclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -19,6 +21,7 @@ import (
 type ModelsGameBinaryRecordMetadataRequest struct {
 
 	// Indicate which party that could modify the record
+	// Enum: ['CLIENT', 'SERVER']
 	// Required: true
 	SetBy *string `json:"set_by"`
 }
@@ -37,9 +40,43 @@ func (m *ModelsGameBinaryRecordMetadataRequest) Validate(formats strfmt.Registry
 	return nil
 }
 
+var modelsGameBinaryRecordMetadataRequestTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsGameBinaryRecordMetadataRequestTypeSetByPropEnum = append(modelsGameBinaryRecordMetadataRequestTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsGameBinaryRecordMetadataRequestSetByCLIENT captures enum value "CLIENT"
+	ModelsGameBinaryRecordMetadataRequestSetByCLIENT string = "CLIENT"
+
+	// ModelsGameBinaryRecordMetadataRequestSetBySERVER captures enum value "SERVER"
+	ModelsGameBinaryRecordMetadataRequestSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *ModelsGameBinaryRecordMetadataRequest) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsGameBinaryRecordMetadataRequestTypeSetByPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsGameBinaryRecordMetadataRequest) validateSetBy(formats strfmt.Registry) error {
 
 	if err := validate.Required("set_by", "body", m.SetBy); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSetByEnum("set_by", "body", *m.SetBy); err != nil {
 		return err
 	}
 

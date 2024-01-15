@@ -22,8 +22,13 @@ import (
 // NewListPlayerRecordHandlerV1Params creates a new ListPlayerRecordHandlerV1Params object
 // with the default values initialized.
 func NewListPlayerRecordHandlerV1Params() *ListPlayerRecordHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListPlayerRecordHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewListPlayerRecordHandlerV1Params() *ListPlayerRecordHandlerV1Params {
 // NewListPlayerRecordHandlerV1ParamsWithTimeout creates a new ListPlayerRecordHandlerV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListPlayerRecordHandlerV1ParamsWithTimeout(timeout time.Duration) *ListPlayerRecordHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListPlayerRecordHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewListPlayerRecordHandlerV1ParamsWithTimeout(timeout time.Duration) *ListP
 // NewListPlayerRecordHandlerV1ParamsWithContext creates a new ListPlayerRecordHandlerV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewListPlayerRecordHandlerV1ParamsWithContext(ctx context.Context) *ListPlayerRecordHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListPlayerRecordHandlerV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewListPlayerRecordHandlerV1ParamsWithContext(ctx context.Context) *ListPla
 // NewListPlayerRecordHandlerV1ParamsWithHTTPClient creates a new ListPlayerRecordHandlerV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListPlayerRecordHandlerV1ParamsWithHTTPClient(client *http.Client) *ListPlayerRecordHandlerV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListPlayerRecordHandlerV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,17 +86,17 @@ type ListPlayerRecordHandlerV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64

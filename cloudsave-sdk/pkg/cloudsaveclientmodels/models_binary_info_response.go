@@ -18,7 +18,7 @@ import (
 // swagger:model Models binary info response.
 type ModelsBinaryInfoResponse struct {
 
-	// content_type
+	// Content type of the binary record
 	// Required: true
 	ContentType *string `json:"content_type"`
 
@@ -27,7 +27,7 @@ type ModelsBinaryInfoResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
-	// file_location
+	// File location of the binary record
 	// Required: true
 	FileLocation *string `json:"file_location"`
 
@@ -36,10 +36,10 @@ type ModelsBinaryInfoResponse struct {
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at"`
 
-	// url
+	// URL for accessing the binary record
 	URL string `json:"url,omitempty"`
 
-	// version
+	// Version of the binary file
 	// Required: true
 	// Format: int32
 	Version *int32 `json:"version"`

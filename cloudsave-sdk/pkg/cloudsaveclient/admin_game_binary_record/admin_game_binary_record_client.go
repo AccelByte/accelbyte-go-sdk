@@ -52,9 +52,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListGameBinaryRecordsV1Short instead.
 
 AdminListGameBinaryRecordsV1 query game binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of binary records by namespace.
 */
 func (a *Client) AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, *AdminListGameBinaryRecordsV1BadRequest, *AdminListGameBinaryRecordsV1Unauthorized, *AdminListGameBinaryRecordsV1Forbidden, *AdminListGameBinaryRecordsV1InternalServerError, error) {
@@ -112,9 +109,6 @@ func (a *Client) AdminListGameBinaryRecordsV1(params *AdminListGameBinaryRecords
 
 /*
 AdminListGameBinaryRecordsV1Short query game binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of binary records by namespace.
 */
 func (a *Client) AdminListGameBinaryRecordsV1Short(params *AdminListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListGameBinaryRecordsV1OK, error) {
@@ -170,18 +164,12 @@ func (a *Client) AdminListGameBinaryRecordsV1Short(params *AdminListGameBinaryRe
 Deprecated: 2022-08-10 - Use AdminPostGameBinaryRecordV1Short instead.
 
 AdminPostGameBinaryRecordV1 create game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a game binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -247,18 +235,12 @@ func (a *Client) AdminPostGameBinaryRecordV1(params *AdminPostGameBinaryRecordV1
 
 /*
 AdminPostGameBinaryRecordV1Short create game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a game binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -321,9 +303,6 @@ func (a *Client) AdminPostGameBinaryRecordV1Short(params *AdminPostGameBinaryRec
 Deprecated: 2022-08-10 - Use AdminGetGameBinaryRecordV1Short instead.
 
 AdminGetGameBinaryRecordV1 get game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Get a game binary record by its key.
 */
 func (a *Client) AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, *AdminGetGameBinaryRecordV1Unauthorized, *AdminGetGameBinaryRecordV1Forbidden, *AdminGetGameBinaryRecordV1NotFound, *AdminGetGameBinaryRecordV1InternalServerError, error) {
@@ -381,9 +360,6 @@ func (a *Client) AdminGetGameBinaryRecordV1(params *AdminGetGameBinaryRecordV1Pa
 
 /*
 AdminGetGameBinaryRecordV1Short get game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Get a game binary record by its key.
 */
 func (a *Client) AdminGetGameBinaryRecordV1Short(params *AdminGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameBinaryRecordV1OK, error) {
@@ -439,9 +415,6 @@ func (a *Client) AdminGetGameBinaryRecordV1Short(params *AdminGetGameBinaryRecor
 Deprecated: 2022-08-10 - Use AdminPutGameBinaryRecordV1Short instead.
 
 AdminPutGameBinaryRecordV1 update game binary record file
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record file by its key
 */
 func (a *Client) AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, *AdminPutGameBinaryRecordV1BadRequest, *AdminPutGameBinaryRecordV1Unauthorized, *AdminPutGameBinaryRecordV1Forbidden, *AdminPutGameBinaryRecordV1NotFound, *AdminPutGameBinaryRecordV1InternalServerError, error) {
@@ -502,9 +475,6 @@ func (a *Client) AdminPutGameBinaryRecordV1(params *AdminPutGameBinaryRecordV1Pa
 
 /*
 AdminPutGameBinaryRecordV1Short update game binary record file
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record file by its key
 */
 func (a *Client) AdminPutGameBinaryRecordV1Short(params *AdminPutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecordV1OK, error) {
@@ -562,9 +532,6 @@ func (a *Client) AdminPutGameBinaryRecordV1Short(params *AdminPutGameBinaryRecor
 Deprecated: 2022-08-10 - Use AdminDeleteGameBinaryRecordV1Short instead.
 
 AdminDeleteGameBinaryRecordV1 delete game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a game binary record.
 */
 func (a *Client) AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, *AdminDeleteGameBinaryRecordV1BadRequest, *AdminDeleteGameBinaryRecordV1Unauthorized, *AdminDeleteGameBinaryRecordV1Forbidden, *AdminDeleteGameBinaryRecordV1NotFound, *AdminDeleteGameBinaryRecordV1InternalServerError, error) {
@@ -625,9 +592,6 @@ func (a *Client) AdminDeleteGameBinaryRecordV1(params *AdminDeleteGameBinaryReco
 
 /*
 AdminDeleteGameBinaryRecordV1Short delete game binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a game binary record.
 */
 func (a *Client) AdminDeleteGameBinaryRecordV1Short(params *AdminDeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameBinaryRecordV1NoContent, error) {
@@ -685,9 +649,6 @@ func (a *Client) AdminDeleteGameBinaryRecordV1Short(params *AdminDeleteGameBinar
 Deprecated: 2022-08-10 - Use AdminPutGameBinaryRecorMetadataV1Short instead.
 
 AdminPutGameBinaryRecorMetadataV1 update game binary record metadata
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record metadata by its key
 */
 func (a *Client) AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, *AdminPutGameBinaryRecorMetadataV1BadRequest, *AdminPutGameBinaryRecorMetadataV1Unauthorized, *AdminPutGameBinaryRecorMetadataV1Forbidden, *AdminPutGameBinaryRecorMetadataV1NotFound, *AdminPutGameBinaryRecorMetadataV1InternalServerError, error) {
@@ -748,9 +709,6 @@ func (a *Client) AdminPutGameBinaryRecorMetadataV1(params *AdminPutGameBinaryRec
 
 /*
 AdminPutGameBinaryRecorMetadataV1Short update game binary record metadata
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record metadata by its key
 */
 func (a *Client) AdminPutGameBinaryRecorMetadataV1Short(params *AdminPutGameBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameBinaryRecorMetadataV1OK, error) {
@@ -808,15 +766,9 @@ func (a *Client) AdminPutGameBinaryRecorMetadataV1Short(params *AdminPutGameBina
 Deprecated: 2022-08-10 - Use AdminPostGameBinaryPresignedURLV1Short instead.
 
 AdminPostGameBinaryPresignedURLV1 request presigned url for upload game binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
@@ -878,15 +830,9 @@ func (a *Client) AdminPostGameBinaryPresignedURLV1(params *AdminPostGameBinaryPr
 
 /*
 AdminPostGameBinaryPresignedURLV1Short request presigned url for upload game binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */

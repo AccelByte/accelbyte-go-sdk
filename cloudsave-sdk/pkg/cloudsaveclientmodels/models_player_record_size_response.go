@@ -18,25 +18,25 @@ import (
 // swagger:model Models player record size response.
 type ModelsPlayerRecordSizeResponse struct {
 
-	// current_size
+	// Player record current size
 	// Required: true
 	// Format: int64
 	CurrentSize *int64 `json:"current_size"`
 
-	// key
+	// Player record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// namespace
+	// Namespace of the game
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// remaining_size
+	// Player record remaining size
 	// Required: true
 	// Format: int64
 	RemainingSize *int64 `json:"remaining_size"`
 
-	// user_id
+	// User ID who owns the record
 	// Required: true
 	UserID *string `json:"user_id"`
 }

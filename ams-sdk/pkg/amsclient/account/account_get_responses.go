@@ -64,7 +64,7 @@ func (o *AccountGetReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /ams/v1/admin/namespaces/{namespace}/account returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /ams/v1/namespaces/{namespace}/account returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -82,7 +82,7 @@ type AccountGetOK struct {
 }
 
 func (o *AccountGetOK) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account][%d] accountGetOK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/account][%d] accountGetOK  %+v", 200, o.ToJSONString())
 }
 
 func (o *AccountGetOK) ToJSONString() string {
@@ -135,7 +135,7 @@ type AccountGetUnauthorized struct {
 }
 
 func (o *AccountGetUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account][%d] accountGetUnauthorized  %+v", 401, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/account][%d] accountGetUnauthorized  %+v", 401, o.ToJSONString())
 }
 
 func (o *AccountGetUnauthorized) ToJSONString() string {
@@ -188,7 +188,7 @@ type AccountGetForbidden struct {
 }
 
 func (o *AccountGetForbidden) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account][%d] accountGetForbidden  %+v", 403, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/account][%d] accountGetForbidden  %+v", 403, o.ToJSONString())
 }
 
 func (o *AccountGetForbidden) ToJSONString() string {
@@ -241,7 +241,7 @@ type AccountGetNotFound struct {
 }
 
 func (o *AccountGetNotFound) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account][%d] accountGetNotFound  %+v", 404, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/account][%d] accountGetNotFound  %+v", 404, o.ToJSONString())
 }
 
 func (o *AccountGetNotFound) ToJSONString() string {
@@ -294,7 +294,7 @@ type AccountGetInternalServerError struct {
 }
 
 func (o *AccountGetInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/account][%d] accountGetInternalServerError  %+v", 500, o.ToJSONString())
+	return fmt.Sprintf("[GET /ams/v1/namespaces/{namespace}/account][%d] accountGetInternalServerError  %+v", 500, o.ToJSONString())
 }
 
 func (o *AccountGetInternalServerError) ToJSONString() string {

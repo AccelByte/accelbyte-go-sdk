@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.7.1"
+    "version": "1.8.1"
   },
   "schemes": [
     "https"
@@ -30,6 +30,7 @@
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]",
         "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]",
+        "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]": "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]",
         "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]": "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
         "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
@@ -57,6 +58,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "Check if fleet commander is authorized to talk to AMS with this IAM",
         "operationId": "AuthCheck",
         "produces": [
           "application/json"
@@ -89,7 +91,7 @@
             "authorization": []
           }
         ],
-        "summary": "Check if fleet commander is authorized to talk to AMS with this IAM",
+        "summary": "checks if fleet commander can auth with AMS",
         "tags": [
           "Auth"
         ]
@@ -123,7 +125,7 @@
           "application/json"
         ],
         "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
-        "operationId": "AccountGet",
+        "operationId": "AdminAccountGet",
         "parameters": [
           {
             "description": "namespace of the game",
@@ -176,7 +178,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get the account associated with the namespace.",
+        "summary": "get the account associated with the namespace",
         "tags": [
           "Account"
         ]
@@ -186,7 +188,7 @@
           "application/json"
         ],
         "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
-        "operationId": "AccountCreate",
+        "operationId": "AdminAccountCreate",
         "parameters": [
           {
             "in": "body",
@@ -241,7 +243,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create a new AMS account",
+        "summary": "create a new AMS account",
         "tags": [
           "Account"
         ]
@@ -252,8 +254,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
-        "operationId": "AccountLinkTokenGet",
+        "description": "The link token returned can be used to connect another namespace to the account in which the provided namespace is linked. This route fails if there is no account linked to the specified namespace.\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "operationId": "AdminAccountLinkTokenGet",
         "parameters": [
           {
             "description": "namespace of the game",
@@ -306,7 +308,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get a linking token for another namespace to use to link to the account to which this namespace is linked.  Fails if no account linked.",
+        "summary": "get a link to account token",
         "tags": [
           "Account"
         ]
@@ -315,8 +317,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
-        "operationId": "AccountLink",
+        "description": "This route will attempt to register the account to namespace linkage in AMS and requires a valid account link token. This route fails if an account is already linked\n\nAdminAccountLink\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
+        "operationId": "AdminAccountLinkTokenPost",
         "parameters": [
           {
             "in": "body",
@@ -371,7 +373,7 @@
             "authorization": []
           }
         ],
-        "summary": "Link an account to the namespace.  Will attempt to register the linkage in AMS shipyard.  Requires a valid link token for the account. Fails if an account is already linked",
+        "summary": "link an account to a namespace",
         "tags": [
           "Account"
         ]
@@ -382,7 +384,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
+        "description": "Get all artifacts matching the provided search criteria. When criteria is not specified the data returned won\u0026#39;t have been filtered on those parameters\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
         "operationId": "ArtifactGet",
         "parameters": [
           {
@@ -397,6 +399,14 @@
             "in": "query",
             "name": "artifactType",
             "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "Defines the maximum number of records returned in one page.",
+            "in": "query",
+            "maximum": 500,
+            "name": "count",
+            "type": "integer"
           },
           {
             "description": "omit artifacts with collection dates newer than",
@@ -429,9 +439,22 @@
             "type": "integer"
           },
           {
+            "default": 0,
+            "description": "Specifies the start index for the records returned. Useful for implementing pagination.",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
             "description": "region of the server where the artifact was collected",
             "in": "query",
             "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "id of the server (ds) where the artifact was collected",
+            "in": "query",
+            "name": "serverId",
             "type": "string"
           },
           {
@@ -458,12 +481,6 @@
                 "$ref": "#/definitions/api.ArtifactResponse"
               },
               "type": "array"
-            }
-          },
-          "204": {
-            "description": "no artifacts found with specified criteria",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "400": {
@@ -499,7 +516,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get all artifacts matching the provided criteria",
+        "summary": "get all artifacts matching the provided criteria",
         "tags": [
           "Artifacts"
         ]
@@ -558,7 +575,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieves artifact storage usage for the namespace",
+        "summary": "retrieve artifact storage usage for the namespace",
         "tags": [
           "Artifacts"
         ]
@@ -594,12 +611,6 @@
           "202": {
             "description": "delete received"
           },
-          "204": {
-            "description": "no artifact with specifed artifactID",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
           "400": {
             "description": "bad request",
             "schema": {
@@ -614,6 +625,12 @@
           },
           "403": {
             "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "no artifact with specifed artifactID",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -633,7 +650,7 @@
             "authorization": []
           }
         ],
-        "summary": "Deletes the specified artifact",
+        "summary": "delete a specified artifact",
         "tags": [
           "Artifacts"
         ]
@@ -672,12 +689,6 @@
               "$ref": "#/definitions/api.ArtifactURLResponse"
             }
           },
-          "204": {
-            "description": "no artifact found with specified ID",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
           "400": {
             "description": "invalid data in request",
             "schema": {
@@ -692,6 +703,12 @@
           },
           "403": {
             "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "no artifact with specifed artifactID",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -711,7 +728,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get a signed URL for a specific artifact",
+        "summary": "get a signed URL for a specific artifact",
         "tags": [
           "Artifacts"
         ]
@@ -758,7 +775,7 @@
             "authorization": []
           }
         ],
-        "summary": "get a list of all fleets in the namespace",
+        "summary": "list all fleets in a namespace",
         "tags": [
           "Fleets"
         ]
@@ -767,7 +784,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
+        "description": "Optionally, sampling rules for the fleet can also be specified\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
         "operationId": "FleetCreate",
         "parameters": [
           {
@@ -829,7 +846,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create a fleet. Optionally, sampling rules for the fleet can also be specified",
+        "summary": "create a fleet",
         "tags": [
           "Fleets"
         ]
@@ -977,7 +994,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "description": "Optionally, sampling rules for the fleet can also be updated\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
         "operationId": "FleetUpdate",
         "parameters": [
           {
@@ -1049,7 +1066,7 @@
             "authorization": []
           }
         ],
-        "summary": "Update a fleet – overrides current data. Optionally, sampling rules for the fleet can also be updated",
+        "summary": "update a fleet -– overrides current data",
         "tags": [
           "Fleets"
         ]
@@ -1127,7 +1144,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get the sampling rules for a fleet",
+        "summary": "get the sampling rules for a fleet",
         "tags": [
           "Artifacts"
         ]
@@ -1211,7 +1228,7 @@
             "authorization": []
           }
         ],
-        "summary": "Set sampling rules for a fleet",
+        "summary": "set sampling rules for a fleet",
         "tags": [
           "Artifacts"
         ]
@@ -1283,7 +1300,7 @@
             "authorization": []
           }
         ],
-        "summary": "get server details and counts for a fleet",
+        "summary": "get server details \u0026 counts for a fleet",
         "tags": [
           "Fleets"
         ]
@@ -1397,7 +1414,7 @@
             "authorization": []
           }
         ],
-        "summary": "get history records of a specific dedicated server for a fleet",
+        "summary": "get history records of a dedicated server in a fleet",
         "tags": [
           "Servers"
         ]
@@ -1408,7 +1425,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "description": "Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
         "operationId": "ImageList",
         "parameters": [
           {
@@ -1462,7 +1479,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get a list of images which exist (uploaded, uploading, or building) in the linked account.  Fails if no account is linked",
+        "summary": "get a list of existing images",
         "tags": [
           "Images"
         ]
@@ -1534,7 +1551,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get details about an image.",
+        "summary": "get image details.",
         "tags": [
           "Images"
         ]
@@ -1543,7 +1560,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
+        "description": "This allows editing of the image name, toggling `IsProtected`, or adding \u0026amp; removal of tags\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
         "operationId": "ImagePatch",
         "parameters": [
           {
@@ -1612,7 +1629,7 @@
             "authorization": []
           }
         ],
-        "summary": "Edit the image name, toggle IsProtected, or add/remove tags",
+        "summary": "edit the image",
         "tags": [
           "Images"
         ]
@@ -1683,7 +1700,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get the list of available AMS QoS regions.",
+        "summary": "get a list of available AMS QoS regions",
         "tags": [
           "AMS QoS"
         ]
@@ -1766,7 +1783,7 @@
             "authorization": []
           }
         ],
-        "summary": "Update the status of a QoS region",
+        "summary": "update the status of a QoS region",
         "tags": [
           "AMS QoS"
         ]
@@ -1825,7 +1842,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get the list of available AMS regions.",
+        "summary": "get a list of the available AMS regions",
         "tags": [
           "AMS Info"
         ]
@@ -1897,7 +1914,7 @@
             "authorization": []
           }
         ],
-        "summary": "get information about a specific dedicated server",
+        "summary": "get information about a dedicated server",
         "tags": [
           "Servers"
         ]
@@ -1969,7 +1986,7 @@
             "authorization": []
           }
         ],
-        "summary": "get history records of a specific dedicated server",
+        "summary": "get history records of a dedicated server",
         "tags": [
           "Servers"
         ]
@@ -2028,9 +2045,74 @@
             "authorization": []
           }
         ],
-        "summary": "Get a list of available VM configurations",
+        "summary": "get a list of available VM configurations",
         "tags": [
           "AMS Info"
+        ]
+      }
+    },
+    "/ams/v1/namespaces/{namespace}/account": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: NAMESPACE:{namespace}:AMS:ACCOUNT [READ]",
+        "operationId": "AccountGet",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.AccountResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "account not linked",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get the account associated with the namespace",
+        "tags": [
+          "Account"
         ]
       }
     },
@@ -2114,7 +2196,7 @@
             "authorization": []
           }
         ],
-        "summary": "claim a Dedicated Server from a specific fleet",
+        "summary": "claim a dedicated server from a fleet",
         "tags": [
           "Fleets"
         ]
@@ -2122,7 +2204,7 @@
     },
     "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect": {
       "get": {
-        "description": "Required Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
+        "description": "This is to support local ds development scenarios\n\nRequired Permission: NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
         "operationId": "LocalWatchdogConnect",
         "parameters": [
           {
@@ -2156,7 +2238,7 @@
             "authorization": []
           }
         ],
-        "summary": "connect a (local) watchdog to support local ds development scenarios",
+        "summary": "connect a local watchdog",
         "tags": [
           "Watchdogs"
         ]
@@ -2167,7 +2249,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
+        "description": "Claim a dedicated server from fleets with matching claim keys\n\nRequired Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "operationId": "FleetClaimByKeys",
         "parameters": [
           {
@@ -2235,7 +2317,7 @@
             "authorization": []
           }
         ],
-        "summary": "claim a Dedicated Server from fleets with matching claim keys",
+        "summary": "claim a dedicated server",
         "tags": [
           "Fleets"
         ]
@@ -2280,6 +2362,28 @@
         "summary": "connect a watchdog",
         "tags": [
           "Watchdogs"
+        ]
+      }
+    },
+    "/ams/v1/upload-url": {
+      "get": {
+        "operationId": "UploadURLGet",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "get an URL for uploading an image",
+        "tags": [
+          "AMS Info"
         ]
       }
     },
@@ -2462,13 +2566,16 @@
           "type": "string"
         },
         "createdOn": {
-          "$ref": "#/definitions/api.Time"
+          "$ref": "#/definitions/time.Time"
         },
         "dsId": {
           "type": "string"
         },
         "expiresOn": {
-          "$ref": "#/definitions/api.Time"
+          "$ref": "#/definitions/time.Time"
+        },
+        "filename": {
+          "type": "string"
         },
         "fleetId": {
           "type": "string"
@@ -2483,13 +2590,10 @@
           "type": "string"
         },
         "sizeBytes": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "status": {
-          "type": "string"
-        },
-        "storagePath": {
           "type": "string"
         }
       },
@@ -2498,13 +2602,13 @@
         "createdOn",
         "dsId",
         "expiresOn",
+        "filename",
         "fleetId",
         "id",
         "imageId",
         "namespace",
         "sizeBytes",
-        "status",
-        "storagePath"
+        "status"
       ]
     },
     "api.ArtifactSamplingRule": {
@@ -3322,7 +3426,7 @@
           "type": "string"
         },
         "last_update": {
-          "$ref": "#/definitions/api.Time"
+          "$ref": "#/definitions/time.Time"
         },
         "port": {
           "format": "int32",
@@ -3387,26 +3491,6 @@
         "region"
       ]
     },
-    "api.Time": {
-      "properties": {
-        "ext": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "loc": {
-          "$ref": "#/definitions/time.Location"
-        },
-        "wall": {
-          "format": "integer",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "ext",
-        "loc",
-        "wall"
-      ]
-    },
     "api.Timeout": {
       "properties": {
         "creation": {
@@ -3461,97 +3545,9 @@
         "traceId"
       ]
     },
-    "time.Location": {
-      "properties": {
-        "cacheEnd": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "cacheStart": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "cacheZone": {
-          "$ref": "#/definitions/time.zone"
-        },
-        "extend": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "tx": {
-          "items": {
-            "$ref": "#/definitions/time.zoneTrans"
-          },
-          "type": "array"
-        },
-        "zone": {
-          "items": {
-            "$ref": "#/definitions/time.zone"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "cacheEnd",
-        "cacheStart",
-        "cacheZone",
-        "extend",
-        "name",
-        "tx",
-        "zone"
-      ]
-    },
     "time.Time": {
       "format": "date-time",
       "type": "string"
-    },
-    "time.zone": {
-      "properties": {
-        "isDST": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "name": {
-          "type": "string"
-        },
-        "offset": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "isDST",
-        "name",
-        "offset"
-      ]
-    },
-    "time.zoneTrans": {
-      "properties": {
-        "index": {
-          "format": "byte",
-          "type": "integer"
-        },
-        "isstd": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "isutc": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "when": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "index",
-        "isstd",
-        "isutc",
-        "when"
-      ]
     }
   },
   "x-docs": {
@@ -3560,10 +3556,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-12T23:27:16+00:00",
-    "gitHash": "4b9eccaa605be6d9677fe13f13e48547754c5fc5",
+    "buildDate": "2024-01-13T00:44:33+00:00",
+    "gitHash": "6e8391a64586c23eb45d2e4bbbb86d5602b23fef",
     "name": "fleet-commander",
-    "version": "1.7.1",
-    "version-roles-seeding": "1.0.5"
+    "version": "1.8.1",
+    "version-roles-seeding": "1.0.27"
   }
 }

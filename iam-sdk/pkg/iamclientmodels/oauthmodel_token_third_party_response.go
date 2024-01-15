@@ -18,6 +18,9 @@ import (
 // swagger:model Oauthmodel token third party response.
 type OauthmodelTokenThirdPartyResponse struct {
 
+	// platformuserid
+	PlatformUserID string `json:"platformUserId,omitempty"`
+
 	// platform_token
 	// Required: true
 	PlatformToken *string `json:"platform_token"`

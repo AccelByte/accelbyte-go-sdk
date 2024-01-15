@@ -27,23 +27,29 @@ var ArtifactGetCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		artifactType, _ := cmd.Flags().GetString("artifactType")
+		count, _ := cmd.Flags().GetInt64("count")
 		endDate, _ := cmd.Flags().GetString("endDate")
 		fleetID, _ := cmd.Flags().GetString("fleetID")
 		imageID, _ := cmd.Flags().GetString("imageID")
 		maxSize, _ := cmd.Flags().GetInt64("maxSize")
 		minSize, _ := cmd.Flags().GetInt64("minSize")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		region, _ := cmd.Flags().GetString("region")
+		serverId, _ := cmd.Flags().GetString("serverId")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		status, _ := cmd.Flags().GetString("status")
 		input := &artifacts.ArtifactGetParams{
 			Namespace:    namespace,
 			ArtifactType: &artifactType,
+			Count:        &count,
 			EndDate:      &endDate,
 			FleetID:      &fleetID,
 			ImageID:      &imageID,
 			MaxSize:      &maxSize,
 			MinSize:      &minSize,
+			Offset:       &offset,
 			Region:       &region,
+			ServerID:     &serverId,
 			StartDate:    &startDate,
 			Status:       &status,
 		}
@@ -64,12 +70,15 @@ func init() {
 	ArtifactGetCmd.Flags().String("namespace", "", "Namespace")
 	_ = ArtifactGetCmd.MarkFlagRequired("namespace")
 	ArtifactGetCmd.Flags().String("artifactType", "", "Artifact type")
+	ArtifactGetCmd.Flags().Int64("count", 1, "Count")
 	ArtifactGetCmd.Flags().String("endDate", "", "End date")
 	ArtifactGetCmd.Flags().String("fleetID", "", "Fleet ID")
 	ArtifactGetCmd.Flags().String("imageID", "", "Image ID")
 	ArtifactGetCmd.Flags().Int64("maxSize", 20, "Max size")
 	ArtifactGetCmd.Flags().Int64("minSize", 0, "Min size")
+	ArtifactGetCmd.Flags().Int64("offset", 0, "Offset")
 	ArtifactGetCmd.Flags().String("region", "", "Region")
+	ArtifactGetCmd.Flags().String("serverId", "", "Server id")
 	ArtifactGetCmd.Flags().String("startDate", "", "Start date")
 	ArtifactGetCmd.Flags().String("status", "", "Status")
 }

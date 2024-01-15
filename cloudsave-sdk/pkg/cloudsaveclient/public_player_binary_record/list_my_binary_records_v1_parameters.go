@@ -22,8 +22,13 @@ import (
 // NewListMyBinaryRecordsV1Params creates a new ListMyBinaryRecordsV1Params object
 // with the default values initialized.
 func NewListMyBinaryRecordsV1Params() *ListMyBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListMyBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewListMyBinaryRecordsV1Params() *ListMyBinaryRecordsV1Params {
 // NewListMyBinaryRecordsV1ParamsWithTimeout creates a new ListMyBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListMyBinaryRecordsV1ParamsWithTimeout(timeout time.Duration) *ListMyBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListMyBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewListMyBinaryRecordsV1ParamsWithTimeout(timeout time.Duration) *ListMyBin
 // NewListMyBinaryRecordsV1ParamsWithContext creates a new ListMyBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewListMyBinaryRecordsV1ParamsWithContext(ctx context.Context) *ListMyBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListMyBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewListMyBinaryRecordsV1ParamsWithContext(ctx context.Context) *ListMyBinar
 // NewListMyBinaryRecordsV1ParamsWithHTTPClient creates a new ListMyBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListMyBinaryRecordsV1ParamsWithHTTPClient(client *http.Client) *ListMyBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListMyBinaryRecordsV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,22 +86,22 @@ type ListMyBinaryRecordsV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64
 	/*Query
-	  key
+	  query, search player records by key
 
 	*/
 	Query *string

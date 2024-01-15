@@ -75,12 +75,12 @@ type PutPlayerRecordConcurrentHandlerV1Params struct {
 	*/
 	Key string
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user ID who own the record
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string

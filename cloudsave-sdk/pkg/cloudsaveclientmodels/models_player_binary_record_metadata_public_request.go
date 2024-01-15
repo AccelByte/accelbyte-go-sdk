@@ -17,7 +17,7 @@ import (
 // swagger:model Models player binary record metadata public request.
 type ModelsPlayerBinaryRecordMetadataPublicRequest struct {
 
-	// is_public
+	// Indicate whether the player record is public or not
 	IsPublic bool `json:"is_public"`
 }
 

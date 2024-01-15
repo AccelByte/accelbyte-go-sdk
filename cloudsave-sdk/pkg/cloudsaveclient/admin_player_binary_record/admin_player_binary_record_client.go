@@ -52,9 +52,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListPlayerBinaryRecordsV1Short instead.
 
 AdminListPlayerBinaryRecordsV1 query player binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of player binary records by namespace.
 */
 func (a *Client) AdminListPlayerBinaryRecordsV1(params *AdminListPlayerBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListPlayerBinaryRecordsV1OK, *AdminListPlayerBinaryRecordsV1BadRequest, *AdminListPlayerBinaryRecordsV1Unauthorized, *AdminListPlayerBinaryRecordsV1Forbidden, *AdminListPlayerBinaryRecordsV1InternalServerError, error) {
@@ -112,9 +109,6 @@ func (a *Client) AdminListPlayerBinaryRecordsV1(params *AdminListPlayerBinaryRec
 
 /*
 AdminListPlayerBinaryRecordsV1Short query player binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of player binary records by namespace.
 */
 func (a *Client) AdminListPlayerBinaryRecordsV1Short(params *AdminListPlayerBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListPlayerBinaryRecordsV1OK, error) {
@@ -170,18 +164,12 @@ func (a *Client) AdminListPlayerBinaryRecordsV1Short(params *AdminListPlayerBina
 Deprecated: 2022-08-10 - Use AdminPostPlayerBinaryRecordV1Short instead.
 
 AdminPostPlayerBinaryRecordV1 create player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a player binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -247,18 +235,12 @@ func (a *Client) AdminPostPlayerBinaryRecordV1(params *AdminPostPlayerBinaryReco
 
 /*
 AdminPostPlayerBinaryRecordV1Short create player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a player binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -321,8 +303,6 @@ func (a *Client) AdminPostPlayerBinaryRecordV1Short(params *AdminPostPlayerBinar
 Deprecated: 2022-08-10 - Use AdminGetPlayerBinaryRecordV1Short instead.
 
 AdminGetPlayerBinaryRecordV1 get player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
 Get a player binary record by its key.
 */
 func (a *Client) AdminGetPlayerBinaryRecordV1(params *AdminGetPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBinaryRecordV1OK, *AdminGetPlayerBinaryRecordV1Unauthorized, *AdminGetPlayerBinaryRecordV1Forbidden, *AdminGetPlayerBinaryRecordV1NotFound, *AdminGetPlayerBinaryRecordV1InternalServerError, error) {
@@ -380,8 +360,6 @@ func (a *Client) AdminGetPlayerBinaryRecordV1(params *AdminGetPlayerBinaryRecord
 
 /*
 AdminGetPlayerBinaryRecordV1Short get player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
 Get a player binary record by its key.
 */
 func (a *Client) AdminGetPlayerBinaryRecordV1Short(params *AdminGetPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBinaryRecordV1OK, error) {
@@ -437,9 +415,6 @@ func (a *Client) AdminGetPlayerBinaryRecordV1Short(params *AdminGetPlayerBinaryR
 Deprecated: 2022-08-10 - Use AdminPutPlayerBinaryRecordV1Short instead.
 
 AdminPutPlayerBinaryRecordV1 update player binary record file
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record file by its key
 */
 func (a *Client) AdminPutPlayerBinaryRecordV1(params *AdminPutPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerBinaryRecordV1OK, *AdminPutPlayerBinaryRecordV1BadRequest, *AdminPutPlayerBinaryRecordV1Unauthorized, *AdminPutPlayerBinaryRecordV1Forbidden, *AdminPutPlayerBinaryRecordV1NotFound, *AdminPutPlayerBinaryRecordV1InternalServerError, error) {
@@ -500,9 +475,6 @@ func (a *Client) AdminPutPlayerBinaryRecordV1(params *AdminPutPlayerBinaryRecord
 
 /*
 AdminPutPlayerBinaryRecordV1Short update player binary record file
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record file by its key
 */
 func (a *Client) AdminPutPlayerBinaryRecordV1Short(params *AdminPutPlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerBinaryRecordV1OK, error) {
@@ -560,9 +532,6 @@ func (a *Client) AdminPutPlayerBinaryRecordV1Short(params *AdminPutPlayerBinaryR
 Deprecated: 2022-08-10 - Use AdminDeletePlayerBinaryRecordV1Short instead.
 
 AdminDeletePlayerBinaryRecordV1 delete player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a player binary record.
 */
 func (a *Client) AdminDeletePlayerBinaryRecordV1(params *AdminDeletePlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerBinaryRecordV1NoContent, *AdminDeletePlayerBinaryRecordV1Unauthorized, *AdminDeletePlayerBinaryRecordV1Forbidden, *AdminDeletePlayerBinaryRecordV1NotFound, *AdminDeletePlayerBinaryRecordV1InternalServerError, error) {
@@ -620,9 +589,6 @@ func (a *Client) AdminDeletePlayerBinaryRecordV1(params *AdminDeletePlayerBinary
 
 /*
 AdminDeletePlayerBinaryRecordV1Short delete player binary record
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a player binary record.
 */
 func (a *Client) AdminDeletePlayerBinaryRecordV1Short(params *AdminDeletePlayerBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerBinaryRecordV1NoContent, error) {
@@ -678,9 +644,6 @@ func (a *Client) AdminDeletePlayerBinaryRecordV1Short(params *AdminDeletePlayerB
 Deprecated: 2022-08-10 - Use AdminPutPlayerBinaryRecorMetadataV1Short instead.
 
 AdminPutPlayerBinaryRecorMetadataV1 update player binary record metadata
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record metadata by its key
 */
 func (a *Client) AdminPutPlayerBinaryRecorMetadataV1(params *AdminPutPlayerBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerBinaryRecorMetadataV1OK, *AdminPutPlayerBinaryRecorMetadataV1BadRequest, *AdminPutPlayerBinaryRecorMetadataV1Unauthorized, *AdminPutPlayerBinaryRecorMetadataV1Forbidden, *AdminPutPlayerBinaryRecorMetadataV1NotFound, *AdminPutPlayerBinaryRecorMetadataV1InternalServerError, error) {
@@ -741,9 +704,6 @@ func (a *Client) AdminPutPlayerBinaryRecorMetadataV1(params *AdminPutPlayerBinar
 
 /*
 AdminPutPlayerBinaryRecorMetadataV1Short update player binary record metadata
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a player binary record metadata by its key
 */
 func (a *Client) AdminPutPlayerBinaryRecorMetadataV1Short(params *AdminPutPlayerBinaryRecorMetadataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerBinaryRecorMetadataV1OK, error) {
@@ -801,15 +761,9 @@ func (a *Client) AdminPutPlayerBinaryRecorMetadataV1Short(params *AdminPutPlayer
 Deprecated: 2022-08-10 - Use AdminPostPlayerBinaryPresignedURLV1Short instead.
 
 AdminPostPlayerBinaryPresignedURLV1 request presigned url for upload player binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
@@ -871,15 +825,9 @@ func (a *Client) AdminPostPlayerBinaryPresignedURLV1(params *AdminPostPlayerBina
 
 /*
 AdminPostPlayerBinaryPresignedURLV1Short request presigned url for upload player binary records
-Required permission: `ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */

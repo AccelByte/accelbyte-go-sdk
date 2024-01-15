@@ -76,6 +76,20 @@ func (aaa *AMSInfoService) InfoSupportedInstances(input *a_m_s_info.InfoSupporte
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use UploadURLGetShort instead.
+func (aaa *AMSInfoService) UploadURLGet(input *a_m_s_info.UploadURLGetParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = aaa.Client.AmsInfo.UploadURLGet(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *AMSInfoService) InfoRegionsShort(input *a_m_s_info.InfoRegionsParams) (*amsclientmodels.APIAMSRegionsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -124,4 +138,29 @@ func (aaa *AMSInfoService) InfoSupportedInstancesShort(input *a_m_s_info.InfoSup
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AMSInfoService) UploadURLGetShort(input *a_m_s_info.UploadURLGetParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	_, err := aaa.Client.AmsInfo.UploadURLGetShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

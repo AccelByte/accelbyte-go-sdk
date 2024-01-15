@@ -20,22 +20,22 @@ import (
 // swagger:model Models plugin response.
 type ModelsPluginResponse struct {
 
-	// appconfig
+	// Config for APP extend type
 	AppConfig *ModelsAppConfig `json:"appConfig,omitempty"`
 
-	// customconfig
+	// Config for CUSTOM extend type
 	CustomConfig *ModelsCustomConfig `json:"customConfig,omitempty"`
 
-	// customfunction
+	// List of functions that can be extended
 	// Required: true
 	CustomFunction *ModelsCustomFunction `json:"customFunction"`
 
-	// available value: APP, CUSTOM
+	// Plugin extend type
 	// Enum: ['APP', 'CUSTOM']
 	// Required: true
 	ExtendType *string `json:"extendType"`
 
-	// namespace
+	// Namespace of the game
 	// Required: true
 	Namespace *string `json:"namespace"`
 }

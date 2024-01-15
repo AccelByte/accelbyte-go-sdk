@@ -69,7 +69,7 @@ type GetGameRecordsBulkParams struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkGetGameRecordRequest
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

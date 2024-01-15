@@ -18,11 +18,11 @@ import (
 // swagger:model Models admin game concurrent record request.
 type ModelsAdminGameConcurrentRecordRequest struct {
 
-	// updatedat
+	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
 
-	// value
+	// Admin game record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }

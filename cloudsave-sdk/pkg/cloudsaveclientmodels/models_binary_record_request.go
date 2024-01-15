@@ -18,11 +18,11 @@ import (
 // swagger:model Models binary record request.
 type ModelsBinaryRecordRequest struct {
 
-	// content_type
+	// Content type of the binary record
 	// Required: true
 	ContentType *string `json:"content_type"`
 
-	// file_location
+	// File location of the binary record
 	// Required: true
 	FileLocation *string `json:"file_location"`
 }

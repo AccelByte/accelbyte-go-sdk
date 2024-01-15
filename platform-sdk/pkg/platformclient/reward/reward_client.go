@@ -68,6 +68,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=1 (CREATE)
   *  Returns : created reward data
+  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -129,6 +130,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=1 (CREATE)
   *  Returns : created reward data
+  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, error) {
 	// TODO: Validate the params before sending
@@ -610,6 +612,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=4 (UPDATE)
   *  Returns : reward instance
+  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardBadRequest, *UpdateRewardNotFound, *UpdateRewardConflict, error) {
 	// TODO: Validate the params before sending
@@ -668,6 +671,7 @@ Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:REWARD", action=4 (UPDATE)
   *  Returns : reward instance
+  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, error) {
 	// TODO: Validate the params before sending

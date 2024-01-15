@@ -74,7 +74,7 @@ type AdminPostAdminGameRecordV1Params struct {
 	*/
 	Key string
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

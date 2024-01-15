@@ -23,11 +23,11 @@ type ModelsAdminPlayerRecordResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
-	// key
+	// Admin player record identifier
 	// Required: true
 	Key *string `json:"key"`
 
-	// namespace
+	// Namespace of the game
 	// Required: true
 	Namespace *string `json:"namespace"`
 
@@ -36,11 +36,11 @@ type ModelsAdminPlayerRecordResponse struct {
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at"`
 
-	// user_id
+	// User ID who owns the record
 	// Required: true
 	UserID *string `json:"user_id"`
 
-	// value
+	// Admin player record data, should be in valid json format
 	// Required: true
 	Value interface{} `json:"value"`
 }

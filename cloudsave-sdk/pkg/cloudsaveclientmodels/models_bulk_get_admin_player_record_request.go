@@ -18,7 +18,7 @@ import (
 // swagger:model Models bulk get admin player record request.
 type ModelsBulkGetAdminPlayerRecordRequest struct {
 
-	// keys
+	// Keys of the record
 	// Required: true
 	Keys []string `json:"keys"`
 }

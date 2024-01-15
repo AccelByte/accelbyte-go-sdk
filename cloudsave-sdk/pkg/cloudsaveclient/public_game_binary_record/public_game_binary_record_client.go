@@ -52,9 +52,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListGameBinaryRecordsV1Short instead.
 
 ListGameBinaryRecordsV1 query game binary records
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of binary records by namespace.
 */
 func (a *Client) ListGameBinaryRecordsV1(params *ListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameBinaryRecordsV1OK, *ListGameBinaryRecordsV1BadRequest, *ListGameBinaryRecordsV1Unauthorized, *ListGameBinaryRecordsV1Forbidden, *ListGameBinaryRecordsV1InternalServerError, error) {
@@ -112,9 +109,6 @@ func (a *Client) ListGameBinaryRecordsV1(params *ListGameBinaryRecordsV1Params, 
 
 /*
 ListGameBinaryRecordsV1Short query game binary records
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Retrieve list of binary records by namespace.
 */
 func (a *Client) ListGameBinaryRecordsV1Short(params *ListGameBinaryRecordsV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameBinaryRecordsV1OK, error) {
@@ -170,18 +164,12 @@ func (a *Client) ListGameBinaryRecordsV1Short(params *ListGameBinaryRecordsV1Par
 Deprecated: 2022-08-10 - Use PostGameBinaryRecordV1Short instead.
 
 PostGameBinaryRecordV1 create game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a game binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -247,18 +235,12 @@ func (a *Client) PostGameBinaryRecordV1(params *PostGameBinaryRecordV1Params, au
 
 /*
 PostGameBinaryRecordV1Short create game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Create a game binary record.
-
 
 Other detail info:
 
-
-
 `key` should follow these rules:
-1. support uppercase and lowercase letters, numbers, and separators "-" , "_" , "." are allowed
+1. support uppercase and lowercase letters, numbers, and separators **"-"**, **"_"**, **"."** are allowed
 2. begin and end with letters or numbers
 3. spaces are not allowed
 4. separators must not appears twice in a row
@@ -321,9 +303,6 @@ func (a *Client) PostGameBinaryRecordV1Short(params *PostGameBinaryRecordV1Param
 Deprecated: 2022-08-10 - Use BulkGetGameBinaryRecordV1Short instead.
 
 BulkGetGameBinaryRecordV1 bulk get game binary records
-Required valid user token
-Required scope: `social`
-
 Bulk get game binary records. Maximum key per request 20.
 */
 func (a *Client) BulkGetGameBinaryRecordV1(params *BulkGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetGameBinaryRecordV1OK, *BulkGetGameBinaryRecordV1BadRequest, *BulkGetGameBinaryRecordV1Unauthorized, *BulkGetGameBinaryRecordV1Forbidden, *BulkGetGameBinaryRecordV1InternalServerError, error) {
@@ -381,9 +360,6 @@ func (a *Client) BulkGetGameBinaryRecordV1(params *BulkGetGameBinaryRecordV1Para
 
 /*
 BulkGetGameBinaryRecordV1Short bulk get game binary records
-Required valid user token
-Required scope: `social`
-
 Bulk get game binary records. Maximum key per request 20.
 */
 func (a *Client) BulkGetGameBinaryRecordV1Short(params *BulkGetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetGameBinaryRecordV1OK, error) {
@@ -439,9 +415,6 @@ func (a *Client) BulkGetGameBinaryRecordV1Short(params *BulkGetGameBinaryRecordV
 Deprecated: 2022-08-10 - Use GetGameBinaryRecordV1Short instead.
 
 GetGameBinaryRecordV1 get game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Get a game binary record by its key.
 */
 func (a *Client) GetGameBinaryRecordV1(params *GetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameBinaryRecordV1OK, *GetGameBinaryRecordV1Unauthorized, *GetGameBinaryRecordV1Forbidden, *GetGameBinaryRecordV1NotFound, *GetGameBinaryRecordV1InternalServerError, error) {
@@ -499,9 +472,6 @@ func (a *Client) GetGameBinaryRecordV1(params *GetGameBinaryRecordV1Params, auth
 
 /*
 GetGameBinaryRecordV1Short get game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-Required scope: `social`
-
 Get a game binary record by its key.
 */
 func (a *Client) GetGameBinaryRecordV1Short(params *GetGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameBinaryRecordV1OK, error) {
@@ -557,9 +527,6 @@ func (a *Client) GetGameBinaryRecordV1Short(params *GetGameBinaryRecordV1Params,
 Deprecated: 2022-08-10 - Use PutGameBinaryRecordV1Short instead.
 
 PutGameBinaryRecordV1 update game binary record file
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record file by its key
 */
 func (a *Client) PutGameBinaryRecordV1(params *PutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameBinaryRecordV1OK, *PutGameBinaryRecordV1BadRequest, *PutGameBinaryRecordV1Unauthorized, *PutGameBinaryRecordV1Forbidden, *PutGameBinaryRecordV1NotFound, *PutGameBinaryRecordV1InternalServerError, error) {
@@ -620,9 +587,6 @@ func (a *Client) PutGameBinaryRecordV1(params *PutGameBinaryRecordV1Params, auth
 
 /*
 PutGameBinaryRecordV1Short update game binary record file
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
 Update a game binary record file by its key
 */
 func (a *Client) PutGameBinaryRecordV1Short(params *PutGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameBinaryRecordV1OK, error) {
@@ -680,9 +644,6 @@ func (a *Client) PutGameBinaryRecordV1Short(params *PutGameBinaryRecordV1Params,
 Deprecated: 2022-08-10 - Use DeleteGameBinaryRecordV1Short instead.
 
 DeleteGameBinaryRecordV1 delete game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a game binary record.
 */
 func (a *Client) DeleteGameBinaryRecordV1(params *DeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameBinaryRecordV1NoContent, *DeleteGameBinaryRecordV1BadRequest, *DeleteGameBinaryRecordV1Unauthorized, *DeleteGameBinaryRecordV1Forbidden, *DeleteGameBinaryRecordV1NotFound, *DeleteGameBinaryRecordV1InternalServerError, error) {
@@ -743,9 +704,6 @@ func (a *Client) DeleteGameBinaryRecordV1(params *DeleteGameBinaryRecordV1Params
 
 /*
 DeleteGameBinaryRecordV1Short delete game binary record
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-Required scope: `social`
-
 Delete a game binary record.
 */
 func (a *Client) DeleteGameBinaryRecordV1Short(params *DeleteGameBinaryRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameBinaryRecordV1NoContent, error) {
@@ -803,15 +761,9 @@ func (a *Client) DeleteGameBinaryRecordV1Short(params *DeleteGameBinaryRecordV1P
 Deprecated: 2022-08-10 - Use PostGameBinaryPresignedURLV1Short instead.
 
 PostGameBinaryPresignedURLV1 request presigned url for upload game binary records
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */
@@ -873,15 +825,9 @@ func (a *Client) PostGameBinaryPresignedURLV1(params *PostGameBinaryPresignedURL
 
 /*
 PostGameBinaryPresignedURLV1Short request presigned url for upload game binary records
-Required permission: `NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
 Request presigned URL to upload the binary record to s3.
 
-
 Other detail info:
-
-
 
 Supported file types: jpeg, jpg, png, bmp, gif, mp3, webp, and bin.
 */

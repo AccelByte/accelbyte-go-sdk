@@ -1,3 +1,13 @@
+<a name="v0.62.0"></a>
+## [v0.62.0]
+### chore
+- **integration-test:** update the expiry time for chat inbox
+- **doc:** regenerate common_use_cases.md for chat inbox
+### test
+- **integration:** armada is deprecated
+- **integration:** disable gdpr for ags starter
+
+
 <a name="v0.61.0"></a>
 ## [v0.61.0]
 ### docs

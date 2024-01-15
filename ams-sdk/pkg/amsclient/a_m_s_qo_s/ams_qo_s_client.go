@@ -41,7 +41,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use QoSRegionsGetShort instead.
 
-QoSRegionsGet get the list of available ams qos regions.
+QoSRegionsGet get a list of available ams qos regions
 ```
 Required Permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]
 
@@ -115,7 +115,7 @@ func (a *Client) QoSRegionsGet(params *QoSRegionsGetParams, authInfo runtime.Cli
 }
 
 /*
-QoSRegionsGetShort get the list of available ams qos regions.
+QoSRegionsGetShort get a list of available ams qos regions
 ```
 Required Permission: ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]
 

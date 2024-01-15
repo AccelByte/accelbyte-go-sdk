@@ -18,11 +18,11 @@ import (
 // swagger:model Models admin player record key info.
 type ModelsAdminPlayerRecordKeyInfo struct {
 
-	// key
+	// Key of the record
 	// Required: true
 	Key *string `json:"key"`
 
-	// user_id
+	// User ID who owns the record
 	// Required: true
 	UserID *string `json:"user_id"`
 }

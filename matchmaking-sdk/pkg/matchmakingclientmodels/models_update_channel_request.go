@@ -75,6 +75,10 @@ type ModelsUpdateChannelRequest struct {
 	// Required: true
 	SocialMatchmaking *bool `json:"socialMatchmaking"`
 
+	// sub_gamemode_selection
+	// Enum: ['random', 'ticketOrder']
+	SubGamemodeSelection *string `json:"sub_gamemode_selection,omitempty"`
+
 	// ticket_observability_enable
 	TicketObservabilityEnable bool `json:"ticket_observability_enable"`
 
@@ -231,6 +235,35 @@ func (m *ModelsUpdateChannelRequest) validateSocialMatchmaking(formats strfmt.Re
 		return err
 	}
 
+	return nil
+}
+
+var modelsUpdateChannelRequestTypeSubGamemodeSelectionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RANDOM", "TICKETORDER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsUpdateChannelRequestTypeSubGamemodeSelectionPropEnum = append(modelsUpdateChannelRequestTypeSubGamemodeSelectionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsUpdateChannelRequestSubGamemodeSelectionRANDOM captures enum value "RANDOM"
+	ModelsUpdateChannelRequestSubGamemodeSelectionRANDOM string = "RANDOM"
+
+	// ModelsUpdateChannelRequestSubGamemodeSelectionTICKETORDER captures enum value "TICKETORDER"
+	ModelsUpdateChannelRequestSubGamemodeSelectionTICKETORDER string = "TICKETORDER"
+)
+
+// prop value enum
+func (m *ModelsUpdateChannelRequest) validateSubGamemodeSelectionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsUpdateChannelRequestTypeSubGamemodeSelectionPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

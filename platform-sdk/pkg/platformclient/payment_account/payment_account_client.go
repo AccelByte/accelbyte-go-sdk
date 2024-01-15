@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use PublicGetPaymentAccountsShort instead.
 
 PublicGetPaymentAccounts get payment accounts
-Get payment accounts.
+ [Not Supported Yet In Starter] Get payment accounts.
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=2 (READ)
@@ -91,7 +91,7 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 
 /*
 PublicGetPaymentAccountsShort get payment accounts
-Get payment accounts.
+ [Not Supported Yet In Starter] Get payment accounts.
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=2 (READ)
@@ -142,7 +142,7 @@ func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsP
 Deprecated: 2022-08-10 - Use PublicDeletePaymentAccountShort instead.
 
 PublicDeletePaymentAccount delete payment account
-Delete payment account.
+ [Not Supported Yet In Starter] Delete payment account.
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=8 (DELETE)
@@ -191,7 +191,7 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 
 /*
 PublicDeletePaymentAccountShort delete payment account
-Delete payment account.
+ [Not Supported Yet In Starter] Delete payment account.
 Other detail info:
 
   * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=8 (DELETE)

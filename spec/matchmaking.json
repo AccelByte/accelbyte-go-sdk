@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.28.0"
+    "version": "2.29.0"
   },
   "schemes": [
     "https"
@@ -3287,6 +3287,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "sub_gamemode_selection": {
+          "type": "string"
+        },
         "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
@@ -3316,6 +3319,7 @@
         "session_queue_timeout_seconds",
         "slug",
         "social_matchmaking",
+        "sub_gamemode_selection",
         "updated_at",
         "use_sub_gamemode"
       ]
@@ -3386,6 +3390,14 @@
           "type": "boolean",
           "x-nullable": true,
           "x-omitempty": false
+        },
+        "sub_gamemode_selection": {
+          "enum": [
+            "random",
+            "ticketOrder"
+          ],
+          "type": "string",
+          "x-nullable": true
         },
         "ticket_observability_enable": {
           "type": "boolean",
@@ -3466,6 +3478,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "sub_gamemode_selection": {
+          "type": "string"
+        },
         "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
@@ -3495,6 +3510,7 @@
         "sessionQueueTimeoutSeconds",
         "slug",
         "socialMatchmaking",
+        "sub_gamemode_selection",
         "updatedAt",
         "use_sub_gamemode"
       ]
@@ -3594,6 +3610,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "sub_gamemode_selection": {
+          "type": "string"
+        },
         "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
@@ -3623,6 +3642,7 @@
         "session_queue_timeout_seconds",
         "slug",
         "social_matchmaking",
+        "sub_gamemode_selection",
         "updated_at",
         "use_sub_gamemode"
       ]
@@ -4911,6 +4931,14 @@
           "x-nullable": true,
           "x-omitempty": false
         },
+        "sub_gamemode_selection": {
+          "enum": [
+            "random",
+            "ticketOrder"
+          ],
+          "type": "string",
+          "x-nullable": true
+        },
         "ticket_observability_enable": {
           "type": "boolean",
           "x-omitempty": false
@@ -5347,9 +5375,9 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-19T03:55:48+00:00",
-    "gitHash": "ba331c9c85722921b690db004f9ecdf52a773d61",
-    "version": "2.28.0",
+    "buildDate": "2024-01-03T02:58:22+00:00",
+    "gitHash": "fa9d6a1bc0969ffc651303ba5569a1c5af6371b5",
+    "version": "2.29.0",
     "version-roles-seeding": "0.0.23"
   }
 }

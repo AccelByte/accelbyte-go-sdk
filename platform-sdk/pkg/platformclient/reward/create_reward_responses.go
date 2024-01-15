@@ -128,7 +128,7 @@ func NewCreateRewardBadRequest() *CreateRewardBadRequest {
 
 /*CreateRewardBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34023</td><td>Reward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34023</td><td>Reward Item [{itemId}] with item type [{itemType}] is not supported for duration or endDate</td></tr><tr><td>34027</td><td>Reward Item [{sku}] with item type [{itemType}] is not supported for duration or endDate</td></tr></table>
 */
 type CreateRewardBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -181,7 +181,7 @@ func NewCreateRewardNotFound() *CreateRewardNotFound {
 
 /*CreateRewardNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34042</td><td>Reward item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34042</td><td>Reward item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>34044</td><td>Reward item [{sku}] does not exist in namespace [{namespace}]</td></tr></table>
 */
 type CreateRewardNotFound struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -234,7 +234,7 @@ func NewCreateRewardConflict() *CreateRewardConflict {
 
 /*CreateRewardConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34071</td><td>Reward with code [{rewardCode}] already exists in namespace [{namespace}]</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr><tr><td>34074</td><td>Reward Item [{itemId}] duration and end date can’t be set at the same time</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>34071</td><td>Reward with code [{rewardCode}] already exists in namespace [{namespace}]</td></tr><tr><td>34072</td><td>Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]</td></tr><tr><td>34074</td><td>Reward Item [{itemId}] duration and end date can’t be set at the same time</td></tr><tr><td>34076</td><td>Reward Item [{sku}] duration and end date can’t be set at the same time</td></tr></table>
 */
 type CreateRewardConflict struct {
 	Payload *platformclientmodels.ErrorEntity

@@ -18,11 +18,11 @@ import (
 // swagger:model Models user key request.
 type ModelsUserKeyRequest struct {
 
-	// keys
+	// Keys of the record
 	// Required: true
 	Keys []string `json:"keys"`
 
-	// user_id
+	// User ID who owns the record
 	// Required: true
 	UserID *string `json:"user_id"`
 }

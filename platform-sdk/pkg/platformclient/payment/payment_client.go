@@ -56,7 +56,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use QueryPaymentNotificationsShort instead.
 
 QueryPaymentNotifications query payment notifications
-Query payment notifications.
+ [Not Supported Yet In Starter] Query payment notifications.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION", action=2 (READ)
@@ -105,7 +105,7 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 
 /*
 QueryPaymentNotificationsShort query payment notifications
-Query payment notifications.
+ [Not Supported Yet In Starter] Query payment notifications.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION", action=2 (READ)
@@ -156,7 +156,7 @@ func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotification
 Deprecated: 2022-08-10 - Use QueryPaymentOrdersShort instead.
 
 QueryPaymentOrders query payment orders
-Query payment orders.
+ [Not Supported Yet In Starter] Query payment orders.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -205,7 +205,7 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 
 /*
 QueryPaymentOrdersShort query payment orders
-Query payment orders.
+ [Not Supported Yet In Starter] Query payment orders.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -256,7 +256,7 @@ func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authI
 Deprecated: 2022-08-10 - Use ListExtOrderNoByExtTxIDShort instead.
 
 ListExtOrderNoByExtTxID list external order no by external transaction id
-List external order No by external transaction id.
+ [Not Supported Yet In Starter] List external order No by external transaction id.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -305,7 +305,7 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 
 /*
 ListExtOrderNoByExtTxIDShort list external order no by external transaction id
-List external order No by external transaction id.
+ [Not Supported Yet In Starter] List external order No by external transaction id.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -356,7 +356,7 @@ func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDPar
 Deprecated: 2022-08-10 - Use GetPaymentOrderShort instead.
 
 GetPaymentOrder get payment order
-Get payment order by paymentOrderNo.
+ [Not Supported Yet In Starter] Get payment order by paymentOrderNo.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -408,7 +408,7 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 
 /*
 GetPaymentOrderShort get payment order
-Get payment order by paymentOrderNo.
+ [Not Supported Yet In Starter] Get payment order by paymentOrderNo.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -461,7 +461,7 @@ func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo ru
 Deprecated: 2022-08-10 - Use ChargePaymentOrderShort instead.
 
 ChargePaymentOrder charge payment order without payment flow
- [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
+ [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
@@ -519,7 +519,7 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 
 /*
 ChargePaymentOrderShort charge payment order without payment flow
- [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
+ [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
@@ -576,7 +576,7 @@ func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authI
 Deprecated: 2022-08-10 - Use SimulatePaymentOrderNotificationShort instead.
 
 SimulatePaymentOrderNotification simulate payment notification
- [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
+ [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
@@ -631,7 +631,7 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 
 /*
 SimulatePaymentOrderNotificationShort simulate payment notification
- [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
+ [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
@@ -686,7 +686,7 @@ func (a *Client) SimulatePaymentOrderNotificationShort(params *SimulatePaymentOr
 Deprecated: 2022-08-10 - Use GetPaymentOrderChargeStatusShort instead.
 
 GetPaymentOrderChargeStatus get payment order charge status
-Get payment order charge status.
+ [Not Supported Yet In Starter] Get payment order charge status.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -738,7 +738,7 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 
 /*
 GetPaymentOrderChargeStatusShort get payment order charge status
-Get payment order charge status.
+ [Not Supported Yet In Starter] Get payment order charge status.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
@@ -791,7 +791,7 @@ func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeS
 Deprecated: 2022-08-10 - Use CreateUserPaymentOrderShort instead.
 
 CreateUserPaymentOrder create payment order
- [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
+ [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
@@ -874,7 +874,7 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 
 /*
 CreateUserPaymentOrderShort create payment order
- [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
+ [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
@@ -954,7 +954,7 @@ func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParam
 Deprecated: 2022-08-10 - Use RefundUserPaymentOrderShort instead.
 
 RefundUserPaymentOrder refund payment order
- [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
+ [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=4 (UPDATE)
@@ -1011,7 +1011,7 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 
 /*
 RefundUserPaymentOrderShort refund payment order
- [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
+ [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
 Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=4 (UPDATE)

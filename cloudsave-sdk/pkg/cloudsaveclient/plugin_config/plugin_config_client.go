@@ -46,14 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetPluginConfigShort instead.
 
 GetPluginConfig get plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will get grpc plugins configuration
 */
@@ -112,14 +105,7 @@ func (a *Client) GetPluginConfig(params *GetPluginConfigParams, authInfo runtime
 
 /*
 GetPluginConfigShort get plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [READ]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will get grpc plugins configuration
 */
@@ -176,14 +162,7 @@ func (a *Client) GetPluginConfigShort(params *GetPluginConfigParams, authInfo ru
 Deprecated: 2022-08-10 - Use CreatePluginConfigShort instead.
 
 CreatePluginConfig create plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new grpc plugins configuration per namespace
 */
@@ -245,14 +224,7 @@ func (a *Client) CreatePluginConfig(params *CreatePluginConfigParams, authInfo r
 
 /*
 CreatePluginConfigShort create plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new grpc plugins configuration per namespace
 */
@@ -311,14 +283,7 @@ func (a *Client) CreatePluginConfigShort(params *CreatePluginConfigParams, authI
 Deprecated: 2022-08-10 - Use DeletePluginConfigShort instead.
 
 DeletePluginConfig delete plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will delete grpc plugins configuration
 */
@@ -377,14 +342,7 @@ func (a *Client) DeletePluginConfig(params *DeletePluginConfigParams, authInfo r
 
 /*
 DeletePluginConfigShort delete plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [DELETE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will delete grpc plugins configuration
 */
@@ -441,14 +399,7 @@ func (a *Client) DeletePluginConfigShort(params *DeletePluginConfigParams, authI
 Deprecated: 2022-08-10 - Use UpdatePluginConfigShort instead.
 
 UpdatePluginConfig update plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will update grpc plugins configuration
 */
@@ -510,14 +461,7 @@ func (a *Client) UpdatePluginConfig(params *UpdatePluginConfigParams, authInfo r
 
 /*
 UpdatePluginConfigShort update plugin configuration
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:PLUGINS [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will update grpc plugins configuration
 */

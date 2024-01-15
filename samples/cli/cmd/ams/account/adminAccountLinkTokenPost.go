@@ -18,28 +18,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// AccountCreateCmd represents the AccountCreate command
-var AccountCreateCmd = &cobra.Command{
-	Use:   "accountCreate",
-	Short: "Account create",
-	Long:  `Account create`,
+// AdminAccountLinkTokenPostCmd represents the AdminAccountLinkTokenPost command
+var AdminAccountLinkTokenPostCmd = &cobra.Command{
+	Use:   "adminAccountLinkTokenPost",
+	Short: "Admin account link token post",
+	Long:  `Admin account link token post`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		accountService := &ams.AccountService{
 			Client:          factory.NewAmsClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *amsclientmodels.APIAccountCreateRequest
+		var body *amsclientmodels.APIAccountLinkRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &account.AccountCreateParams{
+		input := &account.AdminAccountLinkTokenPostParams{
 			Body:      body,
 			Namespace: namespace,
 		}
-		created, errCreated := accountService.AccountCreateShort(input)
+		created, errCreated := accountService.AdminAccountLinkTokenPostShort(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 
@@ -53,8 +53,8 @@ var AccountCreateCmd = &cobra.Command{
 }
 
 func init() {
-	AccountCreateCmd.Flags().String("body", "", "Body")
-	_ = AccountCreateCmd.MarkFlagRequired("body")
-	AccountCreateCmd.Flags().String("namespace", "", "Namespace")
-	_ = AccountCreateCmd.MarkFlagRequired("namespace")
+	AdminAccountLinkTokenPostCmd.Flags().String("body", "", "Body")
+	_ = AdminAccountLinkTokenPostCmd.MarkFlagRequired("body")
+	AdminAccountLinkTokenPostCmd.Flags().String("namespace", "", "Namespace")
+	_ = AdminAccountLinkTokenPostCmd.MarkFlagRequired("namespace")
 }

@@ -128,8 +128,8 @@ func NewListGameRecordsHandlerV1BadRequest() *ListGameRecordsHandlerV1BadRequest
 
 /*ListGameRecordsHandlerV1BadRequest handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18004</td><td>unable to retrieve list of key records</td></tr></table>
+*/
 type ListGameRecordsHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
 }

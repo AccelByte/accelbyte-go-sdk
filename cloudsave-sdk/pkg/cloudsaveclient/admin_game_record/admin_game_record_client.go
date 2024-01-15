@@ -48,10 +48,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListGameRecordsHandlerV1Short instead.
 
 ListGameRecordsHandlerV1 query game records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of records key by namespace
 */
 func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, *ListGameRecordsHandlerV1BadRequest, *ListGameRecordsHandlerV1Unauthorized, *ListGameRecordsHandlerV1Forbidden, *ListGameRecordsHandlerV1InternalServerError, error) {
@@ -109,10 +105,6 @@ func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params
 
 /*
 ListGameRecordsHandlerV1Short query game records
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Retrieve list of records key by namespace
 */
 func (a *Client) ListGameRecordsHandlerV1Short(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, error) {
@@ -168,10 +160,6 @@ func (a *Client) ListGameRecordsHandlerV1Short(params *ListGameRecordsHandlerV1P
 Deprecated: 2022-08-10 - Use AdminGetGameRecordHandlerV1Short instead.
 
 AdminGetGameRecordHandlerV1 get game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a record by its key in namespace-level.
 */
 func (a *Client) AdminGetGameRecordHandlerV1(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, *AdminGetGameRecordHandlerV1Unauthorized, *AdminGetGameRecordHandlerV1Forbidden, *AdminGetGameRecordHandlerV1NotFound, *AdminGetGameRecordHandlerV1InternalServerError, error) {
@@ -229,10 +217,6 @@ func (a *Client) AdminGetGameRecordHandlerV1(params *AdminGetGameRecordHandlerV1
 
 /*
 AdminGetGameRecordHandlerV1Short get game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]`
-
-Required scope: `social`
-
 Get a record by its key in namespace-level.
 */
 func (a *Client) AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, error) {
@@ -288,101 +272,60 @@ func (a *Client) AdminGetGameRecordHandlerV1Short(params *AdminGetGameRecordHand
 Deprecated: 2022-08-10 - Use AdminPutGameRecordHandlerV1Short instead.
 
 AdminPutGameRecordHandlerV1 create or replace game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Record Metadata
 
-
-
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name __META.
-When creating record, if __META field is not defined, the metadata value will use the default value.
-When updating record, if __META field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
 
- Metadata List:
+**Metadata List:**
 1. set_by (default: CLIENT, type: string)
 Indicate which party that could modify the game record.
 SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 
- Request Body Example:
-
-
-
-
-        {
-            "__META": {
-                "set_by": "SERVER"
-            }
-            ...
-        }
+**Request Body Example:**
+```
+{
+"__META": {
+"set_by": "SERVER"
+}
+...
+}
+```
 */
 func (a *Client) AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, *AdminPutGameRecordHandlerV1BadRequest, *AdminPutGameRecordHandlerV1Unauthorized, *AdminPutGameRecordHandlerV1Forbidden, *AdminPutGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -439,101 +382,60 @@ func (a *Client) AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1
 
 /*
 AdminPutGameRecordHandlerV1Short create or replace game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or replace the existing game record.
 
- Replace behaviour:
+**Replace behaviour:**
 The existing value will be replaced completely with the new value.
 
 Example
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data2": "new value" }
-
-
-
+`{ "data2": "new value" }`
 
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Record Metadata
 
-
-
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name __META.
-When creating record, if __META field is not defined, the metadata value will use the default value.
-When updating record, if __META field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
 
- Metadata List:
+**Metadata List:**
 1. set_by (default: CLIENT, type: string)
 Indicate which party that could modify the game record.
 SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 
- Request Body Example:
-
-
-
-
-        {
-            "__META": {
-                "set_by": "SERVER"
-            }
-            ...
-        }
+**Request Body Example:**
+```
+{
+"__META": {
+"set_by": "SERVER"
+}
+...
+}
+```
 */
 func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
@@ -588,123 +490,72 @@ func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHand
 Deprecated: 2022-08-10 - Use AdminPostGameRecordHandlerV1Short instead.
 
 AdminPostGameRecordHandlerV1 create or append game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or append the existing game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Record Metadata
 
-
-
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name __META.
-When creating record, if __META field is not defined, the metadata value will use the default value.
-When updating record, if __META field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
 
- Metadata List:
+**Metadata List:**
 1. set_by (default: CLIENT, type: string)
 Indicate which party that could modify the game record.
 SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 
- Request Body Example:
-
-
-
-
-        {
-            "__META": {
-                "set_by": "SERVER"
-            }
-            ...
-        }
+**Request Body Example:**
+```
+{
+"__META": {
+"set_by": "SERVER"
+}
+...
+}
+```
 */
 func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1BadRequest, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1Forbidden, *AdminPostGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -761,123 +612,72 @@ func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandler
 
 /*
 AdminPostGameRecordHandlerV1Short create or append game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]`
-Required scope: `social`
-
-
-
 ## Description
-
-
 
 This endpoints will create new game record or append the existing game record.
 
- Append example:
+**Append example:**
 
 Example 1
 - Existing JSON:
 
-
-
-    { "data1": "value" }
-
+`{ "data1": "value" }`
 
 - New JSON:
 
-
-
-    { "data2": "new value" }
-
+`{ "data2": "new value" }`
 
 - Result:
 
-
-
-    { "data1": "value", "data2": "new value" }
-
+`{ "data1": "value", "data2": "new value" }`
 
 
 Example 2
 - Existing JSON:
 
-
-
-    { "data1": { "data2": "value" }
-
+`{ "data1": { "data2": "value" }`
 
 - New JSON:
 
-
-
-    { "data1": { "data3": "new value" }
-
+`{ "data1": { "data3": "new value" }`
 
 - Result:
 
-
-
-    { "data1": { "data2": "value", "data3": "new value" }
-
-
-
-
+`{ "data1": { "data2": "value", "data3": "new value" }`
 
 
 ## Restriction
-
-
 This is the restriction of Key Naming for the record:
-1. Cannot use "." as the key name
--
-
-
-    { "data.2": "value" }
-
-
-2. Cannot use "$" as the prefix in key names
--
-
-
-    { "$data": "value" }
-
-
+1. Cannot use **"."** as the key name
+- `{ "data.2": "value" }`
+2. Cannot use **"$"** as the prefix in key names
+- `{ "$data": "value" }`
 3. Cannot use empty string in key names
--
-
-
-    { "": "value" }
-
-
-
-
+- `{ "": "value" }`
 
 
 ## Record Metadata
 
-
-
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name __META.
-When creating record, if __META field is not defined, the metadata value will use the default value.
-When updating record, if __META field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
 
- Metadata List:
+**Metadata List:**
 1. set_by (default: CLIENT, type: string)
 Indicate which party that could modify the game record.
 SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 
- Request Body Example:
-
-
-
-
-        {
-            "__META": {
-                "set_by": "SERVER"
-            }
-            ...
-        }
+**Request Body Example:**
+```
+{
+"__META": {
+"set_by": "SERVER"
+}
+...
+}
+```
 */
 func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending
@@ -932,10 +732,6 @@ func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHa
 Deprecated: 2022-08-10 - Use AdminDeleteGameRecordHandlerV1Short instead.
 
 AdminDeleteGameRecordHandlerV1 delete game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 This endpoints delete game record in namespace-level
 */
 func (a *Client) AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, *AdminDeleteGameRecordHandlerV1BadRequest, *AdminDeleteGameRecordHandlerV1Unauthorized, *AdminDeleteGameRecordHandlerV1Forbidden, *AdminDeleteGameRecordHandlerV1InternalServerError, error) {
@@ -993,10 +789,6 @@ func (a *Client) AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHan
 
 /*
 AdminDeleteGameRecordHandlerV1Short delete game record
-Required permission: `ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]`
-
-Required scope: `social`
-
 This endpoints delete game record in namespace-level
 */
 func (a *Client) AdminDeleteGameRecordHandlerV1Short(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, error) {

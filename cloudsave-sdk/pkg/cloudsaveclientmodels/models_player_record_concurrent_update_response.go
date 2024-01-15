@@ -18,7 +18,7 @@ import (
 // swagger:model Models player record concurrent update response.
 type ModelsPlayerRecordConcurrentUpdateResponse struct {
 
-	// updated_at
+	// Precondition for concurrent request, required for making the concurrent request
 	// Required: true
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at"`

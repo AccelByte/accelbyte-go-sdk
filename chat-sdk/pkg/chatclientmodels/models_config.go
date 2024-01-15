@@ -96,8 +96,14 @@ type ModelsConfig struct {
 	// Format: int64
 	SpamMuteDuration *int64 `json:"SpamMuteDuration"`
 
+	// defaultdictionaryloaded
+	DefaultDictionaryLoaded bool `json:"defaultDictionaryLoaded"`
+
 	// enableclanchat
 	EnableClanChat bool `json:"enableClanChat"`
+
+	// usedefaultdictionary
+	UseDefaultDictionary bool `json:"useDefaultDictionary"`
 }
 
 // Validate validates this Models config

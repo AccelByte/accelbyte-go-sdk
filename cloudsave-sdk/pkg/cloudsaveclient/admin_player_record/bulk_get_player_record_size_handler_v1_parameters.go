@@ -69,7 +69,7 @@ type BulkGetPlayerRecordSizeHandlerV1Params struct {
 	/*Body*/
 	Body *cloudsaveclientmodels.ModelsBulkUserKeyRequest
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string

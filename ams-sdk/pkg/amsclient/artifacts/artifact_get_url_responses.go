@@ -33,12 +33,6 @@ func (o *ArtifactGetURLReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
-	case 204:
-		result := NewArtifactGetURLNoContent()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 400:
 		result := NewArtifactGetURLBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -53,6 +47,12 @@ func (o *ArtifactGetURLReader) ReadResponse(response runtime.ClientResponse, con
 		return result, nil
 	case 403:
 		result := NewArtifactGetURLForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewArtifactGetURLNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -118,59 +118,6 @@ func (o *ArtifactGetURLOK) readResponse(response runtime.ClientResponse, consume
 	}
 
 	o.Payload = new(amsclientmodels.APIArtifactURLResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewArtifactGetURLNoContent creates a ArtifactGetURLNoContent with default headers values
-func NewArtifactGetURLNoContent() *ArtifactGetURLNoContent {
-	return &ArtifactGetURLNoContent{}
-}
-
-/*ArtifactGetURLNoContent handles this case with default header values.
-
-  no artifact found with specified ID
-*/
-type ArtifactGetURLNoContent struct {
-	Payload *amsclientmodels.ResponseErrorResponse
-}
-
-func (o *ArtifactGetURLNoContent) Error() string {
-	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url][%d] artifactGetUrlNoContent  %+v", 204, o.ToJSONString())
-}
-
-func (o *ArtifactGetURLNoContent) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *ArtifactGetURLNoContent) GetPayload() *amsclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *ArtifactGetURLNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(amsclientmodels.ResponseErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -323,6 +270,59 @@ func (o *ArtifactGetURLForbidden) GetPayload() *amsclientmodels.ResponseErrorRes
 }
 
 func (o *ArtifactGetURLForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(amsclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewArtifactGetURLNotFound creates a ArtifactGetURLNotFound with default headers values
+func NewArtifactGetURLNotFound() *ArtifactGetURLNotFound {
+	return &ArtifactGetURLNotFound{}
+}
+
+/*ArtifactGetURLNotFound handles this case with default header values.
+
+  no artifact with specifed artifactID
+*/
+type ArtifactGetURLNotFound struct {
+	Payload *amsclientmodels.ResponseErrorResponse
+}
+
+func (o *ArtifactGetURLNotFound) Error() string {
+	return fmt.Sprintf("[GET /ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url][%d] artifactGetUrlNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *ArtifactGetURLNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ArtifactGetURLNotFound) GetPayload() *amsclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *ArtifactGetURLNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

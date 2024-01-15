@@ -22,8 +22,13 @@ import (
 // NewArtifactGetParams creates a new ArtifactGetParams object
 // with the default values initialized.
 func NewArtifactGetParams() *ArtifactGetParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &ArtifactGetParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewArtifactGetParams() *ArtifactGetParams {
 // NewArtifactGetParamsWithTimeout creates a new ArtifactGetParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewArtifactGetParamsWithTimeout(timeout time.Duration) *ArtifactGetParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &ArtifactGetParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewArtifactGetParamsWithTimeout(timeout time.Duration) *ArtifactGetParams {
 // NewArtifactGetParamsWithContext creates a new ArtifactGetParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewArtifactGetParamsWithContext(ctx context.Context) *ArtifactGetParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &ArtifactGetParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewArtifactGetParamsWithContext(ctx context.Context) *ArtifactGetParams {
 // NewArtifactGetParamsWithHTTPClient creates a new ArtifactGetParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewArtifactGetParamsWithHTTPClient(client *http.Client) *ArtifactGetParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &ArtifactGetParams{
+		Count:      &countDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -75,6 +95,11 @@ type ArtifactGetParams struct {
 
 	*/
 	ArtifactType *string
+	/*Count
+	  Defines the maximum number of records returned in one page.
+
+	*/
+	Count *int64
 	/*EndDate
 	  omit artifacts with collection dates newer than
 
@@ -100,11 +125,21 @@ type ArtifactGetParams struct {
 
 	*/
 	MinSize *int64
+	/*Offset
+	  Specifies the start index for the records returned. Useful for implementing pagination.
+
+	*/
+	Offset *int64
 	/*Region
 	  region of the server where the artifact was collected
 
 	*/
 	Region *string
+	/*ServerID
+	  id of the server (ds) where the artifact was collected
+
+	*/
+	ServerID *string
 	/*StartDate
 	  omit artifacts with collection dates older than
 
@@ -191,6 +226,17 @@ func (o *ArtifactGetParams) SetArtifactType(artifactType *string) {
 	o.ArtifactType = artifactType
 }
 
+// WithCount adds the count to the artifact get params
+func (o *ArtifactGetParams) WithCount(count *int64) *ArtifactGetParams {
+	o.SetCount(count)
+	return o
+}
+
+// SetCount adds the count to the artifact get params
+func (o *ArtifactGetParams) SetCount(count *int64) {
+	o.Count = count
+}
+
 // WithEndDate adds the endDate to the artifact get params
 func (o *ArtifactGetParams) WithEndDate(endDate *string) *ArtifactGetParams {
 	o.SetEndDate(endDate)
@@ -246,6 +292,17 @@ func (o *ArtifactGetParams) SetMinSize(minSize *int64) {
 	o.MinSize = minSize
 }
 
+// WithOffset adds the offset to the artifact get params
+func (o *ArtifactGetParams) WithOffset(offset *int64) *ArtifactGetParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the artifact get params
+func (o *ArtifactGetParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WithRegion adds the region to the artifact get params
 func (o *ArtifactGetParams) WithRegion(region *string) *ArtifactGetParams {
 	o.SetRegion(region)
@@ -255,6 +312,17 @@ func (o *ArtifactGetParams) WithRegion(region *string) *ArtifactGetParams {
 // SetRegion adds the region to the artifact get params
 func (o *ArtifactGetParams) SetRegion(region *string) {
 	o.Region = region
+}
+
+// WithServerID adds the serverID to the artifact get params
+func (o *ArtifactGetParams) WithServerID(serverID *string) *ArtifactGetParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the artifact get params
+func (o *ArtifactGetParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
 }
 
 // WithStartDate adds the startDate to the artifact get params
@@ -302,6 +370,22 @@ func (o *ArtifactGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qArtifactType := qrArtifactType
 		if qArtifactType != "" {
 			if err := r.SetQueryParam("artifactType", qArtifactType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Count != nil {
+
+		// query param count
+		var qrCount int64
+		if o.Count != nil {
+			qrCount = *o.Count
+		}
+		qCount := swag.FormatInt64(qrCount)
+		if qCount != "" {
+			if err := r.SetQueryParam("count", qCount); err != nil {
 				return err
 			}
 		}
@@ -388,6 +472,22 @@ func (o *ArtifactGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 	}
 
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Region != nil {
 
 		// query param region
@@ -398,6 +498,22 @@ func (o *ArtifactGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qRegion := qrRegion
 		if qRegion != "" {
 			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ServerID != nil {
+
+		// query param serverId
+		var qrServerID string
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+			if err := r.SetQueryParam("serverId", qServerID); err != nil {
 				return err
 			}
 		}

@@ -22,8 +22,13 @@ import (
 // NewListOtherPlayerPublicBinaryRecordsV1Params creates a new ListOtherPlayerPublicBinaryRecordsV1Params object
 // with the default values initialized.
 func NewListOtherPlayerPublicBinaryRecordsV1Params() *ListOtherPlayerPublicBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListOtherPlayerPublicBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewListOtherPlayerPublicBinaryRecordsV1Params() *ListOtherPlayerPublicBinar
 // NewListOtherPlayerPublicBinaryRecordsV1ParamsWithTimeout creates a new ListOtherPlayerPublicBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListOtherPlayerPublicBinaryRecordsV1ParamsWithTimeout(timeout time.Duration) *ListOtherPlayerPublicBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListOtherPlayerPublicBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewListOtherPlayerPublicBinaryRecordsV1ParamsWithTimeout(timeout time.Durat
 // NewListOtherPlayerPublicBinaryRecordsV1ParamsWithContext creates a new ListOtherPlayerPublicBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewListOtherPlayerPublicBinaryRecordsV1ParamsWithContext(ctx context.Context) *ListOtherPlayerPublicBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListOtherPlayerPublicBinaryRecordsV1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewListOtherPlayerPublicBinaryRecordsV1ParamsWithContext(ctx context.Contex
 // NewListOtherPlayerPublicBinaryRecordsV1ParamsWithHTTPClient creates a new ListOtherPlayerPublicBinaryRecordsV1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListOtherPlayerPublicBinaryRecordsV1ParamsWithHTTPClient(client *http.Client) *ListOtherPlayerPublicBinaryRecordsV1Params {
-	var ()
+	var (
+		limitDefault  = int64(25)
+		offsetDefault = int64(0)
+	)
 	return &ListOtherPlayerPublicBinaryRecordsV1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -66,22 +86,22 @@ type ListOtherPlayerPublicBinaryRecordsV1Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  namespace of the game, only accept alphabet and numeric
 
 	*/
 	Namespace string
 	/*UserID
-	  user ID
+	  user ID who own the record, should follow UUID version 4 without hyphen format
 
 	*/
 	UserID string
 	/*Limit
-	  limit
+	  the number of data retrieved in a page, default 25
 
 	*/
 	Limit *int64
 	/*Offset
-	  offset
+	  the number of offset, default 0
 
 	*/
 	Offset *int64

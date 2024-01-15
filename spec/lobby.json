@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.33.0"
+    "version": "3.33.2"
   },
   "schemes": [
     "https"
@@ -120,11 +120,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/incoming": {
@@ -208,11 +204,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/incoming-time": {
@@ -296,11 +288,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/outgoing": {
@@ -384,11 +372,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/outgoing-time": {
@@ -472,11 +456,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/platforms": {
@@ -557,11 +537,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/request": {
@@ -643,11 +619,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/request/accept": {
@@ -723,11 +695,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/request/cancel": {
@@ -803,11 +771,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/request/reject": {
@@ -883,11 +847,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/status/{friendId}": {
@@ -955,11 +915,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/me/unfriend": {
@@ -1035,11 +991,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/friends/namespaces/{namespace}/users/{userId}/add/bulk": {
@@ -1287,11 +1239,7 @@
           "friends",
           "public"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/admin/config": {
@@ -1525,7 +1473,7 @@
     },
     "/lobby/v1/admin/config/namespaces/{namespace}/export": {
       "get": {
-        "description": "\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\t\nJSON Schema of the exported file:\n{\u0026#34;required\u0026#34;:[\u0026#34;namespace\u0026#34;,\u0026#34;entitlementItemID\u0026#34;,\u0026#34;chatRateLimitDuration\u0026#34;,\u0026#34;unregisterDelay\u0026#34;,\u0026#34;generalRateLimitDuration\u0026#34;,\u0026#34;autoKickOnDisconnectDelay\u0026#34;,\u0026#34;chatRateLimitBurst\u0026#34;,\u0026#34;generalRateLimitBurst\u0026#34;,\u0026#34;maxPartyMember\u0026#34;,\u0026#34;autoKickOnDisconnect\u0026#34;,\u0026#34;profanityFilter\u0026#34;,\u0026#34;enableChat\u0026#34;,\u0026#34;entitlementCheck\u0026#34;,\u0026#34;cancelTicketOnDisconnect\u0026#34;,\u0026#34;concurrentUsersLimit\u0026#34;,\u0026#34;readyConsentTimeout\u0026#34;,\u0026#34;disableInvitationOnJoinParty\u0026#34;,\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\u0026#34;allowInviteNonConnectedUser\u0026#34;,\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\u0026#34;maxDSWaitTime\u0026#34;,\u0026#34;maxFriendsLimit\u0026#34;],\u0026#34;properties\u0026#34;:{\u0026#34;allowInviteNonConnectedUser\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;autoKickOnDisconnectDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;},\u0026#34;cancelTicketOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;chatRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;chatRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;},\u0026#34;concurrentUsersLimit\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;disableInvitationOnJoinParty\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;enableChat\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementCheck\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;entitlementItemID\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;generalRateLimitBurst\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;generalRateLimitDuration\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;},\u0026#34;keepPresenceActivityOnDisconnect\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;maxDSWaitTime\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;},\u0026#34;maxFriendsLimit\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;maxPartyMember\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int32\u0026#34;},\u0026#34;namespace\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;string\u0026#34;},\u0026#34;profanityFilter\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;boolean\u0026#34;},\u0026#34;readyConsentTimeout\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;},\u0026#34;unregisterDelay\u0026#34;:{\u0026#34;type\u0026#34;:\u0026#34;integer\u0026#34;,\u0026#34;format\u0026#34;:\u0026#34;int64\u0026#34;}}}",
+        "description": "\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\t\nJSON Schema of the exported file:\n{\n \u0026#34;required\u0026#34;: [\n  \u0026#34;namespace\u0026#34;,\n  \u0026#34;entitlementItemID\u0026#34;,\n  \u0026#34;chatRateLimitDuration\u0026#34;,\n  \u0026#34;unregisterDelay\u0026#34;,\n  \u0026#34;generalRateLimitDuration\u0026#34;,\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;,\n  \u0026#34;chatRateLimitBurst\u0026#34;,\n  \u0026#34;generalRateLimitBurst\u0026#34;,\n  \u0026#34;maxPartyMember\u0026#34;,\n  \u0026#34;autoKickOnDisconnect\u0026#34;,\n  \u0026#34;profanityFilter\u0026#34;,\n  \u0026#34;enableChat\u0026#34;,\n  \u0026#34;entitlementCheck\u0026#34;,\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;,\n  \u0026#34;concurrentUsersLimit\u0026#34;,\n  \u0026#34;readyConsentTimeout\u0026#34;,\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;,\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;,\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\n  \u0026#34;maxDSWaitTime\u0026#34;,\n  \u0026#34;maxFriendsLimit\u0026#34;\n ],\n \u0026#34;properties\u0026#34;: {\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;chatRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;chatRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;concurrentUsersLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;enableChat\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementCheck\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementItemID\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;generalRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;generalRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;maxDSWaitTime\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;maxFriendsLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;maxPartyMember\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;namespace\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;profanityFilter\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;readyConsentTimeout\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;unregisterDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  }\n }\n}",
         "operationId": "adminExportConfigV1",
         "parameters": [
           {
@@ -1541,7 +1489,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK\nJSON Schema of the exported file:\n{\"required\":[\"namespace\",\"entitlementItemID\",\"chatRateLimitDuration\",\"unregisterDelay\",\"generalRateLimitDuration\",\"autoKickOnDisconnectDelay\",\"chatRateLimitBurst\",\"generalRateLimitBurst\",\"maxPartyMember\",\"autoKickOnDisconnect\",\"profanityFilter\",\"enableChat\",\"entitlementCheck\",\"cancelTicketOnDisconnect\",\"concurrentUsersLimit\",\"readyConsentTimeout\",\"disableInvitationOnJoinParty\",\"allowJoinPartyDuringMatchmaking\",\"allowInviteNonConnectedUser\",\"keepPresenceActivityOnDisconnect\",\"maxDSWaitTime\",\"maxFriendsLimit\"],\"properties\":{\"allowInviteNonConnectedUser\":{\"type\":\"boolean\"},\"allowJoinPartyDuringMatchmaking\":{\"type\":\"boolean\"},\"autoKickOnDisconnect\":{\"type\":\"boolean\"},\"autoKickOnDisconnectDelay\":{\"type\":\"integer\",\"format\":\"int64\"},\"cancelTicketOnDisconnect\":{\"type\":\"boolean\"},\"chatRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"chatRateLimitDuration\":{\"type\":\"integer\",\"format\":\"int64\"},\"concurrentUsersLimit\":{\"type\":\"integer\",\"format\":\"int32\"},\"disableInvitationOnJoinParty\":{\"type\":\"boolean\"},\"enableChat\":{\"type\":\"boolean\"},\"entitlementCheck\":{\"type\":\"boolean\"},\"entitlementItemID\":{\"type\":\"string\"},\"generalRateLimitBurst\":{\"type\":\"integer\",\"format\":\"int32\"},\"generalRateLimitDuration\":{\"type\":\"integer\",\"format\":\"int64\"},\"keepPresenceActivityOnDisconnect\":{\"type\":\"boolean\"},\"maxDSWaitTime\":{\"type\":\"integer\",\"format\":\"int64\"},\"maxFriendsLimit\":{\"type\":\"integer\",\"format\":\"int32\"},\"maxPartyMember\":{\"type\":\"integer\",\"format\":\"int32\"},\"namespace\":{\"type\":\"string\"},\"profanityFilter\":{\"type\":\"boolean\"},\"readyConsentTimeout\":{\"type\":\"integer\",\"format\":\"int64\"},\"unregisterDelay\":{\"type\":\"integer\",\"format\":\"int64\"}}}",
+            "description": "OK\nJSON Schema of the exported file:\n{\n \"required\": [\n  \"namespace\",\n  \"entitlementItemID\",\n  \"chatRateLimitDuration\",\n  \"unregisterDelay\",\n  \"generalRateLimitDuration\",\n  \"autoKickOnDisconnectDelay\",\n  \"chatRateLimitBurst\",\n  \"generalRateLimitBurst\",\n  \"maxPartyMember\",\n  \"autoKickOnDisconnect\",\n  \"profanityFilter\",\n  \"enableChat\",\n  \"entitlementCheck\",\n  \"cancelTicketOnDisconnect\",\n  \"concurrentUsersLimit\",\n  \"readyConsentTimeout\",\n  \"disableInvitationOnJoinParty\",\n  \"allowJoinPartyDuringMatchmaking\",\n  \"allowInviteNonConnectedUser\",\n  \"keepPresenceActivityOnDisconnect\",\n  \"maxDSWaitTime\",\n  \"maxFriendsLimit\"\n ],\n \"properties\": {\n  \"allowInviteNonConnectedUser\": {\n   \"type\": \"boolean\"\n  },\n  \"allowJoinPartyDuringMatchmaking\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnectDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"cancelTicketOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"chatRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"chatRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"concurrentUsersLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"disableInvitationOnJoinParty\": {\n   \"type\": \"boolean\"\n  },\n  \"enableChat\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementCheck\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementItemID\": {\n   \"type\": \"string\"\n  },\n  \"generalRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"generalRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"keepPresenceActivityOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"maxDSWaitTime\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"maxFriendsLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"maxPartyMember\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"namespace\": {\n   \"type\": \"string\"\n  },\n  \"profanityFilter\": {\n   \"type\": \"boolean\"\n  },\n  \"readyConsentTimeout\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"unregisterDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  }\n }\n}",
             "schema": {
               "type": "file"
             }
@@ -6188,11 +6136,7 @@
         "tags": [
           "party"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes": {
@@ -6283,11 +6227,7 @@
         "tags": [
           "party"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/limit": {
@@ -6369,11 +6309,7 @@
         "tags": [
           "party"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked": {
@@ -6442,11 +6378,7 @@
         "tags": [
           "player"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by": {
@@ -6515,11 +6447,7 @@
         "tags": [
           "player"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/lobby/v1/public/presence/namespaces/{namespace}/users/presence": {
@@ -6590,11 +6518,7 @@
         "tags": [
           "presence"
         ],
-        "x-security": [
-          {
-            "userPermissions": []
-          }
-        ]
+        "x-security": []
       }
     },
     "/notification/namespaces/{namespace}/freeform": {
@@ -9711,11 +9635,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-12-19T03:55:31+00:00",
-    "gitHash": "a047eb0d562620f34eb89142b5c3568bec470dd2",
+    "buildDate": "2024-01-03T02:58:02+00:00",
+    "gitHash": "059aba197201d5896a80fea1380d95da4efadf45",
     "name": "justice-lobby-server",
-    "revisionID": "3.33.0",
-    "version": "3.33.0",
+    "revisionID": "3.33.2",
+    "version": "3.33.2",
     "version-justice": "3.45.0",
     "version-roles-seeding": "1.0.1"
   }

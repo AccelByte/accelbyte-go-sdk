@@ -74,7 +74,111 @@ func NewAdminExportConfigV1OK(writer io.Writer) *AdminExportConfigV1OK {
 
     OK
 JSON Schema of the exported file:
-{"required":["namespace","entitlementItemID","chatRateLimitDuration","unregisterDelay","generalRateLimitDuration","autoKickOnDisconnectDelay","chatRateLimitBurst","generalRateLimitBurst","maxPartyMember","autoKickOnDisconnect","profanityFilter","enableChat","entitlementCheck","cancelTicketOnDisconnect","concurrentUsersLimit","readyConsentTimeout","disableInvitationOnJoinParty","allowJoinPartyDuringMatchmaking","allowInviteNonConnectedUser","keepPresenceActivityOnDisconnect","maxDSWaitTime","maxFriendsLimit"],"properties":{"allowInviteNonConnectedUser":{"type":"boolean"},"allowJoinPartyDuringMatchmaking":{"type":"boolean"},"autoKickOnDisconnect":{"type":"boolean"},"autoKickOnDisconnectDelay":{"type":"integer","format":"int64"},"cancelTicketOnDisconnect":{"type":"boolean"},"chatRateLimitBurst":{"type":"integer","format":"int32"},"chatRateLimitDuration":{"type":"integer","format":"int64"},"concurrentUsersLimit":{"type":"integer","format":"int32"},"disableInvitationOnJoinParty":{"type":"boolean"},"enableChat":{"type":"boolean"},"entitlementCheck":{"type":"boolean"},"entitlementItemID":{"type":"string"},"generalRateLimitBurst":{"type":"integer","format":"int32"},"generalRateLimitDuration":{"type":"integer","format":"int64"},"keepPresenceActivityOnDisconnect":{"type":"boolean"},"maxDSWaitTime":{"type":"integer","format":"int64"},"maxFriendsLimit":{"type":"integer","format":"int32"},"maxPartyMember":{"type":"integer","format":"int32"},"namespace":{"type":"string"},"profanityFilter":{"type":"boolean"},"readyConsentTimeout":{"type":"integer","format":"int64"},"unregisterDelay":{"type":"integer","format":"int64"}}}
+{
+ "required": [
+  "namespace",
+  "entitlementItemID",
+  "chatRateLimitDuration",
+  "unregisterDelay",
+  "generalRateLimitDuration",
+  "autoKickOnDisconnectDelay",
+  "chatRateLimitBurst",
+  "generalRateLimitBurst",
+  "maxPartyMember",
+  "autoKickOnDisconnect",
+  "profanityFilter",
+  "enableChat",
+  "entitlementCheck",
+  "cancelTicketOnDisconnect",
+  "concurrentUsersLimit",
+  "readyConsentTimeout",
+  "disableInvitationOnJoinParty",
+  "allowJoinPartyDuringMatchmaking",
+  "allowInviteNonConnectedUser",
+  "keepPresenceActivityOnDisconnect",
+  "maxDSWaitTime",
+  "maxFriendsLimit"
+ ],
+ "properties": {
+  "allowInviteNonConnectedUser": {
+   "type": "boolean"
+  },
+  "allowJoinPartyDuringMatchmaking": {
+   "type": "boolean"
+  },
+  "autoKickOnDisconnect": {
+   "type": "boolean"
+  },
+  "autoKickOnDisconnectDelay": {
+   "type": "integer",
+   "format": "int64"
+  },
+  "cancelTicketOnDisconnect": {
+   "type": "boolean"
+  },
+  "chatRateLimitBurst": {
+   "type": "integer",
+   "format": "int32"
+  },
+  "chatRateLimitDuration": {
+   "type": "integer",
+   "format": "int64"
+  },
+  "concurrentUsersLimit": {
+   "type": "integer",
+   "format": "int32"
+  },
+  "disableInvitationOnJoinParty": {
+   "type": "boolean"
+  },
+  "enableChat": {
+   "type": "boolean"
+  },
+  "entitlementCheck": {
+   "type": "boolean"
+  },
+  "entitlementItemID": {
+   "type": "string"
+  },
+  "generalRateLimitBurst": {
+   "type": "integer",
+   "format": "int32"
+  },
+  "generalRateLimitDuration": {
+   "type": "integer",
+   "format": "int64"
+  },
+  "keepPresenceActivityOnDisconnect": {
+   "type": "boolean"
+  },
+  "maxDSWaitTime": {
+   "type": "integer",
+   "format": "int64"
+  },
+  "maxFriendsLimit": {
+   "type": "integer",
+   "format": "int32"
+  },
+  "maxPartyMember": {
+   "type": "integer",
+   "format": "int32"
+  },
+  "namespace": {
+   "type": "string"
+  },
+  "profanityFilter": {
+   "type": "boolean"
+  },
+  "readyConsentTimeout": {
+   "type": "integer",
+   "format": "int64"
+  },
+  "unregisterDelay": {
+   "type": "integer",
+   "format": "int64"
+  }
+ }
+}
 */
 type AdminExportConfigV1OK struct {
 	Payload io.Writer

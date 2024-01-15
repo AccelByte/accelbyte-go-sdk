@@ -18,14 +18,14 @@ import (
 // swagger:model Models public player binary record create.
 type ModelsPublicPlayerBinaryRecordCreate struct {
 
-	// file_type
+	// File type of the binary record
 	// Required: true
 	FileType *string `json:"file_type"`
 
-	// is_public
+	// Indicate whether the player record is a public record or not
 	IsPublic bool `json:"is_public"`
 
-	// key
+	// Player binary record identifier
 	// Required: true
 	Key *string `json:"key"`
 }

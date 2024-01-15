@@ -18,7 +18,7 @@ import (
 // swagger:model Models upload binary record request.
 type ModelsUploadBinaryRecordRequest struct {
 
-	// file_type
+	// File type of the binary record
 	// Required: true
 	FileType *string `json:"file_type"`
 }

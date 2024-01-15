@@ -53,7 +53,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use FleetListShort instead.
 
-FleetList get a list of all fleets in the namespace
+FleetList list all fleets in a namespace
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetList(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, *FleetListInternalServerError, error) {
@@ -101,7 +101,7 @@ func (a *Client) FleetList(params *FleetListParams, authInfo runtime.ClientAuthI
 }
 
 /*
-FleetListShort get a list of all fleets in the namespace
+FleetListShort list all fleets in a namespace
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetListShort(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, error) {
@@ -150,7 +150,9 @@ func (a *Client) FleetListShort(params *FleetListParams, authInfo runtime.Client
 /*
 Deprecated: 2022-08-10 - Use FleetCreateShort instead.
 
-FleetCreate create a fleet. optionally, sampling rules for the fleet can also be specified
+FleetCreate create a fleet
+Optionally, sampling rules for the fleet can also be specified
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error) {
@@ -207,7 +209,9 @@ func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientA
 }
 
 /*
-FleetCreateShort create a fleet. optionally, sampling rules for the fleet can also be specified
+FleetCreateShort create a fleet
+Optionally, sampling rules for the fleet can also be specified
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) FleetCreateShort(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, error) {
@@ -374,7 +378,9 @@ func (a *Client) FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAu
 /*
 Deprecated: 2022-08-10 - Use FleetUpdateShort instead.
 
-FleetUpdate update a fleet – overrides current data. optionally, sampling rules for the fleet can also be updated
+FleetUpdate update a fleet -– overrides current data
+Optionally, sampling rules for the fleet can also be updated
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
 */
 func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error) {
@@ -434,7 +440,9 @@ func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientA
 }
 
 /*
-FleetUpdateShort update a fleet – overrides current data. optionally, sampling rules for the fleet can also be updated
+FleetUpdateShort update a fleet -– overrides current data
+Optionally, sampling rules for the fleet can also be updated
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
 */
 func (a *Client) FleetUpdateShort(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, error) {
@@ -603,7 +611,7 @@ func (a *Client) FleetDeleteShort(params *FleetDeleteParams, authInfo runtime.Cl
 /*
 Deprecated: 2022-08-10 - Use FleetServersShort instead.
 
-FleetServers get server details and counts for a fleet
+FleetServers get server details & counts for a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, *FleetServersUnauthorized, *FleetServersForbidden, *FleetServersNotFound, *FleetServersInternalServerError, error) {
@@ -660,7 +668,7 @@ func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.Clien
 }
 
 /*
-FleetServersShort get server details and counts for a fleet
+FleetServersShort get server details & counts for a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) FleetServersShort(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, error) {
@@ -715,7 +723,7 @@ func (a *Client) FleetServersShort(params *FleetServersParams, authInfo runtime.
 /*
 Deprecated: 2022-08-10 - Use FleetClaimByIDShort instead.
 
-FleetClaimByID claim a dedicated server from a specific fleet
+FleetClaimByID claim a dedicated server from a fleet
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, *FleetClaimByIDBadRequest, *FleetClaimByIDUnauthorized, *FleetClaimByIDForbidden, *FleetClaimByIDNotFound, *FleetClaimByIDInternalServerError, error) {
@@ -775,7 +783,7 @@ func (a *Client) FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.C
 }
 
 /*
-FleetClaimByIDShort claim a dedicated server from a specific fleet
+FleetClaimByIDShort claim a dedicated server from a fleet
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, error) {
@@ -832,7 +840,9 @@ func (a *Client) FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runt
 /*
 Deprecated: 2022-08-10 - Use FleetClaimByKeysShort instead.
 
-FleetClaimByKeys claim a dedicated server from fleets with matching claim keys
+FleetClaimByKeys claim a dedicated server
+Claim a dedicated server from fleets with matching claim keys
+
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByKeysOK, *FleetClaimByKeysBadRequest, *FleetClaimByKeysUnauthorized, *FleetClaimByKeysForbidden, *FleetClaimByKeysNotFound, *FleetClaimByKeysInternalServerError, error) {
@@ -892,7 +902,9 @@ func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runti
 }
 
 /*
-FleetClaimByKeysShort claim a dedicated server from fleets with matching claim keys
+FleetClaimByKeysShort claim a dedicated server
+Claim a dedicated server from fleets with matching claim keys
+
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
 func (a *Client) FleetClaimByKeysShort(params *FleetClaimByKeysParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByKeysOK, error) {

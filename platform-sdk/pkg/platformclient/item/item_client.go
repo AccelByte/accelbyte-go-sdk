@@ -134,7 +134,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListItemTypeConfigsShort instead.
 
 ListItemTypeConfigs get all item type configs
-This API is used to get all item type configs.
+ [Not Supported Yet In Starter] This API is used to get all item type configs.
 
 Other detail info:
 
@@ -184,7 +184,7 @@ func (a *Client) ListItemTypeConfigs(params *ListItemTypeConfigsParams, authInfo
 
 /*
 ListItemTypeConfigsShort get all item type configs
-This API is used to get all item type configs.
+ [Not Supported Yet In Starter] This API is used to get all item type configs.
 
 Other detail info:
 
@@ -236,7 +236,7 @@ func (a *Client) ListItemTypeConfigsShort(params *ListItemTypeConfigsParams, aut
 Deprecated: 2022-08-10 - Use CreateItemTypeConfigShort instead.
 
 CreateItemTypeConfig create an item type config
-This API is used to create an item type config.
+ [Not Supported Yet In Starter] This API is used to create an item type config.
 
 *  Required permission : resource="ADMIN:ITEM:CONFIG", action=1 (CREATE)
 *  Returns : item type config data
@@ -293,7 +293,7 @@ func (a *Client) CreateItemTypeConfig(params *CreateItemTypeConfigParams, authIn
 
 /*
 CreateItemTypeConfigShort create an item type config
-This API is used to create an item type config.
+ [Not Supported Yet In Starter] This API is used to create an item type config.
 
 *  Required permission : resource="ADMIN:ITEM:CONFIG", action=1 (CREATE)
 *  Returns : item type config data
@@ -349,7 +349,7 @@ func (a *Client) CreateItemTypeConfigShort(params *CreateItemTypeConfigParams, a
 Deprecated: 2022-08-10 - Use SearchItemTypeConfigShort instead.
 
 SearchItemTypeConfig get an item type config
-This API is used to get an item type config.
+ [Not Supported Yet In Starter] This API is used to get an item type config.
 
 Other detail info:
 
@@ -402,7 +402,7 @@ func (a *Client) SearchItemTypeConfig(params *SearchItemTypeConfigParams, authIn
 
 /*
 SearchItemTypeConfigShort get an item type config
-This API is used to get an item type config.
+ [Not Supported Yet In Starter] This API is used to get an item type config.
 
 Other detail info:
 
@@ -456,7 +456,7 @@ func (a *Client) SearchItemTypeConfigShort(params *SearchItemTypeConfigParams, a
 Deprecated: 2022-08-10 - Use GetItemTypeConfigShort instead.
 
 GetItemTypeConfig get an item type config
-This API is used to get an item type config.
+ [Not Supported Yet In Starter] This API is used to get an item type config.
 
 Other detail info:
 
@@ -509,7 +509,7 @@ func (a *Client) GetItemTypeConfig(params *GetItemTypeConfigParams, authInfo run
 
 /*
 GetItemTypeConfigShort get an item type config
-This API is used to get an item type config.
+ [Not Supported Yet In Starter] This API is used to get an item type config.
 
 Other detail info:
 
@@ -563,7 +563,7 @@ func (a *Client) GetItemTypeConfigShort(params *GetItemTypeConfigParams, authInf
 Deprecated: 2022-08-10 - Use UpdateItemTypeConfigShort instead.
 
 UpdateItemTypeConfig update an item type config
-This API is used to update an item type config.
+ [Not Supported Yet In Starter] This API is used to update an item type config.
 
 *  Required permission : resource="ADMIN:ITEM:CONFIG", action=4 (UPDATE)
 *  Returns : item type config data
@@ -620,7 +620,7 @@ func (a *Client) UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authIn
 
 /*
 UpdateItemTypeConfigShort update an item type config
-This API is used to update an item type config.
+ [Not Supported Yet In Starter] This API is used to update an item type config.
 
 *  Required permission : resource="ADMIN:ITEM:CONFIG", action=4 (UPDATE)
 *  Returns : item type config data
@@ -676,7 +676,8 @@ func (a *Client) UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, a
 Deprecated: 2022-08-10 - Use DeleteItemTypeConfigShort instead.
 
 DeleteItemTypeConfig delete an item type config
-This API is used to delete an item type config permanently.Other detail info:
+ [Not Supported Yet In Starter] This API is used to delete an item type config permanently.Other detail info:
+
   * Required permission : resource="ADMIN:ITEM:CONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, *DeleteItemTypeConfigNotFound, error) {
@@ -725,7 +726,8 @@ func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authIn
 
 /*
 DeleteItemTypeConfigShort delete an item type config
-This API is used to delete an item type config permanently.Other detail info:
+ [Not Supported Yet In Starter] This API is used to delete an item type config permanently.Other detail info:
+
   * Required permission : resource="ADMIN:ITEM:CONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, error) {
@@ -775,7 +777,7 @@ func (a *Client) DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, a
 Deprecated: 2022-08-10 - Use SyncInGameItemShort instead.
 
 SyncInGameItem sync an in game item
-This API is used to sync an in game item in game namespace to publisher namespace, only INGAMEITEM, CODE, COINS and SEASON are supported
+ [Not Supported Yet In Starter] This API is used to sync an in game item in game namespace to publisher namespace, only INGAMEITEM, CODE, COINS and SEASON are supported
 
 The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again.
 
@@ -839,7 +841,7 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 
 /*
 SyncInGameItemShort sync an in game item
-This API is used to sync an in game item in game namespace to publisher namespace, only INGAMEITEM, CODE, COINS and SEASON are supported
+ [Not Supported Yet In Starter] This API is used to sync an in game item in game namespace to publisher namespace, only INGAMEITEM, CODE, COINS and SEASON are supported
 
 The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again.
 

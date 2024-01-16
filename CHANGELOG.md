@@ -1,11 +1,21 @@
 <a name="v0.62.0"></a>
 ## [v0.62.0]
+### docs
+- **migrations:** add migration-guide-v0.61-to-v0.62.md
 ### chore
+- **:** adjust the parser and model for ban, chat
+- **:** update the lobby spec
+- **:** regenerate lobby model message and wrapper
 - **integration-test:** update the expiry time for chat inbox
 - **doc:** regenerate common_use_cases.md for chat inbox
+- **samples:** regenerate lobby cli main
+- **sdk:** generate go extend sdk (2024-01-15T20:57:46+00:00)
+- **:** update CHANGELOG.md and go sum getting started
 ### test
+- **integration:** adjust the ams and basic test
 - **integration:** armada is deprecated
 - **integration:** disable gdpr for ags starter
+- **integration:** temporarily disable dlogmanager, dsmc, qosm
 
 
 <a name="v0.61.0"></a>

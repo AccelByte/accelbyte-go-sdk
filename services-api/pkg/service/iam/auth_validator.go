@@ -10,6 +10,7 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	"fmt"
+	"log"
 	"math/big"
 	"strings"
 	"time"
@@ -43,13 +44,13 @@ type TokenValidator struct {
 
 func (v *TokenValidator) Initialize() {
 	if err := v.fetchAll(); err != nil {
-		panic(err)
+		log.Fatalf("Error initialize validator: %v", err)
 	}
 	go func() {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchClientToken(); err != nil {
-				panic(err)
+				log.Fatalf("Error fetching client token: %v", err)
 			}
 		}
 	}()
@@ -58,7 +59,7 @@ func (v *TokenValidator) Initialize() {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchJWKSet(); err != nil {
-				panic(err)
+				log.Fatalf("Error fetching JWK set: %v", err)
 			}
 		}
 	}()
@@ -67,7 +68,7 @@ func (v *TokenValidator) Initialize() {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchRevocationList(); err != nil {
-				panic(err)
+				log.Fatalf("Error fetching revocation list: %v", err)
 			}
 		}
 	}()
@@ -354,7 +355,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		for _, namespaceRole := range namespaceRoles {
 			roleNamespacePermissions, err := v.getRolePermissions3(namespaceRole, &claimsUserId, false)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 
 			allRoleNamespacePermissions = append(allRoleNamespacePermissions, roleNamespacePermissions...)
@@ -371,7 +372,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		for _, roleId := range claimsRoles {
 			rolePermissions, err := v.getRolePermissions2(roleId, tokenNamespace, userId, false)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 
 			allRolePermissions = append(allRolePermissions, rolePermissions...)

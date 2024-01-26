@@ -260,6 +260,36 @@ if err != nil {
     return err
 }
 ```
+
+## FlightID
+Since v0.64, Go Extend SDK enable support for FlightID transmission during Http request. By default, new flight id will be generated when the sdk is loaded. There will be some case that this default value need to be updated with new value.
+-   To update default flight id globally, use following code:
+    ```go
+    utils.GetDefaultFlightID().SetFlightID("<new flight id value>");
+    ```
+    This will update the default flight id, and will be used by newly created sdk object (this example use "userProfileService").
+    
+    or
+
+    ```go
+    userProfileService.FlightIdRepository = &utils.FlightIdContainer{Value: "<new flight id value>"}
+    ```
+    This will update the default flight id, and will be used by newly created sdk object (won't affect existing sdk object created before this code get executed).
+-   To update flight id value in sdk object, use following code:
+    ```go
+    userProfileService.UpdateFlightId("<new flight id value>")
+    ```
+    This will update the flight id value stored inside the sdk object. Will be used for all operations executed by the sdk object.
+-   To update flight id value for specific operation, use `UpdateFlightId` parameter when building the operation object.
+    ```go
+    // Make a call to GetMyProfileInfo endpoint
+    input := &user_profile.GetMyProfileInfoParams{
+	    Namespace: admin,
+    }
+    input.XFlightId = "<new flight id value>"
+    ok, err := userProfileService.GetMyProfileInfoShort(input)
+    ```
+
 ## Samples
 
 Sample apps are available in the [samples](samples) directory.

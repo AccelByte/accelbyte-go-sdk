@@ -74,6 +74,10 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllThirdPartyLoginPlatformCredentialV3",
 		Method:             "GET",
@@ -186,6 +190,10 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllActiveThirdPartyLoginPlatformCredentialV3",
 		Method:             "GET",
@@ -296,6 +304,10 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -431,6 +443,10 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddThirdPartyLoginPlatformCredentialV3",
 		Method:             "POST",
@@ -564,6 +580,10 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteThirdPartyLoginPlatformCredentialV3",
 		Method:             "DELETE",
@@ -695,6 +715,10 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -835,6 +859,10 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyL
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateThirdPartyLoginPlatformDomainV3",
 		Method:             "PUT",
@@ -950,6 +978,10 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyL
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1069,6 +1101,10 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(para
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
 		Method:             "GET",
@@ -1179,6 +1215,10 @@ func (a *Client) RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCCli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

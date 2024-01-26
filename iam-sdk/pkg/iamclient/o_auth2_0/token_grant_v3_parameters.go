@@ -157,8 +157,8 @@ type TokenGrantV3Params struct {
 	Context        context.Context
 	HTTPClient     *http.Client
 
-	// UpdateFlightId is an optional parameter from this SDK
-	UpdateFlightId *string
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the token grant v3 params
@@ -210,10 +210,10 @@ func (o *TokenGrantV3Params) SetHTTPClientTransport(roundTripper http.RoundTripp
 
 // SetFlightId adds the flightId as the header value for this specific endpoint
 func (o *TokenGrantV3Params) SetFlightId(flightId string) {
-	if o.UpdateFlightId != nil {
-		o.UpdateFlightId = &flightId
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
 	} else {
-		o.UpdateFlightId = &utils.GetDefaultFlightID().Value
+		o.XFlightId = &utils.GetDefaultFlightID().Value
 	}
 }
 
@@ -563,12 +563,12 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 
-	if o.UpdateFlightId == nil {
+	if o.XFlightId == nil {
 		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
 			return err
 		}
 	} else {
-		if err := r.SetHeaderParam("X-Flight-Id", *o.UpdateFlightId); err != nil {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
 			return err
 		}
 	}

@@ -56,6 +56,10 @@ func (a *Client) UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UsersPresenceHandlerV1",
 		Method:             "GET",

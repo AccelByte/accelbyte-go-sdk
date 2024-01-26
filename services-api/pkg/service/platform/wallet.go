@@ -20,6 +20,14 @@ type WalletService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdWallet *string
+
+func (aaa *WalletService) UpdateFlightId(flightId string) {
+	tempFlightIdWallet = &flightId
 }
 
 func (aaa *WalletService) GetAuthSession() auth.Session {
@@ -449,6 +457,11 @@ func (aaa *WalletService) GetPlatformWalletConfigShort(input *wallet.GetPlatform
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.GetPlatformWalletConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -473,6 +486,11 @@ func (aaa *WalletService) UpdatePlatformWalletConfigShort(input *wallet.UpdatePl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.UpdatePlatformWalletConfigShort(input, authInfoWriter)
@@ -499,6 +517,11 @@ func (aaa *WalletService) ResetPlatformWalletConfigShort(input *wallet.ResetPlat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.ResetPlatformWalletConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -523,6 +546,11 @@ func (aaa *WalletService) QueryUserCurrencyWalletsShort(input *wallet.QueryUserC
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.QueryUserCurrencyWalletsShort(input, authInfoWriter)
@@ -549,6 +577,11 @@ func (aaa *WalletService) DebitUserWalletByCurrencyCodeShort(input *wallet.Debit
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.DebitUserWalletByCurrencyCodeShort(input, authInfoWriter)
 	if err != nil {
@@ -573,6 +606,11 @@ func (aaa *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUs
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.ListUserCurrencyTransactionsShort(input, authInfoWriter)
@@ -599,6 +637,11 @@ func (aaa *WalletService) CheckBalanceShort(input *wallet.CheckBalanceParams) er
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Wallet.CheckBalanceShort(input, authInfoWriter)
 	if err != nil {
@@ -623,6 +666,11 @@ func (aaa *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) erro
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Wallet.CheckWalletShort(input, authInfoWriter)
@@ -649,6 +697,11 @@ func (aaa *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.CreditUserWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -673,6 +726,11 @@ func (aaa *WalletService) DebitByWalletPlatformShort(input *wallet.DebitByWallet
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.DebitByWalletPlatformShort(input, authInfoWriter)
@@ -699,6 +757,11 @@ func (aaa *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWallet
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.PayWithUserWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -723,6 +786,11 @@ func (aaa *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.GetUserWalletShort(input, authInfoWriter)
@@ -749,6 +817,11 @@ func (aaa *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.DebitUserWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -773,6 +846,11 @@ func (aaa *WalletService) DisableUserWalletShort(input *wallet.DisableUserWallet
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Wallet.DisableUserWalletShort(input, authInfoWriter)
@@ -799,6 +877,11 @@ func (aaa *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Wallet.EnableUserWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -823,6 +906,11 @@ func (aaa *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUser
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.ListUserWalletTransactionsShort(input, authInfoWriter)
@@ -849,6 +937,11 @@ func (aaa *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.QueryWalletsShort(input, authInfoWriter)
 	if err != nil {
@@ -873,6 +966,11 @@ func (aaa *WalletService) BulkCreditShort(input *wallet.BulkCreditParams) (*plat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.BulkCreditShort(input, authInfoWriter)
@@ -899,6 +997,11 @@ func (aaa *WalletService) BulkDebitShort(input *wallet.BulkDebitParams) (*platfo
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.BulkDebitShort(input, authInfoWriter)
 	if err != nil {
@@ -923,6 +1026,11 @@ func (aaa *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platfo
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.GetWalletShort(input, authInfoWriter)
@@ -949,6 +1057,11 @@ func (aaa *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWallet
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.PublicGetMyWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -974,6 +1087,11 @@ func (aaa *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Wallet.PublicGetWalletShort(input, authInfoWriter)
 	if err != nil {
@@ -998,6 +1116,11 @@ func (aaa *WalletService) PublicListUserWalletTransactionsShort(input *wallet.Pu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Wallet.PublicListUserWalletTransactionsShort(input, authInfoWriter)

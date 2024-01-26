@@ -89,6 +89,10 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCampaigns",
 		Method:             "GET",
@@ -187,6 +191,10 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -299,6 +307,10 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaign",
 		Method:             "GET",
@@ -402,6 +414,10 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -519,6 +535,10 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaignDynamic",
 		Method:             "GET",
@@ -624,6 +644,10 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCodes",
 		Method:             "GET",
@@ -722,6 +746,10 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -834,6 +862,10 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "download",
 		Method:             "GET",
@@ -934,6 +966,10 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1038,6 +1074,10 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkEnableCodes",
 		Method:             "PUT",
@@ -1138,6 +1178,10 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRedeemHistory",
 		Method:             "GET",
@@ -1236,6 +1280,10 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1350,6 +1398,10 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableCode",
 		Method:             "PUT",
@@ -1457,6 +1509,10 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableCode",
 		Method:             "PUT",
@@ -1560,6 +1616,10 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

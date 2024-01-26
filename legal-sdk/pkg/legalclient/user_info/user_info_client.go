@@ -64,6 +64,10 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserInfoStatus",
 		Method:             "GET",
@@ -162,6 +166,10 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncUserInfo",
 		Method:             "PUT",
@@ -256,6 +264,10 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

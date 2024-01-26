@@ -64,6 +64,10 @@ func (a *Client) GetPluginConfig(params *GetPluginConfigParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPluginConfig",
 		Method:             "GET",
@@ -178,6 +182,10 @@ func (a *Client) CreatePluginConfig(params *CreatePluginConfigParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -301,6 +309,10 @@ func (a *Client) DeletePluginConfig(params *DeletePluginConfigParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePluginConfig",
 		Method:             "DELETE",
@@ -415,6 +427,10 @@ func (a *Client) UpdatePluginConfig(params *UpdatePluginConfigParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

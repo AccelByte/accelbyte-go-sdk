@@ -20,6 +20,14 @@ type TradeActionService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdTradeAction *string
+
+func (aaa *TradeActionService) UpdateFlightId(flightId string) {
+	tempFlightIdTradeAction = &flightId
 }
 
 func (aaa *TradeActionService) GetAuthSession() auth.Session {
@@ -88,6 +96,11 @@ func (aaa *TradeActionService) CommitShort(input *trade_action.CommitParams) (*p
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTradeAction != nil {
+		input.XFlightId = tempFlightIdTradeAction
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.TradeAction.CommitShort(input, authInfoWriter)
 	if err != nil {
@@ -113,6 +126,11 @@ func (aaa *TradeActionService) GetTradeHistoryByCriteriaShort(input *trade_actio
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTradeAction != nil {
+		input.XFlightId = tempFlightIdTradeAction
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.TradeAction.GetTradeHistoryByCriteriaShort(input, authInfoWriter)
 	if err != nil {
@@ -137,6 +155,11 @@ func (aaa *TradeActionService) GetTradeHistoryByTransactionIDShort(input *trade_
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdTradeAction != nil {
+		input.XFlightId = tempFlightIdTradeAction
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.TradeAction.GetTradeHistoryByTransactionIDShort(input, authInfoWriter)

@@ -20,6 +20,14 @@ type AdminModerationRuleService struct {
 	Client           *reportingclient.JusticeReportingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminModerationRule *string
+
+func (aaa *AdminModerationRuleService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminModerationRule = &flightId
 }
 
 func (aaa *AdminModerationRuleService) GetAuthSession() auth.Session {
@@ -181,6 +189,11 @@ func (aaa *AdminModerationRuleService) CreateModerationRuleShort(input *admin_mo
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminModerationRule.CreateModerationRuleShort(input, authInfoWriter)
 	if err != nil {
@@ -205,6 +218,11 @@ func (aaa *AdminModerationRuleService) UpdateModerationRuleShort(input *admin_mo
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminModerationRule.UpdateModerationRuleShort(input, authInfoWriter)
@@ -231,6 +249,11 @@ func (aaa *AdminModerationRuleService) DeleteModerationRuleShort(input *admin_mo
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminModerationRule.DeleteModerationRuleShort(input, authInfoWriter)
 	if err != nil {
@@ -255,6 +278,11 @@ func (aaa *AdminModerationRuleService) UpdateModerationRuleStatusShort(input *ad
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminModerationRule.UpdateModerationRuleStatusShort(input, authInfoWriter)
@@ -281,6 +309,11 @@ func (aaa *AdminModerationRuleService) GetModerationRulesShort(input *admin_mode
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminModerationRule.GetModerationRulesShort(input, authInfoWriter)
 	if err != nil {
@@ -305,6 +338,11 @@ func (aaa *AdminModerationRuleService) GetModerationRuleDetailsShort(input *admi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminModerationRule != nil {
+		input.XFlightId = tempFlightIdAdminModerationRule
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminModerationRule.GetModerationRuleDetailsShort(input, authInfoWriter)

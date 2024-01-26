@@ -61,6 +61,10 @@ func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicy_1",
 		Method:             "PATCH",
@@ -162,6 +166,10 @@ func (a *Client) SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

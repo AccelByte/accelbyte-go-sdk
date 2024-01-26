@@ -80,6 +80,10 @@ func (a *Client) ListGroupConfigurationAdminV1(params *ListGroupConfigurationAdm
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listGroupConfigurationAdminV1",
 		Method:             "GET",
@@ -243,6 +247,10 @@ func (a *Client) CreateGroupConfigurationAdminV1(params *CreateGroupConfiguratio
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -434,6 +442,10 @@ func (a *Client) InitiateGroupConfigurationAdminV1(params *InitiateGroupConfigur
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "initiateGroupConfigurationAdminV1",
 		Method:             "POST",
@@ -594,6 +606,10 @@ func (a *Client) GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdmin
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupConfigurationAdminV1",
 		Method:             "GET",
@@ -733,6 +749,10 @@ func (a *Client) DeleteGroupConfigurationV1(params *DeleteGroupConfigurationV1Pa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -876,6 +896,10 @@ func (a *Client) UpdateGroupConfigurationAdminV1(params *UpdateGroupConfiguratio
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupConfigurationAdminV1",
 		Method:             "PATCH",
@@ -1017,6 +1041,10 @@ func (a *Client) UpdateGroupConfigurationGlobalRuleAdminV1(params *UpdateGroupCo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupConfigurationGlobalRuleAdminV1",
 		Method:             "PUT",
@@ -1156,6 +1184,10 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1(params *DeleteGroupCo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

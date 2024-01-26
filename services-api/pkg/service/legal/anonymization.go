@@ -19,6 +19,14 @@ type AnonymizationService struct {
 	Client           *legalclient.JusticeLegalService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAnonymization *string
+
+func (aaa *AnonymizationService) UpdateFlightId(flightId string) {
+	tempFlightIdAnonymization = &flightId
 }
 
 func (aaa *AnonymizationService) GetAuthSession() auth.Session {
@@ -61,6 +69,11 @@ func (aaa *AnonymizationService) AnonymizeUserAgreementShort(input *anonymizatio
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAnonymization != nil {
+		input.XFlightId = tempFlightIdAnonymization
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Anonymization.AnonymizeUserAgreementShort(input, authInfoWriter)

@@ -64,6 +64,10 @@ func (a *Client) SubmitReport(params *SubmitReportParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "submitReport",
 		Method:             "POST",

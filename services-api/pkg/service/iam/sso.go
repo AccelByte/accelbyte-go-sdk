@@ -19,6 +19,14 @@ type SSOService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSSO *string
+
+func (aaa *SSOService) UpdateFlightId(flightId string) {
+	tempFlightIdSSO = &flightId
 }
 
 func (aaa *SSOService) GetAuthSession() auth.Session {
@@ -82,6 +90,11 @@ func (aaa *SSOService) LoginSSOClientShort(input *sso.LoginSSOClientParams) erro
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSSO != nil {
+		input.XFlightId = tempFlightIdSSO
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.SSO.LoginSSOClientShort(input, authInfoWriter)
 	if err != nil {
@@ -106,6 +119,11 @@ func (aaa *SSOService) LogoutSSOClientShort(input *sso.LogoutSSOClientParams) er
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSSO != nil {
+		input.XFlightId = tempFlightIdSSO
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.SSO.LogoutSSOClientShort(input, authInfoWriter)

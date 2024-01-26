@@ -64,6 +64,10 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOL
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RetrieveAllSSOLoginPlatformCredentialV3",
 		Method:             "GET",
@@ -174,6 +178,10 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -300,6 +308,10 @@ func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCreden
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddSSOLoginPlatformCredential",
 		Method:             "POST",
@@ -419,6 +431,10 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteSSOLoginPlatformCredentialV3",
 		Method:             "DELETE",
@@ -534,6 +550,10 @@ func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredential
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

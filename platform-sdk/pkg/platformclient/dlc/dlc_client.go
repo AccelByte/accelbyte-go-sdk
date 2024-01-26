@@ -87,6 +87,10 @@ func (a *Client) GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDLCItemConfig",
 		Method:             "GET",
@@ -187,6 +191,10 @@ func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -301,6 +309,10 @@ func (a *Client) DeleteDLCItemConfig(params *DeleteDLCItemConfigParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDLCItemConfig",
 		Method:             "DELETE",
@@ -397,6 +409,10 @@ func (a *Client) GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -517,6 +533,10 @@ func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -640,6 +660,10 @@ func (a *Client) DeletePlatformDLCConfig(params *DeletePlatformDLCConfigParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlatformDLCConfig",
 		Method:             "DELETE",
@@ -737,6 +761,10 @@ func (a *Client) GetUserDLCByPlatform(params *GetUserDLCByPlatformParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -839,6 +867,10 @@ func (a *Client) GetUserDLC(params *GetUserDLCParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserDLC",
 		Method:             "GET",
@@ -936,6 +968,10 @@ func (a *Client) GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1041,6 +1077,10 @@ func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1150,6 +1190,10 @@ func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncOculusDLC",
 		Method:             "PUT",
@@ -1255,6 +1299,10 @@ func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1364,6 +1412,10 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *Publ
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSyncPsnDlcInventoryWithMultipleServiceLabels",
 		Method:             "PUT",
@@ -1471,6 +1523,10 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamDLC",
 		Method:             "PUT",
@@ -1576,6 +1632,10 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

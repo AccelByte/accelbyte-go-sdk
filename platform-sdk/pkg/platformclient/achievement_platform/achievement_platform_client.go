@@ -64,6 +64,10 @@ func (a *Client) UnlockSteamUserAchievement(params *UnlockSteamUserAchievementPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "unlockSteamUserAchievement",
 		Method:             "PUT",
@@ -174,6 +178,10 @@ func (a *Client) GetXblUserAchievements(params *GetXblUserAchievementsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getXblUserAchievements",
 		Method:             "GET",
@@ -277,6 +285,10 @@ func (a *Client) UpdateXblUserAchievement(params *UpdateXblUserAchievementParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

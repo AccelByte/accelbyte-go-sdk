@@ -98,6 +98,10 @@ func (a *Client) AdminGetArchivedLeaderboardRankingDataV1Handler(params *AdminGe
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetArchivedLeaderboardRankingDataV1Handler",
 		Method:             "GET",
@@ -223,6 +227,10 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArc
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -357,6 +365,10 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllTimeLeaderboardRankingAdminV1",
 		Method:             "GET",
@@ -486,6 +498,10 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1(params *GetCurrentMont
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -629,6 +645,10 @@ func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1(params *DeleteUserRan
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingByLeaderboardCodeAdminV1",
 		Method:             "DELETE",
@@ -765,6 +785,10 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1(params *GetCurrentSea
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentSeasonLeaderboardRankingAdminV1",
 		Method:             "GET",
@@ -896,6 +920,10 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1(params *GetTodayLeaderboardRa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetTodayLeaderboardRankingAdminV1",
 		Method:             "GET",
@@ -1025,6 +1053,10 @@ func (a *Client) GetUserRankingAdminV1(params *GetUserRankingAdminV1Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1161,6 +1193,10 @@ func (a *Client) UpdateUserPointAdminV1(params *UpdateUserPointAdminV1Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1302,6 +1338,10 @@ func (a *Client) DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingAdminV1",
 		Method:             "DELETE",
@@ -1424,6 +1464,10 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekL
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1553,6 +1597,10 @@ func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Para
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingsAdminV1",
 		Method:             "DELETE",
@@ -1670,6 +1718,10 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderbo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllTimeLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -1779,6 +1831,10 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1Handler(params *GetArchivedL
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1902,6 +1958,10 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMon
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentMonthLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -2011,6 +2071,10 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2124,6 +2188,10 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardR
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetTodayLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -2233,6 +2301,10 @@ func (a *Client) GetUserRankingPublicV1(params *GetUserRankingPublicV1Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2354,6 +2426,10 @@ func (a *Client) DeleteUserRankingPublicV1(params *DeleteUserRankingPublicV1Para
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserRankingPublicV1",
 		Method:             "DELETE",
@@ -2473,6 +2549,10 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeek
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCurrentWeekLeaderboardRankingPublicV1",
 		Method:             "GET",
@@ -2580,6 +2660,10 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV2(params *GetAllTimeLeaderbo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

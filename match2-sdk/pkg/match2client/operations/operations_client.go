@@ -59,6 +59,10 @@ func (a *Client) GetHealthcheckInfo(params *GetHealthcheckInfoParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetHealthcheckInfo",
 		Method:             "GET",
@@ -149,6 +153,10 @@ func (a *Client) GetHealthcheckInfoV1(params *GetHealthcheckInfoV1Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetHealthcheckInfoV1",
 		Method:             "GET",
@@ -237,6 +245,10 @@ func (a *Client) VersionCheckHandler(params *VersionCheckHandlerParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

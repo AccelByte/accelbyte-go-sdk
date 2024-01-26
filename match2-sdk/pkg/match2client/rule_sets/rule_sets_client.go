@@ -64,6 +64,10 @@ func (a *Client) RuleSetList(params *RuleSetListParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RuleSetList",
 		Method:             "GET",
@@ -174,6 +178,10 @@ func (a *Client) CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -298,6 +306,10 @@ func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RuleSetDetails",
 		Method:             "GET",
@@ -405,6 +417,10 @@ func (a *Client) UpdateRuleSet(params *UpdateRuleSetParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -524,6 +540,10 @@ func (a *Client) DeleteRuleSet(params *DeleteRuleSetParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -80,6 +80,10 @@ func (a *Client) AdminGetGlobalConfig(params *AdminGetGlobalConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetGlobalConfig",
 		Method:             "GET",
@@ -197,6 +201,10 @@ func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateGlobalConfig",
 		Method:             "PUT",
@@ -299,6 +307,10 @@ func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteGlobalConfig",
 		Method:             "DELETE",
@@ -399,6 +411,10 @@ func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -518,6 +534,10 @@ func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "notificationWithTemplate",
 		Method:             "POST",
@@ -633,6 +653,10 @@ func (a *Client) GetGameTemplate(params *GetGameTemplateParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -751,6 +775,10 @@ func (a *Client) CreateTemplate(params *CreateTemplateParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createTemplate",
 		Method:             "POST",
@@ -867,6 +895,10 @@ func (a *Client) GetSlugTemplate(params *GetSlugTemplateParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSlugTemplate",
 		Method:             "GET",
@@ -977,6 +1009,10 @@ func (a *Client) DeleteTemplateSlug(params *DeleteTemplateSlugParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1091,6 +1127,10 @@ func (a *Client) GetLocalizationTemplate(params *GetLocalizationTemplateParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocalizationTemplate",
 		Method:             "GET",
@@ -1201,6 +1241,10 @@ func (a *Client) UpdateLocalizationTemplate(params *UpdateLocalizationTemplatePa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1315,6 +1359,10 @@ func (a *Client) DeleteTemplateLocalization(params *DeleteTemplateLocalizationPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTemplateLocalization",
 		Method:             "DELETE",
@@ -1425,6 +1473,10 @@ func (a *Client) PublishTemplate(params *PublishTemplateParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

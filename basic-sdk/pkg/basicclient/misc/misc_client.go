@@ -81,6 +81,10 @@ func (a *Client) GetCountries(params *GetCountriesParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountries",
 		Method:             "GET",
@@ -191,6 +195,10 @@ func (a *Client) GetCountryGroups(params *GetCountryGroupsParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -314,6 +322,10 @@ func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -442,6 +454,10 @@ func (a *Client) UpdateCountryGroup(params *UpdateCountryGroupParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCountryGroup",
 		Method:             "PUT",
@@ -565,6 +581,10 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCountryGroup",
 		Method:             "DELETE",
@@ -685,6 +705,10 @@ func (a *Client) GetLanguages(params *GetLanguagesParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLanguages",
 		Method:             "GET",
@@ -797,6 +821,10 @@ func (a *Client) GetTimeZones(params *GetTimeZonesParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTimeZones",
 		Method:             "GET",
@@ -904,6 +932,10 @@ func (a *Client) PublicGetTime(params *PublicGetTimeParams) (*PublicGetTimeOK, e
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetTime",
 		Method:             "GET",
@@ -995,6 +1027,10 @@ func (a *Client) PublicGetCountries(params *PublicGetCountriesParams) (*PublicGe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1098,6 +1134,10 @@ func (a *Client) PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGe
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetLanguages",
 		Method:             "GET",
@@ -1197,6 +1237,10 @@ func (a *Client) PublicGetTimeZones(params *PublicGetTimeZonesParams) (*PublicGe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -20,6 +20,14 @@ type EntitlementService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdEntitlement *string
+
+func (aaa *EntitlementService) UpdateFlightId(flightId string) {
+	tempFlightIdEntitlement = &flightId
 }
 
 func (aaa *EntitlementService) GetAuthSession() auth.Session {
@@ -893,6 +901,11 @@ func (aaa *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEn
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.QueryEntitlementsShort(input, authInfoWriter)
 	if err != nil {
@@ -917,6 +930,11 @@ func (aaa *EntitlementService) QueryEntitlements1Short(input *entitlement.QueryE
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.QueryEntitlements1Short(input, authInfoWriter)
@@ -943,6 +961,11 @@ func (aaa *EntitlementService) EnableEntitlementOriginFeatureShort(input *entitl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.EnableEntitlementOriginFeatureShort(input, authInfoWriter)
 	if err != nil {
@@ -967,6 +990,11 @@ func (aaa *EntitlementService) GetEntitlementConfigInfoShort(input *entitlement.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetEntitlementConfigInfoShort(input, authInfoWriter)
@@ -993,6 +1021,11 @@ func (aaa *EntitlementService) GrantEntitlementsShort(input *entitlement.GrantEn
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GrantEntitlementsShort(input, authInfoWriter)
 	if err != nil {
@@ -1017,6 +1050,11 @@ func (aaa *EntitlementService) RevokeEntitlementsShort(input *entitlement.Revoke
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.RevokeEntitlementsShort(input, authInfoWriter)
@@ -1043,6 +1081,11 @@ func (aaa *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitle
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GetEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1067,6 +1110,11 @@ func (aaa *EntitlementService) GetPlatformEntitlementConfigShort(input *entitlem
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetPlatformEntitlementConfigShort(input, authInfoWriter)
@@ -1093,6 +1141,11 @@ func (aaa *EntitlementService) UpdatePlatformEntitlementConfigShort(input *entit
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.UpdatePlatformEntitlementConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1117,6 +1170,11 @@ func (aaa *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Que
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.QueryUserEntitlementsShort(input, authInfoWriter)
@@ -1143,6 +1201,11 @@ func (aaa *EntitlementService) GrantUserEntitlementShort(input *entitlement.Gran
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.Entitlement.GrantUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1167,6 +1230,11 @@ func (aaa *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlem
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserAppEntitlementByAppIDShort(input, authInfoWriter)
@@ -1193,6 +1261,11 @@ func (aaa *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.QueryUserEntitlementsByAppTypeShort(input, authInfoWriter)
 	if err != nil {
@@ -1217,6 +1290,11 @@ func (aaa *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlemen
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementByItemIDShort(input, authInfoWriter)
@@ -1243,6 +1321,11 @@ func (aaa *EntitlementService) GetUserActiveEntitlementsByItemIdsShort(input *en
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GetUserActiveEntitlementsByItemIdsShort(input, authInfoWriter)
 	if err != nil {
@@ -1267,6 +1350,11 @@ func (aaa *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.G
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementBySkuShort(input, authInfoWriter)
@@ -1293,6 +1381,11 @@ func (aaa *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.ExistsAnyUserActiveEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1317,6 +1410,11 @@ func (aaa *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.ExistsAnyUserActiveEntitlementByItemIdsShort(input, authInfoWriter)
@@ -1343,6 +1441,11 @@ func (aaa *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GetUserAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
@@ -1367,6 +1470,11 @@ func (aaa *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *e
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementOwnershipByItemIDShort(input, authInfoWriter)
@@ -1393,6 +1501,11 @@ func (aaa *EntitlementService) GetUserEntitlementOwnershipByItemIdsShort(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementOwnershipByItemIdsShort(input, authInfoWriter)
 	if err != nil {
@@ -1417,6 +1530,11 @@ func (aaa *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *enti
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementOwnershipBySkuShort(input, authInfoWriter)
@@ -1443,6 +1561,11 @@ func (aaa *EntitlementService) RevokeAllEntitlementsShort(input *entitlement.Rev
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.RevokeAllEntitlementsShort(input, authInfoWriter)
 	if err != nil {
@@ -1467,6 +1590,11 @@ func (aaa *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Re
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.RevokeUserEntitlementsShort(input, authInfoWriter)
@@ -1493,6 +1621,11 @@ func (aaa *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUse
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1517,6 +1650,11 @@ func (aaa *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Upd
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.UpdateUserEntitlementShort(input, authInfoWriter)
@@ -1543,6 +1681,11 @@ func (aaa *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Co
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.ConsumeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1567,6 +1710,11 @@ func (aaa *EntitlementService) DisableUserEntitlementShort(input *entitlement.Di
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.DisableUserEntitlementShort(input, authInfoWriter)
@@ -1593,6 +1741,11 @@ func (aaa *EntitlementService) EnableUserEntitlementShort(input *entitlement.Ena
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.EnableUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1617,6 +1770,11 @@ func (aaa *EntitlementService) GetUserEntitlementHistoriesShort(input *entitleme
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.GetUserEntitlementHistoriesShort(input, authInfoWriter)
@@ -1643,6 +1801,11 @@ func (aaa *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Rev
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.RevokeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1667,6 +1830,11 @@ func (aaa *EntitlementService) RevokeUserEntitlementByUseCountShort(input *entit
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.RevokeUserEntitlementByUseCountShort(input, authInfoWriter)
@@ -1693,6 +1861,11 @@ func (aaa *EntitlementService) PreCheckRevokeUserEntitlementByUseCountShort(inpu
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PreCheckRevokeUserEntitlementByUseCountShort(input, authInfoWriter)
 	if err != nil {
@@ -1717,6 +1890,11 @@ func (aaa *EntitlementService) RevokeUseCountShort(input *entitlement.RevokeUseC
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.RevokeUseCountShort(input, authInfoWriter)
@@ -1743,6 +1921,11 @@ func (aaa *EntitlementService) SellUserEntitlementShort(input *entitlement.SellU
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.SellUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1767,6 +1950,11 @@ func (aaa *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *en
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicExistsAnyMyActiveEntitlementShort(input, authInfoWriter)
@@ -1793,6 +1981,11 @@ func (aaa *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(in
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetMyAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
@@ -1817,6 +2010,11 @@ func (aaa *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetMyEntitlementOwnershipByItemIDShort(input, authInfoWriter)
@@ -1843,6 +2041,11 @@ func (aaa *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetMyEntitlementOwnershipBySkuShort(input, authInfoWriter)
 	if err != nil {
@@ -1867,6 +2070,11 @@ func (aaa *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *en
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetEntitlementOwnershipTokenShort(input, authInfoWriter)
@@ -1893,6 +2101,11 @@ func (aaa *EntitlementService) PublicQueryUserEntitlementsShort(input *entitleme
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicQueryUserEntitlementsShort(input, authInfoWriter)
 	if err != nil {
@@ -1917,6 +2130,11 @@ func (aaa *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *en
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserAppEntitlementByAppIDShort(input, authInfoWriter)
@@ -1943,6 +2161,11 @@ func (aaa *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicQueryUserEntitlementsByAppTypeShort(input, authInfoWriter)
 	if err != nil {
@@ -1967,6 +2190,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *enti
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementByItemIDShort(input, authInfoWriter)
@@ -1993,6 +2221,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitle
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementBySkuShort(input, authInfoWriter)
 	if err != nil {
@@ -2017,6 +2250,11 @@ func (aaa *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicExistsAnyUserActiveEntitlementShort(input, authInfoWriter)
@@ -2043,6 +2281,11 @@ func (aaa *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserAppEntitlementOwnershipByAppIDShort(input, authInfoWriter)
 	if err != nil {
@@ -2067,6 +2310,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(in
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemIDShort(input, authInfoWriter)
@@ -2093,6 +2341,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementOwnershipByItemIdsShort(i
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemIdsShort(input, authInfoWriter)
 	if err != nil {
@@ -2117,6 +2370,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementOwnershipBySkuShort(input, authInfoWriter)
@@ -2143,6 +2401,11 @@ func (aaa *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -2168,6 +2431,11 @@ func (aaa *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlem
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Entitlement.PublicConsumeUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -2192,6 +2460,11 @@ func (aaa *EntitlementService) PublicSellUserEntitlementShort(input *entitlement
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicSellUserEntitlementShort(input, authInfoWriter)

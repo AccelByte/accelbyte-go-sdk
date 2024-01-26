@@ -112,6 +112,10 @@ func (a *Client) AdminChatHistory(params *AdminChatHistoryParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminChatHistory",
 		Method:             "GET",
@@ -224,6 +228,10 @@ func (a *Client) AdminCreateNamespaceTopic(params *AdminCreateNamespaceTopicPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateNamespaceTopic",
 		Method:             "POST",
@@ -314,6 +322,10 @@ func (a *Client) AdminTopicList(params *AdminTopicListParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -428,6 +440,10 @@ func (a *Client) AdminCreateTopic(params *AdminCreateTopicParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateTopic",
 		Method:             "POST",
@@ -518,6 +534,10 @@ func (a *Client) AdminChannelTopicList(params *AdminChannelTopicListParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -632,6 +652,10 @@ func (a *Client) AdminChannelTopicSummary(params *AdminChannelTopicSummaryParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminChannelTopicSummary",
 		Method:             "GET",
@@ -742,6 +766,10 @@ func (a *Client) AdminQueryTopicLog(params *AdminQueryTopicLogParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -856,6 +884,10 @@ func (a *Client) AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateTopic",
 		Method:             "PUT",
@@ -948,6 +980,10 @@ func (a *Client) AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteTopic",
 		Method:             "DELETE",
@@ -1038,6 +1074,10 @@ func (a *Client) AdminBanTopicMembers(params *AdminBanTopicMembersParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1150,6 +1190,10 @@ func (a *Client) AdminChannelTopicInfo(params *AdminChannelTopicInfoParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1269,6 +1313,10 @@ func (a *Client) AdminTopicChatHistory(params *AdminTopicChatHistoryParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminTopicChatHistory",
 		Method:             "GET",
@@ -1379,6 +1427,10 @@ func (a *Client) AdminSendChat(params *AdminSendChatParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1493,6 +1545,10 @@ func (a *Client) AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteChat",
 		Method:             "DELETE",
@@ -1603,6 +1659,10 @@ func (a *Client) AdminTopicMembers(params *AdminTopicMembersParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1717,6 +1777,10 @@ func (a *Client) AdminTopicShards(params *AdminTopicShardsParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminTopicShards",
 		Method:             "GET",
@@ -1827,6 +1891,10 @@ func (a *Client) AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1941,6 +2009,10 @@ func (a *Client) AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminAddTopicMember",
 		Method:             "POST",
@@ -2033,6 +2105,10 @@ func (a *Client) AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminRemoveTopicMember",
 		Method:             "DELETE",
@@ -2123,6 +2199,10 @@ func (a *Client) AdminQueryTopic(params *AdminQueryTopicParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2237,6 +2317,10 @@ func (a *Client) AdminQueryUsersTopic(params *AdminQueryUsersTopicParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminQueryUsersTopic",
 		Method:             "GET",
@@ -2347,6 +2431,10 @@ func (a *Client) PublicGetMutedTopics(params *PublicGetMutedTopicsParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2461,6 +2549,10 @@ func (a *Client) PublicTopicList(params *PublicTopicListParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicTopicList",
 		Method:             "GET",
@@ -2571,6 +2663,10 @@ func (a *Client) PublicBanTopicMembers(params *PublicBanTopicMembersParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2685,6 +2781,10 @@ func (a *Client) PublicChatHistory(params *PublicChatHistoryParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicChatHistory",
 		Method:             "GET",
@@ -2795,6 +2895,10 @@ func (a *Client) PublicDeleteChat(params *PublicDeleteChatParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2909,6 +3013,10 @@ func (a *Client) PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicMuteUser",
 		Method:             "PUT",
@@ -3021,6 +3129,10 @@ func (a *Client) PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUnbanTopicMembers",
 		Method:             "POST",
@@ -3131,6 +3243,10 @@ func (a *Client) PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

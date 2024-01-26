@@ -72,6 +72,10 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryFulfillmentHistories",
 		Method:             "GET",
@@ -170,6 +174,10 @@ func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -287,6 +295,10 @@ func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "redeemCode",
 		Method:             "POST",
@@ -402,6 +414,10 @@ func (a *Client) PreCheckFulfillItem(params *PreCheckFulfillItemParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "preCheckFulfillItem",
 		Method:             "POST",
@@ -510,6 +526,10 @@ func (a *Client) FulfillRewards(params *FulfillRewardsParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -625,6 +645,10 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -746,6 +770,10 @@ func (a *Client) FulfillRewardsV2(params *FulfillRewardsV2Params, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

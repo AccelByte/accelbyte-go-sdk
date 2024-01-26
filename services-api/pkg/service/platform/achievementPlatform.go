@@ -20,6 +20,14 @@ type AchievementPlatformService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAchievementPlatform *string
+
+func (aaa *AchievementPlatformService) UpdateFlightId(flightId string) {
+	tempFlightIdAchievementPlatform = &flightId
 }
 
 func (aaa *AchievementPlatformService) GetAuthSession() auth.Session {
@@ -100,6 +108,11 @@ func (aaa *AchievementPlatformService) UnlockSteamUserAchievementShort(input *ac
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAchievementPlatform != nil {
+		input.XFlightId = tempFlightIdAchievementPlatform
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AchievementPlatform.UnlockSteamUserAchievementShort(input, authInfoWriter)
 	if err != nil {
@@ -125,6 +138,11 @@ func (aaa *AchievementPlatformService) GetXblUserAchievementsShort(input *achiev
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAchievementPlatform != nil {
+		input.XFlightId = tempFlightIdAchievementPlatform
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AchievementPlatform.GetXblUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
@@ -149,6 +167,11 @@ func (aaa *AchievementPlatformService) UpdateXblUserAchievementShort(input *achi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAchievementPlatform != nil {
+		input.XFlightId = tempFlightIdAchievementPlatform
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AchievementPlatform.UpdateXblUserAchievementShort(input, authInfoWriter)

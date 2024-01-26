@@ -56,6 +56,10 @@ func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetRecentPlayer",
 		Method:             "GET",

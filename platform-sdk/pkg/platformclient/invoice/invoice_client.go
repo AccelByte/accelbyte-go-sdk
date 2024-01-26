@@ -63,6 +63,10 @@ func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadInvoiceDetails",
 		Method:             "GET",
@@ -161,6 +165,10 @@ func (a *Client) GenerateInvoiceSummary(params *GenerateInvoiceSummaryParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

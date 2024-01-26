@@ -20,6 +20,14 @@ type EventRegistryService struct {
 	Client           *eventlogclient.JusticeEventlogService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdEventRegistry *string
+
+func (aaa *EventRegistryService) UpdateFlightId(flightId string) {
+	tempFlightIdEventRegistry = &flightId
 }
 
 func (aaa *EventRegistryService) GetAuthSession() auth.Session {
@@ -211,6 +219,11 @@ func (aaa *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_re
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -235,6 +248,11 @@ func (aaa *EventRegistryService) RegisterEventHandlerShort(input *event_registry
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.EventRegistry.RegisterEventHandlerShort(input, authInfoWriter)
@@ -261,6 +279,11 @@ func (aaa *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_r
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -285,6 +308,11 @@ func (aaa *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_re
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, authInfoWriter)
@@ -311,6 +339,11 @@ func (aaa *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.EventRegistry.UnregisterEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -335,6 +368,11 @@ func (aaa *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEventRegistry != nil {
+		input.XFlightId = tempFlightIdEventRegistry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, authInfoWriter)

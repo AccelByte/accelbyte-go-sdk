@@ -63,6 +63,10 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getConfig",
 		Method:             "GET",
@@ -171,6 +175,10 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteConfig",
 		Method:             "DELETE",
@@ -267,6 +275,10 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

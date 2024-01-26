@@ -62,6 +62,10 @@ func (a *Client) ImageList(params *ImageListParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ImageList",
 		Method:             "GET",
@@ -176,6 +180,10 @@ func (a *Client) ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ImageGet",
 		Method:             "GET",
@@ -288,6 +296,10 @@ func (a *Client) ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

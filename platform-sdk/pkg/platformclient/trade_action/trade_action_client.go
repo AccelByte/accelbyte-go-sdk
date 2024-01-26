@@ -84,6 +84,10 @@ func (a *Client) Commit(params *CommitParams, authInfo runtime.ClientAuthInfoWri
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "commit",
 		Method:             "POST",
@@ -205,6 +209,10 @@ func (a *Client) GetTradeHistoryByCriteria(params *GetTradeHistoryByCriteriaPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTradeHistoryByCriteria",
 		Method:             "GET",
@@ -305,6 +313,10 @@ func (a *Client) GetTradeHistoryByTransactionID(params *GetTradeHistoryByTransac
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

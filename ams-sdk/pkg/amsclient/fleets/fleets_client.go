@@ -70,6 +70,10 @@ func (a *Client) FleetList(params *FleetListParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FleetList",
 		Method:             "GET",
@@ -167,6 +171,10 @@ func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -283,6 +291,10 @@ func (a *Client) FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FleetGet",
 		Method:             "GET",
@@ -395,6 +407,10 @@ func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -516,6 +532,10 @@ func (a *Client) FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FleetDelete",
 		Method:             "DELETE",
@@ -628,6 +648,10 @@ func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "FleetServers",
 		Method:             "GET",
@@ -738,6 +762,10 @@ func (a *Client) FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -857,6 +885,10 @@ func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

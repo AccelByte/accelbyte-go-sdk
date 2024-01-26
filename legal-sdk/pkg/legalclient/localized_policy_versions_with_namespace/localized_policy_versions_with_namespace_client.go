@@ -71,6 +71,10 @@ func (a *Client) RetrieveLocalizedPolicyVersions1(params *RetrieveLocalizedPolic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLocalizedPolicyVersions_1",
 		Method:             "GET",
@@ -167,6 +171,10 @@ func (a *Client) CreateLocalizedPolicyVersion1(params *CreateLocalizedPolicyVers
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -277,6 +285,10 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSingleLocalizedPolicyVersion_1",
 		Method:             "GET",
@@ -378,6 +390,10 @@ func (a *Client) UpdateLocalizedPolicyVersion1(params *UpdateLocalizedPolicyVers
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -483,6 +499,10 @@ func (a *Client) RequestPresignedURL1(params *RequestPresignedURL1Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "requestPresignedURL_1",
 		Method:             "POST",
@@ -586,6 +606,10 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy_1",
 		Method:             "PATCH",
@@ -680,6 +704,10 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion3(params *RetrieveSingleLoc
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

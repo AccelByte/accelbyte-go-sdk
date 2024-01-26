@@ -20,6 +20,14 @@ type PublicTagsService struct {
 	Client           *inventoryclient.JusticeInventoryService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicTags *string
+
+func (aaa *PublicTagsService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicTags = &flightId
 }
 
 func (aaa *PublicTagsService) GetAuthSession() auth.Session {
@@ -65,6 +73,11 @@ func (aaa *PublicTagsService) PublicListTagsShort(input *public_tags.PublicListT
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicTags != nil {
+		input.XFlightId = tempFlightIdPublicTags
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicTags.PublicListTagsShort(input, authInfoWriter)

@@ -110,6 +110,10 @@ func (a *Client) GetUserProfileInfoByPublicID(params *GetUserProfileInfoByPublic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserProfileInfoByPublicId",
 		Method:             "GET",
@@ -231,6 +235,10 @@ func (a *Client) AdminGetUserProfilePublicInfoByIds(params *AdminGetUserProfileP
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetUserProfilePublicInfoByIds",
 		Method:             "POST",
@@ -336,6 +344,10 @@ func (a *Client) GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -460,6 +472,10 @@ func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserProfile",
 		Method:             "PUT",
@@ -580,6 +596,10 @@ func (a *Client) DeleteUserProfile(params *DeleteUserProfileParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -704,6 +724,10 @@ func (a *Client) GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCustomAttributesInfo",
 		Method:             "GET",
@@ -820,6 +844,10 @@ func (a *Client) UpdateCustomAttributesPartially(params *UpdateCustomAttributesP
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -945,6 +973,10 @@ func (a *Client) GetPrivateCustomAttributesInfo(params *GetPrivateCustomAttribut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPrivateCustomAttributesInfo",
 		Method:             "GET",
@@ -1061,6 +1093,10 @@ func (a *Client) UpdatePrivateCustomAttributesPartially(params *UpdatePrivateCus
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1186,6 +1222,10 @@ func (a *Client) UpdateUserProfileStatus(params *UpdateUserProfileStatusParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserProfileStatus",
 		Method:             "PATCH",
@@ -1307,6 +1347,10 @@ func (a *Client) PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfil
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfilePublicInfoByIds",
 		Method:             "GET",
@@ -1407,6 +1451,10 @@ func (a *Client) PublicGetUserProfileInfoByPublicID(params *PublicGetUserProfile
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1521,6 +1569,10 @@ func (a *Client) GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1655,6 +1707,10 @@ func (a *Client) UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1792,6 +1848,10 @@ func (a *Client) CreateMyProfile(params *CreateMyProfileParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createMyProfile",
 		Method:             "POST",
@@ -1926,6 +1986,10 @@ func (a *Client) GetMyPrivateCustomAttributesInfo(params *GetMyPrivateCustomAttr
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMyPrivateCustomAttributesInfo",
 		Method:             "GET",
@@ -2042,6 +2106,10 @@ func (a *Client) UpdateMyPrivateCustomAttributesPartially(params *UpdateMyPrivat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2167,6 +2235,10 @@ func (a *Client) GetMyZipCode(params *GetMyZipCodeParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMyZipCode",
 		Method:             "GET",
@@ -2277,6 +2349,10 @@ func (a *Client) UpdateMyZipCode(params *UpdateMyZipCodeParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2394,6 +2470,10 @@ func (a *Client) PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2518,6 +2598,10 @@ func (a *Client) PublicUpdateUserProfile(params *PublicUpdateUserProfileParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2646,6 +2730,10 @@ func (a *Client) PublicCreateUserProfile(params *PublicCreateUserProfileParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserProfile",
 		Method:             "POST",
@@ -2769,6 +2857,10 @@ func (a *Client) PublicGetCustomAttributesInfo(params *PublicGetCustomAttributes
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCustomAttributesInfo",
 		Method:             "GET",
@@ -2872,6 +2964,10 @@ func (a *Client) PublicUpdateCustomAttributesPartially(params *PublicUpdateCusto
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2996,6 +3092,10 @@ func (a *Client) PublicGetUserProfilePublicInfo(params *PublicGetUserProfilePubl
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfilePublicInfo",
 		Method:             "GET",
@@ -3103,6 +3203,10 @@ func (a *Client) PublicUpdateUserProfileStatus(params *PublicUpdateUserProfileSt
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

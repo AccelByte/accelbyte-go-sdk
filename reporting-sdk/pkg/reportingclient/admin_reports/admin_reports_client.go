@@ -61,6 +61,10 @@ func (a *Client) ListReports(params *ListReportsParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listReports",
 		Method:             "GET",
@@ -166,6 +170,10 @@ func (a *Client) AdminSubmitReport(params *AdminSubmitReportParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

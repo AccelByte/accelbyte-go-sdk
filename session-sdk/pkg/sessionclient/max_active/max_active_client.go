@@ -59,6 +59,10 @@ func (a *Client) AdminGetMemberActiveSession(params *AdminGetMemberActiveSession
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetMemberActiveSession",
 		Method:             "GET",
@@ -166,6 +170,10 @@ func (a *Client) AdminReconcileMaxActiveSession(params *AdminReconcileMaxActiveS
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

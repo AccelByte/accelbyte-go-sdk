@@ -62,6 +62,10 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetThirdPartyConfig",
 		Method:             "GET",
@@ -174,6 +178,10 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateThirdPartyConfig",
 		Method:             "PUT",
@@ -284,6 +292,10 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -403,6 +415,10 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

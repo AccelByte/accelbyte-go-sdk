@@ -78,6 +78,10 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStats",
 		Method:             "GET",
@@ -191,6 +195,10 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -328,6 +336,10 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStats",
 		Method:             "GET",
@@ -439,6 +451,10 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -559,6 +575,10 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryStats",
 		Method:             "GET",
@@ -670,6 +690,10 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -789,6 +813,10 @@ func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStat",
 		Method:             "DELETE",
@@ -904,6 +932,10 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1028,6 +1060,10 @@ func (a *Client) DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTiedStat",
 		Method:             "DELETE",
@@ -1150,6 +1186,10 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

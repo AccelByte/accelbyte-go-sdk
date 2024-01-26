@@ -69,6 +69,10 @@ func (a *Client) RetrievePolicies(params *RetrievePoliciesParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicies",
 		Method:             "GET",
@@ -165,6 +169,10 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -270,6 +278,10 @@ func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy_2",
 		Method:             "PATCH",
@@ -373,6 +385,10 @@ func (a *Client) RetrieveLatestPolicies(params *RetrieveLatestPoliciesParams) (*
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -481,6 +497,10 @@ func (a *Client) RetrieveLatestPoliciesPublic(params *RetrieveLatestPoliciesPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -603,6 +623,10 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *Retri
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

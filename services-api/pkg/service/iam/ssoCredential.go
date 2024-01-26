@@ -20,6 +20,14 @@ type SSOCredentialService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSSOCredential *string
+
+func (aaa *SSOCredentialService) UpdateFlightId(flightId string) {
+	tempFlightIdSSOCredential = &flightId
 }
 
 func (aaa *SSOCredentialService) GetAuthSession() auth.Session {
@@ -185,6 +193,11 @@ func (aaa *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(in
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSSOCredential != nil {
+		input.XFlightId = tempFlightIdSSOCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.SSOCredential.RetrieveAllSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
@@ -209,6 +222,11 @@ func (aaa *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSSOCredential != nil {
+		input.XFlightId = tempFlightIdSSOCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.SSOCredential.RetrieveSSOLoginPlatformCredentialShort(input, authInfoWriter)
@@ -235,6 +253,11 @@ func (aaa *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *sso_c
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSSOCredential != nil {
+		input.XFlightId = tempFlightIdSSOCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.SSOCredential.AddSSOLoginPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
@@ -260,6 +283,11 @@ func (aaa *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSSOCredential != nil {
+		input.XFlightId = tempFlightIdSSOCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.SSOCredential.DeleteSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
@@ -284,6 +312,11 @@ func (aaa *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *sso_cre
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSSOCredential != nil {
+		input.XFlightId = tempFlightIdSSOCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.SSOCredential.UpdateSSOPlatformCredentialShort(input, authInfoWriter)

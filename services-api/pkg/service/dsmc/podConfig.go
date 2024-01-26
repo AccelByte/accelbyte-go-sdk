@@ -20,6 +20,14 @@ type PodConfigService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPodConfig *string
+
+func (aaa *PodConfigService) UpdateFlightId(flightId string) {
+	tempFlightIdPodConfig = &flightId
 }
 
 func (aaa *PodConfigService) GetAuthSession() auth.Session {
@@ -277,6 +285,11 @@ func (aaa *PodConfigService) GetLowestInstanceSpecShort(input *pod_config.GetLow
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PodConfig.GetLowestInstanceSpecShort(input, authInfoWriter)
 	if err != nil {
@@ -301,6 +314,11 @@ func (aaa *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodCon
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PodConfig.GetAllPodConfigShort(input, authInfoWriter)
@@ -327,6 +345,11 @@ func (aaa *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigPar
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PodConfig.GetPodConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -351,6 +374,11 @@ func (aaa *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodCon
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.PodConfig.CreatePodConfigShort(input, authInfoWriter)
@@ -377,6 +405,11 @@ func (aaa *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodCon
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.PodConfig.DeletePodConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -401,6 +434,11 @@ func (aaa *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodCon
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PodConfig.UpdatePodConfigShort(input, authInfoWriter)
@@ -427,6 +465,11 @@ func (aaa *PodConfigService) GetAllPodConfigClientShort(input *pod_config.GetAll
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PodConfig.GetAllPodConfigClientShort(input, authInfoWriter)
 	if err != nil {
@@ -452,6 +495,11 @@ func (aaa *PodConfigService) CreatePodConfigClientShort(input *pod_config.Create
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.PodConfig.CreatePodConfigClientShort(input, authInfoWriter)
 	if err != nil {
@@ -476,6 +524,11 @@ func (aaa *PodConfigService) DeletePodConfigClientShort(input *pod_config.Delete
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPodConfig != nil {
+		input.XFlightId = tempFlightIdPodConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.PodConfig.DeletePodConfigClientShort(input, authInfoWriter)

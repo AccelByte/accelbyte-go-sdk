@@ -71,6 +71,10 @@ func (a *Client) ListViews(params *ListViewsParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listViews",
 		Method:             "GET",
@@ -199,6 +203,10 @@ func (a *Client) CreateView(params *CreateViewParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -341,6 +349,10 @@ func (a *Client) GetView(params *GetViewParams, authInfo runtime.ClientAuthInfoW
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getView",
 		Method:             "GET",
@@ -464,6 +476,10 @@ func (a *Client) UpdateView(params *UpdateViewParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -605,6 +621,10 @@ func (a *Client) DeleteView(params *DeleteViewParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteView",
 		Method:             "DELETE",
@@ -716,6 +736,10 @@ func (a *Client) PublicListViews(params *PublicListViewsParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

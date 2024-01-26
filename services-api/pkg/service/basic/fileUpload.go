@@ -20,6 +20,14 @@ type FileUploadService struct {
 	Client           *basicclient.JusticeBasicService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdFileUpload *string
+
+func (aaa *FileUploadService) UpdateFlightId(flightId string) {
+	tempFlightIdFileUpload = &flightId
 }
 
 func (aaa *FileUploadService) GetAuthSession() auth.Session {
@@ -156,6 +164,11 @@ func (aaa *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdFileUpload != nil {
+		input.XFlightId = tempFlightIdFileUpload
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.FileUpload.GeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
@@ -180,6 +193,11 @@ func (aaa *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdFileUpload != nil {
+		input.XFlightId = tempFlightIdFileUpload
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.FileUpload.GeneratedUserUploadContentURLShort(input, authInfoWriter)
@@ -206,6 +224,11 @@ func (aaa *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.P
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdFileUpload != nil {
+		input.XFlightId = tempFlightIdFileUpload
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.FileUpload.PublicGeneratedUploadURLShort(input, authInfoWriter)
 	if err != nil {
@@ -230,6 +253,11 @@ func (aaa *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *fi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdFileUpload != nil {
+		input.XFlightId = tempFlightIdFileUpload
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, authInfoWriter)

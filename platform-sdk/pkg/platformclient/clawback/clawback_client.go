@@ -62,6 +62,10 @@ func (a *Client) QueryIAPClawbackHistory(params *QueryIAPClawbackHistoryParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryIAPClawbackHistory",
 		Method:             "GET",
@@ -160,6 +164,10 @@ func (a *Client) MockPlayStationStreamEvent(params *MockPlayStationStreamEventPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

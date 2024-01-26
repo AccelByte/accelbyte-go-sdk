@@ -155,6 +155,10 @@ func (a *Client) ListItemTypeConfigs(params *ListItemTypeConfigsParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listItemTypeConfigs",
 		Method:             "GET",
@@ -253,6 +257,10 @@ func (a *Client) CreateItemTypeConfig(params *CreateItemTypeConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -370,6 +378,10 @@ func (a *Client) SearchItemTypeConfig(params *SearchItemTypeConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "searchItemTypeConfig",
 		Method:             "GET",
@@ -477,6 +489,10 @@ func (a *Client) GetItemTypeConfig(params *GetItemTypeConfigParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemTypeConfig",
 		Method:             "GET",
@@ -580,6 +596,10 @@ func (a *Client) UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -694,6 +714,10 @@ func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteItemTypeConfig",
 		Method:             "DELETE",
@@ -798,6 +822,10 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1155,6 +1183,10 @@ func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createItem",
 		Method:             "POST",
@@ -1508,6 +1540,10 @@ func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemByAppId",
 		Method:             "GET",
@@ -1613,6 +1649,10 @@ func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1727,6 +1767,10 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listBasicItemsByFeatures",
 		Method:             "GET",
@@ -1827,6 +1871,10 @@ func (a *Client) GetItems(params *GetItemsParams, authInfo runtime.ClientAuthInf
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1936,6 +1984,10 @@ func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemBySku",
 		Method:             "GET",
@@ -2043,6 +2095,10 @@ func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItemBySku",
 		Method:             "GET",
@@ -2145,6 +2201,10 @@ func (a *Client) GetEstimatedPrice(params *GetEstimatedPriceParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEstimatedPrice",
 		Method:             "GET",
@@ -2245,6 +2305,10 @@ func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2354,6 +2418,10 @@ func (a *Client) GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getBulkItemIdBySkus",
 		Method:             "GET",
@@ -2454,6 +2522,10 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2562,6 +2634,10 @@ func (a *Client) GetAvailablePredicateTypes(params *GetAvailablePredicateTypesPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAvailablePredicateTypes",
 		Method:             "GET",
@@ -2663,6 +2739,10 @@ func (a *Client) ValidateItemPurchaseCondition(params *ValidateItemPurchaseCondi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "validateItemPurchaseCondition",
 		Method:             "POST",
@@ -2761,6 +2841,10 @@ func (a *Client) BulkUpdateRegionData(params *BulkUpdateRegionDataParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2883,6 +2967,10 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "searchItems",
 		Method:             "GET",
@@ -2988,6 +3076,10 @@ func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3100,6 +3192,10 @@ func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoW
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3440,6 +3536,10 @@ func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3799,6 +3899,10 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteItem",
 		Method:             "DELETE",
@@ -3907,6 +4011,10 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireItem",
 		Method:             "PUT",
@@ -4011,6 +4119,10 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4200,6 +4312,10 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4405,6 +4521,10 @@ func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableItem",
 		Method:             "PUT",
@@ -4515,6 +4635,10 @@ func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemDynamicData",
 		Method:             "GET",
@@ -4618,6 +4742,10 @@ func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4730,6 +4858,10 @@ func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "featureItem",
 		Method:             "PUT",
@@ -4838,6 +4970,10 @@ func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4951,6 +5087,10 @@ func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItem",
 		Method:             "GET",
@@ -5051,6 +5191,10 @@ func (a *Client) UpdateItemPurchaseCondition(params *UpdateItemPurchaseCondition
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5168,6 +5312,10 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "returnItem",
 		Method:             "PUT",
@@ -5279,6 +5427,10 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemByAppId",
 		Method:             "GET",
@@ -5386,6 +5538,10 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5502,6 +5658,10 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemBySku",
 		Method:             "GET",
@@ -5603,6 +5763,10 @@ func (a *Client) PublicGetEstimatedPrice(params *PublicGetEstimatedPriceParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5708,6 +5872,10 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkGetItems",
 		Method:             "GET",
@@ -5811,6 +5979,10 @@ func (a *Client) PublicValidateItemPurchaseCondition(params *PublicValidateItemP
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicValidateItemPurchaseCondition",
 		Method:             "POST",
@@ -5912,6 +6084,10 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -6023,6 +6199,10 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetApp",
 		Method:             "GET",
@@ -6125,6 +6305,10 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -6231,6 +6415,10 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -6343,6 +6531,10 @@ func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

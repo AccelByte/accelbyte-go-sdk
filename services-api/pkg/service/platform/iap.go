@@ -20,6 +20,14 @@ type IAPService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdIAP *string
+
+func (aaa *IAPService) UpdateFlightId(flightId string) {
+	tempFlightIdIAP = &flightId
 }
 
 func (aaa *IAPService) GetAuthSession() auth.Session {
@@ -762,6 +770,11 @@ func (aaa *IAPService) GetAppleIAPConfigShort(input *iap.GetAppleIAPConfigParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.GetAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -786,6 +799,11 @@ func (aaa *IAPService) UpdateAppleIAPConfigShort(input *iap.UpdateAppleIAPConfig
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdateAppleIAPConfigShort(input, authInfoWriter)
@@ -812,6 +830,11 @@ func (aaa *IAPService) DeleteAppleIAPConfigShort(input *iap.DeleteAppleIAPConfig
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.DeleteAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -836,6 +859,11 @@ func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *iap.GetEpicGamesIAPConf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.GetEpicGamesIAPConfigShort(input, authInfoWriter)
@@ -862,6 +890,11 @@ func (aaa *IAPService) UpdateEpicGamesIAPConfigShort(input *iap.UpdateEpicGamesI
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.UpdateEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -886,6 +919,11 @@ func (aaa *IAPService) DeleteEpicGamesIAPConfigShort(input *iap.DeleteEpicGamesI
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.DeleteEpicGamesIAPConfigShort(input, authInfoWriter)
@@ -912,6 +950,11 @@ func (aaa *IAPService) GetGoogleIAPConfigShort(input *iap.GetGoogleIAPConfigPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.GetGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -936,6 +979,11 @@ func (aaa *IAPService) UpdateGoogleIAPConfigShort(input *iap.UpdateGoogleIAPConf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdateGoogleIAPConfigShort(input, authInfoWriter)
@@ -962,6 +1010,11 @@ func (aaa *IAPService) DeleteGoogleIAPConfigShort(input *iap.DeleteGoogleIAPConf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.DeleteGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -986,6 +1039,11 @@ func (aaa *IAPService) UpdateGoogleP12FileShort(input *iap.UpdateGoogleP12FilePa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdateGoogleP12FileShort(input, authInfoWriter)
@@ -1012,6 +1070,11 @@ func (aaa *IAPService) GetIAPItemConfigShort(input *iap.GetIAPItemConfigParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.GetIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1036,6 +1099,11 @@ func (aaa *IAPService) UpdateIAPItemConfigShort(input *iap.UpdateIAPItemConfigPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdateIAPItemConfigShort(input, authInfoWriter)
@@ -1062,6 +1130,11 @@ func (aaa *IAPService) DeleteIAPItemConfigShort(input *iap.DeleteIAPItemConfigPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.DeleteIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1086,6 +1159,11 @@ func (aaa *IAPService) GetOculusIAPConfigShort(input *iap.GetOculusIAPConfigPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.GetOculusIAPConfigShort(input, authInfoWriter)
@@ -1112,6 +1190,11 @@ func (aaa *IAPService) UpdateOculusIAPConfigShort(input *iap.UpdateOculusIAPConf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.UpdateOculusIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1136,6 +1219,11 @@ func (aaa *IAPService) DeleteOculusIAPConfigShort(input *iap.DeleteOculusIAPConf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.DeleteOculusIAPConfigShort(input, authInfoWriter)
@@ -1162,6 +1250,11 @@ func (aaa *IAPService) GetPlayStationIAPConfigShort(input *iap.GetPlayStationIAP
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.GetPlayStationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1186,6 +1279,11 @@ func (aaa *IAPService) UpdatePlaystationIAPConfigShort(input *iap.UpdatePlaystat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdatePlaystationIAPConfigShort(input, authInfoWriter)
@@ -1212,6 +1310,11 @@ func (aaa *IAPService) DeletePlaystationIAPConfigShort(input *iap.DeletePlaystat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.DeletePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1236,6 +1339,11 @@ func (aaa *IAPService) ValidateExistedPlaystationIAPConfigShort(input *iap.Valid
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.ValidateExistedPlaystationIAPConfigShort(input, authInfoWriter)
@@ -1262,6 +1370,11 @@ func (aaa *IAPService) ValidatePlaystationIAPConfigShort(input *iap.ValidatePlay
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.ValidatePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1286,6 +1399,11 @@ func (aaa *IAPService) GetSteamIAPConfigShort(input *iap.GetSteamIAPConfigParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.GetSteamIAPConfigShort(input, authInfoWriter)
@@ -1312,6 +1430,11 @@ func (aaa *IAPService) UpdateSteamIAPConfigShort(input *iap.UpdateSteamIAPConfig
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.UpdateSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1336,6 +1459,11 @@ func (aaa *IAPService) DeleteSteamIAPConfigShort(input *iap.DeleteSteamIAPConfig
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.DeleteSteamIAPConfigShort(input, authInfoWriter)
@@ -1362,6 +1490,11 @@ func (aaa *IAPService) GetTwitchIAPConfigShort(input *iap.GetTwitchIAPConfigPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.GetTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1386,6 +1519,11 @@ func (aaa *IAPService) UpdateTwitchIAPConfigShort(input *iap.UpdateTwitchIAPConf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.UpdateTwitchIAPConfigShort(input, authInfoWriter)
@@ -1412,6 +1550,11 @@ func (aaa *IAPService) DeleteTwitchIAPConfigShort(input *iap.DeleteTwitchIAPConf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.DeleteTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1436,6 +1579,11 @@ func (aaa *IAPService) GetXblIAPConfigShort(input *iap.GetXblIAPConfigParams) (*
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.GetXblIAPConfigShort(input, authInfoWriter)
@@ -1462,6 +1610,11 @@ func (aaa *IAPService) UpdateXblIAPConfigShort(input *iap.UpdateXblIAPConfigPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.UpdateXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -1486,6 +1639,11 @@ func (aaa *IAPService) DeleteXblAPConfigShort(input *iap.DeleteXblAPConfigParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.DeleteXblAPConfigShort(input, authInfoWriter)
@@ -1512,6 +1670,11 @@ func (aaa *IAPService) UpdateXblBPCertFileShort(input *iap.UpdateXblBPCertFilePa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.UpdateXblBPCertFileShort(input, authInfoWriter)
 	if err != nil {
@@ -1536,6 +1699,11 @@ func (aaa *IAPService) QueryUserIAPOrdersShort(input *iap.QueryUserIAPOrdersPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.QueryUserIAPOrdersShort(input, authInfoWriter)
@@ -1562,6 +1730,11 @@ func (aaa *IAPService) QueryAllUserIAPOrdersShort(input *iap.QueryAllUserIAPOrde
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.QueryAllUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
@@ -1586,6 +1759,11 @@ func (aaa *IAPService) QueryUserIAPConsumeHistoryShort(input *iap.QueryUserIAPCo
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.QueryUserIAPConsumeHistoryShort(input, authInfoWriter)
@@ -1612,6 +1790,11 @@ func (aaa *IAPService) MockFulfillIAPItemShort(input *iap.MockFulfillIAPItemPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.MockFulfillIAPItemShort(input, authInfoWriter)
 	if err != nil {
@@ -1636,6 +1819,11 @@ func (aaa *IAPService) GetIAPItemMappingShort(input *iap.GetIAPItemMappingParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.GetIAPItemMappingShort(input, authInfoWriter)
@@ -1662,6 +1850,11 @@ func (aaa *IAPService) SyncTwitchDropsEntitlementShort(input *iap.SyncTwitchDrop
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
 	if err != nil {
@@ -1686,6 +1879,11 @@ func (aaa *IAPService) PublicFulfillAppleIAPItemShort(input *iap.PublicFulfillAp
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.PublicFulfillAppleIAPItemShort(input, authInfoWriter)
@@ -1712,6 +1910,11 @@ func (aaa *IAPService) SyncEpicGamesInventoryShort(input *iap.SyncEpicGamesInven
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.SyncEpicGamesInventoryShort(input, authInfoWriter)
 	if err != nil {
@@ -1736,6 +1939,11 @@ func (aaa *IAPService) PublicFulfillGoogleIAPItemShort(input *iap.PublicFulfillG
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
@@ -1762,6 +1970,11 @@ func (aaa *IAPService) SyncOculusConsumableEntitlementsShort(input *iap.SyncOcul
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.SyncOculusConsumableEntitlementsShort(input, authInfoWriter)
 	if err != nil {
@@ -1786,6 +1999,11 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreShort(input *iap.PublicRec
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
@@ -1812,6 +2030,11 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabelsS
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.IAP.PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(input, authInfoWriter)
 	if err != nil {
@@ -1836,6 +2059,11 @@ func (aaa *IAPService) SyncSteamInventoryShort(input *iap.SyncSteamInventoryPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.IAP.SyncSteamInventoryShort(input, authInfoWriter)
@@ -1862,6 +2090,11 @@ func (aaa *IAPService) SyncTwitchDropsEntitlement1Short(input *iap.SyncTwitchDro
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.IAP.SyncTwitchDropsEntitlement1Short(input, authInfoWriter)
 	if err != nil {
@@ -1886,6 +2119,11 @@ func (aaa *IAPService) SyncXboxInventoryShort(input *iap.SyncXboxInventoryParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.IAP.SyncXboxInventoryShort(input, authInfoWriter)

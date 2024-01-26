@@ -63,6 +63,10 @@ func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "batchDownloadServerLogs",
 		Method:             "POST",
@@ -171,6 +175,10 @@ func (a *Client) ListAllTerminatedServers(params *ListAllTerminatedServersParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

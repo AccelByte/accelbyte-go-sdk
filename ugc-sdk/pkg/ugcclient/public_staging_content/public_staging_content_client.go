@@ -62,6 +62,10 @@ func (a *Client) ListUserStagingContents(params *ListUserStagingContentsParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ListUserStagingContents",
 		Method:             "GET",
@@ -174,6 +178,10 @@ func (a *Client) GetUserStagingContentByID(params *GetUserStagingContentByIDPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserStagingContentByID",
 		Method:             "GET",
@@ -284,6 +292,10 @@ func (a *Client) UpdateStagingContent(params *UpdateStagingContentParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -401,6 +413,10 @@ func (a *Client) DeleteUserStagingContentByID(params *DeleteUserStagingContentBy
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

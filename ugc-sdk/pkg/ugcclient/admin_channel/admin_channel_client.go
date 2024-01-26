@@ -68,6 +68,10 @@ func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetChannel",
 		Method:             "GET",
@@ -173,6 +177,10 @@ func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -287,6 +295,10 @@ func (a *Client) SingleAdminUpdateChannel(params *SingleAdminUpdateChannelParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminUpdateChannel",
 		Method:             "PUT",
@@ -399,6 +411,10 @@ func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteChannel",
 		Method:             "DELETE",
@@ -506,6 +522,10 @@ func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetChannel",
 		Method:             "GET",
@@ -611,6 +631,10 @@ func (a *Client) AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -723,6 +747,10 @@ func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

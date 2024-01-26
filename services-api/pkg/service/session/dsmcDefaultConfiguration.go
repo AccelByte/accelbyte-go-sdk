@@ -20,6 +20,14 @@ type DSMCDefaultConfigurationService struct {
 	Client           *sessionclient.JusticeSessionService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdDSMCDefaultConfiguration *string
+
+func (aaa *DSMCDefaultConfigurationService) UpdateFlightId(flightId string) {
+	tempFlightIdDSMCDefaultConfiguration = &flightId
 }
 
 func (aaa *DSMCDefaultConfigurationService) GetAuthSession() auth.Session {
@@ -74,6 +82,11 @@ func (aaa *DSMCDefaultConfigurationService) AdminGetDSMCConfigurationDefaultShor
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDSMCDefaultConfiguration != nil {
+		input.XFlightId = tempFlightIdDSMCDefaultConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DsmcDefaultConfiguration.AdminGetDSMCConfigurationDefaultShort(input, authInfoWriter)

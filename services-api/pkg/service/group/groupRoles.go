@@ -20,6 +20,14 @@ type GroupRolesService struct {
 	Client           *groupclient.JusticeGroupService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdGroupRoles *string
+
+func (aaa *GroupRolesService) UpdateFlightId(flightId string) {
+	tempFlightIdGroupRoles = &flightId
 }
 
 func (aaa *GroupRolesService) GetAuthSession() auth.Session {
@@ -388,6 +396,11 @@ func (aaa *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GroupRoles.GetMemberRolesListAdminV1Short(input, authInfoWriter)
 	if err != nil {
@@ -412,6 +425,11 @@ func (aaa *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.Cr
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.GroupRoles.CreateMemberRoleAdminV1Short(input, authInfoWriter)
@@ -438,6 +456,11 @@ func (aaa *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GroupRoles.GetSingleMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
@@ -462,6 +485,11 @@ func (aaa *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.De
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.GroupRoles.DeleteMemberRoleAdminV1Short(input, authInfoWriter)
@@ -488,6 +516,11 @@ func (aaa *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.Up
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GroupRoles.UpdateMemberRoleAdminV1Short(input, authInfoWriter)
 	if err != nil {
@@ -512,6 +545,11 @@ func (aaa *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *grou
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GroupRoles.UpdateMemberRolePermissionAdminV1Short(input, authInfoWriter)
@@ -538,6 +576,11 @@ func (aaa *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GroupRoles.GetMemberRolesListPublicV1Short(input, authInfoWriter)
 	if err != nil {
@@ -562,6 +605,11 @@ func (aaa *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.U
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GroupRoles.UpdateMemberRolePublicV1Short(input, authInfoWriter)
@@ -588,6 +636,11 @@ func (aaa *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.D
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV1Short(input, authInfoWriter)
 	if err != nil {
@@ -612,6 +665,11 @@ func (aaa *GroupRolesService) GetMemberRolesListPublicV2Short(input *group_roles
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GroupRoles.GetMemberRolesListPublicV2Short(input, authInfoWriter)
@@ -638,6 +696,11 @@ func (aaa *GroupRolesService) UpdateMemberRolePublicV2Short(input *group_roles.U
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GroupRoles.UpdateMemberRolePublicV2Short(input, authInfoWriter)
 	if err != nil {
@@ -662,6 +725,11 @@ func (aaa *GroupRolesService) DeleteMemberRolePublicV2Short(input *group_roles.D
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGroupRoles != nil {
+		input.XFlightId = tempFlightIdGroupRoles
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.GroupRoles.DeleteMemberRolePublicV2Short(input, authInfoWriter)

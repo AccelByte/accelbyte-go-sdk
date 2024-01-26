@@ -20,6 +20,14 @@ type CountryService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdCountry *string
+
+func (aaa *CountryService) UpdateFlightId(flightId string) {
+	tempFlightIdCountry = &flightId
 }
 
 func (aaa *CountryService) GetAuthSession() auth.Session {
@@ -135,6 +143,11 @@ func (aaa *CountryService) AdminGetCountryListV3Short(input *country.AdminGetCou
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCountry != nil {
+		input.XFlightId = tempFlightIdCountry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Country.AdminGetCountryListV3Short(input, authInfoWriter)
 	if err != nil {
@@ -159,6 +172,11 @@ func (aaa *CountryService) AdminGetCountryBlacklistV3Short(input *country.AdminG
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCountry != nil {
+		input.XFlightId = tempFlightIdCountry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Country.AdminGetCountryBlacklistV3Short(input, authInfoWriter)
@@ -185,6 +203,11 @@ func (aaa *CountryService) AdminAddCountryBlacklistV3Short(input *country.AdminA
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCountry != nil {
+		input.XFlightId = tempFlightIdCountry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Country.AdminAddCountryBlacklistV3Short(input, authInfoWriter)
 	if err != nil {
@@ -209,6 +232,11 @@ func (aaa *CountryService) PublicGetCountryListV3Short(input *country.PublicGetC
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCountry != nil {
+		input.XFlightId = tempFlightIdCountry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Country.PublicGetCountryListV3Short(input, authInfoWriter)

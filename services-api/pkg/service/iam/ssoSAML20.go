@@ -19,6 +19,14 @@ type SSOSAML20Service struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSSOSAML20 *string
+
+func (aaa *SSOSAML20Service) UpdateFlightId(flightId string) {
+	tempFlightIdSSOSAML20 = &flightId
 }
 
 func (aaa *SSOSAML20Service) GetAuthSession() auth.Session {
@@ -58,6 +66,11 @@ func (aaa *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *sso_s
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSSOSAML20 != nil {
+		input.XFlightId = tempFlightIdSSOSAML20
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	found, err := aaa.Client.SSOSAML20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfoWriter)

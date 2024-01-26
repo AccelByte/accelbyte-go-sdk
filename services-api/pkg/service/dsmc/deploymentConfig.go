@@ -20,6 +20,14 @@ type DeploymentConfigService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdDeploymentConfig *string
+
+func (aaa *DeploymentConfigService) UpdateFlightId(flightId string) {
+	tempFlightIdDeploymentConfig = &flightId
 }
 
 func (aaa *DeploymentConfigService) GetAuthSession() auth.Session {
@@ -494,6 +502,11 @@ func (aaa *DeploymentConfigService) GetAllDeploymentShort(input *deployment_conf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.GetAllDeploymentShort(input, authInfoWriter)
 	if err != nil {
@@ -518,6 +531,11 @@ func (aaa *DeploymentConfigService) GetDeploymentShort(input *deployment_config.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DeploymentConfig.GetDeploymentShort(input, authInfoWriter)
@@ -544,6 +562,11 @@ func (aaa *DeploymentConfigService) CreateDeploymentShort(input *deployment_conf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.DeploymentConfig.CreateDeploymentShort(input, authInfoWriter)
 	if err != nil {
@@ -568,6 +591,11 @@ func (aaa *DeploymentConfigService) DeleteDeploymentShort(input *deployment_conf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.DeploymentConfig.DeleteDeploymentShort(input, authInfoWriter)
@@ -594,6 +622,11 @@ func (aaa *DeploymentConfigService) UpdateDeploymentShort(input *deployment_conf
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.UpdateDeploymentShort(input, authInfoWriter)
 	if err != nil {
@@ -618,6 +651,11 @@ func (aaa *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploym
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, authInfoWriter)
@@ -644,6 +682,11 @@ func (aaa *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deploym
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
@@ -668,6 +711,11 @@ func (aaa *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploym
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, authInfoWriter)
@@ -694,6 +742,11 @@ func (aaa *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploym
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
@@ -718,6 +771,11 @@ func (aaa *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deploym
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, authInfoWriter)
@@ -744,6 +802,11 @@ func (aaa *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploym
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
@@ -768,6 +831,11 @@ func (aaa *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *dep
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, authInfoWriter)
@@ -794,6 +862,11 @@ func (aaa *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *dep
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
@@ -818,6 +891,11 @@ func (aaa *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *dep
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, authInfoWriter)
@@ -844,6 +922,11 @@ func (aaa *DeploymentConfigService) GetAllDeploymentClientShort(input *deploymen
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DeploymentConfig.GetAllDeploymentClientShort(input, authInfoWriter)
 	if err != nil {
@@ -869,6 +952,11 @@ func (aaa *DeploymentConfigService) CreateDeploymentClientShort(input *deploymen
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.DeploymentConfig.CreateDeploymentClientShort(input, authInfoWriter)
 	if err != nil {
@@ -893,6 +981,11 @@ func (aaa *DeploymentConfigService) DeleteDeploymentClientShort(input *deploymen
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.DeploymentConfig.DeleteDeploymentClientShort(input, authInfoWriter)

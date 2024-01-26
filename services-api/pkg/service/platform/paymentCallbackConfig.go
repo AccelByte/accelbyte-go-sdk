@@ -20,6 +20,14 @@ type PaymentCallbackConfigService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPaymentCallbackConfig *string
+
+func (aaa *PaymentCallbackConfigService) UpdateFlightId(flightId string) {
+	tempFlightIdPaymentCallbackConfig = &flightId
 }
 
 func (aaa *PaymentCallbackConfigService) GetAuthSession() auth.Session {
@@ -77,6 +85,11 @@ func (aaa *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *pa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPaymentCallbackConfig != nil {
+		input.XFlightId = tempFlightIdPaymentCallbackConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PaymentCallbackConfig.GetPaymentCallbackConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -101,6 +114,11 @@ func (aaa *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPaymentCallbackConfig != nil {
+		input.XFlightId = tempFlightIdPaymentCallbackConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfigShort(input, authInfoWriter)

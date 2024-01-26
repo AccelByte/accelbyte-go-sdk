@@ -74,6 +74,10 @@ func (a *Client) AdminGetListPersonalDataRequest(params *AdminGetListPersonalDat
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListPersonalDataRequest",
 		Method:             "GET",
@@ -195,6 +199,10 @@ func (a *Client) AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetUserPersonalDataRequests",
 		Method:             "GET",
@@ -309,6 +317,10 @@ func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -427,6 +439,10 @@ func (a *Client) AdminCancelUserPersonalDataRequest(params *AdminCancelUserPerso
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCancelUserPersonalDataRequest",
 		Method:             "DELETE",
@@ -541,6 +557,10 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -659,6 +679,10 @@ func (a *Client) PublicGetUserPersonalDataRequests(params *PublicGetUserPersonal
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserPersonalDataRequests",
 		Method:             "GET",
@@ -770,6 +794,10 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicRequestDataRetrieval",
 		Method:             "POST",
@@ -879,6 +907,10 @@ func (a *Client) PublicCancelUserPersonalDataRequest(params *PublicCancelUserPer
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -995,6 +1027,10 @@ func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

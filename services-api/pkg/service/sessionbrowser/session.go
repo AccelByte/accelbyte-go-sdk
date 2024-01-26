@@ -20,6 +20,14 @@ type SessionService struct {
 	Client           *sessionbrowserclient.JusticeSessionbrowserService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSession *string
+
+func (aaa *SessionService) UpdateFlightId(flightId string) {
+	tempFlightIdSession = &flightId
 }
 
 func (aaa *SessionService) GetAuthSession() auth.Session {
@@ -491,6 +499,11 @@ func (aaa *SessionService) AdminQuerySessionShort(input *session.AdminQuerySessi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.AdminQuerySessionShort(input, authInfoWriter)
 	if err != nil {
@@ -515,6 +528,11 @@ func (aaa *SessionService) GetTotalActiveSessionShort(input *session.GetTotalAct
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.GetTotalActiveSessionShort(input, authInfoWriter)
@@ -541,6 +559,11 @@ func (aaa *SessionService) GetActiveCustomGameSessionsShort(input *session.GetAc
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.GetActiveCustomGameSessionsShort(input, authInfoWriter)
 	if err != nil {
@@ -565,6 +588,11 @@ func (aaa *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.GetActiveMatchmakingGameSessionsShort(input, authInfoWriter)
@@ -591,6 +619,11 @@ func (aaa *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.AdminGetSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -615,6 +648,11 @@ func (aaa *SessionService) AdminDeleteSessionShort(input *session.AdminDeleteSes
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.AdminDeleteSessionShort(input, authInfoWriter)
@@ -641,6 +679,11 @@ func (aaa *SessionService) AdminSearchSessionsV2Short(input *session.AdminSearch
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.AdminSearchSessionsV2Short(input, authInfoWriter)
 	if err != nil {
@@ -665,6 +708,11 @@ func (aaa *SessionService) GetSessionHistoryDetailedShort(input *session.GetSess
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.GetSessionHistoryDetailedShort(input, authInfoWriter)
@@ -691,6 +739,11 @@ func (aaa *SessionService) UserQuerySessionShort(input *session.UserQuerySession
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.UserQuerySessionShort(input, authInfoWriter)
 	if err != nil {
@@ -715,6 +768,11 @@ func (aaa *SessionService) CreateSessionShort(input *session.CreateSessionParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.CreateSessionShort(input, authInfoWriter)
@@ -741,6 +799,11 @@ func (aaa *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByU
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.GetSessionByUserIDsShort(input, authInfoWriter)
 	if err != nil {
@@ -765,6 +828,11 @@ func (aaa *SessionService) GetSessionShort(input *session.GetSessionParams) (*se
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.GetSessionShort(input, authInfoWriter)
@@ -791,6 +859,11 @@ func (aaa *SessionService) UpdateSessionShort(input *session.UpdateSessionParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.UpdateSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -815,6 +888,11 @@ func (aaa *SessionService) DeleteSessionShort(input *session.DeleteSessionParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.DeleteSessionShort(input, authInfoWriter)
@@ -841,6 +919,11 @@ func (aaa *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.JoinSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -865,6 +948,11 @@ func (aaa *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessio
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.DeleteSessionLocalDSShort(input, authInfoWriter)
@@ -891,6 +979,11 @@ func (aaa *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSes
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.AddPlayerToSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -915,6 +1008,11 @@ func (aaa *SessionService) RemovePlayerFromSessionShort(input *session.RemovePla
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
@@ -941,6 +1039,11 @@ func (aaa *SessionService) UpdateSettingsShort(input *session.UpdateSettingsPara
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.UpdateSettingsShort(input, authInfoWriter)
 	if err != nil {
@@ -965,6 +1068,11 @@ func (aaa *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Session.GetRecentPlayerShort(input, authInfoWriter)

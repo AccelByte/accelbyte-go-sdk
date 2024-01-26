@@ -20,6 +20,14 @@ type PublicService struct {
 	Client           *qosmclient.JusticeQosmService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublic *string
+
+func (aaa *PublicService) UpdateFlightId(flightId string) {
+	tempFlightIdPublic = &flightId
 }
 
 func (aaa *PublicService) GetAuthSession() auth.Session {
@@ -80,6 +88,11 @@ func (aaa *PublicService) ListServerPerNamespaceShort(input *public.ListServerPe
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublic != nil {
+		input.XFlightId = tempFlightIdPublic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Public.ListServerPerNamespaceShort(input, authInfoWriter)
 	if err != nil {
@@ -104,6 +117,11 @@ func (aaa *PublicService) ListServerShort(input *public.ListServerParams) (*qosm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublic != nil {
+		input.XFlightId = tempFlightIdPublic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Public.ListServerShort(input, authInfoWriter)

@@ -20,6 +20,14 @@ type UtilityService struct {
 	Client           *legalclient.JusticeLegalService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdUtility *string
+
+func (aaa *UtilityService) UpdateFlightId(flightId string) {
+	tempFlightIdUtility = &flightId
 }
 
 func (aaa *UtilityService) GetAuthSession() auth.Session {
@@ -59,6 +67,11 @@ func (aaa *UtilityService) CheckReadinessShort(input *utility.CheckReadinessPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdUtility != nil {
+		input.XFlightId = tempFlightIdUtility
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Utility.CheckReadinessShort(input, authInfoWriter)

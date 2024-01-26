@@ -58,6 +58,10 @@ func (a *Client) UpdatePlayTimeWeight(params *UpdatePlayTimeWeightParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdatePlayTimeWeight",
 		Method:             "PATCH",

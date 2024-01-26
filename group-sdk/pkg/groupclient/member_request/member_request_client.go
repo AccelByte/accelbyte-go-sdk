@@ -86,6 +86,10 @@ func (a *Client) GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupJoinRequestPublicV1",
 		Method:             "GET",
@@ -237,6 +241,10 @@ func (a *Client) GetGroupInvitationRequestPublicV1(params *GetGroupInvitationReq
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupInvitationRequestPublicV1",
 		Method:             "GET",
@@ -386,6 +394,10 @@ func (a *Client) GetGroupInviteRequestPublicV2(params *GetGroupInviteRequestPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -544,6 +556,10 @@ func (a *Client) GetGroupJoinRequestPublicV2(params *GetGroupJoinRequestPublicV2
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupJoinRequestPublicV2",
 		Method:             "GET",
@@ -693,6 +709,10 @@ func (a *Client) GetMyGroupJoinRequestV2(params *GetMyGroupJoinRequestV2Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

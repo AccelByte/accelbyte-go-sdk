@@ -67,6 +67,10 @@ func (a *Client) ListFulfillmentScripts(params *ListFulfillmentScriptsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listFulfillmentScripts",
 		Method:             "GET",
@@ -164,6 +168,10 @@ func (a *Client) GetFulfillmentScript(params *GetFulfillmentScriptParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -274,6 +282,10 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createFulfillmentScript",
 		Method:             "POST",
@@ -381,6 +393,10 @@ func (a *Client) DeleteFulfillmentScript(params *DeleteFulfillmentScriptParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteFulfillmentScript",
 		Method:             "DELETE",
@@ -477,6 +493,10 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

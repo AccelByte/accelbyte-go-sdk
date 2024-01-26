@@ -84,6 +84,10 @@ func (a *Client) GetStatCycles(params *GetStatCyclesParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStatCycles",
 		Method:             "GET",
@@ -204,6 +208,10 @@ func (a *Client) CreateStatCycle(params *CreateStatCycleParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -338,6 +346,10 @@ func (a *Client) BulkGetStatCycle(params *BulkGetStatCycleParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkGetStatCycle",
 		Method:             "POST",
@@ -461,6 +473,10 @@ func (a *Client) ExportStatCycle(params *ExportStatCycleParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStatCycle",
 		Method:             "GET",
@@ -572,6 +588,10 @@ func (a *Client) ImportStatCycle(params *ImportStatCycleParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -692,6 +712,10 @@ func (a *Client) GetStatCycle(params *GetStatCycleParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStatCycle",
 		Method:             "GET",
@@ -808,6 +832,10 @@ func (a *Client) UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -942,6 +970,10 @@ func (a *Client) DeleteStatCycle(params *DeleteStatCycleParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStatCycle",
 		Method:             "DELETE",
@@ -1056,6 +1088,10 @@ func (a *Client) BulkAddStats(params *BulkAddStatsParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1185,6 +1221,10 @@ func (a *Client) StopStatCycle(params *StopStatCycleParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "stopStatCycle",
 		Method:             "PUT",
@@ -1308,6 +1348,10 @@ func (a *Client) GetStatCycles1(params *GetStatCycles1Params, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStatCycles_1",
 		Method:             "GET",
@@ -1419,6 +1463,10 @@ func (a *Client) BulkGetStatCycle1(params *BulkGetStatCycle1Params, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1542,6 +1590,10 @@ func (a *Client) GetStatCycle1(params *GetStatCycle1Params, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

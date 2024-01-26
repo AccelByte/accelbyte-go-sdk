@@ -165,6 +165,10 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
@@ -265,6 +269,10 @@ func (a *Client) QueryEntitlements1(params *QueryEntitlements1Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -368,6 +376,10 @@ func (a *Client) EnableEntitlementOriginFeature(params *EnableEntitlementOriginF
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableEntitlementOriginFeature",
 		Method:             "PUT",
@@ -468,6 +480,10 @@ func (a *Client) GetEntitlementConfigInfo(params *GetEntitlementConfigInfoParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEntitlementConfigInfo",
 		Method:             "GET",
@@ -566,6 +582,10 @@ func (a *Client) GrantEntitlements(params *GrantEntitlementsParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -671,6 +691,10 @@ func (a *Client) RevokeEntitlements(params *RevokeEntitlementsParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -779,6 +803,10 @@ func (a *Client) GetEntitlement(params *GetEntitlementParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEntitlement",
 		Method:             "GET",
@@ -885,6 +913,10 @@ func (a *Client) GetPlatformEntitlementConfig(params *GetPlatformEntitlementConf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformEntitlementConfig",
 		Method:             "GET",
@@ -983,6 +1015,10 @@ func (a *Client) UpdatePlatformEntitlementConfig(params *UpdatePlatformEntitleme
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1091,6 +1127,10 @@ func (a *Client) QueryUserEntitlements(params *QueryUserEntitlementsParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlements",
 		Method:             "GET",
@@ -1190,6 +1230,10 @@ func (a *Client) GrantUserEntitlement(params *GrantUserEntitlementParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1302,6 +1346,10 @@ func (a *Client) GetUserAppEntitlementByAppID(params *GetUserAppEntitlementByApp
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementByAppId",
 		Method:             "GET",
@@ -1408,6 +1456,10 @@ func (a *Client) QueryUserEntitlementsByAppType(params *QueryUserEntitlementsByA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlementsByAppType",
 		Method:             "GET",
@@ -1507,6 +1559,10 @@ func (a *Client) GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1614,6 +1670,10 @@ func (a *Client) GetUserActiveEntitlementsByItemIds(params *GetUserActiveEntitle
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserActiveEntitlementsByItemIds",
 		Method:             "GET",
@@ -1712,6 +1772,10 @@ func (a *Client) GetUserEntitlementBySku(params *GetUserEntitlementBySkuParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1819,6 +1883,10 @@ func (a *Client) ExistsAnyUserActiveEntitlement(params *ExistsAnyUserActiveEntit
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlement",
 		Method:             "GET",
@@ -1917,6 +1985,10 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIds(params *ExistsAnyUserAc
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2019,6 +2091,10 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppID(params *GetUserAppEntitle
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementOwnershipByAppId",
 		Method:             "GET",
@@ -2117,6 +2193,10 @@ func (a *Client) GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementO
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2219,6 +2299,10 @@ func (a *Client) GetUserEntitlementOwnershipByItemIds(params *GetUserEntitlement
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipByItemIds",
 		Method:             "GET",
@@ -2317,6 +2401,10 @@ func (a *Client) GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwne
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2419,6 +2507,10 @@ func (a *Client) RevokeAllEntitlements(params *RevokeAllEntitlementsParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeAllEntitlements",
 		Method:             "PUT",
@@ -2517,6 +2609,10 @@ func (a *Client) RevokeUserEntitlements(params *RevokeUserEntitlementsParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2618,6 +2714,10 @@ func (a *Client) GetUserEntitlement(params *GetUserEntitlementParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2724,6 +2824,10 @@ func (a *Client) UpdateUserEntitlement(params *UpdateUserEntitlementParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2839,6 +2943,10 @@ func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2957,6 +3065,10 @@ func (a *Client) DisableUserEntitlement(params *DisableUserEntitlementParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserEntitlement",
 		Method:             "PUT",
@@ -3066,6 +3178,10 @@ func (a *Client) EnableUserEntitlement(params *EnableUserEntitlementParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3179,6 +3295,10 @@ func (a *Client) GetUserEntitlementHistories(params *GetUserEntitlementHistories
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementHistories",
 		Method:             "GET",
@@ -3278,6 +3398,10 @@ func (a *Client) RevokeUserEntitlement(params *RevokeUserEntitlementParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3385,6 +3509,10 @@ func (a *Client) RevokeUserEntitlementByUseCount(params *RevokeUserEntitlementBy
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlementByUseCount",
 		Method:             "POST",
@@ -3488,6 +3616,10 @@ func (a *Client) PreCheckRevokeUserEntitlementByUseCount(params *PreCheckRevokeU
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3595,6 +3727,10 @@ func (a *Client) RevokeUseCount(params *RevokeUseCountParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUseCount",
 		Method:             "PUT",
@@ -3696,6 +3832,10 @@ func (a *Client) SellUserEntitlement(params *SellUserEntitlementParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3806,6 +3946,10 @@ func (a *Client) PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyAct
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyMyActiveEntitlement",
 		Method:             "GET",
@@ -3906,6 +4050,10 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAp
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4013,6 +4161,10 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemID(params *PublicGetMyEnti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipByItemId",
 		Method:             "GET",
@@ -4117,6 +4269,10 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitle
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4296,6 +4452,10 @@ func (a *Client) PublicGetEntitlementOwnershipToken(params *PublicGetEntitlement
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetEntitlementOwnershipToken",
 		Method:             "GET",
@@ -4471,6 +4631,10 @@ func (a *Client) PublicQueryUserEntitlements(params *PublicQueryUserEntitlements
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlements",
 		Method:             "GET",
@@ -4570,6 +4734,10 @@ func (a *Client) PublicGetUserAppEntitlementByAppID(params *PublicGetUserAppEnti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4678,6 +4846,10 @@ func (a *Client) PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEnt
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlementsByAppType",
 		Method:             "GET",
@@ -4777,6 +4949,10 @@ func (a *Client) PublicGetUserEntitlementByItemID(params *PublicGetUserEntitleme
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4884,6 +5060,10 @@ func (a *Client) PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementB
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementBySku",
 		Method:             "GET",
@@ -4989,6 +5169,10 @@ func (a *Client) PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUse
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyUserActiveEntitlement",
 		Method:             "GET",
@@ -5087,6 +5271,10 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUs
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5189,6 +5377,10 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUser
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipByItemId",
 		Method:             "GET",
@@ -5287,6 +5479,10 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIds(params *PublicGetUse
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5389,6 +5585,10 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEnt
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipBySku",
 		Method:             "GET",
@@ -5488,6 +5688,10 @@ func (a *Client) PublicGetUserEntitlement(params *PublicGetUserEntitlementParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5594,6 +5798,10 @@ func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitleme
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5707,6 +5915,10 @@ func (a *Client) PublicSellUserEntitlement(params *PublicSellUserEntitlementPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

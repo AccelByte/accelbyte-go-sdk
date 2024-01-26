@@ -20,6 +20,14 @@ type MatchmakingOperationsService struct {
 	Client           *matchmakingclient.JusticeMatchmakingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMatchmakingOperations *string
+
+func (aaa *MatchmakingOperationsService) UpdateFlightId(flightId string) {
+	tempFlightIdMatchmakingOperations = &flightId
 }
 
 func (aaa *MatchmakingOperationsService) GetAuthSession() auth.Session {
@@ -105,6 +113,11 @@ func (aaa *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmak
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmakingOperations != nil {
+		input.XFlightId = tempFlightIdMatchmakingOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.MatchmakingOperations.GetHealthcheckInfoShort(input, authInfoWriter)
 	if err != nil {
@@ -129,6 +142,11 @@ func (aaa *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmakin
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmakingOperations != nil {
+		input.XFlightId = tempFlightIdMatchmakingOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchmakingOperations.HandlerV3HealthzShort(input, authInfoWriter)
@@ -155,6 +173,11 @@ func (aaa *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaki
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmakingOperations != nil {
+		input.XFlightId = tempFlightIdMatchmakingOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchmakingOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
@@ -179,6 +202,11 @@ func (aaa *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchma
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmakingOperations != nil {
+		input.XFlightId = tempFlightIdMatchmakingOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchmakingOperations.VersionCheckHandlerShort(input, authInfoWriter)

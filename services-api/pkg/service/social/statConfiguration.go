@@ -22,6 +22,14 @@ type StatConfigurationService struct {
 	Client           *socialclient.JusticeSocialService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdStatConfiguration *string
+
+func (aaa *StatConfigurationService) UpdateFlightId(flightId string) {
+	tempFlightIdStatConfiguration = &flightId
 }
 
 func (aaa *StatConfigurationService) GetAuthSession() auth.Session {
@@ -323,6 +331,11 @@ func (aaa *StatConfigurationService) GetStatsShort(input *stat_configuration.Get
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.StatConfiguration.GetStatsShort(input, authInfoWriter)
 	if err != nil {
@@ -347,6 +360,11 @@ func (aaa *StatConfigurationService) CreateStatShort(input *stat_configuration.C
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.StatConfiguration.CreateStatShort(input, authInfoWriter)
@@ -373,6 +391,11 @@ func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.StatConfiguration.ExportStatsShort(input, authInfoWriter, writer)
 	if err != nil {
@@ -397,6 +420,11 @@ func (aaa *StatConfigurationService) ImportStatsShort(input *stat_configuration.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.StatConfiguration.ImportStatsShort(input, authInfoWriter)
@@ -423,6 +451,11 @@ func (aaa *StatConfigurationService) QueryStatsShort(input *stat_configuration.Q
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.StatConfiguration.QueryStatsShort(input, authInfoWriter)
 	if err != nil {
@@ -447,6 +480,11 @@ func (aaa *StatConfigurationService) GetStatShort(input *stat_configuration.GetS
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.StatConfiguration.GetStatShort(input, authInfoWriter)
@@ -473,6 +511,11 @@ func (aaa *StatConfigurationService) DeleteStatShort(input *stat_configuration.D
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.StatConfiguration.DeleteStatShort(input, authInfoWriter)
 	if err != nil {
@@ -497,6 +540,11 @@ func (aaa *StatConfigurationService) UpdateStatShort(input *stat_configuration.U
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.StatConfiguration.UpdateStatShort(input, authInfoWriter)
@@ -523,6 +571,11 @@ func (aaa *StatConfigurationService) DeleteTiedStatShort(input *stat_configurati
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.StatConfiguration.DeleteTiedStatShort(input, authInfoWriter)
 	if err != nil {
@@ -547,6 +600,11 @@ func (aaa *StatConfigurationService) CreateStat1Short(input *stat_configuration.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStatConfiguration != nil {
+		input.XFlightId = tempFlightIdStatConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.StatConfiguration.CreateStat1Short(input, authInfoWriter)

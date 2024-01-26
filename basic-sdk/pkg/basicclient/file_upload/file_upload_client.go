@@ -67,6 +67,10 @@ func (a *Client) GeneratedUploadURL(params *GeneratedUploadURLParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUploadUrl",
 		Method:             "POST",
@@ -189,6 +193,10 @@ func (a *Client) GeneratedUserUploadContentURL(params *GeneratedUserUploadConten
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -320,6 +328,10 @@ func (a *Client) PublicGeneratedUploadURL(params *PublicGeneratedUploadURLParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUploadUrl",
 		Method:             "POST",
@@ -444,6 +456,10 @@ func (a *Client) PublicGeneratedUserUploadContentURL(params *PublicGeneratedUser
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

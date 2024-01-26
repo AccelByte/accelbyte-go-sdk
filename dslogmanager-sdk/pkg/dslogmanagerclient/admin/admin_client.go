@@ -60,6 +60,10 @@ func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getServerLogs",
 		Method:             "GET",

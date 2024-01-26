@@ -80,6 +80,10 @@ func (a *Client) SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetAllGroups",
 		Method:             "GET",
@@ -185,6 +189,10 @@ func (a *Client) AdminCreateGroup(params *AdminCreateGroupParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -294,6 +302,10 @@ func (a *Client) SingleAdminGetGroup(params *SingleAdminGetGroupParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminGetGroup",
 		Method:             "GET",
@@ -400,6 +412,10 @@ func (a *Client) SingleAdminUpdateGroup(params *SingleAdminUpdateGroupParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -515,6 +531,10 @@ func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SingleAdminDeleteGroup",
 		Method:             "DELETE",
@@ -620,6 +640,10 @@ func (a *Client) SingleAdminGetGroupContents(params *SingleAdminGetGroupContents
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -734,6 +758,10 @@ func (a *Client) AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetAllGroups",
 		Method:             "GET",
@@ -839,6 +867,10 @@ func (a *Client) AdminGetGroup(params *AdminGetGroupParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -947,6 +979,10 @@ func (a *Client) AdminUpdateGroup(params *AdminUpdateGroupParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1062,6 +1098,10 @@ func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteGroup",
 		Method:             "DELETE",
@@ -1167,6 +1207,10 @@ func (a *Client) AdminGetGroupContents(params *AdminGetGroupContentsParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1281,6 +1325,10 @@ func (a *Client) AdminGetOfficialGroupContentsV2(params *AdminGetOfficialGroupCo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetOfficialGroupContentsV2",
 		Method:             "GET",
@@ -1391,6 +1439,10 @@ func (a *Client) AdminGetUserGroupContentsV2(params *AdminGetUserGroupContentsV2
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -20,6 +20,14 @@ type EnvironmentVariablesService struct {
 	Client           *match2client.JusticeMatch2Service
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdEnvironmentVariables *string
+
+func (aaa *EnvironmentVariablesService) UpdateFlightId(flightId string) {
+	tempFlightIdEnvironmentVariables = &flightId
 }
 
 func (aaa *EnvironmentVariablesService) GetAuthSession() auth.Session {
@@ -65,6 +73,11 @@ func (aaa *EnvironmentVariablesService) EnvironmentVariableListShort(input *envi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEnvironmentVariables != nil {
+		input.XFlightId = tempFlightIdEnvironmentVariables
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.EnvironmentVariables.EnvironmentVariableListShort(input, authInfoWriter)

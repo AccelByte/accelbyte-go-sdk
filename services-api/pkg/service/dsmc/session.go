@@ -20,6 +20,14 @@ type SessionService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSession *string
+
+func (aaa *SessionService) UpdateFlightId(flightId string) {
+	tempFlightIdSession = &flightId
 }
 
 func (aaa *SessionService) GetAuthSession() auth.Session {
@@ -159,6 +167,11 @@ func (aaa *SessionService) CreateSessionShort(input *session.CreateSessionParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -183,6 +196,11 @@ func (aaa *SessionService) ClaimServerShort(input *session.ClaimServerParams) er
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Session.ClaimServerShort(input, authInfoWriter)
@@ -209,6 +227,11 @@ func (aaa *SessionService) GetSessionShort(input *session.GetSessionParams) (*ds
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -233,6 +256,11 @@ func (aaa *SessionService) CancelSessionShort(input *session.CancelSessionParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSession != nil {
+		input.XFlightId = tempFlightIdSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Session.CancelSessionShort(input, authInfoWriter)

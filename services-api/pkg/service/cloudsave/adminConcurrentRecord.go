@@ -20,6 +20,14 @@ type AdminConcurrentRecordService struct {
 	Client           *cloudsaveclient.JusticeCloudsaveService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminConcurrentRecord *string
+
+func (aaa *AdminConcurrentRecordService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminConcurrentRecord = &flightId
 }
 
 func (aaa *AdminConcurrentRecordService) GetAuthSession() auth.Session {
@@ -200,6 +208,11 @@ func (aaa *AdminConcurrentRecordService) AdminPutAdminGameRecordConcurrentHandle
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminConcurrentRecord != nil {
+		input.XFlightId = tempFlightIdAdminConcurrentRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
@@ -224,6 +237,11 @@ func (aaa *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Sh
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminConcurrentRecord != nil {
+		input.XFlightId = tempFlightIdAdminConcurrentRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Short(input, authInfoWriter)
@@ -250,6 +268,11 @@ func (aaa *AdminConcurrentRecordService) AdminPutAdminPlayerRecordConcurrentHand
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminConcurrentRecord != nil {
+		input.XFlightId = tempFlightIdAdminConcurrentRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutAdminPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
@@ -275,6 +298,11 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerRecordConcurrentHandlerV1
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminConcurrentRecord != nil {
+		input.XFlightId = tempFlightIdAdminConcurrentRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
@@ -299,6 +327,11 @@ func (aaa *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHan
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminConcurrentRecord != nil {
+		input.XFlightId = tempFlightIdAdminConcurrentRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input, authInfoWriter)

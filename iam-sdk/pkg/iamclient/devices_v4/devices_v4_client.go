@@ -78,6 +78,10 @@ func (a *Client) AdminGetDevicesByUserV4(params *AdminGetDevicesByUserV4Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetDevicesByUserV4",
 		Method:             "GET",
@@ -195,6 +199,10 @@ func (a *Client) AdminGetBannedDevicesV4(params *AdminGetBannedDevicesV4Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetBannedDevicesV4",
 		Method:             "GET",
@@ -300,6 +308,10 @@ func (a *Client) AdminGetUserDeviceBansV4(params *AdminGetUserDeviceBansV4Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -412,6 +424,10 @@ func (a *Client) AdminBanDeviceV4(params *AdminBanDeviceV4Params, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -531,6 +547,10 @@ func (a *Client) AdminGetDeviceBanV4(params *AdminGetDeviceBanV4Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetDeviceBanV4",
 		Method:             "GET",
@@ -646,6 +666,10 @@ func (a *Client) AdminUpdateDeviceBanV4(params *AdminUpdateDeviceBanV4Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -770,6 +794,10 @@ func (a *Client) AdminGenerateReportV4(params *AdminGenerateReportV4Params, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGenerateReportV4",
 		Method:             "GET",
@@ -887,6 +915,10 @@ func (a *Client) AdminGetDeviceTypesV4(params *AdminGetDeviceTypesV4Params, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetDeviceTypesV4",
 		Method:             "GET",
@@ -992,6 +1024,10 @@ func (a *Client) AdminGetDeviceBansV4(params *AdminGetDeviceBansV4Params, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1106,6 +1142,10 @@ func (a *Client) AdminDecryptDeviceV4(params *AdminDecryptDeviceV4Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDecryptDeviceV4",
 		Method:             "GET",
@@ -1218,6 +1258,10 @@ func (a *Client) AdminUnbanDeviceV4(params *AdminUnbanDeviceV4Params, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUnbanDeviceV4",
 		Method:             "PUT",
@@ -1328,6 +1372,10 @@ func (a *Client) AdminGetUsersByDeviceV4(params *AdminGetUsersByDeviceV4Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

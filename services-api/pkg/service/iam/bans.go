@@ -20,6 +20,14 @@ type BansService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdBans *string
+
+func (aaa *BansService) UpdateFlightId(flightId string) {
+	tempFlightIdBans = &flightId
 }
 
 func (aaa *BansService) GetAuthSession() auth.Session {
@@ -236,6 +244,11 @@ func (aaa *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamcli
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Bans.GetBansTypeShort(input, authInfoWriter)
 	if err != nil {
@@ -260,6 +273,11 @@ func (aaa *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Bans.GetListBanReasonShort(input, authInfoWriter)
@@ -286,6 +304,11 @@ func (aaa *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Pa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Bans.AdminGetBansTypeV3Short(input, authInfoWriter)
 	if err != nil {
@@ -310,6 +333,11 @@ func (aaa *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBan
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Bans.AdminGetListBanReasonV3Short(input, authInfoWriter)
@@ -336,6 +364,11 @@ func (aaa *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUse
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Bans.AdminGetBannedUsersV3Short(input, authInfoWriter)
 	if err != nil {
@@ -360,6 +393,11 @@ func (aaa *BansService) AdminBanUserBulkV3Short(input *bans.AdminBanUserBulkV3Pa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Bans.AdminBanUserBulkV3Short(input, authInfoWriter)
@@ -386,6 +424,11 @@ func (aaa *BansService) AdminUnbanUserBulkV3Short(input *bans.AdminUnbanUserBulk
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.Bans.AdminUnbanUserBulkV3Short(input, authInfoWriter)
 	if err != nil {
@@ -410,6 +453,11 @@ func (aaa *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGe
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBans != nil {
+		input.XFlightId = tempFlightIdBans
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Bans.AdminGetBansTypeWithNamespaceV3Short(input, authInfoWriter)

@@ -79,6 +79,10 @@ func (a *Client) BulkGetPlayerPublicBinaryRecordsV1(params *BulkGetPlayerPublicB
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkGetPlayerPublicBinaryRecordsV1",
 		Method:             "POST",
@@ -192,6 +196,10 @@ func (a *Client) ListMyBinaryRecordsV1(params *ListMyBinaryRecordsV1Params, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listMyBinaryRecordsV1",
 		Method:             "GET",
@@ -303,6 +311,10 @@ func (a *Client) BulkGetMyBinaryRecordV1(params *BulkGetMyBinaryRecordV1Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -427,6 +439,10 @@ func (a *Client) PostPlayerBinaryRecordV1(params *PostPlayerBinaryRecordV1Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -557,6 +573,10 @@ func (a *Client) ListOtherPlayerPublicBinaryRecordsV1(params *ListOtherPlayerPub
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listOtherPlayerPublicBinaryRecordsV1",
 		Method:             "GET",
@@ -668,6 +688,10 @@ func (a *Client) BulkGetOtherPlayerPublicBinaryRecordsV1(params *BulkGetOtherPla
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -784,6 +808,10 @@ func (a *Client) GetPlayerBinaryRecordV1(params *GetPlayerBinaryRecordV1Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlayerBinaryRecordV1",
 		Method:             "GET",
@@ -895,6 +923,10 @@ func (a *Client) PutPlayerBinaryRecordV1(params *PutPlayerBinaryRecordV1Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1014,6 +1046,10 @@ func (a *Client) DeletePlayerBinaryRecordV1(params *DeletePlayerBinaryRecordV1Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlayerBinaryRecordV1",
 		Method:             "DELETE",
@@ -1129,6 +1165,10 @@ func (a *Client) PutPlayerBinaryRecorMetadataV1(params *PutPlayerBinaryRecorMeta
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1252,6 +1292,10 @@ func (a *Client) PostPlayerBinaryPresignedURLV1(params *PostPlayerBinaryPresigne
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "postPlayerBinaryPresignedURLV1",
 		Method:             "POST",
@@ -1372,6 +1416,10 @@ func (a *Client) GetPlayerPublicBinaryRecordsV1(params *GetPlayerPublicBinaryRec
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

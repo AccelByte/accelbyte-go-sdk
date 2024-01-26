@@ -61,6 +61,10 @@ func (a *Client) RetrieveAcceptedAgreementsForMultiUsers(params *RetrieveAccepte
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAcceptedAgreementsForMultiUsers",
 		Method:             "POST",
@@ -155,6 +159,10 @@ func (a *Client) RetrieveAcceptedAgreements1(params *RetrieveAcceptedAgreements1
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAcceptedAgreements_1",
 		Method:             "GET",
@@ -247,6 +255,10 @@ func (a *Client) RetrieveAllUsersByPolicyVersion1(params *RetrieveAllUsersByPoli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

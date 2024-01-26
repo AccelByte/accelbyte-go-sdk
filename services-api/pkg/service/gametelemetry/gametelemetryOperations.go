@@ -20,6 +20,14 @@ type GametelemetryOperationsService struct {
 	Client           *gametelemetryclient.JusticeGametelemetryService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdGametelemetryOperations *string
+
+func (aaa *GametelemetryOperationsService) UpdateFlightId(flightId string) {
+	tempFlightIdGametelemetryOperations = &flightId
 }
 
 func (aaa *GametelemetryOperationsService) GetAuthSession() auth.Session {
@@ -98,6 +106,11 @@ func (aaa *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Pro
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGametelemetryOperations != nil {
+		input.XFlightId = tempFlightIdGametelemetryOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.GametelemetryOperations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, authInfoWriter)
 	if err != nil {
@@ -124,6 +137,11 @@ func (aaa *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Pr
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGametelemetryOperations != nil {
+		input.XFlightId = tempFlightIdGametelemetryOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GametelemetryOperations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, authInfoWriter)
 	if err != nil {
@@ -149,6 +167,11 @@ func (aaa *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGametelemetryOperations != nil {
+		input.XFlightId = tempFlightIdGametelemetryOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.GametelemetryOperations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, authInfoWriter)

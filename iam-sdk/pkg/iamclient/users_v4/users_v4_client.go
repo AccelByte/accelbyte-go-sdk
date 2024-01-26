@@ -153,6 +153,10 @@ func (a *Client) AdminCreateTestUsersV4(params *AdminCreateTestUsersV4Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCreateTestUsersV4",
 		Method:             "POST",
@@ -260,6 +264,10 @@ func (a *Client) AdminBulkUpdateUserAccountTypeV4(params *AdminBulkUpdateUserAcc
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -380,6 +388,10 @@ func (a *Client) AdminBulkCheckValidUserIDV4(params *AdminBulkCheckValidUserIDV4
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -503,6 +515,10 @@ func (a *Client) AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -638,6 +654,10 @@ func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddre
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateUserEmailAddressV4",
 		Method:             "PUT",
@@ -754,6 +774,10 @@ func (a *Client) AdminDisableUserMFAV4(params *AdminDisableUserMFAV4Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -873,6 +897,10 @@ func (a *Client) AdminListUserRolesV4(params *AdminListUserRolesV4Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListUserRolesV4",
 		Method:             "GET",
@@ -984,6 +1012,10 @@ func (a *Client) AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1110,6 +1142,10 @@ func (a *Client) AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAddUserRoleV4",
 		Method:             "POST",
@@ -1231,6 +1267,10 @@ func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1365,6 +1405,10 @@ func (a *Client) AdminInviteUserNewV4(params *AdminInviteUserNewV4Params, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1511,6 +1555,10 @@ func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateMyUserV4",
 		Method:             "PATCH",
@@ -1628,6 +1676,10 @@ func (a *Client) AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticat
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDisableMyAuthenticatorV4",
 		Method:             "DELETE",
@@ -1743,6 +1795,10 @@ func (a *Client) AdminEnableMyAuthenticatorV4(params *AdminEnableMyAuthenticator
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1868,6 +1924,10 @@ func (a *Client) AdminGenerateMyAuthenticatorKeyV4(params *AdminGenerateMyAuthen
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGenerateMyAuthenticatorKeyV4",
 		Method:             "POST",
@@ -1985,6 +2045,10 @@ func (a *Client) AdminGetMyBackupCodesV4(params *AdminGetMyBackupCodesV4Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2106,6 +2170,10 @@ func (a *Client) AdminGenerateMyBackupCodesV4(params *AdminGenerateMyBackupCodes
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGenerateMyBackupCodesV4",
 		Method:             "POST",
@@ -2222,6 +2290,10 @@ func (a *Client) AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2341,6 +2413,10 @@ func (a *Client) AdminDownloadMyBackupCodesV4(params *AdminDownloadMyBackupCodes
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDownloadMyBackupCodesV4",
 		Method:             "GET",
@@ -2456,6 +2532,10 @@ func (a *Client) AdminEnableMyBackupCodesV4(params *AdminEnableMyBackupCodesV4Pa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2580,6 +2660,10 @@ func (a *Client) AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Para
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminSendMyMFAEmailCodeV4",
 		Method:             "POST",
@@ -2702,6 +2786,10 @@ func (a *Client) AdminDisableMyEmailV4(params *AdminDisableMyEmailV4Params, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDisableMyEmailV4",
 		Method:             "POST",
@@ -2817,6 +2905,10 @@ func (a *Client) AdminEnableMyEmailV4(params *AdminEnableMyEmailV4Params, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2941,6 +3033,10 @@ func (a *Client) AdminGetMyEnabledFactorsV4(params *AdminGetMyEnabledFactorsV4Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetMyEnabledFactorsV4",
 		Method:             "GET",
@@ -3056,6 +3152,10 @@ func (a *Client) AdminMakeFactorMyDefaultV4(params *AdminMakeFactorMyDefaultV4Pa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3187,6 +3287,10 @@ func (a *Client) AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3343,6 +3447,10 @@ func (a *Client) PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicCreateTestUserV4",
 		Method:             "POST",
@@ -3477,6 +3585,10 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3623,6 +3735,10 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateUserFromInvitationV4",
 		Method:             "POST",
@@ -3761,6 +3877,10 @@ func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicUpdateUserV4",
 		Method:             "PATCH",
@@ -3887,6 +4007,10 @@ func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAdd
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4017,6 +4141,10 @@ func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *Publ
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4154,6 +4282,10 @@ func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAcc
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicUpgradeHeadlessAccountV4",
 		Method:             "POST",
@@ -4272,6 +4404,10 @@ func (a *Client) PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthentic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicDisableMyAuthenticatorV4",
 		Method:             "DELETE",
@@ -4387,6 +4523,10 @@ func (a *Client) PublicEnableMyAuthenticatorV4(params *PublicEnableMyAuthenticat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4512,6 +4652,10 @@ func (a *Client) PublicGenerateMyAuthenticatorKeyV4(params *PublicGenerateMyAuth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGenerateMyAuthenticatorKeyV4",
 		Method:             "POST",
@@ -4629,6 +4773,10 @@ func (a *Client) PublicGetMyBackupCodesV4(params *PublicGetMyBackupCodesV4Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4750,6 +4898,10 @@ func (a *Client) PublicGenerateMyBackupCodesV4(params *PublicGenerateMyBackupCod
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGenerateMyBackupCodesV4",
 		Method:             "POST",
@@ -4866,6 +5018,10 @@ func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodes
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4985,6 +5141,10 @@ func (a *Client) PublicDownloadMyBackupCodesV4(params *PublicDownloadMyBackupCod
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicDownloadMyBackupCodesV4",
 		Method:             "GET",
@@ -5100,6 +5260,10 @@ func (a *Client) PublicEnableMyBackupCodesV4(params *PublicEnableMyBackupCodesV4
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5225,6 +5389,10 @@ func (a *Client) PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicRemoveTrustedDeviceV4",
 		Method:             "DELETE",
@@ -5341,6 +5509,10 @@ func (a *Client) PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Pa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5465,6 +5637,10 @@ func (a *Client) PublicDisableMyEmailV4(params *PublicDisableMyEmailV4Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicDisableMyEmailV4",
 		Method:             "POST",
@@ -5580,6 +5756,10 @@ func (a *Client) PublicEnableMyEmailV4(params *PublicEnableMyEmailV4Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5704,6 +5884,10 @@ func (a *Client) PublicGetMyEnabledFactorsV4(params *PublicGetMyEnabledFactorsV4
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetMyEnabledFactorsV4",
 		Method:             "GET",
@@ -5819,6 +6003,10 @@ func (a *Client) PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5939,6 +6127,10 @@ func (a *Client) PublicGetUserPublicInfoByUserIDV4(params *PublicGetUserPublicIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserPublicInfoByUserIdV4",
 		Method:             "GET",
@@ -6054,6 +6246,10 @@ func (a *Client) PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

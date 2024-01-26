@@ -105,6 +105,10 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "putGameRecordConcurrentHandlerV1",
 		Method:             "PUT",
@@ -310,6 +314,10 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1(params *PutPlayerRecordConcu
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -522,6 +530,10 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

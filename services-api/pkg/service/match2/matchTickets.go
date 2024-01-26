@@ -20,6 +20,14 @@ type MatchTicketsService struct {
 	Client           *match2client.JusticeMatch2Service
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMatchTickets *string
+
+func (aaa *MatchTicketsService) UpdateFlightId(flightId string) {
+	tempFlightIdMatchTickets = &flightId
 }
 
 func (aaa *MatchTicketsService) GetAuthSession() auth.Session {
@@ -153,6 +161,11 @@ func (aaa *MatchTicketsService) CreateMatchTicketShort(input *match_tickets.Crea
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchTickets != nil {
+		input.XFlightId = tempFlightIdMatchTickets
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.MatchTickets.CreateMatchTicketShort(input, authInfoWriter)
 	if err != nil {
@@ -177,6 +190,11 @@ func (aaa *MatchTicketsService) GetMyMatchTicketsShort(input *match_tickets.GetM
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchTickets != nil {
+		input.XFlightId = tempFlightIdMatchTickets
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MatchTickets.GetMyMatchTicketsShort(input, authInfoWriter)
@@ -203,6 +221,11 @@ func (aaa *MatchTicketsService) MatchTicketDetailsShort(input *match_tickets.Mat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchTickets != nil {
+		input.XFlightId = tempFlightIdMatchTickets
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchTickets.MatchTicketDetailsShort(input, authInfoWriter)
 	if err != nil {
@@ -227,6 +250,11 @@ func (aaa *MatchTicketsService) DeleteMatchTicketShort(input *match_tickets.Dele
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchTickets != nil {
+		input.XFlightId = tempFlightIdMatchTickets
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchTickets.DeleteMatchTicketShort(input, authInfoWriter)

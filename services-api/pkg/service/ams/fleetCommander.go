@@ -19,6 +19,14 @@ type FleetCommanderService struct {
 	Client           *amsclient.JusticeAmsService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdFleetCommander *string
+
+func (aaa *FleetCommanderService) UpdateFlightId(flightId string) {
+	tempFlightIdFleetCommander = &flightId
 }
 
 func (aaa *FleetCommanderService) GetAuthSession() auth.Session {
@@ -87,6 +95,11 @@ func (aaa *FleetCommanderService) PortalHealthCheckShort(input *fleet_commander.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdFleetCommander != nil {
+		input.XFlightId = tempFlightIdFleetCommander
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.FleetCommander.PortalHealthCheckShort(input, authInfoWriter)
 	if err != nil {
@@ -112,6 +125,11 @@ func (aaa *FleetCommanderService) Func1Short(input *fleet_commander.Func1Params)
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdFleetCommander != nil {
+		input.XFlightId = tempFlightIdFleetCommander
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.FleetCommander.Func1Short(input, authInfoWriter)
 	if err != nil {
@@ -136,6 +154,11 @@ func (aaa *FleetCommanderService) BasicHealthCheckShort(input *fleet_commander.B
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdFleetCommander != nil {
+		input.XFlightId = tempFlightIdFleetCommander
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.FleetCommander.BasicHealthCheckShort(input, authInfoWriter)

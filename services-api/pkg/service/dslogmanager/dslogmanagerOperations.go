@@ -20,6 +20,14 @@ type DslogmanagerOperationsService struct {
 	Client           *dslogmanagerclient.JusticeDslogmanagerService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdDslogmanagerOperations *string
+
+func (aaa *DslogmanagerOperationsService) UpdateFlightId(flightId string) {
+	tempFlightIdDslogmanagerOperations = &flightId
 }
 
 func (aaa *DslogmanagerOperationsService) GetAuthSession() auth.Session {
@@ -62,6 +70,11 @@ func (aaa *DslogmanagerOperationsService) PublicGetMessagesShort(input *dslogman
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDslogmanagerOperations != nil {
+		input.XFlightId = tempFlightIdDslogmanagerOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DslogmanagerOperations.PublicGetMessagesShort(input, authInfoWriter)

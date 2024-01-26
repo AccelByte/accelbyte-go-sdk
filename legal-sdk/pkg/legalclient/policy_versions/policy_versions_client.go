@@ -64,6 +64,10 @@ func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicyVersion",
 		Method:             "PATCH",
@@ -168,6 +172,10 @@ func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -276,6 +284,10 @@ func (a *Client) RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersion
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
@@ -375,6 +387,10 @@ func (a *Client) CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

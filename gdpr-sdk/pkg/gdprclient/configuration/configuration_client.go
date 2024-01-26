@@ -71,6 +71,10 @@ func (a *Client) GetAdminEmailConfiguration(params *GetAdminEmailConfigurationPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAdminEmailConfiguration",
 		Method:             "GET",
@@ -176,6 +180,10 @@ func (a *Client) UpdateAdminEmailConfiguration(params *UpdateAdminEmailConfigura
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -290,6 +298,10 @@ func (a *Client) SaveAdminEmailConfiguration(params *SaveAdminEmailConfiguration
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SaveAdminEmailConfiguration",
 		Method:             "POST",
@@ -401,6 +413,10 @@ func (a *Client) DeleteAdminEmailConfiguration(params *DeleteAdminEmailConfigura
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -526,6 +542,10 @@ func (a *Client) AdminGetServicesConfiguration(params *AdminGetServicesConfigura
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetServicesConfiguration",
 		Method:             "GET",
@@ -637,6 +657,10 @@ func (a *Client) AdminUpdateServicesConfiguration(params *AdminUpdateServicesCon
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -751,6 +775,10 @@ func (a *Client) AdminResetServicesConfiguration(params *AdminResetServicesConfi
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

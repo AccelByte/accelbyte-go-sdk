@@ -20,6 +20,14 @@ type AdminUserAgreementService struct {
 	Client           *legalclient.JusticeLegalService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminUserAgreement *string
+
+func (aaa *AdminUserAgreementService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminUserAgreement = &flightId
 }
 
 func (aaa *AdminUserAgreementService) GetAuthSession() auth.Session {
@@ -59,6 +67,11 @@ func (aaa *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(inp
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminUserAgreement != nil {
+		input.XFlightId = tempFlightIdAdminUserAgreement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminUserAgreement.IndirectBulkAcceptVersionedPolicyShort(input, authInfoWriter)

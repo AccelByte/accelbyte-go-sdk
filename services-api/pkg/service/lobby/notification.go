@@ -20,6 +20,14 @@ type NotificationService struct {
 	Client           *lobbyclient.JusticeLobbyService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdNotification *string
+
+func (aaa *NotificationService) UpdateFlightId(flightId string) {
+	tempFlightIdNotification = &flightId
 }
 
 func (aaa *NotificationService) GetAuthSession() auth.Session {
@@ -754,6 +762,11 @@ func (aaa *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShor
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.SendMultipleUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -778,6 +791,11 @@ func (aaa *NotificationService) SendUsersFreeformNotificationV1AdminShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.SendUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
@@ -804,6 +822,11 @@ func (aaa *NotificationService) SendPartyFreeformNotificationV1AdminShort(input 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.SendPartyFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -828,6 +851,11 @@ func (aaa *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.SendPartyTemplatedNotificationV1AdminShort(input, authInfoWriter)
@@ -854,6 +882,11 @@ func (aaa *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *n
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Notification.GetAllNotificationTemplatesV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -878,6 +911,11 @@ func (aaa *NotificationService) CreateNotificationTemplateV1AdminShort(input *no
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.CreateNotificationTemplateV1AdminShort(input, authInfoWriter)
@@ -904,6 +942,11 @@ func (aaa *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.SendUsersTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -928,6 +971,11 @@ func (aaa *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Notification.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, authInfoWriter)
@@ -954,6 +1002,11 @@ func (aaa *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.DeleteNotificationTemplateSlugV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -978,6 +1031,11 @@ func (aaa *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Notification.GetSingleTemplateLocalizationV1AdminShort(input, authInfoWriter)
@@ -1004,6 +1062,11 @@ func (aaa *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *no
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.UpdateTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -1028,6 +1091,11 @@ func (aaa *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *no
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.DeleteTemplateLocalizationV1AdminShort(input, authInfoWriter)
@@ -1054,6 +1122,11 @@ func (aaa *NotificationService) PublishTemplateLocalizationV1AdminShort(input *n
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.PublishTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -1078,6 +1151,11 @@ func (aaa *NotificationService) GetAllNotificationTopicsV1AdminShort(input *noti
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Notification.GetAllNotificationTopicsV1AdminShort(input, authInfoWriter)
@@ -1104,6 +1182,11 @@ func (aaa *NotificationService) CreateNotificationTopicV1AdminShort(input *notif
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.CreateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -1128,6 +1211,11 @@ func (aaa *NotificationService) GetNotificationTopicV1AdminShort(input *notifica
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Notification.GetNotificationTopicV1AdminShort(input, authInfoWriter)
@@ -1154,6 +1242,11 @@ func (aaa *NotificationService) UpdateNotificationTopicV1AdminShort(input *notif
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.UpdateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -1178,6 +1271,11 @@ func (aaa *NotificationService) DeleteNotificationTopicV1AdminShort(input *notif
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.DeleteNotificationTopicV1AdminShort(input, authInfoWriter)
@@ -1204,6 +1302,11 @@ func (aaa *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.SendSpecificUserFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
@@ -1228,6 +1331,11 @@ func (aaa *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShor
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.SendSpecificUserTemplatedNotificationV1AdminShort(input, authInfoWriter)
@@ -1254,6 +1362,11 @@ func (aaa *NotificationService) GetTopicByNamespaceShort(input *notification.Get
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Notification.GetTopicByNamespaceShort(input, authInfoWriter)
 	if err != nil {
@@ -1278,6 +1391,11 @@ func (aaa *NotificationService) CreateTopicShort(input *notification.CreateTopic
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.CreateTopicShort(input, authInfoWriter)
@@ -1304,6 +1422,11 @@ func (aaa *NotificationService) GetTopicByTopicNameShort(input *notification.Get
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Notification.GetTopicByTopicNameShort(input, authInfoWriter)
 	if err != nil {
@@ -1328,6 +1451,11 @@ func (aaa *NotificationService) UpdateTopicByTopicNameShort(input *notification.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.UpdateTopicByTopicNameShort(input, authInfoWriter)
@@ -1354,6 +1482,11 @@ func (aaa *NotificationService) DeleteTopicByTopicNameShort(input *notification.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.DeleteTopicByTopicNameShort(input, authInfoWriter)
 	if err != nil {
@@ -1379,6 +1512,11 @@ func (aaa *NotificationService) FreeFormNotificationByUserIDShort(input *notific
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Notification.FreeFormNotificationByUserIDShort(input, authInfoWriter)
 	if err != nil {
@@ -1403,6 +1541,11 @@ func (aaa *NotificationService) NotificationWithTemplateByUserIDShort(input *not
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Notification.NotificationWithTemplateByUserIDShort(input, authInfoWriter)

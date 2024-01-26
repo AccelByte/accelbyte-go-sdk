@@ -20,6 +20,14 @@ type OrderDedicatedService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdOrderDedicated *string
+
+func (aaa *OrderDedicatedService) UpdateFlightId(flightId string) {
+	tempFlightIdOrderDedicated = &flightId
 }
 
 func (aaa *OrderDedicatedService) GetAuthSession() auth.Session {
@@ -59,6 +67,11 @@ func (aaa *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrd
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrderDedicated != nil {
+		input.XFlightId = tempFlightIdOrderDedicated
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.OrderDedicated.SyncOrdersShort(input, authInfoWriter)

@@ -20,6 +20,14 @@ type PublicTypeService struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicType *string
+
+func (aaa *PublicTypeService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicType = &flightId
 }
 
 func (aaa *PublicTypeService) GetAuthSession() auth.Session {
@@ -68,6 +76,11 @@ func (aaa *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*u
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicType != nil {
+		input.XFlightId = tempFlightIdPublicType
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicType.GetTypeShort(input, authInfoWriter)

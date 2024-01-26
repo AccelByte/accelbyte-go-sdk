@@ -79,6 +79,9 @@ type ImageDetailClientParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the image detail client params
@@ -125,6 +128,15 @@ func (o *ImageDetailClientParams) SetHTTPClientTransport(roundTripper http.Round
 		o.HTTPClient.Transport = roundTripper
 	} else {
 		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *ImageDetailClientParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
 	}
 }
 
@@ -175,6 +187,16 @@ func (o *ImageDetailClientParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

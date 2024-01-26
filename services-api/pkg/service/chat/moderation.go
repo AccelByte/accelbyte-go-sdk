@@ -20,6 +20,14 @@ type ModerationService struct {
 	Client           *chatclient.JusticeChatService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdModeration *string
+
+func (aaa *ModerationService) UpdateFlightId(flightId string) {
+	tempFlightIdModeration = &flightId
 }
 
 func (aaa *ModerationService) GetAuthSession() auth.Session {
@@ -133,6 +141,11 @@ func (aaa *ModerationService) AdminGetChatSnapshotShort(input *moderation.AdminG
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdModeration != nil {
+		input.XFlightId = tempFlightIdModeration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Moderation.AdminGetChatSnapshotShort(input, authInfoWriter)
 	if err != nil {
@@ -158,6 +171,11 @@ func (aaa *ModerationService) AdminDeleteChatSnapshotShort(input *moderation.Adm
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdModeration != nil {
+		input.XFlightId = tempFlightIdModeration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Moderation.AdminDeleteChatSnapshotShort(input, authInfoWriter)
 	if err != nil {
@@ -182,6 +200,11 @@ func (aaa *ModerationService) PublicGetChatSnapshotShort(input *moderation.Publi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdModeration != nil {
+		input.XFlightId = tempFlightIdModeration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Moderation.PublicGetChatSnapshotShort(input, authInfoWriter)

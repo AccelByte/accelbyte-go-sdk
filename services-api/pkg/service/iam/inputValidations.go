@@ -20,6 +20,14 @@ type InputValidationsService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdInputValidations *string
+
+func (aaa *InputValidationsService) UpdateFlightId(flightId string) {
+	tempFlightIdInputValidations = &flightId
 }
 
 func (aaa *InputValidationsService) GetAuthSession() auth.Session {
@@ -148,6 +156,11 @@ func (aaa *InputValidationsService) AdminGetInputValidationsShort(input *input_v
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.InputValidations.AdminGetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
@@ -172,6 +185,11 @@ func (aaa *InputValidationsService) AdminUpdateInputValidationsShort(input *inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.InputValidations.AdminUpdateInputValidationsShort(input, authInfoWriter)
@@ -198,6 +216,11 @@ func (aaa *InputValidationsService) AdminResetInputValidationsShort(input *input
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.InputValidations.AdminResetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
@@ -215,6 +238,11 @@ func (aaa *InputValidationsService) PublicGetInputValidationsShort(input *input_
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.InputValidations.PublicGetInputValidationsShort(input)
@@ -240,6 +268,11 @@ func (aaa *InputValidationsService) PublicGetInputValidationByFieldShort(input *
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.InputValidations.PublicGetInputValidationByFieldShort(input, authInfoWriter)

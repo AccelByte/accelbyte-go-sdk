@@ -64,6 +64,10 @@ func (a *Client) AdminAccountGet(params *AdminAccountGetParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAccountGet",
 		Method:             "GET",
@@ -176,6 +180,10 @@ func (a *Client) AdminAccountCreate(params *AdminAccountCreateParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAccountCreate",
 		Method:             "POST",
@@ -283,6 +291,10 @@ func (a *Client) AdminAccountLinkTokenGet(params *AdminAccountLinkTokenGetParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -403,6 +415,10 @@ func (a *Client) AdminAccountLinkTokenPost(params *AdminAccountLinkTokenPostPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAccountLinkTokenPost",
 		Method:             "POST",
@@ -512,6 +528,10 @@ func (a *Client) AccountGet(params *AccountGetParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

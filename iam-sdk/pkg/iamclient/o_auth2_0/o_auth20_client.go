@@ -103,6 +103,10 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetriev
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminRetrieveUserThirdPartyPlatformTokenV3",
 		Method:             "GET",
@@ -228,6 +232,10 @@ func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -364,6 +372,10 @@ func (a *Client) AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AuthorizeV3",
 		Method:             "GET",
@@ -482,6 +494,10 @@ func (a *Client) TokenIntrospectionV3(params *TokenIntrospectionV3Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenIntrospectionV3",
 		Method:             "POST",
@@ -593,6 +609,10 @@ func (a *Client) GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetJWKSV3",
 		Method:             "GET",
@@ -691,6 +711,10 @@ func (a *Client) SendMFAAuthenticationCode(params *SendMFAAuthenticationCodePara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -816,6 +840,10 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "Change2FAMethod",
 		Method:             "POST",
@@ -929,6 +957,10 @@ func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1045,6 +1077,10 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThird
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1194,6 +1230,10 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1375,6 +1415,10 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PlatformTokenGrantV3",
 		Method:             "POST",
@@ -1551,6 +1595,10 @@ func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRevocationListV3",
 		Method:             "GET",
@@ -1653,6 +1701,10 @@ func (a *Client) TokenRevocationV3(params *TokenRevocationV3Params, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenRevocationV3",
 		Method:             "POST",
@@ -1704,10 +1756,6 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	if params.UpdateFlightId != nil {
-		params.SetFlightId(*params.UpdateFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1782,6 +1830,10 @@ func (a *Client) SimultaneousLoginV3(params *SimultaneousLoginV3Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1972,6 +2024,10 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenGrantV3",
 		Method:             "POST",
@@ -2082,10 +2138,6 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
-	if params.UpdateFlightId != nil {
-		params.SetFlightId(*params.UpdateFlightId)
-	}
-
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenGrantV3",
 		Method:             "POST",
@@ -2139,6 +2191,10 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

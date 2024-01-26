@@ -62,6 +62,10 @@ func (a *Client) GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetHiddenUsersV3",
 		Method:             "GET",
@@ -177,6 +181,10 @@ func (a *Client) GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -296,6 +304,10 @@ func (a *Client) SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "SetUserLeaderboardVisibilityV3",
 		Method:             "PUT",
@@ -411,6 +423,10 @@ func (a *Client) SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -20,6 +20,14 @@ type AdminContentV2Service struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminContentV2 *string
+
+func (aaa *AdminContentV2Service) UpdateFlightId(flightId string) {
+	tempFlightIdAdminContentV2 = &flightId
 }
 
 func (aaa *AdminContentV2Service) GetAuthSession() auth.Session {
@@ -676,6 +684,11 @@ func (aaa *AdminContentV2Service) AdminGetContentByChannelIDV2Short(input *admin
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByChannelIDV2Short(input, authInfoWriter)
 	if err != nil {
@@ -700,6 +713,11 @@ func (aaa *AdminContentV2Service) AdminCreateContentV2Short(input *admin_content
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminContentV2.AdminCreateContentV2Short(input, authInfoWriter)
@@ -726,6 +744,11 @@ func (aaa *AdminContentV2Service) AdminDeleteOfficialContentV2Short(input *admin
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminContentV2.AdminDeleteOfficialContentV2Short(input, authInfoWriter)
 	if err != nil {
@@ -750,6 +773,11 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentV2Short(input *admin
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateOfficialContentV2Short(input, authInfoWriter)
@@ -776,6 +804,11 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentFileLocationShort(in
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateOfficialContentFileLocationShort(input, authInfoWriter)
 	if err != nil {
@@ -800,6 +833,11 @@ func (aaa *AdminContentV2Service) AdminGenerateOfficialContentUploadURLV2Short(i
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGenerateOfficialContentUploadURLV2Short(input, authInfoWriter)
@@ -826,6 +864,11 @@ func (aaa *AdminContentV2Service) AdminListContentV2Short(input *admin_content_v
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminListContentV2Short(input, authInfoWriter)
 	if err != nil {
@@ -850,6 +893,11 @@ func (aaa *AdminContentV2Service) AdminBulkGetContentByIDsV2Short(input *admin_c
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminBulkGetContentByIDsV2Short(input, authInfoWriter)
@@ -876,6 +924,11 @@ func (aaa *AdminContentV2Service) AdminGetContentBulkByShareCodesV2Short(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentBulkByShareCodesV2Short(input, authInfoWriter)
 	if err != nil {
@@ -900,6 +953,11 @@ func (aaa *AdminContentV2Service) AdminGetContentByShareCodeV2Short(input *admin
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByShareCodeV2Short(input, authInfoWriter)
@@ -926,6 +984,11 @@ func (aaa *AdminContentV2Service) AdminGetContentByContentIDV2Short(input *admin
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByContentIDV2Short(input, authInfoWriter)
 	if err != nil {
@@ -950,6 +1013,11 @@ func (aaa *AdminContentV2Service) RollbackContentVersionV2Short(input *admin_con
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.RollbackContentVersionV2Short(input, authInfoWriter)
@@ -976,6 +1044,11 @@ func (aaa *AdminContentV2Service) AdminUpdateScreenshotsV2Short(input *admin_con
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateScreenshotsV2Short(input, authInfoWriter)
 	if err != nil {
@@ -1000,6 +1073,11 @@ func (aaa *AdminContentV2Service) AdminUploadContentScreenshotV2Short(input *adm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminContentV2.AdminUploadContentScreenshotV2Short(input, authInfoWriter)
@@ -1026,6 +1104,11 @@ func (aaa *AdminContentV2Service) AdminDeleteContentScreenshotV2Short(input *adm
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminContentV2.AdminDeleteContentScreenshotV2Short(input, authInfoWriter)
 	if err != nil {
@@ -1050,6 +1133,11 @@ func (aaa *AdminContentV2Service) ListContentVersionsV2Short(input *admin_conten
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.ListContentVersionsV2Short(input, authInfoWriter)
@@ -1076,6 +1164,11 @@ func (aaa *AdminContentV2Service) AdminUpdateContentByShareCodeV2Short(input *ad
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateContentByShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
@@ -1100,6 +1193,11 @@ func (aaa *AdminContentV2Service) AdminDeleteContentByShareCodeV2Short(input *ad
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminContentV2.AdminDeleteContentByShareCodeV2Short(input, authInfoWriter)
@@ -1126,6 +1224,11 @@ func (aaa *AdminContentV2Service) AdminDeleteUserContentV2Short(input *admin_con
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminContentV2.AdminDeleteUserContentV2Short(input, authInfoWriter)
 	if err != nil {
@@ -1150,6 +1253,11 @@ func (aaa *AdminContentV2Service) AdminUpdateUserContentV2Short(input *admin_con
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateUserContentV2Short(input, authInfoWriter)
@@ -1176,6 +1284,11 @@ func (aaa *AdminContentV2Service) AdminUpdateUserContentFileLocationShort(input 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateUserContentFileLocationShort(input, authInfoWriter)
 	if err != nil {
@@ -1200,6 +1313,11 @@ func (aaa *AdminContentV2Service) AdminGenerateUserContentUploadURLV2Short(input
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGenerateUserContentUploadURLV2Short(input, authInfoWriter)
@@ -1226,6 +1344,11 @@ func (aaa *AdminContentV2Service) AdminGetContentByUserIDV2Short(input *admin_co
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByUserIDV2Short(input, authInfoWriter)
 	if err != nil {
@@ -1250,6 +1373,11 @@ func (aaa *AdminContentV2Service) AdminUpdateContentHideStatusV2Short(input *adm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateContentHideStatusV2Short(input, authInfoWriter)

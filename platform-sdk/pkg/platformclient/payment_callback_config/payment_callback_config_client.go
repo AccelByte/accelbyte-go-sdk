@@ -62,6 +62,10 @@ func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCallbackConfig",
 		Method:             "GET",
@@ -165,6 +169,10 @@ func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfig
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -68,6 +68,10 @@ func (a *Client) GetRevocationConfig(params *GetRevocationConfigParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRevocationConfig",
 		Method:             "GET",
@@ -173,6 +177,10 @@ func (a *Client) UpdateRevocationConfig(params *UpdateRevocationConfigParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateRevocationConfig",
 		Method:             "PUT",
@@ -270,6 +278,10 @@ func (a *Client) DeleteRevocationConfig(params *DeleteRevocationConfigParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -371,6 +383,10 @@ func (a *Client) QueryRevocationHistories(params *QueryRevocationHistoriesParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRevocationHistories",
 		Method:             "GET",
@@ -469,6 +485,10 @@ func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

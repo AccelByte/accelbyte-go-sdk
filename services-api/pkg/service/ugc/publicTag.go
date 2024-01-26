@@ -20,6 +20,14 @@ type PublicTagService struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicTag *string
+
+func (aaa *PublicTagService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicTag = &flightId
 }
 
 func (aaa *PublicTagService) GetAuthSession() auth.Session {
@@ -68,6 +76,11 @@ func (aaa *PublicTagService) GetTagShort(input *public_tag.GetTagParams) (*ugccl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicTag != nil {
+		input.XFlightId = tempFlightIdPublicTag
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicTag.GetTagShort(input, authInfoWriter)

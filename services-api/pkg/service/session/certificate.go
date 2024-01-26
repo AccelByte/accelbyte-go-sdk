@@ -20,6 +20,14 @@ type CertificateService struct {
 	Client           *sessionclient.JusticeSessionService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdCertificate *string
+
+func (aaa *CertificateService) UpdateFlightId(flightId string) {
+	tempFlightIdCertificate = &flightId
 }
 
 func (aaa *CertificateService) GetAuthSession() auth.Session {
@@ -74,6 +82,11 @@ func (aaa *CertificateService) HandleUploadXboxPFXCertificateShort(input *certif
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCertificate != nil {
+		input.XFlightId = tempFlightIdCertificate
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Certificate.HandleUploadXboxPFXCertificateShort(input, authInfoWriter)

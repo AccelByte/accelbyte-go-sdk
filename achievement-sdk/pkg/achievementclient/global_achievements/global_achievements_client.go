@@ -83,6 +83,10 @@ func (a *Client) AdminListGlobalAchievements(params *AdminListGlobalAchievements
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListGlobalAchievements",
 		Method:             "GET",
@@ -206,6 +210,10 @@ func (a *Client) AdminListGlobalAchievementContributors(params *AdminListGlobalA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListGlobalAchievementContributors",
 		Method:             "GET",
@@ -324,6 +332,10 @@ func (a *Client) ResetGlobalAchievement(params *ResetGlobalAchievementParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ResetGlobalAchievement",
 		Method:             "DELETE",
@@ -440,6 +452,10 @@ func (a *Client) AdminListUserContributions(params *AdminListUserContributionsPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -565,6 +581,10 @@ func (a *Client) PublicListGlobalAchievements(params *PublicListGlobalAchievemen
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicListGlobalAchievements",
 		Method:             "GET",
@@ -688,6 +708,10 @@ func (a *Client) ListGlobalAchievementContributors(params *ListGlobalAchievement
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ListGlobalAchievementContributors",
 		Method:             "GET",
@@ -799,6 +823,10 @@ func (a *Client) ListUserContributions(params *ListUserContributionsParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -922,6 +950,10 @@ func (a *Client) ClaimGlobalAchievementReward(params *ClaimGlobalAchievementRewa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

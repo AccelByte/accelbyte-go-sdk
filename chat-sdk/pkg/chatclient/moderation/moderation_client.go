@@ -60,6 +60,10 @@ func (a *Client) AdminGetChatSnapshot(params *AdminGetChatSnapshotParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetChatSnapshot",
 		Method:             "GET",
@@ -177,6 +181,10 @@ func (a *Client) AdminDeleteChatSnapshot(params *AdminDeleteChatSnapshotParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteChatSnapshot",
 		Method:             "DELETE",
@@ -292,6 +300,10 @@ func (a *Client) PublicGetChatSnapshot(params *PublicGetChatSnapshotParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

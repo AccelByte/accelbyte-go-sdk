@@ -121,6 +121,10 @@ func (a *Client) AdminPutAdminGameRecordConcurrentHandlerV1(params *AdminPutAdmi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminPutAdminGameRecordConcurrentHandlerV1",
 		Method:             "PUT",
@@ -355,6 +359,10 @@ func (a *Client) AdminPutGameRecordConcurrentHandlerV1(params *AdminPutGameRecor
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -592,6 +600,10 @@ func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1(params *AdminPutAd
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -835,6 +847,10 @@ func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1(params *AdminPutPlayerR
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1083,6 +1099,10 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1(params *AdminPutP
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

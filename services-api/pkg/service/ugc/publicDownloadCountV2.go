@@ -20,6 +20,14 @@ type PublicDownloadCountV2Service struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicDownloadCountV2 *string
+
+func (aaa *PublicDownloadCountV2Service) UpdateFlightId(flightId string) {
+	tempFlightIdPublicDownloadCountV2 = &flightId
 }
 
 func (aaa *PublicDownloadCountV2Service) GetAuthSession() auth.Session {
@@ -95,6 +103,11 @@ func (aaa *PublicDownloadCountV2Service) PublicAddDownloadCountV2Short(input *pu
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicDownloadCountV2 != nil {
+		input.XFlightId = tempFlightIdPublicDownloadCountV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicDownloadCountV2.PublicAddDownloadCountV2Short(input, authInfoWriter)
 	if err != nil {
@@ -119,6 +132,11 @@ func (aaa *PublicDownloadCountV2Service) PublicListContentDownloaderV2Short(inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicDownloadCountV2 != nil {
+		input.XFlightId = tempFlightIdPublicDownloadCountV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicDownloadCountV2.PublicListContentDownloaderV2Short(input, authInfoWriter)

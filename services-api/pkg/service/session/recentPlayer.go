@@ -20,6 +20,14 @@ type RecentPlayerService struct {
 	Client           *sessionclient.JusticeSessionService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdRecentPlayer *string
+
+func (aaa *RecentPlayerService) UpdateFlightId(flightId string) {
+	tempFlightIdRecentPlayer = &flightId
 }
 
 func (aaa *RecentPlayerService) GetAuthSession() auth.Session {
@@ -71,6 +79,11 @@ func (aaa *RecentPlayerService) PublicGetRecentPlayerShort(input *recent_player.
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdRecentPlayer != nil {
+		input.XFlightId = tempFlightIdRecentPlayer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.RecentPlayer.PublicGetRecentPlayerShort(input, authInfoWriter)

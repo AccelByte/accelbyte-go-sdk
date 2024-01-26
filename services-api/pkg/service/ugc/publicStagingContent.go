@@ -20,6 +20,14 @@ type PublicStagingContentService struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicStagingContent *string
+
+func (aaa *PublicStagingContentService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicStagingContent = &flightId
 }
 
 func (aaa *PublicStagingContentService) GetAuthSession() auth.Session {
@@ -153,6 +161,11 @@ func (aaa *PublicStagingContentService) ListUserStagingContentsShort(input *publ
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicStagingContent != nil {
+		input.XFlightId = tempFlightIdPublicStagingContent
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicStagingContent.ListUserStagingContentsShort(input, authInfoWriter)
 	if err != nil {
@@ -177,6 +190,11 @@ func (aaa *PublicStagingContentService) GetUserStagingContentByIDShort(input *pu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicStagingContent != nil {
+		input.XFlightId = tempFlightIdPublicStagingContent
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicStagingContent.GetUserStagingContentByIDShort(input, authInfoWriter)
@@ -203,6 +221,11 @@ func (aaa *PublicStagingContentService) UpdateStagingContentShort(input *public_
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicStagingContent != nil {
+		input.XFlightId = tempFlightIdPublicStagingContent
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicStagingContent.UpdateStagingContentShort(input, authInfoWriter)
 	if err != nil {
@@ -227,6 +250,11 @@ func (aaa *PublicStagingContentService) DeleteUserStagingContentByIDShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicStagingContent != nil {
+		input.XFlightId = tempFlightIdPublicStagingContent
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.PublicStagingContent.DeleteUserStagingContentByIDShort(input, authInfoWriter)

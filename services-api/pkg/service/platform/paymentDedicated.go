@@ -20,6 +20,14 @@ type PaymentDedicatedService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPaymentDedicated *string
+
+func (aaa *PaymentDedicatedService) UpdateFlightId(flightId string) {
+	tempFlightIdPaymentDedicated = &flightId
 }
 
 func (aaa *PaymentDedicatedService) GetAuthSession() auth.Session {
@@ -115,6 +123,11 @@ func (aaa *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *pa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPaymentDedicated != nil {
+		input.XFlightId = tempFlightIdPaymentDedicated
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.PaymentDedicated.CreatePaymentOrderByDedicatedShort(input, authInfoWriter)
 	if err != nil {
@@ -140,6 +153,11 @@ func (aaa *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *pa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPaymentDedicated != nil {
+		input.XFlightId = tempFlightIdPaymentDedicated
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PaymentDedicated.RefundPaymentOrderByDedicatedShort(input, authInfoWriter)
 	if err != nil {
@@ -164,6 +182,11 @@ func (aaa *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedica
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPaymentDedicated != nil {
+		input.XFlightId = tempFlightIdPaymentDedicated
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PaymentDedicated.SyncPaymentOrdersShort(input, authInfoWriter)

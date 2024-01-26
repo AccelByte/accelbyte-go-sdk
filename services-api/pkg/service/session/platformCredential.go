@@ -20,6 +20,14 @@ type PlatformCredentialService struct {
 	Client           *sessionclient.JusticeSessionService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPlatformCredential *string
+
+func (aaa *PlatformCredentialService) UpdateFlightId(flightId string) {
+	tempFlightIdPlatformCredential = &flightId
 }
 
 func (aaa *PlatformCredentialService) GetAuthSession() auth.Session {
@@ -133,6 +141,11 @@ func (aaa *PlatformCredentialService) AdminGetPlatformCredentialsShort(input *pl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPlatformCredential != nil {
+		input.XFlightId = tempFlightIdPlatformCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PlatformCredential.AdminGetPlatformCredentialsShort(input, authInfoWriter)
 	if err != nil {
@@ -158,6 +171,11 @@ func (aaa *PlatformCredentialService) AdminUpdatePlatformCredentialsShort(input 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPlatformCredential != nil {
+		input.XFlightId = tempFlightIdPlatformCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PlatformCredential.AdminUpdatePlatformCredentialsShort(input, authInfoWriter)
 	if err != nil {
@@ -182,6 +200,11 @@ func (aaa *PlatformCredentialService) AdminDeletePlatformCredentialsShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPlatformCredential != nil {
+		input.XFlightId = tempFlightIdPlatformCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.PlatformCredential.AdminDeletePlatformCredentialsShort(input, authInfoWriter)

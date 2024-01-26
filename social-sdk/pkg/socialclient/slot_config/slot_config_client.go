@@ -73,6 +73,10 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceSlotConfig",
 		Method:             "GET",
@@ -181,6 +185,10 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -292,6 +300,10 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespaceSlotConfig",
 		Method:             "DELETE",
@@ -399,6 +411,10 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -509,6 +525,10 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserSlotConfig",
 		Method:             "PUT",
@@ -614,6 +634,10 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

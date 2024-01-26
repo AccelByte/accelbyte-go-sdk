@@ -60,6 +60,10 @@ func (a *Client) InfoRegions(params *InfoRegionsParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "InfoRegions",
 		Method:             "GET",
@@ -167,6 +171,10 @@ func (a *Client) InfoSupportedInstances(params *InfoSupportedInstancesParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "InfoSupportedInstances",
 		Method:             "GET",
@@ -271,6 +279,10 @@ func (a *Client) UploadURLGet(params *UploadURLGetParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

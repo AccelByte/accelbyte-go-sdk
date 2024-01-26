@@ -75,6 +75,10 @@ func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeCampaign",
 		Method:             "DELETE",
@@ -171,6 +175,10 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -271,6 +279,10 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeFulfillment",
 		Method:             "DELETE",
@@ -367,6 +379,10 @@ func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -467,6 +483,10 @@ func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeOrder",
 		Method:             "DELETE",
@@ -563,6 +583,10 @@ func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -663,6 +687,10 @@ func (a *Client) AnonymizeRevocation(params *AnonymizeRevocationParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeRevocation",
 		Method:             "DELETE",
@@ -761,6 +789,10 @@ func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeSubscription",
 		Method:             "DELETE",
@@ -857,6 +889,10 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

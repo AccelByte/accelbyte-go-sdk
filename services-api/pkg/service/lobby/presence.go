@@ -20,6 +20,14 @@ type PresenceService struct {
 	Client           *lobbyclient.JusticeLobbyService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPresence *string
+
+func (aaa *PresenceService) UpdateFlightId(flightId string) {
+	tempFlightIdPresence = &flightId
 }
 
 func (aaa *PresenceService) GetAuthSession() auth.Session {
@@ -68,6 +76,11 @@ func (aaa *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPre
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPresence != nil {
+		input.XFlightId = tempFlightIdPresence
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Presence.UsersPresenceHandlerV1Short(input, authInfoWriter)

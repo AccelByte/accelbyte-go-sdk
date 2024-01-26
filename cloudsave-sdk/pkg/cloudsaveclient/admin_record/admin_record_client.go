@@ -80,6 +80,10 @@ func (a *Client) AdminListAdminGameRecordV1(params *AdminListAdminGameRecordV1Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminListAdminGameRecordV1",
 		Method:             "GET",
@@ -190,6 +194,10 @@ func (a *Client) AdminBulkGetAdminGameRecordV1(params *AdminBulkGetAdminGameReco
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -307,6 +315,10 @@ func (a *Client) AdminGetAdminGameRecordV1(params *AdminGetAdminGameRecordV1Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -447,6 +459,10 @@ func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -630,6 +646,10 @@ func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminPostAdminGameRecordV1",
 		Method:             "POST",
@@ -783,6 +803,10 @@ func (a *Client) AdminDeleteAdminGameRecordV1(params *AdminDeleteAdminGameRecord
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteAdminGameRecordV1",
 		Method:             "DELETE",
@@ -893,6 +917,10 @@ func (a *Client) BulkGetAdminPlayerRecordByUserIdsV1(params *BulkGetAdminPlayerR
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1012,6 +1040,10 @@ func (a *Client) AdminListAdminUserRecordsV1(params *AdminListAdminUserRecordsV1
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminListAdminUserRecordsV1",
 		Method:             "GET",
@@ -1122,6 +1154,10 @@ func (a *Client) AdminBulkGetAdminPlayerRecordV1(params *AdminBulkGetAdminPlayer
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1239,6 +1275,10 @@ func (a *Client) AdminGetAdminPlayerRecordV1(params *AdminGetAdminPlayerRecordV1
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1380,6 +1420,10 @@ func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1564,6 +1608,10 @@ func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecord
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminPostPlayerAdminRecordV1",
 		Method:             "POST",
@@ -1715,6 +1763,10 @@ func (a *Client) AdminDeleteAdminPlayerRecordV1(params *AdminDeleteAdminPlayerRe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

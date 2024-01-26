@@ -20,6 +20,14 @@ type PublicInventoriesService struct {
 	Client           *inventoryclient.JusticeInventoryService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicInventories *string
+
+func (aaa *PublicInventoriesService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicInventories = &flightId
 }
 
 func (aaa *PublicInventoriesService) GetAuthSession() auth.Session {
@@ -65,6 +73,11 @@ func (aaa *PublicInventoriesService) PublicListInventoriesShort(input *public_in
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicInventories != nil {
+		input.XFlightId = tempFlightIdPublicInventories
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicInventories.PublicListInventoriesShort(input, authInfoWriter)

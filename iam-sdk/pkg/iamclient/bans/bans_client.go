@@ -72,6 +72,10 @@ func (a *Client) GetBansType(params *GetBansTypeParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetBansType",
 		Method:             "GET",
@@ -178,6 +182,10 @@ func (a *Client) GetListBanReason(params *GetListBanReasonParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetListBanReason",
 		Method:             "GET",
@@ -282,6 +290,10 @@ func (a *Client) AdminGetBansTypeV3(params *AdminGetBansTypeV3Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -394,6 +406,10 @@ func (a *Client) AdminGetListBanReasonV3(params *AdminGetListBanReasonV3Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListBanReasonV3",
 		Method:             "GET",
@@ -504,6 +520,10 @@ func (a *Client) AdminGetBannedUsersV3(params *AdminGetBannedUsersV3Params, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetBannedUsersV3",
 		Method:             "GET",
@@ -612,6 +632,10 @@ func (a *Client) AdminBanUserBulkV3(params *AdminBanUserBulkV3Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -733,6 +757,10 @@ func (a *Client) AdminUnbanUserBulkV3(params *AdminUnbanUserBulkV3Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUnbanUserBulkV3",
 		Method:             "PATCH",
@@ -851,6 +879,10 @@ func (a *Client) AdminGetBansTypeWithNamespaceV3(params *AdminGetBansTypeWithNam
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

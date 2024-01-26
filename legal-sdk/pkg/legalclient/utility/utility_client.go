@@ -58,6 +58,10 @@ func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkReadiness",
 		Method:             "GET",

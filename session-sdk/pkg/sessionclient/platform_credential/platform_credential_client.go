@@ -64,6 +64,10 @@ func (a *Client) AdminGetPlatformCredentials(params *AdminGetPlatformCredentials
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlatformCredentials",
 		Method:             "GET",
@@ -190,6 +194,10 @@ func (a *Client) AdminUpdatePlatformCredentials(params *AdminUpdatePlatformCrede
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdatePlatformCredentials",
 		Method:             "PUT",
@@ -310,6 +318,10 @@ func (a *Client) AdminDeletePlatformCredentials(params *AdminDeletePlatformCrede
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

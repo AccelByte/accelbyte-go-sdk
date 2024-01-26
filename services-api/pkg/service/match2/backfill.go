@@ -20,6 +20,14 @@ type BackfillService struct {
 	Client           *match2client.JusticeMatch2Service
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdBackfill *string
+
+func (aaa *BackfillService) UpdateFlightId(flightId string) {
+	tempFlightIdBackfill = &flightId
 }
 
 func (aaa *BackfillService) GetAuthSession() auth.Session {
@@ -220,6 +228,11 @@ func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.Backfill.CreateBackfillShort(input, authInfoWriter)
 	if err != nil {
@@ -244,6 +257,11 @@ func (aaa *BackfillService) GetBackfillProposalShort(input *backfill.GetBackfill
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Backfill.GetBackfillProposalShort(input, authInfoWriter)
@@ -270,6 +288,11 @@ func (aaa *BackfillService) GetBackfillShort(input *backfill.GetBackfillParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Backfill.GetBackfillShort(input, authInfoWriter)
 	if err != nil {
@@ -294,6 +317,11 @@ func (aaa *BackfillService) DeleteBackfillShort(input *backfill.DeleteBackfillPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Backfill.DeleteBackfillShort(input, authInfoWriter)
@@ -320,6 +348,11 @@ func (aaa *BackfillService) AcceptBackfillShort(input *backfill.AcceptBackfillPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Backfill.AcceptBackfillShort(input, authInfoWriter)
 	if err != nil {
@@ -344,6 +377,11 @@ func (aaa *BackfillService) RejectBackfillShort(input *backfill.RejectBackfillPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Backfill.RejectBackfillShort(input, authInfoWriter)

@@ -94,6 +94,10 @@ func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllDeployment",
 		Method:             "GET",
@@ -209,6 +213,10 @@ func (a *Client) GetDeployment(params *GetDeploymentParams, authInfo runtime.Cli
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -331,6 +339,10 @@ func (a *Client) CreateDeployment(params *CreateDeploymentParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateDeployment",
 		Method:             "POST",
@@ -451,6 +463,10 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteDeployment",
 		Method:             "DELETE",
@@ -569,6 +585,10 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -696,6 +716,10 @@ func (a *Client) CreateRootRegionOverride(params *CreateRootRegionOverrideParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CreateRootRegionOverride",
 		Method:             "POST",
@@ -821,6 +845,10 @@ func (a *Client) DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteRootRegionOverride",
 		Method:             "DELETE",
@@ -941,6 +969,10 @@ func (a *Client) UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateRootRegionOverride",
 		Method:             "PATCH",
@@ -1059,6 +1091,10 @@ func (a *Client) CreateDeploymentOverride(params *CreateDeploymentOverrideParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1186,6 +1222,10 @@ func (a *Client) DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteDeploymentOverride",
 		Method:             "DELETE",
@@ -1306,6 +1346,10 @@ func (a *Client) UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateDeploymentOverride",
 		Method:             "PATCH",
@@ -1424,6 +1468,10 @@ func (a *Client) CreateOverrideRegionOverride(params *CreateOverrideRegionOverri
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1551,6 +1599,10 @@ func (a *Client) DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverri
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteOverrideRegionOverride",
 		Method:             "DELETE",
@@ -1669,6 +1721,10 @@ func (a *Client) UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverri
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1793,6 +1849,10 @@ func (a *Client) GetAllDeploymentClient(params *GetAllDeploymentClientParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllDeploymentClient",
 		Method:             "GET",
@@ -1908,6 +1968,10 @@ func (a *Client) CreateDeploymentClient(params *CreateDeploymentClientParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2028,6 +2092,10 @@ func (a *Client) DeleteDeploymentClient(params *DeleteDeploymentClientParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

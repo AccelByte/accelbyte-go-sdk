@@ -112,6 +112,10 @@ func (a *Client) GetGroupListAdminV1(params *GetGroupListAdminV1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupListAdminV1",
 		Method:             "GET",
@@ -246,6 +250,10 @@ func (a *Client) GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -389,6 +397,10 @@ func (a *Client) DeleteGroupAdminV1(params *DeleteGroupAdminV1Params, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupAdminV1",
 		Method:             "DELETE",
@@ -528,6 +540,10 @@ func (a *Client) GetGroupListPublicV1(params *GetGroupListPublicV1Params, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -704,6 +720,10 @@ func (a *Client) CreateNewGroupPublicV1(params *CreateNewGroupPublicV1Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -887,6 +907,10 @@ func (a *Client) GetSingleGroupPublicV1(params *GetSingleGroupPublicV1Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSingleGroupPublicV1",
 		Method:             "GET",
@@ -1032,6 +1056,10 @@ func (a *Client) UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1188,6 +1216,10 @@ func (a *Client) DeleteGroupPublicV1(params *DeleteGroupPublicV1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupPublicV1",
 		Method:             "DELETE",
@@ -1340,6 +1372,10 @@ func (a *Client) UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPu
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1496,6 +1532,10 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1(params *UpdateGroupCustomAt
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupCustomAttributesPublicV1",
 		Method:             "PUT",
@@ -1644,6 +1684,10 @@ func (a *Client) UpdateGroupCustomRulePublicV1(params *UpdateGroupCustomRulePubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1799,6 +1843,10 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefined
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1961,6 +2009,10 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1(params *DeleteGroupPredefined
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupPredefinedRulePublicV1",
 		Method:             "DELETE",
@@ -2107,6 +2159,10 @@ func (a *Client) GetListGroupByIDsAdminV2(params *GetListGroupByIDsAdminV2Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2283,6 +2339,10 @@ func (a *Client) CreateNewGroupPublicV2(params *CreateNewGroupPublicV2Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2466,6 +2526,10 @@ func (a *Client) GetListGroupByIDsV2(params *GetListGroupByIDsV2Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getListGroupByIDsV2",
 		Method:             "POST",
@@ -2606,6 +2670,10 @@ func (a *Client) UpdatePutSingleGroupPublicV2(params *UpdatePutSingleGroupPublic
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2762,6 +2830,10 @@ func (a *Client) DeleteGroupPublicV2(params *DeleteGroupPublicV2Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGroupPublicV2",
 		Method:             "DELETE",
@@ -2914,6 +2986,10 @@ func (a *Client) UpdatePatchSingleGroupPublicV2(params *UpdatePatchSingleGroupPu
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3070,6 +3146,10 @@ func (a *Client) UpdateGroupCustomAttributesPublicV2(params *UpdateGroupCustomAt
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGroupCustomAttributesPublicV2",
 		Method:             "PUT",
@@ -3218,6 +3298,10 @@ func (a *Client) UpdateGroupCustomRulePublicV2(params *UpdateGroupCustomRulePubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3373,6 +3457,10 @@ func (a *Client) UpdateGroupPredefinedRulePublicV2(params *UpdateGroupPredefined
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3533,6 +3621,10 @@ func (a *Client) DeleteGroupPredefinedRulePublicV2(params *DeleteGroupPredefined
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

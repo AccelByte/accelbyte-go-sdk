@@ -22,6 +22,14 @@ type MatchmakingService struct {
 	Client           *matchmakingclient.JusticeMatchmakingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMatchmaking *string
+
+func (aaa *MatchmakingService) UpdateFlightId(flightId string) {
+	tempFlightIdMatchmaking = &flightId
 }
 
 func (aaa *MatchmakingService) GetAuthSession() auth.Session {
@@ -781,6 +789,11 @@ func (aaa *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.Get
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -805,6 +818,11 @@ func (aaa *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Crea
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Matchmaking.CreateChannelHandlerShort(input, authInfoWriter)
@@ -831,6 +849,11 @@ func (aaa *MatchmakingService) GetMatchPoolMetricShort(input *matchmaking.GetMat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.GetMatchPoolMetricShort(input, authInfoWriter)
 	if err != nil {
@@ -855,6 +878,11 @@ func (aaa *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Dele
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Matchmaking.DeleteChannelHandlerShort(input, authInfoWriter)
@@ -881,6 +909,11 @@ func (aaa *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.StoreMatchResultsShort(input, authInfoWriter)
 	if err != nil {
@@ -905,6 +938,11 @@ func (aaa *MatchmakingService) RebalanceShort(input *matchmaking.RebalanceParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.RebalanceShort(input, authInfoWriter)
@@ -931,6 +969,11 @@ func (aaa *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.Queue
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Matchmaking.QueueSessionHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -955,6 +998,11 @@ func (aaa *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deq
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Matchmaking.DequeueSessionHandlerShort(input, authInfoWriter)
@@ -981,6 +1029,11 @@ func (aaa *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.Query
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.QuerySessionHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -1005,6 +1058,11 @@ func (aaa *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.G
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.GetAllPartyInAllChannelShort(input, authInfoWriter)
@@ -1031,6 +1089,11 @@ func (aaa *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSe
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.BulkGetSessionsShort(input, authInfoWriter)
 	if err != nil {
@@ -1055,6 +1118,11 @@ func (aaa *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChan
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.ExportChannelsShort(input, authInfoWriter, writer)
@@ -1081,6 +1149,11 @@ func (aaa *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChan
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.ImportChannelsShort(input, authInfoWriter)
 	if err != nil {
@@ -1105,6 +1178,11 @@ func (aaa *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaki
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, authInfoWriter)
@@ -1131,6 +1209,11 @@ func (aaa *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Matchmaking.UpdateMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
@@ -1155,6 +1238,11 @@ func (aaa *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetA
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.GetAllPartyInChannelShort(input, authInfoWriter)
@@ -1181,6 +1269,11 @@ func (aaa *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.G
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.GetAllSessionsInChannelShort(input, authInfoWriter)
 	if err != nil {
@@ -1205,6 +1298,11 @@ func (aaa *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaki
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, authInfoWriter)
@@ -1231,6 +1329,11 @@ func (aaa *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.De
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Matchmaking.DeleteSessionInChannelShort(input, authInfoWriter)
 	if err != nil {
@@ -1255,6 +1358,11 @@ func (aaa *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, authInfoWriter)
@@ -1281,6 +1389,11 @@ func (aaa *MatchmakingService) GetStatDataShort(input *matchmaking.GetStatDataPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.GetStatDataShort(input, authInfoWriter)
 	if err != nil {
@@ -1305,6 +1418,11 @@ func (aaa *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSess
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.SearchSessionsShort(input, authInfoWriter)
@@ -1331,6 +1449,11 @@ func (aaa *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.GetSessionHistoryDetailedShort(input, authInfoWriter)
 	if err != nil {
@@ -1355,6 +1478,11 @@ func (aaa *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, authInfoWriter)
@@ -1381,6 +1509,11 @@ func (aaa *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *mat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfoWriter)
 	if err != nil {
@@ -1405,6 +1538,11 @@ func (aaa *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSe
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchmaking != nil {
+		input.XFlightId = tempFlightIdMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Matchmaking.SearchSessionsV2Short(input, authInfoWriter)

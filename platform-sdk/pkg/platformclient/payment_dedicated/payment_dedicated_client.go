@@ -228,6 +228,10 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentOrderByDedicated",
 		Method:             "POST",
@@ -657,6 +661,10 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundPaymentOrderByDedicated",
 		Method:             "PUT",
@@ -915,6 +923,10 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -20,6 +20,14 @@ type LobbyOperationsService struct {
 	Client           *lobbyclient.JusticeLobbyService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdLobbyOperations *string
+
+func (aaa *LobbyOperationsService) UpdateFlightId(flightId string) {
+	tempFlightIdLobbyOperations = &flightId
 }
 
 func (aaa *LobbyOperationsService) GetAuthSession() auth.Session {
@@ -127,6 +135,11 @@ func (aaa *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobb
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLobbyOperations != nil {
+		input.XFlightId = tempFlightIdLobbyOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.LobbyOperations.AdminUpdatePartyAttributesV1Short(input, authInfoWriter)
 	if err != nil {
@@ -152,6 +165,11 @@ func (aaa *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLobbyOperations != nil {
+		input.XFlightId = tempFlightIdLobbyOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.LobbyOperations.AdminJoinPartyV1Short(input, authInfoWriter)
 	if err != nil {
@@ -176,6 +194,11 @@ func (aaa *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operation
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdLobbyOperations != nil {
+		input.XFlightId = tempFlightIdLobbyOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.LobbyOperations.PublicGetMessagesShort(input, authInfoWriter)

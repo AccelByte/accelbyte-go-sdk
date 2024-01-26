@@ -22,6 +22,14 @@ type StoreService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdStore *string
+
+func (aaa *StoreService) UpdateFlightId(flightId string) {
+	tempFlightIdStore = &flightId
 }
 
 func (aaa *StoreService) GetAuthSession() auth.Session {
@@ -314,6 +322,11 @@ func (aaa *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*plat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.ListStoresShort(input, authInfoWriter)
 	if err != nil {
@@ -338,6 +351,11 @@ func (aaa *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*plat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Store.CreateStoreShort(input, authInfoWriter)
@@ -364,6 +382,11 @@ func (aaa *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*plat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.ImportStoreShort(input, authInfoWriter)
 	if err != nil {
@@ -388,6 +411,11 @@ func (aaa *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.GetPublishedStoreShort(input, authInfoWriter)
@@ -414,6 +442,11 @@ func (aaa *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedS
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.DeletePublishedStoreShort(input, authInfoWriter)
 	if err != nil {
@@ -438,6 +471,11 @@ func (aaa *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedS
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.GetPublishedStoreBackupShort(input, authInfoWriter)
@@ -464,6 +502,11 @@ func (aaa *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublis
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.RollbackPublishedStoreShort(input, authInfoWriter)
 	if err != nil {
@@ -488,6 +531,11 @@ func (aaa *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformcl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.GetStoreShort(input, authInfoWriter)
@@ -514,6 +562,11 @@ func (aaa *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*plat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.UpdateStoreShort(input, authInfoWriter)
 	if err != nil {
@@ -538,6 +591,11 @@ func (aaa *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*plat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.DeleteStoreShort(input, authInfoWriter)
@@ -564,6 +622,11 @@ func (aaa *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platfo
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.CloneStoreShort(input, authInfoWriter)
 	if err != nil {
@@ -589,6 +652,11 @@ func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams, writer
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.ExportStoreShort(input, authInfoWriter, writer)
 	if err != nil {
@@ -606,6 +674,11 @@ func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.PublicListStoresShort(input)
@@ -632,6 +705,11 @@ func (aaa *StoreService) ImportStore1Short(input *store.ImportStore1Params) (*pl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Store.ImportStore1Short(input, authInfoWriter)
 	if err != nil {
@@ -656,6 +734,11 @@ func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params, writ
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Store.ExportStore1Short(input, authInfoWriter, writer)

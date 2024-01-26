@@ -20,6 +20,14 @@ type SocialMatchmakingService struct {
 	Client           *matchmakingclient.JusticeMatchmakingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSocialMatchmaking *string
+
+func (aaa *SocialMatchmakingService) UpdateFlightId(flightId string) {
+	tempFlightIdSocialMatchmaking = &flightId
 }
 
 func (aaa *SocialMatchmakingService) GetAuthSession() auth.Session {
@@ -74,6 +82,11 @@ func (aaa *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_mat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSocialMatchmaking != nil {
+		input.XFlightId = tempFlightIdSocialMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.SocialMatchmaking.UpdatePlayTimeWeightShort(input, authInfoWriter)

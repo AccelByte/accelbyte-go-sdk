@@ -76,6 +76,10 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentNotifications",
 		Method:             "GET",
@@ -174,6 +178,10 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -276,6 +284,10 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listExtOrderNoByExtTxId",
 		Method:             "GET",
@@ -374,6 +386,10 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -479,6 +495,10 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -596,6 +616,10 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "simulatePaymentOrderNotification",
 		Method:             "PUT",
@@ -704,6 +728,10 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -828,6 +856,10 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -971,6 +1003,10 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

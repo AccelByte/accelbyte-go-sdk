@@ -20,6 +20,14 @@ type AdminItemTypesService struct {
 	Client           *inventoryclient.JusticeInventoryService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminItemTypes *string
+
+func (aaa *AdminItemTypesService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminItemTypes = &flightId
 }
 
 func (aaa *AdminItemTypesService) GetAuthSession() auth.Session {
@@ -109,6 +117,11 @@ func (aaa *AdminItemTypesService) AdminListItemTypesShort(input *admin_item_type
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminItemTypes != nil {
+		input.XFlightId = tempFlightIdAdminItemTypes
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminItemTypes.AdminListItemTypesShort(input, authInfoWriter)
 	if err != nil {
@@ -134,6 +147,11 @@ func (aaa *AdminItemTypesService) AdminCreateItemTypeShort(input *admin_item_typ
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminItemTypes != nil {
+		input.XFlightId = tempFlightIdAdminItemTypes
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.AdminItemTypes.AdminCreateItemTypeShort(input, authInfoWriter)
 	if err != nil {
@@ -158,6 +176,11 @@ func (aaa *AdminItemTypesService) AdminDeleteItemTypeShort(input *admin_item_typ
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminItemTypes != nil {
+		input.XFlightId = tempFlightIdAdminItemTypes
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminItemTypes.AdminDeleteItemTypeShort(input, authInfoWriter)

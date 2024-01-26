@@ -74,6 +74,10 @@ func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetLobbyCCU",
 		Method:             "GET",
@@ -189,6 +193,10 @@ func (a *Client) AdminGetBulkPlayerBlockedPlayersV1(params *AdminGetBulkPlayerBl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -308,6 +316,10 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllPlayerSessionAttribute",
 		Method:             "GET",
@@ -413,6 +425,10 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -532,6 +548,10 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerSessionAttribute",
 		Method:             "GET",
@@ -647,6 +667,10 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -766,6 +790,10 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerBlockedByPlayersV1",
 		Method:             "GET",
@@ -883,6 +911,10 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminBulkBlockPlayersV1",
 		Method:             "POST",
@@ -998,6 +1030,10 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1125,6 +1161,10 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

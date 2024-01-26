@@ -69,6 +69,10 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllLegalPolicies",
 		Method:             "GET",
@@ -165,6 +169,10 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -280,6 +288,10 @@ func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicy",
 		Method:             "GET",
@@ -381,6 +393,10 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -491,6 +507,10 @@ func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyCountry",
 		Method:             "GET",
@@ -592,6 +612,10 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -68,6 +68,10 @@ func (a *Client) AdminListPlayerBinaryRecordsV1(params *AdminListPlayerBinaryRec
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminListPlayerBinaryRecordsV1",
 		Method:             "GET",
@@ -189,6 +193,10 @@ func (a *Client) AdminPostPlayerBinaryRecordV1(params *AdminPostPlayerBinaryReco
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -319,6 +327,10 @@ func (a *Client) AdminGetPlayerBinaryRecordV1(params *AdminGetPlayerBinaryRecord
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerBinaryRecordV1",
 		Method:             "GET",
@@ -429,6 +441,10 @@ func (a *Client) AdminPutPlayerBinaryRecordV1(params *AdminPutPlayerBinaryRecord
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -548,6 +564,10 @@ func (a *Client) AdminDeletePlayerBinaryRecordV1(params *AdminDeletePlayerBinary
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeletePlayerBinaryRecordV1",
 		Method:             "DELETE",
@@ -658,6 +678,10 @@ func (a *Client) AdminPutPlayerBinaryRecorMetadataV1(params *AdminPutPlayerBinar
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -779,6 +803,10 @@ func (a *Client) AdminPostPlayerBinaryPresignedURLV1(params *AdminPostPlayerBina
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

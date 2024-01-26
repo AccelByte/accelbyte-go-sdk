@@ -20,6 +20,14 @@ type ConfigurationService struct {
 	Client           *gdprclient.JusticeGdprService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdConfiguration *string
+
+func (aaa *ConfigurationService) UpdateFlightId(flightId string) {
+	tempFlightIdConfiguration = &flightId
 }
 
 func (aaa *ConfigurationService) GetAuthSession() auth.Session {
@@ -207,6 +215,11 @@ func (aaa *ConfigurationService) GetAdminEmailConfigurationShort(input *configur
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Configuration.GetAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
@@ -231,6 +244,11 @@ func (aaa *ConfigurationService) UpdateAdminEmailConfigurationShort(input *confi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Configuration.UpdateAdminEmailConfigurationShort(input, authInfoWriter)
@@ -257,6 +275,11 @@ func (aaa *ConfigurationService) SaveAdminEmailConfigurationShort(input *configu
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Configuration.SaveAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
@@ -281,6 +304,11 @@ func (aaa *ConfigurationService) DeleteAdminEmailConfigurationShort(input *confi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Configuration.DeleteAdminEmailConfigurationShort(input, authInfoWriter)
@@ -307,6 +335,11 @@ func (aaa *ConfigurationService) AdminGetServicesConfigurationShort(input *confi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Configuration.AdminGetServicesConfigurationShort(input, authInfoWriter)
 	if err != nil {
@@ -332,6 +365,11 @@ func (aaa *ConfigurationService) AdminUpdateServicesConfigurationShort(input *co
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Configuration.AdminUpdateServicesConfigurationShort(input, authInfoWriter)
 	if err != nil {
@@ -356,6 +394,11 @@ func (aaa *ConfigurationService) AdminResetServicesConfigurationShort(input *con
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Configuration.AdminResetServicesConfigurationShort(input, authInfoWriter)

@@ -20,6 +20,14 @@ type SectionService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSection *string
+
+func (aaa *SectionService) UpdateFlightId(flightId string) {
+	tempFlightIdSection = &flightId
 }
 
 func (aaa *SectionService) GetAuthSession() auth.Session {
@@ -189,6 +197,11 @@ func (aaa *SectionService) QuerySectionsShort(input *section.QuerySectionsParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Section.QuerySectionsShort(input, authInfoWriter)
 	if err != nil {
@@ -213,6 +226,11 @@ func (aaa *SectionService) CreateSectionShort(input *section.CreateSectionParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Section.CreateSectionShort(input, authInfoWriter)
@@ -239,6 +257,11 @@ func (aaa *SectionService) PurgeExpiredSectionShort(input *section.PurgeExpiredS
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Section.PurgeExpiredSectionShort(input, authInfoWriter)
 	if err != nil {
@@ -263,6 +286,11 @@ func (aaa *SectionService) GetSectionShort(input *section.GetSectionParams) (*pl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Section.GetSectionShort(input, authInfoWriter)
@@ -289,6 +317,11 @@ func (aaa *SectionService) UpdateSectionShort(input *section.UpdateSectionParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Section.UpdateSectionShort(input, authInfoWriter)
 	if err != nil {
@@ -314,6 +347,11 @@ func (aaa *SectionService) DeleteSectionShort(input *section.DeleteSectionParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Section.DeleteSectionShort(input, authInfoWriter)
 	if err != nil {
@@ -338,6 +376,11 @@ func (aaa *SectionService) PublicListActiveSectionsShort(input *section.PublicLi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSection != nil {
+		input.XFlightId = tempFlightIdSection
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Section.PublicListActiveSectionsShort(input, authInfoWriter)

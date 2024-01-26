@@ -75,6 +75,10 @@ func (a *Client) QoSRegionsGet(params *QoSRegionsGetParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QoSRegionsGet",
 		Method:             "GET",
@@ -205,6 +209,10 @@ func (a *Client) QoSRegionsUpdate(params *QoSRegionsUpdateParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -107,6 +107,10 @@ func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllChannelsHandler",
 		Method:             "GET",
@@ -235,6 +239,10 @@ func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -369,6 +377,10 @@ func (a *Client) GetMatchPoolMetric(params *GetMatchPoolMetricParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetMatchPoolMetric",
 		Method:             "GET",
@@ -486,6 +498,10 @@ func (a *Client) DeleteChannelHandler(params *DeleteChannelHandlerParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteChannelHandler",
 		Method:             "DELETE",
@@ -596,6 +612,10 @@ func (a *Client) StoreMatchResults(params *StoreMatchResultsParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -714,6 +734,10 @@ func (a *Client) Rebalance(params *RebalanceParams, authInfo runtime.ClientAuthI
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -847,6 +871,10 @@ func (a *Client) QueueSessionHandler(params *QueueSessionHandlerParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QueueSessionHandler",
 		Method:             "POST",
@@ -970,6 +998,10 @@ func (a *Client) DequeueSessionHandler(params *DequeueSessionHandlerParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1098,6 +1130,10 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QuerySessionHandler",
 		Method:             "GET",
@@ -1221,6 +1257,10 @@ func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllPartyInAllChannel",
 		Method:             "GET",
@@ -1336,6 +1376,10 @@ func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1457,6 +1501,10 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ExportChannels",
 		Method:             "GET",
@@ -1569,6 +1617,10 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1688,6 +1740,10 @@ func (a *Client) GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannel
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1811,6 +1867,10 @@ func (a *Client) UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateMatchmakingChannel",
 		Method:             "PATCH",
@@ -1928,6 +1988,10 @@ func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2049,6 +2113,10 @@ func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetAllSessionsInChannel",
 		Method:             "GET",
@@ -2168,6 +2236,10 @@ func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannel
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddUserIntoSessionInChannel",
 		Method:             "POST",
@@ -2285,6 +2357,10 @@ func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteSessionInChannel",
 		Method:             "DELETE",
@@ -2400,6 +2476,10 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2523,6 +2603,10 @@ func (a *Client) GetStatData(params *GetStatDataParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2663,6 +2747,10 @@ func (a *Client) SearchSessions(params *SearchSessionsParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2828,6 +2916,10 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetSessionHistoryDetailed",
 		Method:             "GET",
@@ -2969,6 +3061,10 @@ func (a *Client) PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingC
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetAllMatchmakingChannel",
 		Method:             "GET",
@@ -3084,6 +3180,10 @@ func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchm
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3223,6 +3323,10 @@ func (a *Client) SearchSessionsV2(params *SearchSessionsV2Params, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

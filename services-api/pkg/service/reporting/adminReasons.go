@@ -20,6 +20,14 @@ type AdminReasonsService struct {
 	Client           *reportingclient.JusticeReportingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminReasons *string
+
+func (aaa *AdminReasonsService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminReasons = &flightId
 }
 
 func (aaa *AdminReasonsService) GetAuthSession() auth.Session {
@@ -286,6 +294,11 @@ func (aaa *AdminReasonsService) AdminListReasonGroupsShort(input *admin_reasons.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminReasons.AdminListReasonGroupsShort(input, authInfoWriter)
 	if err != nil {
@@ -310,6 +323,11 @@ func (aaa *AdminReasonsService) CreateReasonGroupShort(input *admin_reasons.Crea
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminReasons.CreateReasonGroupShort(input, authInfoWriter)
@@ -336,6 +354,11 @@ func (aaa *AdminReasonsService) GetReasonGroupShort(input *admin_reasons.GetReas
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminReasons.GetReasonGroupShort(input, authInfoWriter)
 	if err != nil {
@@ -360,6 +383,11 @@ func (aaa *AdminReasonsService) DeleteReasonGroupShort(input *admin_reasons.Dele
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminReasons.DeleteReasonGroupShort(input, authInfoWriter)
@@ -386,6 +414,11 @@ func (aaa *AdminReasonsService) UpdateReasonGroupShort(input *admin_reasons.Upda
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminReasons.UpdateReasonGroupShort(input, authInfoWriter)
 	if err != nil {
@@ -410,6 +443,11 @@ func (aaa *AdminReasonsService) AdminGetReasonsShort(input *admin_reasons.AdminG
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminReasons.AdminGetReasonsShort(input, authInfoWriter)
@@ -436,6 +474,11 @@ func (aaa *AdminReasonsService) CreateReasonShort(input *admin_reasons.CreateRea
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.AdminReasons.CreateReasonShort(input, authInfoWriter)
 	if err != nil {
@@ -460,6 +503,11 @@ func (aaa *AdminReasonsService) AdminGetAllReasonsShort(input *admin_reasons.Adm
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminReasons.AdminGetAllReasonsShort(input, authInfoWriter)
@@ -486,6 +534,11 @@ func (aaa *AdminReasonsService) AdminGetUnusedReasonsShort(input *admin_reasons.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminReasons.AdminGetUnusedReasonsShort(input, authInfoWriter)
 	if err != nil {
@@ -510,6 +563,11 @@ func (aaa *AdminReasonsService) AdminGetReasonShort(input *admin_reasons.AdminGe
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminReasons.AdminGetReasonShort(input, authInfoWriter)
@@ -536,6 +594,11 @@ func (aaa *AdminReasonsService) DeleteReasonShort(input *admin_reasons.DeleteRea
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.AdminReasons.DeleteReasonShort(input, authInfoWriter)
 	if err != nil {
@@ -560,6 +623,11 @@ func (aaa *AdminReasonsService) UpdateReasonShort(input *admin_reasons.UpdateRea
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReasons != nil {
+		input.XFlightId = tempFlightIdAdminReasons
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminReasons.UpdateReasonShort(input, authInfoWriter)

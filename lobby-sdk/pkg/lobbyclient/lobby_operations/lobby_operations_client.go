@@ -60,6 +60,10 @@ func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributes
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdatePartyAttributesV1",
 		Method:             "PUT",
@@ -182,6 +186,10 @@ func (a *Client) AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminJoinPartyV1",
 		Method:             "POST",
@@ -302,6 +310,10 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

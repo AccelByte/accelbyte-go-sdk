@@ -19,6 +19,14 @@ type AdminService struct {
 	Client           *qosmclient.JusticeQosmService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdmin *string
+
+func (aaa *AdminService) UpdateFlightId(flightId string) {
+	tempFlightIdAdmin = &flightId
 }
 
 func (aaa *AdminService) GetAuthSession() auth.Session {
@@ -108,6 +116,11 @@ func (aaa *AdminService) UpdateServerConfigShort(input *admin.UpdateServerConfig
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdmin != nil {
+		input.XFlightId = tempFlightIdAdmin
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Admin.UpdateServerConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -133,6 +146,11 @@ func (aaa *AdminService) DeleteServerShort(input *admin.DeleteServerParams) erro
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdmin != nil {
+		input.XFlightId = tempFlightIdAdmin
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
@@ -157,6 +175,11 @@ func (aaa *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdmin != nil {
+		input.XFlightId = tempFlightIdAdmin
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Admin.SetServerAliasShort(input, authInfoWriter)

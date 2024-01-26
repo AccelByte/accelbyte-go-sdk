@@ -20,6 +20,14 @@ type AdminUserEligibilitiesService struct {
 	Client           *legalclient.JusticeLegalService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminUserEligibilities *string
+
+func (aaa *AdminUserEligibilitiesService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminUserEligibilities = &flightId
 }
 
 func (aaa *AdminUserEligibilitiesService) GetAuthSession() auth.Session {
@@ -62,6 +70,11 @@ func (aaa *AdminUserEligibilitiesService) AdminRetrieveEligibilitiesShort(input 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminUserEligibilities != nil {
+		input.XFlightId = tempFlightIdAdminUserEligibilities
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminUserEligibilities.AdminRetrieveEligibilitiesShort(input, authInfoWriter)

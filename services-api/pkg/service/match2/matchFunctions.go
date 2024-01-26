@@ -20,6 +20,14 @@ type MatchFunctionsService struct {
 	Client           *match2client.JusticeMatch2Service
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMatchFunctions *string
+
+func (aaa *MatchFunctionsService) UpdateFlightId(flightId string) {
+	tempFlightIdMatchFunctions = &flightId
 }
 
 func (aaa *MatchFunctionsService) GetAuthSession() auth.Session {
@@ -153,6 +161,11 @@ func (aaa *MatchFunctionsService) MatchFunctionListShort(input *match_functions.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchFunctions != nil {
+		input.XFlightId = tempFlightIdMatchFunctions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchFunctions.MatchFunctionListShort(input, authInfoWriter)
 	if err != nil {
@@ -177,6 +190,11 @@ func (aaa *MatchFunctionsService) CreateMatchFunctionShort(input *match_function
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchFunctions != nil {
+		input.XFlightId = tempFlightIdMatchFunctions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchFunctions.CreateMatchFunctionShort(input, authInfoWriter)
@@ -203,6 +221,11 @@ func (aaa *MatchFunctionsService) UpdateMatchFunctionShort(input *match_function
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchFunctions != nil {
+		input.XFlightId = tempFlightIdMatchFunctions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchFunctions.UpdateMatchFunctionShort(input, authInfoWriter)
 	if err != nil {
@@ -227,6 +250,11 @@ func (aaa *MatchFunctionsService) DeleteMatchFunctionShort(input *match_function
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchFunctions != nil {
+		input.XFlightId = tempFlightIdMatchFunctions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchFunctions.DeleteMatchFunctionShort(input, authInfoWriter)

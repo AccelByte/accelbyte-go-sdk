@@ -20,6 +20,14 @@ type EventV2Service struct {
 	Client           *eventlogclient.JusticeEventlogService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdEventV2 *string
+
+func (aaa *EventV2Service) UpdateFlightId(flightId string) {
+	tempFlightIdEventV2 = &flightId
 }
 
 func (aaa *EventV2Service) GetAuthSession() auth.Session {
@@ -174,6 +182,11 @@ func (aaa *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEve
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEventV2 != nil {
+		input.XFlightId = tempFlightIdEventV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.EventV2.QueryEventStreamHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -198,6 +211,11 @@ func (aaa *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.Ge
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEventV2 != nil {
+		input.XFlightId = tempFlightIdEventV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.EventV2.GetEventSpecificUserV2HandlerShort(input, authInfoWriter)
@@ -224,6 +242,11 @@ func (aaa *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEd
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdEventV2 != nil {
+		input.XFlightId = tempFlightIdEventV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.EventV2.GetPublicEditHistoryShort(input, authInfoWriter)
 	if err != nil {
@@ -248,6 +271,11 @@ func (aaa *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEve
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdEventV2 != nil {
+		input.XFlightId = tempFlightIdEventV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.EventV2.GetUserEventsV2PublicShort(input, authInfoWriter)

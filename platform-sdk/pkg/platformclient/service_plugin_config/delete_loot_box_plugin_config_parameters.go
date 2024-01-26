@@ -71,6 +71,9 @@ type DeleteLootBoxPluginConfigParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the delete loot box plugin config params
@@ -120,6 +123,15 @@ func (o *DeleteLootBoxPluginConfigParams) SetHTTPClientTransport(roundTripper ht
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *DeleteLootBoxPluginConfigParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithNamespace adds the namespace to the delete loot box plugin config params
 func (o *DeleteLootBoxPluginConfigParams) WithNamespace(namespace string) *DeleteLootBoxPluginConfigParams {
 	o.SetNamespace(namespace)
@@ -151,6 +163,16 @@ func (o *DeleteLootBoxPluginConfigParams) WriteToRequest(r runtime.ClientRequest
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

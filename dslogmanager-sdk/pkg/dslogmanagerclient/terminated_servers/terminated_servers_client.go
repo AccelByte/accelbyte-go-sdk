@@ -67,6 +67,10 @@ func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listTerminatedServers",
 		Method:             "GET",
@@ -184,6 +188,10 @@ func (a *Client) DownloadServerLogs(params *DownloadServerLogsParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadServerLogs",
 		Method:             "GET",
@@ -292,6 +300,10 @@ func (a *Client) CheckServerLogs(params *CheckServerLogsParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

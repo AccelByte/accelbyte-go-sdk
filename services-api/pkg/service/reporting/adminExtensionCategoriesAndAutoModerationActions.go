@@ -20,6 +20,14 @@ type AdminExtensionCategoriesandAutoModerationActionsService struct {
 	Client           *reportingclient.JusticeReportingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminExtensionCategoriesandAutoModerationActions *string
+
+func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminExtensionCategoriesandAutoModerationActions = &flightId
 }
 
 func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) GetAuthSession() auth.Session {
@@ -126,6 +134,11 @@ func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) AdminFindAct
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminExtensionCategoriesandAutoModerationActions != nil {
+		input.XFlightId = tempFlightIdAdminExtensionCategoriesandAutoModerationActions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminExtensionCategoriesAndAutoModerationActions.AdminFindActionListShort(input, authInfoWriter)
 	if err != nil {
@@ -150,6 +163,11 @@ func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) AdminCreateM
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminExtensionCategoriesandAutoModerationActions != nil {
+		input.XFlightId = tempFlightIdAdminExtensionCategoriesandAutoModerationActions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminExtensionCategoriesAndAutoModerationActions.AdminCreateModActionShort(input, authInfoWriter)
@@ -176,6 +194,11 @@ func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) AdminFindExt
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminExtensionCategoriesandAutoModerationActions != nil {
+		input.XFlightId = tempFlightIdAdminExtensionCategoriesandAutoModerationActions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminExtensionCategoriesAndAutoModerationActions.AdminFindExtensionCategoryListShort(input, authInfoWriter)
 	if err != nil {
@@ -200,6 +223,11 @@ func (aaa *AdminExtensionCategoriesandAutoModerationActionsService) AdminCreateE
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminExtensionCategoriesandAutoModerationActions != nil {
+		input.XFlightId = tempFlightIdAdminExtensionCategoriesandAutoModerationActions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminExtensionCategoriesAndAutoModerationActions.AdminCreateExtensionCategoryShort(input, authInfoWriter)

@@ -64,6 +64,10 @@ func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "QueryEventStreamHandler",
 		Method:             "POST",
@@ -186,6 +190,10 @@ func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2Han
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -316,6 +324,10 @@ func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetPublicEditHistory",
 		Method:             "GET",
@@ -442,6 +454,10 @@ func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

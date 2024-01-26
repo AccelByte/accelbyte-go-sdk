@@ -22,6 +22,14 @@ type OrderService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdOrder *string
+
+func (aaa *OrderService) UpdateFlightId(flightId string) {
+	tempFlightIdOrder = &flightId
 }
 
 func (aaa *OrderService) GetAuthSession() auth.Session {
@@ -418,6 +426,11 @@ func (aaa *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*plat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.QueryOrdersShort(input, authInfoWriter)
 	if err != nil {
@@ -442,6 +455,11 @@ func (aaa *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatistics
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.GetOrderStatisticsShort(input, authInfoWriter)
@@ -468,6 +486,11 @@ func (aaa *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformcl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.GetOrderShort(input, authInfoWriter)
 	if err != nil {
@@ -492,6 +515,11 @@ func (aaa *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*plat
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.RefundOrderShort(input, authInfoWriter)
@@ -518,6 +546,11 @@ func (aaa *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.QueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
@@ -542,6 +575,11 @@ func (aaa *OrderService) AdminCreateUserOrderShort(input *order.AdminCreateUserO
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Order.AdminCreateUserOrderShort(input, authInfoWriter)
@@ -568,6 +606,11 @@ func (aaa *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchased
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.CountOfPurchasedItemShort(input, authInfoWriter)
 	if err != nil {
@@ -592,6 +635,11 @@ func (aaa *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*pl
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.GetUserOrderShort(input, authInfoWriter)
@@ -618,6 +666,11 @@ func (aaa *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrder
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.UpdateUserOrderStatusShort(input, authInfoWriter)
 	if err != nil {
@@ -642,6 +695,11 @@ func (aaa *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.FulfillUserOrderShort(input, authInfoWriter)
@@ -668,6 +726,11 @@ func (aaa *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.GetUserOrderGrantShort(input, authInfoWriter)
 	if err != nil {
@@ -692,6 +755,11 @@ func (aaa *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHis
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.GetUserOrderHistoriesShort(input, authInfoWriter)
@@ -718,6 +786,11 @@ func (aaa *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessU
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Order.ProcessUserOrderNotificationShort(input, authInfoWriter)
 	if err != nil {
@@ -742,6 +815,11 @@ func (aaa *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUser
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.DownloadUserOrderReceiptShort(input, authInfoWriter, writer)
@@ -768,6 +846,11 @@ func (aaa *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUser
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.PublicQueryUserOrdersShort(input, authInfoWriter)
 	if err != nil {
@@ -792,6 +875,11 @@ func (aaa *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUse
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Order.PublicCreateUserOrderShort(input, authInfoWriter)
@@ -818,6 +906,11 @@ func (aaa *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrder
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.PublicGetUserOrderShort(input, authInfoWriter)
 	if err != nil {
@@ -842,6 +935,11 @@ func (aaa *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUse
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.PublicCancelUserOrderShort(input, authInfoWriter)
@@ -868,6 +966,11 @@ func (aaa *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGet
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Order.PublicGetUserOrderHistoriesShort(input, authInfoWriter)
 	if err != nil {
@@ -892,6 +995,11 @@ func (aaa *OrderService) PublicDownloadUserOrderReceiptShort(input *order.Public
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfoWriter, writer)

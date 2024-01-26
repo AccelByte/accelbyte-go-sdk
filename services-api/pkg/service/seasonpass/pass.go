@@ -20,6 +20,14 @@ type PassService struct {
 	Client           *seasonpassclient.JusticeSeasonpassService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPass *string
+
+func (aaa *PassService) UpdateFlightId(flightId string) {
+	tempFlightIdPass = &flightId
 }
 
 func (aaa *PassService) GetAuthSession() auth.Session {
@@ -178,6 +186,11 @@ func (aaa *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seas
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Pass.QueryPassesShort(input, authInfoWriter)
 	if err != nil {
@@ -202,6 +215,11 @@ func (aaa *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Pass.CreatePassShort(input, authInfoWriter)
@@ -228,6 +246,11 @@ func (aaa *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclie
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Pass.GetPassShort(input, authInfoWriter)
 	if err != nil {
@@ -252,6 +275,11 @@ func (aaa *PassService) DeletePassShort(input *pass.DeletePassParams) error {
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Pass.DeletePassShort(input, authInfoWriter)
@@ -278,6 +306,11 @@ func (aaa *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Pass.UpdatePassShort(input, authInfoWriter)
 	if err != nil {
@@ -302,6 +335,11 @@ func (aaa *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*se
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPass != nil {
+		input.XFlightId = tempFlightIdPass
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Pass.GrantUserPassShort(input, authInfoWriter)

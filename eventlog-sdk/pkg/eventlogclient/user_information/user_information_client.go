@@ -60,6 +60,10 @@ func (a *Client) GetUserActivitiesHandler(params *GetUserActivitiesHandlerParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetUserActivitiesHandler",
 		Method:             "GET",
@@ -177,6 +181,10 @@ func (a *Client) DeleteUserActivitiesHandler(params *DeleteUserActivitiesHandler
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteUserActivitiesHandler",
 		Method:             "DELETE",
@@ -287,6 +295,10 @@ func (a *Client) LastUserActivityTimeHandler(params *LastUserActivityTimeHandler
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

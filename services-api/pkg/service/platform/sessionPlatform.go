@@ -19,6 +19,14 @@ type SessionPlatformService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdSessionPlatform *string
+
+func (aaa *SessionPlatformService) UpdateFlightId(flightId string) {
+	tempFlightIdSessionPlatform = &flightId
 }
 
 func (aaa *SessionPlatformService) GetAuthSession() auth.Session {
@@ -61,6 +69,11 @@ func (aaa *SessionPlatformService) RegisterXblSessionsShort(input *session_platf
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdSessionPlatform != nil {
+		input.XFlightId = tempFlightIdSessionPlatform
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.SessionPlatform.RegisterXblSessionsShort(input, authInfoWriter)

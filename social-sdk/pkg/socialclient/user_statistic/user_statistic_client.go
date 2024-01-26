@@ -143,6 +143,10 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems",
 		Method:             "GET",
@@ -259,6 +263,10 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -384,6 +392,10 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue",
 		Method:             "PATCH",
@@ -505,6 +517,10 @@ func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItems
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -632,6 +648,10 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem",
 		Method:             "PUT",
@@ -757,6 +777,10 @@ func (a *Client) GetStatItems(params *GetStatItemsParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStatItems",
 		Method:             "GET",
@@ -868,6 +892,10 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -986,6 +1014,10 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1111,6 +1143,10 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItem_1",
 		Method:             "PUT",
@@ -1232,6 +1268,10 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1357,6 +1397,10 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_1",
 		Method:             "PUT",
@@ -1478,6 +1522,10 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1609,6 +1657,10 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems",
 		Method:             "DELETE",
@@ -1731,6 +1783,10 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1868,6 +1924,10 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue",
 		Method:             "PUT",
@@ -1998,6 +2058,10 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems_1",
 		Method:             "GET",
@@ -2114,6 +2178,10 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2237,6 +2305,10 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2364,6 +2436,10 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_2",
 		Method:             "PUT",
@@ -2489,6 +2565,10 @@ func (a *Client) PublicListMyStatItems(params *PublicListMyStatItemsParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListMyStatItems",
 		Method:             "GET",
@@ -2608,6 +2688,10 @@ func (a *Client) PublicListAllMyStatItems(params *PublicListAllMyStatItemsParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2731,6 +2815,10 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
@@ -2847,6 +2935,10 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2973,6 +3065,10 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3106,6 +3202,10 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem_1",
 		Method:             "PUT",
@@ -3227,6 +3327,10 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3352,6 +3456,10 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_3",
 		Method:             "PUT",
@@ -3473,6 +3581,10 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3603,6 +3715,10 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_1",
 		Method:             "DELETE",
@@ -3724,6 +3840,10 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3859,6 +3979,10 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItemValue",
 		Method:             "PATCH",
@@ -3992,6 +4116,10 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4130,6 +4258,10 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItemV2",
 		Method:             "PUT",
@@ -4259,6 +4391,10 @@ func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItem
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchOrDefaultStatItems_1",
 		Method:             "GET",
@@ -4383,6 +4519,10 @@ func (a *Client) AdminListUsersStatItems(params *AdminListUsersStatItemsParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4525,6 +4665,10 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem",
 		Method:             "PUT",
@@ -4657,6 +4801,10 @@ func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValues
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItemValues",
 		Method:             "PUT",
@@ -4782,6 +4930,10 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4918,6 +5070,10 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5068,6 +5224,10 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_1",
 		Method:             "PUT",
@@ -5198,6 +5358,10 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -5340,6 +5504,10 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_2",
 		Method:             "PUT",
@@ -5479,6 +5647,10 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

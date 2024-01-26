@@ -20,6 +20,14 @@ type ServerService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdServer *string
+
+func (aaa *ServerService) UpdateFlightId(flightId string) {
+	tempFlightIdServer = &flightId
 }
 
 func (aaa *ServerService) GetAuthSession() auth.Session {
@@ -248,6 +256,11 @@ func (aaa *ServerService) ListServerClientShort(input *server.ListServerClientPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Server.ListServerClientShort(input, authInfoWriter)
 	if err != nil {
@@ -272,6 +285,11 @@ func (aaa *ServerService) ServerHeartbeatShort(input *server.ServerHeartbeatPara
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Server.ServerHeartbeatShort(input, authInfoWriter)
@@ -298,6 +316,11 @@ func (aaa *ServerService) DeregisterLocalServerShort(input *server.DeregisterLoc
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Server.DeregisterLocalServerShort(input, authInfoWriter)
 	if err != nil {
@@ -322,6 +345,11 @@ func (aaa *ServerService) RegisterLocalServerShort(input *server.RegisterLocalSe
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Server.RegisterLocalServerShort(input, authInfoWriter)
@@ -348,6 +376,11 @@ func (aaa *ServerService) RegisterServerShort(input *server.RegisterServerParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Server.RegisterServerShort(input, authInfoWriter)
 	if err != nil {
@@ -372,6 +405,11 @@ func (aaa *ServerService) ShutdownServerShort(input *server.ShutdownServerParams
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Server.ShutdownServerShort(input, authInfoWriter)
@@ -398,6 +436,11 @@ func (aaa *ServerService) GetServerSessionTimeoutShort(input *server.GetServerSe
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Server.GetServerSessionTimeoutShort(input, authInfoWriter)
 	if err != nil {
@@ -422,6 +465,11 @@ func (aaa *ServerService) GetServerSessionShort(input *server.GetServerSessionPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Server.GetServerSessionShort(input, authInfoWriter)

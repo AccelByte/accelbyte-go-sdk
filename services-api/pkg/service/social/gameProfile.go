@@ -20,6 +20,14 @@ type GameProfileService struct {
 	Client           *socialclient.JusticeSocialService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdGameProfile *string
+
+func (aaa *GameProfileService) UpdateFlightId(flightId string) {
+	tempFlightIdGameProfile = &flightId
 }
 
 func (aaa *GameProfileService) GetAuthSession() auth.Session {
@@ -315,6 +323,11 @@ func (aaa *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserP
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GameProfile.GetUserProfilesShort(input, authInfoWriter)
 	if err != nil {
@@ -339,6 +352,11 @@ func (aaa *GameProfileService) GetProfileShort(input *game_profile.GetProfilePar
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GameProfile.GetProfileShort(input, authInfoWriter)
@@ -365,6 +383,11 @@ func (aaa *GameProfileService) PublicGetUserGameProfilesShort(input *game_profil
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GameProfile.PublicGetUserGameProfilesShort(input, authInfoWriter)
 	if err != nil {
@@ -389,6 +412,11 @@ func (aaa *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Pu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GameProfile.PublicGetUserProfilesShort(input, authInfoWriter)
@@ -415,6 +443,11 @@ func (aaa *GameProfileService) PublicCreateProfileShort(input *game_profile.Publ
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.GameProfile.PublicCreateProfileShort(input, authInfoWriter)
 	if err != nil {
@@ -439,6 +472,11 @@ func (aaa *GameProfileService) PublicGetProfileShort(input *game_profile.PublicG
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GameProfile.PublicGetProfileShort(input, authInfoWriter)
@@ -465,6 +503,11 @@ func (aaa *GameProfileService) PublicUpdateProfileShort(input *game_profile.Publ
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GameProfile.PublicUpdateProfileShort(input, authInfoWriter)
 	if err != nil {
@@ -489,6 +532,11 @@ func (aaa *GameProfileService) PublicDeleteProfileShort(input *game_profile.Publ
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.GameProfile.PublicDeleteProfileShort(input, authInfoWriter)
@@ -515,6 +563,11 @@ func (aaa *GameProfileService) PublicGetProfileAttributeShort(input *game_profil
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.GameProfile.PublicGetProfileAttributeShort(input, authInfoWriter)
 	if err != nil {
@@ -539,6 +592,11 @@ func (aaa *GameProfileService) PublicUpdateAttributeShort(input *game_profile.Pu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdGameProfile != nil {
+		input.XFlightId = tempFlightIdGameProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.GameProfile.PublicUpdateAttributeShort(input, authInfoWriter)

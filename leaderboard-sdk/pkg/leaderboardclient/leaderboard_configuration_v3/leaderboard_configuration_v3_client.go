@@ -79,6 +79,10 @@ func (a *Client) GetLeaderboardConfigurationsAdminV3(params *GetLeaderboardConfi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLeaderboardConfigurationsAdminV3",
 		Method:             "GET",
@@ -226,6 +230,10 @@ func (a *Client) CreateLeaderboardConfigurationAdminV3(params *CreateLeaderboard
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -382,6 +390,10 @@ func (a *Client) DeleteBulkLeaderboardConfigurationAdminV3(params *DeleteBulkLea
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteBulkLeaderboardConfigurationAdminV3",
 		Method:             "POST",
@@ -506,6 +518,10 @@ func (a *Client) GetLeaderboardConfigurationAdminV3(params *GetLeaderboardConfig
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -662,6 +678,10 @@ func (a *Client) UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboard
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateLeaderboardConfigurationAdminV3",
 		Method:             "PUT",
@@ -816,6 +836,10 @@ func (a *Client) DeleteLeaderboardConfigurationAdminV3(params *DeleteLeaderboard
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteLeaderboardConfigurationAdminV3",
 		Method:             "DELETE",
@@ -957,6 +981,10 @@ func (a *Client) HardDeleteLeaderboardAdminV3(params *HardDeleteLeaderboardAdmin
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "hardDeleteLeaderboardAdminV3",
 		Method:             "DELETE",
@@ -1093,6 +1121,10 @@ func (a *Client) GetLeaderboardConfigurationsPublicV3(params *GetLeaderboardConf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLeaderboardConfigurationsPublicV3",
 		Method:             "GET",
@@ -1207,6 +1239,10 @@ func (a *Client) GetLeaderboardConfigurationPublicV3(params *GetLeaderboardConfi
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

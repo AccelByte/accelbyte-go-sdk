@@ -150,6 +150,10 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppleIAPConfig",
 		Method:             "GET",
@@ -248,6 +252,10 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAppleIAPConfig",
 		Method:             "PUT",
@@ -343,6 +351,10 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -444,6 +456,10 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEpicGamesIAPConfig",
 		Method:             "GET",
@@ -542,6 +558,10 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateEpicGamesIAPConfig",
 		Method:             "PUT",
@@ -637,6 +657,10 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -738,6 +762,10 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGoogleIAPConfig",
 		Method:             "GET",
@@ -836,6 +864,10 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleIAPConfig",
 		Method:             "PUT",
@@ -931,6 +963,10 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1032,6 +1068,10 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleP12File",
 		Method:             "PUT",
@@ -1129,6 +1169,10 @@ func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1231,6 +1275,10 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1345,6 +1393,10 @@ func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteIAPItemConfig",
 		Method:             "DELETE",
@@ -1442,6 +1494,10 @@ func (a *Client) GetOculusIAPConfig(params *GetOculusIAPConfigParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1542,6 +1598,10 @@ func (a *Client) UpdateOculusIAPConfig(params *UpdateOculusIAPConfigParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOculusIAPConfig",
 		Method:             "PUT",
@@ -1637,6 +1697,10 @@ func (a *Client) DeleteOculusIAPConfig(params *DeleteOculusIAPConfigParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1738,6 +1802,10 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlayStationIAPConfig",
 		Method:             "GET",
@@ -1834,6 +1902,10 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1938,6 +2010,10 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlaystationIAPConfig",
 		Method:             "DELETE",
@@ -2035,6 +2111,10 @@ func (a *Client) ValidateExistedPlaystationIAPConfig(params *ValidateExistedPlay
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "validateExistedPlaystationIAPConfig",
 		Method:             "GET",
@@ -2129,6 +2209,10 @@ func (a *Client) ValidatePlaystationIAPConfig(params *ValidatePlaystationIAPConf
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2229,6 +2313,10 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSteamIAPConfig",
 		Method:             "GET",
@@ -2325,6 +2413,10 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2429,6 +2521,10 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSteamIAPConfig",
 		Method:             "DELETE",
@@ -2526,6 +2622,10 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2626,6 +2726,10 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTwitchIAPConfig",
 		Method:             "PUT",
@@ -2721,6 +2825,10 @@ func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2822,6 +2930,10 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getXblIAPConfig",
 		Method:             "GET",
@@ -2918,6 +3030,10 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3017,6 +3133,10 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteXblAPConfig",
 		Method:             "DELETE",
@@ -3114,6 +3234,10 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3216,6 +3340,10 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserIAPOrders",
 		Method:             "GET",
@@ -3314,6 +3442,10 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3416,6 +3548,10 @@ func (a *Client) QueryUserIAPConsumeHistory(params *QueryUserIAPConsumeHistoryPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserIAPConsumeHistory",
 		Method:             "GET",
@@ -3515,6 +3651,10 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3630,6 +3770,10 @@ func (a *Client) GetIAPItemMapping(params *GetIAPItemMappingParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getIAPItemMapping",
 		Method:             "GET",
@@ -3731,6 +3875,10 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3838,6 +3986,10 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3957,6 +4109,10 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncEpicGamesInventory",
 		Method:             "PUT",
@@ -4062,6 +4218,10 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4181,6 +4341,10 @@ func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncOculusConsumableEntitlements",
 		Method:             "PUT",
@@ -4286,6 +4450,10 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4395,6 +4563,10 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReconcilePlayStationStoreWithMultipleServiceLabels",
 		Method:             "PUT",
@@ -4500,6 +4672,10 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -4609,6 +4785,10 @@ func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncTwitchDropsEntitlement_1",
 		Method:             "PUT",
@@ -4714,6 +4894,10 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

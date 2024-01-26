@@ -68,6 +68,10 @@ func (a *Client) AdminListInventoryConfigurations(params *AdminListInventoryConf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListInventoryConfigurations",
 		Method:             "GET",
@@ -176,6 +180,10 @@ func (a *Client) AdminCreateInventoryConfiguration(params *AdminCreateInventoryC
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -292,6 +300,10 @@ func (a *Client) AdminGetInventoryConfiguration(params *AdminGetInventoryConfigu
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetInventoryConfiguration",
 		Method:             "GET",
@@ -404,6 +416,10 @@ func (a *Client) AdminUpdateInventoryConfiguration(params *AdminUpdateInventoryC
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -524,6 +540,10 @@ func (a *Client) AdminDeleteInventoryConfiguration(params *AdminDeleteInventoryC
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

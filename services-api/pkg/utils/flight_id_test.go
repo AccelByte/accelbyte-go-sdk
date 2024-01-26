@@ -65,8 +65,6 @@ func TestFlightIdGen(t *testing.T) {
 }
 
 func TestFlightId_MockServer(t *testing.T) {
-	t.Skip("need to run mock server. the \"X-Flight-Id\" header value can be seen from the log")
-
 	// helper
 	oAuth20Service, userProfileService := oauthHelper(t)
 

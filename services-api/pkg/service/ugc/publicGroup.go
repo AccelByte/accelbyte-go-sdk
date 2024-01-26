@@ -20,6 +20,14 @@ type PublicGroupService struct {
 	Client           *ugcclient.JusticeUgcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicGroup *string
+
+func (aaa *PublicGroupService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicGroup = &flightId
 }
 
 func (aaa *PublicGroupService) GetAuthSession() auth.Session {
@@ -216,6 +224,11 @@ func (aaa *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParam
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGroup.GetGroupsShort(input, authInfoWriter)
 	if err != nil {
@@ -240,6 +253,11 @@ func (aaa *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupP
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.PublicGroup.CreateGroupShort(input, authInfoWriter)
@@ -266,6 +284,11 @@ func (aaa *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams)
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGroup.GetGroupShort(input, authInfoWriter)
 	if err != nil {
@@ -290,6 +313,11 @@ func (aaa *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupP
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicGroup.UpdateGroupShort(input, authInfoWriter)
@@ -316,6 +344,11 @@ func (aaa *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupP
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.PublicGroup.DeleteGroupShort(input, authInfoWriter)
 	if err != nil {
@@ -341,6 +374,11 @@ func (aaa *PublicGroupService) GetGroupContentShort(input *public_group.GetGroup
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGroup.GetGroupContentShort(input, authInfoWriter)
 	if err != nil {
@@ -365,6 +403,11 @@ func (aaa *PublicGroupService) PublicGetGroupContentsV2Short(input *public_group
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGroup != nil {
+		input.XFlightId = tempFlightIdPublicGroup
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicGroup.PublicGetGroupContentsV2Short(input, authInfoWriter)

@@ -20,6 +20,14 @@ type AMSInfoService struct {
 	Client           *amsclient.JusticeAmsService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAMSInfo *string
+
+func (aaa *AMSInfoService) UpdateFlightId(flightId string) {
+	tempFlightIdAMSInfo = &flightId
 }
 
 func (aaa *AMSInfoService) GetAuthSession() auth.Session {
@@ -106,6 +114,11 @@ func (aaa *AMSInfoService) InfoRegionsShort(input *a_m_s_info.InfoRegionsParams)
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAMSInfo != nil {
+		input.XFlightId = tempFlightIdAMSInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AmsInfo.InfoRegionsShort(input, authInfoWriter)
 	if err != nil {
@@ -131,6 +144,11 @@ func (aaa *AMSInfoService) InfoSupportedInstancesShort(input *a_m_s_info.InfoSup
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAMSInfo != nil {
+		input.XFlightId = tempFlightIdAMSInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AmsInfo.InfoSupportedInstancesShort(input, authInfoWriter)
 	if err != nil {
@@ -155,6 +173,11 @@ func (aaa *AMSInfoService) UploadURLGetShort(input *a_m_s_info.UploadURLGetParam
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAMSInfo != nil {
+		input.XFlightId = tempFlightIdAMSInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AmsInfo.UploadURLGetShort(input, authInfoWriter)

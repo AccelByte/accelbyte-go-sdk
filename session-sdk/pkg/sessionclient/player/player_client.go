@@ -77,6 +77,10 @@ func (a *Client) AdminQueryPlayerAttributes(params *AdminQueryPlayerAttributesPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminQueryPlayerAttributes",
 		Method:             "GET",
@@ -211,6 +215,10 @@ func (a *Client) AdminGetPlayerAttributes(params *AdminGetPlayerAttributesParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerAttributes",
 		Method:             "GET",
@@ -334,6 +342,10 @@ func (a *Client) PublicGetBulkPlayerCurrentPlatform(params *PublicGetBulkPlayerC
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetBulkPlayerCurrentPlatform",
 		Method:             "POST",
@@ -455,6 +467,10 @@ func (a *Client) PublicGetPlayerAttributes(params *PublicGetPlayerAttributesPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -591,6 +607,10 @@ func (a *Client) PublicStorePlayerAttributes(params *PublicStorePlayerAttributes
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicStorePlayerAttributes",
 		Method:             "POST",
@@ -707,6 +727,10 @@ func (a *Client) PublicDeletePlayerAttributes(params *PublicDeletePlayerAttribut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

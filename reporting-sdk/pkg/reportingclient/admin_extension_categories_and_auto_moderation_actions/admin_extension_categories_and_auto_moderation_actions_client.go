@@ -62,6 +62,10 @@ func (a *Client) AdminFindActionList(params *AdminFindActionListParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminFindActionList",
 		Method:             "GET",
@@ -162,6 +166,10 @@ func (a *Client) AdminCreateModAction(params *AdminCreateModActionParams, authIn
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -266,6 +274,10 @@ func (a *Client) AdminFindExtensionCategoryList(params *AdminFindExtensionCatego
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminFindExtensionCategoryList",
 		Method:             "GET",
@@ -366,6 +378,10 @@ func (a *Client) AdminCreateExtensionCategory(params *AdminCreateExtensionCatego
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

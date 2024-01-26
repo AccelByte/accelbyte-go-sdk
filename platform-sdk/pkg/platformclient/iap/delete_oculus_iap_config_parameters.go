@@ -71,6 +71,9 @@ type DeleteOculusIAPConfigParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the delete oculus iap config params
@@ -120,6 +123,15 @@ func (o *DeleteOculusIAPConfigParams) SetHTTPClientTransport(roundTripper http.R
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *DeleteOculusIAPConfigParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithNamespace adds the namespace to the delete oculus iap config params
 func (o *DeleteOculusIAPConfigParams) WithNamespace(namespace string) *DeleteOculusIAPConfigParams {
 	o.SetNamespace(namespace)
@@ -151,6 +163,16 @@ func (o *DeleteOculusIAPConfigParams) WriteToRequest(r runtime.ClientRequest, re
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -20,6 +20,14 @@ type UserDataService struct {
 	Client           *leaderboardclient.JusticeLeaderboardService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdUserData *string
+
+func (aaa *UserDataService) UpdateFlightId(flightId string) {
+	tempFlightIdUserData = &flightId
 }
 
 func (aaa *UserDataService) GetAuthSession() auth.Session {
@@ -71,6 +79,11 @@ func (aaa *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_d
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdUserData != nil {
+		input.XFlightId = tempFlightIdUserData
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.UserData.GetUserLeaderboardRankingsAdminV1Short(input, authInfoWriter)

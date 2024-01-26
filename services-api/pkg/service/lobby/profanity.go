@@ -20,6 +20,14 @@ type ProfanityService struct {
 	Client           *lobbyclient.JusticeLobbyService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdProfanity *string
+
+func (aaa *ProfanityService) UpdateFlightId(flightId string) {
+	tempFlightIdProfanity = &flightId
 }
 
 func (aaa *ProfanityService) GetAuthSession() auth.Session {
@@ -423,6 +431,11 @@ func (aaa *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Ad
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Profanity.AdminDebugProfanityFiltersShort(input, authInfoWriter)
 	if err != nil {
@@ -447,6 +460,11 @@ func (aaa *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanit
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Profanity.AdminGetProfanityListFiltersV1Short(input, authInfoWriter)
@@ -473,6 +491,11 @@ func (aaa *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profani
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Profanity.AdminAddProfanityFilterIntoListShort(input, authInfoWriter)
 	if err != nil {
@@ -497,6 +520,11 @@ func (aaa *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.Admi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Profanity.AdminAddProfanityFiltersShort(input, authInfoWriter)
@@ -523,6 +551,11 @@ func (aaa *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *pro
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Profanity.AdminImportProfanityFiltersFromFileShort(input, authInfoWriter)
 	if err != nil {
@@ -547,6 +580,11 @@ func (aaa *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Ad
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Profanity.AdminDeleteProfanityFilterShort(input, authInfoWriter)
@@ -573,6 +611,11 @@ func (aaa *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminG
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Profanity.AdminGetProfanityListsShort(input, authInfoWriter)
 	if err != nil {
@@ -597,6 +640,11 @@ func (aaa *ProfanityService) AdminCreateProfanityListShort(input *profanity.Admi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Profanity.AdminCreateProfanityListShort(input, authInfoWriter)
@@ -623,6 +671,11 @@ func (aaa *ProfanityService) AdminUpdateProfanityListShort(input *profanity.Admi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Profanity.AdminUpdateProfanityListShort(input, authInfoWriter)
 	if err != nil {
@@ -647,6 +700,11 @@ func (aaa *ProfanityService) AdminDeleteProfanityListShort(input *profanity.Admi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Profanity.AdminDeleteProfanityListShort(input, authInfoWriter)
@@ -673,6 +731,11 @@ func (aaa *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGe
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Profanity.AdminGetProfanityRuleShort(input, authInfoWriter)
 	if err != nil {
@@ -698,6 +761,11 @@ func (aaa *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Profanity.AdminSetProfanityRuleForNamespaceShort(input, authInfoWriter)
 	if err != nil {
@@ -722,6 +790,11 @@ func (aaa *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *pro
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdProfanity != nil {
+		input.XFlightId = tempFlightIdProfanity
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Profanity.AdminVerifyMessageProfanityResponseShort(input, authInfoWriter)

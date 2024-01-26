@@ -59,6 +59,10 @@ func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNames
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get_namespaces_game_telemetry_v1_admin_namespaces_get",
 		Method:             "GET",
@@ -151,6 +155,10 @@ func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(param
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

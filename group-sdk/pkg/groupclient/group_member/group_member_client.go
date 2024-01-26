@@ -116,6 +116,10 @@ func (a *Client) GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Pa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGroupMembersListAdminV1",
 		Method:             "GET",
@@ -275,6 +279,10 @@ func (a *Client) AcceptGroupInvitationPublicV1(params *AcceptGroupInvitationPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -446,6 +454,10 @@ func (a *Client) RejectGroupInvitationPublicV1(params *RejectGroupInvitationPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -628,6 +640,10 @@ func (a *Client) JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "JoinGroupV1",
 		Method:             "POST",
@@ -798,6 +814,10 @@ func (a *Client) CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CancelGroupJoinRequestV1",
 		Method:             "POST",
@@ -937,6 +957,10 @@ func (a *Client) GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1083,6 +1107,10 @@ func (a *Client) LeaveGroupPublicV1(params *LeaveGroupPublicV1Params, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1253,6 +1281,10 @@ func (a *Client) GetUserGroupInformationPublicV1(params *GetUserGroupInformation
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1457,6 +1489,10 @@ func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "inviteGroupPublicV1",
 		Method:             "POST",
@@ -1655,6 +1691,10 @@ func (a *Client) AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPu
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acceptGroupJoinRequestPublicV1",
 		Method:             "POST",
@@ -1831,6 +1871,10 @@ func (a *Client) RejectGroupJoinRequestPublicV1(params *RejectGroupJoinRequestPu
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "rejectGroupJoinRequestPublicV1",
 		Method:             "POST",
@@ -2002,6 +2046,10 @@ func (a *Client) KickGroupMemberPublicV1(params *KickGroupMemberPublicV1Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "kickGroupMemberPublicV1",
 		Method:             "POST",
@@ -2165,6 +2213,10 @@ func (a *Client) GetUserJoinedGroupInformationPublicV2(params *GetUserJoinedGrou
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserJoinedGroupInformationPublicV2",
 		Method:             "GET",
@@ -2311,6 +2363,10 @@ func (a *Client) AdminGetUserGroupStatusInformationV2(params *AdminGetUserGroupS
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2462,6 +2518,10 @@ func (a *Client) AcceptGroupInvitationPublicV2(params *AcceptGroupInvitationPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2633,6 +2693,10 @@ func (a *Client) RejectGroupInvitationPublicV2(params *RejectGroupInvitationPubl
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2815,6 +2879,10 @@ func (a *Client) JoinGroupV2(params *JoinGroupV2Params, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "JoinGroupV2",
 		Method:             "POST",
@@ -2990,6 +3058,10 @@ func (a *Client) LeaveGroupPublicV2(params *LeaveGroupPublicV2Params, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "leaveGroupPublicV2",
 		Method:             "POST",
@@ -3152,6 +3224,10 @@ func (a *Client) GetUserGroupInformationPublicV2(params *GetUserGroupInformation
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3350,6 +3426,10 @@ func (a *Client) InviteGroupPublicV2(params *InviteGroupPublicV2Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "inviteGroupPublicV2",
 		Method:             "POST",
@@ -3543,6 +3623,10 @@ func (a *Client) CancelInvitationGroupMemberV2(params *CancelInvitationGroupMemb
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "CancelInvitationGroupMemberV2",
 		Method:             "POST",
@@ -3707,6 +3791,10 @@ func (a *Client) AcceptGroupJoinRequestPublicV2(params *AcceptGroupJoinRequestPu
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -3885,6 +3973,10 @@ func (a *Client) RejectGroupJoinRequestPublicV2(params *RejectGroupJoinRequestPu
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "rejectGroupJoinRequestPublicV2",
 		Method:             "POST",
@@ -4056,6 +4148,10 @@ func (a *Client) KickGroupMemberPublicV2(params *KickGroupMemberPublicV2Params, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "kickGroupMemberPublicV2",
 		Method:             "POST",
@@ -4215,6 +4311,10 @@ func (a *Client) GetUserGroupStatusInformationV2(params *GetUserGroupStatusInfor
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

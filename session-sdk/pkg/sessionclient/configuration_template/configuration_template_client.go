@@ -76,6 +76,10 @@ func (a *Client) AdminGetConfigurationAlertV1(params *AdminGetConfigurationAlert
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetConfigurationAlertV1",
 		Method:             "GET",
@@ -194,6 +198,10 @@ func (a *Client) AdminUpdateConfigurationAlertV1(params *AdminUpdateConfiguratio
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -319,6 +327,10 @@ func (a *Client) AdminCreateConfigurationAlertV1(params *AdminCreateConfiguratio
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateConfigurationAlertV1",
 		Method:             "POST",
@@ -442,6 +454,10 @@ func (a *Client) AdminDeleteConfigurationAlertV1(params *AdminDeleteConfiguratio
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -591,6 +607,10 @@ func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigura
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -747,6 +767,10 @@ func (a *Client) AdminGetAllConfigurationTemplatesV1(params *AdminGetAllConfigur
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllConfigurationTemplatesV1",
 		Method:             "GET",
@@ -857,6 +881,10 @@ func (a *Client) AdminGetConfigurationTemplateV1(params *AdminGetConfigurationTe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1013,6 +1041,10 @@ func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigura
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateConfigurationTemplateV1",
 		Method:             "PUT",
@@ -1167,6 +1199,10 @@ func (a *Client) AdminDeleteConfigurationTemplateV1(params *AdminDeleteConfigura
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteConfigurationTemplateV1",
 		Method:             "DELETE",
@@ -1277,6 +1313,10 @@ func (a *Client) AdminGetDSMCConfiguration(params *AdminGetDSMCConfigurationPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1394,6 +1434,10 @@ func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

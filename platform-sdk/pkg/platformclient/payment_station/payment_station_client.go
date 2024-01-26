@@ -78,6 +78,10 @@ func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCustomization",
 		Method:             "GET",
@@ -172,6 +176,10 @@ func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*Public
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -285,6 +293,10 @@ func (a *Client) PublicGetPaymentMethods(params *PublicGetPaymentMethodsParams) 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentMethods",
 		Method:             "GET",
@@ -384,6 +396,10 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -490,6 +506,10 @@ func (a *Client) Pay(params *PayParams) (*PayOK, *PayBadRequest, *PayNotFound, *
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -603,6 +623,10 @@ func (a *Client) PublicCheckPaymentOrderPaidStatus(params *PublicCheckPaymentOrd
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckPaymentOrderPaidStatus",
 		Method:             "GET",
@@ -704,6 +728,10 @@ func (a *Client) GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentPublicConfig",
 		Method:             "GET",
@@ -798,6 +826,10 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -912,6 +944,10 @@ func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentR
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1031,6 +1067,10 @@ func (a *Client) GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPayme
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

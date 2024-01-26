@@ -96,6 +96,10 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "querySubscriptions",
 		Method:             "GET",
@@ -194,6 +198,10 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -296,6 +304,10 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserSubscriptions",
 		Method:             "GET",
@@ -396,6 +408,10 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionActivities",
 		Method:             "GET",
@@ -494,6 +510,10 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -617,6 +637,10 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
@@ -716,6 +740,10 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -822,6 +850,10 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSubscription",
 		Method:             "DELETE",
@@ -921,6 +953,10 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1036,6 +1072,10 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantDaysToSubscription",
 		Method:             "PUT",
@@ -1142,6 +1182,10 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionBillingHistories",
 		Method:             "GET",
@@ -1240,6 +1284,10 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1347,6 +1395,10 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserSubscriptions",
 		Method:             "GET",
@@ -1450,6 +1502,10 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1583,6 +1639,10 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
@@ -1682,6 +1742,10 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1788,6 +1852,10 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1907,6 +1975,10 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCancelSubscription",
 		Method:             "PUT",
@@ -2016,6 +2088,10 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

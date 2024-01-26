@@ -19,6 +19,14 @@ type AuthService struct {
 	Client           *amsclient.JusticeAmsService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAuth *string
+
+func (aaa *AuthService) UpdateFlightId(flightId string) {
+	tempFlightIdAuth = &flightId
 }
 
 func (aaa *AuthService) GetAuthSession() auth.Session {
@@ -67,6 +75,11 @@ func (aaa *AuthService) AuthCheckShort(input *auth2.AuthCheckParams) error {
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAuth != nil {
+		input.XFlightId = tempFlightIdAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Auth.AuthCheckShort(input, authInfoWriter)

@@ -90,6 +90,10 @@ func (a *Client) UserAuthenticationV3(params *UserAuthenticationV3Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UserAuthenticationV3",
 		Method:             "POST",
@@ -197,6 +201,10 @@ func (a *Client) AuthenticationWithPlatformLinkV3(params *AuthenticationWithPlat
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -318,6 +326,10 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV3(params *GenerateTokenByNewH
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -453,6 +465,10 @@ func (a *Client) RequestOneTimeLinkingCodeV3(params *RequestOneTimeLinkingCodeV3
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RequestOneTimeLinkingCodeV3",
 		Method:             "POST",
@@ -569,6 +585,10 @@ func (a *Client) ValidateOneTimeLinkingCodeV3(params *ValidateOneTimeLinkingCode
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ValidateOneTimeLinkingCodeV3",
 		Method:             "POST",
@@ -663,6 +683,10 @@ func (a *Client) RequestTokenByOneTimeLinkCodeResponseV3(params *RequestTokenByO
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -761,6 +785,10 @@ func (a *Client) GetCountryLocationV3(params *GetCountryLocationV3Params, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetCountryLocationV3",
 		Method:             "GET",
@@ -854,6 +882,10 @@ func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWri
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -954,6 +986,10 @@ func (a *Client) RequestTokenExchangeCodeV3(params *RequestTokenExchangeCodeV3Pa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1076,6 +1112,10 @@ func (a *Client) PlatformAuthenticationV3(params *PlatformAuthenticationV3Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1208,6 +1248,10 @@ func (a *Client) PlatformTokenRefreshV3(params *PlatformTokenRefreshV3Params, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PlatformTokenRefreshV3",
 		Method:             "POST",
@@ -1335,6 +1379,10 @@ func (a *Client) RequestTargetTokenResponseV3(params *RequestTargetTokenResponse
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RequestTargetTokenResponseV3",
 		Method:             "POST",
@@ -1440,6 +1488,10 @@ func (a *Client) PlatformTokenRefreshV3Deprecate(params *PlatformTokenRefreshV3D
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

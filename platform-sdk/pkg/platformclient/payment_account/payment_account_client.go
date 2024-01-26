@@ -62,6 +62,10 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentAccounts",
 		Method:             "GET",
@@ -160,6 +164,10 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

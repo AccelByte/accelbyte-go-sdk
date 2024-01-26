@@ -20,6 +20,14 @@ type UserAchievementsService struct {
 	Client           *achievementclient.JusticeAchievementService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdUserAchievements *string
+
+func (aaa *UserAchievementsService) UpdateFlightId(flightId string) {
+	tempFlightIdUserAchievements = &flightId
 }
 
 func (aaa *UserAchievementsService) GetAuthSession() auth.Session {
@@ -176,6 +184,11 @@ func (aaa *UserAchievementsService) AdminListUserAchievementsShort(input *user_a
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.UserAchievements.AdminListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
@@ -200,6 +213,11 @@ func (aaa *UserAchievementsService) AdminResetAchievementShort(input *user_achie
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.UserAchievements.AdminResetAchievementShort(input, authInfoWriter)
@@ -226,6 +244,11 @@ func (aaa *UserAchievementsService) AdminUnlockAchievementShort(input *user_achi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.UserAchievements.AdminUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
@@ -251,6 +274,11 @@ func (aaa *UserAchievementsService) PublicListUserAchievementsShort(input *user_
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.UserAchievements.PublicListUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
@@ -275,6 +303,11 @@ func (aaa *UserAchievementsService) PublicUnlockAchievementShort(input *user_ach
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.UserAchievements.PublicUnlockAchievementShort(input, authInfoWriter)

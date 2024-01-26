@@ -74,6 +74,10 @@ func (a *Client) AdminGetListDeletionDataRequest(params *AdminGetListDeletionDat
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetListDeletionDataRequest",
 		Method:             "GET",
@@ -195,6 +199,10 @@ func (a *Client) AdminGetUserAccountDeletionRequest(params *AdminGetUserAccountD
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetUserAccountDeletionRequest",
 		Method:             "GET",
@@ -309,6 +317,10 @@ func (a *Client) AdminSubmitUserAccountDeletionRequest(params *AdminSubmitUserAc
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -432,6 +444,10 @@ func (a *Client) AdminCancelUserAccountDeletionRequest(params *AdminCancelUserAc
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminCancelUserAccountDeletionRequest",
 		Method:             "DELETE",
@@ -551,6 +567,10 @@ func (a *Client) PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUser
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -674,6 +694,10 @@ func (a *Client) PublicCancelUserAccountDeletionRequest(params *PublicCancelUser
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicCancelUserAccountDeletionRequest",
 		Method:             "DELETE",
@@ -790,6 +814,10 @@ func (a *Client) PublicGetUserAccountDeletionStatus(params *PublicGetUserAccount
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicGetUserAccountDeletionStatus",
 		Method:             "GET",
@@ -901,6 +929,10 @@ func (a *Client) PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAcco
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1026,6 +1058,10 @@ func (a *Client) PublicCancelMyAccountDeletionRequest(params *PublicCancelMyAcco
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicCancelMyAccountDeletionRequest",
 		Method:             "DELETE",
@@ -1140,6 +1176,10 @@ func (a *Client) PublicGetMyAccountDeletionStatus(params *PublicGetMyAccountDele
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

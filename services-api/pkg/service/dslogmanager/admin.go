@@ -20,6 +20,14 @@ type AdminService struct {
 	Client           *dslogmanagerclient.JusticeDslogmanagerService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdmin *string
+
+func (aaa *AdminService) UpdateFlightId(flightId string) {
+	tempFlightIdAdmin = &flightId
 }
 
 func (aaa *AdminService) GetAuthSession() auth.Session {
@@ -71,6 +79,11 @@ func (aaa *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdmin != nil {
+		input.XFlightId = tempFlightIdAdmin
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Admin.GetServerLogsShort(input, authInfoWriter)

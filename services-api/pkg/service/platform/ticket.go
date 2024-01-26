@@ -20,6 +20,14 @@ type TicketService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdTicket *string
+
+func (aaa *TicketService) UpdateFlightId(flightId string) {
+	tempFlightIdTicket = &flightId
 }
 
 func (aaa *TicketService) GetAuthSession() auth.Session {
@@ -143,6 +151,11 @@ func (aaa *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTicket != nil {
+		input.XFlightId = tempFlightIdTicket
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Ticket.GetTicketDynamicShort(input, authInfoWriter)
 	if err != nil {
@@ -167,6 +180,11 @@ func (aaa *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdTicket != nil {
+		input.XFlightId = tempFlightIdTicket
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Ticket.DecreaseTicketSaleShort(input, authInfoWriter)
@@ -193,6 +211,11 @@ func (aaa *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTicket != nil {
+		input.XFlightId = tempFlightIdTicket
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Ticket.GetTicketBoothIDShort(input, authInfoWriter)
 	if err != nil {
@@ -218,6 +241,11 @@ func (aaa *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTicket != nil {
+		input.XFlightId = tempFlightIdTicket
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Ticket.IncreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
@@ -242,6 +270,11 @@ func (aaa *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicket
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdTicket != nil {
+		input.XFlightId = tempFlightIdTicket
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Ticket.AcquireUserTicketShort(input, authInfoWriter)

@@ -70,6 +70,10 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteAllUserChannels",
 		Method:             "DELETE",
@@ -175,6 +179,10 @@ func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -284,6 +292,10 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteAllUserGroup",
 		Method:             "DELETE",
@@ -389,6 +401,10 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -498,6 +514,10 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteAllUserChannel",
 		Method:             "DELETE",
@@ -603,6 +623,10 @@ func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, auth
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -712,6 +736,10 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteAllUserGroup",
 		Method:             "DELETE",
@@ -817,6 +845,10 @@ func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

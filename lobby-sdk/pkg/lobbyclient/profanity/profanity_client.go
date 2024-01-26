@@ -80,6 +80,10 @@ func (a *Client) AdminDebugProfanityFilters(params *AdminDebugProfanityFiltersPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDebugProfanityFilters",
 		Method:             "POST",
@@ -195,6 +199,10 @@ func (a *Client) AdminGetProfanityListFiltersV1(params *AdminGetProfanityListFil
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -314,6 +322,10 @@ func (a *Client) AdminAddProfanityFilterIntoList(params *AdminAddProfanityFilter
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminAddProfanityFilterIntoList",
 		Method:             "POST",
@@ -429,6 +441,10 @@ func (a *Client) AdminAddProfanityFilters(params *AdminAddProfanityFiltersParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -548,6 +564,10 @@ func (a *Client) AdminImportProfanityFiltersFromFile(params *AdminImportProfanit
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminImportProfanityFiltersFromFile",
 		Method:             "POST",
@@ -663,6 +683,10 @@ func (a *Client) AdminDeleteProfanityFilter(params *AdminDeleteProfanityFilterPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -782,6 +806,10 @@ func (a *Client) AdminGetProfanityLists(params *AdminGetProfanityListsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityLists",
 		Method:             "GET",
@@ -897,6 +925,10 @@ func (a *Client) AdminCreateProfanityList(params *AdminCreateProfanityListParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1016,6 +1048,10 @@ func (a *Client) AdminUpdateProfanityList(params *AdminUpdateProfanityListParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateProfanityList",
 		Method:             "POST",
@@ -1131,6 +1167,10 @@ func (a *Client) AdminDeleteProfanityList(params *AdminDeleteProfanityListParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1250,6 +1290,10 @@ func (a *Client) AdminGetProfanityRule(params *AdminGetProfanityRuleParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityRule",
 		Method:             "GET",
@@ -1367,6 +1411,10 @@ func (a *Client) AdminSetProfanityRuleForNamespace(params *AdminSetProfanityRule
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminSetProfanityRuleForNamespace",
 		Method:             "POST",
@@ -1482,6 +1530,10 @@ func (a *Client) AdminVerifyMessageProfanityResponse(params *AdminVerifyMessageP
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

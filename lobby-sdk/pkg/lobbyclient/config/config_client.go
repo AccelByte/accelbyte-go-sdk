@@ -66,6 +66,10 @@ func (a *Client) AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllConfigV1",
 		Method:             "GET",
@@ -185,6 +189,10 @@ func (a *Client) AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetConfigV1",
 		Method:             "GET",
@@ -302,6 +310,10 @@ func (a *Client) AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -535,6 +547,10 @@ func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminExportConfigV1",
 		Method:             "GET",
@@ -752,6 +768,10 @@ func (a *Client) AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

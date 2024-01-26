@@ -98,6 +98,10 @@ func (a *Client) GetClients(params *GetClientsParams, authInfo runtime.ClientAut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetClients",
 		Method:             "GET",
@@ -202,6 +206,10 @@ func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -320,6 +328,10 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetClient",
 		Method:             "GET",
@@ -429,6 +441,10 @@ func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.Clien
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -547,6 +563,10 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteClient",
 		Method:             "DELETE",
@@ -656,6 +676,10 @@ func (a *Client) UpdateClientPermission(params *UpdateClientPermissionParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -774,6 +798,10 @@ func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AddClientPermission",
 		Method:             "POST",
@@ -888,6 +916,10 @@ func (a *Client) DeleteClientPermission(params *DeleteClientPermissionParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1006,6 +1038,10 @@ func (a *Client) UpdateClientSecret(params *UpdateClientSecretParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateClientSecret",
 		Method:             "PUT",
@@ -1122,6 +1158,10 @@ func (a *Client) GetClientsbyNamespace(params *GetClientsbyNamespaceParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetClientsbyNamespace",
 		Method:             "GET",
@@ -1226,6 +1266,10 @@ func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1344,6 +1388,10 @@ func (a *Client) DeleteClientByNamespace(params *DeleteClientByNamespaceParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "DeleteClientByNamespace",
 		Method:             "DELETE",
@@ -1451,6 +1499,10 @@ func (a *Client) AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespace
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1599,6 +1651,10 @@ func (a *Client) AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1754,6 +1810,10 @@ func (a *Client) AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNames
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetClientsbyNamespacebyIDV3",
 		Method:             "GET",
@@ -1864,6 +1924,10 @@ func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2012,6 +2076,10 @@ func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateClientV3",
 		Method:             "PATCH",
@@ -2155,6 +2223,10 @@ func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminUpdateClientPermissionV3",
 		Method:             "PUT",
@@ -2271,6 +2343,10 @@ func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminAddClientPermissionsV3",
 		Method:             "POST",
@@ -2385,6 +2461,10 @@ func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminDeleteClientPermissionV3",
 		Method:             "DELETE",
@@ -2495,6 +2575,10 @@ func (a *Client) AdminUpdateClientSecretV3(params *AdminUpdateClientSecretV3Para
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

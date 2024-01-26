@@ -22,6 +22,14 @@ type TerminatedServersService struct {
 	Client           *dslogmanagerclient.JusticeDslogmanagerService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdTerminatedServers *string
+
+func (aaa *TerminatedServersService) UpdateFlightId(flightId string) {
+	tempFlightIdTerminatedServers = &flightId
 }
 
 func (aaa *TerminatedServersService) GetAuthSession() auth.Session {
@@ -111,6 +119,11 @@ func (aaa *TerminatedServersService) ListTerminatedServersShort(input *terminate
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTerminatedServers != nil {
+		input.XFlightId = tempFlightIdTerminatedServers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.TerminatedServers.ListTerminatedServersShort(input, authInfoWriter)
 	if err != nil {
@@ -136,6 +149,11 @@ func (aaa *TerminatedServersService) DownloadServerLogsShort(input *terminated_s
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTerminatedServers != nil {
+		input.XFlightId = tempFlightIdTerminatedServers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter, writer)
 	if err != nil {
@@ -160,6 +178,11 @@ func (aaa *TerminatedServersService) CheckServerLogsShort(input *terminated_serv
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdTerminatedServers != nil {
+		input.XFlightId = tempFlightIdTerminatedServers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.TerminatedServers.CheckServerLogsShort(input, authInfoWriter)

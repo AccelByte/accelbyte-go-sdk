@@ -20,6 +20,14 @@ type PaymentAccountService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPaymentAccount *string
+
+func (aaa *PaymentAccountService) UpdateFlightId(flightId string) {
+	tempFlightIdPaymentAccount = &flightId
 }
 
 func (aaa *PaymentAccountService) GetAuthSession() auth.Session {
@@ -74,6 +82,11 @@ func (aaa *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_a
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPaymentAccount != nil {
+		input.XFlightId = tempFlightIdPaymentAccount
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, authInfoWriter)
 	if err != nil {
@@ -98,6 +111,11 @@ func (aaa *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPaymentAccount != nil {
+		input.XFlightId = tempFlightIdPaymentAccount
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, authInfoWriter)

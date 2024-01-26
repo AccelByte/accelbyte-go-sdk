@@ -22,6 +22,14 @@ type CampaignService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdCampaign *string
+
+func (aaa *CampaignService) UpdateFlightId(flightId string) {
+	tempFlightIdCampaign = &flightId
 }
 
 func (aaa *CampaignService) GetAuthSession() auth.Session {
@@ -306,6 +314,11 @@ func (aaa *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.QueryCampaignsShort(input, authInfoWriter)
 	if err != nil {
@@ -330,6 +343,11 @@ func (aaa *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Campaign.CreateCampaignShort(input, authInfoWriter)
@@ -356,6 +374,11 @@ func (aaa *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.GetCampaignShort(input, authInfoWriter)
 	if err != nil {
@@ -380,6 +403,11 @@ func (aaa *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.UpdateCampaignShort(input, authInfoWriter)
@@ -406,6 +434,11 @@ func (aaa *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignD
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.GetCampaignDynamicShort(input, authInfoWriter)
 	if err != nil {
@@ -430,6 +463,11 @@ func (aaa *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.QueryCodesShort(input, authInfoWriter)
@@ -456,6 +494,11 @@ func (aaa *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.Campaign.CreateCodesShort(input, authInfoWriter)
 	if err != nil {
@@ -480,6 +523,11 @@ func (aaa *CampaignService) DownloadShort(input *campaign.DownloadParams, writer
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.DownloadShort(input, authInfoWriter, writer)
@@ -506,6 +554,11 @@ func (aaa *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCod
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.BulkDisableCodesShort(input, authInfoWriter)
 	if err != nil {
@@ -530,6 +583,11 @@ func (aaa *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodes
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.BulkEnableCodesShort(input, authInfoWriter)
@@ -556,6 +614,11 @@ func (aaa *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemH
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.QueryRedeemHistoryShort(input, authInfoWriter)
 	if err != nil {
@@ -580,6 +643,11 @@ func (aaa *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platfo
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.GetCodeShort(input, authInfoWriter)
@@ -606,6 +674,11 @@ func (aaa *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.DisableCodeShort(input, authInfoWriter)
 	if err != nil {
@@ -631,6 +704,11 @@ func (aaa *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Campaign.EnableCodeShort(input, authInfoWriter)
 	if err != nil {
@@ -655,6 +733,11 @@ func (aaa *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRe
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Campaign.ApplyUserRedemptionShort(input, authInfoWriter)

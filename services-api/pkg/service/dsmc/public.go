@@ -20,6 +20,14 @@ type PublicService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublic *string
+
+func (aaa *PublicService) UpdateFlightId(flightId string) {
+	tempFlightIdPublic = &flightId
 }
 
 func (aaa *PublicService) GetAuthSession() auth.Session {
@@ -88,6 +96,11 @@ func (aaa *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvid
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublic != nil {
+		input.XFlightId = tempFlightIdPublic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Public.GetDefaultProviderShort(input, authInfoWriter)
 	if err != nil {
@@ -113,6 +126,11 @@ func (aaa *PublicService) ListProvidersShort(input *public.ListProvidersParams) 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublic != nil {
+		input.XFlightId = tempFlightIdPublic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Public.ListProvidersShort(input, authInfoWriter)
 	if err != nil {
@@ -137,6 +155,11 @@ func (aaa *PublicService) ListProvidersByRegionShort(input *public.ListProviders
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublic != nil {
+		input.XFlightId = tempFlightIdPublic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Public.ListProvidersByRegionShort(input, authInfoWriter)

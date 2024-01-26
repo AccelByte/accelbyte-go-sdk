@@ -20,6 +20,14 @@ type OperationsService struct {
 	Client           *chatclient.JusticeChatService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdOperations *string
+
+func (aaa *OperationsService) UpdateFlightId(flightId string) {
+	tempFlightIdOperations = &flightId
 }
 
 func (aaa *OperationsService) GetAuthSession() auth.Session {
@@ -62,6 +70,11 @@ func (aaa *OperationsService) PublicGetMessagesShort(input *operations.PublicGet
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOperations != nil {
+		input.XFlightId = tempFlightIdOperations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Operations.PublicGetMessagesShort(input, authInfoWriter)

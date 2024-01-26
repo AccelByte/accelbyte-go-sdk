@@ -20,6 +20,14 @@ type AdminRecordService struct {
 	Client           *cloudsaveclient.JusticeCloudsaveService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminRecord *string
+
+func (aaa *AdminRecordService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminRecord = &flightId
 }
 
 func (aaa *AdminRecordService) GetAuthSession() auth.Session {
@@ -393,6 +401,11 @@ func (aaa *AdminRecordService) AdminListAdminGameRecordV1Short(input *admin_reco
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminRecord.AdminListAdminGameRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -417,6 +430,11 @@ func (aaa *AdminRecordService) AdminBulkGetAdminGameRecordV1Short(input *admin_r
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminRecord.AdminBulkGetAdminGameRecordV1Short(input, authInfoWriter)
@@ -443,6 +461,11 @@ func (aaa *AdminRecordService) AdminGetAdminGameRecordV1Short(input *admin_recor
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminRecord.AdminGetAdminGameRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -467,6 +490,11 @@ func (aaa *AdminRecordService) AdminPutAdminGameRecordV1Short(input *admin_recor
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminRecord.AdminPutAdminGameRecordV1Short(input, authInfoWriter)
@@ -493,6 +521,11 @@ func (aaa *AdminRecordService) AdminPostAdminGameRecordV1Short(input *admin_reco
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.AdminRecord.AdminPostAdminGameRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -517,6 +550,11 @@ func (aaa *AdminRecordService) AdminDeleteAdminGameRecordV1Short(input *admin_re
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminRecord.AdminDeleteAdminGameRecordV1Short(input, authInfoWriter)
@@ -543,6 +581,11 @@ func (aaa *AdminRecordService) BulkGetAdminPlayerRecordByUserIdsV1Short(input *a
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminRecord.BulkGetAdminPlayerRecordByUserIdsV1Short(input, authInfoWriter)
 	if err != nil {
@@ -567,6 +610,11 @@ func (aaa *AdminRecordService) AdminListAdminUserRecordsV1Short(input *admin_rec
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminRecord.AdminListAdminUserRecordsV1Short(input, authInfoWriter)
@@ -593,6 +641,11 @@ func (aaa *AdminRecordService) AdminBulkGetAdminPlayerRecordV1Short(input *admin
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminRecord.AdminBulkGetAdminPlayerRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -617,6 +670,11 @@ func (aaa *AdminRecordService) AdminGetAdminPlayerRecordV1Short(input *admin_rec
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminRecord.AdminGetAdminPlayerRecordV1Short(input, authInfoWriter)
@@ -643,6 +701,11 @@ func (aaa *AdminRecordService) AdminPutAdminPlayerRecordV1Short(input *admin_rec
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminRecord.AdminPutAdminPlayerRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -668,6 +731,11 @@ func (aaa *AdminRecordService) AdminPostPlayerAdminRecordV1Short(input *admin_re
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.AdminRecord.AdminPostPlayerAdminRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -692,6 +760,11 @@ func (aaa *AdminRecordService) AdminDeleteAdminPlayerRecordV1Short(input *admin_
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminRecord != nil {
+		input.XFlightId = tempFlightIdAdminRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.AdminRecord.AdminDeleteAdminPlayerRecordV1Short(input, authInfoWriter)

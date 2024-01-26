@@ -20,6 +20,14 @@ type TelemetryService struct {
 	Client           *gametelemetryclient.JusticeGametelemetryService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdTelemetry *string
+
+func (aaa *TelemetryService) UpdateFlightId(flightId string) {
+	tempFlightIdTelemetry = &flightId
 }
 
 func (aaa *TelemetryService) GetAuthSession() auth.Session {
@@ -78,6 +86,11 @@ func (aaa *TelemetryService) GetNamespacesGameTelemetryV1AdminNamespacesGetShort
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdTelemetry != nil {
+		input.XFlightId = tempFlightIdTelemetry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetShort(input, authInfoWriter)
 	if err != nil {
@@ -103,6 +116,11 @@ func (aaa *TelemetryService) GetEventsGameTelemetryV1AdminNamespacesNamespaceEve
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdTelemetry != nil {
+		input.XFlightId = tempFlightIdTelemetry
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Telemetry.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(input, authInfoWriter)

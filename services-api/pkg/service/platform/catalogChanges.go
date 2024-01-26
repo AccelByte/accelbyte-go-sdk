@@ -20,6 +20,14 @@ type CatalogChangesService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdCatalogChanges *string
+
+func (aaa *CatalogChangesService) UpdateFlightId(flightId string) {
+	tempFlightIdCatalogChanges = &flightId
 }
 
 func (aaa *CatalogChangesService) GetAuthSession() auth.Session {
@@ -205,6 +213,11 @@ func (aaa *CatalogChangesService) QueryChangesShort(input *catalog_changes.Query
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.CatalogChanges.QueryChangesShort(input, authInfoWriter)
 	if err != nil {
@@ -229,6 +242,11 @@ func (aaa *CatalogChangesService) PublishAllShort(input *catalog_changes.Publish
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.CatalogChanges.PublishAllShort(input, authInfoWriter)
@@ -255,6 +273,11 @@ func (aaa *CatalogChangesService) PublishSelectedShort(input *catalog_changes.Pu
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.CatalogChanges.PublishSelectedShort(input, authInfoWriter)
 	if err != nil {
@@ -279,6 +302,11 @@ func (aaa *CatalogChangesService) SelectAllRecordsShort(input *catalog_changes.S
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.CatalogChanges.SelectAllRecordsShort(input, authInfoWriter)
@@ -305,6 +333,11 @@ func (aaa *CatalogChangesService) SelectAllRecordsByCriteriaShort(input *catalog
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.CatalogChanges.SelectAllRecordsByCriteriaShort(input, authInfoWriter)
 	if err != nil {
@@ -329,6 +362,11 @@ func (aaa *CatalogChangesService) GetStatisticShort(input *catalog_changes.GetSt
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.CatalogChanges.GetStatisticShort(input, authInfoWriter)
@@ -355,6 +393,11 @@ func (aaa *CatalogChangesService) UnselectAllRecordsShort(input *catalog_changes
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.CatalogChanges.UnselectAllRecordsShort(input, authInfoWriter)
 	if err != nil {
@@ -380,6 +423,11 @@ func (aaa *CatalogChangesService) SelectRecordShort(input *catalog_changes.Selec
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.CatalogChanges.SelectRecordShort(input, authInfoWriter)
 	if err != nil {
@@ -404,6 +452,11 @@ func (aaa *CatalogChangesService) UnselectRecordShort(input *catalog_changes.Uns
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCatalogChanges != nil {
+		input.XFlightId = tempFlightIdCatalogChanges
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.CatalogChanges.UnselectRecordShort(input, authInfoWriter)

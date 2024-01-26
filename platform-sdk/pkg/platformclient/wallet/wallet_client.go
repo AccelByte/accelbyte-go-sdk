@@ -104,6 +104,10 @@ func (a *Client) GetPlatformWalletConfig(params *GetPlatformWalletConfigParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformWalletConfig",
 		Method:             "GET",
@@ -202,6 +206,10 @@ func (a *Client) UpdatePlatformWalletConfig(params *UpdatePlatformWalletConfigPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -304,6 +312,10 @@ func (a *Client) ResetPlatformWalletConfig(params *ResetPlatformWalletConfigPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetPlatformWalletConfig",
 		Method:             "PUT",
@@ -404,6 +416,10 @@ func (a *Client) QueryUserCurrencyWallets(params *QueryUserCurrencyWalletsParams
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserCurrencyWallets",
 		Method:             "GET",
@@ -501,6 +517,10 @@ func (a *Client) DebitUserWalletByCurrencyCode(params *DebitUserWalletByCurrency
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -617,6 +637,10 @@ func (a *Client) ListUserCurrencyTransactions(params *ListUserCurrencyTransactio
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserCurrencyTransactions",
 		Method:             "GET",
@@ -722,6 +746,10 @@ func (a *Client) CheckBalance(params *CheckBalanceParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkBalance",
 		Method:             "POST",
@@ -824,6 +852,10 @@ func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -937,6 +969,10 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1065,6 +1101,10 @@ func (a *Client) DebitByWalletPlatform(params *DebitByWalletPlatformParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debitByWalletPlatform",
 		Method:             "PUT",
@@ -1191,6 +1231,10 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "payWithUserWallet",
 		Method:             "PUT",
@@ -1300,6 +1344,10 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserWallet",
 		Method:             "GET",
@@ -1402,6 +1450,10 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1522,6 +1574,10 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserWallet",
 		Method:             "PUT",
@@ -1628,6 +1684,10 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1739,6 +1799,10 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserWalletTransactions",
 		Method:             "GET",
@@ -1844,6 +1908,10 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryWallets",
 		Method:             "GET",
@@ -1942,6 +2010,10 @@ func (a *Client) BulkCredit(params *BulkCreditParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2049,6 +2121,10 @@ func (a *Client) BulkDebit(params *BulkDebitParams, authInfo runtime.ClientAuthI
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkDebit",
 		Method:             "POST",
@@ -2152,6 +2228,10 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -2262,6 +2342,10 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyWallet",
 		Method:             "GET",
@@ -2365,6 +2449,10 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetWallet",
 		Method:             "GET",
@@ -2463,6 +2551,10 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

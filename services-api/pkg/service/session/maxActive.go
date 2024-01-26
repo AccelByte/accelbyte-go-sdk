@@ -20,6 +20,14 @@ type MaxActiveService struct {
 	Client           *sessionclient.JusticeSessionService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMaxActive *string
+
+func (aaa *MaxActiveService) UpdateFlightId(flightId string) {
+	tempFlightIdMaxActive = &flightId
 }
 
 func (aaa *MaxActiveService) GetAuthSession() auth.Session {
@@ -92,6 +100,11 @@ func (aaa *MaxActiveService) AdminGetMemberActiveSessionShort(input *max_active.
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMaxActive != nil {
+		input.XFlightId = tempFlightIdMaxActive
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MaxActive.AdminGetMemberActiveSessionShort(input, authInfoWriter)
 	if err != nil {
@@ -116,6 +129,11 @@ func (aaa *MaxActiveService) AdminReconcileMaxActiveSessionShort(input *max_acti
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMaxActive != nil {
+		input.XFlightId = tempFlightIdMaxActive
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MaxActive.AdminReconcileMaxActiveSessionShort(input, authInfoWriter)

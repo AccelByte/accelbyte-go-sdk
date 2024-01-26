@@ -82,6 +82,10 @@ func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminListUserAchievements",
 		Method:             "GET",
@@ -220,6 +224,10 @@ func (a *Client) AdminResetAchievement(params *AdminResetAchievementParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminResetAchievement",
 		Method:             "DELETE",
@@ -341,6 +349,10 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -476,6 +488,10 @@ func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicListUserAchievements",
 		Method:             "GET",
@@ -607,6 +623,10 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

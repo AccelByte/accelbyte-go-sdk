@@ -20,6 +20,14 @@ type DataRetrievalService struct {
 	Client           *gdprclient.JusticeGdprService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdDataRetrieval *string
+
+func (aaa *DataRetrievalService) UpdateFlightId(flightId string) {
+	tempFlightIdDataRetrieval = &flightId
 }
 
 func (aaa *DataRetrievalService) GetAuthSession() auth.Session {
@@ -271,6 +279,11 @@ func (aaa *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *dat
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
@@ -295,6 +308,11 @@ func (aaa *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *da
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, authInfoWriter)
@@ -321,6 +339,11 @@ func (aaa *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retr
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
@@ -345,6 +368,11 @@ func (aaa *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, authInfoWriter)
@@ -371,6 +399,11 @@ func (aaa *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_r
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
@@ -395,6 +428,11 @@ func (aaa *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *d
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, authInfoWriter)
@@ -421,6 +459,11 @@ func (aaa *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_ret
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
@@ -446,6 +489,11 @@ func (aaa *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
@@ -470,6 +518,11 @@ func (aaa *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdDataRetrieval != nil {
+		input.XFlightId = tempFlightIdDataRetrieval
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, authInfoWriter)

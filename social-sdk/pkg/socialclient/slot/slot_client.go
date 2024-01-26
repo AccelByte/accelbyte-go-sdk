@@ -79,6 +79,10 @@ func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserNamespaceSlots",
 		Method:             "GET",
@@ -185,6 +189,10 @@ func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientA
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -300,6 +308,10 @@ func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlots
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserNamespaceSlots",
 		Method:             "GET",
@@ -406,6 +418,10 @@ func (a *Client) PublicCreateUserNamespaceSlot(params *PublicCreateUserNamespace
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -526,6 +542,10 @@ func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetSlotData",
 		Method:             "GET",
@@ -637,6 +657,10 @@ func (a *Client) PublicUpdateUserNamespaceSlot(params *PublicUpdateUserNamespace
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -756,6 +780,10 @@ func (a *Client) PublicDeleteUserNamespaceSlot(params *PublicDeleteUserNamespace
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeleteUserNamespaceSlot",
 		Method:             "DELETE",
@@ -866,6 +894,10 @@ func (a *Client) PublicUpdateUserNamespaceSlotMetadata(params *PublicUpdateUserN
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

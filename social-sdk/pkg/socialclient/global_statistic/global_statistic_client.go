@@ -65,6 +65,10 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGlobalStatItems",
 		Method:             "GET",
@@ -176,6 +180,10 @@ func (a *Client) GetGlobalStatItemByStatCode(params *GetGlobalStatItemByStatCode
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -296,6 +304,10 @@ func (a *Client) GetGlobalStatItems1(params *GetGlobalStatItems1Params, authInfo
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGlobalStatItems_1",
 		Method:             "GET",
@@ -407,6 +419,10 @@ func (a *Client) GetGlobalStatItemByStatCode1(params *GetGlobalStatItemByStatCod
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

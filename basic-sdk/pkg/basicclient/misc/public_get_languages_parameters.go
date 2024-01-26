@@ -74,6 +74,9 @@ type PublicGetLanguagesParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the public get languages params
@@ -123,6 +126,15 @@ func (o *PublicGetLanguagesParams) SetHTTPClientTransport(roundTripper http.Roun
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *PublicGetLanguagesParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithNamespace adds the namespace to the public get languages params
 func (o *PublicGetLanguagesParams) WithNamespace(namespace string) *PublicGetLanguagesParams {
 	o.SetNamespace(namespace)
@@ -154,6 +166,16 @@ func (o *PublicGetLanguagesParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -58,6 +58,10 @@ func (a *Client) PublicListReasonGroups(params *PublicListReasonGroupsParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListReasonGroups",
 		Method:             "GET",
@@ -152,6 +156,10 @@ func (a *Client) PublicGetReasons(params *PublicGetReasonsParams, authInfo runti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

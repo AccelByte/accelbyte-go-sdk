@@ -61,6 +61,10 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminRetrieveEligibilities",
 		Method:             "GET",

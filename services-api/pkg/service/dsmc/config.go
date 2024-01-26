@@ -22,6 +22,14 @@ type ConfigService struct {
 	Client           *dsmcclient.JusticeDsmcService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdConfig *string
+
+func (aaa *ConfigService) UpdateFlightId(flightId string) {
+	tempFlightIdConfig = &flightId
 }
 
 func (aaa *ConfigService) GetAuthSession() auth.Session {
@@ -348,6 +356,11 @@ func (aaa *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmc
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Config.ListConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -372,6 +385,11 @@ func (aaa *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error 
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Config.SaveConfigShort(input, authInfoWriter)
@@ -398,6 +416,11 @@ func (aaa *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmccl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -422,6 +445,11 @@ func (aaa *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Config.CreateConfigShort(input, authInfoWriter)
@@ -448,6 +476,11 @@ func (aaa *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) er
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -472,6 +505,11 @@ func (aaa *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Config.UpdateConfigShort(input, authInfoWriter)
@@ -498,6 +536,11 @@ func (aaa *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error 
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Config.ClearCacheShort(input, authInfoWriter)
 	if err != nil {
@@ -522,6 +565,11 @@ func (aaa *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclient
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.Config.AddPortShort(input, authInfoWriter)
@@ -548,6 +596,11 @@ func (aaa *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmc
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Config.DeletePortShort(input, authInfoWriter)
 	if err != nil {
@@ -572,6 +625,11 @@ func (aaa *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmc
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Config.UpdatePortShort(input, authInfoWriter)
@@ -598,6 +656,11 @@ func (aaa *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Config.ExportConfigV1Short(input, authInfoWriter, writer)
 	if err != nil {
@@ -622,6 +685,11 @@ func (aaa *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Config.ImportConfigV1Short(input, authInfoWriter)

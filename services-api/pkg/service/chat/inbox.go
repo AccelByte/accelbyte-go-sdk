@@ -20,6 +20,14 @@ type InboxService struct {
 	Client           *chatclient.JusticeChatService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdInbox *string
+
+func (aaa *InboxService) UpdateFlightId(flightId string) {
+	tempFlightIdInbox = &flightId
 }
 
 func (aaa *InboxService) GetAuthSession() auth.Session {
@@ -387,6 +395,11 @@ func (aaa *InboxService) AdminGetInboxCategoriesShort(input *inbox.AdminGetInbox
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Inbox.AdminGetInboxCategoriesShort(input, authInfoWriter)
 	if err != nil {
@@ -411,6 +424,11 @@ func (aaa *InboxService) AdminAddInboxCategoryShort(input *inbox.AdminAddInboxCa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Inbox.AdminAddInboxCategoryShort(input, authInfoWriter)
@@ -437,6 +455,11 @@ func (aaa *InboxService) AdminDeleteInboxCategoryShort(input *inbox.AdminDeleteI
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Inbox.AdminDeleteInboxCategoryShort(input, authInfoWriter)
 	if err != nil {
@@ -461,6 +484,11 @@ func (aaa *InboxService) AdminUpdateInboxCategoryShort(input *inbox.AdminUpdateI
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Inbox.AdminUpdateInboxCategoryShort(input, authInfoWriter)
@@ -487,6 +515,11 @@ func (aaa *InboxService) AdminGetCategorySchemaShort(input *inbox.AdminGetCatego
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Inbox.AdminGetCategorySchemaShort(input, authInfoWriter)
 	if err != nil {
@@ -511,6 +544,11 @@ func (aaa *InboxService) AdminDeleteInboxMessageShort(input *inbox.AdminDeleteIn
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.Inbox.AdminDeleteInboxMessageShort(input, authInfoWriter)
@@ -537,6 +575,11 @@ func (aaa *InboxService) AdminGetInboxMessagesShort(input *inbox.AdminGetInboxMe
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Inbox.AdminGetInboxMessagesShort(input, authInfoWriter)
 	if err != nil {
@@ -561,6 +604,11 @@ func (aaa *InboxService) AdminSaveInboxMessageShort(input *inbox.AdminSaveInboxM
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Inbox.AdminSaveInboxMessageShort(input, authInfoWriter)
@@ -587,6 +635,11 @@ func (aaa *InboxService) AdminUnsendInboxMessageShort(input *inbox.AdminUnsendIn
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Inbox.AdminUnsendInboxMessageShort(input, authInfoWriter)
 	if err != nil {
@@ -611,6 +664,11 @@ func (aaa *InboxService) AdminGetInboxUsersShort(input *inbox.AdminGetInboxUsers
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Inbox.AdminGetInboxUsersShort(input, authInfoWriter)
@@ -637,6 +695,11 @@ func (aaa *InboxService) AdminUpdateInboxMessageShort(input *inbox.AdminUpdateIn
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Inbox.AdminUpdateInboxMessageShort(input, authInfoWriter)
 	if err != nil {
@@ -662,6 +725,11 @@ func (aaa *InboxService) AdminSendInboxMessageShort(input *inbox.AdminSendInboxM
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Inbox.AdminSendInboxMessageShort(input, authInfoWriter)
 	if err != nil {
@@ -686,6 +754,11 @@ func (aaa *InboxService) AdminGetInboxStatsShort(input *inbox.AdminGetInboxStats
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Inbox.AdminGetInboxStatsShort(input, authInfoWriter)

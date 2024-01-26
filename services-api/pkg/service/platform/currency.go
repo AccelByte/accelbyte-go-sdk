@@ -20,6 +20,14 @@ type CurrencyService struct {
 	Client           *platformclient.JusticePlatformService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdCurrency *string
+
+func (aaa *CurrencyService) UpdateFlightId(flightId string) {
+	tempFlightIdCurrency = &flightId
 }
 
 func (aaa *CurrencyService) GetAuthSession() auth.Session {
@@ -161,6 +169,11 @@ func (aaa *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Currency.ListCurrenciesShort(input, authInfoWriter)
 	if err != nil {
@@ -185,6 +198,11 @@ func (aaa *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Currency.CreateCurrencyShort(input, authInfoWriter)
@@ -211,6 +229,11 @@ func (aaa *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPa
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Currency.UpdateCurrencyShort(input, authInfoWriter)
 	if err != nil {
@@ -235,6 +258,11 @@ func (aaa *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPa
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Currency.DeleteCurrencyShort(input, authInfoWriter)
@@ -261,6 +289,11 @@ func (aaa *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyCo
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Currency.GetCurrencyConfigShort(input, authInfoWriter)
 	if err != nil {
@@ -286,6 +319,11 @@ func (aaa *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencyS
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Currency.GetCurrencySummaryShort(input, authInfoWriter)
 	if err != nil {
@@ -303,6 +341,11 @@ func (aaa *CurrencyService) PublicListCurrenciesShort(input *currency.PublicList
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdCurrency != nil {
+		input.XFlightId = tempFlightIdCurrency
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Currency.PublicListCurrenciesShort(input)

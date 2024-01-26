@@ -20,6 +20,14 @@ type PublicGameBinaryRecordService struct {
 	Client           *cloudsaveclient.JusticeCloudsaveService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicGameBinaryRecord *string
+
+func (aaa *PublicGameBinaryRecordService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicGameBinaryRecord = &flightId
 }
 
 func (aaa *PublicGameBinaryRecordService) GetAuthSession() auth.Session {
@@ -240,6 +248,11 @@ func (aaa *PublicGameBinaryRecordService) ListGameBinaryRecordsV1Short(input *pu
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGameBinaryRecord.ListGameBinaryRecordsV1Short(input, authInfoWriter)
 	if err != nil {
@@ -264,6 +277,11 @@ func (aaa *PublicGameBinaryRecordService) PostGameBinaryRecordV1Short(input *pub
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.PublicGameBinaryRecord.PostGameBinaryRecordV1Short(input, authInfoWriter)
@@ -290,6 +308,11 @@ func (aaa *PublicGameBinaryRecordService) BulkGetGameBinaryRecordV1Short(input *
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGameBinaryRecord.BulkGetGameBinaryRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -314,6 +337,11 @@ func (aaa *PublicGameBinaryRecordService) GetGameBinaryRecordV1Short(input *publ
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicGameBinaryRecord.GetGameBinaryRecordV1Short(input, authInfoWriter)
@@ -340,6 +368,11 @@ func (aaa *PublicGameBinaryRecordService) PutGameBinaryRecordV1Short(input *publ
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGameBinaryRecord.PutGameBinaryRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -365,6 +398,11 @@ func (aaa *PublicGameBinaryRecordService) DeleteGameBinaryRecordV1Short(input *p
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.PublicGameBinaryRecord.DeleteGameBinaryRecordV1Short(input, authInfoWriter)
 	if err != nil {
@@ -389,6 +427,11 @@ func (aaa *PublicGameBinaryRecordService) PostGameBinaryPresignedURLV1Short(inpu
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGameBinaryRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameBinaryRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.PublicGameBinaryRecord.PostGameBinaryPresignedURLV1Short(input, authInfoWriter)

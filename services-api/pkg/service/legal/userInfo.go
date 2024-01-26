@@ -20,6 +20,14 @@ type UserInfoService struct {
 	Client           *legalclient.JusticeLegalService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdUserInfo *string
+
+func (aaa *UserInfoService) UpdateFlightId(flightId string) {
+	tempFlightIdUserInfo = &flightId
 }
 
 func (aaa *UserInfoService) GetAuthSession() auth.Session {
@@ -88,6 +96,11 @@ func (aaa *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoS
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdUserInfo != nil {
+		input.XFlightId = tempFlightIdUserInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.UserInfo.GetUserInfoStatusShort(input, authInfoWriter)
 	if err != nil {
@@ -113,6 +126,11 @@ func (aaa *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParam
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdUserInfo != nil {
+		input.XFlightId = tempFlightIdUserInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.UserInfo.SyncUserInfoShort(input, authInfoWriter)
 	if err != nil {
@@ -137,6 +155,11 @@ func (aaa *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.Invali
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdUserInfo != nil {
+		input.XFlightId = tempFlightIdUserInfo
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfoWriter)

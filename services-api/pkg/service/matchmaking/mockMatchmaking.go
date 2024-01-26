@@ -20,6 +20,14 @@ type MockMatchmakingService struct {
 	Client           *matchmakingclient.JusticeMatchmakingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMockMatchmaking *string
+
+func (aaa *MockMatchmakingService) UpdateFlightId(flightId string) {
+	tempFlightIdMockMatchmaking = &flightId
 }
 
 func (aaa *MockMatchmakingService) GetAuthSession() auth.Session {
@@ -249,6 +257,11 @@ func (aaa *MockMatchmakingService) CleanAllMocksShort(input *mock_matchmaking.Cl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.MockMatchmaking.CleanAllMocksShort(input, authInfoWriter)
 	if err != nil {
@@ -273,6 +286,11 @@ func (aaa *MockMatchmakingService) GetAllMockMatchesShort(input *mock_matchmakin
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MockMatchmaking.GetAllMockMatchesShort(input, authInfoWriter)
@@ -299,6 +317,11 @@ func (aaa *MockMatchmakingService) GetMockMatchesByTimestampShort(input *mock_ma
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MockMatchmaking.GetMockMatchesByTimestampShort(input, authInfoWriter)
 	if err != nil {
@@ -323,6 +346,11 @@ func (aaa *MockMatchmakingService) GetAllMockTicketsShort(input *mock_matchmakin
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MockMatchmaking.GetAllMockTicketsShort(input, authInfoWriter)
@@ -349,6 +377,11 @@ func (aaa *MockMatchmakingService) CreateMockTicketsShort(input *mock_matchmakin
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.MockMatchmaking.CreateMockTicketsShort(input, authInfoWriter)
 	if err != nil {
@@ -374,6 +407,11 @@ func (aaa *MockMatchmakingService) BulkCreateMockTicketsShort(input *mock_matchm
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.MockMatchmaking.BulkCreateMockTicketsShort(input, authInfoWriter)
 	if err != nil {
@@ -398,6 +436,11 @@ func (aaa *MockMatchmakingService) GetMockTicketsByTimestampShort(input *mock_ma
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMockMatchmaking != nil {
+		input.XFlightId = tempFlightIdMockMatchmaking
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MockMatchmaking.GetMockTicketsByTimestampShort(input, authInfoWriter)

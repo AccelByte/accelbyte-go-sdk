@@ -74,6 +74,9 @@ type SpecificUXDescriptionHandlerParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the specific ux description handler params
@@ -123,6 +126,15 @@ func (o *SpecificUXDescriptionHandlerParams) SetHTTPClientTransport(roundTripper
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *SpecificUXDescriptionHandlerParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithUx adds the ux to the specific ux description handler params
 func (o *SpecificUXDescriptionHandlerParams) WithUx(ux *string) *SpecificUXDescriptionHandlerParams {
 	o.SetUx(ux)
@@ -165,6 +177,16 @@ func (o *SpecificUXDescriptionHandlerParams) WriteToRequest(r runtime.ClientRequ
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

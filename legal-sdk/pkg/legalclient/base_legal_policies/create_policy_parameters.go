@@ -73,6 +73,9 @@ type CreatePolicyParams struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
 }
 
 // WithTimeout adds the timeout to the create policy params
@@ -122,6 +125,15 @@ func (o *CreatePolicyParams) SetHTTPClientTransport(roundTripper http.RoundTripp
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *CreatePolicyParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithBody adds the body to the create policy params
 func (o *CreatePolicyParams) WithBody(body *legalclientmodels.CreateBasePolicyRequest) *CreatePolicyParams {
 	o.SetBody(body)
@@ -154,6 +166,16 @@ func (o *CreatePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

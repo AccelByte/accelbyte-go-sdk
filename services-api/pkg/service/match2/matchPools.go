@@ -20,6 +20,14 @@ type MatchPoolsService struct {
 	Client           *match2client.JusticeMatch2Service
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdMatchPools *string
+
+func (aaa *MatchPoolsService) UpdateFlightId(flightId string) {
+	tempFlightIdMatchPools = &flightId
 }
 
 func (aaa *MatchPoolsService) GetAuthSession() auth.Session {
@@ -254,6 +262,11 @@ func (aaa *MatchPoolsService) MatchPoolListShort(input *match_pools.MatchPoolLis
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchPools.MatchPoolListShort(input, authInfoWriter)
 	if err != nil {
@@ -278,6 +291,11 @@ func (aaa *MatchPoolsService) CreateMatchPoolShort(input *match_pools.CreateMatc
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.MatchPools.CreateMatchPoolShort(input, authInfoWriter)
@@ -304,6 +322,11 @@ func (aaa *MatchPoolsService) MatchPoolDetailsShort(input *match_pools.MatchPool
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchPools.MatchPoolDetailsShort(input, authInfoWriter)
 	if err != nil {
@@ -328,6 +351,11 @@ func (aaa *MatchPoolsService) UpdateMatchPoolShort(input *match_pools.UpdateMatc
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MatchPools.UpdateMatchPoolShort(input, authInfoWriter)
@@ -354,6 +382,11 @@ func (aaa *MatchPoolsService) DeleteMatchPoolShort(input *match_pools.DeleteMatc
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.MatchPools.DeleteMatchPoolShort(input, authInfoWriter)
 	if err != nil {
@@ -378,6 +411,11 @@ func (aaa *MatchPoolsService) MatchPoolMetricShort(input *match_pools.MatchPoolM
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MatchPools.MatchPoolMetricShort(input, authInfoWriter)
@@ -404,6 +442,11 @@ func (aaa *MatchPoolsService) GetPlayerMetricShort(input *match_pools.GetPlayerM
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.MatchPools.GetPlayerMetricShort(input, authInfoWriter)
 	if err != nil {
@@ -428,6 +471,11 @@ func (aaa *MatchPoolsService) AdminGetMatchPoolTicketsShort(input *match_pools.A
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.MatchPools.AdminGetMatchPoolTicketsShort(input, authInfoWriter)

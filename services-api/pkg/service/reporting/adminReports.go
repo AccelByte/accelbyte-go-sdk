@@ -20,6 +20,14 @@ type AdminReportsService struct {
 	Client           *reportingclient.JusticeReportingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminReports *string
+
+func (aaa *AdminReportsService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminReports = &flightId
 }
 
 func (aaa *AdminReportsService) GetAuthSession() auth.Session {
@@ -86,6 +94,11 @@ func (aaa *AdminReportsService) ListReportsShort(input *admin_reports.ListReport
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminReports != nil {
+		input.XFlightId = tempFlightIdAdminReports
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminReports.ListReportsShort(input, authInfoWriter)
 	if err != nil {
@@ -110,6 +123,11 @@ func (aaa *AdminReportsService) AdminSubmitReportShort(input *admin_reports.Admi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminReports != nil {
+		input.XFlightId = tempFlightIdAdminReports
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.AdminReports.AdminSubmitReportShort(input, authInfoWriter)

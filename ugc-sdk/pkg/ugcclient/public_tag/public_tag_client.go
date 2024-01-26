@@ -56,6 +56,10 @@ func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWri
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetTag",
 		Method:             "GET",

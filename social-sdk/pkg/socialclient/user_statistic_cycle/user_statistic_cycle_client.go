@@ -63,6 +63,10 @@ func (a *Client) GetUserStatCycleItems(params *GetUserStatCycleItemsParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatCycleItems",
 		Method:             "GET",
@@ -186,6 +190,10 @@ func (a *Client) PublicListMyStatCycleItems(params *PublicListMyStatCycleItemsPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListMyStatCycleItems",
 		Method:             "GET",
@@ -307,6 +315,10 @@ func (a *Client) GetUserStatCycleItems1(params *GetUserStatCycleItems1Params, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

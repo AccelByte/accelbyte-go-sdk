@@ -90,6 +90,10 @@ func (a *Client) GetUserFriendsUpdated(params *GetUserFriendsUpdatedParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserFriendsUpdated",
 		Method:             "GET",
@@ -205,6 +209,10 @@ func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -324,6 +332,10 @@ func (a *Client) GetUserIncomingFriendsWithTime(params *GetUserIncomingFriendsWi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserIncomingFriendsWithTime",
 		Method:             "GET",
@@ -439,6 +451,10 @@ func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, au
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -558,6 +574,10 @@ func (a *Client) GetUserOutgoingFriendsWithTime(params *GetUserOutgoingFriendsWi
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOutgoingFriendsWithTime",
 		Method:             "GET",
@@ -673,6 +693,10 @@ func (a *Client) GetUserFriendsWithPlatform(params *GetUserFriendsWithPlatformPa
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -791,6 +815,10 @@ func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -916,6 +944,10 @@ func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userAcceptFriendRequest",
 		Method:             "POST",
@@ -1031,6 +1063,10 @@ func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, 
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1150,6 +1186,10 @@ func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userRejectFriendRequest",
 		Method:             "POST",
@@ -1267,6 +1307,10 @@ func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "userGetFriendshipStatus",
 		Method:             "GET",
@@ -1377,6 +1421,10 @@ func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1496,6 +1544,10 @@ func (a *Client) AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirma
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addFriendsWithoutConfirmation",
 		Method:             "POST",
@@ -1606,6 +1658,10 @@ func (a *Client) BulkDeleteFriends(params *BulkDeleteFriendsParams, authInfo run
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -1726,6 +1782,10 @@ func (a *Client) SyncNativeFriends(params *SyncNativeFriendsParams, authInfo run
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncNativeFriends",
 		Method:             "PATCH",
@@ -1844,6 +1904,10 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get list of friends",
 		Method:             "GET",
@@ -1956,6 +2020,10 @@ func (a *Client) GetIncomingFriendRequests(params *GetIncomingFriendRequestsPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get incoming friend requests",
 		Method:             "GET",
@@ -2066,6 +2134,10 @@ func (a *Client) GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsPara
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

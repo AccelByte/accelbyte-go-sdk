@@ -74,6 +74,10 @@ func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, 
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changePreferenceConsent",
 		Method:             "PATCH",
@@ -173,6 +177,10 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAcceptedAgreements",
 		Method:             "GET",
@@ -265,6 +273,10 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -366,6 +378,10 @@ func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -471,6 +487,10 @@ func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, auth
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acceptVersionedPolicy",
 		Method:             "POST",
@@ -572,6 +592,10 @@ func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -677,6 +701,10 @@ func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyPara
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkAcceptVersionedPolicy",
 		Method:             "POST",
@@ -780,6 +808,10 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptV
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicyV2",
 		Method:             "POST",
@@ -876,6 +908,10 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

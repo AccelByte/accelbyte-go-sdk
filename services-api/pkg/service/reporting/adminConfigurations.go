@@ -20,6 +20,14 @@ type AdminConfigurationsService struct {
 	Client           *reportingclient.JusticeReportingService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdAdminConfigurations *string
+
+func (aaa *AdminConfigurationsService) UpdateFlightId(flightId string) {
+	tempFlightIdAdminConfigurations = &flightId
 }
 
 func (aaa *AdminConfigurationsService) GetAuthSession() auth.Session {
@@ -83,6 +91,11 @@ func (aaa *AdminConfigurationsService) GetShort(input *admin_configurations.GetP
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdAdminConfigurations != nil {
+		input.XFlightId = tempFlightIdAdminConfigurations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.AdminConfigurations.GetShort(input, authInfoWriter)
 	if err != nil {
@@ -107,6 +120,11 @@ func (aaa *AdminConfigurationsService) UpsertShort(input *admin_configurations.U
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdAdminConfigurations != nil {
+		input.XFlightId = tempFlightIdAdminConfigurations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.AdminConfigurations.UpsertShort(input, authInfoWriter)

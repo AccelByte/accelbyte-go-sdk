@@ -109,6 +109,10 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *P
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "protected_save_events_game_telemetry_v1_protected_events_post",
 		Method:             "POST",
@@ -260,6 +264,10 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "protected_get_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime_get",
 		Method:             "GET",
@@ -363,6 +371,10 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

@@ -20,6 +20,14 @@ type LeaderboardConfigurationV3Service struct {
 	Client           *leaderboardclient.JusticeLeaderboardService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdLeaderboardConfigurationV3 *string
+
+func (aaa *LeaderboardConfigurationV3Service) UpdateFlightId(flightId string) {
+	tempFlightIdLeaderboardConfigurationV3 = &flightId
 }
 
 func (aaa *LeaderboardConfigurationV3Service) GetAuthSession() auth.Session {
@@ -298,6 +306,11 @@ func (aaa *LeaderboardConfigurationV3Service) GetLeaderboardConfigurationsAdminV
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.GetLeaderboardConfigurationsAdminV3Short(input, authInfoWriter)
 	if err != nil {
@@ -322,6 +335,11 @@ func (aaa *LeaderboardConfigurationV3Service) CreateLeaderboardConfigurationAdmi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	created, err := aaa.Client.LeaderboardConfigurationV3.CreateLeaderboardConfigurationAdminV3Short(input, authInfoWriter)
@@ -348,6 +366,11 @@ func (aaa *LeaderboardConfigurationV3Service) DeleteBulkLeaderboardConfiguration
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.DeleteBulkLeaderboardConfigurationAdminV3Short(input, authInfoWriter)
 	if err != nil {
@@ -372,6 +395,11 @@ func (aaa *LeaderboardConfigurationV3Service) GetLeaderboardConfigurationAdminV3
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.GetLeaderboardConfigurationAdminV3Short(input, authInfoWriter)
@@ -398,6 +426,11 @@ func (aaa *LeaderboardConfigurationV3Service) UpdateLeaderboardConfigurationAdmi
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.UpdateLeaderboardConfigurationAdminV3Short(input, authInfoWriter)
 	if err != nil {
@@ -422,6 +455,11 @@ func (aaa *LeaderboardConfigurationV3Service) DeleteLeaderboardConfigurationAdmi
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.LeaderboardConfigurationV3.DeleteLeaderboardConfigurationAdminV3Short(input, authInfoWriter)
@@ -448,6 +486,11 @@ func (aaa *LeaderboardConfigurationV3Service) HardDeleteLeaderboardAdminV3Short(
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.LeaderboardConfigurationV3.HardDeleteLeaderboardAdminV3Short(input, authInfoWriter)
 	if err != nil {
@@ -473,6 +516,11 @@ func (aaa *LeaderboardConfigurationV3Service) GetLeaderboardConfigurationsPublic
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.GetLeaderboardConfigurationsPublicV3Short(input, authInfoWriter)
 	if err != nil {
@@ -497,6 +545,11 @@ func (aaa *LeaderboardConfigurationV3Service) GetLeaderboardConfigurationPublicV
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdLeaderboardConfigurationV3 != nil {
+		input.XFlightId = tempFlightIdLeaderboardConfigurationV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.LeaderboardConfigurationV3.GetLeaderboardConfigurationPublicV3Short(input, authInfoWriter)

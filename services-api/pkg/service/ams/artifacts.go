@@ -20,6 +20,14 @@ type ArtifactsService struct {
 	Client           *amsclient.JusticeAmsService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdArtifacts *string
+
+func (aaa *ArtifactsService) UpdateFlightId(flightId string) {
+	tempFlightIdArtifacts = &flightId
 }
 
 func (aaa *ArtifactsService) GetAuthSession() auth.Session {
@@ -211,6 +219,11 @@ func (aaa *ArtifactsService) ArtifactGetShort(input *artifacts.ArtifactGetParams
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Artifacts.ArtifactGetShort(input, authInfoWriter)
 	if err != nil {
@@ -235,6 +248,11 @@ func (aaa *ArtifactsService) ArtifactUsageGetShort(input *artifacts.ArtifactUsag
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Artifacts.ArtifactUsageGetShort(input, authInfoWriter)
@@ -261,6 +279,11 @@ func (aaa *ArtifactsService) ArtifactDeleteShort(input *artifacts.ArtifactDelete
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.Artifacts.ArtifactDeleteShort(input, authInfoWriter)
 	if err != nil {
@@ -285,6 +308,11 @@ func (aaa *ArtifactsService) ArtifactGetURLShort(input *artifacts.ArtifactGetURL
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.Artifacts.ArtifactGetURLShort(input, authInfoWriter)
@@ -311,6 +339,11 @@ func (aaa *ArtifactsService) FleetArtifactSamplingRulesGetShort(input *artifacts
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesGetShort(input, authInfoWriter)
 	if err != nil {
@@ -335,6 +368,11 @@ func (aaa *ArtifactsService) FleetArtifactSamplingRulesSetShort(input *artifacts
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	noContent, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesSetShort(input, authInfoWriter)

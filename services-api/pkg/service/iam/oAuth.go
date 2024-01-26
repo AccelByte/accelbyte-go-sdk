@@ -20,6 +20,14 @@ type OAuthService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdOAuth *string
+
+func (aaa *OAuthService) UpdateFlightId(flightId string) {
+	tempFlightIdOAuth = &flightId
 }
 
 func (aaa *OAuthService) GetAuthSession() auth.Session {
@@ -201,6 +209,11 @@ func (aaa *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	found, err := aaa.Client.OAuth.AuthorizationShort(input, authInfoWriter)
 	if err != nil {
@@ -225,6 +238,11 @@ func (aaa *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmo
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.OAuth.GetJWKSShort(input, authInfoWriter)
@@ -251,6 +269,11 @@ func (aaa *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.Platform
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.OAuth.PlatformTokenRequestHandlerShort(input, authInfoWriter)
 	if err != nil {
@@ -275,6 +298,11 @@ func (aaa *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.OAuth.RevokeUserShort(input, authInfoWriter)
@@ -301,6 +329,11 @@ func (aaa *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListP
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.OAuth.GetRevocationListShort(input, authInfoWriter)
 	if err != nil {
@@ -325,6 +358,11 @@ func (aaa *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams) error
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.OAuth.RevokeTokenShort(input, authInfoWriter)
@@ -351,6 +389,11 @@ func (aaa *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams) error
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	_, err := aaa.Client.OAuth.RevokeAUserShort(input, authInfoWriter)
 	if err != nil {
@@ -376,6 +419,11 @@ func (aaa *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamcl
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.OAuth.TokenGrantShort(input, authInfoWriter)
 	if err != nil {
@@ -400,6 +448,11 @@ func (aaa *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams) (*iam
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdOAuth != nil {
+		input.XFlightId = tempFlightIdOAuth
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.OAuth.VerifyTokenShort(input, authInfoWriter)

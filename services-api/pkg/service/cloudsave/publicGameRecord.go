@@ -20,6 +20,14 @@ type PublicGameRecordService struct {
 	Client           *cloudsaveclient.JusticeCloudsaveService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
+}
+
+var tempFlightIdPublicGameRecord *string
+
+func (aaa *PublicGameRecordService) UpdateFlightId(flightId string) {
+	tempFlightIdPublicGameRecord = &flightId
 }
 
 func (aaa *PublicGameRecordService) GetAuthSession() auth.Session {
@@ -182,6 +190,11 @@ func (aaa *PublicGameRecordService) GetGameRecordsBulkShort(input *public_game_r
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGameRecord.GetGameRecordsBulkShort(input, authInfoWriter)
 	if err != nil {
@@ -206,6 +219,11 @@ func (aaa *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_ga
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGameRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	ok, err := aaa.Client.PublicGameRecord.GetGameRecordHandlerV1Short(input, authInfoWriter)
@@ -232,6 +250,11 @@ func (aaa *PublicGameRecordService) PutGameRecordHandlerV1Short(input *public_ga
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	ok, err := aaa.Client.PublicGameRecord.PutGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
@@ -257,6 +280,11 @@ func (aaa *PublicGameRecordService) PostGameRecordHandlerV1Short(input *public_g
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightIdPublicGameRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
 
 	created, err := aaa.Client.PublicGameRecord.PostGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
@@ -281,6 +309,11 @@ func (aaa *PublicGameRecordService) DeleteGameRecordHandlerV1Short(input *public
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightIdPublicGameRecord != nil {
+		input.XFlightId = tempFlightIdPublicGameRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
 	_, err := aaa.Client.PublicGameRecord.DeleteGameRecordHandlerV1Short(input, authInfoWriter)

@@ -74,6 +74,10 @@ func (a *Client) QueryKeyGroups(params *QueryKeyGroupsParams, authInfo runtime.C
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryKeyGroups",
 		Method:             "GET",
@@ -172,6 +176,10 @@ func (a *Client) CreateKeyGroup(params *CreateKeyGroupParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -284,6 +292,10 @@ func (a *Client) GetKeyGroupByBoothName(params *GetKeyGroupByBoothNameParams, au
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroupByBoothName",
 		Method:             "GET",
@@ -389,6 +401,10 @@ func (a *Client) GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientA
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroup",
 		Method:             "GET",
@@ -492,6 +508,10 @@ func (a *Client) UpdateKeyGroup(params *UpdateKeyGroupParams, authInfo runtime.C
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -609,6 +629,10 @@ func (a *Client) GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo r
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroupDynamic",
 		Method:             "GET",
@@ -714,6 +738,10 @@ func (a *Client) ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listKeys",
 		Method:             "GET",
@@ -813,6 +841,10 @@ func (a *Client) UploadKeys(params *UploadKeysParams, authInfo runtime.ClientAut
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

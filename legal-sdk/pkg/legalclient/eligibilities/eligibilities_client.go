@@ -62,6 +62,10 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveEligibilitiesPublic",
 		Method:             "GET",
@@ -170,6 +174,10 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

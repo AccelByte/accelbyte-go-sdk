@@ -1706,6 +1706,10 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	if params.UpdateFlightId != nil {
+		params.SetFlightId(*params.UpdateFlightId)
+	}
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "TokenRevocationV3",
 		Method:             "POST",
@@ -2076,6 +2080,10 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.UpdateFlightId != nil {
+		params.SetFlightId(*params.UpdateFlightId)
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{

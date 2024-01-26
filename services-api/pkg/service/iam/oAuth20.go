@@ -24,9 +24,12 @@ type OAuth20Service struct {
 	ConfigRepository       repository.ConfigRepository
 	TokenRepository        repository.TokenRepository
 	RefreshTokenRepository repository.RefreshTokenRepository
+	FlightIdRepository     *utils.FlightIdContainer
 
 	tokenValidation *TokenValidator
 }
+
+var tempFlightId *string
 
 func (aaa *OAuth20Service) GetAuthSession() auth.Session {
 	if aaa.RefreshTokenRepository != nil {
@@ -42,6 +45,10 @@ func (aaa *OAuth20Service) GetAuthSession() auth.Session {
 		aaa.ConfigRepository,
 		auth.DefaultRefreshTokenImpl(),
 	}
+}
+
+func (aaa *OAuth20Service) UpdateFlightId(flightId string) {
+	tempFlightId = &flightId
 }
 
 // Deprecated: 2022-01-10 - please use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
@@ -706,6 +713,9 @@ func (aaa *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocati
 			RetryCodes: utils.RetryCodes,
 		}
 	}
+	if tempFlightId != nil {
+		input.UpdateFlightId = tempFlightId
+	}
 
 	_, err := aaa.Client.OAuth20.TokenRevocationV3Short(input, authInfoWriter)
 	if err != nil {
@@ -755,6 +765,9 @@ func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightId != nil {
+		input.UpdateFlightId = tempFlightId
 	}
 
 	ok, err := aaa.Client.OAuth20.TokenGrantV3Short(input, authInfoWriter)

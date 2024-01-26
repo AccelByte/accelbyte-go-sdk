@@ -20,7 +20,11 @@ type UserProfileService struct {
 	Client           *basicclient.JusticeBasicService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
+
+	FlightIdRepository *utils.FlightIdContainer
 }
+
+var tempFlightId *string
 
 func (aaa *UserProfileService) GetAuthSession() auth.Session {
 	return auth.Session{
@@ -28,6 +32,10 @@ func (aaa *UserProfileService) GetAuthSession() auth.Session {
 		aaa.ConfigRepository,
 		nil,
 	}
+}
+
+func (aaa *UserProfileService) UpdateFlightId(flightId string) {
+	tempFlightId = &flightId
 }
 
 // Deprecated: 2022-01-10 - please use GetUserProfileInfoByPublicIDShort instead.
@@ -937,6 +945,9 @@ func (aaa *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyPr
 			Transport:  aaa.Client.Runtime.Transport,
 			RetryCodes: utils.RetryCodes,
 		}
+	}
+	if tempFlightId != nil {
+		input.UpdateFlightId = tempFlightId
 	}
 
 	ok, err := aaa.Client.UserProfile.GetMyProfileInfoShort(input, authInfoWriter)

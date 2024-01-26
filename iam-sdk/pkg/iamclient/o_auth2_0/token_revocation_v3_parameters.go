@@ -74,6 +74,9 @@ type TokenRevocationV3Params struct {
 	AuthInfoWriter runtime.ClientAuthInfoWriter
 	Context        context.Context
 	HTTPClient     *http.Client
+
+	// UpdateFlightId is an optional parameter from this SDK
+	UpdateFlightId *string
 }
 
 // WithTimeout adds the timeout to the token revocation v3 params
@@ -123,6 +126,15 @@ func (o *TokenRevocationV3Params) SetHTTPClientTransport(roundTripper http.Round
 	}
 }
 
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *TokenRevocationV3Params) SetFlightId(flightId string) {
+	if o.UpdateFlightId != nil {
+		o.UpdateFlightId = &flightId
+	} else {
+		o.UpdateFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
 // WithToken adds the token to the token revocation v3 params
 func (o *TokenRevocationV3Params) WithToken(token string) *TokenRevocationV3Params {
 	o.SetToken(token)
@@ -158,6 +170,16 @@ func (o *TokenRevocationV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 
 	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
 		return err
+	}
+
+	if o.UpdateFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.UpdateFlightId); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

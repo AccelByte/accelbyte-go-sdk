@@ -6,6 +6,7 @@
 ### chore
 - **:** change panic to fatal log
 - **sdk:** regenerate services
+- **:** update CHANGELOG.md and go sum getting started
 ### feat
 - **:** support flightId
 ### docs

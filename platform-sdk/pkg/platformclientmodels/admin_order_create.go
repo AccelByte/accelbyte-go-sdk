@@ -32,6 +32,10 @@ type AdminOrderCreate struct {
 	// Format: int32
 	DiscountedPrice *int32 `json:"discountedPrice"`
 
+	// entitlement platform the platform which user are playing now and use for entitlement eg: user purchase item on Steam, it should be 'Steam'
+	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'Xbox']
+	EntitlementPlatform string `json:"entitlementPlatform,omitempty"`
+
 	// extra field to store external order information
 	Ext interface{} `json:"ext,omitempty"`
 
@@ -113,6 +117,56 @@ func (m *AdminOrderCreate) validateDiscountedPrice(formats strfmt.Registry) erro
 		return err
 	}
 
+	return nil
+}
+
+var adminOrderCreateTypeEntitlementPlatformPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EPIC", "GOOGLEPLAY", "IOS", "NINTENDO", "OCULUS", "OTHER", "PLAYSTATION", "STEAM", "XBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		adminOrderCreateTypeEntitlementPlatformPropEnum = append(adminOrderCreateTypeEntitlementPlatformPropEnum, v)
+	}
+}
+
+const (
+
+	// AdminOrderCreateEntitlementPlatformEPIC captures enum value "EPIC"
+	AdminOrderCreateEntitlementPlatformEPIC string = "EPIC"
+
+	// AdminOrderCreateEntitlementPlatformGOOGLEPLAY captures enum value "GOOGLEPLAY"
+	AdminOrderCreateEntitlementPlatformGOOGLEPLAY string = "GOOGLEPLAY"
+
+	// AdminOrderCreateEntitlementPlatformIOS captures enum value "IOS"
+	AdminOrderCreateEntitlementPlatformIOS string = "IOS"
+
+	// AdminOrderCreateEntitlementPlatformNINTENDO captures enum value "NINTENDO"
+	AdminOrderCreateEntitlementPlatformNINTENDO string = "NINTENDO"
+
+	// AdminOrderCreateEntitlementPlatformOCULUS captures enum value "OCULUS"
+	AdminOrderCreateEntitlementPlatformOCULUS string = "OCULUS"
+
+	// AdminOrderCreateEntitlementPlatformOTHER captures enum value "OTHER"
+	AdminOrderCreateEntitlementPlatformOTHER string = "OTHER"
+
+	// AdminOrderCreateEntitlementPlatformPLAYSTATION captures enum value "PLAYSTATION"
+	AdminOrderCreateEntitlementPlatformPLAYSTATION string = "PLAYSTATION"
+
+	// AdminOrderCreateEntitlementPlatformSTEAM captures enum value "STEAM"
+	AdminOrderCreateEntitlementPlatformSTEAM string = "STEAM"
+
+	// AdminOrderCreateEntitlementPlatformXBOX captures enum value "XBOX"
+	AdminOrderCreateEntitlementPlatformXBOX string = "XBOX"
+)
+
+// prop value enum
+func (m *AdminOrderCreate) validateEntitlementPlatformEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, adminOrderCreateTypeEntitlementPlatformPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

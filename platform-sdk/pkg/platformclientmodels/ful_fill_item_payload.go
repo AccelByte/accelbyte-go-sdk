@@ -25,6 +25,9 @@ type FulFillItemPayload struct {
 	// Format: int32
 	Count *int32 `json:"count"`
 
+	// entitlement collection id, length 1-128
+	EntitlementCollectionID string `json:"entitlementCollectionId,omitempty"`
+
 	// Entitlement origin
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`

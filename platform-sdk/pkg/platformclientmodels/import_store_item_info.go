@@ -32,8 +32,7 @@ type ImportStoreItemInfo struct {
 	ItemType *string `json:"itemType"`
 
 	// Item localizations
-	// Required: true
-	Localizations map[string]Localization `json:"localizations"`
+	Localizations map[string]Localization `json:"localizations,omitempty"`
 
 	// Name
 	Name string `json:"name,omitempty"`
@@ -121,28 +120,6 @@ func (m *ImportStoreItemInfo) validateItemType(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateItemTypeEnum("itemType", "body", *m.ItemType); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ImportStoreItemInfo) validateLocalizations(formats strfmt.Registry) error {
-
-	if err := validate.Required("localizations", "body", m.Localizations); err != nil {
-		return err
-	}
-
-	for k := range m.Localizations {
-
-		if err := validate.Required("localizations"+"."+k, "body", m.Localizations[k]); err != nil {
-			return err
-		}
-		if val, ok := m.Localizations[k]; ok {
-			if err := val.Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

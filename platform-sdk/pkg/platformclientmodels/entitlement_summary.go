@@ -25,6 +25,9 @@ type EntitlementSummary struct {
 	// Required: true
 	Clazz *string `json:"clazz"`
 
+	// collection id
+	CollectionID string `json:"collectionId,omitempty"`
+
 	// created at
 	// Required: true
 	// Format: date-time

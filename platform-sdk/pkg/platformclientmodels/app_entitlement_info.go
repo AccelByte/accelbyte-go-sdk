@@ -27,6 +27,9 @@ type AppEntitlementInfo struct {
 	// Enum: ['DEMO', 'DLC', 'GAME', 'SOFTWARE']
 	AppType string `json:"appType,omitempty"`
 
+	// collection id
+	CollectionID string `json:"collectionId,omitempty"`
+
 	// entitlement end date
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"endDate,omitempty"`

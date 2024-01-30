@@ -28,6 +28,9 @@ type FulfillmentRequest struct {
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
+	// entitlement collection id, length 1-128
+	EntitlementCollectionID string `json:"entitlementCollectionId,omitempty"`
+
 	// entitlement origin
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`

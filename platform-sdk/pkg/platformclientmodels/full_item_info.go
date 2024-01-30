@@ -71,6 +71,9 @@ type FullItemInfo struct {
 	// images
 	Images []*Image `json:"images,omitempty"`
 
+	// inventory config
+	InventoryConfig *InventoryConfig `json:"inventoryConfig,omitempty"`
+
 	// Item id
 	// Required: true
 	ItemID *string `json:"itemId"`

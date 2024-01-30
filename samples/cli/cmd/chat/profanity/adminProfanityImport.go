@@ -27,9 +27,9 @@ var AdminProfanityImportCmd = &cobra.Command{
 			Client:          factory.NewChatClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		output := cmd.Flag("file").Value.String()
-		logrus.Infof("file %v", output)
-		file, err := os.Open(output)
+		outputFile := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", outputFile)
+		file, err := os.Open(outputFile)
 		if err != nil {
 			return err
 		}

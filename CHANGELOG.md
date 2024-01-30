@@ -1,3 +1,17 @@
+<a name="v0.63.0"></a>
+## [v0.63.0]
+### test
+- **integration:** adjust the ams and basic test
+- **sdk:** support flightId
+### chore
+- **:** change panic to fatal log
+- **sdk:** regenerate services
+### feat
+- **:** support flightId
+### docs
+- **readme:** support flightId
+
+
 <a name="v0.62.0"></a>
 ## [v0.62.0]
 ### docs

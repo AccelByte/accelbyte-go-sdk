@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.8.3"
+    "version": "7.9.0"
   },
   "schemes": [
     "https"
@@ -22391,6 +22391,95 @@
         ]
       }
     },
+    "/iam/v4/admin/namespaces/{namespace}/users": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "operationId": "AdminCreateUserV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/account.createUserRequestV4"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/account.createUserResponseV4"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10130\u003c/td\u003e\u003ctd\u003euser under age\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10177\u003c/td\u003e\u003ctd\u003eusername already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Create User",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v4/admin/namespaces/{namespace}/users/bulk/accountType": {
       "patch": {
         "consumes": [
@@ -33871,11 +33960,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-12T11:30:37+00:00",
-    "gitHash": "46bdc318f23a15ca95fa76a24455f99332ec020c",
+    "buildDate": "2024-01-26T10:50:45+00:00",
+    "gitHash": "185e5c14ea4eac5c89fdefa6295a4647aa3628fb",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.8.3",
-    "version-roles-seeding": "1.0.23"
+    "version": "7.9.0",
+    "version-roles-seeding": "1.0.28"
   }
 }

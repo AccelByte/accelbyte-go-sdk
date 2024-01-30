@@ -52,6 +52,9 @@ type ItemSnapshot struct {
 	// whether flexible pricing applied, only applied if itemType is BUNDLE
 	Flexible bool `json:"flexible"`
 
+	// inventory config
+	InventoryConfig *InventoryConfig `json:"inventoryConfig,omitempty"`
+
 	// Item id
 	// Required: true
 	ItemID *string `json:"itemId"`

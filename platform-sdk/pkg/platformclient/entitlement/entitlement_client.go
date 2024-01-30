@@ -116,6 +116,8 @@ type ClientService interface {
 	PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementByAppIDOK, error)
 	PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
 	PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
+	PublicGetUserEntitlementsByIds(params *PublicGetUserEntitlementsByIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementsByIdsOK, error)
+	PublicGetUserEntitlementsByIdsShort(params *PublicGetUserEntitlementsByIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementsByIdsOK, error)
 	PublicGetUserEntitlementByItemID(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, *PublicGetUserEntitlementByItemIDNotFound, error)
 	PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, error)
 	PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, *PublicGetUserEntitlementBySkuNotFound, error)
@@ -136,6 +138,10 @@ type ClientService interface {
 	PublicConsumeUserEntitlementShort(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, error)
 	PublicSellUserEntitlement(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, *PublicSellUserEntitlementNotFound, *PublicSellUserEntitlementConflict, error)
 	PublicSellUserEntitlementShort(params *PublicSellUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSellUserEntitlementOK, error)
+	PublicSplitUserEntitlement(params *PublicSplitUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSplitUserEntitlementOK, *PublicSplitUserEntitlementNotFound, *PublicSplitUserEntitlementConflict, error)
+	PublicSplitUserEntitlementShort(params *PublicSplitUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSplitUserEntitlementOK, error)
+	PublicTransferUserEntitlement(params *PublicTransferUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTransferUserEntitlementOK, *PublicTransferUserEntitlementNotFound, *PublicTransferUserEntitlementConflict, error)
+	PublicTransferUserEntitlementShort(params *PublicTransferUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTransferUserEntitlementOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -4928,6 +4934,112 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicGetUserEntitlementsByIdsShort instead.
+
+PublicGetUserEntitlementsByIds get user entitlements by ids.
+Get user entitlements by ids..
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)
+  *  Returns : entitlement list
+*/
+func (a *Client) PublicGetUserEntitlementsByIds(params *PublicGetUserEntitlementsByIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementsByIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementsByIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementsByIds",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementsByIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementsByIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetUserEntitlementsByIdsShort get user entitlements by ids.
+Get user entitlements by ids..
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)
+  *  Returns : entitlement list
+*/
+func (a *Client) PublicGetUserEntitlementsByIdsShort(params *PublicGetUserEntitlementsByIdsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementsByIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementsByIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementsByIds",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementsByIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementsByIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetUserEntitlementByItemIDShort instead.
 
 PublicGetUserEntitlementByItemID get user entitlement by itemid
@@ -5998,6 +6110,226 @@ func (a *Client) PublicSellUserEntitlementShort(params *PublicSellUserEntitlemen
 	case *PublicSellUserEntitlementNotFound:
 		return nil, v
 	case *PublicSellUserEntitlementConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicSplitUserEntitlementShort instead.
+
+PublicSplitUserEntitlement split user entitlement
+Split a specified use count of entitlement and create a new entitlement with splitting use count.Other detail info:
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : entitlement
+*/
+func (a *Client) PublicSplitUserEntitlement(params *PublicSplitUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSplitUserEntitlementOK, *PublicSplitUserEntitlementNotFound, *PublicSplitUserEntitlementConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSplitUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSplitUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/split",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSplitUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSplitUserEntitlementOK:
+		return v, nil, nil, nil
+
+	case *PublicSplitUserEntitlementNotFound:
+		return nil, v, nil, nil
+
+	case *PublicSplitUserEntitlementConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicSplitUserEntitlementShort split user entitlement
+Split a specified use count of entitlement and create a new entitlement with splitting use count.Other detail info:
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : entitlement
+*/
+func (a *Client) PublicSplitUserEntitlementShort(params *PublicSplitUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSplitUserEntitlementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSplitUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSplitUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/split",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSplitUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSplitUserEntitlementOK:
+		return v, nil
+	case *PublicSplitUserEntitlementNotFound:
+		return nil, v
+	case *PublicSplitUserEntitlementConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicTransferUserEntitlementShort instead.
+
+PublicTransferUserEntitlement transfer user entitlement
+Transfer a specified use count from entitlement A to B..Other detail info:
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : entitlement
+*/
+func (a *Client) PublicTransferUserEntitlement(params *PublicTransferUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTransferUserEntitlementOK, *PublicTransferUserEntitlementNotFound, *PublicTransferUserEntitlementConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicTransferUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicTransferUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/transfer",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicTransferUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicTransferUserEntitlementOK:
+		return v, nil, nil, nil
+
+	case *PublicTransferUserEntitlementNotFound:
+		return nil, v, nil, nil
+
+	case *PublicTransferUserEntitlementConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicTransferUserEntitlementShort transfer user entitlement
+Transfer a specified use count from entitlement A to B..Other detail info:
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=4 (UPDATE)
+  *  Returns : entitlement
+*/
+func (a *Client) PublicTransferUserEntitlementShort(params *PublicTransferUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTransferUserEntitlementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicTransferUserEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicTransferUserEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/transfer",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicTransferUserEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicTransferUserEntitlementOK:
+		return v, nil
+	case *PublicTransferUserEntitlementNotFound:
+		return nil, v
+	case *PublicTransferUserEntitlementConflict:
 		return nil, v
 
 	default:

@@ -39,14 +39,14 @@ var MockPlayStationStreamEventCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errOK := clawbackService.MockPlayStationStreamEventShort(input)
+		ok, errOK := clawbackService.MockPlayStationStreamEventShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

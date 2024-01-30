@@ -32,6 +32,9 @@ type StackableEntitlementInfo struct {
 	// Required: true
 	Clazz *string `json:"clazz"`
 
+	// entitlement collection id
+	CollectionID string `json:"collectionId,omitempty"`
+
 	// entitlement created at
 	// Required: true
 	// Format: date-time
@@ -80,6 +83,9 @@ type StackableEntitlementInfo struct {
 	// entitlement origin
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`
+
+	// platform available
+	PlatformAvailable bool `json:"platformAvailable"`
 
 	// sku for purchased item
 	Sku string `json:"sku,omitempty"`

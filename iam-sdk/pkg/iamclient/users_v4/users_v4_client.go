@@ -33,6 +33,8 @@ type Client struct {
 type ClientService interface {
 	AdminCreateTestUsersV4(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, *AdminCreateTestUsersV4BadRequest, *AdminCreateTestUsersV4InternalServerError, *AdminCreateTestUsersV4NotImplemented, error)
 	AdminCreateTestUsersV4Short(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, error)
+	AdminCreateUserV4(params *AdminCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserV4Created, *AdminCreateUserV4BadRequest, *AdminCreateUserV4Unauthorized, *AdminCreateUserV4Forbidden, *AdminCreateUserV4NotFound, *AdminCreateUserV4Conflict, *AdminCreateUserV4InternalServerError, error)
+	AdminCreateUserV4Short(params *AdminCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserV4Created, error)
 	AdminBulkUpdateUserAccountTypeV4(params *AdminBulkUpdateUserAccountTypeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUserAccountTypeV4NoContent, *AdminBulkUpdateUserAccountTypeV4BadRequest, *AdminBulkUpdateUserAccountTypeV4Unauthorized, *AdminBulkUpdateUserAccountTypeV4Forbidden, *AdminBulkUpdateUserAccountTypeV4NotFound, *AdminBulkUpdateUserAccountTypeV4InternalServerError, error)
 	AdminBulkUpdateUserAccountTypeV4Short(params *AdminBulkUpdateUserAccountTypeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUserAccountTypeV4NoContent, error)
 	AdminBulkCheckValidUserIDV4(params *AdminBulkCheckValidUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkCheckValidUserIDV4OK, *AdminBulkCheckValidUserIDV4BadRequest, *AdminBulkCheckValidUserIDV4Unauthorized, *AdminBulkCheckValidUserIDV4Forbidden, *AdminBulkCheckValidUserIDV4InternalServerError, error)
@@ -237,6 +239,154 @@ func (a *Client) AdminCreateTestUsersV4Short(params *AdminCreateTestUsersV4Param
 	case *AdminCreateTestUsersV4InternalServerError:
 		return nil, v
 	case *AdminCreateTestUsersV4NotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminCreateUserV4Short instead.
+
+AdminCreateUserV4 admin create user
+Create a new user with unique email address and username.
+**Required attributes:**
+- authType: possible value is EMAILPASSWD
+- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+- username: Please refer to the rule from /v3/public/inputValidations API.
+- password: Please refer to the rule from /v3/public/inputValidations API.
+- country: ISO3166-1 alpha-2 two letter, e.g. US.
+- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+
+**Not required attributes:**
+- displayName: Please refer to the rule from /v3/public/inputValidations API.
+This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
+*/
+func (a *Client) AdminCreateUserV4(params *AdminCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserV4Created, *AdminCreateUserV4BadRequest, *AdminCreateUserV4Unauthorized, *AdminCreateUserV4Forbidden, *AdminCreateUserV4NotFound, *AdminCreateUserV4Conflict, *AdminCreateUserV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateUserV4Created:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminCreateUserV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminCreateUserV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminCreateUserV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminCreateUserV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminCreateUserV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminCreateUserV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminCreateUserV4Short admin create user
+Create a new user with unique email address and username.
+**Required attributes:**
+- authType: possible value is EMAILPASSWD
+- emailAddress: Please refer to the rule from /v3/public/inputValidations API.
+- username: Please refer to the rule from /v3/public/inputValidations API.
+- password: Please refer to the rule from /v3/public/inputValidations API.
+- country: ISO3166-1 alpha-2 two letter, e.g. US.
+- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+
+**Not required attributes:**
+- displayName: Please refer to the rule from /v3/public/inputValidations API.
+This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
+*/
+func (a *Client) AdminCreateUserV4Short(params *AdminCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateUserV4Created:
+		return v, nil
+	case *AdminCreateUserV4BadRequest:
+		return nil, v
+	case *AdminCreateUserV4Unauthorized:
+		return nil, v
+	case *AdminCreateUserV4Forbidden:
+		return nil, v
+	case *AdminCreateUserV4NotFound:
+		return nil, v
+	case *AdminCreateUserV4Conflict:
+		return nil, v
+	case *AdminCreateUserV4InternalServerError:
 		return nil, v
 
 	default:

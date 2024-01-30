@@ -143,6 +143,8 @@ type QueryUserEntitlementsParams struct {
 	ActiveOnly *bool
 	/*AppType*/
 	AppType *string
+	/*CollectionID*/
+	CollectionID *string
 	/*EntitlementClazz*/
 	EntitlementClazz *string
 	/*EntitlementName*/
@@ -267,6 +269,17 @@ func (o *QueryUserEntitlementsParams) WithAppType(appType *string) *QueryUserEnt
 // SetAppType adds the appType to the query user entitlements params
 func (o *QueryUserEntitlementsParams) SetAppType(appType *string) {
 	o.AppType = appType
+}
+
+// WithCollectionID adds the collectionID to the query user entitlements params
+func (o *QueryUserEntitlementsParams) WithCollectionID(collectionID *string) *QueryUserEntitlementsParams {
+	o.SetCollectionID(collectionID)
+	return o
+}
+
+// SetCollectionID adds the collectionId to the query user entitlements params
+func (o *QueryUserEntitlementsParams) SetCollectionID(collectionID *string) {
+	o.CollectionID = collectionID
 }
 
 // WithEntitlementClazz adds the entitlementClazz to the query user entitlements params
@@ -401,6 +414,22 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 		qAppType := qrAppType
 		if qAppType != "" {
 			if err := r.SetQueryParam("appType", qAppType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CollectionID != nil {
+
+		// query param collectionId
+		var qrCollectionID string
+		if o.CollectionID != nil {
+			qrCollectionID = *o.CollectionID
+		}
+		qCollectionID := qrCollectionID
+		if qCollectionID != "" {
+			if err := r.SetQueryParam("collectionId", qCollectionID); err != nil {
 				return err
 			}
 		}

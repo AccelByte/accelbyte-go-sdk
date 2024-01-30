@@ -63,6 +63,38 @@ func (aaa *UsersV4Service) AdminCreateTestUsersV4(input *users_v4.AdminCreateTes
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminCreateUserV4Short instead.
+func (aaa *UsersV4Service) AdminCreateUserV4(input *users_v4.AdminCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.AdminCreateUserV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminBulkUpdateUserAccountTypeV4Short instead.
 func (aaa *UsersV4Service) AdminBulkUpdateUserAccountTypeV4(input *users_v4.AdminBulkUpdateUserAccountTypeV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1505,6 +1537,36 @@ func (aaa *UsersV4Service) AdminCreateTestUsersV4Short(input *users_v4.AdminCrea
 	}
 
 	created, err := aaa.Client.UsersV4.AdminCreateTestUsersV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) AdminCreateUserV4Short(input *users_v4.AdminCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	created, err := aaa.Client.UsersV4.AdminCreateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

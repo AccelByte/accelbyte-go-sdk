@@ -339,6 +339,7 @@ func init() {
 	IamCmd.AddCommand(devicesV4.AdminUnbanDeviceV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetUsersByDeviceV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminCreateTestUsersV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminCreateUserV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminBulkUpdateUserAccountTypeV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminBulkCheckValidUserIDV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserV4Cmd)

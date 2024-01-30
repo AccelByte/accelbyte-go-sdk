@@ -28,9 +28,9 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		id_, _ := cmd.Flags().GetString("id")
-		output := cmd.Flag("file").Value.String()
-		logrus.Infof("file %v", output)
-		file, err := os.Open(output)
+		outputFile := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", outputFile)
+		file, err := os.Open(outputFile)
 		if err != nil {
 			return err
 		}

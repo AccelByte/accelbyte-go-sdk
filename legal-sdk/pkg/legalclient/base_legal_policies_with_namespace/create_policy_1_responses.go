@@ -122,7 +122,7 @@ func NewCreatePolicy1BadRequest() *CreatePolicy1BadRequest {
 
 /*CreatePolicy1BadRequest handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.base_policy_namespace_not_match</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.base_policy_namespace_not_match</td></tr><tr><td>40026</td><td>errors.net.accelbyte.platform.legal.not_allow_create_studio_policy</td></tr></table>
 */
 type CreatePolicy1BadRequest struct {
 	Payload *legalclientmodels.ErrorEntity

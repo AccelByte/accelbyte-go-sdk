@@ -36,9 +36,11 @@ var ValidateItemPurchaseConditionCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
+		platform, _ := cmd.Flags().GetString("platform")
 		input := &item.ValidateItemPurchaseConditionParams{
 			Body:      body,
 			Namespace: namespace,
+			Platform:  &platform,
 			UserID:    userId,
 		}
 		ok, errOK := itemService.ValidateItemPurchaseConditionShort(input)
@@ -58,6 +60,7 @@ func init() {
 	ValidateItemPurchaseConditionCmd.Flags().String("body", "", "Body")
 	ValidateItemPurchaseConditionCmd.Flags().String("namespace", "", "Namespace")
 	_ = ValidateItemPurchaseConditionCmd.MarkFlagRequired("namespace")
+	ValidateItemPurchaseConditionCmd.Flags().String("platform", "", "Platform")
 	ValidateItemPurchaseConditionCmd.Flags().String("userId", "", "User id")
 	_ = ValidateItemPurchaseConditionCmd.MarkFlagRequired("userId")
 }

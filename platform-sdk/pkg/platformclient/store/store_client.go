@@ -35,6 +35,12 @@ type ClientService interface {
 	ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error)
 	CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error)
 	CreateStoreShort(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, error)
+	GetCatalogDefinition(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error)
+	GetCatalogDefinitionShort(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error)
+	DownloadCSVTemplates(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error)
+	DownloadCSVTemplatesShort(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error)
+	ExportStoreByCSV(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, *ExportStoreByCSVBadRequest, *ExportStoreByCSVNotFound, *ExportStoreByCSVConflict, error)
+	ExportStoreByCSVShort(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, error)
 	ImportStore(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, *ImportStoreBadRequest, *ImportStoreNotFound, error)
 	ImportStoreShort(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, error)
 	GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error)
@@ -55,6 +61,10 @@ type ClientService interface {
 	CloneStoreShort(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, error)
 	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, *ExportStoreNotFound, error)
 	ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, error)
+	QueryImportHistory(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, *QueryImportHistoryBadRequest, error)
+	QueryImportHistoryShort(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, error)
+	ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, *ImportStoreByCSVBadRequest, *ImportStoreByCSVNotFound, *ImportStoreByCSVConflict, error)
+	ImportStoreByCSVShort(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, error)
 	PublicListStores(params *PublicListStoresParams) (*PublicListStoresOK, error)
 	PublicListStoresShort(params *PublicListStoresParams) (*PublicListStoresOK, error)
 	ImportStore1(params *ImportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportStore1OK, *ImportStore1BadRequest, *ImportStore1NotFound, error)
@@ -280,6 +290,335 @@ func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.Cl
 	case *CreateStoreConflict:
 		return nil, v
 	case *CreateStoreUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetCatalogDefinitionShort instead.
+
+GetCatalogDefinition get catalog definition
+This API is used to get catalog definition for import/export store by CSV
+
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:STORE, action=2 (READ)
+  *  Returns : catalog definition
+*/
+func (a *Client) GetCatalogDefinition(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCatalogDefinitionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCatalogDefinition",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/catalogDefinition",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCatalogDefinitionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCatalogDefinitionOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetCatalogDefinitionShort get catalog definition
+This API is used to get catalog definition for import/export store by CSV
+
+Other detail info:
+
+  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:STORE, action=2 (READ)
+  *  Returns : catalog definition
+*/
+func (a *Client) GetCatalogDefinitionShort(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCatalogDefinitionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCatalogDefinition",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/catalogDefinition",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCatalogDefinitionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCatalogDefinitionOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DownloadCSVTemplatesShort instead.
+
+DownloadCSVTemplates download store csv templates
+This API is used to download store csv templates for store importing by CSV feature
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) DownloadCSVTemplates(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDownloadCSVTemplatesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "downloadCSVTemplates",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/downloadCSVTemplates",
+		ProducesMediaTypes: []string{"application/zip"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DownloadCSVTemplatesReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DownloadCSVTemplatesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DownloadCSVTemplatesShort download store csv templates
+This API is used to download store csv templates for store importing by CSV feature
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) DownloadCSVTemplatesShort(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDownloadCSVTemplatesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "downloadCSVTemplates",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/downloadCSVTemplates",
+		ProducesMediaTypes: []string{"application/zip"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DownloadCSVTemplatesReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DownloadCSVTemplatesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ExportStoreByCSVShort instead.
+
+ExportStoreByCSV export a store to csv format
+This API is used to export a store to CSV format
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) ExportStoreByCSV(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, *ExportStoreByCSVBadRequest, *ExportStoreByCSVNotFound, *ExportStoreByCSVConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportStoreByCSVParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportStoreByCSV",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/exportByCSV",
+		ProducesMediaTypes: []string{"text/csv"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportStoreByCSVReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportStoreByCSVOK:
+		return v, nil, nil, nil, nil
+
+	case *ExportStoreByCSVBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *ExportStoreByCSVNotFound:
+		return nil, nil, v, nil, nil
+
+	case *ExportStoreByCSVConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ExportStoreByCSVShort export a store to csv format
+This API is used to export a store to CSV format
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) ExportStoreByCSVShort(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportStoreByCSVParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportStoreByCSV",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/exportByCSV",
+		ProducesMediaTypes: []string{"text/csv"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportStoreByCSVReader{formats: a.formats, writer: writer},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportStoreByCSVOK:
+		return v, nil
+	case *ExportStoreByCSVBadRequest:
+		return nil, v
+	case *ExportStoreByCSVNotFound:
+		return nil, v
+	case *ExportStoreByCSVConflict:
 		return nil, v
 
 	default:
@@ -1415,6 +1754,234 @@ func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.Cl
 	case *ExportStoreOK:
 		return v, nil
 	case *ExportStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use QueryImportHistoryShort instead.
+
+QueryImportHistory query import store history
+This API is used to query import store history
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) QueryImportHistory(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, *QueryImportHistoryBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryImportHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryImportHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/import/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryImportHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryImportHistoryOK:
+		return v, nil, nil
+
+	case *QueryImportHistoryBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+QueryImportHistoryShort query import store history
+This API is used to query import store history
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
+*/
+func (a *Client) QueryImportHistoryShort(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryImportHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryImportHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/import/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryImportHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryImportHistoryOK:
+		return v, nil
+	case *QueryImportHistoryBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ImportStoreByCSVShort instead.
+
+ImportStoreByCSV import store using csv format
+This API is used to import a store by CSV format.
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
+*/
+func (a *Client) ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, *ImportStoreByCSVBadRequest, *ImportStoreByCSVNotFound, *ImportStoreByCSVConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStoreByCSVParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStoreByCSV",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/importByCSV",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStoreByCSVReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStoreByCSVOK:
+		return v, nil, nil, nil, nil
+
+	case *ImportStoreByCSVBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *ImportStoreByCSVNotFound:
+		return nil, nil, v, nil, nil
+
+	case *ImportStoreByCSVConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImportStoreByCSVShort import store using csv format
+This API is used to import a store by CSV format.
+
+Other detail info:
+
+  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
+*/
+func (a *Client) ImportStoreByCSVShort(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStoreByCSVParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStoreByCSV",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/importByCSV",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStoreByCSVReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStoreByCSVOK:
+		return v, nil
+	case *ImportStoreByCSVBadRequest:
+		return nil, v
+	case *ImportStoreByCSVNotFound:
+		return nil, v
+	case *ImportStoreByCSVConflict:
 		return nil, v
 
 	default:

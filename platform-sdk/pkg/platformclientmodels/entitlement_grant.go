@@ -20,6 +20,9 @@ import (
 // swagger:model Entitlement grant.
 type EntitlementGrant struct {
 
+	// entitlement collection id, length 1-128
+	CollectionID string `json:"collectionId,omitempty"`
+
 	// entitlement end date time
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"endDate,omitempty"`

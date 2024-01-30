@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.44.0"
+    "version": "4.45.0"
   },
   "schemes": [
     "https"
@@ -4198,8 +4198,11 @@
           "application/json"
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ClawbackInfo"
+            }
           }
         },
         "security": [
@@ -5879,7 +5882,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create an item. APP item only can created in publisher namespace.\u0026lt;p\u0026gt;An item create example:\u0026lt;p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;code\u0026gt;{\r\n   \u0026#34;categoryPath\u0026#34;: \u0026#34;/games\u0026#34;,\r\n   \u0026#34;localizations\u0026#34;: \\{\r\n       \u0026#34;en\u0026#34;: \\{\r\n           \u0026#34;title\u0026#34;:\u0026#34;required\u0026#34;,\r\n           \u0026#34;description\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;longDescription\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;localExt\u0026#34;: \\{\r\n                  \u0026#34;properties\u0026#34;:\\[\r\n                                   \\{\r\n                                       \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n                                       \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n                                   \\}\r\n                  \\],\r\n                  \u0026#34;functions\u0026#34;:\\[\r\n                                   \\{\r\n                                       \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n                                       \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n        \\}\r\n   \\},\r\n   \u0026#34;images\u0026#34;: \\[\r\n     \\{\r\n           \u0026#34;as\u0026#34;:\u0026#34;optional, image for\u0026#34;,\r\n           \u0026#34;caption\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;height\u0026#34;:10,\r\n           \u0026#34;width\u0026#34;:10,\r\n           \u0026#34;imageUrl\u0026#34;:\u0026#34;http://img-url-required\u0026#34;,\r\n           \u0026#34;smallImageUrl\u0026#34;:\u0026#34;http://small-img-url-required\u0026#34;\r\n     \\}\r\n   \\],\r\n   \u0026#34;thumbnailUrl\u0026#34;: \u0026#34;optional, thumbnail url\u0026#34;,\r\n   \u0026#34;status\u0026#34;: \u0026#34;ACTIVE\u0026#34;,\r\n   \u0026#34;listable\u0026#34;: true,\r\n   \u0026#34;purchasable\u0026#34;: true,\r\n   \u0026#34;itemType\u0026#34;: \u0026#34;APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\u0026#34;,\r\n   \u0026#34;name\u0026#34;: \u0026#34;required, also will be used as entitlement name\u0026#34;,\r\n   \u0026#34;entitlementType\u0026#34;: \u0026#34;DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\u0026#34;, \r\n   \u0026#34;useCount\u0026#34;: 1(optional, required if the entitlement type is consumable),\r\n   \u0026#34;stackable\u0026#34;: false,\r\n   \u0026#34;appId\u0026#34;: \u0026#34;optional, required if itemType is APP\u0026#34;,\r\n   \u0026#34;appType\u0026#34;: \u0026#34;GAME(optional, required if itemType is APP)\u0026#34;,\r\n   \u0026#34;seasonType\u0026#34;: \u0026#34;PASS(optional, required if itemType is SEASON)\u0026#34;,\r\n   \u0026#34;baseAppId\u0026#34;: \u0026#34;optional, set value of game app id if you want to link to a game\u0026#34;,\r\n   \u0026#34;targetCurrencyCode\u0026#34;: \u0026#34;optional, required if itemType is COINS\u0026#34;,\r\n   \u0026#34;targetNamespace\u0026#34;: \u0026#34;optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\u0026#34;,\r\n   \u0026#34;sku\u0026#34;: \u0026#34;optional, commonly unique item code\u0026#34;,\r\n   \u0026#34;regionData\u0026#34;: \\{\r\n       \u0026#34;US(store\u0026#39;s default region is required)\u0026#34;: \\[\r\n         \\{\r\n            \u0026#34;price\u0026#34;:10,\r\n            \u0026#34;discountPercentage\u0026#34;: 0(integer, optional, range[0,100], discountedPrice = price  \\* ((100 - discountPercentage) \\* 0.01),\r\n              will use it to calculate discounted price if it is not 0),\r\n            \u0026#34;discountAmount\u0026#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \u0026#34;currencyCode\u0026#34;:\u0026#34;code(required, example: USD)\u0026#34;,\r\n            \u0026#34;currencyNamespace\u0026#34;:\u0026#34;test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)\u0026#34;,\r\n            \u0026#34;trialPrice\u0026#34;:5(required while fixedTrialCycles set, should \u0026gt;=0 and \u0026lt;= price, will same as price if not present),\r\n            \u0026#34;purchaseAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;expireAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;discountPurchaseAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;discountExpireAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \u0026#34;itemIds\u0026#34;: \\[\r\n       \u0026#34;itemId\u0026#34;\r\n   \\],\r\n   \u0026#34;itemQty\u0026#34;: \\{\r\n       \u0026#34;itemId\u0026#34;:1\r\n   \\},\r\n   \u0026#34;recurring\u0026#34;: \\{\r\n       \u0026#34;cycle\u0026#34;:\u0026#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\u0026#34;,\r\n       \u0026#34;fixedFreeDays\u0026#34;:0(integer, fixed free days, 0 means not set),\r\n       \u0026#34;fixedTrialCycles\u0026#34;:0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \u0026#34;graceDays\u0026#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \u0026#34;tags\u0026#34;: \\[\r\n       \u0026#34;exampleTag24\u0026#34;\r\n   \\],\r\n   \u0026#34;features\u0026#34;: \\[\r\n       \u0026#34;feature\u0026#34;\r\n   \\],\r\n   \u0026#34;clazz\u0026#34;: \u0026#34;weapon\u0026#34;,\r\n   \u0026#34;boothName\u0026#34;: \u0026#34;C_campaign1\u0026#34;,\r\n   \u0026#34;displayOrder\u0026#34;: 1000,\r\n   \u0026#34;ext\u0026#34;: \\{\r\n       \u0026#34;properties\u0026#34;:\\[\r\n           \\{\r\n               \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n               \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n           \\}\r\n       \\],\r\n       \u0026#34;functions\u0026#34;:\\[\r\n           \\{\r\n               \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n               \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \u0026#34;maxCountPerUser\u0026#34;: 1(integer, optional, -1 means UNLIMITED),\r\n   \u0026#34;maxCount\u0026#34;: 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)\r\n}\u0026lt;/code\u0026gt;\u0026lt;/pre\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for item extension and localization extension\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "description": "This API is used to create an item. APP item only can created in publisher namespace.\u0026lt;p\u0026gt;An item create example:\u0026lt;p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;code\u0026gt;{\r\n   \u0026#34;categoryPath\u0026#34;: \u0026#34;/games\u0026#34;,\r\n   \u0026#34;localizations\u0026#34;: \\{\r\n       \u0026#34;en\u0026#34;: \\{\r\n           \u0026#34;title\u0026#34;:\u0026#34;required\u0026#34;,\r\n           \u0026#34;description\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;longDescription\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;localExt\u0026#34;: \\{\r\n                  \u0026#34;properties\u0026#34;:\\[\r\n                                   \\{\r\n                                       \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n                                       \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n                                   \\}\r\n                  \\],\r\n                  \u0026#34;functions\u0026#34;:\\[\r\n                                   \\{\r\n                                       \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n                                       \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n        \\}\r\n   \\},\r\n   \u0026#34;images\u0026#34;: \\[\r\n     \\{\r\n           \u0026#34;as\u0026#34;:\u0026#34;optional, image for\u0026#34;,\r\n           \u0026#34;caption\u0026#34;:\u0026#34;optional\u0026#34;,\r\n           \u0026#34;height\u0026#34;:10,\r\n           \u0026#34;width\u0026#34;:10,\r\n           \u0026#34;imageUrl\u0026#34;:\u0026#34;http://img-url-required\u0026#34;,\r\n           \u0026#34;smallImageUrl\u0026#34;:\u0026#34;http://small-img-url-required\u0026#34;\r\n     \\}\r\n   \\],\r\n   \u0026#34;thumbnailUrl\u0026#34;: \u0026#34;optional, thumbnail url\u0026#34;,\r\n   \u0026#34;status\u0026#34;: \u0026#34;ACTIVE\u0026#34;,\r\n   \u0026#34;listable\u0026#34;: true,\r\n   \u0026#34;purchasable\u0026#34;: true,\r\n   \u0026#34;itemType\u0026#34;: \u0026#34;APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\u0026#34;,\r\n   \u0026#34;name\u0026#34;: \u0026#34;required, also will be used as entitlement name\u0026#34;,\r\n   \u0026#34;entitlementType\u0026#34;: \u0026#34;DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\u0026#34;, \r\n   \u0026#34;useCount\u0026#34;: 1(optional, required if the entitlement type is consumable),\r\n   \u0026#34;stackable\u0026#34;: false,\r\n   \u0026#34;appId\u0026#34;: \u0026#34;optional, required if itemType is APP\u0026#34;,\r\n   \u0026#34;appType\u0026#34;: \u0026#34;GAME(optional, required if itemType is APP)\u0026#34;,\r\n   \u0026#34;seasonType\u0026#34;: \u0026#34;PASS(optional, required if itemType is SEASON)\u0026#34;,\r\n   \u0026#34;baseAppId\u0026#34;: \u0026#34;optional, set value of game app id if you want to link to a game\u0026#34;,\r\n   \u0026#34;targetCurrencyCode\u0026#34;: \u0026#34;optional, required if itemType is COINS\u0026#34;,\r\n   \u0026#34;targetNamespace\u0026#34;: \u0026#34;optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\u0026#34;,\r\n   \u0026#34;sku\u0026#34;: \u0026#34;optional, commonly unique item code\u0026#34;,\r\n   \u0026#34;regionData\u0026#34;: \\{\r\n       \u0026#34;US(store\u0026#39;s default region is required)\u0026#34;: \\[\r\n         \\{\r\n            \u0026#34;price\u0026#34;:10,\r\n            \u0026#34;discountPercentage\u0026#34;: 0(integer, optional, range[0,100], discountedPrice = price  \\* ((100 - discountPercentage) \\* 0.01),\r\n              will use it to calculate discounted price if it is not 0),\r\n            \u0026#34;discountAmount\u0026#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \u0026#34;currencyCode\u0026#34;:\u0026#34;code(required, example: USD)\u0026#34;,\r\n            \u0026#34;currencyNamespace\u0026#34;:\u0026#34;test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)\u0026#34;,\r\n            \u0026#34;trialPrice\u0026#34;:5(required while fixedTrialCycles set, should \u0026gt;=0 and \u0026lt;= price, will same as price if not present),\r\n            \u0026#34;purchaseAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;expireAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;discountPurchaseAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;,\r\n            \u0026#34;discountExpireAt\u0026#34;:\u0026#34;optional yyyy-MM-dd\u0026#39;T\u0026#39;HH:mm:ss.SSS\u0026#39;Z\u0026#39;\u0026#34;\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \u0026#34;itemIds\u0026#34;: \\[\r\n       \u0026#34;itemId\u0026#34;\r\n   \\],\r\n   \u0026#34;itemQty\u0026#34;: \\{\r\n       \u0026#34;itemId\u0026#34;:1\r\n   \\},\r\n   \u0026#34;recurring\u0026#34;: \\{\r\n       \u0026#34;cycle\u0026#34;:\u0026#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\u0026#34;,\r\n       \u0026#34;fixedFreeDays\u0026#34;:0(integer, fixed free days, 0 means not set),\r\n       \u0026#34;fixedTrialCycles\u0026#34;:0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \u0026#34;graceDays\u0026#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \u0026#34;tags\u0026#34;: \\[\r\n       \u0026#34;exampleTag24\u0026#34;\r\n   \\],\r\n   \u0026#34;features\u0026#34;: \\[\r\n       \u0026#34;feature\u0026#34;\r\n   \\],\r\n   \u0026#34;clazz\u0026#34;: \u0026#34;weapon\u0026#34;,\r\n   \u0026#34;boothName\u0026#34;: \u0026#34;C_campaign1\u0026#34;,\r\n   \u0026#34;displayOrder\u0026#34;: 1000,\r\n   \u0026#34;ext\u0026#34;: \\{\r\n       \u0026#34;properties\u0026#34;:\\[\r\n           \\{\r\n               \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n               \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n           \\}\r\n       \\],\r\n       \u0026#34;functions\u0026#34;:\\[\r\n           \\{\r\n               \u0026#34;key1\u0026#34;:\u0026#34;value1\u0026#34;,\r\n               \u0026#34;key2\u0026#34;:\u0026#34;value2\u0026#34;\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \u0026#34;maxCountPerUser\u0026#34;: 1(integer, optional, -1 means UNLIMITED),\r\n   \u0026#34;maxCount\u0026#34;: 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)\r\n}\u0026lt;/code\u0026gt;\u0026lt;/pre\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for item extension and localization extension and inventory config custom attributes\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
         "operationId": "createItem",
         "parameters": [
           {
@@ -6656,6 +6659,12 @@
           },
           {
             "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
             "name": "region",
             "required": false,
             "type": "string"
@@ -6995,6 +7004,12 @@
             "schema": {
               "$ref": "#/definitions/ItemPurchaseConditionValidateRequest"
             }
+          },
+          {
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -11951,6 +11966,179 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/stores/catalogDefinition": {
+      "get": {
+        "description": "This API is used to get catalog definition for import/export store by CSV\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=ADMIN:NAMESPACE:{namespace}:STORE, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: catalog definition\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getCatalogDefinition",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "APP",
+              "CATEGORY",
+              "ITEM",
+              "SECTION",
+              "VIEW"
+            ],
+            "in": "query",
+            "name": "catalogType",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/CatalogDefinitionInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get catalog definition",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/stores/downloadCSVTemplates": {
+      "get": {
+        "description": "This API is used to download store csv templates for store importing by CSV feature\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "downloadCSVTemplates",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "file"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Download store csv templates",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/stores/exportByCSV": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is used to export a store to CSV format\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "exportStoreByCSV",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ExportStoreToCSVRequest"
+            }
+          }
+        ],
+        "produces": [
+          "text/csv"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "file"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30025\u003c/td\u003e\u003ctd\u003e[{header}] is required by CSV import/export for catalogType [{catalogType}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30076\u003c/td\u003e\u003ctd\u003eCSV header [{headerName}] is not supported for CatalogType [{catalogType}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Export a store to CSV format",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/stores/import": {
       "put": {
         "consumes": [
@@ -13351,6 +13539,206 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/stores/{storeId}/import/history": {
+      "get": {
+        "description": "This API is used to query import store history\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "queryImportHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "storeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": "createdAt:desc",
+            "description": "default createdAt:desc. Allowed values: [createdAt:asc, createdAt:desc]",
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "success",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ImportStoreHistoryPagingResult"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20027\u003c/td\u003e\u003ctd\u003eInvalid time range\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query import store history",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/stores/{storeId}/importByCSV": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "This API is used to import a store by CSV format.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "importStoreByCSV",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "storeId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "category",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "display",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "item",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "notes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "section",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ImportStoreResult"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30024\u003c/td\u003e\u003ctd\u003eUnable to parse CSV cell [{content}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30025\u003c/td\u003e\u003ctd\u003e[{header}] is required by CSV import/export for catalogType [{catalogType}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30121\u003c/td\u003e\u003ctd\u003eStore data is invalid\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30076\u003c/td\u003e\u003ctd\u003eCSV header [{headerName}] is not supported for CatalogType [{catalogType}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30382\u003c/td\u003e\u003ctd\u003eDuplicated Item sku [{sku}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Import store using CSV format",
+        "tags": [
+          "Store"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:STORE"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/subscriptions": {
       "get": {
         "consumes": [
@@ -14738,6 +15126,12 @@
             ],
             "in": "query",
             "name": "appType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "collectionId",
             "required": false,
             "type": "string"
           },
@@ -26287,6 +26681,77 @@
         }
       }
     },
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byIds": {
+      "get": {
+        "description": "Get user entitlements by ids..\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicGetUserEntitlementsByIds",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "in": "query",
+            "name": "availablePlatformOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "ids",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/EntitlementInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get user entitlements by ids.",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
     "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
       "get": {
         "deprecated": true,
@@ -27001,6 +27466,164 @@
           }
         ],
         "summary": "Sell user entitlement",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/split": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Split a specified use count of entitlement and create a new entitlement with splitting use count.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicSplitUserEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entitlementId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementSplitRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementSplitResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Split user entitlement",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
+        }
+      }
+    },
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/transfer": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Transfer a specified use count from entitlement A to B..Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicTransferUserEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entitlementId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementTransferRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementTransferResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31172\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] not active\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31176\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] use count is insufficient\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31178\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] out of time range\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31182\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already sold\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31183\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31184\u003c/td\u003e\u003ctd\u003eSource entitlement [{sourceEntitlementId}] and target entitlement [{targetEntitlementId}] should have same collectionId, timeRange, origin and itemId\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31185\u003c/td\u003e\u003ctd\u003eTransferred source entitlement [{sourceEntitlementId}] and target entitlement [{targetEntitlementId}] can not be set to same\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Transfer user entitlement",
         "tags": [
           "Entitlement"
         ],
@@ -29650,7 +30273,7 @@
       "description": "Represents the request to commit a chained trade action.",
       "properties": {
         "operations": {
-          "example": "[\n    {\n        \"type\": \"DEBIT_WALLET\",\n        \"debitPayload\": {\n            \"currencyCode\": \"string\",\n            \"walletPlatform\": \"Other\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"CREDIT_WALLET\",\n        \"creditPayload\": {\n            \"currencyCode\": \"string\",\n            \"expireAt\": null,\n            \"balanceOrigin\": \"System\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"FULFILL_ITEM\",\n        \"fulFillItemPayload\": {\n            \"itemIdentityType\": \"ITEM_ID\",\n            \"itemIdentity\": \"string\",\n            \"entitlementOrigin\": \"string\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"REVOKE_ENTITLEMENT\",\n        \"revokeEntitlementPayload\": {\n            \"entitlementId\": \"string\",\n            \"count\": 1\n        }\n    }\n]\n",
+          "example": "[\n    {\n        \"type\": \"DEBIT_WALLET\",\n        \"debitPayload\": {\n            \"currencyCode\": \"string\",\n            \"walletPlatform\": \"Other\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"CREDIT_WALLET\",\n        \"creditPayload\": {\n            \"currencyCode\": \"string\",\n            \"expireAt\": null,\n            \"balanceOrigin\": \"System\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"FULFILL_ITEM\",\n        \"fulFillItemPayload\": {\n            \"itemIdentityType\": \"ITEM_ID\",\n            \"itemIdentity\": \"string\",\n            \"entitlementOrigin\": \"string\",\n            \"entitlementCollectionId\": \"string\",\n            \"count\": 1\n        }\n    },\n    {\n        \"type\": \"REVOKE_ENTITLEMENT\",\n        \"revokeEntitlementPayload\": {\n            \"entitlementId\": \"string\",\n            \"count\": 1\n        }\n    }\n]\n",
           "items": {
             "$ref": "#/definitions/OperationRequest"
           },
@@ -29747,6 +30370,21 @@
           "description": "Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.",
           "format": "int32",
           "type": "integer"
+        },
+        "entitlementPlatform": {
+          "description": "entitlement platform the platform which user are playing now and use for entitlement eg: user purchase item on Steam, it should be 'Steam'",
+          "enum": [
+            "Epic",
+            "GooglePlay",
+            "IOS",
+            "Nintendo",
+            "Oculus",
+            "Other",
+            "Playstation",
+            "Steam",
+            "Xbox"
+          ],
+          "type": "string"
         },
         "ext": {
           "additionalProperties": {
@@ -29933,6 +30571,10 @@
             "GAME",
             "SOFTWARE"
           ],
+          "type": "string"
+        },
+        "collectionId": {
+          "description": "collection id",
           "type": "string"
         },
         "endDate": {
@@ -31174,6 +31816,10 @@
           },
           "type": "array"
         },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
+        },
         "itemId": {
           "description": "Item id",
           "type": "string"
@@ -31887,6 +32533,46 @@
       "required": [
         "count",
         "selectedCount"
+      ],
+      "type": "object"
+    },
+    "CatalogDefinitionInfo": {
+      "properties": {
+        "field": {
+          "description": "actual field name",
+          "type": "string"
+        },
+        "itemType": {
+          "description": "item type, not empty if requesting item and the field is for a specified item type only",
+          "enum": [
+            "APP",
+            "BUNDLE",
+            "CODE",
+            "COINS",
+            "EXTENSION",
+            "INGAMEITEM",
+            "LOOTBOX",
+            "MEDIA",
+            "OPTIONBOX",
+            "SEASON",
+            "SUBSCRIPTION"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "field name",
+          "type": "string"
+        },
+        "required": {
+          "description": "whether this is a mandatory field",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "field",
+        "name",
+        "required"
       ],
       "type": "object"
     },
@@ -33307,6 +33993,10 @@
           ],
           "type": "string"
         },
+        "collectionId": {
+          "description": "entitlement collection id",
+          "type": "string"
+        },
         "createdAt": {
           "description": "entitlement created at",
           "format": "date-time",
@@ -33382,6 +34072,11 @@
             "Xbox"
           ],
           "type": "string"
+        },
+        "platformAvailable": {
+          "description": "platform available",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "replayed": {
           "description": "replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.",
@@ -33483,6 +34178,10 @@
     "EntitlementGrant": {
       "description": "A DTO object for granting entitlement API call.",
       "properties": {
+        "collectionId": {
+          "description": "entitlement collection id, length 1-128",
+          "type": "string"
+        },
         "endDate": {
           "description": "entitlement end date time",
           "format": "date-time",
@@ -33691,6 +34390,9 @@
           ],
           "type": "string"
         },
+        "collectionId": {
+          "type": "string"
+        },
         "createdAt": {
           "format": "date-time",
           "type": "string",
@@ -33818,6 +34520,10 @@
           ],
           "type": "string"
         },
+        "collectionId": {
+          "description": "entitlement collection id",
+          "type": "string"
+        },
         "createdAt": {
           "description": "entitlement created at",
           "format": "date-time",
@@ -33893,6 +34599,11 @@
             "Xbox"
           ],
           "type": "string"
+        },
+        "platformAvailable": {
+          "description": "platform available",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "sku for purchased item",
@@ -34204,6 +34915,29 @@
       },
       "type": "object"
     },
+    "EntitlementSplitRequest": {
+      "properties": {
+        "useCount": {
+          "description": "use count",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementSplitResult": {
+      "properties": {
+        "source": {
+          "$ref": "#/definitions/EntitlementInfo",
+          "description": "Source entitlement info after split"
+        },
+        "target": {
+          "$ref": "#/definitions/EntitlementInfo",
+          "description": "Target entitlement info after split"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementSummary": {
       "properties": {
         "clazz": {
@@ -34217,6 +34951,10 @@
             "OPTIONBOX",
             "SUBSCRIPTION"
           ],
+          "type": "string"
+        },
+        "collectionId": {
+          "description": "collection id",
           "type": "string"
         },
         "createdAt": {
@@ -34323,9 +35061,40 @@
       ],
       "type": "object"
     },
+    "EntitlementTransferRequest": {
+      "properties": {
+        "entitlementId": {
+          "description": "entitlement id",
+          "type": "string"
+        },
+        "useCount": {
+          "description": "useCount(optional). means transfer all of use count to target entitlement id if not pass.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EntitlementTransferResult": {
+      "properties": {
+        "source": {
+          "$ref": "#/definitions/EntitlementInfo",
+          "description": "Source entitlement info after transfer"
+        },
+        "target": {
+          "$ref": "#/definitions/EntitlementInfo",
+          "description": "Target entitlement info after transfer"
+        }
+      },
+      "type": "object"
+    },
     "EntitlementUpdate": {
       "description": "A DTO object for updating entitlement API call. Leave the field empty if don't want to update.",
       "properties": {
+        "collectionId": {
+          "description": "entitlement collection id, length 1-128",
+          "type": "string"
+        },
         "endDate": {
           "description": "end date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
@@ -34543,6 +35312,43 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "ExportStoreToCSVRequest": {
+      "properties": {
+        "catalogType": {
+          "description": "catalog type",
+          "enum": [
+            "APP",
+            "CATEGORY",
+            "ITEM",
+            "SECTION",
+            "VIEW"
+          ],
+          "type": "string"
+        },
+        "fieldsToBeIncluded": {
+          "description": "fields to be included, return all fields if empty",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "idsToBeExported": {
+          "description": "ids according to catalog type to be exported, return all result of a catalogType if empty",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "storeId": {
+          "description": "target store id to be exported, default using published store Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "catalogType"
+      ],
       "type": "object"
     },
     "ExtensionFulfillmentSummary": {
@@ -34793,6 +35599,10 @@
         "count": {
           "format": "int32",
           "type": "integer"
+        },
+        "entitlementCollectionId": {
+          "description": "entitlement collection id, length 1-128",
+          "type": "string"
         },
         "entitlementOrigin": {
           "description": "Entitlement origin",
@@ -35060,6 +35870,10 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": true
+        },
+        "entitlementCollectionId": {
+          "description": "entitlement collection id, length 1-128",
+          "type": "string"
         },
         "entitlementOrigin": {
           "description": "entitlement origin",
@@ -35512,6 +36326,10 @@
             "$ref": "#/definitions/Image"
           },
           "type": "array"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
         },
         "itemId": {
           "description": "Item id",
@@ -36559,6 +37377,88 @@
       },
       "type": "object"
     },
+    "ImportStoreHistoryInfo": {
+      "properties": {
+        "createdAt": {
+          "description": "created At",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "errors": {
+          "description": "a list of errors if failed",
+          "items": {
+            "$ref": "#/definitions/ImportStoreError"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "history id",
+          "type": "string"
+        },
+        "importFileFormat": {
+          "description": "import file format",
+          "enum": [
+            "CSV",
+            "JSON"
+          ],
+          "type": "string"
+        },
+        "initiatedBy": {
+          "description": "who create this history",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "note": {
+          "description": "optional note",
+          "type": "string"
+        },
+        "storeId": {
+          "description": "store id",
+          "type": "string"
+        },
+        "success": {
+          "description": "whether the request is success",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "importFileFormat",
+        "initiatedBy",
+        "namespace",
+        "storeId",
+        "success"
+      ],
+      "type": "object"
+    },
+    "ImportStoreHistoryPagingResult": {
+      "properties": {
+        "data": {
+          "description": "data",
+          "items": {
+            "$ref": "#/definitions/ImportStoreHistoryInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "total": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "type": "object"
+    },
     "ImportStoreItemInfo": {
       "properties": {
         "categoryPath": {
@@ -36603,8 +37503,7 @@
         }
       },
       "required": [
-        "itemType",
-        "localizations"
+        "itemType"
       ],
       "type": "object"
     },
@@ -36676,6 +37575,30 @@
         "targetItemId",
         "targetNamespace"
       ],
+      "type": "object"
+    },
+    "InventoryConfig": {
+      "properties": {
+        "customAttributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "predefined custom additional attributes",
+          "type": "object"
+        },
+        "serverCustomAttributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "predefined server custom additional attributes",
+          "type": "object"
+        },
+        "slotUsed": {
+          "description": "number of slot being taken for this item",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "InvoiceCurrencySummary": {
@@ -36845,6 +37768,10 @@
             "$ref": "#/definitions/Image"
           },
           "type": "array"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
         },
         "itemIds": {
           "description": "itemIds, should be empty if item type is not \"BUNDLE\"",
@@ -37160,6 +38087,10 @@
             "$ref": "#/definitions/Image"
           },
           "type": "array"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
         },
         "itemId": {
           "description": "Item id",
@@ -37631,6 +38562,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
+        },
         "itemId": {
           "description": "Item id",
           "type": "string"
@@ -37999,6 +38934,10 @@
             "$ref": "#/definitions/Image"
           },
           "type": "array"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
         },
         "itemIds": {
           "description": "itemIds, should be empty if item type is not \"BUNDLE\"",
@@ -41776,6 +42715,10 @@
           },
           "type": "array"
         },
+        "inventoryConfig": {
+          "$ref": "#/definitions/InventoryConfig",
+          "description": "inventory config"
+        },
         "itemId": {
           "description": "Item id",
           "type": "string"
@@ -43327,6 +44270,10 @@
     "RewardsRequest": {
       "description": "A DTO object for rewards request API call.",
       "properties": {
+        "entitlementCollectionId": {
+          "description": "entitlement collection id, length 1-128",
+          "type": "string"
+        },
         "entitlementOrigin": {
           "description": "entitlement origin ,and default value is System",
           "enum": [
@@ -43857,6 +44804,10 @@
           ],
           "type": "string"
         },
+        "collectionId": {
+          "description": "entitlement collection id",
+          "type": "string"
+        },
         "createdAt": {
           "description": "entitlement created at",
           "format": "date-time",
@@ -43932,6 +44883,11 @@
             "Xbox"
           ],
           "type": "string"
+        },
+        "platformAvailable": {
+          "description": "platform available",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "sku for purchased item",
@@ -46552,16 +47508,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-01-12T11:28:11+00:00",
-    "buildID": "4.44.0",
+    "buildDate": "2024-01-26T10:49:06+00:00",
+    "buildID": "4.45.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
     "buildOS": "Linux amd64 5.10.205-195.804.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "b3e55cbc0d",
-    "gitTag": "4.44.0",
+    "gitHash": "2f327af82f",
+    "gitTag": "4.45.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.44.0",
-    "version-roles-seeding": "1.0.25"
+    "version": "4.45.0",
+    "version-roles-seeding": "1.0.28"
   }
 }

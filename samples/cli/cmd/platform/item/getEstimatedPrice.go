@@ -28,10 +28,12 @@ var GetEstimatedPriceCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		itemIds, _ := cmd.Flags().GetString("itemIds")
 		userId, _ := cmd.Flags().GetString("userId")
+		platform, _ := cmd.Flags().GetString("platform")
 		region, _ := cmd.Flags().GetString("region")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.GetEstimatedPriceParams{
 			Namespace: namespace,
+			Platform:  &platform,
 			Region:    &region,
 			StoreID:   &storeId,
 			ItemIds:   itemIds,
@@ -53,6 +55,7 @@ var GetEstimatedPriceCmd = &cobra.Command{
 func init() {
 	GetEstimatedPriceCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetEstimatedPriceCmd.MarkFlagRequired("namespace")
+	GetEstimatedPriceCmd.Flags().String("platform", "", "Platform")
 	GetEstimatedPriceCmd.Flags().String("region", "", "Region")
 	GetEstimatedPriceCmd.Flags().String("storeId", "", "Store id")
 	GetEstimatedPriceCmd.Flags().String("itemIds", "", "Item ids")

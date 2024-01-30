@@ -21,6 +21,9 @@ import (
 // swagger:model Rewards request.
 type RewardsRequest struct {
 
+	// entitlement collection id, length 1-128
+	EntitlementCollectionID string `json:"entitlementCollectionId,omitempty"`
+
 	// entitlement origin ,and default value is System
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	EntitlementOrigin string `json:"entitlementOrigin,omitempty"`

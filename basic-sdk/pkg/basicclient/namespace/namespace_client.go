@@ -40,6 +40,10 @@ type ClientService interface {
 	DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error)
 	UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, *UpdateNamespaceBadRequest, *UpdateNamespaceUnauthorized, *UpdateNamespaceForbidden, *UpdateNamespaceNotFound, *UpdateNamespaceConflict, error)
 	UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, error)
+	GetChildNamespaces(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, *GetChildNamespacesUnauthorized, *GetChildNamespacesForbidden, error)
+	GetChildNamespacesShort(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, error)
+	GetNamespaceContext(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, *GetNamespaceContextUnauthorized, *GetNamespaceContextForbidden, error)
+	GetNamespaceContextShort(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, error)
 	GetGameNamespaces(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, *GetGameNamespacesUnauthorized, *GetGameNamespacesForbidden, error)
 	GetGameNamespacesShort(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, error)
 	GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error)
@@ -683,6 +687,238 @@ func (a *Client) UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo ru
 	case *UpdateNamespaceNotFound:
 		return nil, v
 	case *UpdateNamespaceConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetChildNamespacesShort instead.
+
+GetChildNamespaces get child namespaces
+Get child namespaces.
+If input namespace is publisher namespace, then it will return its all studio namespace.
+If input namespace is studio namespace, then it will return its all game namespace.
+Other detail info:
+
+  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
+  *  Returns : list of child namespaces
+*/
+func (a *Client) GetChildNamespaces(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, *GetChildNamespacesUnauthorized, *GetChildNamespacesForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChildNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getChildNamespaces",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/child",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetChildNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetChildNamespacesOK:
+		return v, nil, nil, nil
+
+	case *GetChildNamespacesUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetChildNamespacesForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetChildNamespacesShort get child namespaces
+Get child namespaces.
+If input namespace is publisher namespace, then it will return its all studio namespace.
+If input namespace is studio namespace, then it will return its all game namespace.
+Other detail info:
+
+  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
+  *  Returns : list of child namespaces
+*/
+func (a *Client) GetChildNamespacesShort(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChildNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getChildNamespaces",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/child",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetChildNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetChildNamespacesOK:
+		return v, nil
+	case *GetChildNamespacesUnauthorized:
+		return nil, v
+	case *GetChildNamespacesForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetNamespaceContextShort instead.
+
+GetNamespaceContext get context of namespace
+Get context of namespace.
+Other detail info:
+
+  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
+  *  Returns : context of namespace
+*/
+func (a *Client) GetNamespaceContext(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, *GetNamespaceContextUnauthorized, *GetNamespaceContextForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespaceContextParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespaceContext",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/context",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespaceContextReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespaceContextOK:
+		return v, nil, nil, nil
+
+	case *GetNamespaceContextUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetNamespaceContextForbidden:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetNamespaceContextShort get context of namespace
+Get context of namespace.
+Other detail info:
+
+  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
+  *  Returns : context of namespace
+*/
+func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespaceContextParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespaceContext",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/context",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespaceContextReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespaceContextOK:
+		return v, nil
+	case *GetNamespaceContextUnauthorized:
+		return nil, v
+	case *GetNamespaceContextForbidden:
 		return nil, v
 
 	default:

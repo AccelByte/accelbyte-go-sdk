@@ -53,17 +53,17 @@ func (aaa *ClawbackService) QueryIAPClawbackHistory(input *clawback.QueryIAPClaw
 }
 
 // Deprecated: 2022-01-10 - please use MockPlayStationStreamEventShort instead.
-func (aaa *ClawbackService) MockPlayStationStreamEvent(input *clawback.MockPlayStationStreamEventParams) error {
+func (aaa *ClawbackService) MockPlayStationStreamEvent(input *clawback.MockPlayStationStreamEventParams) (*platformclientmodels.ClawbackInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = aaa.Client.Clawback.MockPlayStationStreamEvent(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.Clawback.MockPlayStationStreamEvent(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ClawbackService) QueryIAPClawbackHistoryShort(input *clawback.QueryIAPClawbackHistoryParams) (*platformclientmodels.IAPClawbackPagingSlicedResult, error) {
@@ -96,7 +96,7 @@ func (aaa *ClawbackService) QueryIAPClawbackHistoryShort(input *clawback.QueryIA
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ClawbackService) MockPlayStationStreamEventShort(input *clawback.MockPlayStationStreamEventParams) error {
+func (aaa *ClawbackService) MockPlayStationStreamEventShort(input *clawback.MockPlayStationStreamEventParams) (*platformclientmodels.ClawbackInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -118,10 +118,10 @@ func (aaa *ClawbackService) MockPlayStationStreamEventShort(input *clawback.Mock
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.Clawback.MockPlayStationStreamEventShort(input, authInfoWriter)
+	ok, err := aaa.Client.Clawback.MockPlayStationStreamEventShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }

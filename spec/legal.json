@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.35.0"
+    "version": "1.36.0"
   },
   "schemes": [
     "https"
@@ -344,7 +344,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_affected_client_id\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_affected_client_id\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40026\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.not_allow_create_studio_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1132,7 +1132,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_namespace_not_match\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_namespace_not_match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40026\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.not_allow_create_studio_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -5182,16 +5182,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-12-01T11:05:14+00:00",
-    "buildID": "1.35.0",
+    "buildDate": "2024-01-26T10:49:23+00:00",
+    "buildID": "1.36.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.13.0-1021-aws",
+    "buildOS": "Linux amd64 5.10.205-195.804.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "cf0757eac4",
-    "gitTag": "1.35.0",
+    "gitHash": "a75c42bf76",
+    "gitTag": "1.36.0",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.35.0",
+    "version": "1.36.0",
     "version-roles-seeding": "0.0.3"
   }
 }

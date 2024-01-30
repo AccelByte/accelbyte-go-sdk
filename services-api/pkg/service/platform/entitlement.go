@@ -721,6 +721,20 @@ func (aaa *EntitlementService) PublicQueryUserEntitlementsByAppType(input *entit
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetUserEntitlementsByIdsShort instead.
+func (aaa *EntitlementService) PublicGetUserEntitlementsByIds(input *entitlement.PublicGetUserEntitlementsByIdsParams) ([]*platformclientmodels.EntitlementInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementsByIds(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetUserEntitlementByItemIDShort instead.
 func (aaa *EntitlementService) PublicGetUserEntitlementByItemID(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -872,6 +886,46 @@ func (aaa *EntitlementService) PublicSellUserEntitlement(input *entitlement.Publ
 		return nil, err
 	}
 	ok, notFound, conflict, err := aaa.Client.Entitlement.PublicSellUserEntitlement(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicSplitUserEntitlementShort instead.
+func (aaa *EntitlementService) PublicSplitUserEntitlement(input *entitlement.PublicSplitUserEntitlementParams) (*platformclientmodels.EntitlementSplitResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, conflict, err := aaa.Client.Entitlement.PublicSplitUserEntitlement(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicTransferUserEntitlementShort instead.
+func (aaa *EntitlementService) PublicTransferUserEntitlement(input *entitlement.PublicTransferUserEntitlementParams) (*platformclientmodels.EntitlementTransferResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, conflict, err := aaa.Client.Entitlement.PublicTransferUserEntitlement(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -2175,6 +2229,36 @@ func (aaa *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *
 	return ok.GetPayload(), nil
 }
 
+func (aaa *EntitlementService) PublicGetUserEntitlementsByIdsShort(input *entitlement.PublicGetUserEntitlementsByIdsParams) ([]*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementsByIdsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2468,6 +2552,66 @@ func (aaa *EntitlementService) PublicSellUserEntitlementShort(input *entitlement
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicSellUserEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) PublicSplitUserEntitlementShort(input *entitlement.PublicSplitUserEntitlementParams) (*platformclientmodels.EntitlementSplitResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Entitlement.PublicSplitUserEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) PublicTransferUserEntitlementShort(input *entitlement.PublicTransferUserEntitlementParams) (*platformclientmodels.EntitlementTransferResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Entitlement.PublicTransferUserEntitlementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

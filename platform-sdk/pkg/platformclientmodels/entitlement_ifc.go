@@ -31,6 +31,9 @@ type EntitlementIfc struct {
 	// Enum: ['APP', 'CODE', 'ENTITLEMENT', 'LOOTBOX', 'MEDIA', 'OPTIONBOX', 'SUBSCRIPTION']
 	Clazz string `json:"clazz,omitempty"`
 
+	// collectionid
+	CollectionID string `json:"collectionId,omitempty"`
+
 	// createdat
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`

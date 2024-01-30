@@ -32,9 +32,9 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		checksum, _ := cmd.Flags().GetString("checksum")
 		customAttribute, _ := cmd.Flags().GetString("customAttribute")
-		output := cmd.Flag("file").Value.String()
-		logrus.Infof("file %v", output)
-		file, err := os.Open(output)
+		outputFile := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", outputFile)
+		file, err := os.Open(outputFile)
 		if err != nil {
 			return err
 		}

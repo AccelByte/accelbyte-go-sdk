@@ -70,6 +70,8 @@ type ValidateItemPurchaseConditionParams struct {
 	Body *platformclientmodels.ItemPurchaseConditionValidateRequest
 	/*Namespace*/
 	Namespace string
+	/*Platform*/
+	Platform *string
 	/*UserID*/
 	UserID string
 
@@ -160,6 +162,17 @@ func (o *ValidateItemPurchaseConditionParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithPlatform adds the platform to the validate item purchase condition params
+func (o *ValidateItemPurchaseConditionParams) WithPlatform(platform *string) *ValidateItemPurchaseConditionParams {
+	o.SetPlatform(platform)
+	return o
+}
+
+// SetPlatform adds the platform to the validate item purchase condition params
+func (o *ValidateItemPurchaseConditionParams) SetPlatform(platform *string) {
+	o.Platform = platform
+}
+
 // WithUserID adds the userID to the validate item purchase condition params
 func (o *ValidateItemPurchaseConditionParams) WithUserID(userID string) *ValidateItemPurchaseConditionParams {
 	o.SetUserID(userID)
@@ -188,6 +201,22 @@ func (o *ValidateItemPurchaseConditionParams) WriteToRequest(r runtime.ClientReq
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Platform != nil {
+
+		// query param platform
+		var qrPlatform string
+		if o.Platform != nil {
+			qrPlatform = *o.Platform
+		}
+		qPlatform := qrPlatform
+		if qPlatform != "" {
+			if err := r.SetQueryParam("platform", qPlatform); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// query param userId

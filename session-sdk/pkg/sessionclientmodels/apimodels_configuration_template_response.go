@@ -79,6 +79,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Format: int32
 	LeaderElectionGracePeriod int32 `json:"leaderElectionGracePeriod,omitempty"`
 
+	// manualrejoin
+	ManualRejoin bool `json:"manualRejoin"`
+
 	// maxactivesessions
 	// Format: int32
 	MaxActiveSessions int32 `json:"maxActiveSessions,omitempty"`

@@ -74,6 +74,57 @@ func (aaa *StoreService) CreateStore(input *store.CreateStoreParams) (*platformc
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetCatalogDefinitionShort instead.
+func (aaa *StoreService) GetCatalogDefinition(input *store.GetCatalogDefinitionParams) ([]*platformclientmodels.CatalogDefinitionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Store.GetCatalogDefinition(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use DownloadCSVTemplatesShort instead.
+func (aaa *StoreService) DownloadCSVTemplates(input *store.DownloadCSVTemplatesParams, writer io.Writer) (io.Writer, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Store.DownloadCSVTemplates(input, client.BearerToken(*token.AccessToken), writer)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use ExportStoreByCSVShort instead.
+func (aaa *StoreService) ExportStoreByCSV(input *store.ExportStoreByCSVParams, writer io.Writer) (io.Writer, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, conflict, err := aaa.Client.Store.ExportStoreByCSV(input, client.BearerToken(*token.AccessToken), writer)
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ImportStoreShort instead.
 func (aaa *StoreService) ImportStore(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -259,6 +310,46 @@ func (aaa *StoreService) ExportStore(input *store.ExportStoreParams, writer io.W
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use QueryImportHistoryShort instead.
+func (aaa *StoreService) QueryImportHistory(input *store.QueryImportHistoryParams) (*platformclientmodels.ImportStoreHistoryPagingResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, err := aaa.Client.Store.QueryImportHistory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use ImportStoreByCSVShort instead.
+func (aaa *StoreService) ImportStoreByCSV(input *store.ImportStoreByCSVParams) (*platformclientmodels.ImportStoreResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, conflict, err := aaa.Client.Store.ImportStoreByCSV(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicListStoresShort instead.
 func (aaa *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	ok, err := aaa.Client.Store.PublicListStores(input)
@@ -364,6 +455,96 @@ func (aaa *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*plat
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *StoreService) GetCatalogDefinitionShort(input *store.GetCatalogDefinitionParams) ([]*platformclientmodels.CatalogDefinitionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.GetCatalogDefinitionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) DownloadCSVTemplatesShort(input *store.DownloadCSVTemplatesParams, writer io.Writer) (io.Writer, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.DownloadCSVTemplatesShort(input, authInfoWriter, writer)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) ExportStoreByCSVShort(input *store.ExportStoreByCSVParams, writer io.Writer) (io.Writer, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.ExportStoreByCSVShort(input, authInfoWriter, writer)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
@@ -659,6 +840,66 @@ func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams, writer
 	}
 
 	ok, err := aaa.Client.Store.ExportStoreShort(input, authInfoWriter, writer)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) QueryImportHistoryShort(input *store.QueryImportHistoryParams) (*platformclientmodels.ImportStoreHistoryPagingResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.QueryImportHistoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) ImportStoreByCSVShort(input *store.ImportStoreByCSVParams) (*platformclientmodels.ImportStoreResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.ImportStoreByCSVShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

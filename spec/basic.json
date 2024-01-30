@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.15.1"
+    "version": "2.16.0"
   },
   "schemes": [
     "https"
@@ -909,6 +909,74 @@
         }
       }
     },
+    "/basic/v1/admin/namespaces/{namespace}/child": {
+      "get": {
+        "description": "Get child namespaces.\u0026lt;br\u0026gt;If input namespace is publisher namespace, then it will return its all studio namespace.\u0026lt;br\u0026gt;If input namespace is studio namespace, then it will return its all game namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of child namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getChildNamespaces",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "only retrieves active namespaces",
+            "in": "query",
+            "name": "activeOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/NamespaceInfo"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get child namespaces",
+        "tags": [
+          "Namespace"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        }
+      }
+    },
     "/basic/v1/admin/namespaces/{namespace}/configs": {
       "post": {
         "consumes": [
@@ -1215,6 +1283,62 @@
         "x-authorization": {
           "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        }
+      }
+    },
+    "/basic/v1/admin/namespaces/{namespace}/context": {
+      "get": {
+        "description": "Get context of namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: context of namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getNamespaceContext",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceContext"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get context of namespace",
+        "tags": [
+          "Namespace"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
         }
       }
     },
@@ -5153,6 +5277,32 @@
       },
       "type": "object"
     },
+    "NamespaceContext": {
+      "properties": {
+        "namespace": {
+          "description": "target namespace which need to get its context",
+          "type": "string"
+        },
+        "publisherNamespace": {
+          "description": "publisher namespace",
+          "type": "string"
+        },
+        "studioNamespace": {
+          "description": "studio namespace, it will be empty when input namespace is publisher namespace",
+          "type": "string"
+        },
+        "type": {
+          "description": "input namespace type",
+          "enum": [
+            "Game",
+            "Publisher",
+            "Studio"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NamespaceCreate": {
       "properties": {
         "displayName": {
@@ -5801,16 +5951,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2023-12-29T11:57:48+00:00",
-    "buildID": "2.15.1",
+    "buildDate": "2024-01-26T10:47:40+00:00",
+    "buildID": "2.16.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.199-190.747.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.205-195.804.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "88041fa136",
-    "gitTag": "2.15.1",
+    "gitHash": "0ea78d63e9",
+    "gitTag": "2.16.0",
     "name": "justice-basic-service",
     "realm": "demo",
-    "version": "2.15.1",
+    "version": "2.16.0",
     "version-roles-seeding": "0.0.10"
   }
 }

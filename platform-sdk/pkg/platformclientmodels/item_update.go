@@ -61,6 +61,9 @@ type ItemUpdate struct {
 	// images
 	Images []*Image `json:"images,omitempty"`
 
+	// inventory config
+	InventoryConfig *InventoryConfig `json:"inventoryConfig,omitempty"`
+
 	// itemIds, should be empty if item type is not "BUNDLE"
 	ItemIds []string `json:"itemIds,omitempty"`
 

@@ -6,6 +6,7 @@ package integration_test
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/sirupsen/logrus"
@@ -98,6 +99,10 @@ var (
 )
 
 func TestIntegrationConfigurationTemplate(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("temporarily disabled in AGS Starter due to issue in session service")
+	}
+
 	// Login User - Arrange
 	Init()
 

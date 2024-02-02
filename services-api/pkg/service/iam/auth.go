@@ -583,6 +583,7 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 		LocalValidationActive: value,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		NamespaceContexts:     make(map[string]*NamespaceContext),
 	}
 
 	// Initiate

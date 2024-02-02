@@ -18,8 +18,10 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/bloom"
 	"github.com/AccelByte/go-jose/jwt"
+	"github.com/patrickmn/go-cache"
 	"github.com/pkg/errors"
 )
 
@@ -40,6 +42,9 @@ type TokenValidator struct {
 	PublicKeys            map[string]*rsa.PublicKey
 	RevokedUsers          map[string]time.Time
 	Roles                 map[string]*iamclientmodels.ModelRoleResponseV3
+	NamespaceContexts     map[string]*NamespaceContext
+
+	rolePermissionCache *cache.Cache
 }
 
 func (v *TokenValidator) Initialize() {
@@ -90,6 +95,10 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 	}
 
 	publicKey := v.PublicKeys[kid]
+	if publicKey == nil {
+		return errors.New("public key not found")
+	}
+
 	err = jsonWebToken.Claims(publicKey, &v.JwtClaims)
 	if err != nil {
 		return err
@@ -401,6 +410,10 @@ func (v *TokenValidator) hasValidNamespace(claims JWTClaims, namespace *string) 
 }
 
 func (v *TokenValidator) isTokenRevoked(token string) bool {
+	if v.Filter == nil {
+		return false
+	}
+
 	return v.Filter.MightContain([]byte(token))
 }
 
@@ -441,6 +454,29 @@ func (v *TokenValidator) validatePermissions(permissions []Permission, resource 
 				s1 := hasResourceItems[i]
 				s2 := requiredResourceItems[i]
 				if s1 != s2 && s1 != "*" {
+					if strings.HasSuffix(s1, "-") && i > 0 {
+						prevS1 := hasResourceItems[i-1]
+						if prevS1 == "NAMESPACE" {
+							if strings.Contains(s2, "-") {
+								s2Parts := strings.Split(s2, "-")
+								if len(s2Parts) == 2 && strings.HasPrefix(s2, s1) {
+									continue
+								}
+							}
+
+							s2Prefixed := s2 + "-"
+							if s1 == s2Prefixed {
+								continue
+							}
+
+							if context, found := v.NamespaceContexts[s2]; found {
+								if context.Type == TypeGame && strings.HasPrefix(s1, context.StudioNamespace) {
+									continue
+								}
+							}
+						}
+					}
+
 					matches = false
 
 					break
@@ -502,6 +538,12 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 		LocalValidationActive: false,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		NamespaceContexts:     make(map[string]*NamespaceContext),
+
+		rolePermissionCache: cache.New(
+			utils.GetRolesExpirationTime(),
+			2*utils.GetRolesExpirationTime(),
+		),
 	}
 }
 
@@ -512,3 +554,16 @@ func min(a, b int) int {
 
 	return b
 }
+
+type NamespaceContext struct {
+	Namespace          string `json:"namespace"` // studio namespace + game namespace
+	Type               string `json:"type"`      // enum: Publisher, Studio, Game
+	PublisherNamespace string `json:"publisherNamespace"`
+	StudioNamespace    string `json:"studioNamespace"` // it will be empty when input namespace is publisher namespace
+}
+
+const (
+	TypePublisher string = "Publisher"
+	TypeStudio    string = "Studio"
+	TypeGame      string = "Game"
+)

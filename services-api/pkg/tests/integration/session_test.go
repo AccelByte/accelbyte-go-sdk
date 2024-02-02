@@ -163,6 +163,10 @@ func TestIntegrationConfigurationTemplate(t *testing.T) {
 }
 
 func TestIntegrationGameSession(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("temporarily disabled in AGS Starter due to issue in session service")
+	}
+
 	// Login User - Arrange
 	Init()
 

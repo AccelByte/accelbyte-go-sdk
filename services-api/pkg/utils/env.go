@@ -20,8 +20,8 @@ func GetEnv(key, fallback string) string {
 }
 
 func GetRolesExpirationTime() time.Duration {
-	if os.Getenv("RolesCacheExpirationTime") != "" {
-		expirationTimeString := os.Getenv("RolesCacheExpirationTime")
+	if os.Getenv("ROLES_CACHE_EXPIRATION_TIME") != "" {
+		expirationTimeString := os.Getenv("ROLES_CACHE_EXPIRATION_TIME")
 		expirationTimeSeconds, err := strconv.Atoi(expirationTimeString)
 		if err != nil {
 			log.Printf("failed to convert the expiration time")

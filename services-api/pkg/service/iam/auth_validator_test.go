@@ -336,7 +336,7 @@ func TestTokenValidator_ValidateNamespaceRevamp3(t *testing.T) {
 			IsErrorNil: false,
 			Key:        privateKey,
 			Claims: JWTClaims{
-				Namespace: "game2",
+				Namespace: "game2", // the NewTokenValidatorTest3 is using game1 as namespace
 				Permissions: []Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
@@ -437,11 +437,11 @@ func NewTokenValidatorTest2(authService OAuth20Service, refreshInterval time.Dur
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
 		NamespaceContexts: map[string]*NamespaceContext{
-			TypeGame: {
+			"studio1": {
 				Namespace:          "game1",
 				Type:               TypeGame,
 				PublisherNamespace: "accelbyte",
-				StudioNamespace:    "game1",
+				StudioNamespace:    "studio1",
 			},
 		},
 	}
@@ -467,11 +467,11 @@ func NewTokenValidatorTest3(authService OAuth20Service, refreshInterval time.Dur
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
 		NamespaceContexts: map[string]*NamespaceContext{
-			TypeGame: {
-				Namespace:          "game2",
+			"game1": {
+				Namespace:          "game1",
 				Type:               TypeGame,
 				PublisherNamespace: "accelbyte",
-				StudioNamespace:    "game2",
+				StudioNamespace:    "studio1",
 			},
 		},
 	}

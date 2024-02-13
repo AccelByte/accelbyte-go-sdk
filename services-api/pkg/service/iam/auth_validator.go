@@ -15,9 +15,12 @@ import (
 	"strings"
 	"time"
 
+	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/bloom"
 	"github.com/AccelByte/go-jose/jwt"
@@ -44,7 +47,8 @@ type TokenValidator struct {
 	Roles                 map[string]*iamclientmodels.ModelRoleResponseV3
 	NamespaceContexts     map[string]*NamespaceContext
 
-	rolePermissionCache *cache.Cache
+	rolePermissionCache    *cache.Cache
+	namespaceContextsCache *cache.Cache
 }
 
 func (v *TokenValidator) Initialize() {
@@ -351,6 +355,11 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		userId,
 	)
 
+	err := v.fetchNamespaceContextFromCache(claims.Namespace)
+	if err != nil {
+		return false
+	}
+
 	originPermissions := claims.Permissions
 	if len(originPermissions) > 0 &&
 		v.validatePermissions(originPermissions, modifiedResource, permission.Action) {
@@ -437,6 +446,50 @@ func (v *TokenValidator) replaceResource(resource string, namespace, userId *str
 	}
 
 	return modifiedResource
+}
+
+func (v *TokenValidator) fetchNamespaceContextFromCache(keyNamespace string) error {
+	if v.namespaceContextsCache == nil {
+		v.namespaceContextsCache = cache.New(utils.GetRolesExpirationTime(), 2*utils.GetRolesExpirationTime()) // default time is one hour
+	}
+
+	if nsContext, found := v.namespaceContextsCache.Get(keyNamespace); found {
+		v.NamespaceContexts = map[string]*NamespaceContext{keyNamespace: nsContext.(*NamespaceContext)}
+
+		return nil
+	}
+
+	err := v.fetchNamespaceContext(keyNamespace)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (v *TokenValidator) fetchNamespaceContext(keyNamespace string) error {
+	if v.AuthService.ConfigRepository != nil {
+		namespaceService := &basic.NamespaceService{
+			Client:           factory.NewBasicClient(v.AuthService.ConfigRepository),
+			ConfigRepository: v.AuthService.ConfigRepository,
+			TokenRepository:  v.AuthService.TokenRepository,
+		}
+		resp, err := namespaceService.GetNamespaceContextShort(&namespace_.GetNamespaceContextParams{
+			Namespace: keyNamespace,
+		})
+		if err != nil {
+			return err
+		}
+
+		v.namespaceContextsCache.Set(keyNamespace, NamespaceContext{
+			Namespace:          resp.Namespace,
+			Type:               resp.Type,
+			PublisherNamespace: resp.PublisherNamespace,
+			StudioNamespace:    resp.StudioNamespace,
+		}, utils.GetNamespaceContextExpirationTime())
+	}
+
+	return nil
 }
 
 func (v *TokenValidator) validatePermissions(permissions []Permission, resource string, action int) bool {
@@ -543,6 +596,11 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 		rolePermissionCache: cache.New(
 			utils.GetRolesExpirationTime(),
 			2*utils.GetRolesExpirationTime(),
+		),
+
+		namespaceContextsCache: cache.New(
+			utils.GetNamespaceContextExpirationTime(),
+			2*utils.GetNamespaceContextExpirationTime(),
 		),
 	}
 }

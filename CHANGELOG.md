@@ -1,7 +1,7 @@
 <a name="v0.64.0"></a>
 ## [v0.64.0]
 ### docs
-- **migrations:** add migration-guide-v0.62-to-v0.63.md
+- **migrations:** add migration-guide-v0.63-to-v0.64.md
 ### test
 - **integration:** temporarily disable TestIntegrationMatchPool in ags starter
 - **integration:** temporarily disable TestIntegrationConfigurationTemplate in ags starter
@@ -13,6 +13,7 @@
 - **lint:** increase timeout to 10 minutes
 ### chore
 - **:** get namespace context and caching
+- **:** update CHANGELOG.md
 - **:** update CHANGELOG.md and go sum getting started
 - **sdk:** revamp namespace
 - **samples:** update go mod

@@ -1,4 +1,4 @@
-# [v0.63.0]
+# [v0.64.0]
 
 ### BREAKING CHANGE
 
@@ -35,4 +35,4 @@ The following operation(s) has been updated.
   - body type changed from `*iamclientmodels.{ ModelUserCreateFromInvitationRequestV4 -> AccountCreateUserRequestV4 }`
 
   
-[v0.63.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.62.0..v0.63.0
+[v0.64.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.63.0..v0.64.0

@@ -78,7 +78,7 @@ func NewAdminPutGameRecordHandlerV1OK() *AdminPutGameRecordHandlerV1OK {
   Record saved
 */
 type AdminPutGameRecordHandlerV1OK struct {
-	Payload *cloudsaveclientmodels.ModelsGameRecordResponse
+	Payload *cloudsaveclientmodels.ModelsGameRecordAdminResponse
 }
 
 func (o *AdminPutGameRecordHandlerV1OK) Error() string {
@@ -100,7 +100,7 @@ func (o *AdminPutGameRecordHandlerV1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPutGameRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsGameRecordResponse {
+func (o *AdminPutGameRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsGameRecordAdminResponse {
 	return o.Payload
 }
 
@@ -111,7 +111,7 @@ func (o *AdminPutGameRecordHandlerV1OK) readResponse(response runtime.ClientResp
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordResponse)
+	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordAdminResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

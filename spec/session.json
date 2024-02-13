@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.13.9"
+    "version": "3.13.11"
   },
   "schemes": [
     "https"
@@ -2071,6 +2071,12 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "game session is soft deleted. supported: TRUE, FALSE",
+            "in": "query",
+            "name": "isSoftDeleted",
             "type": "string"
           },
           {
@@ -7068,6 +7074,10 @@
         "dsSource": {
           "type": "string"
         },
+        "enableSecret": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "fallbackClaimKeys": {
           "items": {
             "type": "string"
@@ -7397,7 +7407,6 @@
       "required": [
         "clientVersion",
         "deployment",
-        "enableSecret",
         "inactiveTimeout",
         "inviteTimeout",
         "joinability",
@@ -8073,9 +8082,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-19T09:25:54+00:00",
-    "gitHash": "1f3a2896f34095d2def635da41de984cf2d5942a",
-    "version": "3.13.9",
+    "buildDate": "2024-01-26T15:45:21+00:00",
+    "gitHash": "cd690854cd9769d828b953729478ff3d81cf0b13",
+    "version": "3.13.11",
     "version-roles-seeding": "1.0.20"
   }
 }

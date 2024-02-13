@@ -90,6 +90,11 @@ type AdminQueryPartiesParams struct {
 
 	*/
 	Namespace string
+	/*IsSoftDeleted
+	  game session is soft deleted. supported: TRUE, FALSE
+
+	*/
+	IsSoftDeleted *string
 	/*Joinability
 	  Join type
 
@@ -220,6 +225,17 @@ func (o *AdminQueryPartiesParams) WithNamespace(namespace string) *AdminQueryPar
 // SetNamespace adds the namespace to the admin query parties params
 func (o *AdminQueryPartiesParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithIsSoftDeleted adds the isSoftDeleted to the admin query parties params
+func (o *AdminQueryPartiesParams) WithIsSoftDeleted(isSoftDeleted *string) *AdminQueryPartiesParams {
+	o.SetIsSoftDeleted(isSoftDeleted)
+	return o
+}
+
+// SetIsSoftDeleted adds the isSoftDeleted to the admin query parties params
+func (o *AdminQueryPartiesParams) SetIsSoftDeleted(isSoftDeleted *string) {
+	o.IsSoftDeleted = isSoftDeleted
 }
 
 // WithJoinability adds the joinability to the admin query parties params
@@ -354,6 +370,22 @@ func (o *AdminQueryPartiesParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.IsSoftDeleted != nil {
+
+		// query param isSoftDeleted
+		var qrIsSoftDeleted string
+		if o.IsSoftDeleted != nil {
+			qrIsSoftDeleted = *o.IsSoftDeleted
+		}
+		qIsSoftDeleted := qrIsSoftDeleted
+		if qIsSoftDeleted != "" {
+			if err := r.SetQueryParam("isSoftDeleted", qIsSoftDeleted); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Joinability != nil {

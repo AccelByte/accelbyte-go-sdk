@@ -45,12 +45,6 @@ func (o *GetUserLeaderboardRankingsAdminV1Reader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetUserLeaderboardRankingsAdminV1NotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewGetUserLeaderboardRankingsAdminV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +69,7 @@ func NewGetUserLeaderboardRankingsAdminV1OK() *GetUserLeaderboardRankingsAdminV1
 
 /*GetUserLeaderboardRankingsAdminV1OK handles this case with default header values.
 
-  OK
+  User rankings retrieved
 */
 type GetUserLeaderboardRankingsAdminV1OK struct {
 	Payload *leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp
@@ -128,7 +122,7 @@ func NewGetUserLeaderboardRankingsAdminV1Unauthorized() *GetUserLeaderboardRanki
 
 /*GetUserLeaderboardRankingsAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetUserLeaderboardRankingsAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -181,7 +175,7 @@ func NewGetUserLeaderboardRankingsAdminV1Forbidden() *GetUserLeaderboardRankings
 
 /*GetUserLeaderboardRankingsAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetUserLeaderboardRankingsAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -227,59 +221,6 @@ func (o *GetUserLeaderboardRankingsAdminV1Forbidden) readResponse(response runti
 	return nil
 }
 
-// NewGetUserLeaderboardRankingsAdminV1NotFound creates a GetUserLeaderboardRankingsAdminV1NotFound with default headers values
-func NewGetUserLeaderboardRankingsAdminV1NotFound() *GetUserLeaderboardRankingsAdminV1NotFound {
-	return &GetUserLeaderboardRankingsAdminV1NotFound{}
-}
-
-/*GetUserLeaderboardRankingsAdminV1NotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetUserLeaderboardRankingsAdminV1NotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetUserLeaderboardRankingsAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards][%d] getUserLeaderboardRankingsAdminV1NotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetUserLeaderboardRankingsAdminV1NotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetUserLeaderboardRankingsAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetUserLeaderboardRankingsAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetUserLeaderboardRankingsAdminV1InternalServerError creates a GetUserLeaderboardRankingsAdminV1InternalServerError with default headers values
 func NewGetUserLeaderboardRankingsAdminV1InternalServerError() *GetUserLeaderboardRankingsAdminV1InternalServerError {
 	return &GetUserLeaderboardRankingsAdminV1InternalServerError{}
@@ -287,7 +228,7 @@ func NewGetUserLeaderboardRankingsAdminV1InternalServerError() *GetUserLeaderboa
 
 /*GetUserLeaderboardRankingsAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetUserLeaderboardRankingsAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

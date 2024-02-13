@@ -91,12 +91,12 @@ type ArtifactGetParams struct {
 	*/
 	Namespace string
 	/*ArtifactType
-	  One of: logs, coredump
+	  one of: log, coredump
 
 	*/
 	ArtifactType *string
 	/*Count
-	  Defines the maximum number of records returned in one page.
+	  defines the maximum number of records returned in one page.
 
 	*/
 	Count *int64
@@ -126,7 +126,7 @@ type ArtifactGetParams struct {
 	*/
 	MinSize *int64
 	/*Offset
-	  Specifies the start index for the records returned. Useful for implementing pagination.
+	  specifies the start index for the records returned. Useful for implementing pagination.
 
 	*/
 	Offset *int64
@@ -146,7 +146,7 @@ type ArtifactGetParams struct {
 	*/
 	StartDate *string
 	/*Status
-	  One of: success, skip_sample, skip_usage, failed, deleted
+	  one of: success, skipped_sample, skipped_usage, failed
 
 	*/
 	Status *string

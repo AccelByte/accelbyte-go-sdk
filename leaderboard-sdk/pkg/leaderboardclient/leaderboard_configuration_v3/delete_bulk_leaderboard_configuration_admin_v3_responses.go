@@ -75,7 +75,7 @@ func NewDeleteBulkLeaderboardConfigurationAdminV3OK() *DeleteBulkLeaderboardConf
 
 /*DeleteBulkLeaderboardConfigurationAdminV3OK handles this case with default header values.
 
-  OK
+  Leaderboard deleted
 */
 type DeleteBulkLeaderboardConfigurationAdminV3OK struct {
 	Payload *leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp
@@ -128,7 +128,7 @@ func NewDeleteBulkLeaderboardConfigurationAdminV3BadRequest() *DeleteBulkLeaderb
 
 /*DeleteBulkLeaderboardConfigurationAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type DeleteBulkLeaderboardConfigurationAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -181,7 +181,7 @@ func NewDeleteBulkLeaderboardConfigurationAdminV3Unauthorized() *DeleteBulkLeade
 
 /*DeleteBulkLeaderboardConfigurationAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteBulkLeaderboardConfigurationAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -234,7 +234,7 @@ func NewDeleteBulkLeaderboardConfigurationAdminV3Forbidden() *DeleteBulkLeaderbo
 
 /*DeleteBulkLeaderboardConfigurationAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteBulkLeaderboardConfigurationAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -287,7 +287,7 @@ func NewDeleteBulkLeaderboardConfigurationAdminV3InternalServerError() *DeleteBu
 
 /*DeleteBulkLeaderboardConfigurationAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteBulkLeaderboardConfigurationAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

@@ -31,6 +31,10 @@ type ModelsDeletionData struct {
 	// Required: true
 	Status *string `json:"Status"`
 
+	// uniquedisplayname
+	// Required: true
+	UniqueDisplayName *string `json:"UniqueDisplayName"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"UserID"`
@@ -47,6 +51,9 @@ func (m *ModelsDeletionData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUniqueDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -84,6 +91,15 @@ func (m *ModelsDeletionData) validateRequestDate(formats strfmt.Registry) error 
 func (m *ModelsDeletionData) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("Status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeletionData) validateUniqueDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("UniqueDisplayName", "body", m.UniqueDisplayName); err != nil {
 		return err
 	}
 

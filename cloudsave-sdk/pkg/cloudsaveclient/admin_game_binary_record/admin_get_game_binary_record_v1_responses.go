@@ -78,7 +78,7 @@ func NewAdminGetGameBinaryRecordV1OK() *AdminGetGameBinaryRecordV1OK {
   Record in namespace-level retrieved
 */
 type AdminGetGameBinaryRecordV1OK struct {
-	Payload *cloudsaveclientmodels.ModelsGameBinaryRecordResponse
+	Payload *cloudsaveclientmodels.ModelsGameBinaryRecordAdminResponse
 }
 
 func (o *AdminGetGameBinaryRecordV1OK) Error() string {
@@ -100,7 +100,7 @@ func (o *AdminGetGameBinaryRecordV1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminGetGameBinaryRecordV1OK) GetPayload() *cloudsaveclientmodels.ModelsGameBinaryRecordResponse {
+func (o *AdminGetGameBinaryRecordV1OK) GetPayload() *cloudsaveclientmodels.ModelsGameBinaryRecordAdminResponse {
 	return o.Payload
 }
 
@@ -111,7 +111,7 @@ func (o *AdminGetGameBinaryRecordV1OK) readResponse(response runtime.ClientRespo
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(cloudsaveclientmodels.ModelsGameBinaryRecordResponse)
+	o.Payload = new(cloudsaveclientmodels.ModelsGameBinaryRecordAdminResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

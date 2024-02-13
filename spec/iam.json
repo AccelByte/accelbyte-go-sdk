@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.9.0"
+    "version": "7.10.0"
   },
   "schemes": [
     "https"
@@ -8978,6 +8978,60 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/config/{configKey}": {
+      "get": {
+        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n",
+        "operationId": "AdminGetConfigValueV3",
+        "parameters": [
+          {
+            "description": "config key",
+            "in": "path",
+            "name": "configKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ConfigValueResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Config Value",
+        "tags": [
+          "Config"
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/countries": {
       "get": {
         "description": "Admin get country list",
@@ -11049,7 +11103,7 @@
             "type": "string"
           },
           {
-            "description": "Search by given attribute, possible values are emailAddress, displayName, username, and thirdPartyPlatform",
+            "description": "Search by given attribute, possible values are emailAddress, displayName, uniqueDisplayName, username and thirdPartyPlatform",
             "in": "query",
             "name": "by",
             "type": "string"
@@ -17682,6 +17736,60 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/config/{configKey}": {
+      "get": {
+        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\nNote: this endpoint does not need any authorization.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n",
+        "operationId": "PublicGetConfigValueV3",
+        "parameters": [
+          {
+            "description": "config key",
+            "in": "path",
+            "name": "configKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ConfigValueResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Config Value",
+        "tags": [
+          "Config"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/countries": {
       "get": {
         "description": "Public get country list, will filter out countries in black list",
@@ -18079,7 +18187,7 @@
             "type": "string"
           },
           {
-            "description": "Search by given attribute, possible values are displayName and username and thirdPartyPlatform",
+            "description": "Search by given attribute, possible values are displayName and uniqueDisplayName and username and thirdPartyPlatform",
             "in": "query",
             "name": "by",
             "type": "string"
@@ -18165,7 +18273,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Available Authentication Types:\n1. **EMAILPASSWD**: an authentication type used for new user registration through email.\n\t\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "description": "Available Authentication Types:\n1. **EMAILPASSWD**: an authentication type used for new user registration through email.\n\n**Note**:\n  * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.\n\t\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
         "operationId": "PublicCreateUserV3",
         "parameters": [
           {
@@ -18238,7 +18346,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/availability": {
       "get": {
-        "description": "Check user\u0026#39;s account availability. \nAvailable field :\n- displayName\n- username\n\nIf request include access token with user ID data, that user ID will be excluded from availability check.\nFor example, in case user update his emailAddress, he can use his own emailAddress to update his account.\n\nResponse Code :\n- Account Available : 404 (not found)\n- Account Not Available : 204 (no content)",
+        "description": "Check user\u0026#39;s account availability. \nAvailable field :\n- displayName\n- uniqueDisplayName\n- username\n\nIf request include access token with user ID data, that user ID will be excluded from availability check.\nFor example, in case user update his emailAddress, he can use his own emailAddress to update his account.\n\nResponse Code :\n- Account Available : 404 (not found)\n- Account Not Available : 204 (no content)",
         "operationId": "CheckUserAvailability",
         "parameters": [
           {
@@ -18577,7 +18685,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\nEMAILPASSWD: an authentication type used for new user registration through email.\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.",
+        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\nEMAILPASSWD: an authentication type used for new user registration through email.\n\n**Note**:\n  * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.\n\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.",
         "operationId": "CreateUserFromInvitationV3",
         "parameters": [
           {
@@ -18585,7 +18693,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.UserCreateFromInvitationRequestV3"
+              "$ref": "#/definitions/model.UserCreateRequestV3"
             }
           },
           {
@@ -22396,7 +22504,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
         "operationId": "AdminCreateUserV4",
         "parameters": [
           {
@@ -24415,6 +24523,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
         "operationId": "AdminGetMyBackupCodesV4",
         "produces": [
@@ -24470,6 +24579,7 @@
         "x-security": {}
       },
       "post": {
+        "deprecated": true,
         "description": "This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
         "operationId": "AdminGenerateMyBackupCodesV4",
         "produces": [
@@ -24581,6 +24691,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode/download": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint is used to download backup codes.",
         "operationId": "AdminDownloadMyBackupCodesV4",
         "produces": [
@@ -24638,6 +24749,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode/enable": {
       "post": {
+        "deprecated": true,
         "description": "This endpoint is used to enable 2FA backup codes.",
         "operationId": "AdminEnableMyBackupCodesV4",
         "produces": [
@@ -24649,6 +24761,172 @@
             "schema": {
               "$ref": "#/definitions/model.BackupCodesResponseV4"
             }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Enable 2FA backup codes",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      }
+    },
+    "/iam/v4/admin/users/me/mfa/backupCodes": {
+      "get": {
+        "description": "This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
+        "operationId": "AdminGetBackupCodesV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Get backup codes"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get backup codes and send to email",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      },
+      "post": {
+        "description": "This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
+        "operationId": "AdminGenerateBackupCodesV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup codes generated"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate backup codes",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      }
+    },
+    "/iam/v4/admin/users/me/mfa/backupCodes/enable": {
+      "post": {
+        "description": "This endpoint is used to enable 2FA backup codes.",
+        "operationId": "AdminEnableBackupCodesV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup codes enabled"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -25170,7 +25448,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
         "operationId": "PublicCreateUserV4",
         "parameters": [
           {
@@ -25246,7 +25524,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\n\nEMAILPASSWD: an authentication type used for new user registration through email.\n\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\n\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\n\t\nRequired attributes:\n- authType: possible value is EMAILPASSWD (see above)\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.",
+        "description": "This endpoint create user from saved roles when creating invitation and submitted data.\nUser will be able to login after completing submitting the data through this endpoint.\nAvailable Authentication Types:\n\nEMAILPASSWD: an authentication type used for new user registration through email.\n\n**Note**:\n  * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.\n\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\n\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\n\t\nRequired attributes:\n- authType: possible value is EMAILPASSWD (see above)\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.",
         "operationId": "CreateUserFromInvitationV4",
         "parameters": [
           {
@@ -25254,7 +25532,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.UserCreateFromInvitationRequestV4"
+              "$ref": "#/definitions/account.createUserRequestV4"
             }
           },
           {
@@ -25838,6 +26116,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
         "operationId": "PublicGetMyBackupCodesV4",
         "parameters": [
@@ -25902,6 +26181,7 @@
         "x-security": {}
       },
       "post": {
+        "deprecated": true,
         "description": "This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.",
         "operationId": "PublicGenerateMyBackupCodesV4",
         "parameters": [
@@ -25968,7 +26248,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable": {
       "delete": {
-        "description": "This endpoint is used to enable 2FA backup codes.",
+        "description": "This endpoint is used to disable 2FA backup codes.",
         "operationId": "PublicDisableMyBackupCodesV4",
         "parameters": [
           {
@@ -26031,6 +26311,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint is used to download backup codes.",
         "operationId": "PublicDownloadMyBackupCodesV4",
         "parameters": [
@@ -26097,6 +26378,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable": {
       "post": {
+        "deprecated": true,
         "description": "This endpoint is used to enable 2FA backup codes.",
         "operationId": "PublicEnableMyBackupCodesV4",
         "parameters": [
@@ -26117,6 +26399,199 @@
             "schema": {
               "$ref": "#/definitions/model.BackupCodesResponseV4"
             }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Enable 2FA backup codes",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes": {
+      "get": {
+        "description": "This endpoint is used to get existing 8-digits backup codes. \nEach codes is a one-time code and will be deleted once used.\nThe codes will be sent through linked email.",
+        "operationId": "PublicGetBackupCodesV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Backup codes sent to email"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get backup codes and send to email",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      },
+      "post": {
+        "description": "This endpoint is used to generate 8-digits backup codes. \nEach codes is a one-time code and will be deleted once used.\nThe codes will be sent through linked email.",
+        "operationId": "PublicGenerateBackupCodesV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Backup codes sent to email"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate backup codes",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": {}
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes/enable": {
+      "post": {
+        "description": "This endpoint is used to enable 2FA backup codes.",
+        "operationId": "PublicEnableBackupCodesV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Backup codes enabled and codes sent to email"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -26980,6 +27455,9 @@
           },
           "type": "array"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -27041,6 +27519,9 @@
         "passwordMD5Sum": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "username": {
           "type": "string"
         },
@@ -27084,6 +27565,9 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         },
         "userId": {
@@ -27174,6 +27658,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "username": {
           "type": "string"
         }
@@ -27205,6 +27692,9 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         },
         "userId": {
@@ -27266,6 +27756,9 @@
         "reachMinimumAge": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "uniqueDisplayName": {
+          "type": "string"
         },
         "username": {
           "type": "string"
@@ -28157,6 +28650,9 @@
           },
           "type": "array"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "username": {
           "type": "string"
         },
@@ -28370,6 +28866,9 @@
         "namespace": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -28379,6 +28878,7 @@
         "emailAddress",
         "linkedPlatforms",
         "namespace",
+        "uniqueDisplayName",
         "userId"
       ]
     },
@@ -29193,6 +29693,16 @@
         "userIds"
       ]
     },
+    "model.ConfigValueResponseV3": {
+      "properties": {
+        "result": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "result"
+      ]
+    },
     "model.Country": {
       "properties": {
         "AgeRestriction": {
@@ -30001,6 +30511,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "isNewStudio": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "description": "multi tenant studio namespace",
           "type": "string"
@@ -30546,6 +31060,9 @@
         "namespace": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -30740,6 +31257,9 @@
           },
           "type": "array"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -30762,6 +31282,7 @@
         "permissions",
         "phoneVerified",
         "roles",
+        "uniqueDisplayName",
         "userId"
       ]
     },
@@ -31925,6 +32446,9 @@
         "password": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "validateOnly": {
           "type": "boolean",
           "x-omitempty": false
@@ -32103,6 +32627,9 @@
           },
           "type": "object"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -32115,92 +32642,6 @@
         "displayName",
         "platformUserIds",
         "userId"
-      ]
-    },
-    "model.UserCreateFromInvitationRequestV3": {
-      "properties": {
-        "acceptedPolicies": {
-          "items": {
-            "$ref": "#/definitions/legal.AcceptedPoliciesRequest"
-          },
-          "type": "array"
-        },
-        "authType": {
-          "default": "EMAILPASSWD",
-          "enum": [
-            "EMAILPASSWD"
-          ],
-          "type": "string"
-        },
-        "country": {
-          "default": "ID",
-          "type": "string"
-        },
-        "dateOfBirth": {
-          "type": "string"
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "reachMinimumAge": {
-          "type": "boolean",
-          "x-omitempty": false
-        }
-      },
-      "required": [
-        "authType",
-        "country",
-        "displayName",
-        "password",
-        "reachMinimumAge"
-      ]
-    },
-    "model.UserCreateFromInvitationRequestV4": {
-      "properties": {
-        "acceptedPolicies": {
-          "items": {
-            "$ref": "#/definitions/legal.AcceptedPoliciesRequest"
-          },
-          "type": "array"
-        },
-        "authType": {
-          "default": "EMAILPASSWD",
-          "enum": [
-            "EMAILPASSWD"
-          ],
-          "type": "string"
-        },
-        "country": {
-          "default": "ID",
-          "type": "string"
-        },
-        "dateOfBirth": {
-          "type": "string"
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "reachMinimumAge": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "username": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "authType",
-        "country",
-        "displayName",
-        "password",
-        "reachMinimumAge",
-        "username"
       ]
     },
     "model.UserCreateRequest": {
@@ -32267,6 +32708,9 @@
         "reachMinimumAge": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "uniqueDisplayName": {
+          "type": "string"
         }
       },
       "required": [
@@ -32337,6 +32781,9 @@
         "namespace": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -32394,6 +32841,9 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         },
         "userId": {
@@ -32462,6 +32912,10 @@
         "id": {
           "type": "string"
         },
+        "isNewStudio": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -32473,6 +32927,9 @@
             "$ref": "#/definitions/accountcommon.NamespaceRole"
           },
           "type": "array"
+        },
+        "studioNamespace": {
+          "type": "string"
         }
       },
       "required": [
@@ -32616,6 +33073,9 @@
           },
           "type": "array"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -32650,6 +33110,9 @@
     "model.UserPublicInfoResponseV4": {
       "properties": {
         "displayName": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         },
         "userId": {
@@ -32766,6 +33229,9 @@
           "type": "string"
         },
         "XUID": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         }
       },
@@ -32905,6 +33371,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         },
@@ -32986,6 +33455,9 @@
         "languageTag": {
           "type": "string"
         },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userName": {
           "type": "string"
         }
@@ -33048,6 +33520,9 @@
             "$ref": "#/definitions/model.UserPlatformInfo"
           },
           "type": "array"
+        },
+        "uniqueDisplayName": {
+          "type": "string"
         },
         "userId": {
           "type": "string"
@@ -33762,6 +34237,9 @@
         "token_type": {
           "type": "string"
         },
+        "unique_display_name": {
+          "type": "string"
+        },
         "user_id": {
           "description": "present if it is user token",
           "type": "string"
@@ -33874,6 +34352,9 @@
         "token_type": {
           "type": "string"
         },
+        "unique_display_name": {
+          "type": "string"
+        },
         "user_id": {
           "description": "present if it is user token",
           "type": "string"
@@ -33960,11 +34441,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-26T10:50:45+00:00",
-    "gitHash": "185e5c14ea4eac5c89fdefa6295a4647aa3628fb",
+    "buildDate": "2024-02-09T08:41:01+00:00",
+    "gitHash": "a566999aebce5bd7378cf992a8b0703a3134b909",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.9.0",
-    "version-roles-seeding": "1.0.28"
+    "version": "7.10.0",
+    "version-roles-seeding": "1.2.6"
   }
 }

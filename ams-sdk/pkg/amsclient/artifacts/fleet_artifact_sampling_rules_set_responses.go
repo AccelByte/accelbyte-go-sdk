@@ -27,8 +27,8 @@ type FleetArtifactSamplingRulesSetReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *FleetArtifactSamplingRulesSetReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 204:
-		result := NewFleetArtifactSamplingRulesSetNoContent()
+	case 200:
+		result := NewFleetArtifactSamplingRulesSetOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,24 +74,24 @@ func (o *FleetArtifactSamplingRulesSetReader) ReadResponse(response runtime.Clie
 	}
 }
 
-// NewFleetArtifactSamplingRulesSetNoContent creates a FleetArtifactSamplingRulesSetNoContent with default headers values
-func NewFleetArtifactSamplingRulesSetNoContent() *FleetArtifactSamplingRulesSetNoContent {
-	return &FleetArtifactSamplingRulesSetNoContent{}
+// NewFleetArtifactSamplingRulesSetOK creates a FleetArtifactSamplingRulesSetOK with default headers values
+func NewFleetArtifactSamplingRulesSetOK() *FleetArtifactSamplingRulesSetOK {
+	return &FleetArtifactSamplingRulesSetOK{}
 }
 
-/*FleetArtifactSamplingRulesSetNoContent handles this case with default header values.
+/*FleetArtifactSamplingRulesSetOK handles this case with default header values.
 
   success
 */
-type FleetArtifactSamplingRulesSetNoContent struct {
+type FleetArtifactSamplingRulesSetOK struct {
 	Payload *amsclientmodels.APIFleetArtifactsSampleRules
 }
 
-func (o *FleetArtifactSamplingRulesSetNoContent) Error() string {
-	return fmt.Sprintf("[PUT /ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules][%d] fleetArtifactSamplingRulesSetNoContent  %+v", 204, o.ToJSONString())
+func (o *FleetArtifactSamplingRulesSetOK) Error() string {
+	return fmt.Sprintf("[PUT /ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules][%d] fleetArtifactSamplingRulesSetOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *FleetArtifactSamplingRulesSetNoContent) ToJSONString() string {
+func (o *FleetArtifactSamplingRulesSetOK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -106,11 +106,11 @@ func (o *FleetArtifactSamplingRulesSetNoContent) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *FleetArtifactSamplingRulesSetNoContent) GetPayload() *amsclientmodels.APIFleetArtifactsSampleRules {
+func (o *FleetArtifactSamplingRulesSetOK) GetPayload() *amsclientmodels.APIFleetArtifactsSampleRules {
 	return o.Payload
 }
 
-func (o *FleetArtifactSamplingRulesSetNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *FleetArtifactSamplingRulesSetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

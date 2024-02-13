@@ -45,12 +45,6 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1Reader) ReadResponse(response runti
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAdminAnonymizeUserLeaderboardAdminV1NotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewAdminAnonymizeUserLeaderboardAdminV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +69,7 @@ func NewAdminAnonymizeUserLeaderboardAdminV1NoContent() *AdminAnonymizeUserLeade
 
 /*AdminAnonymizeUserLeaderboardAdminV1NoContent handles this case with default header values.
 
-  No Content
+  successful operation
 */
 type AdminAnonymizeUserLeaderboardAdminV1NoContent struct {
 }
@@ -101,7 +95,7 @@ func NewAdminAnonymizeUserLeaderboardAdminV1Unauthorized() *AdminAnonymizeUserLe
 
 /*AdminAnonymizeUserLeaderboardAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type AdminAnonymizeUserLeaderboardAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -154,7 +148,7 @@ func NewAdminAnonymizeUserLeaderboardAdminV1Forbidden() *AdminAnonymizeUserLeade
 
 /*AdminAnonymizeUserLeaderboardAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type AdminAnonymizeUserLeaderboardAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -200,59 +194,6 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1Forbidden) readResponse(response ru
 	return nil
 }
 
-// NewAdminAnonymizeUserLeaderboardAdminV1NotFound creates a AdminAnonymizeUserLeaderboardAdminV1NotFound with default headers values
-func NewAdminAnonymizeUserLeaderboardAdminV1NotFound() *AdminAnonymizeUserLeaderboardAdminV1NotFound {
-	return &AdminAnonymizeUserLeaderboardAdminV1NotFound{}
-}
-
-/*AdminAnonymizeUserLeaderboardAdminV1NotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminAnonymizeUserLeaderboardAdminV1NotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *AdminAnonymizeUserLeaderboardAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/leaderboards][%d] adminAnonymizeUserLeaderboardAdminV1NotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *AdminAnonymizeUserLeaderboardAdminV1NotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminAnonymizeUserLeaderboardAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *AdminAnonymizeUserLeaderboardAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAdminAnonymizeUserLeaderboardAdminV1InternalServerError creates a AdminAnonymizeUserLeaderboardAdminV1InternalServerError with default headers values
 func NewAdminAnonymizeUserLeaderboardAdminV1InternalServerError() *AdminAnonymizeUserLeaderboardAdminV1InternalServerError {
 	return &AdminAnonymizeUserLeaderboardAdminV1InternalServerError{}
@@ -260,7 +201,7 @@ func NewAdminAnonymizeUserLeaderboardAdminV1InternalServerError() *AdminAnonymiz
 
 /*AdminAnonymizeUserLeaderboardAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type AdminAnonymizeUserLeaderboardAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

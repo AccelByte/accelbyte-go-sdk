@@ -75,7 +75,7 @@ func NewGetLeaderboardConfigurationsPublicV2OK() *GetLeaderboardConfigurationsPu
 
 /*GetLeaderboardConfigurationsPublicV2OK handles this case with default header values.
 
-  OK
+  Leaderboards retrieved
 */
 type GetLeaderboardConfigurationsPublicV2OK struct {
 	Payload *leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp
@@ -128,7 +128,7 @@ func NewGetLeaderboardConfigurationsPublicV2BadRequest() *GetLeaderboardConfigur
 
 /*GetLeaderboardConfigurationsPublicV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetLeaderboardConfigurationsPublicV2BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -181,7 +181,7 @@ func NewGetLeaderboardConfigurationsPublicV2Unauthorized() *GetLeaderboardConfig
 
 /*GetLeaderboardConfigurationsPublicV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetLeaderboardConfigurationsPublicV2Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -234,7 +234,7 @@ func NewGetLeaderboardConfigurationsPublicV2Forbidden() *GetLeaderboardConfigura
 
 /*GetLeaderboardConfigurationsPublicV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetLeaderboardConfigurationsPublicV2Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -287,7 +287,7 @@ func NewGetLeaderboardConfigurationsPublicV2InternalServerError() *GetLeaderboar
 
 /*GetLeaderboardConfigurationsPublicV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetLeaderboardConfigurationsPublicV2InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

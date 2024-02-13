@@ -43,6 +43,9 @@ type ModelUserCreateResponseV3 struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

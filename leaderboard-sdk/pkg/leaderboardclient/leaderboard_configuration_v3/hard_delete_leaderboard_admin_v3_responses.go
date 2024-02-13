@@ -81,7 +81,7 @@ func NewHardDeleteLeaderboardAdminV3NoContent() *HardDeleteLeaderboardAdminV3NoC
 
 /*HardDeleteLeaderboardAdminV3NoContent handles this case with default header values.
 
-  No Content
+  Leaderboard successfully deleted
 */
 type HardDeleteLeaderboardAdminV3NoContent struct {
 }
@@ -107,7 +107,7 @@ func NewHardDeleteLeaderboardAdminV3BadRequest() *HardDeleteLeaderboardAdminV3Ba
 
 /*HardDeleteLeaderboardAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -160,7 +160,7 @@ func NewHardDeleteLeaderboardAdminV3Unauthorized() *HardDeleteLeaderboardAdminV3
 
 /*HardDeleteLeaderboardAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -213,7 +213,7 @@ func NewHardDeleteLeaderboardAdminV3Forbidden() *HardDeleteLeaderboardAdminV3For
 
 /*HardDeleteLeaderboardAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>71241</td><td>forbidden environment</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -266,7 +266,7 @@ func NewHardDeleteLeaderboardAdminV3NotFound() *HardDeleteLeaderboardAdminV3NotF
 
 /*HardDeleteLeaderboardAdminV3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -319,7 +319,7 @@ func NewHardDeleteLeaderboardAdminV3InternalServerError() *HardDeleteLeaderboard
 
 /*HardDeleteLeaderboardAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

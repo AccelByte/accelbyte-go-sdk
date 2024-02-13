@@ -54,6 +54,9 @@ type ModelUserCreateRequestV3 struct {
 	// reachminimumage
 	// Required: true
 	ReachMinimumAge *bool `json:"reachMinimumAge"`
+
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 }
 
 // Validate validates this Model user create request V3

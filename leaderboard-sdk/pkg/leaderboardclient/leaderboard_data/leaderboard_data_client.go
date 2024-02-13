@@ -32,7 +32,7 @@ type Client struct {
 type ClientService interface {
 	AdminGetArchivedLeaderboardRankingDataV1Handler(params *AdminGetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetArchivedLeaderboardRankingDataV1HandlerOK, *AdminGetArchivedLeaderboardRankingDataV1HandlerBadRequest, *AdminGetArchivedLeaderboardRankingDataV1HandlerUnauthorized, *AdminGetArchivedLeaderboardRankingDataV1HandlerForbidden, *AdminGetArchivedLeaderboardRankingDataV1HandlerNotFound, *AdminGetArchivedLeaderboardRankingDataV1HandlerInternalServerError, error)
 	AdminGetArchivedLeaderboardRankingDataV1HandlerShort(params *AdminGetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetArchivedLeaderboardRankingDataV1HandlerOK, error)
-	CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest, *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized, *CreateArchivedLeaderboardRankingDataV1HandlerForbidden, *CreateArchivedLeaderboardRankingDataV1HandlerNotFound, *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError, error)
+	CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest, *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized, *CreateArchivedLeaderboardRankingDataV1HandlerForbidden, *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError, error)
 	CreateArchivedLeaderboardRankingDataV1HandlerShort(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, error)
 	GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, *GetAllTimeLeaderboardRankingAdminV1BadRequest, *GetAllTimeLeaderboardRankingAdminV1Unauthorized, *GetAllTimeLeaderboardRankingAdminV1Forbidden, *GetAllTimeLeaderboardRankingAdminV1NotFound, *GetAllTimeLeaderboardRankingAdminV1InternalServerError, error)
 	GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, error)
@@ -52,7 +52,7 @@ type ClientService interface {
 	DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, error)
 	GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, *GetCurrentWeekLeaderboardRankingAdminV1BadRequest, *GetCurrentWeekLeaderboardRankingAdminV1Unauthorized, *GetCurrentWeekLeaderboardRankingAdminV1Forbidden, *GetCurrentWeekLeaderboardRankingAdminV1NotFound, *GetCurrentWeekLeaderboardRankingAdminV1InternalServerError, error)
 	GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, error)
-	DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1NotFound, *DeleteUserRankingsAdminV1InternalServerError, error)
+	DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1InternalServerError, error)
 	DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, error)
 	GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error)
 	GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, error)
@@ -215,7 +215,7 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'
 Archive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,
 remove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint
 */
-func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest, *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized, *CreateArchivedLeaderboardRankingDataV1HandlerForbidden, *CreateArchivedLeaderboardRankingDataV1HandlerNotFound, *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError, error) {
+func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest, *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized, *CreateArchivedLeaderboardRankingDataV1HandlerForbidden, *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateArchivedLeaderboardRankingDataV1HandlerParams()
@@ -247,31 +247,28 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArc
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateArchivedLeaderboardRankingDataV1HandlerCreated:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *CreateArchivedLeaderboardRankingDataV1HandlerBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *CreateArchivedLeaderboardRankingDataV1HandlerForbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *CreateArchivedLeaderboardRankingDataV1HandlerNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -327,8 +324,6 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1HandlerShort(params *Crea
 	case *CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized:
 		return nil, v
 	case *CreateArchivedLeaderboardRankingDataV1HandlerForbidden:
-		return nil, v
-	case *CreateArchivedLeaderboardRankingDataV1HandlerNotFound:
 		return nil, v
 	case *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError:
 		return nil, v
@@ -1583,7 +1578,7 @@ Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */
-func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1NotFound, *DeleteUserRankingsAdminV1InternalServerError, error) {
+func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV1NoContent, *DeleteUserRankingsAdminV1Unauthorized, *DeleteUserRankingsAdminV1Forbidden, *DeleteUserRankingsAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserRankingsAdminV1Params()
@@ -1615,28 +1610,25 @@ func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserRankingsAdminV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *DeleteUserRankingsAdminV1Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *DeleteUserRankingsAdminV1Forbidden:
-		return nil, nil, v, nil, nil, nil
-
-	case *DeleteUserRankingsAdminV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *DeleteUserRankingsAdminV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1685,8 +1677,6 @@ func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV
 	case *DeleteUserRankingsAdminV1Unauthorized:
 		return nil, v
 	case *DeleteUserRankingsAdminV1Forbidden:
-		return nil, v
-	case *DeleteUserRankingsAdminV1NotFound:
 		return nil, v
 	case *DeleteUserRankingsAdminV1InternalServerError:
 		return nil, v

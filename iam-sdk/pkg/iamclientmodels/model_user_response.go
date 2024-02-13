@@ -123,6 +123,9 @@ type ModelUserResponse struct {
 
 	// xuid
 	XUID string `json:"XUID,omitempty"`
+
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 }
 
 // Validate validates this Model user response

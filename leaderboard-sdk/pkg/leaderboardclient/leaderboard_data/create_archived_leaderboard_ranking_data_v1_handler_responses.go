@@ -51,12 +51,6 @@ func (o *CreateArchivedLeaderboardRankingDataV1HandlerReader) ReadResponse(respo
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewCreateArchivedLeaderboardRankingDataV1HandlerNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewCreateArchivedLeaderboardRankingDataV1HandlerInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +75,7 @@ func NewCreateArchivedLeaderboardRankingDataV1HandlerCreated() *CreateArchivedLe
 
 /*CreateArchivedLeaderboardRankingDataV1HandlerCreated handles this case with default header values.
 
-  Created
+  leaderboard data ranking archived
 */
 type CreateArchivedLeaderboardRankingDataV1HandlerCreated struct {
 }
@@ -107,7 +101,7 @@ func NewCreateArchivedLeaderboardRankingDataV1HandlerBadRequest() *CreateArchive
 
 /*CreateArchivedLeaderboardRankingDataV1HandlerBadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type CreateArchivedLeaderboardRankingDataV1HandlerBadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -160,7 +154,7 @@ func NewCreateArchivedLeaderboardRankingDataV1HandlerUnauthorized() *CreateArchi
 
 /*CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateArchivedLeaderboardRankingDataV1HandlerUnauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -213,7 +207,7 @@ func NewCreateArchivedLeaderboardRankingDataV1HandlerForbidden() *CreateArchived
 
 /*CreateArchivedLeaderboardRankingDataV1HandlerForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type CreateArchivedLeaderboardRankingDataV1HandlerForbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -259,59 +253,6 @@ func (o *CreateArchivedLeaderboardRankingDataV1HandlerForbidden) readResponse(re
 	return nil
 }
 
-// NewCreateArchivedLeaderboardRankingDataV1HandlerNotFound creates a CreateArchivedLeaderboardRankingDataV1HandlerNotFound with default headers values
-func NewCreateArchivedLeaderboardRankingDataV1HandlerNotFound() *CreateArchivedLeaderboardRankingDataV1HandlerNotFound {
-	return &CreateArchivedLeaderboardRankingDataV1HandlerNotFound{}
-}
-
-/*CreateArchivedLeaderboardRankingDataV1HandlerNotFound handles this case with default header values.
-
-  Not Found
-*/
-type CreateArchivedLeaderboardRankingDataV1HandlerNotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) Error() string {
-	return fmt.Sprintf("[POST /leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived][%d] createArchivedLeaderboardRankingDataV1HandlerNotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *CreateArchivedLeaderboardRankingDataV1HandlerNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewCreateArchivedLeaderboardRankingDataV1HandlerInternalServerError creates a CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError with default headers values
 func NewCreateArchivedLeaderboardRankingDataV1HandlerInternalServerError() *CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError {
 	return &CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError{}
@@ -319,7 +260,7 @@ func NewCreateArchivedLeaderboardRankingDataV1HandlerInternalServerError() *Crea
 
 /*CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type CreateArchivedLeaderboardRankingDataV1HandlerInternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

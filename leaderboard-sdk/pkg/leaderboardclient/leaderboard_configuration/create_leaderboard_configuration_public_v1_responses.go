@@ -81,7 +81,7 @@ func NewCreateLeaderboardConfigurationPublicV1Created() *CreateLeaderboardConfig
 
 /*CreateLeaderboardConfigurationPublicV1Created handles this case with default header values.
 
-  Created
+  Leaderboard created
 */
 type CreateLeaderboardConfigurationPublicV1Created struct {
 	Payload *leaderboardclientmodels.ModelsLeaderboardConfigReq
@@ -134,7 +134,7 @@ func NewCreateLeaderboardConfigurationPublicV1BadRequest() *CreateLeaderboardCon
 
 /*CreateLeaderboardConfigurationPublicV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>71242</td><td>stat code not found in namespace</td></tr></table>
 */
 type CreateLeaderboardConfigurationPublicV1BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +187,7 @@ func NewCreateLeaderboardConfigurationPublicV1Unauthorized() *CreateLeaderboardC
 
 /*CreateLeaderboardConfigurationPublicV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type CreateLeaderboardConfigurationPublicV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +240,7 @@ func NewCreateLeaderboardConfigurationPublicV1Forbidden() *CreateLeaderboardConf
 
 /*CreateLeaderboardConfigurationPublicV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type CreateLeaderboardConfigurationPublicV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -293,7 +293,7 @@ func NewCreateLeaderboardConfigurationPublicV1Conflict() *CreateLeaderboardConfi
 
 /*CreateLeaderboardConfigurationPublicV1Conflict handles this case with default header values.
 
-  Conflict
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71132</td><td>leaderboard configuration already exist</td></tr></table>
 */
 type CreateLeaderboardConfigurationPublicV1Conflict struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -346,7 +346,7 @@ func NewCreateLeaderboardConfigurationPublicV1InternalServerError() *CreateLeade
 
 /*CreateLeaderboardConfigurationPublicV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type CreateLeaderboardConfigurationPublicV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

@@ -100,6 +100,11 @@ type GetListOfFriendsParams struct {
 
 	*/
 	FriendID *string
+	/*FriendIds
+	  friend userIds
+
+	*/
+	FriendIds []string
 	/*Limit
 	  maximum number of data
 
@@ -209,6 +214,17 @@ func (o *GetListOfFriendsParams) SetFriendID(friendID *string) {
 	o.FriendID = friendID
 }
 
+// WithFriendIds adds the friendIds to the get list of friends params
+func (o *GetListOfFriendsParams) WithFriendIds(friendIds []string) *GetListOfFriendsParams {
+	o.SetFriendIds(friendIds)
+	return o
+}
+
+// SetFriendIds adds the friendIds to the get list of friends params
+func (o *GetListOfFriendsParams) SetFriendIds(friendIds []string) {
+	o.FriendIds = friendIds
+}
+
 // WithLimit adds the limit to the get list of friends params
 func (o *GetListOfFriendsParams) WithLimit(limit *int64) *GetListOfFriendsParams {
 	o.SetLimit(limit)
@@ -263,6 +279,14 @@ func (o *GetListOfFriendsParams) WriteToRequest(r runtime.ClientRequest, reg str
 			}
 		}
 
+	}
+
+	valuesFriendIds := o.FriendIds
+
+	joinedFriendIds := swag.JoinByFormat(valuesFriendIds, "csv")
+	// query array param friendIds
+	if err := r.SetQueryParam("friendIds", joinedFriendIds...); err != nil {
+		return err
 	}
 
 	if o.Limit != nil {

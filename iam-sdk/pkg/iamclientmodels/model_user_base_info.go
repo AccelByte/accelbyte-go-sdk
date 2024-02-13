@@ -30,6 +30,9 @@ type ModelUserBaseInfo struct {
 	// Required: true
 	PlatformUserIds map[string]string `json:"platformUserIds"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

@@ -44,15 +44,12 @@ func (aaa *UserDataV3Service) GetUserLeaderboardRankingsAdminV3(input *user_data
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UserDataV3.GetUserLeaderboardRankingsAdminV3(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.UserDataV3.GetUserLeaderboardRankingsAdminV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
 	if forbidden != nil {
 		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

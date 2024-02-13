@@ -71,7 +71,7 @@ type PublicSearchUserV3Params struct {
 	*/
 	Namespace string
 	/*By
-	  Search by given attribute, possible values are displayName and username and thirdPartyPlatform
+	  Search by given attribute, possible values are displayName and uniqueDisplayName and username and thirdPartyPlatform
 
 	*/
 	By *string

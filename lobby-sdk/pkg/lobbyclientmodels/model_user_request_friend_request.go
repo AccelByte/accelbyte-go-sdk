@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ModelUserRequestFriendRequest Model user request friend request
@@ -19,46 +18,19 @@ import (
 type ModelUserRequestFriendRequest struct {
 
 	// friendid
-	// Required: true
-	FriendID *string `json:"friendId"`
+	FriendID string `json:"friendId,omitempty"`
 
 	// friendpublicid
-	// Required: true
-	FriendPublicID *string `json:"friendPublicId"`
+	FriendPublicID string `json:"friendPublicId,omitempty"`
 }
 
 // Validate validates this Model user request friend request
 func (m *ModelUserRequestFriendRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateFriendID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateFriendPublicID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelUserRequestFriendRequest) validateFriendID(formats strfmt.Registry) error {
-
-	if err := validate.Required("friendId", "body", m.FriendID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserRequestFriendRequest) validateFriendPublicID(formats strfmt.Registry) error {
-
-	if err := validate.Required("friendPublicId", "body", m.FriendPublicID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

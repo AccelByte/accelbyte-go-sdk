@@ -51,12 +51,6 @@ func (o *GetHiddenUsersV3Reader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewGetHiddenUsersV3NotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewGetHiddenUsersV3InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +75,7 @@ func NewGetHiddenUsersV3OK() *GetHiddenUsersV3OK {
 
 /*GetHiddenUsersV3OK handles this case with default header values.
 
-  OK
+  Hidden user retrieved
 */
 type GetHiddenUsersV3OK struct {
 	Payload *leaderboardclientmodels.ModelsGetHiddenUserResponse
@@ -134,7 +128,7 @@ func NewGetHiddenUsersV3BadRequest() *GetHiddenUsersV3BadRequest {
 
 /*GetHiddenUsersV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type GetHiddenUsersV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +181,7 @@ func NewGetHiddenUsersV3Unauthorized() *GetHiddenUsersV3Unauthorized {
 
 /*GetHiddenUsersV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetHiddenUsersV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +234,7 @@ func NewGetHiddenUsersV3Forbidden() *GetHiddenUsersV3Forbidden {
 
 /*GetHiddenUsersV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetHiddenUsersV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -286,59 +280,6 @@ func (o *GetHiddenUsersV3Forbidden) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewGetHiddenUsersV3NotFound creates a GetHiddenUsersV3NotFound with default headers values
-func NewGetHiddenUsersV3NotFound() *GetHiddenUsersV3NotFound {
-	return &GetHiddenUsersV3NotFound{}
-}
-
-/*GetHiddenUsersV3NotFound handles this case with default header values.
-
-  Not Found
-*/
-type GetHiddenUsersV3NotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetHiddenUsersV3NotFound) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden][%d] getHiddenUsersV3NotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *GetHiddenUsersV3NotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *GetHiddenUsersV3NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetHiddenUsersV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewGetHiddenUsersV3InternalServerError creates a GetHiddenUsersV3InternalServerError with default headers values
 func NewGetHiddenUsersV3InternalServerError() *GetHiddenUsersV3InternalServerError {
 	return &GetHiddenUsersV3InternalServerError{}
@@ -346,7 +287,7 @@ func NewGetHiddenUsersV3InternalServerError() *GetHiddenUsersV3InternalServerErr
 
 /*GetHiddenUsersV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetHiddenUsersV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

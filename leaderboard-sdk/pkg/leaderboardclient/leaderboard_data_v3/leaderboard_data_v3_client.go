@@ -40,13 +40,13 @@ type ClientService interface {
 	GetUserRankingAdminV3Short(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, error)
 	DeleteUserRankingAdminV3(params *DeleteUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV3NoContent, *DeleteUserRankingAdminV3Unauthorized, *DeleteUserRankingAdminV3Forbidden, *DeleteUserRankingAdminV3NotFound, *DeleteUserRankingAdminV3InternalServerError, error)
 	DeleteUserRankingAdminV3Short(params *DeleteUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV3NoContent, error)
-	DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV3NoContent, *DeleteUserRankingsAdminV3Unauthorized, *DeleteUserRankingsAdminV3Forbidden, *DeleteUserRankingsAdminV3NotFound, *DeleteUserRankingsAdminV3InternalServerError, error)
+	DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV3NoContent, *DeleteUserRankingsAdminV3Unauthorized, *DeleteUserRankingsAdminV3Forbidden, *DeleteUserRankingsAdminV3InternalServerError, error)
 	DeleteUserRankingsAdminV3Short(params *DeleteUserRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV3NoContent, error)
 	GetAllTimeLeaderboardRankingPublicV3(params *GetAllTimeLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV3OK, *GetAllTimeLeaderboardRankingPublicV3BadRequest, *GetAllTimeLeaderboardRankingPublicV3NotFound, *GetAllTimeLeaderboardRankingPublicV3InternalServerError, error)
 	GetAllTimeLeaderboardRankingPublicV3Short(params *GetAllTimeLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV3OK, error)
 	GetCurrentCycleLeaderboardRankingPublicV3(params *GetCurrentCycleLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingPublicV3OK, *GetCurrentCycleLeaderboardRankingPublicV3BadRequest, *GetCurrentCycleLeaderboardRankingPublicV3NotFound, *GetCurrentCycleLeaderboardRankingPublicV3InternalServerError, error)
 	GetCurrentCycleLeaderboardRankingPublicV3Short(params *GetCurrentCycleLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingPublicV3OK, error)
-	BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error)
+	BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3BadRequest, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error)
 	BulkGetUsersRankingPublicV3Short(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, error)
 	GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error)
 	GetUserRankingPublicV3Short(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, error)
@@ -739,7 +739,7 @@ Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */
-func (a *Client) DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV3NoContent, *DeleteUserRankingsAdminV3Unauthorized, *DeleteUserRankingsAdminV3Forbidden, *DeleteUserRankingsAdminV3NotFound, *DeleteUserRankingsAdminV3InternalServerError, error) {
+func (a *Client) DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingsAdminV3NoContent, *DeleteUserRankingsAdminV3Unauthorized, *DeleteUserRankingsAdminV3Forbidden, *DeleteUserRankingsAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserRankingsAdminV3Params()
@@ -771,28 +771,25 @@ func (a *Client) DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserRankingsAdminV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *DeleteUserRankingsAdminV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *DeleteUserRankingsAdminV3Forbidden:
-		return nil, nil, v, nil, nil, nil
-
-	case *DeleteUserRankingsAdminV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *DeleteUserRankingsAdminV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -841,8 +838,6 @@ func (a *Client) DeleteUserRankingsAdminV3Short(params *DeleteUserRankingsAdminV
 	case *DeleteUserRankingsAdminV3Unauthorized:
 		return nil, v
 	case *DeleteUserRankingsAdminV3Forbidden:
-		return nil, v
-	case *DeleteUserRankingsAdminV3NotFound:
 		return nil, v
 	case *DeleteUserRankingsAdminV3InternalServerError:
 		return nil, v
@@ -1090,7 +1085,7 @@ BulkGetUsersRankingPublicV3 bulk get users ranking
 
 Bulk get users ranking in leaderboard, max allowed 20 userIDs at a time.
 */
-func (a *Client) BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error) {
+func (a *Client) BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3BadRequest, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBulkGetUsersRankingPublicV3Params()
@@ -1122,28 +1117,31 @@ func (a *Client) BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *BulkGetUsersRankingPublicV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *BulkGetUsersRankingPublicV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *BulkGetUsersRankingPublicV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *BulkGetUsersRankingPublicV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *BulkGetUsersRankingPublicV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *BulkGetUsersRankingPublicV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1188,6 +1186,8 @@ func (a *Client) BulkGetUsersRankingPublicV3Short(params *BulkGetUsersRankingPub
 
 	case *BulkGetUsersRankingPublicV3OK:
 		return v, nil
+	case *BulkGetUsersRankingPublicV3BadRequest:
+		return nil, v
 	case *BulkGetUsersRankingPublicV3Unauthorized:
 		return nil, v
 	case *BulkGetUsersRankingPublicV3Forbidden:

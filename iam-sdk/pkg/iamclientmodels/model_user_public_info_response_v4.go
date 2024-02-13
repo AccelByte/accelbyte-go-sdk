@@ -22,6 +22,9 @@ type ModelUserPublicInfoResponseV4 struct {
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

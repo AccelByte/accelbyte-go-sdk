@@ -81,7 +81,7 @@ func NewUpdateUserPointAdminV1OK() *UpdateUserPointAdminV1OK {
 
 /*UpdateUserPointAdminV1OK handles this case with default header values.
 
-  OK
+  User point updated
 */
 type UpdateUserPointAdminV1OK struct {
 	Payload *leaderboardclientmodels.ModelsUpdateUserPointAdminV1Response
@@ -134,7 +134,7 @@ func NewUpdateUserPointAdminV1BadRequest() *UpdateUserPointAdminV1BadRequest {
 
 /*UpdateUserPointAdminV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type UpdateUserPointAdminV1BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +187,7 @@ func NewUpdateUserPointAdminV1Unauthorized() *UpdateUserPointAdminV1Unauthorized
 
 /*UpdateUserPointAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateUserPointAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +240,7 @@ func NewUpdateUserPointAdminV1Forbidden() *UpdateUserPointAdminV1Forbidden {
 
 /*UpdateUserPointAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateUserPointAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -293,7 +293,7 @@ func NewUpdateUserPointAdminV1NotFound() *UpdateUserPointAdminV1NotFound {
 
 /*UpdateUserPointAdminV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type UpdateUserPointAdminV1NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -346,7 +346,7 @@ func NewUpdateUserPointAdminV1InternalServerError() *UpdateUserPointAdminV1Inter
 
 /*UpdateUserPointAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type UpdateUserPointAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

@@ -67,7 +67,7 @@ type CreateUserFromInvitationV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *iamclientmodels.ModelUserCreateFromInvitationRequestV3
+	Body *iamclientmodels.ModelUserCreateRequestV3
 	/*InvitationID
 	  Invitation ID, should follow UUID version 4 without hyphen
 
@@ -145,13 +145,13 @@ func (o *CreateUserFromInvitationV3Params) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the create user from invitation v3 params
-func (o *CreateUserFromInvitationV3Params) WithBody(body *iamclientmodels.ModelUserCreateFromInvitationRequestV3) *CreateUserFromInvitationV3Params {
+func (o *CreateUserFromInvitationV3Params) WithBody(body *iamclientmodels.ModelUserCreateRequestV3) *CreateUserFromInvitationV3Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the create user from invitation v3 params
-func (o *CreateUserFromInvitationV3Params) SetBody(body *iamclientmodels.ModelUserCreateFromInvitationRequestV3) {
+func (o *CreateUserFromInvitationV3Params) SetBody(body *iamclientmodels.ModelUserCreateRequestV3) {
 	o.Body = body
 }
 

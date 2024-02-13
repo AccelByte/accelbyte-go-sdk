@@ -29,7 +29,7 @@ var CreateUserFromInvitationV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *iamclientmodels.ModelUserCreateFromInvitationRequestV3
+		var body *iamclientmodels.ModelUserCreateRequestV3
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

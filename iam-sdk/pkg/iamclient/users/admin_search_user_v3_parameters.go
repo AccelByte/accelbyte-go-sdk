@@ -83,7 +83,7 @@ type AdminSearchUserV3Params struct {
 	*/
 	Namespace string
 	/*By
-	  Search by given attribute, possible values are emailAddress, displayName, username, and thirdPartyPlatform
+	  Search by given attribute, possible values are emailAddress, displayName, uniqueDisplayName, username and thirdPartyPlatform
 
 	*/
 	By *string

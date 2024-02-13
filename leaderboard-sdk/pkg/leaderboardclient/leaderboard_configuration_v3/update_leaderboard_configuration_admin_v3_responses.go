@@ -57,6 +57,12 @@ func (o *UpdateLeaderboardConfigurationAdminV3Reader) ReadResponse(response runt
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewUpdateLeaderboardConfigurationAdminV3Conflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewUpdateLeaderboardConfigurationAdminV3InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +87,7 @@ func NewUpdateLeaderboardConfigurationAdminV3OK() *UpdateLeaderboardConfiguratio
 
 /*UpdateLeaderboardConfigurationAdminV3OK handles this case with default header values.
 
-  OK
+  Leaderboard updated
 */
 type UpdateLeaderboardConfigurationAdminV3OK struct {
 	Payload *leaderboardclientmodels.ModelsGetLeaderboardConfigRespV3
@@ -134,7 +140,7 @@ func NewUpdateLeaderboardConfigurationAdminV3BadRequest() *UpdateLeaderboardConf
 
 /*UpdateLeaderboardConfigurationAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>71243</td><td>cycle doesn't belong to the stat code</td></tr><tr><td>71244</td><td>cycle is already stopped</td></tr></table>
 */
 type UpdateLeaderboardConfigurationAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +193,7 @@ func NewUpdateLeaderboardConfigurationAdminV3Unauthorized() *UpdateLeaderboardCo
 
 /*UpdateLeaderboardConfigurationAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type UpdateLeaderboardConfigurationAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +246,7 @@ func NewUpdateLeaderboardConfigurationAdminV3Forbidden() *UpdateLeaderboardConfi
 
 /*UpdateLeaderboardConfigurationAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type UpdateLeaderboardConfigurationAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -293,8 +299,8 @@ func NewUpdateLeaderboardConfigurationAdminV3NotFound() *UpdateLeaderboardConfig
 
 /*UpdateLeaderboardConfigurationAdminV3NotFound handles this case with default header values.
 
-  Not Found
-*/
+
+ */
 type UpdateLeaderboardConfigurationAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }
@@ -339,6 +345,59 @@ func (o *UpdateLeaderboardConfigurationAdminV3NotFound) readResponse(response ru
 	return nil
 }
 
+// NewUpdateLeaderboardConfigurationAdminV3Conflict creates a UpdateLeaderboardConfigurationAdminV3Conflict with default headers values
+func NewUpdateLeaderboardConfigurationAdminV3Conflict() *UpdateLeaderboardConfigurationAdminV3Conflict {
+	return &UpdateLeaderboardConfigurationAdminV3Conflict{}
+}
+
+/*UpdateLeaderboardConfigurationAdminV3Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71132</td><td>leaderboard configuration already exist</td></tr></table>
+*/
+type UpdateLeaderboardConfigurationAdminV3Conflict struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV3Conflict) Error() string {
+	return fmt.Sprintf("[PUT /leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}][%d] updateLeaderboardConfigurationAdminV3Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV3Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV3Conflict) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *UpdateLeaderboardConfigurationAdminV3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewUpdateLeaderboardConfigurationAdminV3InternalServerError creates a UpdateLeaderboardConfigurationAdminV3InternalServerError with default headers values
 func NewUpdateLeaderboardConfigurationAdminV3InternalServerError() *UpdateLeaderboardConfigurationAdminV3InternalServerError {
 	return &UpdateLeaderboardConfigurationAdminV3InternalServerError{}
@@ -346,7 +405,7 @@ func NewUpdateLeaderboardConfigurationAdminV3InternalServerError() *UpdateLeader
 
 /*UpdateLeaderboardConfigurationAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type UpdateLeaderboardConfigurationAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

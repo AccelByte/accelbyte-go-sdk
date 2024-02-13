@@ -40,8 +40,8 @@ type ClientService interface {
 	ArtifactGetURLShort(params *ArtifactGetURLParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetURLOK, error)
 	FleetArtifactSamplingRulesGet(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, *FleetArtifactSamplingRulesGetBadRequest, *FleetArtifactSamplingRulesGetUnauthorized, *FleetArtifactSamplingRulesGetForbidden, *FleetArtifactSamplingRulesGetNotFound, *FleetArtifactSamplingRulesGetInternalServerError, error)
 	FleetArtifactSamplingRulesGetShort(params *FleetArtifactSamplingRulesGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesGetOK, error)
-	FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetNoContent, *FleetArtifactSamplingRulesSetBadRequest, *FleetArtifactSamplingRulesSetUnauthorized, *FleetArtifactSamplingRulesSetForbidden, *FleetArtifactSamplingRulesSetNotFound, *FleetArtifactSamplingRulesSetInternalServerError, error)
-	FleetArtifactSamplingRulesSetShort(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetNoContent, error)
+	FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetOK, *FleetArtifactSamplingRulesSetBadRequest, *FleetArtifactSamplingRulesSetUnauthorized, *FleetArtifactSamplingRulesSetForbidden, *FleetArtifactSamplingRulesSetNotFound, *FleetArtifactSamplingRulesSetInternalServerError, error)
+	FleetArtifactSamplingRulesSetShort(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -646,7 +646,7 @@ Deprecated: 2022-08-10 - Use FleetArtifactSamplingRulesSetShort instead.
 FleetArtifactSamplingRulesSet set sampling rules for a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]
 */
-func (a *Client) FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetNoContent, *FleetArtifactSamplingRulesSetBadRequest, *FleetArtifactSamplingRulesSetUnauthorized, *FleetArtifactSamplingRulesSetForbidden, *FleetArtifactSamplingRulesSetNotFound, *FleetArtifactSamplingRulesSetInternalServerError, error) {
+func (a *Client) FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetOK, *FleetArtifactSamplingRulesSetBadRequest, *FleetArtifactSamplingRulesSetUnauthorized, *FleetArtifactSamplingRulesSetForbidden, *FleetArtifactSamplingRulesSetNotFound, *FleetArtifactSamplingRulesSetInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetArtifactSamplingRulesSetParams()
@@ -683,7 +683,7 @@ func (a *Client) FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRule
 
 	switch v := result.(type) {
 
-	case *FleetArtifactSamplingRulesSetNoContent:
+	case *FleetArtifactSamplingRulesSetOK:
 		return v, nil, nil, nil, nil, nil, nil
 
 	case *FleetArtifactSamplingRulesSetBadRequest:
@@ -710,7 +710,7 @@ func (a *Client) FleetArtifactSamplingRulesSet(params *FleetArtifactSamplingRule
 FleetArtifactSamplingRulesSetShort set sampling rules for a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]
 */
-func (a *Client) FleetArtifactSamplingRulesSetShort(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetNoContent, error) {
+func (a *Client) FleetArtifactSamplingRulesSetShort(params *FleetArtifactSamplingRulesSetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetArtifactSamplingRulesSetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetArtifactSamplingRulesSetParams()
@@ -743,7 +743,7 @@ func (a *Client) FleetArtifactSamplingRulesSetShort(params *FleetArtifactSamplin
 
 	switch v := result.(type) {
 
-	case *FleetArtifactSamplingRulesSetNoContent:
+	case *FleetArtifactSamplingRulesSetOK:
 		return v, nil
 	case *FleetArtifactSamplingRulesSetBadRequest:
 		return nil, v

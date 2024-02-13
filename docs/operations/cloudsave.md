@@ -32,6 +32,12 @@
 | `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/metadata` | PUT | AdminPutGameBinaryRecorMetadataV1Short | [AdminPutGameBinaryRecorMetadataV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record/admin_game_binary_record_client.go) | [AdminPutGameBinaryRecorMetadataV1Short](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go) | [AdminPutGameBinaryRecorMetadataV1Short](../../samples/cli/cmd/cloudsave/adminGameBinaryRecord/adminPutGameBinaryRecorMetadataV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/presigned` | POST | AdminPostGameBinaryPresignedURLV1Short | [AdminPostGameBinaryPresignedURLV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record/admin_game_binary_record_client.go) | [AdminPostGameBinaryPresignedURLV1Short](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go) | [AdminPostGameBinaryPresignedURLV1Short](../../samples/cli/cmd/cloudsave/adminGameBinaryRecord/adminPostGameBinaryPresignedURLV1.go) |
 
+### TTLConfig Wrapper:  [TTLConfig](../../services-api/pkg/service/cloudsave/ttlConfig.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/ttl` | DELETE | DeleteGameBinaryRecordTTLConfigShort | [DeleteGameBinaryRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameBinaryRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameBinaryRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameBinaryRecordTTLConfig.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}/ttl` | DELETE | DeleteGameRecordTTLConfigShort | [DeleteGameRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameRecordTTLConfig.go) |
+
 ### AdminConcurrentRecord Wrapper:  [AdminConcurrentRecord](../../services-api/pkg/service/cloudsave/adminConcurrentRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -57,6 +63,14 @@
 | `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}` | PUT | AdminPutGameRecordHandlerV1Short | [AdminPutGameRecordHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_record/admin_game_record_client.go) | [AdminPutGameRecordHandlerV1Short](../../services-api/pkg/service/cloudsave/adminGameRecord.go) | [AdminPutGameRecordHandlerV1Short](../../samples/cli/cmd/cloudsave/adminGameRecord/adminPutGameRecordHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}` | POST | AdminPostGameRecordHandlerV1Short | [AdminPostGameRecordHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_record/admin_game_record_client.go) | [AdminPostGameRecordHandlerV1Short](../../services-api/pkg/service/cloudsave/adminGameRecord.go) | [AdminPostGameRecordHandlerV1Short](../../samples/cli/cmd/cloudsave/adminGameRecord/adminPostGameRecordHandlerV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}` | DELETE | AdminDeleteGameRecordHandlerV1Short | [AdminDeleteGameRecordHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_record/admin_game_record_client.go) | [AdminDeleteGameRecordHandlerV1Short](../../services-api/pkg/service/cloudsave/adminGameRecord.go) | [AdminDeleteGameRecordHandlerV1Short](../../samples/cli/cmd/cloudsave/adminGameRecord/adminDeleteGameRecordHandlerV1.go) |
+
+### Tags Wrapper:  [Tags](../../services-api/pkg/service/cloudsave/tags.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/cloudsave/v1/admin/namespaces/{namespace}/tags` | GET | AdminListTagsHandlerV1Short | [AdminListTagsHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/tags/tags_client.go) | [AdminListTagsHandlerV1Short](../../services-api/pkg/service/cloudsave/tags.go) | [AdminListTagsHandlerV1Short](../../samples/cli/cmd/cloudsave/tags/adminListTagsHandlerV1.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/tags` | POST | AdminPostTagHandlerV1Short | [AdminPostTagHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/tags/tags_client.go) | [AdminPostTagHandlerV1Short](../../services-api/pkg/service/cloudsave/tags.go) | [AdminPostTagHandlerV1Short](../../samples/cli/cmd/cloudsave/tags/adminPostTagHandlerV1.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/tags/{tag}` | DELETE | AdminDeleteTagHandlerV1Short | [AdminDeleteTagHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/tags/tags_client.go) | [AdminDeleteTagHandlerV1Short](../../services-api/pkg/service/cloudsave/tags.go) | [AdminDeleteTagHandlerV1Short](../../samples/cli/cmd/cloudsave/tags/adminDeleteTagHandlerV1.go) |
+| `/cloudsave/v1/namespaces/{namespace}/tags` | GET | PublicListTagsHandlerV1Short | [PublicListTagsHandlerV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/tags/tags_client.go) | [PublicListTagsHandlerV1Short](../../services-api/pkg/service/cloudsave/tags.go) | [PublicListTagsHandlerV1Short](../../samples/cli/cmd/cloudsave/tags/publicListTagsHandlerV1.go) |
 
 ### AdminPlayerRecord Wrapper:  [AdminPlayerRecord](../../services-api/pkg/service/cloudsave/adminPlayerRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -184,17 +198,21 @@
 | `models.ConcurrentRecordRequest` | [ModelsConcurrentRecordRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_concurrent_record_request.go) |
 | `models.CustomConfig` | [ModelsCustomConfig ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_custom_config.go) |
 | `models.CustomFunction` | [ModelsCustomFunction ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_custom_function.go) |
+| `models.GameBinaryRecordAdminResponse` | [ModelsGameBinaryRecordAdminResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_binary_record_admin_response.go) |
 | `models.GameBinaryRecordCreate` | [ModelsGameBinaryRecordCreate ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_binary_record_create.go) |
 | `models.GameBinaryRecordMetadataRequest` | [ModelsGameBinaryRecordMetadataRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_binary_record_metadata_request.go) |
 | `models.GameBinaryRecordResponse` | [ModelsGameBinaryRecordResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_binary_record_response.go) |
+| `models.GameRecordAdminResponse` | [ModelsGameRecordAdminResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_record_admin_response.go) |
 | `models.GameRecordRequest` | [ModelsGameRecordRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_record_request.go) |
 | `models.GameRecordResponse` | [ModelsGameRecordResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_game_record_response.go) |
 | `models.ListAdminGameRecordKeysResponse` | [ModelsListAdminGameRecordKeysResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_admin_game_record_keys_response.go) |
 | `models.ListAdminPlayerRecordKeysResponse` | [ModelsListAdminPlayerRecordKeysResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_admin_player_record_keys_response.go) |
+| `models.ListGameBinaryRecordsAdminResponse` | [ModelsListGameBinaryRecordsAdminResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_game_binary_records_admin_response.go) |
 | `models.ListGameBinaryRecordsResponse` | [ModelsListGameBinaryRecordsResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_game_binary_records_response.go) |
 | `models.ListGameRecordKeysResponse` | [ModelsListGameRecordKeysResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_game_record_keys_response.go) |
 | `models.ListPlayerBinaryRecordsResponse` | [ModelsListPlayerBinaryRecordsResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_player_binary_records_response.go) |
 | `models.ListPlayerRecordKeysResponse` | [ModelsListPlayerRecordKeysResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_player_record_keys_response.go) |
+| `models.ListTagsResponse` | [ModelsListTagsResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_list_tags_response.go) |
 | `models.Pagination` | [ModelsPagination ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_pagination.go) |
 | `models.PlayerBinaryRecordCreate` | [ModelsPlayerBinaryRecordCreate ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_binary_record_create.go) |
 | `models.PlayerBinaryRecordMetadataPublicRequest` | [ModelsPlayerBinaryRecordMetadataPublicRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_player_binary_record_metadata_public_request.go) |
@@ -210,6 +228,9 @@
 | `models.PublicGameBinaryRecordCreate` | [ModelsPublicGameBinaryRecordCreate ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_public_game_binary_record_create.go) |
 | `models.PublicPlayerBinaryRecordCreate` | [ModelsPublicPlayerBinaryRecordCreate ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_public_player_binary_record_create.go) |
 | `models.ResponseError` | [ModelsResponseError ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_response_error.go) |
+| `models.TTLConfigDTO` | [ModelsTTLConfigDTO ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_ttl_config_dto.go) |
+| `models.TagInfo` | [ModelsTagInfo ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_tag_info.go) |
+| `models.TagRequest` | [ModelsTagRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_tag_request.go) |
 | `models.UploadBinaryRecordRequest` | [ModelsUploadBinaryRecordRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_upload_binary_record_request.go) |
 | `models.UploadBinaryRecordResponse` | [ModelsUploadBinaryRecordResponse ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_upload_binary_record_response.go) |
 | `models.UserKeyRequest` | [ModelsUserKeyRequest ](../../cloudsave-sdk/pkg/cloudsaveclientmodels/models_user_key_request.go) |

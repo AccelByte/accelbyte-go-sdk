@@ -81,7 +81,7 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerOK() *GetArchivedLeaderboardRa
 
 /*GetArchivedLeaderboardRankingDataV1HandlerOK handles this case with default header values.
 
-  OK
+  Archived leaderboard retrieved
 */
 type GetArchivedLeaderboardRankingDataV1HandlerOK struct {
 	Payload []*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse
@@ -132,8 +132,8 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerBadRequest() *GetArchivedLeade
 
 /*GetArchivedLeaderboardRankingDataV1HandlerBadRequest handles this case with default header values.
 
-  Bad Request
-*/
+
+ */
 type GetArchivedLeaderboardRankingDataV1HandlerBadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }
@@ -185,7 +185,7 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerUnauthorized() *GetArchivedLea
 
 /*GetArchivedLeaderboardRankingDataV1HandlerUnauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetArchivedLeaderboardRankingDataV1HandlerUnauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -238,7 +238,7 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerForbidden() *GetArchivedLeader
 
 /*GetArchivedLeaderboardRankingDataV1HandlerForbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetArchivedLeaderboardRankingDataV1HandlerForbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -291,7 +291,7 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerNotFound() *GetArchivedLeaderb
 
 /*GetArchivedLeaderboardRankingDataV1HandlerNotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71230</td><td>leaderboard configuration not found</td></tr></table>
 */
 type GetArchivedLeaderboardRankingDataV1HandlerNotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -344,7 +344,7 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerInternalServerError() *GetArch
 
 /*GetArchivedLeaderboardRankingDataV1HandlerInternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetArchivedLeaderboardRankingDataV1HandlerInternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

@@ -32,6 +32,9 @@ type ModelUserUpdateRequestV3 struct {
 	// languagetag
 	LanguageTag string `json:"languageTag,omitempty"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// username
 	UserName string `json:"userName,omitempty"`
 }

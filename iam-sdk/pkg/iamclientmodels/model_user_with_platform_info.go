@@ -30,6 +30,9 @@ type ModelUserWithPlatformInfo struct {
 	// Required: true
 	PlatformInfos []*ModelUserPlatformInfo `json:"platformInfos"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

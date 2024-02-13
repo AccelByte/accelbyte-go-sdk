@@ -661,6 +661,96 @@ func (aaa *UsersV4Service) AdminEnableMyBackupCodesV4(input *users_v4.AdminEnabl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetBackupCodesV4Short instead.
+func (aaa *UsersV4Service) AdminGetBackupCodesV4(input *users_v4.AdminGetBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminGetBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminGenerateBackupCodesV4Short instead.
+func (aaa *UsersV4Service) AdminGenerateBackupCodesV4(input *users_v4.AdminGenerateBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminGenerateBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminEnableBackupCodesV4Short instead.
+func (aaa *UsersV4Service) AdminEnableBackupCodesV4(input *users_v4.AdminEnableBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.AdminEnableBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminSendMyMFAEmailCodeV4Short instead.
 func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4(input *users_v4.AdminSendMyMFAEmailCodeV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1283,6 +1373,96 @@ func (aaa *UsersV4Service) PublicEnableMyBackupCodesV4(input *users_v4.PublicEna
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetBackupCodesV4Short instead.
+func (aaa *UsersV4Service) PublicGetBackupCodesV4(input *users_v4.PublicGetBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicGetBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGenerateBackupCodesV4Short instead.
+func (aaa *UsersV4Service) PublicGenerateBackupCodesV4(input *users_v4.PublicGenerateBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicGenerateBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicEnableBackupCodesV4Short instead.
+func (aaa *UsersV4Service) PublicEnableBackupCodesV4(input *users_v4.PublicEnableBackupCodesV4Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.PublicEnableBackupCodesV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicRemoveTrustedDeviceV4Short instead.
@@ -2144,6 +2324,96 @@ func (aaa *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.Admin
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersV4Service) AdminGetBackupCodesV4Short(input *users_v4.AdminGetBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.AdminGetBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersV4Service) AdminGenerateBackupCodesV4Short(input *users_v4.AdminGenerateBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.AdminGenerateBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersV4Service) AdminEnableBackupCodesV4Short(input *users_v4.AdminEnableBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.AdminEnableBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4Short(input *users_v4.AdminSendMyMFAEmailCodeV4Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2772,6 +3042,96 @@ func (aaa *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Publ
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) PublicGetBackupCodesV4Short(input *users_v4.PublicGetBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.PublicGetBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersV4Service) PublicGenerateBackupCodesV4Short(input *users_v4.PublicGenerateBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.PublicGenerateBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersV4Service) PublicEnableBackupCodesV4Short(input *users_v4.PublicEnableBackupCodesV4Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.UsersV4.PublicEnableBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {

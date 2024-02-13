@@ -38,7 +38,7 @@ type ClientService interface {
 	DeleteBulkLeaderboardConfigurationAdminV3Short(params *DeleteBulkLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardConfigurationAdminV3OK, error)
 	GetLeaderboardConfigurationAdminV3(params *GetLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationAdminV3OK, *GetLeaderboardConfigurationAdminV3BadRequest, *GetLeaderboardConfigurationAdminV3Unauthorized, *GetLeaderboardConfigurationAdminV3Forbidden, *GetLeaderboardConfigurationAdminV3NotFound, *GetLeaderboardConfigurationAdminV3InternalServerError, error)
 	GetLeaderboardConfigurationAdminV3Short(params *GetLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetLeaderboardConfigurationAdminV3OK, error)
-	UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, *UpdateLeaderboardConfigurationAdminV3BadRequest, *UpdateLeaderboardConfigurationAdminV3Unauthorized, *UpdateLeaderboardConfigurationAdminV3Forbidden, *UpdateLeaderboardConfigurationAdminV3NotFound, *UpdateLeaderboardConfigurationAdminV3InternalServerError, error)
+	UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, *UpdateLeaderboardConfigurationAdminV3BadRequest, *UpdateLeaderboardConfigurationAdminV3Unauthorized, *UpdateLeaderboardConfigurationAdminV3Forbidden, *UpdateLeaderboardConfigurationAdminV3NotFound, *UpdateLeaderboardConfigurationAdminV3Conflict, *UpdateLeaderboardConfigurationAdminV3InternalServerError, error)
 	UpdateLeaderboardConfigurationAdminV3Short(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, error)
 	DeleteLeaderboardConfigurationAdminV3(params *DeleteLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLeaderboardConfigurationAdminV3NoContent, *DeleteLeaderboardConfigurationAdminV3BadRequest, *DeleteLeaderboardConfigurationAdminV3Unauthorized, *DeleteLeaderboardConfigurationAdminV3Forbidden, *DeleteLeaderboardConfigurationAdminV3NotFound, *DeleteLeaderboardConfigurationAdminV3InternalServerError, error)
 	DeleteLeaderboardConfigurationAdminV3Short(params *DeleteLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLeaderboardConfigurationAdminV3NoContent, error)
@@ -664,7 +664,7 @@ Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]'
 
   * cycleIds: Statistic cycle ids that will be tracked in the leaderboard. (required).
 */
-func (a *Client) UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, *UpdateLeaderboardConfigurationAdminV3BadRequest, *UpdateLeaderboardConfigurationAdminV3Unauthorized, *UpdateLeaderboardConfigurationAdminV3Forbidden, *UpdateLeaderboardConfigurationAdminV3NotFound, *UpdateLeaderboardConfigurationAdminV3InternalServerError, error) {
+func (a *Client) UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, *UpdateLeaderboardConfigurationAdminV3BadRequest, *UpdateLeaderboardConfigurationAdminV3Unauthorized, *UpdateLeaderboardConfigurationAdminV3Forbidden, *UpdateLeaderboardConfigurationAdminV3NotFound, *UpdateLeaderboardConfigurationAdminV3Conflict, *UpdateLeaderboardConfigurationAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateLeaderboardConfigurationAdminV3Params()
@@ -696,31 +696,34 @@ func (a *Client) UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboard
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateLeaderboardConfigurationAdminV3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *UpdateLeaderboardConfigurationAdminV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateLeaderboardConfigurationAdminV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateLeaderboardConfigurationAdminV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *UpdateLeaderboardConfigurationAdminV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateLeaderboardConfigurationAdminV3Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateLeaderboardConfigurationAdminV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -800,6 +803,8 @@ func (a *Client) UpdateLeaderboardConfigurationAdminV3Short(params *UpdateLeader
 	case *UpdateLeaderboardConfigurationAdminV3Forbidden:
 		return nil, v
 	case *UpdateLeaderboardConfigurationAdminV3NotFound:
+		return nil, v
+	case *UpdateLeaderboardConfigurationAdminV3Conflict:
 		return nil, v
 	case *UpdateLeaderboardConfigurationAdminV3InternalServerError:
 		return nil, v

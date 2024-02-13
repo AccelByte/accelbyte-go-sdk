@@ -516,6 +516,32 @@ func (aaa *FriendsService) GetIncomingFriendRequests(input *friends.GetIncomingF
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminListFriendsOfFriendsShort instead.
+func (aaa *FriendsService) AdminListFriendsOfFriends(input *friends.AdminListFriendsOfFriendsParams) (*lobbyclientmodels.ModelFriendshipConnectionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Friends.AdminListFriendsOfFriends(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetOutgoingFriendRequestsShort instead.
 func (aaa *FriendsService) GetOutgoingFriendRequests(input *friends.GetOutgoingFriendRequestsParams) (*lobbyclientmodels.ModelLoadOutgoingFriendsWithTimeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1045,6 +1071,36 @@ func (aaa *FriendsService) GetIncomingFriendRequestsShort(input *friends.GetInco
 	}
 
 	ok, err := aaa.Client.Friends.GetIncomingFriendRequestsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FriendsService) AdminListFriendsOfFriendsShort(input *friends.AdminListFriendsOfFriendsParams) (*lobbyclientmodels.ModelFriendshipConnectionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFriends != nil {
+		input.XFlightId = tempFlightIdFriends
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Friends.AdminListFriendsOfFriendsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

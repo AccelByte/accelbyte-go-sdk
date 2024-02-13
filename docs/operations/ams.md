@@ -95,6 +95,7 @@
 | `api.AccountLinkResponse` | [ApiAccountLinkResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_response.go) |
 | `api.AccountLinkTokenResponse` | [ApiAccountLinkTokenResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_link_token_response.go) |
 | `api.AccountResponse` | [ApiAccountResponse ](../../ams-sdk/pkg/amsclientmodels/api_account_response.go) |
+| `api.ArtifactListResponse` | [ApiArtifactListResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_list_response.go) |
 | `api.ArtifactResponse` | [ApiArtifactResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_response.go) |
 | `api.ArtifactSamplingRule` | [ApiArtifactSamplingRule ](../../ams-sdk/pkg/amsclientmodels/api_artifact_sampling_rule.go) |
 | `api.ArtifactTypeSamplingRules` | [ApiArtifactTypeSamplingRules ](../../ams-sdk/pkg/amsclientmodels/api_artifact_type_sampling_rules.go) |

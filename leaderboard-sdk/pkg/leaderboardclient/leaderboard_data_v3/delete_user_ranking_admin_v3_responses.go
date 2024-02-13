@@ -75,7 +75,7 @@ func NewDeleteUserRankingAdminV3NoContent() *DeleteUserRankingAdminV3NoContent {
 
 /*DeleteUserRankingAdminV3NoContent handles this case with default header values.
 
-  No Content
+  User ranking deleted
 */
 type DeleteUserRankingAdminV3NoContent struct {
 }
@@ -101,7 +101,7 @@ func NewDeleteUserRankingAdminV3Unauthorized() *DeleteUserRankingAdminV3Unauthor
 
 /*DeleteUserRankingAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteUserRankingAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -154,7 +154,7 @@ func NewDeleteUserRankingAdminV3Forbidden() *DeleteUserRankingAdminV3Forbidden {
 
 /*DeleteUserRankingAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteUserRankingAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -207,8 +207,8 @@ func NewDeleteUserRankingAdminV3NotFound() *DeleteUserRankingAdminV3NotFound {
 
 /*DeleteUserRankingAdminV3NotFound handles this case with default header values.
 
-  Not Found
-*/
+
+ */
 type DeleteUserRankingAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }
@@ -260,7 +260,7 @@ func NewDeleteUserRankingAdminV3InternalServerError() *DeleteUserRankingAdminV3I
 
 /*DeleteUserRankingAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteUserRankingAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

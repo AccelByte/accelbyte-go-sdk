@@ -2820,11 +2820,11 @@
     "path": "/sessionbrowser/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-17T10:31:01+00:00",
-    "gitHash": "2cabb14c145de92ec3b8a3e0e0176254975ab1b3",
+    "buildDate": "2024-01-30T03:02:38+00:00",
+    "gitHash": "f4fdcda7e0e14b5c45a70fbbb880f90df2cebd57",
     "name": "justice-session-browser-service",
-    "revisionID": "1.18.3",
-    "version": "1.18.3",
+    "revisionID": "1.18.4",
+    "version": "1.18.4",
     "version-roles-seeding": "0.0.3"
   }
 }

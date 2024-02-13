@@ -64,6 +64,8 @@ type ClientService interface {
 	GetListOfFriendsShort(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, error)
 	GetIncomingFriendRequests(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, *GetIncomingFriendRequestsBadRequest, *GetIncomingFriendRequestsUnauthorized, *GetIncomingFriendRequestsForbidden, *GetIncomingFriendRequestsInternalServerError, error)
 	GetIncomingFriendRequestsShort(params *GetIncomingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomingFriendRequestsOK, error)
+	AdminListFriendsOfFriends(params *AdminListFriendsOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListFriendsOfFriendsOK, *AdminListFriendsOfFriendsBadRequest, *AdminListFriendsOfFriendsUnauthorized, *AdminListFriendsOfFriendsForbidden, *AdminListFriendsOfFriendsInternalServerError, error)
+	AdminListFriendsOfFriendsShort(params *AdminListFriendsOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListFriendsOfFriendsOK, error)
 	GetOutgoingFriendRequests(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, *GetOutgoingFriendRequestsBadRequest, *GetOutgoingFriendRequestsUnauthorized, *GetOutgoingFriendRequestsForbidden, *GetOutgoingFriendRequestsInternalServerError, error)
 	GetOutgoingFriendRequestsShort(params *GetOutgoingFriendRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOutgoingFriendRequestsOK, error)
 
@@ -1292,6 +1294,10 @@ Deprecated: 2022-08-10 - Use UserGetFriendshipStatusShort instead.
 
 UserGetFriendshipStatus user get friendship status
 User get friendship status.
+Code: 0 - Message: "not friend"
+Code: 1 - Message: "outgoing"
+Code: 2 - Message: "incoming"
+Code: 3 - Message: "friend"
 */
 func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, *UserGetFriendshipStatusBadRequest, *UserGetFriendshipStatusUnauthorized, *UserGetFriendshipStatusForbidden, *UserGetFriendshipStatusInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1353,6 +1359,10 @@ func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, 
 /*
 UserGetFriendshipStatusShort user get friendship status
 User get friendship status.
+Code: 0 - Message: "not friend"
+Code: 1 - Message: "outgoing"
+Code: 2 - Message: "incoming"
+Code: 3 - Message: "friend"
 */
 func (a *Client) UserGetFriendshipStatusShort(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -2109,6 +2119,122 @@ func (a *Client) GetIncomingFriendRequestsShort(params *GetIncomingFriendRequest
 	case *GetIncomingFriendRequestsForbidden:
 		return nil, v
 	case *GetIncomingFriendRequestsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminListFriendsOfFriendsShort instead.
+
+AdminListFriendsOfFriends load list friends of friends
+Load list friends and friends of friends in a namespace. Response subjectId will be different with requested userId if the user is not directly friend
+*/
+func (a *Client) AdminListFriendsOfFriends(params *AdminListFriendsOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListFriendsOfFriendsOK, *AdminListFriendsOfFriendsBadRequest, *AdminListFriendsOfFriendsUnauthorized, *AdminListFriendsOfFriendsForbidden, *AdminListFriendsOfFriendsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListFriendsOfFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminListFriendsOfFriends",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/of-friends",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListFriendsOfFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListFriendsOfFriendsOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminListFriendsOfFriendsBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminListFriendsOfFriendsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminListFriendsOfFriendsForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminListFriendsOfFriendsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminListFriendsOfFriendsShort load list friends of friends
+Load list friends and friends of friends in a namespace. Response subjectId will be different with requested userId if the user is not directly friend
+*/
+func (a *Client) AdminListFriendsOfFriendsShort(params *AdminListFriendsOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListFriendsOfFriendsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListFriendsOfFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminListFriendsOfFriends",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/of-friends",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListFriendsOfFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListFriendsOfFriendsOK:
+		return v, nil
+	case *AdminListFriendsOfFriendsBadRequest:
+		return nil, v
+	case *AdminListFriendsOfFriendsUnauthorized:
+		return nil, v
+	case *AdminListFriendsOfFriendsForbidden:
+		return nil, v
+	case *AdminListFriendsOfFriendsInternalServerError:
 		return nil, v
 
 	default:

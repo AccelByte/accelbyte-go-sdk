@@ -51,12 +51,6 @@ func (o *SetUserVisibilityStatusV2Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewSetUserVisibilityStatusV2NotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewSetUserVisibilityStatusV2InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -81,7 +75,7 @@ func NewSetUserVisibilityStatusV2OK() *SetUserVisibilityStatusV2OK {
 
 /*SetUserVisibilityStatusV2OK handles this case with default header values.
 
-  OK
+  User visibility status updated
 */
 type SetUserVisibilityStatusV2OK struct {
 	Payload *leaderboardclientmodels.ModelsGetUserVisibilityResponse
@@ -134,7 +128,7 @@ func NewSetUserVisibilityStatusV2BadRequest() *SetUserVisibilityStatusV2BadReque
 
 /*SetUserVisibilityStatusV2BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
 */
 type SetUserVisibilityStatusV2BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +181,7 @@ func NewSetUserVisibilityStatusV2Unauthorized() *SetUserVisibilityStatusV2Unauth
 
 /*SetUserVisibilityStatusV2Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type SetUserVisibilityStatusV2Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +234,7 @@ func NewSetUserVisibilityStatusV2Forbidden() *SetUserVisibilityStatusV2Forbidden
 
 /*SetUserVisibilityStatusV2Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type SetUserVisibilityStatusV2Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -286,59 +280,6 @@ func (o *SetUserVisibilityStatusV2Forbidden) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewSetUserVisibilityStatusV2NotFound creates a SetUserVisibilityStatusV2NotFound with default headers values
-func NewSetUserVisibilityStatusV2NotFound() *SetUserVisibilityStatusV2NotFound {
-	return &SetUserVisibilityStatusV2NotFound{}
-}
-
-/*SetUserVisibilityStatusV2NotFound handles this case with default header values.
-
-  Not Found
-*/
-type SetUserVisibilityStatusV2NotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *SetUserVisibilityStatusV2NotFound) Error() string {
-	return fmt.Sprintf("[PUT /leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility][%d] setUserVisibilityStatusV2NotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *SetUserVisibilityStatusV2NotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *SetUserVisibilityStatusV2NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *SetUserVisibilityStatusV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSetUserVisibilityStatusV2InternalServerError creates a SetUserVisibilityStatusV2InternalServerError with default headers values
 func NewSetUserVisibilityStatusV2InternalServerError() *SetUserVisibilityStatusV2InternalServerError {
 	return &SetUserVisibilityStatusV2InternalServerError{}
@@ -346,7 +287,7 @@ func NewSetUserVisibilityStatusV2InternalServerError() *SetUserVisibilityStatusV
 
 /*SetUserVisibilityStatusV2InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type SetUserVisibilityStatusV2InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

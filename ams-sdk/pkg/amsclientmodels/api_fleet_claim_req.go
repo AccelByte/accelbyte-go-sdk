@@ -21,6 +21,10 @@ type APIFleetClaimReq struct {
 	// region
 	// Required: true
 	Region *string `json:"region"`
+
+	// sessionid
+	// Required: true
+	SessionID *string `json:"sessionId"`
 }
 
 // Validate validates this Api fleet claim req
@@ -28,6 +32,9 @@ func (m *APIFleetClaimReq) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateRegion(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSessionID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,6 +47,15 @@ func (m *APIFleetClaimReq) Validate(formats strfmt.Registry) error {
 func (m *APIFleetClaimReq) validateRegion(formats strfmt.Registry) error {
 
 	if err := validate.Required("region", "body", m.Region); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetClaimReq) validateSessionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sessionId", "body", m.SessionID); err != nil {
 		return err
 	}
 

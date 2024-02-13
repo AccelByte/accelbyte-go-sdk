@@ -78,7 +78,7 @@ func NewArtifactGetOK() *ArtifactGetOK {
   success
 */
 type ArtifactGetOK struct {
-	Payload []*amsclientmodels.APIArtifactResponse
+	Payload *amsclientmodels.APIArtifactListResponse
 }
 
 func (o *ArtifactGetOK) Error() string {
@@ -100,7 +100,7 @@ func (o *ArtifactGetOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ArtifactGetOK) GetPayload() []*amsclientmodels.APIArtifactResponse {
+func (o *ArtifactGetOK) GetPayload() *amsclientmodels.APIArtifactListResponse {
 	return o.Payload
 }
 
@@ -111,8 +111,10 @@ func (o *ArtifactGetOK) readResponse(response runtime.ClientResponse, consumer r
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(amsclientmodels.APIArtifactListResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

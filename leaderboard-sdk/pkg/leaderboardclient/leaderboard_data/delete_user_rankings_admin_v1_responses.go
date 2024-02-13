@@ -45,12 +45,6 @@ func (o *DeleteUserRankingsAdminV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewDeleteUserRankingsAdminV1NotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewDeleteUserRankingsAdminV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +69,7 @@ func NewDeleteUserRankingsAdminV1NoContent() *DeleteUserRankingsAdminV1NoContent
 
 /*DeleteUserRankingsAdminV1NoContent handles this case with default header values.
 
-  No Content
+  User ranking deleted
 */
 type DeleteUserRankingsAdminV1NoContent struct {
 }
@@ -101,7 +95,7 @@ func NewDeleteUserRankingsAdminV1Unauthorized() *DeleteUserRankingsAdminV1Unauth
 
 /*DeleteUserRankingsAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteUserRankingsAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -154,7 +148,7 @@ func NewDeleteUserRankingsAdminV1Forbidden() *DeleteUserRankingsAdminV1Forbidden
 
 /*DeleteUserRankingsAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteUserRankingsAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -200,59 +194,6 @@ func (o *DeleteUserRankingsAdminV1Forbidden) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewDeleteUserRankingsAdminV1NotFound creates a DeleteUserRankingsAdminV1NotFound with default headers values
-func NewDeleteUserRankingsAdminV1NotFound() *DeleteUserRankingsAdminV1NotFound {
-	return &DeleteUserRankingsAdminV1NotFound{}
-}
-
-/*DeleteUserRankingsAdminV1NotFound handles this case with default header values.
-
-  Not Found
-*/
-type DeleteUserRankingsAdminV1NotFound struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *DeleteUserRankingsAdminV1NotFound) Error() string {
-	return fmt.Sprintf("[DELETE /leaderboard/v1/admin/namespaces/{namespace}/users/{userId}][%d] deleteUserRankingsAdminV1NotFound  %+v", 404, o.ToJSONString())
-}
-
-func (o *DeleteUserRankingsAdminV1NotFound) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *DeleteUserRankingsAdminV1NotFound) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *DeleteUserRankingsAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewDeleteUserRankingsAdminV1InternalServerError creates a DeleteUserRankingsAdminV1InternalServerError with default headers values
 func NewDeleteUserRankingsAdminV1InternalServerError() *DeleteUserRankingsAdminV1InternalServerError {
 	return &DeleteUserRankingsAdminV1InternalServerError{}
@@ -260,7 +201,7 @@ func NewDeleteUserRankingsAdminV1InternalServerError() *DeleteUserRankingsAdminV
 
 /*DeleteUserRankingsAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteUserRankingsAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

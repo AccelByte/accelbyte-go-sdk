@@ -81,7 +81,7 @@ func NewGetAllTimeLeaderboardRankingAdminV3OK() *GetAllTimeLeaderboardRankingAdm
 
 /*GetAllTimeLeaderboardRankingAdminV3OK handles this case with default header values.
 
-  OK
+  All time leaderboard ranking retrieved
 */
 type GetAllTimeLeaderboardRankingAdminV3OK struct {
 	Payload *leaderboardclientmodels.ModelsGetLeaderboardRankingResp
@@ -134,7 +134,7 @@ func NewGetAllTimeLeaderboardRankingAdminV3BadRequest() *GetAllTimeLeaderboardRa
 
 /*GetAllTimeLeaderboardRankingAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetAllTimeLeaderboardRankingAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +187,7 @@ func NewGetAllTimeLeaderboardRankingAdminV3Unauthorized() *GetAllTimeLeaderboard
 
 /*GetAllTimeLeaderboardRankingAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetAllTimeLeaderboardRankingAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +240,7 @@ func NewGetAllTimeLeaderboardRankingAdminV3Forbidden() *GetAllTimeLeaderboardRan
 
 /*GetAllTimeLeaderboardRankingAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetAllTimeLeaderboardRankingAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -293,7 +293,7 @@ func NewGetAllTimeLeaderboardRankingAdminV3NotFound() *GetAllTimeLeaderboardRank
 
 /*GetAllTimeLeaderboardRankingAdminV3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71230</td><td>leaderboard configuration not found</td></tr><tr><td>71235</td><td>leaderboard ranking not found</td></tr></table>
 */
 type GetAllTimeLeaderboardRankingAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -346,8 +346,8 @@ func NewGetAllTimeLeaderboardRankingAdminV3InternalServerError() *GetAllTimeLead
 
 /*GetAllTimeLeaderboardRankingAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
-*/
+
+ */
 type GetAllTimeLeaderboardRankingAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

@@ -32,6 +32,9 @@ type ModelsGameBinaryRecordCreate struct {
 	// Enum: ['CLIENT', 'SERVER']
 	// Required: true
 	SetBy *string `json:"set_by"`
+
+	// TTL configuration for the game record
+	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
 }
 
 // Validate validates this Models game binary record create

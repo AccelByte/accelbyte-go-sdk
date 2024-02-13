@@ -46,10 +46,14 @@ type ClientService interface {
 	AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error)
 	AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error)
 	AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error)
+	PublicPlayerBlockPlayersV1(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, *PublicPlayerBlockPlayersV1BadRequest, *PublicPlayerBlockPlayersV1Unauthorized, *PublicPlayerBlockPlayersV1Forbidden, *PublicPlayerBlockPlayersV1NotFound, *PublicPlayerBlockPlayersV1InternalServerError, error)
+	PublicPlayerBlockPlayersV1Short(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, error)
 	PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, *PublicGetPlayerBlockedPlayersV1BadRequest, *PublicGetPlayerBlockedPlayersV1Unauthorized, *PublicGetPlayerBlockedPlayersV1Forbidden, *PublicGetPlayerBlockedPlayersV1NotFound, *PublicGetPlayerBlockedPlayersV1InternalServerError, error)
 	PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, error)
 	PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, *PublicGetPlayerBlockedByPlayersV1BadRequest, *PublicGetPlayerBlockedByPlayersV1Unauthorized, *PublicGetPlayerBlockedByPlayersV1Forbidden, *PublicGetPlayerBlockedByPlayersV1NotFound, *PublicGetPlayerBlockedByPlayersV1InternalServerError, error)
 	PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, error)
+	PublicUnblockPlayerV1(params *PublicUnblockPlayerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUnblockPlayerV1NoContent, *PublicUnblockPlayerV1BadRequest, *PublicUnblockPlayerV1Unauthorized, *PublicUnblockPlayerV1Forbidden, *PublicUnblockPlayerV1NotFound, *PublicUnblockPlayerV1InternalServerError, error)
+	PublicUnblockPlayerV1Short(params *PublicUnblockPlayerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUnblockPlayerV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1008,6 +1012,133 @@ func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Par
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicPlayerBlockPlayersV1Short instead.
+
+PublicPlayerBlockPlayersV1 block player by user id
+Required valid user authorization
+
+
+add blocked players in a namespace based on user id
+*/
+func (a *Client) PublicPlayerBlockPlayersV1(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, *PublicPlayerBlockPlayersV1BadRequest, *PublicPlayerBlockPlayersV1Unauthorized, *PublicPlayerBlockPlayersV1Forbidden, *PublicPlayerBlockPlayersV1NotFound, *PublicPlayerBlockPlayersV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlayerBlockPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicPlayerBlockPlayersV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/block",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlayerBlockPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlayerBlockPlayersV1Created:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicPlayerBlockPlayersV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicPlayerBlockPlayersV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicPlayerBlockPlayersV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicPlayerBlockPlayersV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicPlayerBlockPlayersV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicPlayerBlockPlayersV1Short block player by user id
+Required valid user authorization
+
+
+add blocked players in a namespace based on user id
+*/
+func (a *Client) PublicPlayerBlockPlayersV1Short(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlayerBlockPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicPlayerBlockPlayersV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/block",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlayerBlockPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlayerBlockPlayersV1Created:
+		return v, nil
+	case *PublicPlayerBlockPlayersV1BadRequest:
+		return nil, v
+	case *PublicPlayerBlockPlayersV1Unauthorized:
+		return nil, v
+	case *PublicPlayerBlockPlayersV1Forbidden:
+		return nil, v
+	case *PublicPlayerBlockPlayersV1NotFound:
+		return nil, v
+	case *PublicPlayerBlockPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetPlayerBlockedPlayersV1Short instead.
 
 PublicGetPlayerBlockedPlayersV1 get blocked players by user id
@@ -1262,6 +1393,131 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerB
 	case *PublicGetPlayerBlockedByPlayersV1NotFound:
 		return nil, v
 	case *PublicGetPlayerBlockedByPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUnblockPlayerV1Short instead.
+
+PublicUnblockPlayerV1 unblock player by user id
+Required valid user authorization
+
+unblock player in a namespace based on user id
+*/
+func (a *Client) PublicUnblockPlayerV1(params *PublicUnblockPlayerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUnblockPlayerV1NoContent, *PublicUnblockPlayerV1BadRequest, *PublicUnblockPlayerV1Unauthorized, *PublicUnblockPlayerV1Forbidden, *PublicUnblockPlayerV1NotFound, *PublicUnblockPlayerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUnblockPlayerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUnblockPlayerV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/unblock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUnblockPlayerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUnblockPlayerV1NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUnblockPlayerV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUnblockPlayerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUnblockPlayerV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUnblockPlayerV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUnblockPlayerV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUnblockPlayerV1Short unblock player by user id
+Required valid user authorization
+
+unblock player in a namespace based on user id
+*/
+func (a *Client) PublicUnblockPlayerV1Short(params *PublicUnblockPlayerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUnblockPlayerV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUnblockPlayerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUnblockPlayerV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/unblock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUnblockPlayerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUnblockPlayerV1NoContent:
+		return v, nil
+	case *PublicUnblockPlayerV1BadRequest:
+		return nil, v
+	case *PublicUnblockPlayerV1Unauthorized:
+		return nil, v
+	case *PublicUnblockPlayerV1Forbidden:
+		return nil, v
+	case *PublicUnblockPlayerV1NotFound:
+		return nil, v
+	case *PublicUnblockPlayerV1InternalServerError:
 		return nil, v
 
 	default:

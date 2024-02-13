@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.27.0"
+    "version": "2.27.1"
   },
   "schemes": [
     "https"
@@ -93,31 +93,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboards retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllLeaderboardConfigsResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -164,37 +164,37 @@
         ],
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Leaderboard created",
             "schema": {
               "$ref": "#/definitions/models.LeaderboardConfigReq"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71242\u003c/td\u003e\u003ctd\u003estat code not found in namespace\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71132\u003c/td\u003e\u003ctd\u003eleaderboard configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -245,7 +245,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "leaderboard archive retrieved",
             "schema": {
               "items": {
                 "$ref": "#/definitions/models.ArchiveLeaderboardSignedURLResponse"
@@ -254,31 +254,31 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -322,34 +322,28 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "leaderboard data ranking archived"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -398,31 +392,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboards deleted",
             "schema": {
               "$ref": "#/definitions/models.DeleteBulkLeaderboardsResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -467,34 +461,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Leaderboard deleted"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -537,37 +531,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -621,37 +615,43 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard updated",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71242\u003c/td\u003e\u003ctd\u003estat code not found in namespace\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71132\u003c/td\u003e\u003ctd\u003eleaderboard configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -708,37 +708,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "All time leaderboard ranking data retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -783,34 +783,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Leaderboard deleted"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -873,37 +873,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current month leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -948,28 +948,28 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Leaderboard deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1032,37 +1032,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current season leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1125,37 +1125,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Today leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1210,28 +1210,28 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "User ranking deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1287,31 +1287,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1372,37 +1372,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User point updated",
             "schema": {
               "$ref": "#/definitions/models.UpdateUserPointAdminV1Response"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1462,37 +1462,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current week leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1551,28 +1551,22 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "User ranking deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1620,28 +1614,22 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "successful operation"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1704,31 +1692,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User rankings retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllUserLeaderboardsResp"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1792,31 +1774,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboards retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllLeaderboardConfigsPublicResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1860,37 +1842,37 @@
         ],
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Leaderboard created",
             "schema": {
               "$ref": "#/definitions/models.LeaderboardConfigReq"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71242\u003c/td\u003e\u003ctd\u003estat code not found in namespace\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71132\u003c/td\u003e\u003ctd\u003eleaderboard configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1947,25 +1929,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "All time leaderboard ranking data retrived",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2020,7 +2002,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Archived leaderboard retrieved",
             "schema": {
               "items": {
                 "$ref": "#/definitions/models.ArchiveLeaderboardSignedURLResponse"
@@ -2029,31 +2011,31 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2113,25 +2095,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current month leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2191,25 +2173,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current season leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2269,25 +2251,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Today leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2339,28 +2321,28 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "User ranking deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2416,31 +2398,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2500,25 +2482,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Current week leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2572,37 +2554,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Hidden user retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetHiddenUserResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2651,37 +2627,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2739,37 +2709,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility status updated",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2822,37 +2786,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility status updated",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2899,31 +2857,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboards retrieved",
             "schema": {
               "$ref": "#/definitions/v2.GetAllLeaderboardConfigsPublicResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2977,37 +2935,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "All time leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/v2.GetPublicLeaderboardRankingResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3061,31 +3019,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllLeaderboardConfigsRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3132,37 +3090,37 @@
         ],
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Leaderboard created",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71242\u003c/td\u003e\u003ctd\u003estat code not found in namespace\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71243\u003c/td\u003e\u003ctd\u003ecycle doesn't belong to the stat code\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71244\u003c/td\u003e\u003ctd\u003ecycle is already stopped\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71132\u003c/td\u003e\u003ctd\u003eleaderboard configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3211,31 +3169,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard deleted",
             "schema": {
               "$ref": "#/definitions/models.DeleteBulkLeaderboardsResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3280,34 +3238,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Leaderboard successfully deleted"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3350,37 +3308,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3434,37 +3392,43 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard updated",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71243\u003c/td\u003e\u003ctd\u003ecycle doesn't belong to the stat code\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71244\u003c/td\u003e\u003ctd\u003ecycle is already stopped\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71132\u003c/td\u003e\u003ctd\u003eleaderboard configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3521,37 +3485,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "All time leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3615,37 +3579,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Cycle leaderboard ranking data retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3690,34 +3654,34 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Leaderboard successfully deleted"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3762,28 +3726,28 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "all user ranking successfully deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3840,37 +3804,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Hidden user retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetHiddenUserResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3922,28 +3880,28 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "User ranking deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3993,31 +3951,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponseV3"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4069,37 +4027,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility status retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4157,37 +4109,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility status updated",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4243,28 +4189,22 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "User ranking deleted"
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4321,31 +4261,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User rankings retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllUserLeaderboardsRespV3"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4401,37 +4335,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User visibility status updated",
             "schema": {
               "$ref": "#/definitions/models.GetUserVisibilityResponse"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4485,31 +4413,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboards retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllLeaderboardConfigsPublicRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4551,37 +4479,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Leaderboard retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardConfigPublicRespV3"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4635,25 +4563,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "All time leaderboard ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4714,25 +4642,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Cycle leaderboard ranking data retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71235\u003c/td\u003e\u003ctd\u003eleaderboard ranking not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4785,31 +4713,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Users ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.BulkUserRankingResponseV3"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4858,31 +4792,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponseV3"
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -5961,11 +5895,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-26T06:40:22+00:00",
-    "gitHash": "2dc087f63385ec3885b5809398969a875e8b6a91",
+    "buildDate": "2024-02-09T03:45:12+00:00",
+    "gitHash": "7c2739725ecfee4e664847b7c0a5651bf5ad4c99",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.27.0",
+    "version": "2.27.1",
     "version-roles-seeding": "1.0.4"
   }
 }

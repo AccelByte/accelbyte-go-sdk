@@ -24,6 +24,10 @@ type APIImageDetails struct {
 	// Required: true
 	CreatedAt *string `json:"createdAt"`
 
+	// executable
+	// Required: true
+	Executable *string `json:"executable"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -69,6 +73,9 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateExecutable(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -106,6 +113,15 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 func (m *APIImageDetails) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIImageDetails) validateExecutable(formats strfmt.Registry) error {
+
+	if err := validate.Required("executable", "body", m.Executable); err != nil {
 		return err
 	}
 

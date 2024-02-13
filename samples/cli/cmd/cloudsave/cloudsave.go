@@ -19,6 +19,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicGameRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicPlayerBinaryRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/publicPlayerRecord"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/tags"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/ttlConfig"
 	"github.com/spf13/cobra"
 )
 
@@ -42,6 +44,7 @@ func init() {
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminDeleteGameBinaryRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPutGameBinaryRecorMetadataV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPostGameBinaryPresignedURLV1Cmd)
+	CloudsaveCmd.AddCommand(ttlConfig.DeleteGameBinaryRecordTTLConfigCmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutAdminGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(pluginConfig.GetPluginConfigCmd)
@@ -53,6 +56,10 @@ func init() {
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminPutGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminPostGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminDeleteGameRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(ttlConfig.DeleteGameRecordTTLConfigCmd)
+	CloudsaveCmd.AddCommand(tags.AdminListTagsHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(tags.AdminPostTagHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(tags.AdminDeleteTagHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.BulkGetAdminPlayerRecordByUserIdsV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.BulkGetPlayerRecordSizeHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.ListPlayerRecordHandlerV1Cmd)
@@ -97,6 +104,7 @@ func init() {
 	CloudsaveCmd.AddCommand(publicGameRecord.PutGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.PostGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicGameRecord.DeleteGameRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(tags.PublicListTagsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.BulkGetPlayerPublicBinaryRecordsV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(publicPlayerBinaryRecord.ListMyBinaryRecordsV1Cmd)

@@ -27,10 +27,6 @@ type APIDSHistoryEvent struct {
 	// Format: int32
 	ExitCode *int32 `json:"exitCode"`
 
-	// gamesession
-	// Required: true
-	GameSession *string `json:"gameSession"`
-
 	// ipaddress
 	// Required: true
 	IPAddress *string `json:"ipAddress"`
@@ -60,9 +56,6 @@ func (m *APIDSHistoryEvent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateExitCode(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateGameSession(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIPAddress(formats); err != nil {
@@ -99,15 +92,6 @@ func (m *APIDSHistoryEvent) validateCreatedAt(formats strfmt.Registry) error {
 func (m *APIDSHistoryEvent) validateExitCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("exitCode", "body", m.ExitCode); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIDSHistoryEvent) validateGameSession(formats strfmt.Registry) error {
-
-	if err := validate.Required("gameSession", "body", m.GameSession); err != nil {
 		return err
 	}
 

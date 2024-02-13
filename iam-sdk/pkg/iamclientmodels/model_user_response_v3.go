@@ -124,6 +124,9 @@ type ModelUserResponseV3 struct {
 	// testaccount
 	TestAccount bool `json:"testAccount"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

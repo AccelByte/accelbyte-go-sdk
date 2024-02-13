@@ -16,6 +16,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/country"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/devices_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
@@ -81,6 +82,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.Bans = bans.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
+	cli.Config = config.New(transport, formats)
 	cli.Country = country.New(transport, formats)
 	cli.DevicesV4 = devices_v4.New(transport, formats)
 	cli.InputValidations = input_validations.New(transport, formats)
@@ -158,6 +160,8 @@ type JusticeIamService struct {
 
 	Clients clients.ClientService
 
+	Config config.ClientService
+
 	Country country.ClientService
 
 	DevicesV4 devices_v4.ClientService
@@ -193,6 +197,7 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Bans.SetTransport(transport)
 	c.Clients.SetTransport(transport)
+	c.Config.SetTransport(transport)
 	c.Country.SetTransport(transport)
 	c.DevicesV4.SetTransport(transport)
 	c.InputValidations.SetTransport(transport)

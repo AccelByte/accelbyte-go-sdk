@@ -54,6 +54,10 @@ type APIArtifactResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// region
+	// Required: true
+	Region *string `json:"region"`
+
 	// sizebytes
 	// Required: true
 	// Format: int64
@@ -93,6 +97,9 @@ func (m *APIArtifactResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRegion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSizeBytes(formats); err != nil {
@@ -183,6 +190,15 @@ func (m *APIArtifactResponse) validateImageID(formats strfmt.Registry) error {
 func (m *APIArtifactResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIArtifactResponse) validateRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("region", "body", m.Region); err != nil {
 		return err
 	}
 

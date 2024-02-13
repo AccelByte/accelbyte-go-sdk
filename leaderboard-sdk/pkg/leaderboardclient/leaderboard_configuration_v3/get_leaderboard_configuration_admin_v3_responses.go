@@ -81,7 +81,7 @@ func NewGetLeaderboardConfigurationAdminV3OK() *GetLeaderboardConfigurationAdmin
 
 /*GetLeaderboardConfigurationAdminV3OK handles this case with default header values.
 
-  OK
+  Leaderboard retrieved
 */
 type GetLeaderboardConfigurationAdminV3OK struct {
 	Payload *leaderboardclientmodels.ModelsGetLeaderboardConfigRespV3
@@ -134,7 +134,7 @@ func NewGetLeaderboardConfigurationAdminV3BadRequest() *GetLeaderboardConfigurat
 
 /*GetLeaderboardConfigurationAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type GetLeaderboardConfigurationAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -187,7 +187,7 @@ func NewGetLeaderboardConfigurationAdminV3Unauthorized() *GetLeaderboardConfigur
 
 /*GetLeaderboardConfigurationAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetLeaderboardConfigurationAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -240,7 +240,7 @@ func NewGetLeaderboardConfigurationAdminV3Forbidden() *GetLeaderboardConfigurati
 
 /*GetLeaderboardConfigurationAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetLeaderboardConfigurationAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -293,7 +293,7 @@ func NewGetLeaderboardConfigurationAdminV3NotFound() *GetLeaderboardConfiguratio
 
 /*GetLeaderboardConfigurationAdminV3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type GetLeaderboardConfigurationAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -346,7 +346,7 @@ func NewGetLeaderboardConfigurationAdminV3InternalServerError() *GetLeaderboardC
 
 /*GetLeaderboardConfigurationAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetLeaderboardConfigurationAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

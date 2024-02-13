@@ -25,6 +25,9 @@ type ModelsAdminConcurrentRecordRequest struct {
 	// Required: true
 	SetBy *string `json:"set_by"`
 
+	// TTL configuration for the game record
+	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
+
 	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

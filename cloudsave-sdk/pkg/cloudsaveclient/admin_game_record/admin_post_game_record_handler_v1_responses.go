@@ -78,7 +78,7 @@ func NewAdminPostGameRecordHandlerV1Created() *AdminPostGameRecordHandlerV1Creat
   Record in namespace-level saved
 */
 type AdminPostGameRecordHandlerV1Created struct {
-	Payload *cloudsaveclientmodels.ModelsGameRecordResponse
+	Payload *cloudsaveclientmodels.ModelsGameRecordAdminResponse
 }
 
 func (o *AdminPostGameRecordHandlerV1Created) Error() string {
@@ -100,7 +100,7 @@ func (o *AdminPostGameRecordHandlerV1Created) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminPostGameRecordHandlerV1Created) GetPayload() *cloudsaveclientmodels.ModelsGameRecordResponse {
+func (o *AdminPostGameRecordHandlerV1Created) GetPayload() *cloudsaveclientmodels.ModelsGameRecordAdminResponse {
 	return o.Payload
 }
 
@@ -111,7 +111,7 @@ func (o *AdminPostGameRecordHandlerV1Created) readResponse(response runtime.Clie
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordResponse)
+	o.Payload = new(cloudsaveclientmodels.ModelsGameRecordAdminResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

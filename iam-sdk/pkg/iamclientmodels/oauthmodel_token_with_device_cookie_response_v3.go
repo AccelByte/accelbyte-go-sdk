@@ -80,6 +80,9 @@ type OauthmodelTokenWithDeviceCookieResponseV3 struct {
 	// Required: true
 	TokenType *string `json:"token_type"`
 
+	// unique_display_name
+	UniqueDisplayName string `json:"unique_display_name,omitempty"`
+
 	// present if it is user token
 	UserID string `json:"user_id,omitempty"`
 

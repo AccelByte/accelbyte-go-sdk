@@ -26,6 +26,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/tags"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/ttl_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -88,6 +90,8 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.PublicGameRecord = public_game_record.New(transport, formats)
 	cli.PublicPlayerBinaryRecord = public_player_binary_record.New(transport, formats)
 	cli.PublicPlayerRecord = public_player_record.New(transport, formats)
+	cli.TTLConfig = ttl_config.New(transport, formats)
+	cli.Tags = tags.New(transport, formats)
 
 	return cli
 }
@@ -172,6 +176,10 @@ type JusticeCloudsaveService struct {
 
 	PublicPlayerRecord public_player_record.ClientService
 
+	TTLConfig ttl_config.ClientService
+
+	Tags tags.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -191,4 +199,6 @@ func (c *JusticeCloudsaveService) SetTransport(transport runtime.ClientTransport
 	c.PublicGameRecord.SetTransport(transport)
 	c.PublicPlayerBinaryRecord.SetTransport(transport)
 	c.PublicPlayerRecord.SetTransport(transport)
+	c.TTLConfig.SetTransport(transport)
+	c.Tags.SetTransport(transport)
 }

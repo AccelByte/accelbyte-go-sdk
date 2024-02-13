@@ -104,6 +104,9 @@ type AccountUserResponseV4 struct {
 	// Required: true
 	Roles []string `json:"roles"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

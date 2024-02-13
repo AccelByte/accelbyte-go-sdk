@@ -37,6 +37,9 @@ type AccountcommonUserInformationV3 struct {
 	// Required: true
 	PlatformUsers []*AccountcommonPlatformUserInformationV3 `json:"platformUsers"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// username
 	Username string `json:"username,omitempty"`
 

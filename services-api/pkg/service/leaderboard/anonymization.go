@@ -43,15 +43,12 @@ func (aaa *AnonymizationService) AdminAnonymizeUserLeaderboardAdminV1(input *ano
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Anonymization.AdminAnonymizeUserLeaderboardAdminV1(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, internalServerError, err := aaa.Client.Anonymization.AdminAnonymizeUserLeaderboardAdminV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
 	if forbidden != nil {
 		return forbidden
-	}
-	if notFound != nil {
-		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError

@@ -41,14 +41,14 @@ var FleetArtifactSamplingRulesSetCmd = &cobra.Command{
 			FleetID:   fleetID,
 			Namespace: namespace,
 		}
-		noContent, errNoContent := artifactsService.FleetArtifactSamplingRulesSetShort(input)
-		if errNoContent != nil {
-			logrus.Error(errNoContent)
+		ok, errOK := artifactsService.FleetArtifactSamplingRulesSetShort(input)
+		if errOK != nil {
+			logrus.Error(errOK)
 
-			return errNoContent
+			return errOK
 		}
 
-		logrus.Infof("Response CLI success: %+v", noContent)
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

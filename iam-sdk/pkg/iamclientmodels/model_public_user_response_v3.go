@@ -88,6 +88,10 @@ type ModelPublicUserResponseV3 struct {
 	// Required: true
 	Roles []string `json:"roles"`
 
+	// uniquedisplayname
+	// Required: true
+	UniqueDisplayName *string `json:"uniqueDisplayName"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`
@@ -140,6 +144,9 @@ func (m *ModelPublicUserResponseV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRoles(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUniqueDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -332,6 +339,15 @@ func (m *ModelPublicUserResponseV3) validatePhoneVerified(formats strfmt.Registr
 func (m *ModelPublicUserResponseV3) validateRoles(formats strfmt.Registry) error {
 
 	if err := validate.Required("roles", "body", m.Roles); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelPublicUserResponseV3) validateUniqueDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("uniqueDisplayName", "body", m.UniqueDisplayName); err != nil {
 		return err
 	}
 

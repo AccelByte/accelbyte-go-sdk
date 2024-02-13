@@ -35,6 +35,9 @@ type ModelUserInvitationV3 struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// isnewstudio
+	IsNewStudio bool `json:"isNewStudio"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
@@ -44,6 +47,9 @@ type ModelUserInvitationV3 struct {
 	// roles
 	// Required: true
 	Roles []*AccountcommonNamespaceRole `json:"roles"`
+
+	// studionamespace
+	StudioNamespace string `json:"studioNamespace,omitempty"`
 }
 
 // Validate validates this Model user invitation V3

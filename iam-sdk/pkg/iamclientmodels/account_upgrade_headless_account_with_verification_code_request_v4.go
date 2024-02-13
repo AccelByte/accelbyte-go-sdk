@@ -42,6 +42,9 @@ type AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4 struct {
 	// reachminimumage
 	ReachMinimumAge bool `json:"reachMinimumAge"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// username
 	// Required: true
 	Username *string `json:"username"`

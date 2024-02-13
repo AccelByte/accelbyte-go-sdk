@@ -47,6 +47,9 @@ type AccountCreateTestUserResponseV4 struct {
 	// Required: true
 	Password *string `json:"password"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`

@@ -75,7 +75,7 @@ func NewDeleteUserRankingByLeaderboardCodeAdminV1NoContent() *DeleteUserRankingB
 
 /*DeleteUserRankingByLeaderboardCodeAdminV1NoContent handles this case with default header values.
 
-  No Content
+  Leaderboard deleted
 */
 type DeleteUserRankingByLeaderboardCodeAdminV1NoContent struct {
 }
@@ -101,7 +101,7 @@ func NewDeleteUserRankingByLeaderboardCodeAdminV1Unauthorized() *DeleteUserRanki
 
 /*DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -154,7 +154,7 @@ func NewDeleteUserRankingByLeaderboardCodeAdminV1Forbidden() *DeleteUserRankingB
 
 /*DeleteUserRankingByLeaderboardCodeAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>71241</td><td>forbidden environment</td></tr></table>
 */
 type DeleteUserRankingByLeaderboardCodeAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -207,7 +207,7 @@ func NewDeleteUserRankingByLeaderboardCodeAdminV1NotFound() *DeleteUserRankingBy
 
 /*DeleteUserRankingByLeaderboardCodeAdminV1NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type DeleteUserRankingByLeaderboardCodeAdminV1NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -260,7 +260,7 @@ func NewDeleteUserRankingByLeaderboardCodeAdminV1InternalServerError() *DeleteUs
 
 /*DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

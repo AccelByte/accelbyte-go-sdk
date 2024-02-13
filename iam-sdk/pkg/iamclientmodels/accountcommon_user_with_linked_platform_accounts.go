@@ -36,6 +36,10 @@ type AccountcommonUserWithLinkedPlatformAccounts struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// uniquedisplayname
+	// Required: true
+	UniqueDisplayName *string `json:"uniqueDisplayName"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`
@@ -55,6 +59,9 @@ func (m *AccountcommonUserWithLinkedPlatformAccounts) Validate(formats strfmt.Re
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUniqueDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -113,6 +120,15 @@ func (m *AccountcommonUserWithLinkedPlatformAccounts) validateLinkedPlatforms(fo
 func (m *AccountcommonUserWithLinkedPlatformAccounts) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonUserWithLinkedPlatformAccounts) validateUniqueDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("uniqueDisplayName", "body", m.UniqueDisplayName); err != nil {
 		return err
 	}
 

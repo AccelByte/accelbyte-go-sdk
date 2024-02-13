@@ -73,7 +73,7 @@ func (aaa *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardData.CreateArchivedLeaderboardRankingDataV1Handler(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.LeaderboardData.CreateArchivedLeaderboardRankingDataV1Handler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -82,9 +82,6 @@ func (aaa *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler
 	}
 	if forbidden != nil {
 		return forbidden
-	}
-	if notFound != nil {
-		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -354,15 +351,12 @@ func (aaa *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardData.DeleteUserRankingsAdminV1(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, internalServerError, err := aaa.Client.LeaderboardData.DeleteUserRankingsAdminV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
 	if forbidden != nil {
 		return forbidden
-	}
-	if notFound != nil {
-		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError

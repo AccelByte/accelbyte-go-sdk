@@ -30,6 +30,9 @@ type ModelInviteUserRequestV4 struct {
 	// Required: true
 	IsAdmin *bool `json:"isAdmin"`
 
+	// isnewstudio
+	IsNewStudio bool `json:"isNewStudio"`
+
 	// multi tenant studio namespace
 	Namespace string `json:"namespace,omitempty"`
 

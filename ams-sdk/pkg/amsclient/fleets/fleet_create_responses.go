@@ -234,7 +234,7 @@ func NewFleetCreateForbidden() *FleetCreateForbidden {
 
 /*FleetCreateForbidden handles this case with default header values.
 
-  insufficient permissions
+  exceeded quota
 */
 type FleetCreateForbidden struct {
 	Payload *amsclientmodels.ResponseErrorResponse

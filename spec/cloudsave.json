@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.14.0"
+    "version": "3.15.0"
   },
   "schemes": [
     "https"
@@ -600,7 +600,7 @@
           "200": {
             "description": "Retrieve list of records by namespace",
             "schema": {
-              "$ref": "#/definitions/models.ListGameBinaryRecordsResponse"
+              "$ref": "#/definitions/models.ListGameBinaryRecordsAdminResponse"
             }
           },
           "400": {
@@ -849,7 +849,7 @@
           "200": {
             "description": "Record in namespace-level retrieved",
             "schema": {
-              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+              "$ref": "#/definitions/models.GameBinaryRecordAdminResponse"
             }
           },
           "401": {
@@ -936,7 +936,7 @@
           "200": {
             "description": "Record saved",
             "schema": {
-              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+              "$ref": "#/definitions/models.GameBinaryRecordAdminResponse"
             }
           },
           "400": {
@@ -1031,7 +1031,7 @@
           "200": {
             "description": "Record saved",
             "schema": {
-              "$ref": "#/definitions/models.GameBinaryRecordResponse"
+              "$ref": "#/definitions/models.GameBinaryRecordAdminResponse"
             }
           },
           "400": {
@@ -1178,6 +1178,90 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/ttl": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nThis endpoints will delete the ttl config of the game binary record",
+        "operationId": "deleteGameBinaryRecordTTLConfig",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "TTL config deleted"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18317\u003c/td\u003e\u003ctd\u003erecord not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18318\u003c/td\u003e\u003ctd\u003eunable to update record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete game binary record TTL config",
+        "tags": [
+          "TTLConfig"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
             ]
           }
         ]
@@ -1887,7 +1971,7 @@
           "200": {
             "description": "Record in namespace-level retrieved",
             "schema": {
-              "$ref": "#/definitions/models.GameRecordResponse"
+              "$ref": "#/definitions/models.GameRecordAdminResponse"
             }
           },
           "401": {
@@ -1941,7 +2025,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or append the existing game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new game record or append the existing game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t}\n\t}\n\t...\n}\n```",
         "operationId": "adminPostGameRecordHandlerV1",
         "parameters": [
           {
@@ -1975,7 +2059,7 @@
           "201": {
             "description": "Record in namespace-level saved",
             "schema": {
-              "$ref": "#/definitions/models.GameRecordResponse"
+              "$ref": "#/definitions/models.GameRecordAdminResponse"
             }
           },
           "400": {
@@ -2032,7 +2116,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t}\n\t}\n\t...\n}\n```",
         "operationId": "adminPutGameRecordHandlerV1",
         "parameters": [
           {
@@ -2066,7 +2150,7 @@
           "200": {
             "description": "Record saved",
             "schema": {
-              "$ref": "#/definitions/models.GameRecordResponse"
+              "$ref": "#/definitions/models.GameRecordAdminResponse"
             }
           },
           "400": {
@@ -2115,6 +2199,326 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}/ttl": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nThis endpoints will delete the ttl config of the game record",
+        "operationId": "deleteGameRecordTTLConfig",
+        "parameters": [
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "TTL config deleted"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18003\u003c/td\u003e\u003ctd\u003erecord not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18053\u003c/td\u003e\u003ctd\u003eunable to update record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete game record TTL config",
+        "tags": [
+          "TTLConfig"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/tags": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nEndpoint to list out available tags",
+        "operationId": "adminListTagsHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Available tags retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.ListTagsResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18503\u003c/td\u003e\u003ctd\u003eunable to list tags\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18502\u003c/td\u003e\u003ctd\u003eunable to list tags\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List tags",
+        "tags": [
+          "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nEndpoint to create a tag",
+        "operationId": "adminPostTagHandlerV1",
+        "parameters": [
+          {
+            "description": "tag data. should be in valid json format",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.TagRequest"
+            }
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Tag created"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18505\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18506\u003c/td\u003e\u003ctd\u003etag already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18507\u003c/td\u003e\u003ctd\u003eunable to create tag\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create a tag",
+        "tags": [
+          "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/tags/{tag}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nEndpoint to delete a tag",
+        "operationId": "adminDeleteTagHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "tag name",
+            "in": "path",
+            "name": "tag",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Tag deleted"
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18510\u003c/td\u003e\u003ctd\u003etag not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18509\u003c/td\u003e\u003ctd\u003eunable to delete tag\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a tag",
+        "tags": [
+          "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]"
             ]
           }
         ]
@@ -6171,6 +6575,80 @@
         ]
       }
     },
+    "/cloudsave/v1/namespaces/{namespace}/tags": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "## Description\n\nEndpoint to list out available tags",
+        "operationId": "publicListTagsHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Available tags retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.ListTagsResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18503\u003c/td\u003e\u003ctd\u003eunable to list tags\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18502\u003c/td\u003e\u003ctd\u003eunable to list tags\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List tags",
+        "tags": [
+          "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/cloudsave/v1/namespaces/{namespace}/users/bulk/binaries/{key}/public": {
       "post": {
         "consumes": [
@@ -8674,6 +9152,10 @@
           ],
           "type": "string"
         },
+        "ttl_config": {
+          "$ref": "#/definitions/models.TTLConfigDTO",
+          "description": "TTL configuration for the game record"
+        },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
           "type": "string"
@@ -9220,6 +9702,49 @@
         "beforeWritePlayerRecord"
       ]
     },
+    "models.GameBinaryRecordAdminResponse": {
+      "properties": {
+        "binary_info": {
+          "$ref": "#/definitions/models.BinaryInfoResponse"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "key": {
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace of the game",
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
+          "enum": [
+            "CLIENT",
+            "SERVER"
+          ],
+          "type": "string"
+        },
+        "ttl_config": {
+          "$ref": "#/definitions/models.TTLConfigDTO",
+          "description": "TTL configuration for the game record"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "created_at",
+        "key",
+        "namespace",
+        "updated_at"
+      ]
+    },
     "models.GameBinaryRecordCreate": {
       "properties": {
         "file_type": {
@@ -9238,6 +9763,10 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "ttl_config": {
+          "$ref": "#/definitions/models.TTLConfigDTO",
+          "description": "TTL configuration for the game record"
         }
       },
       "required": [
@@ -9255,6 +9784,10 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "ttl_config": {
+          "$ref": "#/definitions/models.TTLConfigDTO",
+          "description": "TTL configuration for the game record"
         }
       },
       "required": [
@@ -9298,6 +9831,52 @@
         "key",
         "namespace",
         "updated_at"
+      ]
+    },
+    "models.GameRecordAdminResponse": {
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "key": {
+          "description": "Game record identifier",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Namespace of the game",
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
+          "enum": [
+            "CLIENT",
+            "SERVER"
+          ],
+          "type": "string"
+        },
+        "ttl_config": {
+          "$ref": "#/definitions/models.TTLConfigDTO",
+          "description": "TTL configuration for the game record"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "value": {
+          "description": "Game record data, should be in valid json format",
+          "type": "object"
+        }
+      },
+      "required": [
+        "created_at",
+        "key",
+        "namespace",
+        "updated_at",
+        "value"
       ]
     },
     "models.GameRecordRequest": {
@@ -9379,6 +9958,23 @@
         "paging"
       ]
     },
+    "models.ListGameBinaryRecordsAdminResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.GameBinaryRecordAdminResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "models.ListGameBinaryRecordsResponse": {
       "properties": {
         "data": {
@@ -9435,6 +10031,23 @@
         "data": {
           "items": {
             "$ref": "#/definitions/models.PlayerRecordKeyInfo"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "models.ListTagsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.TagInfo"
           },
           "type": "array"
         },
@@ -9813,6 +10426,53 @@
         "errorMessage"
       ]
     },
+    "models.TTLConfigDTO": {
+      "properties": {
+        "action": {
+          "description": "Incidate what action will be done after the record expires",
+          "enum": [
+            "DELETE"
+          ],
+          "type": "string"
+        },
+        "expires_at": {
+          "description": "Indicate when the record will be expired, should be in RFC3339 format",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "action",
+        "expires_at"
+      ]
+    },
+    "models.TagInfo": {
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created_at",
+        "tag"
+      ]
+    },
+    "models.TagRequest": {
+      "properties": {
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tag"
+      ]
+    },
     "models.UploadBinaryRecordRequest": {
       "properties": {
         "file_type": {
@@ -9877,11 +10537,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-26T06:38:43+00:00",
-    "gitHash": "e3f28b12ab98760374f774c5414fee9790ab85d2",
+    "buildDate": "2024-02-09T03:45:23+00:00",
+    "gitHash": "0dd6ff5c635d3abb150c41fd3a2b4208b578c689",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.14.0",
-    "version": "3.14.0",
+    "revisionID": "3.15.0",
+    "version": "3.15.0",
     "version-roles-seeding": "0.0.46"
   }
 }

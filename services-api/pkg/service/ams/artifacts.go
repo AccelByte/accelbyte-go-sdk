@@ -39,7 +39,7 @@ func (aaa *ArtifactsService) GetAuthSession() auth.Session {
 }
 
 // Deprecated: 2022-01-10 - please use ArtifactGetShort instead.
-func (aaa *ArtifactsService) ArtifactGet(input *artifacts.ArtifactGetParams) ([]*amsclientmodels.APIArtifactResponse, error) {
+func (aaa *ArtifactsService) ArtifactGet(input *artifacts.ArtifactGetParams) (*amsclientmodels.APIArtifactListResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -180,7 +180,7 @@ func (aaa *ArtifactsService) FleetArtifactSamplingRulesSet(input *artifacts.Flee
 	if err != nil {
 		return nil, err
 	}
-	noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesSet(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesSet(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -200,10 +200,10 @@ func (aaa *ArtifactsService) FleetArtifactSamplingRulesSet(input *artifacts.Flee
 		return nil, err
 	}
 
-	return noContent.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
-func (aaa *ArtifactsService) ArtifactGetShort(input *artifacts.ArtifactGetParams) ([]*amsclientmodels.APIArtifactResponse, error) {
+func (aaa *ArtifactsService) ArtifactGetShort(input *artifacts.ArtifactGetParams) (*amsclientmodels.APIArtifactListResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -375,10 +375,10 @@ func (aaa *ArtifactsService) FleetArtifactSamplingRulesSetShort(input *artifacts
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	noContent, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesSetShort(input, authInfoWriter)
+	ok, err := aaa.Client.Artifacts.FleetArtifactSamplingRulesSetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
 
-	return noContent.GetPayload(), nil
+	return ok.GetPayload(), nil
 }

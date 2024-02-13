@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.33.2"
+    "version": "3.35.0"
   },
   "schemes": [
     "https"
@@ -852,7 +852,7 @@
     },
     "/friends/namespaces/{namespace}/me/status/{friendId}": {
       "get": {
-        "description": "User get friendship status.",
+        "description": "User get friendship status.\nCode: 0 - Message: \u0026#34;not friend\u0026#34;\nCode: 1 - Message: \u0026#34;outgoing\u0026#34;\nCode: 2 - Message: \u0026#34;incoming\u0026#34;\nCode: 3 - Message: \u0026#34;friend\u0026#34;\n",
         "operationId": "userGetFriendshipStatus",
         "parameters": [
           {
@@ -1629,6 +1629,16 @@
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
+            "description": "friend userIds",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "friendIds",
+            "type": "array"
+          },
+          {
             "default": 25,
             "description": "maximum number of data",
             "in": "query",
@@ -1780,6 +1790,110 @@
           }
         ],
         "summary": "get incoming friend requests",
+        "tags": [
+          "friends"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/of-friends": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Load list friends and friends of friends in a namespace. Response subjectId will be different with requested userId if the user is not directly friend",
+        "operationId": "adminListFriendsOfFriends",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "friend userId to check if the user is friend of friend",
+            "in": "query",
+            "name": "friendId",
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "maximum number of data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "no paging for faster performance, next will always empty regardless of the data",
+            "in": "query",
+            "name": "nopaging",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "default": 0,
+            "description": "numbers of row to skip within the result",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/model.FriendshipConnectionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Load list friends of friends",
         "tags": [
           "friends"
         ],
@@ -6312,6 +6426,81 @@
         "x-security": []
       }
     },
+    "/lobby/v1/public/player/namespaces/{namespace}/users/me/block": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;add blocked players in a namespace based on user id \u0026lt;br/\u0026gt;",
+        "operationId": "publicPlayerBlockPlayersV1",
+        "parameters": [
+          {
+            "description": "block player by user id request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BlockPlayerRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "block player by user id",
+        "tags": [
+          "player"
+        ],
+        "x-security": []
+      }
+    },
     "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked": {
       "get": {
         "consumes": [
@@ -6444,6 +6633,81 @@
           }
         ],
         "summary": "get players who blocked this player by user id",
+        "tags": [
+          "player"
+        ],
+        "x-security": []
+      }
+    },
+    "/lobby/v1/public/player/namespaces/{namespace}/users/me/unblock": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\tunblock player in a namespace based on user id \u0026lt;br/\u0026gt;",
+        "operationId": "publicUnblockPlayerV1",
+        "parameters": [
+          {
+            "description": "unblock player by user id",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UnblockPlayerRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "unblock player by user id",
         "tags": [
           "player"
         ],
@@ -8122,6 +8386,37 @@
         "userId"
       ]
     },
+    "model.FriendshipConnection": {
+      "properties": {
+        "friendId": {
+          "type": "string"
+        },
+        "subjectId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "friendId",
+        "subjectId"
+      ]
+    },
+    "model.FriendshipConnectionResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.FriendshipConnection"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "model.GetAllNotificationTemplateSlugResp": {
       "properties": {
         "data": {
@@ -8822,11 +9117,7 @@
         "friendPublicId": {
           "type": "string"
         }
-      },
-      "required": [
-        "friendId",
-        "friendPublicId"
-      ]
+      }
     },
     "model.UserUnfriendRequest": {
       "properties": {
@@ -9027,6 +9318,16 @@
       "required": [
         "filteredMessage",
         "hasProfanity"
+      ]
+    },
+    "models.BlockPlayerRequest": {
+      "properties": {
+        "blockedUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockedUserId"
       ]
     },
     "models.BlockedByPlayerData": {
@@ -9559,6 +9860,16 @@
         "attributes"
       ]
     },
+    "models.UnblockPlayerRequest": {
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userId"
+      ]
+    },
     "models.UpdateConfigRequest": {
       "properties": {
         "apiKey": {
@@ -9635,11 +9946,11 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-03T02:58:02+00:00",
-    "gitHash": "059aba197201d5896a80fea1380d95da4efadf45",
+    "buildDate": "2024-01-30T03:02:45+00:00",
+    "gitHash": "18d8bc055ba2974d8d59166a27a2e6efc1207db2",
     "name": "justice-lobby-server",
-    "revisionID": "3.33.2",
-    "version": "3.33.2",
+    "revisionID": "3.35.0",
+    "version": "3.35.0",
     "version-justice": "3.45.0",
     "version-roles-seeding": "1.0.1"
   }

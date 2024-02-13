@@ -34,13 +34,13 @@ type ClientService interface {
 	FleetListShort(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, error)
 	FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error)
 	FleetCreateShort(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, error)
-	FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error)
+	FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetBadRequest, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error)
 	FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, error)
 	FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error)
 	FleetUpdateShort(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, error)
-	FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, *FleetDeleteUnauthorized, *FleetDeleteForbidden, *FleetDeleteNotFound, *FleetDeleteInternalServerError, error)
+	FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, *FleetDeleteBadRequest, *FleetDeleteUnauthorized, *FleetDeleteForbidden, *FleetDeleteNotFound, *FleetDeleteInternalServerError, error)
 	FleetDeleteShort(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, error)
-	FleetServers(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, *FleetServersUnauthorized, *FleetServersForbidden, *FleetServersNotFound, *FleetServersInternalServerError, error)
+	FleetServers(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, *FleetServersBadRequest, *FleetServersUnauthorized, *FleetServersForbidden, *FleetServersNotFound, *FleetServersInternalServerError, error)
 	FleetServersShort(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, error)
 	FleetClaimByID(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, *FleetClaimByIDBadRequest, *FleetClaimByIDUnauthorized, *FleetClaimByIDForbidden, *FleetClaimByIDNotFound, *FleetClaimByIDInternalServerError, error)
 	FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runtime.ClientAuthInfoWriter) (*FleetClaimByIDOK, error)
@@ -277,7 +277,7 @@ Deprecated: 2022-08-10 - Use FleetGetShort instead.
 FleetGet get a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
-func (a *Client) FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error) {
+func (a *Client) FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetBadRequest, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetGetParams()
@@ -309,28 +309,31 @@ func (a *Client) FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInf
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *FleetGetOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *FleetGetBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *FleetGetUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *FleetGetForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *FleetGetNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *FleetGetInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -373,6 +376,8 @@ func (a *Client) FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAu
 
 	case *FleetGetOK:
 		return v, nil
+	case *FleetGetBadRequest:
+		return nil, v
 	case *FleetGetUnauthorized:
 		return nil, v
 	case *FleetGetForbidden:
@@ -518,7 +523,7 @@ Deprecated: 2022-08-10 - Use FleetDeleteShort instead.
 FleetDelete delete a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]
 */
-func (a *Client) FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, *FleetDeleteUnauthorized, *FleetDeleteForbidden, *FleetDeleteNotFound, *FleetDeleteInternalServerError, error) {
+func (a *Client) FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, *FleetDeleteBadRequest, *FleetDeleteUnauthorized, *FleetDeleteForbidden, *FleetDeleteNotFound, *FleetDeleteInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetDeleteParams()
@@ -550,28 +555,31 @@ func (a *Client) FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *FleetDeleteNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *FleetDeleteBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *FleetDeleteUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *FleetDeleteForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *FleetDeleteNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *FleetDeleteInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -614,6 +622,8 @@ func (a *Client) FleetDeleteShort(params *FleetDeleteParams, authInfo runtime.Cl
 
 	case *FleetDeleteNoContent:
 		return v, nil
+	case *FleetDeleteBadRequest:
+		return nil, v
 	case *FleetDeleteUnauthorized:
 		return nil, v
 	case *FleetDeleteForbidden:
@@ -634,7 +644,7 @@ Deprecated: 2022-08-10 - Use FleetServersShort instead.
 FleetServers get server details & counts for a fleet
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
-func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, *FleetServersUnauthorized, *FleetServersForbidden, *FleetServersNotFound, *FleetServersInternalServerError, error) {
+func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServersOK, *FleetServersBadRequest, *FleetServersUnauthorized, *FleetServersForbidden, *FleetServersNotFound, *FleetServersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetServersParams()
@@ -666,28 +676,31 @@ func (a *Client) FleetServers(params *FleetServersParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *FleetServersOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *FleetServersBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *FleetServersUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *FleetServersForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *FleetServersNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *FleetServersInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -730,6 +743,8 @@ func (a *Client) FleetServersShort(params *FleetServersParams, authInfo runtime.
 
 	case *FleetServersOK:
 		return v, nil
+	case *FleetServersBadRequest:
+		return nil, v
 	case *FleetServersUnauthorized:
 		return nil, v
 	case *FleetServersForbidden:

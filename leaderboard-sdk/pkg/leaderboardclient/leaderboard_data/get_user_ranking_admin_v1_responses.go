@@ -75,7 +75,7 @@ func NewGetUserRankingAdminV1OK() *GetUserRankingAdminV1OK {
 
 /*GetUserRankingAdminV1OK handles this case with default header values.
 
-  OK
+  User ranking retrieved
 */
 type GetUserRankingAdminV1OK struct {
 	Payload *leaderboardclientmodels.ModelsUserRankingResponse
@@ -128,7 +128,7 @@ func NewGetUserRankingAdminV1Unauthorized() *GetUserRankingAdminV1Unauthorized {
 
 /*GetUserRankingAdminV1Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type GetUserRankingAdminV1Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -181,7 +181,7 @@ func NewGetUserRankingAdminV1Forbidden() *GetUserRankingAdminV1Forbidden {
 
 /*GetUserRankingAdminV1Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type GetUserRankingAdminV1Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -234,8 +234,8 @@ func NewGetUserRankingAdminV1NotFound() *GetUserRankingAdminV1NotFound {
 
 /*GetUserRankingAdminV1NotFound handles this case with default header values.
 
-  Not Found
-*/
+
+ */
 type GetUserRankingAdminV1NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }
@@ -287,7 +287,7 @@ func NewGetUserRankingAdminV1InternalServerError() *GetUserRankingAdminV1Interna
 
 /*GetUserRankingAdminV1InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type GetUserRankingAdminV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

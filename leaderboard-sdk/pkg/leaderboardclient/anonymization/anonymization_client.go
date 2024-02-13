@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, *AdminAnonymizeUserLeaderboardAdminV1Unauthorized, *AdminAnonymizeUserLeaderboardAdminV1Forbidden, *AdminAnonymizeUserLeaderboardAdminV1NotFound, *AdminAnonymizeUserLeaderboardAdminV1InternalServerError, error)
+	AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, *AdminAnonymizeUserLeaderboardAdminV1Unauthorized, *AdminAnonymizeUserLeaderboardAdminV1Forbidden, *AdminAnonymizeUserLeaderboardAdminV1InternalServerError, error)
 	AdminAnonymizeUserLeaderboardAdminV1Short(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -50,7 +50,7 @@ This API will delete specified user leaderboard
 Required permission
 `ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]`
 */
-func (a *Client) AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, *AdminAnonymizeUserLeaderboardAdminV1Unauthorized, *AdminAnonymizeUserLeaderboardAdminV1Forbidden, *AdminAnonymizeUserLeaderboardAdminV1NotFound, *AdminAnonymizeUserLeaderboardAdminV1InternalServerError, error) {
+func (a *Client) AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, *AdminAnonymizeUserLeaderboardAdminV1Unauthorized, *AdminAnonymizeUserLeaderboardAdminV1Forbidden, *AdminAnonymizeUserLeaderboardAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminAnonymizeUserLeaderboardAdminV1Params()
@@ -82,28 +82,25 @@ func (a *Client) AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUser
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminAnonymizeUserLeaderboardAdminV1NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminAnonymizeUserLeaderboardAdminV1Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminAnonymizeUserLeaderboardAdminV1Forbidden:
-		return nil, nil, v, nil, nil, nil
-
-	case *AdminAnonymizeUserLeaderboardAdminV1NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AdminAnonymizeUserLeaderboardAdminV1InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -157,8 +154,6 @@ func (a *Client) AdminAnonymizeUserLeaderboardAdminV1Short(params *AdminAnonymiz
 	case *AdminAnonymizeUserLeaderboardAdminV1Unauthorized:
 		return nil, v
 	case *AdminAnonymizeUserLeaderboardAdminV1Forbidden:
-		return nil, v
-	case *AdminAnonymizeUserLeaderboardAdminV1NotFound:
 		return nil, v
 	case *AdminAnonymizeUserLeaderboardAdminV1InternalServerError:
 		return nil, v

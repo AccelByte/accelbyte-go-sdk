@@ -33,6 +33,12 @@ func (o *FleetDeleteReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewFleetDeleteBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewFleetDeleteUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +95,59 @@ func (o *FleetDeleteNoContent) readResponse(response runtime.ClientResponse, con
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewFleetDeleteBadRequest creates a FleetDeleteBadRequest with default headers values
+func NewFleetDeleteBadRequest() *FleetDeleteBadRequest {
+	return &FleetDeleteBadRequest{}
+}
+
+/*FleetDeleteBadRequest handles this case with default header values.
+
+  bad request
+*/
+type FleetDeleteBadRequest struct {
+	Payload *amsclientmodels.ResponseErrorResponse
+}
+
+func (o *FleetDeleteBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}][%d] fleetDeleteBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *FleetDeleteBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *FleetDeleteBadRequest) GetPayload() *amsclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *FleetDeleteBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(amsclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

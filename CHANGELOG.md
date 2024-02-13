@@ -1,3 +1,19 @@
+<a name="v0.64.0"></a>
+## [v0.64.0]
+### test
+- **integration:** temporarily disable TestIntegrationMatchPool in ags starter
+- **integration:** temporarily disable TestIntegrationConfigurationTemplate in ags starter
+- **integration:** temporarily disable TestIntegrationGameSession in ags starter
+- **integration:** temporarily disable TestIntegrationParty in ags starter
+- **sdk:** revamp namespace
+### ci
+- **nightly-starter:** remove redundant cli test
+- **lint:** increase timeout to 10 minutes
+### chore
+- **sdk:** revamp namespace
+- **samples:** update go mod
+
+
 <a name="v0.63.0"></a>
 ## [v0.63.0]
 ### test

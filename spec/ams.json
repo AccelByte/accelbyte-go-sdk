@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.8.1"
+    "version": "1.10.0"
   },
   "schemes": [
     "https"
@@ -395,14 +395,14 @@
             "type": "string"
           },
           {
-            "description": "One of: logs, coredump",
+            "description": "one of: log, coredump",
             "in": "query",
             "name": "artifactType",
             "type": "string"
           },
           {
             "default": 100,
-            "description": "Defines the maximum number of records returned in one page.",
+            "description": "defines the maximum number of records returned in one page.",
             "in": "query",
             "maximum": 500,
             "name": "count",
@@ -440,7 +440,7 @@
           },
           {
             "default": 0,
-            "description": "Specifies the start index for the records returned. Useful for implementing pagination.",
+            "description": "specifies the start index for the records returned. Useful for implementing pagination.",
             "in": "query",
             "name": "offset",
             "type": "integer"
@@ -464,7 +464,7 @@
             "type": "string"
           },
           {
-            "description": "One of: success, skip_sample, skip_usage, failed, deleted",
+            "description": "one of: success, skipped_sample, skipped_usage, failed",
             "in": "query",
             "name": "status",
             "type": "string"
@@ -477,10 +477,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/api.ArtifactResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/api.ArtifactListResponse"
             }
           },
           "400": {
@@ -826,7 +823,7 @@
             }
           },
           "403": {
-            "description": "insufficient permissions",
+            "description": "exceeded quota",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -881,6 +878,12 @@
         "responses": {
           "204": {
             "description": "no content"
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
           },
           "401": {
             "description": "no authorization provided",
@@ -950,6 +953,12 @@
             "description": "success",
             "schema": {
               "$ref": "#/definitions/api.FleetGetResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
@@ -1183,7 +1192,7 @@
           "application/json"
         ],
         "responses": {
-          "204": {
+          "200": {
             "description": "success",
             "schema": {
               "$ref": "#/definitions/api.FleetArtifactsSampleRules"
@@ -1265,6 +1274,12 @@
             "description": "success",
             "schema": {
               "$ref": "#/definitions/api.FleetServersResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
@@ -2560,6 +2575,24 @@
         "namespaces"
       ]
     },
+    "api.ArtifactListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/api.ArtifactResponse"
+          },
+          "type": "array"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "totalData"
+      ]
+    },
     "api.ArtifactResponse": {
       "properties": {
         "artifactType": {
@@ -2589,6 +2622,9 @@
         "namespace": {
           "type": "string"
         },
+        "region": {
+          "type": "string"
+        },
         "sizeBytes": {
           "format": "int64",
           "type": "integer"
@@ -2607,6 +2643,7 @@
         "id",
         "imageId",
         "namespace",
+        "region",
         "sizeBytes",
         "status"
       ]
@@ -2694,9 +2731,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "gameSession": {
-          "type": "string"
-        },
         "ipAddress": {
           "type": "string"
         },
@@ -2716,7 +2750,6 @@
       "required": [
         "createdAt",
         "exitCode",
-        "gameSession",
         "ipAddress",
         "reason",
         "region",
@@ -2787,21 +2820,29 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "sessionId": {
+          "type": "string"
         }
       },
       "required": [
         "claimKeys",
-        "regions"
+        "regions",
+        "sessionId"
       ]
     },
     "api.FleetClaimReq": {
       "properties": {
         "region": {
           "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
         }
       },
       "required": [
-        "region"
+        "region",
+        "sessionId"
       ]
     },
     "api.FleetClaimResponse": {
@@ -3099,6 +3140,9 @@
         "serverId": {
           "type": "string"
         },
+        "sessionId": {
+          "type": "string"
+        },
         "status": {
           "type": "string"
         }
@@ -3115,6 +3159,7 @@
         "ports",
         "region",
         "serverId",
+        "sessionId",
         "status"
       ]
     },
@@ -3168,6 +3213,9 @@
         "createdAt": {
           "$ref": "#/definitions/time.Time"
         },
+        "executable": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -3206,6 +3254,7 @@
       },
       "required": [
         "createdAt",
+        "executable",
         "id",
         "isProtected",
         "name",
@@ -3234,6 +3283,9 @@
       "properties": {
         "createdAt": {
           "$ref": "#/definitions/time.Time"
+        },
+        "executable": {
+          "type": "string"
         },
         "id": {
           "type": "string"
@@ -3271,6 +3323,7 @@
       },
       "required": [
         "createdAt",
+        "executable",
         "id",
         "isProtected",
         "name",
@@ -3556,10 +3609,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-13T00:44:33+00:00",
-    "gitHash": "6e8391a64586c23eb45d2e4bbbb86d5602b23fef",
+    "buildDate": "2024-02-06T03:58:16+00:00",
+    "gitHash": "c9a146e5f28aa59832c1e9b7ebe60cdce52022f0",
     "name": "fleet-commander",
-    "version": "1.8.1",
-    "version-roles-seeding": "1.0.27"
+    "version": "1.10.0",
+    "version-roles-seeding": "1.2.3"
   }
 }

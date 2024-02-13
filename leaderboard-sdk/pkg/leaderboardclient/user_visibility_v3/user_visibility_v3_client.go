@@ -30,13 +30,13 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV3OK, *GetHiddenUsersV3BadRequest, *GetHiddenUsersV3Unauthorized, *GetHiddenUsersV3Forbidden, *GetHiddenUsersV3NotFound, *GetHiddenUsersV3InternalServerError, error)
+	GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV3OK, *GetHiddenUsersV3BadRequest, *GetHiddenUsersV3Unauthorized, *GetHiddenUsersV3Forbidden, *GetHiddenUsersV3InternalServerError, error)
 	GetHiddenUsersV3Short(params *GetHiddenUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV3OK, error)
-	GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV3OK, *GetUserVisibilityStatusV3BadRequest, *GetUserVisibilityStatusV3Unauthorized, *GetUserVisibilityStatusV3Forbidden, *GetUserVisibilityStatusV3NotFound, *GetUserVisibilityStatusV3InternalServerError, error)
+	GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV3OK, *GetUserVisibilityStatusV3BadRequest, *GetUserVisibilityStatusV3Unauthorized, *GetUserVisibilityStatusV3Forbidden, *GetUserVisibilityStatusV3InternalServerError, error)
 	GetUserVisibilityStatusV3Short(params *GetUserVisibilityStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV3OK, error)
-	SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityV3OK, *SetUserLeaderboardVisibilityV3BadRequest, *SetUserLeaderboardVisibilityV3Unauthorized, *SetUserLeaderboardVisibilityV3Forbidden, *SetUserLeaderboardVisibilityV3NotFound, *SetUserLeaderboardVisibilityV3InternalServerError, error)
+	SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityV3OK, *SetUserLeaderboardVisibilityV3BadRequest, *SetUserLeaderboardVisibilityV3Unauthorized, *SetUserLeaderboardVisibilityV3Forbidden, *SetUserLeaderboardVisibilityV3InternalServerError, error)
 	SetUserLeaderboardVisibilityV3Short(params *SetUserLeaderboardVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityV3OK, error)
-	SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityV3OK, *SetUserVisibilityV3BadRequest, *SetUserVisibilityV3Unauthorized, *SetUserVisibilityV3Forbidden, *SetUserVisibilityV3NotFound, *SetUserVisibilityV3InternalServerError, error)
+	SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityV3OK, *SetUserVisibilityV3BadRequest, *SetUserVisibilityV3Unauthorized, *SetUserVisibilityV3Forbidden, *SetUserVisibilityV3InternalServerError, error)
 	SetUserVisibilityV3Short(params *SetUserVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -48,7 +48,7 @@ Deprecated: 2022-08-10 - Use GetHiddenUsersV3Short instead.
 GetHiddenUsersV3 get hidden users on a leaderboard
 Return hidden users on a leaderboard
 */
-func (a *Client) GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV3OK, *GetHiddenUsersV3BadRequest, *GetHiddenUsersV3Unauthorized, *GetHiddenUsersV3Forbidden, *GetHiddenUsersV3NotFound, *GetHiddenUsersV3InternalServerError, error) {
+func (a *Client) GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV3OK, *GetHiddenUsersV3BadRequest, *GetHiddenUsersV3Unauthorized, *GetHiddenUsersV3Forbidden, *GetHiddenUsersV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetHiddenUsersV3Params()
@@ -80,31 +80,28 @@ func (a *Client) GetHiddenUsersV3(params *GetHiddenUsersV3Params, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetHiddenUsersV3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *GetHiddenUsersV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *GetHiddenUsersV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *GetHiddenUsersV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *GetHiddenUsersV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetHiddenUsersV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -153,8 +150,6 @@ func (a *Client) GetHiddenUsersV3Short(params *GetHiddenUsersV3Params, authInfo 
 		return nil, v
 	case *GetHiddenUsersV3Forbidden:
 		return nil, v
-	case *GetHiddenUsersV3NotFound:
-		return nil, v
 	case *GetHiddenUsersV3InternalServerError:
 		return nil, v
 
@@ -169,7 +164,7 @@ Deprecated: 2022-08-10 - Use GetUserVisibilityStatusV3Short instead.
 GetUserVisibilityStatusV3 get user visibility status
 User with false visibility status will have hidden attribute set to true on it's leaderboard entry
 */
-func (a *Client) GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV3OK, *GetUserVisibilityStatusV3BadRequest, *GetUserVisibilityStatusV3Unauthorized, *GetUserVisibilityStatusV3Forbidden, *GetUserVisibilityStatusV3NotFound, *GetUserVisibilityStatusV3InternalServerError, error) {
+func (a *Client) GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV3OK, *GetUserVisibilityStatusV3BadRequest, *GetUserVisibilityStatusV3Unauthorized, *GetUserVisibilityStatusV3Forbidden, *GetUserVisibilityStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserVisibilityStatusV3Params()
@@ -201,31 +196,28 @@ func (a *Client) GetUserVisibilityStatusV3(params *GetUserVisibilityStatusV3Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserVisibilityStatusV3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *GetUserVisibilityStatusV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *GetUserVisibilityStatusV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *GetUserVisibilityStatusV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *GetUserVisibilityStatusV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetUserVisibilityStatusV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -274,8 +266,6 @@ func (a *Client) GetUserVisibilityStatusV3Short(params *GetUserVisibilityStatusV
 		return nil, v
 	case *GetUserVisibilityStatusV3Forbidden:
 		return nil, v
-	case *GetUserVisibilityStatusV3NotFound:
-		return nil, v
 	case *GetUserVisibilityStatusV3InternalServerError:
 		return nil, v
 
@@ -290,7 +280,7 @@ Deprecated: 2022-08-10 - Use SetUserLeaderboardVisibilityV3Short instead.
 SetUserLeaderboardVisibilityV3 set user visibility status on a specific leaderboard code
 User with false visibility status will have hidden attribute set to true on it's leaderboard entry
 */
-func (a *Client) SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityV3OK, *SetUserLeaderboardVisibilityV3BadRequest, *SetUserLeaderboardVisibilityV3Unauthorized, *SetUserLeaderboardVisibilityV3Forbidden, *SetUserLeaderboardVisibilityV3NotFound, *SetUserLeaderboardVisibilityV3InternalServerError, error) {
+func (a *Client) SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityV3OK, *SetUserLeaderboardVisibilityV3BadRequest, *SetUserLeaderboardVisibilityV3Unauthorized, *SetUserLeaderboardVisibilityV3Forbidden, *SetUserLeaderboardVisibilityV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetUserLeaderboardVisibilityV3Params()
@@ -322,31 +312,28 @@ func (a *Client) SetUserLeaderboardVisibilityV3(params *SetUserLeaderboardVisibi
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SetUserLeaderboardVisibilityV3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *SetUserLeaderboardVisibilityV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *SetUserLeaderboardVisibilityV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *SetUserLeaderboardVisibilityV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *SetUserLeaderboardVisibilityV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *SetUserLeaderboardVisibilityV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -395,8 +382,6 @@ func (a *Client) SetUserLeaderboardVisibilityV3Short(params *SetUserLeaderboardV
 		return nil, v
 	case *SetUserLeaderboardVisibilityV3Forbidden:
 		return nil, v
-	case *SetUserLeaderboardVisibilityV3NotFound:
-		return nil, v
 	case *SetUserLeaderboardVisibilityV3InternalServerError:
 		return nil, v
 
@@ -411,7 +396,7 @@ Deprecated: 2022-08-10 - Use SetUserVisibilityV3Short instead.
 SetUserVisibilityV3 set user visibility status on a all current leaderboard
 User with false visibility status will have hidden attribute set to true on it's leaderboard entry
 */
-func (a *Client) SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityV3OK, *SetUserVisibilityV3BadRequest, *SetUserVisibilityV3Unauthorized, *SetUserVisibilityV3Forbidden, *SetUserVisibilityV3NotFound, *SetUserVisibilityV3InternalServerError, error) {
+func (a *Client) SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityV3OK, *SetUserVisibilityV3BadRequest, *SetUserVisibilityV3Unauthorized, *SetUserVisibilityV3Forbidden, *SetUserVisibilityV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetUserVisibilityV3Params()
@@ -443,31 +428,28 @@ func (a *Client) SetUserVisibilityV3(params *SetUserVisibilityV3Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SetUserVisibilityV3OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *SetUserVisibilityV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *SetUserVisibilityV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *SetUserVisibilityV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *SetUserVisibilityV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *SetUserVisibilityV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -515,8 +497,6 @@ func (a *Client) SetUserVisibilityV3Short(params *SetUserVisibilityV3Params, aut
 	case *SetUserVisibilityV3Unauthorized:
 		return nil, v
 	case *SetUserVisibilityV3Forbidden:
-		return nil, v
-	case *SetUserVisibilityV3NotFound:
 		return nil, v
 	case *SetUserVisibilityV3InternalServerError:
 		return nil, v

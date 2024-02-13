@@ -33,6 +33,12 @@ func (o *BulkGetUsersRankingPublicV3Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewBulkGetUsersRankingPublicV3BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewBulkGetUsersRankingPublicV3Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,7 +81,7 @@ func NewBulkGetUsersRankingPublicV3OK() *BulkGetUsersRankingPublicV3OK {
 
 /*BulkGetUsersRankingPublicV3OK handles this case with default header values.
 
-  OK
+  Users ranking retrieved
 */
 type BulkGetUsersRankingPublicV3OK struct {
 	Payload *leaderboardclientmodels.ModelsBulkUserRankingResponseV3
@@ -121,6 +127,59 @@ func (o *BulkGetUsersRankingPublicV3OK) readResponse(response runtime.ClientResp
 	return nil
 }
 
+// NewBulkGetUsersRankingPublicV3BadRequest creates a BulkGetUsersRankingPublicV3BadRequest with default headers values
+func NewBulkGetUsersRankingPublicV3BadRequest() *BulkGetUsersRankingPublicV3BadRequest {
+	return &BulkGetUsersRankingPublicV3BadRequest{}
+}
+
+/*BulkGetUsersRankingPublicV3BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type BulkGetUsersRankingPublicV3BadRequest struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *BulkGetUsersRankingPublicV3BadRequest) Error() string {
+	return fmt.Sprintf("[POST /leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/bulk][%d] bulkGetUsersRankingPublicV3BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *BulkGetUsersRankingPublicV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *BulkGetUsersRankingPublicV3BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *BulkGetUsersRankingPublicV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewBulkGetUsersRankingPublicV3Unauthorized creates a BulkGetUsersRankingPublicV3Unauthorized with default headers values
 func NewBulkGetUsersRankingPublicV3Unauthorized() *BulkGetUsersRankingPublicV3Unauthorized {
 	return &BulkGetUsersRankingPublicV3Unauthorized{}
@@ -128,7 +187,7 @@ func NewBulkGetUsersRankingPublicV3Unauthorized() *BulkGetUsersRankingPublicV3Un
 
 /*BulkGetUsersRankingPublicV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type BulkGetUsersRankingPublicV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -181,7 +240,7 @@ func NewBulkGetUsersRankingPublicV3Forbidden() *BulkGetUsersRankingPublicV3Forbi
 
 /*BulkGetUsersRankingPublicV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type BulkGetUsersRankingPublicV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -234,7 +293,7 @@ func NewBulkGetUsersRankingPublicV3NotFound() *BulkGetUsersRankingPublicV3NotFou
 
 /*BulkGetUsersRankingPublicV3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71230</td><td>leaderboard configuration not found</td></tr></table>
 */
 type BulkGetUsersRankingPublicV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -287,7 +346,7 @@ func NewBulkGetUsersRankingPublicV3InternalServerError() *BulkGetUsersRankingPub
 
 /*BulkGetUsersRankingPublicV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type BulkGetUsersRankingPublicV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

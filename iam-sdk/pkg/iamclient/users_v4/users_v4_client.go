@@ -73,6 +73,12 @@ type ClientService interface {
 	AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*AdminDownloadMyBackupCodesV4OK, error)
 	AdminEnableMyBackupCodesV4(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, *AdminEnableMyBackupCodesV4BadRequest, *AdminEnableMyBackupCodesV4Unauthorized, *AdminEnableMyBackupCodesV4Forbidden, *AdminEnableMyBackupCodesV4NotFound, *AdminEnableMyBackupCodesV4Conflict, *AdminEnableMyBackupCodesV4InternalServerError, error)
 	AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, error)
+	AdminGetBackupCodesV4(params *AdminGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBackupCodesV4NoContent, *AdminGetBackupCodesV4BadRequest, *AdminGetBackupCodesV4Unauthorized, *AdminGetBackupCodesV4Forbidden, *AdminGetBackupCodesV4NotFound, *AdminGetBackupCodesV4InternalServerError, error)
+	AdminGetBackupCodesV4Short(params *AdminGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBackupCodesV4NoContent, error)
+	AdminGenerateBackupCodesV4(params *AdminGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateBackupCodesV4OK, *AdminGenerateBackupCodesV4BadRequest, *AdminGenerateBackupCodesV4Unauthorized, *AdminGenerateBackupCodesV4Forbidden, *AdminGenerateBackupCodesV4NotFound, *AdminGenerateBackupCodesV4InternalServerError, error)
+	AdminGenerateBackupCodesV4Short(params *AdminGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateBackupCodesV4OK, error)
+	AdminEnableBackupCodesV4(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, *AdminEnableBackupCodesV4BadRequest, *AdminEnableBackupCodesV4Unauthorized, *AdminEnableBackupCodesV4Forbidden, *AdminEnableBackupCodesV4NotFound, *AdminEnableBackupCodesV4Conflict, *AdminEnableBackupCodesV4InternalServerError, error)
+	AdminEnableBackupCodesV4Short(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, error)
 	AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, *AdminSendMyMFAEmailCodeV4BadRequest, *AdminSendMyMFAEmailCodeV4Unauthorized, *AdminSendMyMFAEmailCodeV4Forbidden, *AdminSendMyMFAEmailCodeV4NotFound, *AdminSendMyMFAEmailCodeV4TooManyRequests, *AdminSendMyMFAEmailCodeV4InternalServerError, error)
 	AdminSendMyMFAEmailCodeV4Short(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, error)
 	AdminDisableMyEmailV4(params *AdminDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyEmailV4NoContent, *AdminDisableMyEmailV4BadRequest, *AdminDisableMyEmailV4Unauthorized, *AdminDisableMyEmailV4Forbidden, *AdminDisableMyEmailV4NotFound, *AdminDisableMyEmailV4InternalServerError, error)
@@ -115,6 +121,12 @@ type ClientService interface {
 	PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadMyBackupCodesV4OK, error)
 	PublicEnableMyBackupCodesV4(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, *PublicEnableMyBackupCodesV4BadRequest, *PublicEnableMyBackupCodesV4Unauthorized, *PublicEnableMyBackupCodesV4Forbidden, *PublicEnableMyBackupCodesV4NotFound, *PublicEnableMyBackupCodesV4Conflict, *PublicEnableMyBackupCodesV4InternalServerError, error)
 	PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, error)
+	PublicGetBackupCodesV4(params *PublicGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBackupCodesV4NoContent, *PublicGetBackupCodesV4BadRequest, *PublicGetBackupCodesV4Unauthorized, *PublicGetBackupCodesV4Forbidden, *PublicGetBackupCodesV4NotFound, *PublicGetBackupCodesV4InternalServerError, error)
+	PublicGetBackupCodesV4Short(params *PublicGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBackupCodesV4NoContent, error)
+	PublicGenerateBackupCodesV4(params *PublicGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateBackupCodesV4NoContent, *PublicGenerateBackupCodesV4BadRequest, *PublicGenerateBackupCodesV4Unauthorized, *PublicGenerateBackupCodesV4Forbidden, *PublicGenerateBackupCodesV4NotFound, *PublicGenerateBackupCodesV4InternalServerError, error)
+	PublicGenerateBackupCodesV4Short(params *PublicGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateBackupCodesV4NoContent, error)
+	PublicEnableBackupCodesV4(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, *PublicEnableBackupCodesV4BadRequest, *PublicEnableBackupCodesV4Unauthorized, *PublicEnableBackupCodesV4Forbidden, *PublicEnableBackupCodesV4NotFound, *PublicEnableBackupCodesV4Conflict, *PublicEnableBackupCodesV4InternalServerError, error)
+	PublicEnableBackupCodesV4Short(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, error)
 	PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, *PublicRemoveTrustedDeviceV4BadRequest, *PublicRemoveTrustedDeviceV4Unauthorized, *PublicRemoveTrustedDeviceV4Forbidden, *PublicRemoveTrustedDeviceV4NotFound, *PublicRemoveTrustedDeviceV4InternalServerError, error)
 	PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, error)
 	PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendMyMFAEmailCodeV4NoContent, *PublicSendMyMFAEmailCodeV4BadRequest, *PublicSendMyMFAEmailCodeV4Unauthorized, *PublicSendMyMFAEmailCodeV4Forbidden, *PublicSendMyMFAEmailCodeV4NotFound, *PublicSendMyMFAEmailCodeV4TooManyRequests, *PublicSendMyMFAEmailCodeV4InternalServerError, error)
@@ -258,6 +270,7 @@ Create a new user with unique email address and username.
 - password: Please refer to the rule from /v3/public/inputValidations API.
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.
 
 **Not required attributes:**
 - displayName: Please refer to the rule from /v3/public/inputValidations API.
@@ -336,6 +349,7 @@ Create a new user with unique email address and username.
 - password: Please refer to the rule from /v3/public/inputValidations API.
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.
 
 **Not required attributes:**
 - displayName: Please refer to the rule from /v3/public/inputValidations API.
@@ -2791,6 +2805,378 @@ func (a *Client) AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCode
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetBackupCodesV4Short instead.
+
+AdminGetBackupCodesV4 get backup codes and send to email
+This endpoint is used to get 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.
+*/
+func (a *Client) AdminGetBackupCodesV4(params *AdminGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBackupCodesV4NoContent, *AdminGetBackupCodesV4BadRequest, *AdminGetBackupCodesV4Unauthorized, *AdminGetBackupCodesV4Forbidden, *AdminGetBackupCodesV4NotFound, *AdminGetBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetBackupCodesV4Short get backup codes and send to email
+This endpoint is used to get 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.
+*/
+func (a *Client) AdminGetBackupCodesV4Short(params *AdminGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetBackupCodesV4NoContent:
+		return v, nil
+	case *AdminGetBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminGetBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminGetBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminGetBackupCodesV4NotFound:
+		return nil, v
+	case *AdminGetBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGenerateBackupCodesV4Short instead.
+
+AdminGenerateBackupCodesV4 generate backup codes
+This endpoint is used to generate 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.
+*/
+func (a *Client) AdminGenerateBackupCodesV4(params *AdminGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateBackupCodesV4OK, *AdminGenerateBackupCodesV4BadRequest, *AdminGenerateBackupCodesV4Unauthorized, *AdminGenerateBackupCodesV4Forbidden, *AdminGenerateBackupCodesV4NotFound, *AdminGenerateBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGenerateBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGenerateBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGenerateBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGenerateBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGenerateBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGenerateBackupCodesV4Short generate backup codes
+This endpoint is used to generate 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.
+*/
+func (a *Client) AdminGenerateBackupCodesV4Short(params *AdminGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateBackupCodesV4OK:
+		return v, nil
+	case *AdminGenerateBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminGenerateBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminGenerateBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminGenerateBackupCodesV4NotFound:
+		return nil, v
+	case *AdminGenerateBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminEnableBackupCodesV4Short instead.
+
+AdminEnableBackupCodesV4 enable 2fa backup codes
+This endpoint is used to enable 2FA backup codes.
+*/
+func (a *Client) AdminEnableBackupCodesV4(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, *AdminEnableBackupCodesV4BadRequest, *AdminEnableBackupCodesV4Unauthorized, *AdminEnableBackupCodesV4Forbidden, *AdminEnableBackupCodesV4NotFound, *AdminEnableBackupCodesV4Conflict, *AdminEnableBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminEnableBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminEnableBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminEnableBackupCodesV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminEnableBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminEnableBackupCodesV4Short enable 2fa backup codes
+This endpoint is used to enable 2FA backup codes.
+*/
+func (a *Client) AdminEnableBackupCodesV4Short(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCodes/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableBackupCodesV4OK:
+		return v, nil
+	case *AdminEnableBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminEnableBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminEnableBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminEnableBackupCodesV4NotFound:
+		return nil, v
+	case *AdminEnableBackupCodesV4Conflict:
+		return nil, v
+	case *AdminEnableBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminSendMyMFAEmailCodeV4Short instead.
 
 AdminSendMyMFAEmailCodeV4 send code for enabling email
@@ -3718,6 +4104,7 @@ Create a new user with unique email address and username.
 - password: Please refer to the rule from /v3/public/inputValidations API.
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.
 
 **Not required attributes:**
 - displayName: Please refer to the rule from /v3/public/inputValidations API.
@@ -3793,6 +4180,7 @@ Create a new user with unique email address and username.
 - password: Please refer to the rule from /v3/public/inputValidations API.
 - country: ISO3166-1 alpha-2 two letter, e.g. US.
 - dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.
 
 **Not required attributes:**
 - displayName: Please refer to the rule from /v3/public/inputValidations API.
@@ -3858,6 +4246,9 @@ User will be able to login after completing submitting the data through this end
 Available Authentication Types:
 
 EMAILPASSWD: an authentication type used for new user registration through email.
+
+**Note**:
+* **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.
 
 Country use ISO3166-1 alpha-2 two letter, e.g. US.
 
@@ -3935,6 +4326,9 @@ User will be able to login after completing submitting the data through this end
 Available Authentication Types:
 
 EMAILPASSWD: an authentication type used for new user registration through email.
+
+**Note**:
+* **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.
 
 Country use ISO3166-1 alpha-2 two letter, e.g. US.
 
@@ -5154,7 +5548,7 @@ func (a *Client) PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBack
 Deprecated: 2022-08-10 - Use PublicDisableMyBackupCodesV4Short instead.
 
 PublicDisableMyBackupCodesV4 disable 2fa backup codes
-This endpoint is used to enable 2FA backup codes.
+This endpoint is used to disable 2FA backup codes.
 */
 func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, *PublicDisableMyBackupCodesV4BadRequest, *PublicDisableMyBackupCodesV4Unauthorized, *PublicDisableMyBackupCodesV4Forbidden, *PublicDisableMyBackupCodesV4NotFound, *PublicDisableMyBackupCodesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5218,7 +5612,7 @@ func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodes
 
 /*
 PublicDisableMyBackupCodesV4Short disable 2fa backup codes
-This endpoint is used to enable 2FA backup codes.
+This endpoint is used to disable 2FA backup codes.
 */
 func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5511,6 +5905,382 @@ func (a *Client) PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCo
 	case *PublicEnableMyBackupCodesV4Conflict:
 		return nil, v
 	case *PublicEnableMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetBackupCodesV4Short instead.
+
+PublicGetBackupCodesV4 get backup codes and send to email
+This endpoint is used to get existing 8-digits backup codes.
+Each codes is a one-time code and will be deleted once used.
+The codes will be sent through linked email.
+*/
+func (a *Client) PublicGetBackupCodesV4(params *PublicGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBackupCodesV4NoContent, *PublicGetBackupCodesV4BadRequest, *PublicGetBackupCodesV4Unauthorized, *PublicGetBackupCodesV4Forbidden, *PublicGetBackupCodesV4NotFound, *PublicGetBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGetBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGetBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGetBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetBackupCodesV4Short get backup codes and send to email
+This endpoint is used to get existing 8-digits backup codes.
+Each codes is a one-time code and will be deleted once used.
+The codes will be sent through linked email.
+*/
+func (a *Client) PublicGetBackupCodesV4Short(params *PublicGetBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetBackupCodesV4NoContent:
+		return v, nil
+	case *PublicGetBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicGetBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicGetBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicGetBackupCodesV4NotFound:
+		return nil, v
+	case *PublicGetBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGenerateBackupCodesV4Short instead.
+
+PublicGenerateBackupCodesV4 generate backup codes
+This endpoint is used to generate 8-digits backup codes.
+Each codes is a one-time code and will be deleted once used.
+The codes will be sent through linked email.
+*/
+func (a *Client) PublicGenerateBackupCodesV4(params *PublicGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateBackupCodesV4NoContent, *PublicGenerateBackupCodesV4BadRequest, *PublicGenerateBackupCodesV4Unauthorized, *PublicGenerateBackupCodesV4Forbidden, *PublicGenerateBackupCodesV4NotFound, *PublicGenerateBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGenerateBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGenerateBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGenerateBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGenerateBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGenerateBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGenerateBackupCodesV4Short generate backup codes
+This endpoint is used to generate 8-digits backup codes.
+Each codes is a one-time code and will be deleted once used.
+The codes will be sent through linked email.
+*/
+func (a *Client) PublicGenerateBackupCodesV4Short(params *PublicGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateBackupCodesV4NoContent:
+		return v, nil
+	case *PublicGenerateBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicGenerateBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicGenerateBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicGenerateBackupCodesV4NotFound:
+		return nil, v
+	case *PublicGenerateBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicEnableBackupCodesV4Short instead.
+
+PublicEnableBackupCodesV4 enable 2fa backup codes
+This endpoint is used to enable 2FA backup codes.
+*/
+func (a *Client) PublicEnableBackupCodesV4(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, *PublicEnableBackupCodesV4BadRequest, *PublicEnableBackupCodesV4Unauthorized, *PublicEnableBackupCodesV4Forbidden, *PublicEnableBackupCodesV4NotFound, *PublicEnableBackupCodesV4Conflict, *PublicEnableBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicEnableBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *PublicEnableBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicEnableBackupCodesV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicEnableBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicEnableBackupCodesV4Short enable 2fa backup codes
+This endpoint is used to enable 2FA backup codes.
+*/
+func (a *Client) PublicEnableBackupCodesV4Short(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCodes/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableBackupCodesV4NoContent:
+		return v, nil
+	case *PublicEnableBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicEnableBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicEnableBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicEnableBackupCodesV4NotFound:
+		return nil, v
+	case *PublicEnableBackupCodesV4Conflict:
+		return nil, v
+	case *PublicEnableBackupCodesV4InternalServerError:
 		return nil, v
 
 	default:

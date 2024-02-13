@@ -39,6 +39,9 @@ type ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3 struct {
 	// Required: true
 	Password *string `json:"password"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// validateonly
 	ValidateOnly bool `json:"validateOnly"`
 }

@@ -44,7 +44,7 @@ func (aaa *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHid
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UserVisibility.GetHiddenUsersV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.UserVisibility.GetHiddenUsersV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -53,9 +53,6 @@ func (aaa *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHid
 	}
 	if forbidden != nil {
 		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -73,7 +70,7 @@ func (aaa *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibili
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UserVisibility.GetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.UserVisibility.GetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -82,9 +79,6 @@ func (aaa *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibili
 	}
 	if forbidden != nil {
 		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -102,7 +96,7 @@ func (aaa *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *us
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -111,9 +105,6 @@ func (aaa *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *us
 	}
 	if forbidden != nil {
 		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -131,7 +122,7 @@ func (aaa *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibili
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UserVisibility.SetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.UserVisibility.SetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -140,9 +131,6 @@ func (aaa *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibili
 	}
 	if forbidden != nil {
 		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

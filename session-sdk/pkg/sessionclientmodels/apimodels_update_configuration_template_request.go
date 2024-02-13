@@ -48,8 +48,7 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	DsSource string `json:"dsSource,omitempty"`
 
 	// enablesecret
-	// Required: true
-	EnableSecret *bool `json:"enableSecret"`
+	EnableSecret bool `json:"enableSecret"`
 
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
@@ -129,9 +128,6 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) Validate(formats strfmt.Re
 	if err := m.validateDeployment(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateEnableSecret(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateInactiveTimeout(formats); err != nil {
 		res = append(res, err)
 	}
@@ -181,15 +177,6 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) validateClientVersion(form
 func (m *ApimodelsUpdateConfigurationTemplateRequest) validateDeployment(formats strfmt.Registry) error {
 
 	if err := validate.Required("deployment", "body", m.Deployment); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsUpdateConfigurationTemplateRequest) validateEnableSecret(formats strfmt.Registry) error {
-
-	if err := validate.Required("enableSecret", "body", m.EnableSecret); err != nil {
 		return err
 	}
 

@@ -81,7 +81,7 @@ func NewDeleteLeaderboardConfigurationAdminV3NoContent() *DeleteLeaderboardConfi
 
 /*DeleteLeaderboardConfigurationAdminV3NoContent handles this case with default header values.
 
-  No Content
+  Leaderboard successfully deleted
 */
 type DeleteLeaderboardConfigurationAdminV3NoContent struct {
 }
@@ -107,7 +107,7 @@ func NewDeleteLeaderboardConfigurationAdminV3BadRequest() *DeleteLeaderboardConf
 
 /*DeleteLeaderboardConfigurationAdminV3BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type DeleteLeaderboardConfigurationAdminV3BadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -160,7 +160,7 @@ func NewDeleteLeaderboardConfigurationAdminV3Unauthorized() *DeleteLeaderboardCo
 
 /*DeleteLeaderboardConfigurationAdminV3Unauthorized handles this case with default header values.
 
-  Unauthorized
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
 */
 type DeleteLeaderboardConfigurationAdminV3Unauthorized struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -213,7 +213,7 @@ func NewDeleteLeaderboardConfigurationAdminV3Forbidden() *DeleteLeaderboardConfi
 
 /*DeleteLeaderboardConfigurationAdminV3Forbidden handles this case with default header values.
 
-  Forbidden
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type DeleteLeaderboardConfigurationAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -266,7 +266,7 @@ func NewDeleteLeaderboardConfigurationAdminV3NotFound() *DeleteLeaderboardConfig
 
 /*DeleteLeaderboardConfigurationAdminV3NotFound handles this case with default header values.
 
-  Not Found
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr></table>
 */
 type DeleteLeaderboardConfigurationAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
@@ -319,7 +319,7 @@ func NewDeleteLeaderboardConfigurationAdminV3InternalServerError() *DeleteLeader
 
 /*DeleteLeaderboardConfigurationAdminV3InternalServerError handles this case with default header values.
 
-  Internal Server Error
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
 */
 type DeleteLeaderboardConfigurationAdminV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

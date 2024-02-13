@@ -24,6 +24,7 @@
 | `/friends/sync/namespaces/{namespace}/me` | PATCH | SyncNativeFriendsShort | [SyncNativeFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [SyncNativeFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [SyncNativeFriendsShort](../../samples/cli/cmd/lobby/friends/syncNativeFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}` | GET | GetListOfFriendsShort | [GetListOfFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetListOfFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [GetListOfFriendsShort](../../samples/cli/cmd/lobby/friends/getListOfFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/incoming` | GET | GetIncomingFriendRequestsShort | [GetIncomingFriendRequestsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetIncomingFriendRequestsShort](../../services-api/pkg/service/lobby/friends.go) | [GetIncomingFriendRequestsShort](../../samples/cli/cmd/lobby/friends/getIncomingFriendRequests.go) |
+| `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/of-friends` | GET | AdminListFriendsOfFriendsShort | [AdminListFriendsOfFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [AdminListFriendsOfFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [AdminListFriendsOfFriendsShort](../../samples/cli/cmd/lobby/friends/adminListFriendsOfFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/outgoing` | GET | GetOutgoingFriendRequestsShort | [GetOutgoingFriendRequestsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetOutgoingFriendRequestsShort](../../services-api/pkg/service/lobby/friends.go) | [GetOutgoingFriendRequestsShort](../../samples/cli/cmd/lobby/friends/getOutgoingFriendRequests.go) |
 
 ### config Wrapper:  [Config](../../services-api/pkg/service/lobby/config.go)
@@ -110,8 +111,10 @@
 | `/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked` | GET | AdminGetPlayerBlockedPlayersV1Short | [AdminGetPlayerBlockedPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [AdminGetPlayerBlockedPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [AdminGetPlayerBlockedPlayersV1Short](../../samples/cli/cmd/lobby/player/adminGetPlayerBlockedPlayersV1.go) |
 | `/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by` | GET | AdminGetPlayerBlockedByPlayersV1Short | [AdminGetPlayerBlockedByPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [AdminGetPlayerBlockedByPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [AdminGetPlayerBlockedByPlayersV1Short](../../samples/cli/cmd/lobby/player/adminGetPlayerBlockedByPlayersV1.go) |
 | `/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block` | POST | AdminBulkBlockPlayersV1Short | [AdminBulkBlockPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [AdminBulkBlockPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [AdminBulkBlockPlayersV1Short](../../samples/cli/cmd/lobby/player/adminBulkBlockPlayersV1.go) |
+| `/lobby/v1/public/player/namespaces/{namespace}/users/me/block` | POST | PublicPlayerBlockPlayersV1Short | [PublicPlayerBlockPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [PublicPlayerBlockPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [PublicPlayerBlockPlayersV1Short](../../samples/cli/cmd/lobby/player/publicPlayerBlockPlayersV1.go) |
 | `/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked` | GET | PublicGetPlayerBlockedPlayersV1Short | [PublicGetPlayerBlockedPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [PublicGetPlayerBlockedPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [PublicGetPlayerBlockedPlayersV1Short](../../samples/cli/cmd/lobby/player/publicGetPlayerBlockedPlayersV1.go) |
 | `/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by` | GET | PublicGetPlayerBlockedByPlayersV1Short | [PublicGetPlayerBlockedByPlayersV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [PublicGetPlayerBlockedByPlayersV1Short](../../services-api/pkg/service/lobby/player.go) | [PublicGetPlayerBlockedByPlayersV1Short](../../samples/cli/cmd/lobby/player/publicGetPlayerBlockedByPlayersV1.go) |
+| `/lobby/v1/public/player/namespaces/{namespace}/users/me/unblock` | POST | PublicUnblockPlayerV1Short | [PublicUnblockPlayerV1Short](../../lobby-sdk/pkg/lobbyclient/player/player_client.go) | [PublicUnblockPlayerV1Short](../../services-api/pkg/service/lobby/player.go) | [PublicUnblockPlayerV1Short](../../samples/cli/cmd/lobby/player/publicUnblockPlayerV1.go) |
 
 ### profanity Wrapper:  [Profanity](../../services-api/pkg/service/lobby/profanity.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -162,6 +165,8 @@
 | `model.FreeFormNotificationRequest` | [ModelFreeFormNotificationRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_free_form_notification_request.go) |
 | `model.FreeFormNotificationRequestV1` | [ModelFreeFormNotificationRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_free_form_notification_request_v1.go) |
 | `model.FriendWithPlatform` | [ModelFriendWithPlatform ](../../lobby-sdk/pkg/lobbyclientmodels/model_friend_with_platform.go) |
+| `model.FriendshipConnection` | [ModelFriendshipConnection ](../../lobby-sdk/pkg/lobbyclientmodels/model_friendship_connection.go) |
+| `model.FriendshipConnectionResponse` | [ModelFriendshipConnectionResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_friendship_connection_response.go) |
 | `model.GetAllNotificationTemplateSlugResp` | [ModelGetAllNotificationTemplateSlugResp ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_all_notification_template_slug_resp.go) |
 | `model.GetAllNotificationTopicsResponse` | [ModelGetAllNotificationTopicsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_all_notification_topics_response.go) |
 | `model.GetFriendsResponse` | [ModelGetFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_get_friends_response.go) |
@@ -210,6 +215,7 @@
 | `models.AdminUpdateProfanityList` | [ModelsAdminUpdateProfanityList ](../../lobby-sdk/pkg/lobbyclientmodels/models_admin_update_profanity_list.go) |
 | `models.AdminVerifyMessageProfanityRequest` | [ModelsAdminVerifyMessageProfanityRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_admin_verify_message_profanity_request.go) |
 | `models.AdminVerifyMessageProfanityResponse` | [ModelsAdminVerifyMessageProfanityResponse ](../../lobby-sdk/pkg/lobbyclientmodels/models_admin_verify_message_profanity_response.go) |
+| `models.BlockPlayerRequest` | [ModelsBlockPlayerRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_block_player_request.go) |
 | `models.BlockedByPlayerData` | [ModelsBlockedByPlayerData ](../../lobby-sdk/pkg/lobbyclientmodels/models_blocked_by_player_data.go) |
 | `models.BlockedPlayerData` | [ModelsBlockedPlayerData ](../../lobby-sdk/pkg/lobbyclientmodels/models_blocked_player_data.go) |
 | `models.Config` | [ModelsConfig ](../../lobby-sdk/pkg/lobbyclientmodels/models_config.go) |
@@ -234,6 +240,7 @@
 | `models.ProfanityFilter` | [ModelsProfanityFilter ](../../lobby-sdk/pkg/lobbyclientmodels/models_profanity_filter.go) |
 | `models.ProfanityRule` | [ModelsProfanityRule ](../../lobby-sdk/pkg/lobbyclientmodels/models_profanity_rule.go) |
 | `models.SetPlayerSessionAttributeRequest` | [ModelsSetPlayerSessionAttributeRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_set_player_session_attribute_request.go) |
+| `models.UnblockPlayerRequest` | [ModelsUnblockPlayerRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_unblock_player_request.go) |
 | `models.UpdateConfigRequest` | [ModelsUpdateConfigRequest ](../../lobby-sdk/pkg/lobbyclientmodels/models_update_config_request.go) |
 | `models.UpdateConfigResponse` | [ModelsUpdateConfigResponse ](../../lobby-sdk/pkg/lobbyclientmodels/models_update_config_response.go) |
 | `response.Error` | [ResponseError ](../../lobby-sdk/pkg/lobbyclientmodels/response_error.go) |

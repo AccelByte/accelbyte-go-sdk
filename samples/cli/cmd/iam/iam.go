@@ -9,6 +9,7 @@ package iam
 import (
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
+	"github.com/AccelByte/sample-apps/cmd/iam/config"
 	"github.com/AccelByte/sample-apps/cmd/iam/country"
 	"github.com/AccelByte/sample-apps/cmd/iam/devicesV4"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
@@ -158,6 +159,7 @@ func init() {
 	IamCmd.AddCommand(clients.AdminUpdateClientPermissionV3Cmd)
 	IamCmd.AddCommand(clients.AdminAddClientPermissionsV3Cmd)
 	IamCmd.AddCommand(clients.AdminDeleteClientPermissionV3Cmd)
+	IamCmd.AddCommand(config.AdminGetConfigValueV3Cmd)
 	IamCmd.AddCommand(country.AdminGetCountryListV3Cmd)
 	IamCmd.AddCommand(country.AdminGetCountryBlacklistV3Cmd)
 	IamCmd.AddCommand(country.AdminAddCountryBlacklistV3Cmd)
@@ -271,6 +273,7 @@ func init() {
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationsCmd)
 	IamCmd.AddCommand(inputValidations.PublicGetInputValidationByFieldCmd)
 	IamCmd.AddCommand(users.PublicGetCountryAgeRestrictionV3Cmd)
+	IamCmd.AddCommand(config.PublicGetConfigValueV3Cmd)
 	IamCmd.AddCommand(country.PublicGetCountryListV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Cmd)
@@ -370,6 +373,9 @@ func init() {
 	IamCmd.AddCommand(usersV4.AdminDisableMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminDownloadMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminEnableMyBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminGetBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminGenerateBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminEnableBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminSendMyMFAEmailCodeV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminDisableMyEmailV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminEnableMyEmailV4Cmd)
@@ -391,6 +397,9 @@ func init() {
 	IamCmd.AddCommand(usersV4.PublicDisableMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicDownloadMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicEnableMyBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicGetBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicGenerateBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicEnableBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicRemoveTrustedDeviceV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicSendMyMFAEmailCodeV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicDisableMyEmailV4Cmd)

@@ -65,7 +65,7 @@ func (aaa *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_re
 }
 
 // Deprecated: 2022-01-10 - please use AdminGetGameRecordHandlerV1Short instead.
-func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game
 }
 
 // Deprecated: 2022-01-10 - please use AdminPutGameRecordHandlerV1Short instead.
-func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_record.AdminPutGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_record.AdminPutGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -117,7 +117,7 @@ func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game
 }
 
 // Deprecated: 2022-01-10 - please use AdminPostGameRecordHandlerV1Short instead.
-func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_record.AdminPostGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_record.AdminPostGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -198,7 +198,7 @@ func (aaa *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_ga
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -228,7 +228,7 @@ func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -258,7 +258,7 @@ func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordAdminResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

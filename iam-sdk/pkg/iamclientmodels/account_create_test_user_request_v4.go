@@ -52,6 +52,9 @@ type AccountCreateTestUserRequestV4 struct {
 	// Required: true
 	PasswordMD5Sum *string `json:"passwordMD5Sum"`
 
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// username
 	// Required: true
 	Username *string `json:"username"`

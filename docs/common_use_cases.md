@@ -289,82 +289,9 @@ if err != nil {
 
 Source: [dslogmanager_test.go](../services-api/pkg/tests/integration/dslogmanager_test.go)
 
-### Get all terminated servers
-
-```go
-inputTerminatedServer := &terminated_servers.ListTerminatedServersParams{
-	Namespace: integration.NamespaceTest,
-	Limit:     &limit,
-}
-
-ok, err := terminatedServersService.ListTerminatedServersShort(inputTerminatedServer)
-if err != nil {
-	assert.FailNow(t, err.Error())
-}
-```
-
 ## DSMC
 
 Source: [dsmc_test.go](../services-api/pkg/tests/integration/dsmc_test.go)
-
-### Create a session
-
-```go
-inputCreate := &session.CreateSessionParams{
-	Body:      bodySessionDsmc,
-	Namespace: integration.NamespaceTest,
-}
-
-created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate)
-if errCreate != nil {
-	assert.FailNow(t, errCreate.Error())
-}
-createdSessionID := *created.Session.ID
-t.Logf("Session DSMC: %v created", createdSessionID)
-```
-
-### Get a session
-
-```go
-inputGet := &session.GetSessionParams{
-	Namespace: integration.NamespaceTest,
-	SessionID: createdSessionID,
-}
-
-get, errGet := sessionDSMCService.GetSessionShort(inputGet)
-if errGet != nil {
-	assert.FailNow(t, errGet.Error())
-}
-t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
-```
-
-### Claim a DS (Dedicated Server)
-
-```go
-time.Sleep(5 * time.Second)
-
-bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
-inputClaim := &session.ClaimServerParams{
-	Body:      bodyClaim,
-	Namespace: integration.NamespaceTest,
-}
-inputClaim.RetryPolicy = &utils.Retry{
-	Transport: sessionDSMCService.Client.Runtime.Transport,
-	MaxTries:  5,
-	Backoff:   utils.NewConstantBackoff(time.Duration(10) * time.Second),
-	RetryCodes: map[int]bool{
-		425: true,
-	},
-}
-
-errClaim := sessionDSMCService.ClaimServerShort(inputClaim)
-if errClaim != nil {
-	t.Skipf("can't claim server right now due to error: %v\n", errClaim)
-
-	return
-}
-t.Logf("Id Session DSMC: %v claimed a server", createdSessionID)
-```
 
 ## EventLog
 
@@ -1154,30 +1081,6 @@ if errImport != nil {
 
 Source: [qosm_test.go](../services-api/pkg/tests/integration/qosm_test.go)
 
-### ListServer
-
-```go
-inputListServer := &public.ListServerParams{}
-
-listServerOk, errListSertver := publicService.ListServerShort(inputListServer)
-```
-
-### Heartbeat
-
-```go
-firstServer := listServerOk.Servers[0]
-heartbeatRequest := qosmclientmodels.ModelsHeartbeatRequest{
-	IP:     firstServer.IP,
-	Port:   firstServer.Port,
-	Region: firstServer.Region,
-}
-inputHeartbeat := &server.HeartbeatParams{
-	Body: &heartbeatRequest,
-}
-
-err := serverService.HeartbeatShort(inputHeartbeat)
-```
-
 ## Reporting
 
 Source: [reporting_test.go](../services-api/pkg/tests/integration/reporting_test.go)
@@ -1818,6 +1721,35 @@ save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminS
 })
 if errSave != nil {
 	assert.FailNow(t, errSave.Error())
+}
+```
+
+## DsArtifact
+
+Source: [dsartifact_test.go](../services-api/pkg/tests/integration/dsartifact_test.go)
+
+### List all queue
+
+```go
+input := &artifact_upload_process_queue.ListAllQueueParams{
+	Namespace: namespace,
+	Limit:     &limit,
+}
+ok, err := artifactUploadProcessQueueService.ListAllQueueShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
+}
+```
+
+### List terminated servers
+
+```go
+input := &all_terminated_servers.ListTerminatedServersParams{
+	Limit: &limit,
+}
+ok, err := allTerminatedServersService.ListTerminatedServersShort(input)
+if err != nil {
+	assert.FailNow(t, err.Error())
 }
 ```
 

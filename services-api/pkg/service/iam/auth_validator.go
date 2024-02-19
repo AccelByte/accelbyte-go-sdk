@@ -481,7 +481,7 @@ func (v *TokenValidator) fetchNamespaceContext(keyNamespace string) error {
 			return err
 		}
 
-		v.namespaceContextsCache.Set(keyNamespace, NamespaceContext{
+		v.namespaceContextsCache.Set(keyNamespace, &NamespaceContext{
 			Namespace:          resp.Namespace,
 			Type:               resp.Type,
 			PublisherNamespace: resp.PublisherNamespace,

@@ -90,7 +90,7 @@ pipeline {
 
         // Generate the rest of the SDK
         dir(sdkCodegenPath) {
-          sh script: "make -f Makefile.sdk-go cli_all cli_test_all doc_operation_all beautify changelog SDK_PATH=${sdkPath}", label: "Generate the rest of SDK release"
+          sh script: "make -f Makefile.sdk-go cli_all cli_test_all doc_operation_all doc_common_use_cases beautify changelog SDK_PATH=${sdkPath}", label: "Generate the rest of SDK release"
         }
 
         // Bump SDK version and commit the generated code to generate branch (overwrite existing)

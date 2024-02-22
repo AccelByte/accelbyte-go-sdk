@@ -18,7 +18,7 @@ githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
 
 pipeline {
   agent {
-    label "master"
+    label "justice-codegen-sdk"
   }
   stages {
     stage('Prepare') {

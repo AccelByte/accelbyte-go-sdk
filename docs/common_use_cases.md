@@ -65,7 +65,6 @@ inputDelete := &achievements.AdminDeleteAchievementParams{
 
 errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
 ```
-
 ## Ams
 
 Source: [ams_test.go](../services-api/pkg/tests/integration/ams_test.go)
@@ -161,7 +160,6 @@ if errDelete != nil {
 	return
 }
 ```
-
 ## Basic
 
 Source: [basic_test.go](../services-api/pkg/tests/integration/basic_test.go)
@@ -223,7 +221,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## CloudSave
 
 Source: [cloudsave_test.go](../services-api/pkg/tests/integration/cloudsave_test.go)
@@ -284,15 +281,6 @@ if err != nil {
 	assert.FailNow(t, err.Error())
 }
 ```
-
-## DSLogManager
-
-Source: [dslogmanager_test.go](../services-api/pkg/tests/integration/dslogmanager_test.go)
-
-## DSMC
-
-Source: [dsmc_test.go](../services-api/pkg/tests/integration/dsmc_test.go)
-
 ## EventLog
 
 Source: [eventlog_test.go](../services-api/pkg/tests/integration/eventlog_test.go)
@@ -332,7 +320,6 @@ if err != nil {
 	t.Skipf(err.Error())
 }
 ```
-
 ## GameTelemetry
 
 Source: [gametelemetry_test.go](../services-api/pkg/tests/integration/gametelemetry_test.go)
@@ -400,7 +387,6 @@ if err != nil {
 	t.Skip("User was not found.")
 }
 ```
-
 ## GDPR
 
 Source: [gdpr_test.go](../services-api/pkg/tests/integration/gdpr_test.go)
@@ -453,7 +439,6 @@ input := &configuration.DeleteAdminEmailConfigurationParams{
 
 err := gdprConfigurationService.DeleteAdminEmailConfigurationShort(input)
 ```
-
 ## Group
 
 Source: [group_test.go](../services-api/pkg/tests/integration/group_test.go)
@@ -518,7 +503,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## IAM
 
 Source: [iam_test.go](../services-api/pkg/tests/integration/iam_test.go)
@@ -658,7 +642,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## Leaderboard
 
 Source: [leaderboard_test.go](../services-api/pkg/tests/integration/leaderboard_test.go)
@@ -720,7 +703,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## Legal
 
 Source: [legal_test.go](../services-api/pkg/tests/integration/legal_test.go)
@@ -756,7 +738,6 @@ inputLegal := &agreement.ChangePreferenceConsentParams{
 
 err := agreementService.ChangePreferenceConsentShort(inputLegal)
 ```
-
 ## Lobby
 
 Source: [lobby_test.go](../services-api/pkg/tests/integration/lobby_test.go)
@@ -772,7 +753,6 @@ err = notificationService.GetNotificationMessage()
 ```go
 err = notificationService.GetOfflineNotification()
 ```
-
 ## Matchmaking
 
 Source: [matchmaking_test.go](../services-api/pkg/tests/integration/matchmaking_test.go)
@@ -824,7 +804,6 @@ inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 
 err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 ```
-
 ## MatchmakingV2
 
 Source: [match2_test.go](../services-api/pkg/tests/integration/match2_test.go)
@@ -956,7 +935,6 @@ if errGetList != nil {
 	return
 }
 ```
-
 ## Platform
 
 Source: [platform_test.go](../services-api/pkg/tests/integration/platform_test.go)
@@ -1076,11 +1054,6 @@ if errImport != nil {
 	t.Fatal(errImport.Error())
 }
 ```
-
-## QOSM
-
-Source: [qosm_test.go](../services-api/pkg/tests/integration/qosm_test.go)
-
 ## Reporting
 
 Source: [reporting_test.go](../services-api/pkg/tests/integration/reporting_test.go)
@@ -1130,7 +1103,6 @@ inputReport := &public_reports.SubmitReportParams{
 
 created, errCreate := publicReportsService.SubmitReportShort(inputReport)
 ```
-
 ## SeasonPass
 
 Source: [seasonpass_test.go](../services-api/pkg/tests/integration/seasonpass_test.go)
@@ -1224,7 +1196,6 @@ inputDeleteSeason := season.DeleteSeasonParams{
 
 errDeleteSeason := seasonService.DeleteSeasonShort(&inputDeleteSeason)
 ```
-
 ## Session
 
 Source: [session_test.go](../services-api/pkg/tests/integration/session_test.go)
@@ -1410,7 +1381,6 @@ if errLeave != nil {
 	return
 }
 ```
-
 ## SessionBrowser
 
 Source: [sessionbrowser_test.go](../services-api/pkg/tests/integration/sessionbrowser_test.go)
@@ -1473,7 +1443,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## Social
 
 Source: [social_test.go](../services-api/pkg/tests/integration/social_test.go)
@@ -1576,7 +1545,6 @@ inputImportStat := &stat_configuration.ImportStatsParams{
 
 okImport, errImport := statConfigurationService.ImportStatsShort(inputImportStat)
 ```
-
 ## UGC
 
 Source: [ugc_test.go](../services-api/pkg/tests/integration/ugc_test.go)
@@ -1641,7 +1609,6 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
-
 ## Chat
 
 Source: [chat_test.go](../services-api/pkg/tests/integration/chat_test.go)
@@ -1723,7 +1690,6 @@ if errSave != nil {
 	assert.FailNow(t, errSave.Error())
 }
 ```
-
 ## DsArtifact
 
 Source: [dsartifact_test.go](../services-api/pkg/tests/integration/dsartifact_test.go)
@@ -1737,7 +1703,7 @@ input := &artifact_upload_process_queue.ListAllQueueParams{
 }
 ok, err := artifactUploadProcessQueueService.ListAllQueueShort(input)
 if err != nil {
-	assert.FailNow(t, err.Error())
+	t.Skipf("temporarily disabled") // Armada is deprecated
 }
 ```
 
@@ -1749,7 +1715,7 @@ input := &all_terminated_servers.ListTerminatedServersParams{
 }
 ok, err := allTerminatedServersService.ListTerminatedServersShort(input)
 if err != nil {
-	assert.FailNow(t, err.Error())
+	t.Skipf("temporarily disabled") // Armada is deprecated
 }
 ```
 

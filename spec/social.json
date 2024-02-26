@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "2.11.4"
+    "version": "2.12.0"
   },
   "schemes": [
     "https"
@@ -3938,7 +3938,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateStat",
         "parameters": [
           {
@@ -9346,6 +9346,15 @@
           "type": "string",
           "x-nullable": false
         },
+        "globalAggregationMethod": {
+          "enum": [
+            "LAST",
+            "MAX",
+            "MIN",
+            "TOTAL"
+          ],
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -9528,6 +9537,16 @@
           "type": "number"
         },
         "description": {
+          "type": "string"
+        },
+        "globalAggregationMethod": {
+          "description": "The aggregation method for global stat, default TOTAL",
+          "enum": [
+            "LAST",
+            "MAX",
+            "MIN",
+            "TOTAL"
+          ],
           "type": "string"
         },
         "ignoreAdditionalDataOnValueRejected": {
@@ -9879,6 +9898,15 @@
         "description": {
           "type": "string"
         },
+        "globalAggregationMethod": {
+          "enum": [
+            "LAST",
+            "MAX",
+            "MIN",
+            "TOTAL"
+          ],
+          "type": "string"
+        },
         "ignoreAdditionalDataOnValueRejected": {
           "type": "boolean",
           "x-omitempty": false
@@ -10091,6 +10119,15 @@
           "type": "number"
         },
         "description": {
+          "type": "string"
+        },
+        "globalAggregationMethod": {
+          "enum": [
+            "LAST",
+            "MAX",
+            "MIN",
+            "TOTAL"
+          ],
           "type": "string"
         },
         "ignoreAdditionalDataOnValueRejected": {
@@ -10332,16 +10369,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-02-09T03:45:21+00:00",
-    "buildID": "2.11.4",
+    "buildDate": "2024-02-23T04:07:46+00:00",
+    "buildID": "2.12.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.205-195.807.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.209-198.812.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "fc92ffb74e",
-    "gitTag": "2.11.4",
+    "gitHash": "10119ebd52",
+    "gitTag": "2.12.0",
     "name": "justice-social-service",
     "realm": "demo",
-    "version": "2.11.4",
+    "version": "2.12.0",
     "version-roles-seeding": "0.0.12"
   }
 }

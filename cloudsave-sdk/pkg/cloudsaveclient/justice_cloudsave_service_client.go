@@ -20,13 +20,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_tags"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/concurrent_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/plugin_config"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
-	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/tags"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_tags"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/ttl_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -84,14 +85,15 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.AdminPlayerBinaryRecord = admin_player_binary_record.New(transport, formats)
 	cli.AdminPlayerRecord = admin_player_record.New(transport, formats)
 	cli.AdminRecord = admin_record.New(transport, formats)
+	cli.AdminTags = admin_tags.New(transport, formats)
 	cli.ConcurrentRecord = concurrent_record.New(transport, formats)
 	cli.PluginConfig = plugin_config.New(transport, formats)
 	cli.PublicGameBinaryRecord = public_game_binary_record.New(transport, formats)
 	cli.PublicGameRecord = public_game_record.New(transport, formats)
 	cli.PublicPlayerBinaryRecord = public_player_binary_record.New(transport, formats)
 	cli.PublicPlayerRecord = public_player_record.New(transport, formats)
+	cli.PublicTags = public_tags.New(transport, formats)
 	cli.TTLConfig = ttl_config.New(transport, formats)
-	cli.Tags = tags.New(transport, formats)
 
 	return cli
 }
@@ -164,6 +166,8 @@ type JusticeCloudsaveService struct {
 
 	AdminRecord admin_record.ClientService
 
+	AdminTags admin_tags.ClientService
+
 	ConcurrentRecord concurrent_record.ClientService
 
 	PluginConfig plugin_config.ClientService
@@ -176,9 +180,9 @@ type JusticeCloudsaveService struct {
 
 	PublicPlayerRecord public_player_record.ClientService
 
-	TTLConfig ttl_config.ClientService
+	PublicTags public_tags.ClientService
 
-	Tags tags.ClientService
+	TTLConfig ttl_config.ClientService
 
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
@@ -193,12 +197,13 @@ func (c *JusticeCloudsaveService) SetTransport(transport runtime.ClientTransport
 	c.AdminPlayerBinaryRecord.SetTransport(transport)
 	c.AdminPlayerRecord.SetTransport(transport)
 	c.AdminRecord.SetTransport(transport)
+	c.AdminTags.SetTransport(transport)
 	c.ConcurrentRecord.SetTransport(transport)
 	c.PluginConfig.SetTransport(transport)
 	c.PublicGameBinaryRecord.SetTransport(transport)
 	c.PublicGameRecord.SetTransport(transport)
 	c.PublicPlayerBinaryRecord.SetTransport(transport)
 	c.PublicPlayerRecord.SetTransport(transport)
+	c.PublicTags.SetTransport(transport)
 	c.TTLConfig.SetTransport(transport)
-	c.Tags.SetTransport(transport)
 }

@@ -234,8 +234,8 @@ func NewGetUserRankingAdminV3NotFound() *GetUserRankingAdminV3NotFound {
 
 /*GetUserRankingAdminV3NotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71230</td><td>leaderboard configuration not found</td></tr><tr><td>71233</td><td>user ranking data not found</td></tr></table>
+*/
 type GetUserRankingAdminV3NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

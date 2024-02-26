@@ -273,6 +273,14 @@
 | `/iam/v4/admin/roles/{roleId}/users` | POST | AdminAssignUserToRoleV4Short | [AdminAssignUserToRoleV4Short](../../iam-sdk/pkg/iamclient/roles/roles_client.go) | [AdminAssignUserToRoleV4Short](../../services-api/pkg/service/iam/roles.go) | [AdminAssignUserToRoleV4Short](../../samples/cli/cmd/iam/roles/adminAssignUserToRoleV4.go) |
 | `/iam/v4/admin/roles/{roleId}/users` | DELETE | AdminRevokeUserFromRoleV4Short | [AdminRevokeUserFromRoleV4Short](../../iam-sdk/pkg/iamclient/roles/roles_client.go) | [AdminRevokeUserFromRoleV4Short](../../services-api/pkg/service/iam/roles.go) | [AdminRevokeUserFromRoleV4Short](../../samples/cli/cmd/iam/roles/adminRevokeUserFromRoleV4.go) |
 
+### Clients Config V3 Wrapper:  [ClientsConfigV3](../../services-api/pkg/service/iam/clientsConfigV3.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v3/admin/clientConfig/permissions` | GET | AdminListClientAvailablePermissionsShort | [AdminListClientAvailablePermissionsShort](../../iam-sdk/pkg/iamclient/clients_config_v3/clients_config_v3_client.go) | [AdminListClientAvailablePermissionsShort](../../services-api/pkg/service/iam/clientsConfigV3.go) | [AdminListClientAvailablePermissionsShort](../../samples/cli/cmd/iam/clientsConfigV3/adminListClientAvailablePermissions.go) |
+| `/iam/v3/admin/clientConfig/permissions` | PUT | AdminUpdateAvailablePermissionsByModuleShort | [AdminUpdateAvailablePermissionsByModuleShort](../../iam-sdk/pkg/iamclient/clients_config_v3/clients_config_v3_client.go) | [AdminUpdateAvailablePermissionsByModuleShort](../../services-api/pkg/service/iam/clientsConfigV3.go) | [AdminUpdateAvailablePermissionsByModuleShort](../../samples/cli/cmd/iam/clientsConfigV3/adminUpdateAvailablePermissionsByModule.go) |
+| `/iam/v3/admin/clientConfig/permissions` | DELETE | AdminDeleteConfigPermissionsByGroupShort | [AdminDeleteConfigPermissionsByGroupShort](../../iam-sdk/pkg/iamclient/clients_config_v3/clients_config_v3_client.go) | [AdminDeleteConfigPermissionsByGroupShort](../../services-api/pkg/service/iam/clientsConfigV3.go) | [AdminDeleteConfigPermissionsByGroupShort](../../samples/cli/cmd/iam/clientsConfigV3/adminDeleteConfigPermissionsByGroup.go) |
+| `/iam/v3/admin/clientConfig/templates` | GET | AdminListClientTemplatesShort | [AdminListClientTemplatesShort](../../iam-sdk/pkg/iamclient/clients_config_v3/clients_config_v3_client.go) | [AdminListClientTemplatesShort](../../services-api/pkg/service/iam/clientsConfigV3.go) | [AdminListClientTemplatesShort](../../samples/cli/cmd/iam/clientsConfigV3/adminListClientTemplates.go) |
+
 ### InputValidations Wrapper:  [InputValidations](../../services-api/pkg/service/iam/inputValidations.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -334,7 +342,6 @@
 | `/iam/v3/platforms/{platformId}/authenticate` | GET | PlatformAuthenticationV3Short | [PlatformAuthenticationV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformAuthenticationV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformAuthenticationV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformAuthenticationV3.go) |
 | `/iam/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3Short | [PlatformTokenRefreshV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3Short](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3.go) |
 | `/iam/v3/token/exchange` | POST | RequestTargetTokenResponseV3Short | [RequestTargetTokenResponseV3Short](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [RequestTargetTokenResponseV3Short](../../services-api/pkg/service/iam/oAuth20Extension.go) | [RequestTargetTokenResponseV3Short](../../samples/cli/cmd/iam/oAuth20Extension/requestTargetTokenResponseV3.go) |
-| [DEPRECATED] `/iam/v3/v3/platforms/{platformId}/token/verify` | POST | PlatformTokenRefreshV3DeprecateShort | [PlatformTokenRefreshV3DeprecateShort](../../iam-sdk/pkg/iamclient/o_auth2_0_extension/o_auth20_extension_client.go) | [PlatformTokenRefreshV3DeprecateShort](../../services-api/pkg/service/iam/oAuth20Extension.go) | [PlatformTokenRefreshV3DeprecateShort](../../samples/cli/cmd/iam/oAuth20Extension/platformTokenRefreshV3Deprecate.go) |
 
 ### OAuth2.0 Wrapper:  [OAuth20](../../services-api/pkg/service/iam/oAuth20.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -443,6 +450,17 @@
 | `/iam/v4/public/namespaces/{namespace}/users/{userId}` | GET | PublicGetUserPublicInfoByUserIdV4Short | [PublicGetUserPublicInfoByUserIdV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicGetUserPublicInfoByUserIdV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicGetUserPublicInfoByUserIdV4Short](../../samples/cli/cmd/iam/usersV4/publicGetUserPublicInfoByUserIdV4.go) |
 | `/iam/v4/public/users/invite` | POST | PublicInviteUserV4Short | [PublicInviteUserV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [PublicInviteUserV4Short](../../services-api/pkg/service/iam/usersV4.go) | [PublicInviteUserV4Short](../../samples/cli/cmd/iam/usersV4/publicInviteUserV4.go) |
 
+### OAuth2.0 V4 Wrapper:  [OAuth20V4](../../services-api/pkg/service/iam/oAuth20V4.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v4/oauth/authenticateWithLink` | POST | AuthenticationWithPlatformLinkV4Short | [AuthenticationWithPlatformLinkV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [AuthenticationWithPlatformLinkV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [AuthenticationWithPlatformLinkV4Short](../../samples/cli/cmd/iam/oAuth20V4/authenticationWithPlatformLinkV4.go) |
+| `/iam/v4/oauth/headless/token` | POST | GenerateTokenByNewHeadlessAccountV4Short | [GenerateTokenByNewHeadlessAccountV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [GenerateTokenByNewHeadlessAccountV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [GenerateTokenByNewHeadlessAccountV4Short](../../samples/cli/cmd/iam/oAuth20V4/generateTokenByNewHeadlessAccountV4.go) |
+| `/iam/v4/oauth/mfa/verify` | POST | Verify2faCodeV4Short | [Verify2faCodeV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [Verify2faCodeV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [Verify2faCodeV4Short](../../samples/cli/cmd/iam/oAuth20V4/verify2faCodeV4.go) |
+| `/iam/v4/oauth/platforms/{platformId}/token` | POST | PlatformTokenGrantV4Short | [PlatformTokenGrantV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [PlatformTokenGrantV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [PlatformTokenGrantV4Short](../../samples/cli/cmd/iam/oAuth20V4/platformTokenGrantV4.go) |
+| `/iam/v4/oauth/simultaneousLogin` | POST | SimultaneousLoginV4Short | [SimultaneousLoginV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [SimultaneousLoginV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [SimultaneousLoginV4Short](../../samples/cli/cmd/iam/oAuth20V4/simultaneousLoginV4.go) |
+| `/iam/v4/oauth/token` | POST | TokenGrantV4Short | [TokenGrantV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [TokenGrantV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [TokenGrantV4Short](../../samples/cli/cmd/iam/oAuth20V4/tokenGrantV4.go) |
+| `/iam/v4/oauth/token/exchange` | POST | RequestTargetTokenResponseV4Short | [RequestTargetTokenResponseV4Short](../../iam-sdk/pkg/iamclient/o_auth2_0_v4/o_auth20_v4_client.go) | [RequestTargetTokenResponseV4Short](../../services-api/pkg/service/iam/oAuth20V4.go) | [RequestTargetTokenResponseV4Short](../../samples/cli/cmd/iam/oAuth20V4/requestTargetTokenResponseV4.go) |
+
 
 &nbsp;  
 
@@ -464,6 +482,7 @@
 | `account.createUserResponseV4` | [AccountCreateUserResponseV4 ](../../iam-sdk/pkg/iamclientmodels/account_create_user_response_v4.go) |
 | `account.upgradeHeadlessAccountRequestV4` | [AccountUpgradeHeadlessAccountRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_request_v4.go) |
 | `account.upgradeHeadlessAccountWithVerificationCodeRequestV4` | [AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_with_verification_code_request_v4.go) |
+| `accountcommon.AllowedPermission` | [AccountcommonAllowedPermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_allowed_permission.go) |
 | `accountcommon.AvatarConfig` | [AccountcommonAvatarConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_avatar_config.go) |
 | `accountcommon.Ban` | [AccountcommonBan ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban.go) |
 | `accountcommon.BanReason` | [AccountcommonBanReason ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban_reason.go) |
@@ -474,10 +493,13 @@
 | `accountcommon.BannedByV3` | [AccountcommonBannedByV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_banned_by_v3.go) |
 | `accountcommon.Bans` | [AccountcommonBans ](../../iam-sdk/pkg/iamclientmodels/accountcommon_bans.go) |
 | `accountcommon.BansV3` | [AccountcommonBansV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_bans_v3.go) |
+| `accountcommon.ClientModulePermission` | [AccountcommonClientModulePermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_module_permission.go) |
 | `accountcommon.ClientPermission` | [AccountcommonClientPermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_permission.go) |
+| `accountcommon.ClientPermissionSet` | [AccountcommonClientPermissionSet ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_permission_set.go) |
 | `accountcommon.ClientPermissionV3` | [AccountcommonClientPermissionV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_permission_v3.go) |
 | `accountcommon.ClientPermissions` | [AccountcommonClientPermissions ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_permissions.go) |
 | `accountcommon.ClientPermissionsV3` | [AccountcommonClientPermissionsV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_permissions_v3.go) |
+| `accountcommon.ClientSelectedGroup` | [AccountcommonClientSelectedGroup ](../../iam-sdk/pkg/iamclientmodels/accountcommon_client_selected_group.go) |
 | `accountcommon.ConflictedUserPlatformAccounts` | [AccountcommonConflictedUserPlatformAccounts ](../../iam-sdk/pkg/iamclientmodels/accountcommon_conflicted_user_platform_accounts.go) |
 | `accountcommon.Country` | [AccountcommonCountry ](../../iam-sdk/pkg/iamclientmodels/accountcommon_country.go) |
 | `accountcommon.CountryAgeRestriction` | [AccountcommonCountryAgeRestriction ](../../iam-sdk/pkg/iamclientmodels/accountcommon_country_age_restriction.go) |
@@ -492,6 +514,7 @@
 | `accountcommon.Pagination` | [AccountcommonPagination ](../../iam-sdk/pkg/iamclientmodels/accountcommon_pagination.go) |
 | `accountcommon.PaginationV3` | [AccountcommonPaginationV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_pagination_v3.go) |
 | `accountcommon.Permission` | [AccountcommonPermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permission.go) |
+| `accountcommon.PermissionGroup` | [AccountcommonPermissionGroup ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permission_group.go) |
 | `accountcommon.PermissionV3` | [AccountcommonPermissionV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permission_v3.go) |
 | `accountcommon.Permissions` | [AccountcommonPermissions ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permissions.go) |
 | `accountcommon.PermissionsV3` | [AccountcommonPermissionsV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_permissions_v3.go) |
@@ -521,11 +544,19 @@
 | `clientmodel.ClientCreationResponse` | [ClientmodelClientCreationResponse ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_creation_response.go) |
 | `clientmodel.ClientCreationV3Request` | [ClientmodelClientCreationV3Request ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_creation_v3_request.go) |
 | `clientmodel.ClientResponse` | [ClientmodelClientResponse ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_response.go) |
+| `clientmodel.ClientTemplate` | [ClientmodelClientTemplate ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_template.go) |
 | `clientmodel.ClientUpdateRequest` | [ClientmodelClientUpdateRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_update_request.go) |
 | `clientmodel.ClientUpdateSecretRequest` | [ClientmodelClientUpdateSecretRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_update_secret_request.go) |
 | `clientmodel.ClientUpdateV3Request` | [ClientmodelClientUpdateV3Request ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_update_v3_request.go) |
 | `clientmodel.ClientV3Response` | [ClientmodelClientV3Response ](../../iam-sdk/pkg/iamclientmodels/clientmodel_client_v3_response.go) |
 | `clientmodel.ClientsV3Response` | [ClientmodelClientsV3Response ](../../iam-sdk/pkg/iamclientmodels/clientmodel_clients_v3_response.go) |
+| `clientmodel.DefaultFieldValue` | [ClientmodelDefaultFieldValue ](../../iam-sdk/pkg/iamclientmodels/clientmodel_default_field_value.go) |
+| `clientmodel.DefaultFieldValue.value` | [ClientmodelDefaultFieldValueValue ](../../iam-sdk/pkg/iamclientmodels/clientmodel_default_field_value_value.go) |
+| `clientmodel.ListClientPermissionSet` | [ClientmodelListClientPermissionSet ](../../iam-sdk/pkg/iamclientmodels/clientmodel_list_client_permission_set.go) |
+| `clientmodel.ListTemplatesResponse` | [ClientmodelListTemplatesResponse ](../../iam-sdk/pkg/iamclientmodels/clientmodel_list_templates_response.go) |
+| `clientmodel.ListUpsertModulesRequest` | [ClientmodelListUpsertModulesRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_list_upsert_modules_request.go) |
+| `clientmodel.PermissionSetDeleteGroupRequest` | [ClientmodelPermissionSetDeleteGroupRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_permission_set_delete_group_request.go) |
+| `clientmodel.PermissionSetUpsertRequest` | [ClientmodelPermissionSetUpsertRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_permission_set_upsert_request.go) |
 | `clientmodel.V3ClientUpdateSecretRequest` | [ClientmodelV3ClientUpdateSecretRequest ](../../iam-sdk/pkg/iamclientmodels/clientmodel_v3_client_update_secret_request.go) |
 | `legal.AcceptedPoliciesRequest` | [LegalAcceptedPoliciesRequest ](../../iam-sdk/pkg/iamclientmodels/legal_accepted_policies_request.go) |
 | `model.AccountProgressionInfo` | [ModelAccountProgressionInfo ](../../iam-sdk/pkg/iamclientmodels/model_account_progression_info.go) |
@@ -617,6 +648,7 @@
 | `model.PublicUserInformationV3` | [ModelPublicUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/model_public_user_information_v3.go) |
 | `model.PublicUserResponse` | [ModelPublicUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_public_user_response.go) |
 | `model.PublicUserResponseV3` | [ModelPublicUserResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_public_user_response_v3.go) |
+| `model.PublicUserUpdateRequestV3` | [ModelPublicUserUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_public_user_update_request_v3.go) |
 | `model.PublicUsersResponse` | [ModelPublicUsersResponse ](../../iam-sdk/pkg/iamclientmodels/model_public_users_response.go) |
 | `model.RemoveUserRoleV4Request` | [ModelRemoveUserRoleV4Request ](../../iam-sdk/pkg/iamclientmodels/model_remove_user_role_v4_request.go) |
 | `model.ResetPasswordRequest` | [ModelResetPasswordRequest ](../../iam-sdk/pkg/iamclientmodels/model_reset_password_request.go) |
@@ -710,10 +742,12 @@
 | `oauthcommon.UserRevocationListRecord` | [OauthcommonUserRevocationListRecord ](../../iam-sdk/pkg/iamclientmodels/oauthcommon_user_revocation_list_record.go) |
 | `oauthmodel.CountryLocationResponse` | [OauthmodelCountryLocationResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_country_location_response.go) |
 | `oauthmodel.ErrorResponse` | [OauthmodelErrorResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_error_response.go) |
+| `oauthmodel.LoginQueueTicketResponse` | [OauthmodelLoginQueueTicketResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_login_queue_ticket_response.go) |
 | `oauthmodel.OneTimeLinkingCodeResponse` | [OauthmodelOneTimeLinkingCodeResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_one_time_linking_code_response.go) |
 | `oauthmodel.OneTimeLinkingCodeValidationResponse` | [OauthmodelOneTimeLinkingCodeValidationResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_one_time_linking_code_validation_response.go) |
 | `oauthmodel.PlatformTokenRefreshResponseV3` | [OauthmodelPlatformTokenRefreshResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_platform_token_refresh_response_v3.go) |
 | `oauthmodel.TargetTokenCodeResponse` | [OauthmodelTargetTokenCodeResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_target_token_code_response.go) |
+| `oauthmodel.TicketEndpointAction` | [OauthmodelTicketEndpointAction ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_ticket_endpoint_action.go) |
 | `oauthmodel.TokenIntrospectResponse` | [OauthmodelTokenIntrospectResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_introspect_response.go) |
 | `oauthmodel.TokenResponse` | [OauthmodelTokenResponse ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response.go) |
 | `oauthmodel.TokenResponseV3` | [OauthmodelTokenResponseV3 ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_token_response_v3.go) |

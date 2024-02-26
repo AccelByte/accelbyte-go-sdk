@@ -207,8 +207,8 @@ func NewDeleteUserRankingAdminV1NotFound() *DeleteUserRankingAdminV1NotFound {
 
 /*DeleteUserRankingAdminV1NotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71230</td><td>leaderboard configuration not found</td></tr><tr><td>71233</td><td>user ranking data not found</td></tr></table>
+*/
 type DeleteUserRankingAdminV1NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

@@ -30,6 +30,10 @@ type ModelUserActiveBanResponseV3 struct {
 	// Required: true
 	// Format: date-time
 	EndDate strfmt.DateTime `json:"endDate"`
+
+	// targetednamespace
+	// Required: true
+	TargetedNamespace *string `json:"targetedNamespace"`
 }
 
 // Validate validates this Model user active ban response V3
@@ -43,6 +47,9 @@ func (m *ModelUserActiveBanResponseV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateEndDate(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTargetedNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,6 +84,15 @@ func (m *ModelUserActiveBanResponseV3) validateEndDate(formats strfmt.Registry) 
 	}
 
 	if err := validate.FormatOf("endDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserActiveBanResponseV3) validateTargetedNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("targetedNamespace", "body", m.TargetedNamespace); err != nil {
 		return err
 	}
 

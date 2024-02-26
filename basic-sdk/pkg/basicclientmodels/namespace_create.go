@@ -22,7 +22,7 @@ type NamespaceCreate struct {
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
-	// namespace, only accept alphabet and numeric
+	// namespace, only accept alphabet and numeric. Will be converted to lowercase
 	// Required: true
 	Namespace *string `json:"namespace"`
 }

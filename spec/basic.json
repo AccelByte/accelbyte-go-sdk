@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.17.0"
+    "version": "2.18.0"
   },
   "schemes": [
     "https"
@@ -5310,7 +5310,7 @@
           "type": "string"
         },
         "namespace": {
-          "description": "namespace, only accept alphabet and numeric",
+          "description": "namespace, only accept alphabet and numeric. Will be converted to lowercase",
           "type": "string"
         }
       },
@@ -5951,16 +5951,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-02-09T08:39:19+00:00",
-    "buildID": "2.17.0",
+    "buildDate": "2024-02-23T11:29:47+00:00",
+    "buildID": "2.18.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.205-195.807.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.209-198.812.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "85168bee78",
-    "gitTag": "2.17.0",
+    "gitHash": "53f0dee447",
+    "gitTag": "2.18.0",
     "name": "justice-basic-service",
     "realm": "demo",
-    "version": "2.17.0",
+    "version": "2.18.0",
     "version-roles-seeding": "0.0.10"
   }
 }

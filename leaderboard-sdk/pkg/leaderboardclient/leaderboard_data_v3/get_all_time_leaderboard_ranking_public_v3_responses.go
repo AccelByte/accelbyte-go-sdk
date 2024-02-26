@@ -228,8 +228,8 @@ func NewGetAllTimeLeaderboardRankingPublicV3InternalServerError() *GetAllTimeLea
 
 /*GetAllTimeLeaderboardRankingPublicV3InternalServerError handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>71236</td><td>leaderboard ranking count failed</td></tr></table>
+*/
 type GetAllTimeLeaderboardRankingPublicV3InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

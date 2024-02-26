@@ -7,8 +7,6 @@
 package iamclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -37,8 +35,7 @@ type ClientmodelClientCreationV3Request struct {
 	ClientName *string `json:"clientName"`
 
 	// clientpermissions
-	// Required: true
-	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
+	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions,omitempty"`
 
 	// clientplatform
 	// Required: true
@@ -50,6 +47,9 @@ type ClientmodelClientCreationV3Request struct {
 	// length 0~1024
 	// Required: true
 	Description *string `json:"description"`
+
+	// modulepermissions
+	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
 
 	// namespace
 	// Required: true
@@ -87,6 +87,10 @@ type ClientmodelClientCreationV3Request struct {
 	// Required: true
 	Secret *string `json:"secret"`
 
+	// exempt this client from login queue
+	// Required: true
+	SkipLoginQueue *bool `json:"skipLoginQueue"`
+
 	// twofactorenabled
 	TwoFactorEnabled bool `json:"twoFactorEnabled"`
 }
@@ -107,9 +111,6 @@ func (m *ClientmodelClientCreationV3Request) Validate(formats strfmt.Registry) e
 	if err := m.validateClientName(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateClientPermissions(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateClientPlatform(formats); err != nil {
 		res = append(res, err)
 	}
@@ -126,6 +127,9 @@ func (m *ClientmodelClientCreationV3Request) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 	if err := m.validateSecret(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSkipLoginQueue(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,31 +170,6 @@ func (m *ClientmodelClientCreationV3Request) validateClientName(formats strfmt.R
 
 	if err := validate.Required("clientName", "body", m.ClientName); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ClientmodelClientCreationV3Request) validateClientPermissions(formats strfmt.Registry) error {
-
-	if err := validate.Required("clientPermissions", "body", m.ClientPermissions); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.ClientPermissions); i++ {
-		if swag.IsZero(m.ClientPermissions[i]) { // not required
-			continue
-		}
-
-		if m.ClientPermissions[i] != nil {
-			if err := m.ClientPermissions[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("clientPermissions" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil
@@ -244,6 +223,15 @@ func (m *ClientmodelClientCreationV3Request) validateRedirectURI(formats strfmt.
 func (m *ClientmodelClientCreationV3Request) validateSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("secret", "body", m.Secret); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientCreationV3Request) validateSkipLoginQueue(formats strfmt.Registry) error {
+
+	if err := validate.Required("skipLoginQueue", "body", m.SkipLoginQueue); err != nil {
 		return err
 	}
 

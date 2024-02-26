@@ -58,6 +58,9 @@ type ClientmodelClientV3Response struct {
 	// Format: date-time
 	ModifiedAt strfmt.DateTime `json:"modifiedAt"`
 
+	// modulepermissions
+	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -93,6 +96,10 @@ type ClientmodelClientV3Response struct {
 	// scopes
 	// Required: true
 	Scopes []string `json:"scopes"`
+
+	// skiploginqueue
+	// Required: true
+	SkipLoginQueue *bool `json:"skipLoginQueue"`
 
 	// twofactorenabled
 	// Required: true
@@ -140,6 +147,9 @@ func (m *ClientmodelClientV3Response) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateScopes(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSkipLoginQueue(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTwoFactorEnabled(formats); err != nil {
@@ -287,6 +297,15 @@ func (m *ClientmodelClientV3Response) validateRedirectURI(formats strfmt.Registr
 func (m *ClientmodelClientV3Response) validateScopes(formats strfmt.Registry) error {
 
 	if err := validate.Required("scopes", "body", m.Scopes); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientV3Response) validateSkipLoginQueue(formats strfmt.Registry) error {
+
+	if err := validate.Required("skipLoginQueue", "body", m.SkipLoginQueue); err != nil {
 		return err
 	}
 

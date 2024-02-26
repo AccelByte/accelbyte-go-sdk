@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.27.1"
+    "version": "2.27.2"
   },
   "schemes": [
     "https"
@@ -254,7 +254,7 @@
             }
           },
           "400": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71239\u003c/td\u003e\u003ctd\u003eleaderboard is not archived\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -639,7 +639,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71133\u003c/td\u003e\u003ctd\u003eleaderboard configuration deleted\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -738,7 +738,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -903,7 +903,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1062,7 +1062,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1155,7 +1155,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1225,7 +1225,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1305,7 +1305,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71237\u003c/td\u003e\u003ctd\u003eleaderboard ranking not created for inactive leaderboard\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1492,7 +1492,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1929,7 +1929,7 @@
         ],
         "responses": {
           "200": {
-            "description": "All time leaderboard ranking data retrived",
+            "description": "All time leaderboard ranking data retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetLeaderboardRankingResp"
             }
@@ -1947,7 +1947,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2011,7 +2011,7 @@
             }
           },
           "400": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71239\u003c/td\u003e\u003ctd\u003eleaderboard is not archived\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2113,7 +2113,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2191,7 +2191,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2269,7 +2269,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2336,7 +2336,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2416,7 +2416,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71237\u003c/td\u003e\u003ctd\u003eleaderboard ranking not created for inactive leaderboard\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2500,7 +2500,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3416,7 +3416,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71130\u003c/td\u003e\u003ctd\u003eleaderboard config not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71242\u003c/td\u003e\u003ctd\u003estat code not found in namespace\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71133\u003c/td\u003e\u003ctd\u003eleaderboard configuration deleted\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3515,7 +3515,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3609,7 +3609,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3895,7 +3895,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3969,7 +3969,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4581,7 +4581,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4660,7 +4660,7 @@
             }
           },
           "500": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71236\u003c/td\u003e\u003ctd\u003eleaderboard ranking count failed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4810,7 +4810,7 @@
             }
           },
           "404": {
-            "description": "",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71230\u003c/td\u003e\u003ctd\u003eleaderboard configuration not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71233\u003c/td\u003e\u003ctd\u003euser ranking data not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -5895,11 +5895,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-09T03:45:12+00:00",
-    "gitHash": "7c2739725ecfee4e664847b7c0a5651bf5ad4c99",
+    "buildDate": "2024-02-23T04:06:57+00:00",
+    "gitHash": "a861c4db0071d04a89511d2f2eafa3566141c841",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.27.1",
+    "version": "2.27.2",
     "version-roles-seeding": "1.0.4"
   }
 }

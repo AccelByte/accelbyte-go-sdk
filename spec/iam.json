@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.10.0"
+    "version": "7.11.0"
   },
   "schemes": [
     "https"
@@ -7484,6 +7484,188 @@
         ]
       }
     },
+    "/iam/v3/admin/clientConfig/permissions": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete Client config permissions by module and group.",
+        "operationId": "AdminDeleteConfigPermissionsByGroup",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clientmodel.PermissionSetDeleteGroupRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Client config permissions by module and group",
+        "tags": [
+          "Clients Config V3"
+        ],
+        "x-security": {}
+      },
+      "get": {
+        "description": "List Client available permissions",
+        "operationId": "AdminListClientAvailablePermissions",
+        "parameters": [
+          {
+            "default": false,
+            "description": "If exclude permissions",
+            "in": "query",
+            "name": "excludePermissions",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/clientmodel.ListClientPermissionSet"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List Client available permissions",
+        "tags": [
+          "Clients Config V3"
+        ],
+        "x-security": {}
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Client available permissions, if module or group not exists, it will auto create.",
+        "operationId": "AdminUpdateAvailablePermissionsByModule",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clientmodel.ListUpsertModulesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update or create Client permissions module",
+        "tags": [
+          "Clients Config V3"
+        ],
+        "x-security": {}
+      }
+    },
+    "/iam/v3/admin/clientConfig/templates": {
+      "get": {
+        "description": "List client templates",
+        "operationId": "AdminListClientTemplates",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/clientmodel.ListTemplatesResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List Client templates",
+        "tags": [
+          "Clients Config V3"
+        ],
+        "x-security": {}
+      }
+    },
     "/iam/v3/admin/inputValidations": {
       "get": {
         "consumes": [
@@ -8381,6 +8563,13 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "A flag to filter clients that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted clients",
+            "in": "query",
+            "name": "skipLoginQueue",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -8433,7 +8622,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client\nA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\n\n**Note for Multi Tenant Mode:**\nNew Confidential Client will have Default Client Role assigned to it. The role will have all \n\tpermissions to access all APIs that\u0026#39;s supported by game server SDK and DS uploader.\nHowever if **Game Admin** create Confidential Client and the permission(s) are specified in request body, \nthen the Default Client Role will not be assigned.\nBut in this case, the assigned permissions will be restricted in the Default Client Permission collection only.\n\naction code: 10301\n\n**Fields Description:**\n- **clientId** : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\n- **clientName** : The client name. e.g E-commerce\n- **secret** : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\n- **namespace** : The namespace where the client lives. e.g sample-game\n- **redirectUri** : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\n- **oauthClientType** : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\tSupported oAuthClientType :\n\t- **Public**\n\t- **Confidential**\n- **audiences** : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\n- **baseUri** : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\n- **clientPermissions** : Contains the client\u0026#39;s permissions\n- **deletable** : The flag to identify whether client is deletable (optional). default value: true\n- **clientPlatform**: available client platform (optional). default value: \u0026#34;\u0026#34;\n\t- Playstation\n\t- Xbox\n\t- Steam\n\t- Epic\n\t- IOS\n\t- GooglePlay\n\t- Nintendo\n\t- Oculus\n- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false\n- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable) \n- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, default value: SECONDS\n- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, default value: SECONDS",
+        "description": "Add a new OAuth 2.0 client\nA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\n\n**Note for Multi Tenant Mode (Confidential Client):**\nOnly Super admin can set permission with resource \u0026amp; action.\nStudio admin \u0026amp; game admin need set permission with permission module.\n\naction code: 10301\n\n**Fields Description:**\n- **clientId** : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\n- **clientName** : The client name. e.g E-commerce\n- **secret** : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\n- **namespace** : The namespace where the client lives. e.g sample-game\n- **redirectUri** : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\n- **oauthClientType** : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\tSupported oAuthClientType :\n\t- **Public**\n\t- **Confidential**\n- **audiences** : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\n- **baseUri** : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\n- **clientPermissions** : Contains the client\u0026#39;s permissions\n- **deletable** : The flag to identify whether client is deletable (optional). default value: true\n- **clientPlatform**: available client platform (optional). default value: \u0026#34;\u0026#34;\n\t- Playstation\n\t- Xbox\n\t- Steam\n\t- Epic\n\t- IOS\n\t- GooglePlay\n\t- Nintendo\n\t- Oculus\n- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false\n- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable) \n- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, default value: SECONDS\n- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, default value: SECONDS",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -8655,7 +8844,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client.\nSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\n**Note for Multi Tenant Mode:**\n1. The assigned permission(s) should be restricted in the Default Client permission collection. \n\naction code: 10302\n\n**Fields Description:**\n- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce\n- **namespace** : The namespace where the client lives. e.g sample-game\n- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\n- **audiences** : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\n- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\n- **clientPermissions** : Contains the client\u0026#39;s permissions\n- **deletable** : The flag to identify whether client is deletable (optional). e.g. true\n- **clientPlatform** : available client platform (optional). default value: \u0026#34;\u0026#34;.\n\t- Playstation\n\t- Xbox\n\t- Steam\n\t- Epic\n\t- IOS\n\t- GooglePlay\n\t- Nintendo\n\t- Oculus\t\t\t\n- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false\n- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified\n- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified",
+        "description": "Updates an OAuth 2.0 client.\nSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\n**Note for Multi Tenant Mode (Confidential Client):**\nOnly Super admin can set permission with resource \u0026amp; action.\nStudio admin \u0026amp; game admin need set permission with permission module.\n\naction code: 10302\n\n**Fields Description:**\n- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce\n- **namespace** : The namespace where the client lives. e.g sample-game\n- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\n- **audiences** : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\n- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\n- **clientPermissions** : Contains the client\u0026#39;s permissions\n- **deletable** : The flag to identify whether client is deletable (optional). e.g. true\n- **clientPlatform** : available client platform (optional). default value: \u0026#34;\u0026#34;.\n\t- Playstation\n\t- Xbox\n\t- Steam\n\t- Epic\n\t- IOS\n\t- GooglePlay\n\t- Nintendo\n\t- Oculus\t\t\t\n- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false\n- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified\n- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified\n- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -8739,7 +8928,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "**Note for Multi Tenant Mode:**\n1. The assigned permission(s) should be restricted in the Default Client permission collection.\naction code: 10303\n",
+        "description": "**Note for Multi Tenant Mode:**\nThis is for super admin only.\naction code: 10303\n",
         "operationId": "AdminAddClientPermissionsV3",
         "parameters": [
           {
@@ -8818,7 +9007,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "**Note for Multi Tenant Mode:**\n1. The assigned permission(s) should be restricted in the Default Client permission collection.\naction code: 10307\n",
+        "description": "**Note for Multi Tenant Mode:**\nThis is for super admin only.\naction code: 10307\n",
         "operationId": "AdminUpdateClientPermissionV3",
         "parameters": [
           {
@@ -8896,7 +9085,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/clients/{clientId}/permissions/{resource}/{action}": {
       "delete": {
-        "description": "action code : 10304",
+        "description": "**Note for Multi Tenant Mode:**\nThis is for super admin only.\naction code : 10304",
         "operationId": "AdminDeleteClientPermissionV3",
         "parameters": [
           {
@@ -11151,6 +11340,13 @@
             "in": "query",
             "name": "query",
             "type": "string"
+          },
+          {
+            "description": "A flag to filter users that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted users",
+            "in": "query",
+            "name": "skipLoginQueue",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "Start Date, format YYYY-MM-DD",
@@ -16252,6 +16448,23 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Value generated by transforming code verifier using code challenge method.",
+            "in": "query",
+            "name": "code_challenge",
+            "type": "string"
+          },
+          {
+            "default": "plain",
+            "description": "Method that is used to transform code verifier to code challenge",
+            "enum": [
+              "S256",
+              "plain"
+            ],
+            "in": "query",
+            "name": "code_challenge_method",
+            "type": "string"
           }
         ],
         "produces": [
@@ -17229,7 +17442,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint supports grant type:\n1. Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\n\tIt generates the user token by given the authorization\n\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\tin the redirect_uri, which should be the same as generating the\n\tauthorization code request.\n2. Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\n\tThe grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\tor through platform.\n3. Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\n\tUsed to get a new access token for a valid refresh token.\n4. Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header.\n5. Grant Type == \u0026lt;code\u0026gt;urn:ietf:params:oauth:grant-type:extend_client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header. \n\tIt only allow publisher namespace client. \n\tIn generated token:\n\t1. There wil be no roles, namespace_roles \u0026amp; permission. \n\t2. The scope will be fixed as \u0026#39;extend\u0026#39;.\n\t3. There will have a new field \u0026#39;extend_namespace\u0026#39;, the value is from token request body.\n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the targeted resource server.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **client_id**. The UserID. The sub is omitted if the token is generated from client credential\t\n- **scope**. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n## Device Cookie Validation\n_**For grant type \u0026#34;password\u0026#34; only**_\nDevice Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\nThis endpoint will read device cookie from request header **Auth-Trust-Id**. If device cookie not found, it will generate a new one and set it into response body **auth_trust_id** when successfully login.\n## Track Login History\nThis endpoint will track login history to detect suspicious login activity, please provide **Device-Id** (alphanumeric) in request header parameter otherwise it will set to \u0026#34;unknown\u0026#34;.\nAlign with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Response note\nIf it is a user token request and user hasn\u0026#39;t accepted required legal policy, the field \u0026lt;code\u0026gt;is_comply\u0026lt;/code\u0026gt; will be false in response and responsed token will have no permission.\t\naction code: 10703",
+        "description": "This endpoint supports grant type:\n1. Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\n\tIt generates the user token by given the authorization\n\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\tin the redirect_uri, which should be the same as generating the\n\tauthorization code request.\n2. Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\n\tThe grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\tor through platform.\n3. Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\n\tUsed to get a new access token for a valid refresh token.\n4. Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header.\n5. Grant Type == \u0026lt;code\u0026gt;urn:ietf:params:oauth:grant-type:extend_client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header. \n\tIt only allow publisher/studio namespace client. \n\tIn generated token:\n\t1. There wil be no roles, namespace_roles \u0026amp; permission. \n\t2. The scope will be fixed as \u0026#39;extend\u0026#39;.\n\t3. There will have a new field \u0026#39;extend_namespace\u0026#39;, the value is from token request body.\n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the targeted resource server.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **client_id**. The UserID. The sub is omitted if the token is generated from client credential\t\n- **scope**. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n## Device Cookie Validation\n_**For grant type \u0026#34;password\u0026#34; only**_\nDevice Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\nThis endpoint will read device cookie from request header **Auth-Trust-Id**. If device cookie not found, it will generate a new one and set it into response body **auth_trust_id** when successfully login.\n## Track Login History\nThis endpoint will track login history to detect suspicious login activity, please provide **Device-Id** (alphanumeric) in request header parameter otherwise it will set to \u0026#34;unknown\u0026#34;.\nAlign with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Response note\nIf it is a user token request and user hasn\u0026#39;t accepted required legal policy, the field \u0026lt;code\u0026gt;is_comply\u0026lt;/code\u0026gt; will be false in response and responsed token will have no permission.\t\naction code: 10703",
         "operationId": "TokenGrantV3",
         "parameters": [
           {
@@ -18770,7 +18983,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.UserUpdateRequestV3"
+              "$ref": "#/definitions/model.PublicUserUpdateRequestV3"
             }
           },
           {
@@ -18845,7 +19058,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.UserUpdateRequestV3"
+              "$ref": "#/definitions/model.PublicUserUpdateRequestV3"
             }
           },
           {
@@ -21400,76 +21613,6 @@
           }
         ],
         "summary": "Generate target token by code",
-        "tags": [
-          "OAuth2.0 - Extension"
-        ]
-      }
-    },
-    "/iam/v3/v3/platforms/{platformId}/token/verify": {
-      "post": {
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "deprecated": true,
-        "description": "This endpoint will validate the third party platform token, for some platforms will also refresh the token stored in IAM, it will not generate any event or AB access/refresh token.\nThis endpoint can be used by game client to refresh third party token if game client got platform token not found error, for example got 404 \nplatform token not found from IAP/DLC.\n\n## Platforms will refresh stored token:\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **amazon**: The platform_token’s value is authorization code.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.",
-        "operationId": "PlatformTokenRefreshV3Deprecate",
-        "parameters": [
-          {
-            "description": "Platform Token",
-            "in": "formData",
-            "name": "platform_token",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Platform ID",
-            "in": "path",
-            "name": "platformId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Token returned",
-            "schema": {
-              "$ref": "#/definitions/oauthmodel.PlatformTokenRefreshResponseV3"
-            }
-          },
-          "400": {
-            "description": "General request error",
-            "schema": {
-              "$ref": "#/definitions/oauthmodel.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "Client authentication failed",
-            "schema": {
-              "$ref": "#/definitions/oauthmodel.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/oauthmodel.ErrorResponse"
-            }
-          },
-          "503": {
-            "description": "Third Party Server timeout or unavailable",
-            "schema": {
-              "$ref": "#/definitions/oauthmodel.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "Platform Token Validation",
         "tags": [
           "OAuth2.0 - Extension"
         ]
@@ -25373,6 +25516,719 @@
         ]
       }
     },
+    "/iam/v4/oauth/authenticateWithLink": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint is being used to authenticate a user account and perform platform link. \nIt validates user\u0026#39;s email / username and password. \nIf user already enable 2FA, then invoke _/mfa/verify_ using **mfa_token** from this endpoint response.\n\n## Device Cookie Validation\n\nDevice Cookie is used to protect the user account from brute force login attack, [more detail from OWASP](https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies).\nThis endpoint will read device cookie from cookie **auth-trust-id**. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.",
+        "operationId": "AuthenticationWithPlatformLinkV4",
+        "parameters": [
+          {
+            "description": "Client ID",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform linking Token",
+            "in": "formData",
+            "name": "linkingToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Account password",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Account username",
+            "in": "formData",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to authenticate and link platform account.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login queue ticket returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid username or password.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Need 2FA.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "User already link this platform's another account'.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Authentication with platform link",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/headless/token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint is being used to create headless account after 3rd platform authenticated, and response token . \nThe \u0026#39;linkingToken\u0026#39; in request body is received from \u0026#34;/platforms/{platformId}/token\u0026#34; \nwhen 3rd platform account is not linked to justice account yet.",
+        "operationId": "GenerateTokenByNewHeadlessAccountV4",
+        "parameters": [
+          {
+            "description": "Platform linking Token",
+            "in": "formData",
+            "name": "linkingToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Additional info, it will be passed to login success event.",
+            "in": "formData",
+            "name": "additionalData",
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to create headless account and response token info.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Succeed to create headless account and response token info.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid platform linking token or clientID not match.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Platform linking token not found.",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create headless account and response token",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/mfa/verify": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Verify 2FA code\nThis endpoint is used for verifying 2FA code.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token",
+        "operationId": "Verify2FACodeV4",
+        "parameters": [
+          {
+            "description": "code",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "factor",
+            "in": "formData",
+            "name": "factor",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "mfa token",
+            "in": "formData",
+            "name": "mfaToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "remember device",
+            "in": "formData",
+            "name": "rememberDevice",
+            "required": true,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login queue ticket returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Verify 2FA code",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/platforms/{platformId}/token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\nThis endpoint requires all requests to have Authorization header set with Basic access authentication\nconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\nshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\nalong with platform_token parameter against publisher namespace.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Supported platforms:\n- **steam**: The platform_token’s value is the binary ticket returned by Steam.\n\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: \u0026lt;code\u0026gt;{identity}:{ticket}\u0026lt;/code\u0026gt;, the \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt; was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain \u0026lt;code\u0026gt;:\u0026lt;/code\u0026gt; in this \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt;.\n- **steamopenid**: Steam\u0026#39;s user authentication method using OpenID 2.0. The platform_token\u0026#39;s value is URL generated by Steam on web authentication\n- **facebook**: The platform_token’s value is the authorization code returned by Facebook OAuth\n- **google**: The platform_token’s value is the authorization code returned by Google OAuth\n- **oculus**: The platform_token’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **discord**: The platform_token’s value is the authorization code returned by Discord OAuth\n- **android**: The device_id is the Android’s device ID\n- **ios**: The device_id is the iOS’s device ID.\n- **apple**: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)\n- **device**: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.\n- **justice**: The platform_token’s value is the designated user’s access token.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **nintendo**: The platform_token’s value is the id_token returned by Nintendo OAuth.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **xblweb**: The platform_token’s value is code returned by xbox after login\n- **netflix**: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\n\n## Account Group\nSeveral platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \nLogin using one of these platform will returns the same IAM user. \nFollowing is the current registered account grouping:\n-  (psn) ps4web \n-  (psn) ps4 \n-  (psn) ps5 \n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the client ID.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **sub**. The UserID. The sub is omitted if the token is generated from client credential\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n\naction code : 10704",
+        "operationId": "PlatformTokenGrantV4",
+        "parameters": [
+          {
+            "description": "Platform ID to login with",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Additional info, it will be passed to login success event.",
+            "in": "formData",
+            "name": "additionalData",
+            "type": "string"
+          },
+          {
+            "description": "Client ID, only accept UUID version 4 without hyphen",
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "If directly create new account when not linked yet",
+            "in": "formData",
+            "name": "createHeadless",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Device/hardware identifier",
+            "in": "formData",
+            "name": "device_id",
+            "type": "string"
+          },
+          {
+            "description": "Mac address of device",
+            "in": "formData",
+            "name": "macAddress",
+            "type": "string"
+          },
+          {
+            "description": "Token from platform auth",
+            "in": "formData",
+            "name": "platform_token",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If need skip set cookie. Default is false",
+            "in": "formData",
+            "name": "skipSetCookie",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Value generated by transforming code verifier using code challenge method.",
+            "in": "query",
+            "name": "code_challenge",
+            "type": "string"
+          },
+          {
+            "default": "plain",
+            "description": "Method that is used to transform code verifier to code challenge",
+            "enum": [
+              "S256",
+              "plain"
+            ],
+            "in": "query",
+            "name": "code_challenge_method",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login ticket returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "400": {
+            "description": "General request error",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Third Party Server timeout or unavailable",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "OAuth2 access token generation specific to platform",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/simultaneousLogin": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Simultaneous login flow. \n\nThe primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform, \nlink their accounts, and provide support for platform sync with a valid 3rd platform access token.\n\n## Given a valid native ticket and empty simultaneous ticket, these cases will be failed\n- Native ticket\u0026#39;s account is not linked AGS account yet\n- Native ticket\u0026#39;s account is linked AGS account, but ASG account is not linked simultaneous platform yet\n- Native ticket\u0026#39;s account is linked AGS account, AGS account is linked simultaneous platform but there is no available simultaneous token.(only if this platform is expected to store the platform token)\n\n## Given a valid native ticket and empty simultaneous ticket, this case will be success\n- Native ticket\u0026#39;s account already linked AGS account, this AGS account already linked simultaneous platform. There is valid simultaneous token.(this is required only when this simultaneous is expected to cache platform token)\n\n## Given a valid native ticket token and valid simultaneous ticket, these cases will be failed\n#### Native ticket\u0026#39;s account is already linked with AGS account\n- Native linked AGS account is linked this simultaneous platform but is different with simultaneous ticket\u0026#39;s account\n- Native linked AGS account is not linked with simultaneous but has a linking history with simultaneous platform and it is different with simultaneous ticket\u0026#39;s account\n#### Native ticket\u0026#39;s account is not linked with AGS account and Simultaneous ticket\u0026#39;s account is already linked wth AGS account\n- Simultaneous linked AGS account is linked this native platform but is different with native ticket\u0026#39;s account\n- Simultaneous linked AGS account is not linked with native but has a linking history with native platform and it is different with native ticket\u0026#39;s account\n\n## Given a valid native ticket and valid simultaneous ticket, these cases will be success\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are both not linked to AGS account yet\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are already linked to same AGS account\n",
+        "operationId": "SimultaneousLoginV4",
+        "parameters": [
+          {
+            "description": "Native platform id",
+            "enum": [
+              "epicgames",
+              "steam"
+            ],
+            "in": "formData",
+            "name": "nativePlatform",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Native platform ticket",
+            "in": "formData",
+            "name": "nativePlatformTicket",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "pspc",
+            "description": "Simultaneous platform",
+            "enum": [
+              "pspc"
+            ],
+            "in": "formData",
+            "name": "simultaneousPlatform",
+            "type": "string"
+          },
+          {
+            "description": "Simultaneous ticket, can be authCode,authTicket,authToken",
+            "in": "formData",
+            "name": "simultaneousTicket",
+            "type": "string"
+          },
+          {
+            "description": "Value generated by transforming code verifier using code challenge method.",
+            "in": "query",
+            "name": "code_challenge",
+            "type": "string"
+          },
+          {
+            "default": "plain",
+            "description": "Method that is used to transform code verifier to code challenge",
+            "enum": [
+              "S256",
+              "plain"
+            ],
+            "in": "query",
+            "name": "code_challenge_method",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login ticket returned.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10216\u003c/td\u003e\u003ctd\u003eNative ticket is required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10215\u003c/td\u003e\u003ctd\u003eSimultaneous ticket is required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10220\u003c/td\u003e\u003ctd\u003eNative ticket's account linked AGS account is different with the one which simultaneous ticket's linked to\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10219\u003c/td\u003e\u003ctd\u003eNative ticket's account linked AGS is already linked simultaneous but different with the input simultaneous ticket's\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10217\u003c/td\u003e\u003ctd\u003eNative ticket's account linked AGS account has different linking history with input simultaneous ticket's\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10221\u003c/td\u003e\u003ctd\u003eSimultaneous ticket's account linked AGS is already linked native but different with the input native ticket's\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10218\u003c/td\u003e\u003ctd\u003eSimultaneous ticket's account linked AGS account has different linking history with input native ticket's\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Simultaneous login",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint supports grant type:\n1. Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\n\tIt generates the user token by given the authorization\n\tcode which generated in \u0026#34;/iam/v3/authenticate\u0026#34; API response. It should also pass\n\tin the redirect_uri, which should be the same as generating the\n\tauthorization code request.\n2. Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\n\tThe grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\tor through platform.\n3. Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\n\tUsed to get a new access token for a valid refresh token.\n4. Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header.\n5. Grant Type == \u0026lt;code\u0026gt;urn:ietf:params:oauth:grant-type:extend_client_credentials\u0026lt;/code\u0026gt;:\n\tIt generates a token by checking the client credentials provided through Authorization header. \n\tIt only allow publisher namespace client. \n\tIn generated token:\n\t1. There wil be no roles, namespace_roles \u0026amp; permission. \n\t2. The scope will be fixed as \u0026#39;extend\u0026#39;.\n\t3. There will have a new field \u0026#39;extend_namespace\u0026#39;, the value is from token request body.\n6. Grant Type == \u0026lt;code\u0026gt;urn:ietf:params:oauth:grant-type:login_queue_ticket\u0026lt;/code\u0026gt;:\n\tIt generates a token by validating the login queue ticket against login queue service.\n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the targeted resource server.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **client_id**. The UserID. The sub is omitted if the token is generated from client credential\t\n- **scope**. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n## Device Cookie Validation\n_**For grant type \u0026#34;password\u0026#34; only**_\nDevice Cookie is used to protect the user account from brute force login attack, \u0026lt;a target=\u0026#34;_blank\u0026#34; href=\u0026#34;https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies\u0026#34;\u0026gt;more detail from OWASP\u0026lt;a\u0026gt;.\nThis endpoint will read device cookie from request header **Auth-Trust-Id**. If device cookie not found, it will generate a new one and set it into response body **auth_trust_id** when successfully login.\n## Track Login History\nThis endpoint will track login history to detect suspicious login activity, please provide **Device-Id** (alphanumeric) in request header parameter otherwise it will set to \u0026#34;unknown\u0026#34;.\nAlign with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Response note\nIf it is a user token request and user hasn\u0026#39;t accepted required legal policy, the field \u0026lt;code\u0026gt;is_comply\u0026lt;/code\u0026gt; will be false in response and responsed token will have no permission.\t\naction code: 10703",
+        "operationId": "TokenGrantV4",
+        "parameters": [
+          {
+            "default": "authorization_code",
+            "description": "Grant Type",
+            "enum": [
+              "authorization_code",
+              "client_credentials",
+              "password",
+              "refresh_token",
+              "urn:ietf:params:oauth:grant-type:extend_client_credentials",
+              "urn:ietf:params:oauth:grant-type:login_queue_ticket"
+            ],
+            "in": "formData",
+            "name": "grant_type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Additional info, it will be passed to login success event.",
+            "in": "formData",
+            "name": "additionalData",
+            "type": "string"
+          },
+          {
+            "description": "client_id (used with grant type 'authorization_code')",
+            "in": "formData",
+            "name": "client_id",
+            "type": "string"
+          },
+          {
+            "description": "The authorization code received from the authorization server (used with grant type 'authorization_code')",
+            "in": "formData",
+            "name": "code",
+            "type": "string"
+          },
+          {
+            "description": "Code verifier received from the authorization server",
+            "in": "formData",
+            "name": "code_verifier",
+            "type": "string"
+          },
+          {
+            "description": "extend namespace, Used on grant type 'urn:ietf:params:oauth:grant-type:extend_client_credentials'.",
+            "in": "formData",
+            "name": "extendNamespace",
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token. Only available for grant type 'password'",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "Login queue ticket(used with grant type `urn:ietf:params:oauth:grant-type:login_queue_ticket`)",
+            "in": "formData",
+            "name": "login_queue_ticket",
+            "type": "string"
+          },
+          {
+            "description": "Password (used with grant type 'password'",
+            "in": "formData",
+            "name": "password",
+            "type": "string"
+          },
+          {
+            "description": "Redirect URI (used with grant type 'authorization_code')",
+            "in": "formData",
+            "name": "redirect_uri",
+            "type": "string"
+          },
+          {
+            "description": "Refresh Token (used with grant type 'refresh_token'). This field is optional if the request header provides the \"refresh_token\" cookie",
+            "in": "formData",
+            "name": "refresh_token",
+            "type": "string"
+          },
+          {
+            "description": "User Name (used with grant type 'password'",
+            "in": "formData",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Auth-Trust-Id for Device Cookie Validation (Used on grant type 'password')",
+            "in": "header",
+            "name": "Auth-Trust-Id",
+            "type": "string"
+          },
+          {
+            "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
+            "in": "header",
+            "name": "device_id",
+            "type": "string"
+          },
+          {
+            "description": "Value generated by transforming code verifier using code challenge method.",
+            "in": "query",
+            "name": "code_challenge",
+            "type": "string"
+          },
+          {
+            "default": "plain",
+            "description": "Method that is used to transform code verifier to code challenge",
+            "enum": [
+              "S256",
+              "plain"
+            ],
+            "in": "query",
+            "name": "code_challenge_method",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenWithDeviceCookieResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login ticket returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          },
+          "400": {
+            "description": "InvalidRequest",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "Too many failed auth attempt",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [],
+            "HasScope": [
+              "will"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "OAuth2 access token generation endpoint V4",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
+    "/iam/v4/oauth/token/exchange": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint is being used to generate target token.\nIt requires basic header with ClientID and Secret, it should match the ClientID when call \u0026lt;code\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/code\u0026gt;\nThe code should be generated from \u0026lt;code\u0026gt;/iam/v3/namespace/{namespace}/token/request\u0026lt;/code\u0026gt;.",
+        "operationId": "RequestTargetTokenResponseV4",
+        "parameters": [
+          {
+            "description": "code from request target token response",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Additional info, it will be passed to login success event.",
+            "in": "formData",
+            "name": "additionalData",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succeed to exchange token.",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "202": {
+            "description": "Login queue ticket returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate target token by code",
+        "tags": [
+          "OAuth2.0 V4"
+        ]
+      }
+    },
     "/iam/v4/public/namespaces/{namespace}/test_users": {
       "post": {
         "consumes": [
@@ -25609,7 +26465,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.UserUpdateRequestV3"
+              "$ref": "#/definitions/model.PublicUserUpdateRequestV3"
             }
           },
           {
@@ -27775,6 +28631,23 @@
         "username"
       ]
     },
+    "accountcommon.AllowedPermission": {
+      "properties": {
+        "allowedActions": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "allowedActions",
+        "resource"
+      ]
+    },
     "accountcommon.AvatarConfig": {
       "properties": {
         "allowedPrefixes": {
@@ -27925,6 +28798,23 @@
         "bans"
       ]
     },
+    "accountcommon.ClientModulePermission": {
+      "properties": {
+        "moduleId": {
+          "type": "string"
+        },
+        "selectedGroups": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientSelectedGroup"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "moduleId",
+        "selectedGroups"
+      ]
+    },
     "accountcommon.ClientPermission": {
       "properties": {
         "Action": {
@@ -27938,6 +28828,31 @@
       "required": [
         "Action",
         "Resource"
+      ]
+    },
+    "accountcommon.ClientPermissionSet": {
+      "properties": {
+        "docLink": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionGroup"
+          },
+          "type": "array"
+        },
+        "module": {
+          "type": "string"
+        },
+        "moduleId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docLink",
+        "groups",
+        "module",
+        "moduleId"
       ]
     },
     "accountcommon.ClientPermissionV3": {
@@ -27979,6 +28894,23 @@
       },
       "required": [
         "permissions"
+      ]
+    },
+    "accountcommon.ClientSelectedGroup": {
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "selectedActions": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "groupId",
+        "selectedActions"
       ]
     },
     "accountcommon.ConflictedUserPlatformAccounts": {
@@ -28284,6 +29216,27 @@
       "required": [
         "Action",
         "Resource"
+      ]
+    },
+    "accountcommon.PermissionGroup": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "permissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.AllowedPermission"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "group",
+        "groupId",
+        "permissions"
       ]
     },
     "accountcommon.PermissionV3": {
@@ -29033,6 +29986,12 @@
           "description": "length 0~1024",
           "type": "string"
         },
+        "modulePermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientModulePermission"
+          },
+          "type": "array"
+        },
         "namespace": {
           "type": "string"
         },
@@ -29072,6 +30031,11 @@
         "secret": {
           "type": "string"
         },
+        "skipLoginQueue": {
+          "description": "exempt this client from login queue",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "twoFactorEnabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -29082,13 +30046,13 @@
         "baseUri",
         "clientId",
         "clientName",
-        "clientPermissions",
         "clientPlatform",
         "description",
         "namespace",
         "oauthClientType",
         "redirectUri",
-        "secret"
+        "secret",
+        "skipLoginQueue"
       ]
     },
     "clientmodel.ClientResponse": {
@@ -29119,6 +30083,12 @@
         "TwoFactorEnabled": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "modulePermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientModulePermission"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -29129,6 +30099,45 @@
         "Namespace",
         "RedirectUri",
         "TwoFactorEnabled"
+      ]
+    },
+    "clientmodel.ClientTemplate": {
+      "properties": {
+        "basicRequiredPermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientModulePermission"
+          },
+          "type": "array"
+        },
+        "defaultValues": {
+          "items": {
+            "$ref": "#/definitions/clientmodel.DefaultFieldValue"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "requiredFields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "basicRequiredPermissions",
+        "defaultValues",
+        "description",
+        "id",
+        "requiredFields",
+        "type"
       ]
     },
     "clientmodel.ClientUpdateRequest": {
@@ -29191,6 +30200,12 @@
           "description": "length 0~1024",
           "type": "string"
         },
+        "modulePermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientModulePermission"
+          },
+          "type": "array"
+        },
         "namespace": {
           "type": "string"
         },
@@ -29221,6 +30236,11 @@
           },
           "type": "array"
         },
+        "skipLoginQueue": {
+          "description": "exempt this client from login queue",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "twoFactorEnabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -29228,7 +30248,8 @@
       },
       "required": [
         "clientPlatform",
-        "description"
+        "description",
+        "skipLoginQueue"
       ]
     },
     "clientmodel.ClientV3Response": {
@@ -29270,6 +30291,12 @@
           "type": "string",
           "x-nullable": false
         },
+        "modulePermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientModulePermission"
+          },
+          "type": "array"
+        },
         "namespace": {
           "type": "string"
         },
@@ -29308,6 +30335,10 @@
           },
           "type": "array"
         },
+        "skipLoginQueue": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "twoFactorEnabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -29327,6 +30358,7 @@
         "oauthClientType",
         "redirectUri",
         "scopes",
+        "skipLoginQueue",
         "twoFactorEnabled"
       ]
     },
@@ -29345,6 +30377,99 @@
       "required": [
         "data",
         "paging"
+      ]
+    },
+    "clientmodel.DefaultFieldValue": {
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/clientmodel.DefaultFieldValue.value"
+        }
+      },
+      "required": [
+        "field",
+        "value"
+      ]
+    },
+    "clientmodel.DefaultFieldValue.value": {},
+    "clientmodel.ListClientPermissionSet": {
+      "properties": {
+        "clientPermissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ClientPermissionSet"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "clientPermissions"
+      ]
+    },
+    "clientmodel.ListTemplatesResponse": {
+      "properties": {
+        "clientTemplates": {
+          "items": {
+            "$ref": "#/definitions/clientmodel.ClientTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "clientTemplates"
+      ]
+    },
+    "clientmodel.ListUpsertModulesRequest": {
+      "properties": {
+        "modules": {
+          "items": {
+            "$ref": "#/definitions/clientmodel.PermissionSetUpsertRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "modules"
+      ]
+    },
+    "clientmodel.PermissionSetDeleteGroupRequest": {
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "moduleId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "groupId",
+        "moduleId"
+      ]
+    },
+    "clientmodel.PermissionSetUpsertRequest": {
+      "properties": {
+        "docLink": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionGroup"
+          },
+          "type": "array"
+        },
+        "module": {
+          "type": "string"
+        },
+        "moduleId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docLink",
+        "groups",
+        "module",
+        "moduleId"
       ]
     },
     "clientmodel.V3ClientUpdateSecretRequest": {
@@ -31286,6 +32411,31 @@
         "userId"
       ]
     },
+    "model.PublicUserUpdateRequestV3": {
+      "properties": {
+        "avatarUrl": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "languageTag": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
     "model.PublicUsersResponse": {
       "properties": {
         "Users": {
@@ -32492,12 +33642,16 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "targetedNamespace": {
+          "type": "string"
         }
       },
       "required": [
         "ban",
         "banId",
-        "endDate"
+        "endDate",
+        "targetedNamespace"
       ]
     },
     "model.UserBanResponse": {
@@ -33367,6 +34521,10 @@
           },
           "type": "array"
         },
+        "skipLoginQueue": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "testAccount": {
           "type": "boolean",
           "x-omitempty": false
@@ -33454,6 +34612,10 @@
         },
         "languageTag": {
           "type": "string"
+        },
+        "skipLoginQueue": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "uniqueDisplayName": {
           "type": "string"
@@ -33964,6 +35126,9 @@
         "linkingToken": {
           "type": "string"
         },
+        "login_queue_ticket": {
+          "$ref": "#/definitions/oauthmodel.LoginQueueTicketResponse"
+        },
         "messageVariables": {
           "additionalProperties": {
             "type": "string"
@@ -33982,6 +35147,39 @@
       },
       "required": [
         "error"
+      ]
+    },
+    "oauthmodel.LoginQueueTicketResponse": {
+      "properties": {
+        "cancel": {
+          "$ref": "#/definitions/oauthmodel.TicketEndpointAction"
+        },
+        "estimatedWaitingTimeInSeconds": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "position": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reconnectExpiredAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "refresh": {
+          "$ref": "#/definitions/oauthmodel.TicketEndpointAction"
+        },
+        "ticket": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cancel",
+        "estimatedWaitingTimeInSeconds",
+        "position",
+        "reconnectExpiredAt",
+        "refresh",
+        "ticket"
       ]
     },
     "oauthmodel.OneTimeLinkingCodeResponse": {
@@ -34048,6 +35246,20 @@
       },
       "required": [
         "code"
+      ]
+    },
+    "oauthmodel.TicketEndpointAction": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "href"
       ]
     },
     "oauthmodel.TokenIntrospectResponse": {
@@ -34441,11 +35653,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-09T08:41:01+00:00",
-    "gitHash": "a566999aebce5bd7378cf992a8b0703a3134b909",
+    "buildDate": "2024-02-23T11:32:23+00:00",
+    "gitHash": "dce015787a29a40075e293f88a545664d2ce6241",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.10.0",
-    "version-roles-seeding": "1.2.6"
+    "version": "7.11.0",
+    "version-roles-seeding": "1.2.7"
   }
 }

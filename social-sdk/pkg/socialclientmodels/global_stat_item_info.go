@@ -7,6 +7,8 @@
 package socialclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -22,6 +24,10 @@ type GlobalStatItemInfo struct {
 	// Required: true
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
+
+	// globalaggregationmethod
+	// Enum: ['LAST', 'MAX', 'MIN', 'TOTAL']
+	GlobalAggregationMethod string `json:"globalAggregationMethod,omitempty"`
 
 	// namespace
 	// Required: true
@@ -89,6 +95,41 @@ func (m *GlobalStatItemInfo) validateCreatedAt(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var globalStatItemInfoTypeGlobalAggregationMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["LAST", "MAX", "MIN", "TOTAL"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		globalStatItemInfoTypeGlobalAggregationMethodPropEnum = append(globalStatItemInfoTypeGlobalAggregationMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// GlobalStatItemInfoGlobalAggregationMethodLAST captures enum value "LAST"
+	GlobalStatItemInfoGlobalAggregationMethodLAST string = "LAST"
+
+	// GlobalStatItemInfoGlobalAggregationMethodMAX captures enum value "MAX"
+	GlobalStatItemInfoGlobalAggregationMethodMAX string = "MAX"
+
+	// GlobalStatItemInfoGlobalAggregationMethodMIN captures enum value "MIN"
+	GlobalStatItemInfoGlobalAggregationMethodMIN string = "MIN"
+
+	// GlobalStatItemInfoGlobalAggregationMethodTOTAL captures enum value "TOTAL"
+	GlobalStatItemInfoGlobalAggregationMethodTOTAL string = "TOTAL"
+)
+
+// prop value enum
+func (m *GlobalStatItemInfo) validateGlobalAggregationMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, globalStatItemInfoTypeGlobalAggregationMethodPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

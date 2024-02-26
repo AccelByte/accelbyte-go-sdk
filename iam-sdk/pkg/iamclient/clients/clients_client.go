@@ -1599,12 +1599,9 @@ AdminCreateClientV3 create client
 Add a new OAuth 2.0 client
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-**Note for Multi Tenant Mode:**
-New Confidential Client will have Default Client Role assigned to it. The role will have all
-permissions to access all APIs that's supported by game server SDK and DS uploader.
-However if **Game Admin** create Confidential Client and the permission(s) are specified in request body,
-then the Default Client Role will not be assigned.
-But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
 
 action code: 10301
 
@@ -1701,12 +1698,9 @@ AdminCreateClientV3Short create client
 Add a new OAuth 2.0 client
 A new client automatically granted with these scopes: commerce, account, analytics, publishing, social.
 
-**Note for Multi Tenant Mode:**
-New Confidential Client will have Default Client Role assigned to it. The role will have all
-permissions to access all APIs that's supported by game server SDK and DS uploader.
-However if **Game Admin** create Confidential Client and the permission(s) are specified in request body,
-then the Default Client Role will not be assigned.
-But in this case, the assigned permissions will be restricted in the Default Client Permission collection only.
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
 
 action code: 10301
 
@@ -2034,8 +2028,9 @@ AdminUpdateClientV3 update client
 Updates an OAuth 2.0 client.
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
 
-**Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
 
 action code: 10302
 
@@ -2061,6 +2056,7 @@ action code: 10302
 - **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
 - **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
 - **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
+- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not
 */
 func (a *Client) AdminUpdateClientV3(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, *AdminUpdateClientV3BadRequest, *AdminUpdateClientV3Unauthorized, *AdminUpdateClientV3Forbidden, *AdminUpdateClientV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2124,8 +2120,9 @@ AdminUpdateClientV3Short update client
 Updates an OAuth 2.0 client.
 Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
 
-**Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
 
 action code: 10302
 
@@ -2151,6 +2148,7 @@ action code: 10302
 - **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
 - **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
 - **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
+- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not
 */
 func (a *Client) AdminUpdateClientV3Short(params *AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientV3OK, error) {
 	// TODO: Validate the params before sending
@@ -2206,7 +2204,7 @@ Deprecated: 2022-08-10 - Use AdminUpdateClientPermissionV3Short instead.
 
 AdminUpdateClientPermissionV3 update client permissions
 **Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+This is for super admin only.
 action code: 10307
 */
 func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientPermissionV3NoContent, *AdminUpdateClientPermissionV3BadRequest, *AdminUpdateClientPermissionV3Unauthorized, *AdminUpdateClientPermissionV3Forbidden, *AdminUpdateClientPermissionV3NotFound, error) {
@@ -2269,7 +2267,7 @@ func (a *Client) AdminUpdateClientPermissionV3(params *AdminUpdateClientPermissi
 /*
 AdminUpdateClientPermissionV3Short update client permissions
 **Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+This is for super admin only.
 action code: 10307
 */
 func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateClientPermissionV3NoContent, error) {
@@ -2326,7 +2324,7 @@ Deprecated: 2022-08-10 - Use AdminAddClientPermissionsV3Short instead.
 
 AdminAddClientPermissionsV3 add client permissions
 **Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+This is for super admin only.
 action code: 10303
 */
 func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, *AdminAddClientPermissionsV3BadRequest, *AdminAddClientPermissionsV3Unauthorized, *AdminAddClientPermissionsV3Forbidden, *AdminAddClientPermissionsV3NotFound, error) {
@@ -2389,7 +2387,7 @@ func (a *Client) AdminAddClientPermissionsV3(params *AdminAddClientPermissionsV3
 /*
 AdminAddClientPermissionsV3Short add client permissions
 **Note for Multi Tenant Mode:**
-1. The assigned permission(s) should be restricted in the Default Client permission collection.
+This is for super admin only.
 action code: 10303
 */
 func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddClientPermissionsV3NoContent, error) {
@@ -2445,6 +2443,8 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 Deprecated: 2022-08-10 - Use AdminDeleteClientPermissionV3Short instead.
 
 AdminDeleteClientPermissionV3 delete client permission
+**Note for Multi Tenant Mode:**
+This is for super admin only.
 action code : 10304
 */
 func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, *AdminDeleteClientPermissionV3BadRequest, *AdminDeleteClientPermissionV3Unauthorized, *AdminDeleteClientPermissionV3Forbidden, *AdminDeleteClientPermissionV3NotFound, error) {
@@ -2506,6 +2506,8 @@ func (a *Client) AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissi
 
 /*
 AdminDeleteClientPermissionV3Short delete client permission
+**Note for Multi Tenant Mode:**
+This is for super admin only.
 action code : 10304
 */
 func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, error) {

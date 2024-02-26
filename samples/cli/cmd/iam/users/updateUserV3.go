@@ -29,7 +29,7 @@ var UpdateUserV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *iamclientmodels.ModelUserUpdateRequestV3
+		var body *iamclientmodels.ModelPublicUserUpdateRequestV3
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

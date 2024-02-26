@@ -299,8 +299,8 @@ func NewUpdateLeaderboardConfigurationAdminV1NotFound() *UpdateLeaderboardConfig
 
 /*UpdateLeaderboardConfigurationAdminV1NotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>71130</td><td>leaderboard config not found</td></tr><tr><td>71133</td><td>leaderboard configuration deleted</td></tr></table>
+*/
 type UpdateLeaderboardConfigurationAdminV1NotFound struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

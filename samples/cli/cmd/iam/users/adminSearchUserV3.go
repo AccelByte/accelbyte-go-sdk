@@ -34,20 +34,22 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		platformBy, _ := cmd.Flags().GetString("platformBy")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		query, _ := cmd.Flags().GetString("query")
+		skipLoginQueue, _ := cmd.Flags().GetBool("skipLoginQueue")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		testAccount, _ := cmd.Flags().GetBool("testAccount")
 		input := &users.AdminSearchUserV3Params{
-			Namespace:    namespace,
-			By:           &by,
-			EndDate:      &endDate,
-			IncludeTotal: &includeTotal,
-			Limit:        &limit,
-			Offset:       &offset,
-			PlatformBy:   &platformBy,
-			PlatformID:   &platformId,
-			Query:        &query,
-			StartDate:    &startDate,
-			TestAccount:  &testAccount,
+			Namespace:      namespace,
+			By:             &by,
+			EndDate:        &endDate,
+			IncludeTotal:   &includeTotal,
+			Limit:          &limit,
+			Offset:         &offset,
+			PlatformBy:     &platformBy,
+			PlatformID:     &platformId,
+			Query:          &query,
+			SkipLoginQueue: &skipLoginQueue,
+			StartDate:      &startDate,
+			TestAccount:    &testAccount,
 		}
 		ok, errOK := usersService.AdminSearchUserV3Short(input)
 		if errOK != nil {
@@ -73,6 +75,7 @@ func init() {
 	AdminSearchUserV3Cmd.Flags().String("platformBy", "", "Platform by")
 	AdminSearchUserV3Cmd.Flags().String("platformId", "", "Platform id")
 	AdminSearchUserV3Cmd.Flags().String("query", "", "Query")
+	AdminSearchUserV3Cmd.Flags().Bool("skipLoginQueue", false, "Skip login queue")
 	AdminSearchUserV3Cmd.Flags().String("startDate", "", "Start date")
 	AdminSearchUserV3Cmd.Flags().Bool("testAccount", false, "Test account")
 }

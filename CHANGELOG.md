@@ -1,3 +1,22 @@
+<a name="v0.65.0"></a>
+## [v0.65.0]
+### chore
+- **spec:** add dsartifact service
+- **:** generate dsartifact service package
+- **samples:** add dsartifact root command cli
+### test
+- **integration:** add dsartifact integration tests
+- **integration:** disable dsartifact integration test
+### fix
+- **sdk:** mismatch namespace context pointer
+### ci
+- **github:** update creds
+- **github:** use ec2
+- **generate:** update common use cases doc
+### docs
+- **common-use-cases:** update
+
+
 <a name="v0.64.0"></a>
 ## [v0.64.0]
 ### docs

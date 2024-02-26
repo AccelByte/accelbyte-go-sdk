@@ -48,6 +48,9 @@ type ClientmodelClientResponse struct {
 	// twofactorenabled
 	// Required: true
 	TwoFactorEnabled *bool `json:"TwoFactorEnabled"`
+
+	// modulepermissions
+	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
 }
 
 // Validate validates this Clientmodel client response

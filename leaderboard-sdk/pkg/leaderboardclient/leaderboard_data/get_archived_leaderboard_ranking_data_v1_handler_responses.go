@@ -132,8 +132,8 @@ func NewGetArchivedLeaderboardRankingDataV1HandlerBadRequest() *GetArchivedLeade
 
 /*GetArchivedLeaderboardRankingDataV1HandlerBadRequest handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>71239</td><td>leaderboard is not archived</td></tr></table>
+*/
 type GetArchivedLeaderboardRankingDataV1HandlerBadRequest struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

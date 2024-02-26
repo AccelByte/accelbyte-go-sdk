@@ -919,6 +919,7 @@ Update stat.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
                   *  Returns : updated stat
+                  *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -986,6 +987,7 @@ Update stat.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
                   *  Returns : updated stat
+                  *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending

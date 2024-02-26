@@ -43,6 +43,9 @@ type OauthmodelErrorResponse struct {
 	// linkingtoken
 	LinkingToken string `json:"linkingToken,omitempty"`
 
+	// login_queue_ticket
+	LoginQueueTicket *OauthmodelLoginQueueTicketResponse `json:"login_queue_ticket,omitempty"`
+
 	// messagevariables
 	MessageVariables map[string]string `json:"messageVariables,omitempty"`
 

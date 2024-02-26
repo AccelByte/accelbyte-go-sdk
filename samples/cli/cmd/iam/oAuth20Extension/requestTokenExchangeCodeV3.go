@@ -27,9 +27,13 @@ var RequestTokenExchangeCodeV3Cmd = &cobra.Command{
 		}
 		clientId, _ := cmd.Flags().GetString("clientId")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		codeChallenge, _ := cmd.Flags().GetString("codeChallenge")
+		codeChallengeMethod, _ := cmd.Flags().GetString("codeChallengeMethod")
 		input := &o_auth2_0_extension.RequestTokenExchangeCodeV3Params{
-			ClientID:  clientId,
-			Namespace: namespace,
+			ClientID:            clientId,
+			Namespace:           namespace,
+			CodeChallenge:       &codeChallenge,
+			CodeChallengeMethod: &codeChallengeMethod,
 		}
 		ok, errOK := oAuth20ExtensionService.RequestTokenExchangeCodeV3Short(input)
 		if errOK != nil {
@@ -49,4 +53,6 @@ func init() {
 	_ = RequestTokenExchangeCodeV3Cmd.MarkFlagRequired("client_id")
 	RequestTokenExchangeCodeV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = RequestTokenExchangeCodeV3Cmd.MarkFlagRequired("namespace")
+	RequestTokenExchangeCodeV3Cmd.Flags().String("codeChallenge", "", "Code challenge")
+	RequestTokenExchangeCodeV3Cmd.Flags().String("codeChallengeMethod", "", "Code challenge method")
 }

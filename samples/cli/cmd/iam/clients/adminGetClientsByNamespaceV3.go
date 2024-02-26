@@ -31,13 +31,15 @@ var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
 		clientType, _ := cmd.Flags().GetString("clientType")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		skipLoginQueue, _ := cmd.Flags().GetBool("skipLoginQueue")
 		input := &clients.AdminGetClientsByNamespaceV3Params{
-			Namespace:  namespace,
-			ClientID:   &clientId,
-			ClientName: &clientName,
-			ClientType: &clientType,
-			Limit:      &limit,
-			Offset:     &offset,
+			Namespace:      namespace,
+			ClientID:       &clientId,
+			ClientName:     &clientName,
+			ClientType:     &clientType,
+			Limit:          &limit,
+			Offset:         &offset,
+			SkipLoginQueue: &skipLoginQueue,
 		}
 		ok, errOK := clientsService.AdminGetClientsByNamespaceV3Short(input)
 		if errOK != nil {
@@ -60,4 +62,5 @@ func init() {
 	AdminGetClientsByNamespaceV3Cmd.Flags().String("clientType", "", "Client type")
 	AdminGetClientsByNamespaceV3Cmd.Flags().Int64("limit", 20, "Limit")
 	AdminGetClientsByNamespaceV3Cmd.Flags().Int64("offset", 0, "Offset")
+	AdminGetClientsByNamespaceV3Cmd.Flags().Bool("skipLoginQueue", false, "Skip login queue")
 }

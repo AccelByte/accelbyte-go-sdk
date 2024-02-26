@@ -32,6 +32,9 @@ type ModelUserUpdateRequestV3 struct {
 	// languagetag
 	LanguageTag string `json:"languageTag,omitempty"`
 
+	// skiploginqueue
+	SkipLoginQueue bool `json:"skipLoginQueue"`
+
 	// uniquedisplayname
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 

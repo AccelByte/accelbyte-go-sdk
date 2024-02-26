@@ -9,6 +9,7 @@ package iam
 import (
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
+	"github.com/AccelByte/sample-apps/cmd/iam/clientsConfigV3"
 	"github.com/AccelByte/sample-apps/cmd/iam/config"
 	"github.com/AccelByte/sample-apps/cmd/iam/country"
 	"github.com/AccelByte/sample-apps/cmd/iam/devicesV4"
@@ -16,6 +17,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20Extension"
+	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20V4"
 	"github.com/AccelByte/sample-apps/cmd/iam/roles"
 	"github.com/AccelByte/sample-apps/cmd/iam/sso"
 	"github.com/AccelByte/sample-apps/cmd/iam/ssoCredential"
@@ -139,6 +141,10 @@ func init() {
 	IamCmd.AddCommand(users.PublicDeletePlatformLinkV2Cmd)
 	IamCmd.AddCommand(bans.AdminGetBansTypeV3Cmd)
 	IamCmd.AddCommand(bans.AdminGetListBanReasonV3Cmd)
+	IamCmd.AddCommand(clientsConfigV3.AdminListClientAvailablePermissionsCmd)
+	IamCmd.AddCommand(clientsConfigV3.AdminUpdateAvailablePermissionsByModuleCmd)
+	IamCmd.AddCommand(clientsConfigV3.AdminDeleteConfigPermissionsByGroupCmd)
+	IamCmd.AddCommand(clientsConfigV3.AdminListClientTemplatesCmd)
 	IamCmd.AddCommand(inputValidations.AdminGetInputValidationsCmd)
 	IamCmd.AddCommand(inputValidations.AdminUpdateInputValidationsCmd)
 	IamCmd.AddCommand(inputValidations.AdminResetInputValidationsCmd)
@@ -328,7 +334,6 @@ func init() {
 	IamCmd.AddCommand(sso.LoginSSOClientCmd)
 	IamCmd.AddCommand(sso.LogoutSSOClientCmd)
 	IamCmd.AddCommand(oAuth20Extension.RequestTargetTokenResponseV3Cmd)
-	IamCmd.AddCommand(oAuth20Extension.PlatformTokenRefreshV3DeprecateCmd)
 	IamCmd.AddCommand(devicesV4.AdminGetDevicesByUserV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetBannedDevicesV4Cmd)
 	IamCmd.AddCommand(devicesV4.AdminGetUserDeviceBansV4Cmd)
@@ -382,6 +387,13 @@ func init() {
 	IamCmd.AddCommand(usersV4.AdminGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminMakeFactorMyDefaultV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminInviteUserV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.AuthenticationWithPlatformLinkV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.GenerateTokenByNewHeadlessAccountV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.Verify2faCodeV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.PlatformTokenGrantV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.SimultaneousLoginV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.TokenGrantV4Cmd)
+	IamCmd.AddCommand(oAuth20V4.RequestTargetTokenResponseV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicCreateTestUserV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicCreateUserV4Cmd)
 	IamCmd.AddCommand(usersV4.CreateUserFromInvitationV4Cmd)

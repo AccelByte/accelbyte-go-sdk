@@ -121,6 +121,9 @@ type ModelUserResponseV3 struct {
 	// Required: true
 	Roles []string `json:"roles"`
 
+	// skiploginqueue
+	SkipLoginQueue bool `json:"skipLoginQueue"`
+
 	// testaccount
 	TestAccount bool `json:"testAccount"`
 

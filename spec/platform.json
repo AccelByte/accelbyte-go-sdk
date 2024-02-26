@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.46.0"
+    "version": "4.47.0"
   },
   "schemes": [
     "https"
@@ -47508,16 +47508,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-02-09T08:40:31+00:00",
-    "buildID": "4.46.0",
+    "buildDate": "2024-02-23T11:32:04+00:00",
+    "buildID": "4.47.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.205-195.807.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.209-198.812.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "8b835f7005",
-    "gitTag": "4.46.0",
+    "gitHash": "ef8bacf723",
+    "gitTag": "4.47.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.46.0",
-    "version-roles-seeding": "1.0.28"
+    "version": "4.47.0",
+    "version-roles-seeding": "1.2.8"
   }
 }

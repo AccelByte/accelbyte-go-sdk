@@ -67,7 +67,7 @@ type PublicUpdateUserV4Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *iamclientmodels.ModelUserUpdateRequestV3
+	Body *iamclientmodels.ModelPublicUserUpdateRequestV3
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -140,13 +140,13 @@ func (o *PublicUpdateUserV4Params) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the public update user v4 params
-func (o *PublicUpdateUserV4Params) WithBody(body *iamclientmodels.ModelUserUpdateRequestV3) *PublicUpdateUserV4Params {
+func (o *PublicUpdateUserV4Params) WithBody(body *iamclientmodels.ModelPublicUserUpdateRequestV3) *PublicUpdateUserV4Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the public update user v4 params
-func (o *PublicUpdateUserV4Params) SetBody(body *iamclientmodels.ModelUserUpdateRequestV3) {
+func (o *PublicUpdateUserV4Params) SetBody(body *iamclientmodels.ModelPublicUserUpdateRequestV3) {
 	o.Body = body
 }
 

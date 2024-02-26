@@ -69,7 +69,7 @@ func NewGetAllTimeLeaderboardRankingPublicV1OK() *GetAllTimeLeaderboardRankingPu
 
 /*GetAllTimeLeaderboardRankingPublicV1OK handles this case with default header values.
 
-  All time leaderboard ranking data retrived
+  All time leaderboard ranking data retrieved
 */
 type GetAllTimeLeaderboardRankingPublicV1OK struct {
 	Payload *leaderboardclientmodels.ModelsGetLeaderboardRankingResp
@@ -228,8 +228,8 @@ func NewGetAllTimeLeaderboardRankingPublicV1InternalServerError() *GetAllTimeLea
 
 /*GetAllTimeLeaderboardRankingPublicV1InternalServerError handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>71236</td><td>leaderboard ranking count failed</td></tr></table>
+*/
 type GetAllTimeLeaderboardRankingPublicV1InternalServerError struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse
 }

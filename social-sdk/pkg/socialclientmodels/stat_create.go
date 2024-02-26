@@ -32,6 +32,10 @@ type StatCreate struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// The aggregation method for global stat, default TOTAL
+	// Enum: ['LAST', 'MAX', 'MIN', 'TOTAL']
+	GlobalAggregationMethod string `json:"globalAggregationMethod,omitempty"`
+
 	// ignoreadditionaldataonvaluerejected
 	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected"`
 
@@ -99,6 +103,41 @@ func (m *StatCreate) validateDefaultValue(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var statCreateTypeGlobalAggregationMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["LAST", "MAX", "MIN", "TOTAL"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		statCreateTypeGlobalAggregationMethodPropEnum = append(statCreateTypeGlobalAggregationMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// StatCreateGlobalAggregationMethodLAST captures enum value "LAST"
+	StatCreateGlobalAggregationMethodLAST string = "LAST"
+
+	// StatCreateGlobalAggregationMethodMAX captures enum value "MAX"
+	StatCreateGlobalAggregationMethodMAX string = "MAX"
+
+	// StatCreateGlobalAggregationMethodMIN captures enum value "MIN"
+	StatCreateGlobalAggregationMethodMIN string = "MIN"
+
+	// StatCreateGlobalAggregationMethodTOTAL captures enum value "TOTAL"
+	StatCreateGlobalAggregationMethodTOTAL string = "TOTAL"
+)
+
+// prop value enum
+func (m *StatCreate) validateGlobalAggregationMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, statCreateTypeGlobalAggregationMethodPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

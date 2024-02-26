@@ -122,6 +122,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	Query *string
+	/*SkipLoginQueue
+	  A flag to filter users that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted users
+
+	*/
+	SkipLoginQueue *bool
 	/*StartDate
 	  Start Date, format YYYY-MM-DD
 
@@ -297,6 +302,17 @@ func (o *AdminSearchUserV3Params) SetQuery(query *string) {
 	o.Query = query
 }
 
+// WithSkipLoginQueue adds the skipLoginQueue to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithSkipLoginQueue(skipLoginQueue *bool) *AdminSearchUserV3Params {
+	o.SetSkipLoginQueue(skipLoginQueue)
+	return o
+}
+
+// SetSkipLoginQueue adds the skipLoginQueue to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetSkipLoginQueue(skipLoginQueue *bool) {
+	o.SkipLoginQueue = skipLoginQueue
+}
+
 // WithStartDate adds the startDate to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithStartDate(startDate *string) *AdminSearchUserV3Params {
 	o.SetStartDate(startDate)
@@ -454,6 +470,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qQuery := qrQuery
 		if qQuery != "" {
 			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SkipLoginQueue != nil {
+
+		// query param skipLoginQueue
+		var qrSkipLoginQueue bool
+		if o.SkipLoginQueue != nil {
+			qrSkipLoginQueue = *o.SkipLoginQueue
+		}
+		qSkipLoginQueue := swag.FormatBool(qrSkipLoginQueue)
+		if qSkipLoginQueue != "" {
+			if err := r.SetQueryParam("skipLoginQueue", qSkipLoginQueue); err != nil {
 				return err
 			}
 		}

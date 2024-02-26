@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.15.0"
+    "version": "3.15.1"
   },
   "schemes": [
     "https"
@@ -2293,7 +2293,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nEndpoint to list out available tags",
+        "description": "## Description\n\nRetrieve list of available tags by namespace",
         "operationId": "adminListTagsHandlerV1",
         "parameters": [
           {
@@ -2302,6 +2302,20 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "the number of data retrieved in a page, default 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the number of offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2346,7 +2360,7 @@
         ],
         "summary": "List tags",
         "tags": [
-          "Tags"
+          "AdminTags"
         ],
         "x-security": [
           {
@@ -2365,7 +2379,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nEndpoint to create a tag",
+        "description": "## Description\n\nThis endpoint will create new tags",
         "operationId": "adminPostTagHandlerV1",
         "parameters": [
           {
@@ -2430,7 +2444,7 @@
         ],
         "summary": "Create a tag",
         "tags": [
-          "Tags"
+          "AdminTags"
         ],
         "x-security": [
           {
@@ -2451,7 +2465,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nEndpoint to delete a tag",
+        "description": "## Description\n\nThis endpoint will delete tag by name",
         "operationId": "adminDeleteTagHandlerV1",
         "parameters": [
           {
@@ -2473,7 +2487,7 @@
           "application/json"
         ],
         "responses": {
-          "201": {
+          "204": {
             "description": "Tag deleted"
           },
           "401": {
@@ -2508,7 +2522,7 @@
         ],
         "summary": "Delete a tag",
         "tags": [
-          "Tags"
+          "AdminTags"
         ],
         "x-security": [
           {
@@ -6580,7 +6594,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nEndpoint to list out available tags",
+        "description": "## Description\n\nRetrieve list of available tags by namespace",
         "operationId": "publicListTagsHandlerV1",
         "parameters": [
           {
@@ -6589,6 +6603,20 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "the number of data retrieved in a page, default 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "the number of offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6633,7 +6661,7 @@
         ],
         "summary": "List tags",
         "tags": [
-          "Tags"
+          "PublicTags"
         ],
         "x-security": [
           {
@@ -10537,11 +10565,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-09T03:45:23+00:00",
-    "gitHash": "0dd6ff5c635d3abb150c41fd3a2b4208b578c689",
+    "buildDate": "2024-02-23T04:06:06+00:00",
+    "gitHash": "2e0dd553d710ce9a779d09af115eb490290db205",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.15.0",
-    "version": "3.15.0",
+    "revisionID": "3.15.1",
+    "version": "3.15.1",
     "version-roles-seeding": "0.0.46"
   }
 }

@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.37.0"
+    "version": "1.37.1"
   },
   "schemes": [
     "https"
@@ -3129,6 +3129,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicy_1",
         "parameters": [
@@ -5182,16 +5183,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-02-09T08:39:22+00:00",
-    "buildID": "1.37.0",
+    "buildDate": "2024-02-23T11:32:00+00:00",
+    "buildID": "1.37.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.205-195.807.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.209-198.812.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "7651859bb4",
-    "gitTag": "1.37.0",
+    "gitHash": "8789d529a9",
+    "gitTag": "1.37.1",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.37.0",
+    "version": "1.37.1",
     "version-roles-seeding": "0.0.3"
   }
 }

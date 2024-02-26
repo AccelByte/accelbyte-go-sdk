@@ -95,6 +95,11 @@ type AdminGetClientsByNamespaceV3Params struct {
 
 	*/
 	Offset *int64
+	/*SkipLoginQueue
+	  A flag to filter clients that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted clients
+
+	*/
+	SkipLoginQueue *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -227,6 +232,17 @@ func (o *AdminGetClientsByNamespaceV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithSkipLoginQueue adds the skipLoginQueue to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) WithSkipLoginQueue(skipLoginQueue *bool) *AdminGetClientsByNamespaceV3Params {
+	o.SetSkipLoginQueue(skipLoginQueue)
+	return o
+}
+
+// SetSkipLoginQueue adds the skipLoginQueue to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetSkipLoginQueue(skipLoginQueue *bool) {
+	o.SkipLoginQueue = skipLoginQueue
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -314,6 +330,22 @@ func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequ
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SkipLoginQueue != nil {
+
+		// query param skipLoginQueue
+		var qrSkipLoginQueue bool
+		if o.SkipLoginQueue != nil {
+			qrSkipLoginQueue = *o.SkipLoginQueue
+		}
+		qSkipLoginQueue := swag.FormatBool(qrSkipLoginQueue)
+		if qSkipLoginQueue != "" {
+			if err := r.SetQueryParam("skipLoginQueue", qSkipLoginQueue); err != nil {
 				return err
 			}
 		}

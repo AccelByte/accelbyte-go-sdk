@@ -6823,11 +6823,11 @@
     "path": "/chat/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-30T03:02:08+00:00",
-    "gitHash": "b776bd42682ff40ab5f93fc569de12bbdadeb99f",
+    "buildDate": "2024-02-19T08:20:23+00:00",
+    "gitHash": "68e99e491e59f775e3b700c8438e4496012fe29f",
     "name": "justice-chat-service",
-    "revisionID": "0.4.18",
-    "version": "0.4.18",
-    "version-roles-seeding": "0.0.18"
+    "revisionID": "0.4.21",
+    "version": "0.4.21",
+    "version-roles-seeding": "1.2.14"
   }
 }

@@ -3,6 +3,7 @@
 ### chore
 - **spec:** add dsartifact service
 - **:** generate dsartifact service package
+- **:** update CHANGELOG.md and go sum getting started
 - **samples:** add dsartifact root command cli
 ### test
 - **integration:** add dsartifact integration tests
@@ -15,6 +16,7 @@
 - **generate:** update common use cases doc
 ### docs
 - **common-use-cases:** update
+- **migrations:** add migration-guide-v0.64-to-v0.65.md
 
 
 <a name="v0.64.0"></a>

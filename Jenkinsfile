@@ -39,7 +39,7 @@ pipeline {
       parallel {
         stage('Lint') {
           agent {
-            label "justice-codegen-sdk"
+            label "extend-builder-ci"
           }
           stages {
             stage('Lint Commits') {
@@ -76,7 +76,7 @@ pipeline {
         }
         stage('Build') {
           agent {
-            label "justice-codegen-sdk"
+            label "extend-builder-ci"
           }
           steps {
             sh "make samples"
@@ -84,7 +84,7 @@ pipeline {
         }
         stage('Test') {
           agent {
-            label "justice-codegen-sdk"
+            label "extend-builder-ci"
           }
           stages {
             stage('Core Tests') {

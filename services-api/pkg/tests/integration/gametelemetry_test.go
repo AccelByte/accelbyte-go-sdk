@@ -115,7 +115,7 @@ func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteam
 		SteamID:  steamId,
 	}
 
-	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+	resp, err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 	if err != nil {
 		assert.Contains(t, err.Error(), "returns an error 404")
 
@@ -125,4 +125,5 @@ func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteam
 
 	// Assert
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, resp)
 }

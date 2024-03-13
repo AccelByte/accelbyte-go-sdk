@@ -4,6 +4,7 @@
 - **spec:** add challenge service
 - **:** generate challenge service package
 - **samples:** add challenge root command cli
+- **:** update game telemetry test and add migration guide
 ### ci
 - **:** switch to extend-builder-ci
 

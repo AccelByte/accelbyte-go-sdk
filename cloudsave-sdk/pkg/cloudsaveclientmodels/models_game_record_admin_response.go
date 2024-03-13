@@ -37,6 +37,9 @@ type ModelsGameRecordAdminResponse struct {
 	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 
+	// Tagging for game record
+	Tags []string `json:"tags,omitempty"`
+
 	// TTL configuration for the game record
 	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
 

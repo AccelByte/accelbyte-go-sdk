@@ -30,9 +30,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNamespacesGameTelemetryV1AdminNamespacesGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesGameTelemetryV1AdminNamespacesGetOK, error)
+	GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNamespacesGameTelemetryV1AdminNamespacesGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesGameTelemetryV1AdminNamespacesGetOK, *GetNamespacesGameTelemetryV1AdminNamespacesGetInternalServerError, error)
 	GetNamespacesGameTelemetryV1AdminNamespacesGetShort(params *GetNamespacesGameTelemetryV1AdminNamespacesGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesGameTelemetryV1AdminNamespacesGetOK, error)
-	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error)
+	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error)
 	GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -45,7 +45,7 @@ GetNamespacesGameTelemetryV1AdminNamespacesGet get namespaces
 This endpoint requires valid JWT token and telemetry permission
 This endpoint retrieves namespace list
 */
-func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNamespacesGameTelemetryV1AdminNamespacesGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesGameTelemetryV1AdminNamespacesGetOK, error) {
+func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNamespacesGameTelemetryV1AdminNamespacesGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesGameTelemetryV1AdminNamespacesGetOK, *GetNamespacesGameTelemetryV1AdminNamespacesGetInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetNamespacesGameTelemetryV1AdminNamespacesGetParams()
@@ -77,16 +77,19 @@ func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGet(params *GetNames
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetNamespacesGameTelemetryV1AdminNamespacesGetOK:
-		return v, nil
+		return v, nil, nil
+
+	case *GetNamespacesGameTelemetryV1AdminNamespacesGetInternalServerError:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -130,6 +133,8 @@ func (a *Client) GetNamespacesGameTelemetryV1AdminNamespacesGetShort(params *Get
 
 	case *GetNamespacesGameTelemetryV1AdminNamespacesGetOK:
 		return v, nil
+	case *GetNamespacesGameTelemetryV1AdminNamespacesGetInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -143,7 +148,7 @@ GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet get events
 This endpoint requires valid JWT token and telemetry permission
 This endpoint retrieves event list
 */
-func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error) {
+func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(params *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest, *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams()
@@ -175,19 +180,22 @@ func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGet(param
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK:
-		return v, nil, nil
+		return v, nil, nil, nil
+
+	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest:
+		return nil, v, nil, nil
 
 	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity:
-		return nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -231,6 +239,8 @@ func (a *Client) GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(
 
 	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK:
 		return v, nil
+	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest:
+		return nil, v
 	case *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity:
 		return nil, v
 

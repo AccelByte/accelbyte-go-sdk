@@ -64,6 +64,8 @@ func init() {
 	CloudsaveCmd.AddCommand(adminRecord.BulkGetAdminPlayerRecordByUserIdsV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.BulkGetPlayerRecordSizeHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.ListPlayerRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminBulkPutPlayerRecordsByKeyHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminBulkGetPlayerRecordsByUserIDsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminListAdminUserRecordsV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminBulkGetAdminPlayerRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminGetAdminPlayerRecordV1Cmd)

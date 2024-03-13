@@ -80,11 +80,31 @@ type ListAdminsV3Params struct {
 
 	*/
 	Before *string
+	/*EndDate
+	  End Date, format YYYY-MM-DD
+
+	*/
+	EndDate *string
 	/*Limit
 	  The maximum number of data that may be returned (1...100)
 
 	*/
 	Limit *int64
+	/*Query
+	  Query, can be either display name or email address
+
+	*/
+	Query *string
+	/*RoleID
+	  Role ID, should follow UUID version 4 without hyphen
+
+	*/
+	RoleID *string
+	/*StartDate
+	  Start Date, format YYYY-MM-DD
+
+	*/
+	StartDate *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -184,6 +204,17 @@ func (o *ListAdminsV3Params) SetBefore(before *string) {
 	o.Before = before
 }
 
+// WithEndDate adds the endDate to the list admins v3 params
+func (o *ListAdminsV3Params) WithEndDate(endDate *string) *ListAdminsV3Params {
+	o.SetEndDate(endDate)
+	return o
+}
+
+// SetEndDate adds the endDate to the list admins v3 params
+func (o *ListAdminsV3Params) SetEndDate(endDate *string) {
+	o.EndDate = endDate
+}
+
 // WithLimit adds the limit to the list admins v3 params
 func (o *ListAdminsV3Params) WithLimit(limit *int64) *ListAdminsV3Params {
 	o.SetLimit(limit)
@@ -193,6 +224,39 @@ func (o *ListAdminsV3Params) WithLimit(limit *int64) *ListAdminsV3Params {
 // SetLimit adds the limit to the list admins v3 params
 func (o *ListAdminsV3Params) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithQuery adds the query to the list admins v3 params
+func (o *ListAdminsV3Params) WithQuery(query *string) *ListAdminsV3Params {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the list admins v3 params
+func (o *ListAdminsV3Params) SetQuery(query *string) {
+	o.Query = query
+}
+
+// WithRoleID adds the roleID to the list admins v3 params
+func (o *ListAdminsV3Params) WithRoleID(roleID *string) *ListAdminsV3Params {
+	o.SetRoleID(roleID)
+	return o
+}
+
+// SetRoleID adds the roleId to the list admins v3 params
+func (o *ListAdminsV3Params) SetRoleID(roleID *string) {
+	o.RoleID = roleID
+}
+
+// WithStartDate adds the startDate to the list admins v3 params
+func (o *ListAdminsV3Params) WithStartDate(startDate *string) *ListAdminsV3Params {
+	o.SetStartDate(startDate)
+	return o
+}
+
+// SetStartDate adds the startDate to the list admins v3 params
+func (o *ListAdminsV3Params) SetStartDate(startDate *string) {
+	o.StartDate = startDate
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -240,6 +304,22 @@ func (o *ListAdminsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	}
 
+	if o.EndDate != nil {
+
+		// query param endDate
+		var qrEndDate string
+		if o.EndDate != nil {
+			qrEndDate = *o.EndDate
+		}
+		qEndDate := qrEndDate
+		if qEndDate != "" {
+			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -250,6 +330,54 @@ func (o *ListAdminsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RoleID != nil {
+
+		// query param roleId
+		var qrRoleID string
+		if o.RoleID != nil {
+			qrRoleID = *o.RoleID
+		}
+		qRoleID := qrRoleID
+		if qRoleID != "" {
+			if err := r.SetQueryParam("roleId", qRoleID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StartDate != nil {
+
+		// query param startDate
+		var qrStartDate string
+		if o.StartDate != nil {
+			qrStartDate = *o.StartDate
+		}
+		qStartDate := qrStartDate
+		if qStartDate != "" {
+			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err
 			}
 		}

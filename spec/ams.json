@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.10.0"
+    "version": "1.12.0"
   },
   "schemes": [
     "https"
@@ -20,6 +20,7 @@
         "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
         "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
@@ -1935,6 +1936,78 @@
         ]
       }
     },
+    "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/connectioninfo": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]",
+        "operationId": "FleetServerConnectionInfo",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the ID of the dedicated server",
+            "in": "path",
+            "name": "serverID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetServerConnectionInfoResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "dedicated server not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get connection info for a dedicated server",
+        "tags": [
+          "Servers"
+        ]
+      }
+    },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history": {
       "get": {
         "consumes": [
@@ -2495,12 +2568,28 @@
     },
     "api.AccountLimits": {
       "properties": {
+        "allowedNodeClasses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allowedRegions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "fleetCount": {
           "format": "int32",
           "type": "integer"
         },
         "fleetVmCount": {
           "format": "int32",
+          "type": "integer"
+        },
+        "imageStorageQuotaBytes": {
+          "format": "int64",
           "type": "integer"
         }
       }
@@ -3012,8 +3101,7 @@
         "dsHostConfiguration",
         "imageDeploymentProfile",
         "name",
-        "regions",
-        "samplingRules"
+        "regions"
       ]
     },
     "api.FleetRegionalServerCounts": {
@@ -3049,6 +3137,29 @@
         "runningVmCount",
         "targetDsCount",
         "targetVmCount"
+      ]
+    },
+    "api.FleetServerConnectionInfoResponse": {
+      "properties": {
+        "expiresAt": {
+          "$ref": "#/definitions/api.Time"
+        },
+        "host": {
+          "type": "string"
+        },
+        "logstreamPort": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "secret": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "expiresAt",
+        "host",
+        "logstreamPort",
+        "secret"
       ]
     },
     "api.FleetServerHistoryEventResponse": {
@@ -3544,6 +3655,26 @@
         "region"
       ]
     },
+    "api.Time": {
+      "properties": {
+        "ext": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "loc": {
+          "$ref": "#/definitions/time.Location"
+        },
+        "wall": {
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ext",
+        "loc",
+        "wall"
+      ]
+    },
     "api.Timeout": {
       "properties": {
         "creation": {
@@ -3598,9 +3729,97 @@
         "traceId"
       ]
     },
+    "time.Location": {
+      "properties": {
+        "cacheEnd": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "cacheStart": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "cacheZone": {
+          "$ref": "#/definitions/time.zone"
+        },
+        "extend": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tx": {
+          "items": {
+            "$ref": "#/definitions/time.zoneTrans"
+          },
+          "type": "array"
+        },
+        "zone": {
+          "items": {
+            "$ref": "#/definitions/time.zone"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "cacheEnd",
+        "cacheStart",
+        "cacheZone",
+        "extend",
+        "name",
+        "tx",
+        "zone"
+      ]
+    },
     "time.Time": {
       "format": "date-time",
       "type": "string"
+    },
+    "time.zone": {
+      "properties": {
+        "isDST": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "offset": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "isDST",
+        "name",
+        "offset"
+      ]
+    },
+    "time.zoneTrans": {
+      "properties": {
+        "index": {
+          "format": "byte",
+          "type": "integer"
+        },
+        "isstd": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isutc": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "when": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "index",
+        "isstd",
+        "isutc",
+        "when"
+      ]
     }
   },
   "x-docs": {
@@ -3609,10 +3828,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-06T03:58:16+00:00",
-    "gitHash": "c9a146e5f28aa59832c1e9b7ebe60cdce52022f0",
+    "buildDate": "2024-03-06T06:05:12+00:00",
+    "gitHash": "494bfe7ae0e2d66c32fe54295e5b302ae8e88a21",
     "name": "fleet-commander",
-    "version": "1.10.0",
-    "version-roles-seeding": "1.2.3"
+    "version": "1.12.0",
+    "version-roles-seeding": "1.2.10"
   }
 }

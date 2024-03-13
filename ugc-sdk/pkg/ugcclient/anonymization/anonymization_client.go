@@ -54,7 +54,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminDeleteAllUserChannelsShort instead.
 
 AdminDeleteAllUserChannels delete all user channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete all user channel
 */
 func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsNoContent, *AdminDeleteAllUserChannelsUnauthorized, *AdminDeleteAllUserChannelsNotFound, *AdminDeleteAllUserChannelsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -112,7 +112,7 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 
 /*
 AdminDeleteAllUserChannelsShort delete all user channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete all user channel
 */
 func (a *Client) AdminDeleteAllUserChannelsShort(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -276,7 +276,7 @@ func (a *Client) AdminDeleteAllUserContentsShort(params *AdminDeleteAllUserConte
 Deprecated: 2022-08-10 - Use AdminDeleteAllUserGroupShort instead.
 
 AdminDeleteAllUserGroup delete all user group
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete all user group
 */
 func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -334,7 +334,7 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 
 /*
 AdminDeleteAllUserGroupShort delete all user group
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete all user group
 */
 func (a *Client) AdminDeleteAllUserGroupShort(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, error) {
 	// TODO: Validate the params before sending
@@ -498,7 +498,7 @@ func (a *Client) AdminDeleteAllUserStatesShort(params *AdminDeleteAllUserStatesP
 Deprecated: 2022-08-10 - Use DeleteAllUserChannelShort instead.
 
 DeleteAllUserChannel delete all user channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete all user channel
 */
 func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -556,7 +556,7 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 
 /*
 DeleteAllUserChannelShort delete all user channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete all user channel
 */
 func (a *Client) DeleteAllUserChannelShort(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, error) {
 	// TODO: Validate the params before sending
@@ -720,7 +720,7 @@ func (a *Client) DeleteAllUserContentsShort(params *DeleteAllUserContentsParams,
 Deprecated: 2022-08-10 - Use DeleteAllUserGroupShort instead.
 
 DeleteAllUserGroup delete all user group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete all user group
 */
 func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupNoContent, *DeleteAllUserGroupUnauthorized, *DeleteAllUserGroupNotFound, *DeleteAllUserGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -778,7 +778,7 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 
 /*
 DeleteAllUserGroupShort delete all user group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete all user group
 */
 func (a *Client) DeleteAllUserGroupShort(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupNoContent, error) {
 	// TODO: Validate the params before sending

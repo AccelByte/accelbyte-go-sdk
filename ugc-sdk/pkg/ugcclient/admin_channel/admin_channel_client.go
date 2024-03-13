@@ -52,7 +52,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use SingleAdminGetChannelShort instead.
 
 SingleAdminGetChannel get channels
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get official channel paginated
 */
 func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelBadRequest, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -110,7 +110,7 @@ func (a *Client) SingleAdminGetChannel(params *SingleAdminGetChannelParams, auth
 
 /*
 SingleAdminGetChannelShort get channels
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get official channel paginated
 */
 func (a *Client) SingleAdminGetChannelShort(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, error) {
 	// TODO: Validate the params before sending
@@ -163,7 +163,7 @@ func (a *Client) SingleAdminGetChannelShort(params *SingleAdminGetChannelParams,
 Deprecated: 2022-08-10 - Use AdminCreateChannelShort instead.
 
 AdminCreateChannel create channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]
+Create official channel
 */
 func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelConflict, *AdminCreateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -224,7 +224,7 @@ func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo r
 
 /*
 AdminCreateChannelShort create channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]
+Create official channel
 */
 func (a *Client) AdminCreateChannelShort(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, error) {
 	// TODO: Validate the params before sending
@@ -279,7 +279,7 @@ func (a *Client) AdminCreateChannelShort(params *AdminCreateChannelParams, authI
 Deprecated: 2022-08-10 - Use SingleAdminUpdateChannelShort instead.
 
 SingleAdminUpdateChannel update channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update official channel
 */
 func (a *Client) SingleAdminUpdateChannel(params *SingleAdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateChannelOK, *SingleAdminUpdateChannelBadRequest, *SingleAdminUpdateChannelUnauthorized, *SingleAdminUpdateChannelNotFound, *SingleAdminUpdateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -340,7 +340,7 @@ func (a *Client) SingleAdminUpdateChannel(params *SingleAdminUpdateChannelParams
 
 /*
 SingleAdminUpdateChannelShort update channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update official channel
 */
 func (a *Client) SingleAdminUpdateChannelShort(params *SingleAdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminUpdateChannelOK, error) {
 	// TODO: Validate the params before sending
@@ -395,7 +395,7 @@ func (a *Client) SingleAdminUpdateChannelShort(params *SingleAdminUpdateChannelP
 Deprecated: 2022-08-10 - Use SingleAdminDeleteChannelShort instead.
 
 SingleAdminDeleteChannel delete channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete official channel
 */
 func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -453,7 +453,7 @@ func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams
 
 /*
 SingleAdminDeleteChannelShort delete channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete official channel
 */
 func (a *Client) SingleAdminDeleteChannelShort(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, error) {
 	// TODO: Validate the params before sending
@@ -506,7 +506,7 @@ func (a *Client) SingleAdminDeleteChannelShort(params *SingleAdminDeleteChannelP
 Deprecated: 2022-08-10 - Use AdminGetChannelShort instead.
 
 AdminGetChannel get channels
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get user channel paginated
 */
 func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelBadRequest, *AdminGetChannelUnauthorized, *AdminGetChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -564,7 +564,7 @@ func (a *Client) AdminGetChannel(params *AdminGetChannelParams, authInfo runtime
 
 /*
 AdminGetChannelShort get channels
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get user channel paginated
 */
 func (a *Client) AdminGetChannelShort(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, error) {
 	// TODO: Validate the params before sending
@@ -617,7 +617,7 @@ func (a *Client) AdminGetChannelShort(params *AdminGetChannelParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminUpdateChannelShort instead.
 
 AdminUpdateChannel update channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update user channel
 */
 func (a *Client) AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChannelOK, *AdminUpdateChannelBadRequest, *AdminUpdateChannelUnauthorized, *AdminUpdateChannelNotFound, *AdminUpdateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -678,7 +678,7 @@ func (a *Client) AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo r
 
 /*
 AdminUpdateChannelShort update channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update user channel
 */
 func (a *Client) AdminUpdateChannelShort(params *AdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChannelOK, error) {
 	// TODO: Validate the params before sending
@@ -733,7 +733,7 @@ func (a *Client) AdminUpdateChannelShort(params *AdminUpdateChannelParams, authI
 Deprecated: 2022-08-10 - Use AdminDeleteChannelShort instead.
 
 AdminDeleteChannel delete channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete user channel
 */
 func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -791,7 +791,7 @@ func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo r
 
 /*
 AdminDeleteChannelShort delete channel
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete user channel
 */
 func (a *Client) AdminDeleteChannelShort(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, error) {
 	// TODO: Validate the params before sending

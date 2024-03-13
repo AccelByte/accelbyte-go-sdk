@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.13.14"
+    "version": "3.14.0"
   },
   "schemes": [
     "https"
@@ -2425,6 +2425,88 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/recent-player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query recent player with given user id.",
+        "operationId": "adminGetRecentPlayer",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Recent Player Limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "recent player UserID. If this field empty, will use UserID from token",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.RecentPlayerQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query recent player with given user id.",
+        "tags": [
+          "Recent Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]"
             ]
           }
         ]
@@ -5344,12 +5426,6 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
-          },
-          {
-            "description": "recent player UserID. If this field empty, will use UserID from token",
-            "in": "query",
-            "name": "userId",
-            "type": "string"
           }
         ],
         "produces": [
@@ -8082,9 +8158,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-15T09:15:58+00:00",
-    "gitHash": "c5f2c200034547182e1400bce3f2e8cab65c0f96",
-    "version": "3.13.14",
+    "buildDate": "2024-02-27T08:06:38+00:00",
+    "gitHash": "4d24f32608020512eec364285412a7c15fa2345e",
+    "version": "3.14.0",
     "version-roles-seeding": "1.0.20"
   }
 }

@@ -446,6 +446,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPutAdminGameRecordV1(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, *AdminPutAdminGameRecordV1BadRequest, *AdminPutAdminGameRecordV1Unauthorized, *AdminPutAdminGameRecordV1Forbidden, *AdminPutAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -535,6 +557,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPutAdminGameRecordV1Short(params *AdminPutAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminGameRecordV1OK, error) {
 	// TODO: Validate the params before sending
@@ -631,6 +675,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPostAdminGameRecordV1(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, *AdminPostAdminGameRecordV1BadRequest, *AdminPostAdminGameRecordV1Unauthorized, *AdminPostAdminGameRecordV1Forbidden, *AdminPostAdminGameRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -733,6 +799,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPostAdminGameRecordV1Short(params *AdminPostAdminGameRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostAdminGameRecordV1Created, error) {
 	// TODO: Validate the params before sending
@@ -1407,6 +1495,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPutAdminPlayerRecordV1(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, *AdminPutAdminPlayerRecordV1BadRequest, *AdminPutAdminPlayerRecordV1Unauthorized, *AdminPutAdminPlayerRecordV1Forbidden, *AdminPutAdminPlayerRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1497,6 +1607,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPutAdminPlayerRecordV1Short(params *AdminPutAdminPlayerRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutAdminPlayerRecordV1OK, error) {
 	// TODO: Validate the params before sending
@@ -1593,6 +1725,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPostPlayerAdminRecordV1(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, *AdminPostPlayerAdminRecordV1BadRequest, *AdminPostPlayerAdminRecordV1Unauthorized, *AdminPostPlayerAdminRecordV1Forbidden, *AdminPostPlayerAdminRecordV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1695,6 +1849,28 @@ This is the restriction of Key Naming for the record:
 - `{ "$data": "value" }`
 3. Cannot use empty string in key names
 - `{ "": "value" }`
+
+
+## Record Metadata
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name **__META**.
+When creating record, if **__META** field is not defined, the metadata value will use the default value.
+When updating record, if **__META** field is not defined, the existing metadata value will stay as is.
+
+**Metadata List:**
+1. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
+
+**Request Body Example:**
+```
+{
+"__META": {
+"tags": ["tag1", "tag2"]
+}
+...
+}
+```
 */
 func (a *Client) AdminPostPlayerAdminRecordV1Short(params *AdminPostPlayerAdminRecordV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerAdminRecordV1Created, error) {
 	// TODO: Validate the params before sending

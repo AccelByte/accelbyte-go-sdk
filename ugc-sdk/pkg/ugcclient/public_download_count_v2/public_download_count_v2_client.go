@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use PublicAddDownloadCountV2Short instead.
 
 PublicAddDownloadCountV2 add unique download count to a content
-Requires valid user token
+This endpoint can be used to count how many the ugc downloaded
 */
 func (a *Client) PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, *PublicAddDownloadCountV2Unauthorized, *PublicAddDownloadCountV2NotFound, *PublicAddDownloadCountV2TooManyRequests, *PublicAddDownloadCountV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -103,7 +103,7 @@ func (a *Client) PublicAddDownloadCountV2(params *PublicAddDownloadCountV2Params
 
 /*
 PublicAddDownloadCountV2Short add unique download count to a content
-Requires valid user token
+This endpoint can be used to count how many the ugc downloaded
 */
 func (a *Client) PublicAddDownloadCountV2Short(params *PublicAddDownloadCountV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicAddDownloadCountV2OK, error) {
 	// TODO: Validate the params before sending

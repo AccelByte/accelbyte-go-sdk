@@ -19,9 +19,8 @@ import (
 type ModelGoalSchedule struct {
 
 	// endtime
-	// Required: true
 	// Format: date-time
-	EndTime strfmt.DateTime `json:"endTime"`
+	EndTime *strfmt.DateTime `json:"endTime,omitempty"`
 
 	// order
 	// Required: true
@@ -38,9 +37,6 @@ type ModelGoalSchedule struct {
 func (m *ModelGoalSchedule) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEndTime(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateOrder(formats); err != nil {
 		res = append(res, err)
 	}
@@ -51,19 +47,6 @@ func (m *ModelGoalSchedule) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelGoalSchedule) validateEndTime(formats strfmt.Registry) error {
-
-	if err := validate.Required("endTime", "body", strfmt.DateTime(m.EndTime)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("endTime", "body", "date-time", m.EndTime.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 

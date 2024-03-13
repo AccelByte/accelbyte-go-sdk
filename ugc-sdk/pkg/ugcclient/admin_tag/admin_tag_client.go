@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetTagShort instead.
 
 AdminGetTag get tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get available tags paginated
 */
 func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagBadRequest, *AdminGetTagUnauthorized, *AdminGetTagInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,7 +104,7 @@ func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientA
 
 /*
 AdminGetTagShort get tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get available tags paginated
 */
 func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, error) {
 	// TODO: Validate the params before sending
@@ -157,8 +157,7 @@ func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use AdminCreateTagShort instead.
 
 AdminCreateTag create tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
-creates a new tag
+Creates a new tag
 */
 func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, *AdminCreateTagBadRequest, *AdminCreateTagUnauthorized, *AdminCreateTagConflict, *AdminCreateTagInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -219,8 +218,7 @@ func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.C
 
 /*
 AdminCreateTagShort create tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
-creates a new tag
+Creates a new tag
 */
 func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, error) {
 	// TODO: Validate the params before sending
@@ -275,8 +273,7 @@ func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runt
 Deprecated: 2022-08-10 - Use AdminUpdateTagShort instead.
 
 AdminUpdateTag update tag
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
-updates a tag
+Update existing tag
 */
 func (a *Client) AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, *AdminUpdateTagBadRequest, *AdminUpdateTagUnauthorized, *AdminUpdateTagNotFound, *AdminUpdateTagConflict, *AdminUpdateTagInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -340,8 +337,7 @@ func (a *Client) AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.C
 
 /*
 AdminUpdateTagShort update tag
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
-updates a tag
+Update existing tag
 */
 func (a *Client) AdminUpdateTagShort(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, error) {
 	// TODO: Validate the params before sending
@@ -398,7 +394,7 @@ func (a *Client) AdminUpdateTagShort(params *AdminUpdateTagParams, authInfo runt
 Deprecated: 2022-08-10 - Use AdminDeleteTagShort instead.
 
 AdminDeleteTag delete tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+Delete existing tag
 */
 func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -456,7 +452,7 @@ func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.C
 
 /*
 AdminDeleteTagShort delete tags
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+Delete existing tag
 */
 func (a *Client) AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, error) {
 	// TODO: Validate the params before sending

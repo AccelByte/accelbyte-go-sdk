@@ -34,6 +34,7 @@ func init() {
 	ChallengeCmd.AddCommand(goalConfiguration.AdminDeleteGoalCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetPeriodsCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminRandomizeChallengeCmd)
+	ChallengeCmd.AddCommand(challengeConfiguration.AdminDeleteTiedChallengeCmd)
 	ChallengeCmd.AddCommand(challengeProgression.AdminEvaluateProgressCmd)
 	ChallengeCmd.AddCommand(playerReward.AdminGetUserRewardsCmd)
 	ChallengeCmd.AddCommand(challengeList.GetChallengesCmd)

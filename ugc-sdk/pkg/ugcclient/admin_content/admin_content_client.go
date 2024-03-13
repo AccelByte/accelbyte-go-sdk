@@ -1864,8 +1864,7 @@ func (a *Client) RollbackContentVersionShort(params *RollbackContentVersionParam
 Deprecated: 2022-08-10 - Use AdminUpdateScreenshotsShort instead.
 
 AdminUpdateScreenshots update screenshot of content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsForbidden, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1929,8 +1928,7 @@ func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, au
 
 /*
 AdminUpdateScreenshotsShort update screenshot of content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, error) {
 	// TODO: Validate the params before sending
@@ -1986,13 +1984,12 @@ func (a *Client) AdminUpdateScreenshotsShort(params *AdminUpdateScreenshotsParam
 /*
 Deprecated: 2022-08-10 - Use AdminUploadContentScreenshotShort instead.
 
-AdminUploadContentScreenshot upload screenshots for content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
-Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+AdminUploadContentScreenshot upload screenshots for official content
+All request body are required except for *contentType* field.
+*contentType* values is used to enforce the *Content-Type* header needed by the client to upload the content using the presigned URL.
+If not specified, it will use *fileExtension* value.
+Supported file extensions: *pjp*, *jpg*, *jpeg*, *jfif*, *bmp*, *png*.
+Maximum description length: 1024
 */
 func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotForbidden, *AdminUploadContentScreenshotNotFound, *AdminUploadContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2055,13 +2052,12 @@ func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreensh
 }
 
 /*
-AdminUploadContentScreenshotShort upload screenshots for content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
-Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+AdminUploadContentScreenshotShort upload screenshots for official content
+All request body are required except for *contentType* field.
+*contentType* values is used to enforce the *Content-Type* header needed by the client to upload the content using the presigned URL.
+If not specified, it will use *fileExtension* value.
+Supported file extensions: *pjp*, *jpg*, *jpeg*, *jfif*, *bmp*, *png*.
+Maximum description length: 1024
 */
 func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, error) {
 	// TODO: Validate the params before sending
@@ -2117,8 +2113,8 @@ func (a *Client) AdminUploadContentScreenshotShort(params *AdminUploadContentScr
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteContentScreenshotShort instead.
 
-AdminDeleteContentScreenshot delete screenshots content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+AdminDeleteContentScreenshot delete content's screenshot
+Delete existing screenshot from a content
 */
 func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotForbidden, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2181,8 +2177,8 @@ func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreensh
 }
 
 /*
-AdminDeleteContentScreenshotShort delete screenshots content
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+AdminDeleteContentScreenshotShort delete content's screenshot
+Delete existing screenshot from a content
 */
 func (a *Client) AdminDeleteContentScreenshotShort(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, error) {
 	// TODO: Validate the params before sending

@@ -1,9 +1,14 @@
 {
   "host": "demo.accelbyte.io",
   "info": {
+    "contact": {
+      "email": "engineering@accelbyte.io",
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io"
+    },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.21.12"
+    "version": "2.21.13"
   },
   "schemes": [
     "https"
@@ -164,6 +169,18 @@
         "summary": "Query achievements",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       },
       "post": {
@@ -238,6 +255,18 @@
         "summary": "Create new achievement",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -310,6 +339,18 @@
         "summary": "Export achievements configuration into a json file",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -390,6 +431,18 @@
         "summary": "Import achievements from file",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -462,6 +515,18 @@
         "summary": "Delete an achievement",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
@@ -535,6 +600,18 @@
         "summary": "Get an achievement",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       },
       "patch": {
@@ -613,6 +690,18 @@
         "summary": "Update achievements listOrder",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
         ]
       },
       "put": {
@@ -694,6 +783,18 @@
         "summary": "Update an achievement",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -798,6 +899,18 @@
         "summary": "Admin query global achievements [include achieved and in-progress]",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -888,6 +1001,18 @@
         "summary": "Admin list contributors of global achievement",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -954,6 +1079,18 @@
         "summary": "Reset global achievement",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -1049,6 +1186,18 @@
         "summary": "Query tags",
         "tags": [
           "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1162,6 +1311,18 @@
         "summary": "Query user achievements [include achieved and in-progress]",
         "tags": [
           "User Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1241,6 +1402,18 @@
         "summary": "Reset an achievement",
         "tags": [
           "User Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -1320,6 +1493,18 @@
         "summary": "Unlock an achievement",
         "tags": [
           "User Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1377,6 +1562,13 @@
         "summary": "Anonymize user's achievement",
         "tags": [
           "Anonymization"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -1483,6 +1675,18 @@
         "summary": "Admin list of global achievements that has been contributed by the user",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1607,6 +1811,18 @@
         "summary": "Query achievements",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1689,6 +1905,18 @@
         "summary": "Get an achievement",
         "tags": [
           "Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1793,6 +2021,18 @@
         "summary": "Query global achievements [include achieved and in-progress]",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1883,6 +2123,18 @@
         "summary": "List contributors of global achievement",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1978,6 +2230,18 @@
         "summary": "Query tags",
         "tags": [
           "Tags"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2091,6 +2355,18 @@
         "summary": "Query user achievements [include achieved and in-progress]",
         "tags": [
           "User Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2170,6 +2446,18 @@
         "summary": "Unlock an achievement",
         "tags": [
           "User Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -2276,6 +2564,18 @@
         "summary": "List of global achievements that has been contributed by the user",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     },
@@ -2349,6 +2649,18 @@
         "summary": "Claim global achievement reward",
         "tags": [
           "Global Achievements"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
         ]
       }
     }
@@ -3114,11 +3426,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-23T04:04:36+00:00",
-    "gitHash": "42333b0e3cda91624533d00a1909e992d3e60b75",
+    "buildDate": "2024-03-08T08:04:05+00:00",
+    "gitHash": "7eedfdae4298eac99138414915fc021a35afa56b",
     "name": "justice-achievement-service",
     "realm": "demo",
-    "version": "2.21.12",
+    "version": "2.21.13",
     "version-roles-seeding": "1.0.7"
   }
 }

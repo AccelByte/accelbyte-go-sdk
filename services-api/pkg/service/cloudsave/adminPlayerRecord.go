@@ -90,6 +90,58 @@ func (aaa *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_play
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkPutPlayerRecordsByKeyHandlerV1Short instead.
+func (aaa *AdminPlayerRecordService) AdminBulkPutPlayerRecordsByKeyHandlerV1(input *admin_player_record.AdminBulkPutPlayerRecordsByKeyHandlerV1Params) ([]*cloudsaveclientmodels.ModelsBulkUpdatePlayerRecordByKeyResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminPlayerRecord.AdminBulkPutPlayerRecordsByKeyHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short instead.
+func (aaa *AdminPlayerRecordService) AdminBulkGetPlayerRecordsByUserIDsHandlerV1(input *admin_player_record.AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.AdminPlayerRecord.AdminBulkGetPlayerRecordsByUserIDsHandlerV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminRetrievePlayerRecordsShort instead.
 func (aaa *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -455,6 +507,66 @@ func (aaa *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin
 	}
 
 	ok, err := aaa.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminPlayerRecordService) AdminBulkPutPlayerRecordsByKeyHandlerV1Short(input *admin_player_record.AdminBulkPutPlayerRecordsByKeyHandlerV1Params) ([]*cloudsaveclientmodels.ModelsBulkUpdatePlayerRecordByKeyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminPlayerRecord != nil {
+		input.XFlightId = tempFlightIdAdminPlayerRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AdminPlayerRecord.AdminBulkPutPlayerRecordsByKeyHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminPlayerRecordService) AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short(input *admin_player_record.AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminPlayerRecord != nil {
+		input.XFlightId = tempFlightIdAdminPlayerRecord
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AdminPlayerRecord.AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

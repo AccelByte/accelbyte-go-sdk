@@ -28,12 +28,20 @@ var ListAdminsV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		after, _ := cmd.Flags().GetString("after")
 		before, _ := cmd.Flags().GetString("before")
+		endDate, _ := cmd.Flags().GetString("endDate")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		query, _ := cmd.Flags().GetString("query")
+		roleId, _ := cmd.Flags().GetString("roleId")
+		startDate, _ := cmd.Flags().GetString("startDate")
 		input := &users.ListAdminsV3Params{
 			Namespace: namespace,
 			After:     &after,
 			Before:    &before,
+			EndDate:   &endDate,
 			Limit:     &limit,
+			Query:     &query,
+			RoleID:    &roleId,
+			StartDate: &startDate,
 		}
 		ok, errOK := usersService.ListAdminsV3Short(input)
 		if errOK != nil {
@@ -53,5 +61,9 @@ func init() {
 	_ = ListAdminsV3Cmd.MarkFlagRequired("namespace")
 	ListAdminsV3Cmd.Flags().String("after", "0", "After")
 	ListAdminsV3Cmd.Flags().String("before", "0", "Before")
+	ListAdminsV3Cmd.Flags().String("endDate", "", "End date")
 	ListAdminsV3Cmd.Flags().Int64("limit", 20, "Limit")
+	ListAdminsV3Cmd.Flags().String("query", "", "Query")
+	ListAdminsV3Cmd.Flags().String("roleId", "", "Role id")
+	ListAdminsV3Cmd.Flags().String("startDate", "", "Start date")
 }

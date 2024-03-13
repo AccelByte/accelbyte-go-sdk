@@ -114,12 +114,11 @@ type PublicListContentLikeV2Params struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc.
-
+	    sort order of query result
 	available value:
-	<ul>
-	<li>createdTime, createdTime:desc, createdTime:asc</li>
-	</ul>
+	- *createdTime*
+	- *createdTime:desc*
+	- *createdTime:asc*
 
 	*/
 	SortBy *string

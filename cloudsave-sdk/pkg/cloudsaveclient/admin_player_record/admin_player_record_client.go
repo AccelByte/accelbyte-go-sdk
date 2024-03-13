@@ -34,6 +34,10 @@ type ClientService interface {
 	BulkGetPlayerRecordSizeHandlerV1Short(params *BulkGetPlayerRecordSizeHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerRecordSizeHandlerV1OK, error)
 	ListPlayerRecordHandlerV1(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, *ListPlayerRecordHandlerV1BadRequest, *ListPlayerRecordHandlerV1Unauthorized, *ListPlayerRecordHandlerV1Forbidden, *ListPlayerRecordHandlerV1InternalServerError, error)
 	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
+	AdminBulkPutPlayerRecordsByKeyHandlerV1(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest, *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized, *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden, *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError, error)
+	AdminBulkPutPlayerRecordsByKeyHandlerV1Short(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, error)
+	AdminBulkGetPlayerRecordsByUserIDsHandlerV1(params *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1BadRequest, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Unauthorized, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Forbidden, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1InternalServerError, error)
+	AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short(params *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK, error)
 	AdminRetrievePlayerRecords(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, *AdminRetrievePlayerRecordsBadRequest, *AdminRetrievePlayerRecordsUnauthorized, *AdminRetrievePlayerRecordsForbidden, *AdminRetrievePlayerRecordsInternalServerError, error)
 	AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, error)
 	AdminPutPlayerRecordsHandlerV1(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, *AdminPutPlayerRecordsHandlerV1BadRequest, *AdminPutPlayerRecordsHandlerV1Unauthorized, *AdminPutPlayerRecordsHandlerV1Forbidden, error)
@@ -289,6 +293,244 @@ func (a *Client) ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV
 	case *ListPlayerRecordHandlerV1Forbidden:
 		return nil, v
 	case *ListPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminBulkPutPlayerRecordsByKeyHandlerV1Short instead.
+
+AdminBulkPutPlayerRecordsByKeyHandlerV1 bulk update player records by key
+This endpoints will create new player record or replace the existing player record in bulk.
+Maximum number of user ids per request is 10.
+Maximum total size of the request payload is 5 MB.
+*/
+func (a *Client) AdminBulkPutPlayerRecordsByKeyHandlerV1(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest, *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized, *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden, *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkPutPlayerRecordsByKeyHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkPutPlayerRecordsByKeyHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records/{key}/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkPutPlayerRecordsByKeyHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkPutPlayerRecordsByKeyHandlerV1Short bulk update player records by key
+This endpoints will create new player record or replace the existing player record in bulk.
+Maximum number of user ids per request is 10.
+Maximum total size of the request payload is 5 MB.
+*/
+func (a *Client) AdminBulkPutPlayerRecordsByKeyHandlerV1Short(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkPutPlayerRecordsByKeyHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkPutPlayerRecordsByKeyHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records/{key}/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkPutPlayerRecordsByKeyHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1OK:
+		return v, nil
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest:
+		return nil, v
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized:
+		return nil, v
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden:
+		return nil, v
+	case *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short instead.
+
+AdminBulkGetPlayerRecordsByUserIDsHandlerV1 bulk get player records by multiple user ids
+Retrieve player record key and payload in bulk under given namespace.
+Maximum number of user ids per request is 20.
+*/
+func (a *Client) AdminBulkGetPlayerRecordsByUserIDsHandlerV1(params *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1BadRequest, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Unauthorized, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Forbidden, *AdminBulkGetPlayerRecordsByUserIDsHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkGetPlayerRecordsByUserIDsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkGetPlayerRecordsByUserIDsHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records/{key}/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkGetPlayerRecordsByUserIDsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short bulk get player records by multiple user ids
+Retrieve player record key and payload in bulk under given namespace.
+Maximum number of user ids per request is 20.
+*/
+func (a *Client) AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short(params *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkGetPlayerRecordsByUserIDsHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkGetPlayerRecordsByUserIDsHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records/{key}/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkGetPlayerRecordsByUserIDsHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1OK:
+		return v, nil
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1BadRequest:
+		return nil, v
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Unauthorized:
+		return nil, v
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1Forbidden:
+		return nil, v
+	case *AdminBulkGetPlayerRecordsByUserIDsHandlerV1InternalServerError:
 		return nil, v
 
 	default:
@@ -814,13 +1056,16 @@ SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 2. is_public (default: false, type: bool)
 Indicate whether the player record is a public record or not.
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 
 **Request Body Example:**
 ```
 {
 "__META": {
 "set_by": "SERVER",
-"is_public": true
+"is_public": true,
+"tags": ["tag1", "tag2"]
 }
 ...
 }
@@ -931,13 +1176,16 @@ SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 2. is_public (default: false, type: bool)
 Indicate whether the player record is a public record or not.
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 
 **Request Body Example:**
 ```
 {
 "__META": {
 "set_by": "SERVER",
-"is_public": true
+"is_public": true,
+"tags": ["tag1", "tag2"]
 }
 ...
 }
@@ -1054,13 +1302,16 @@ SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 2. is_public (default: false, type: bool)
 Indicate whether the player record is a public record or not.
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 
 **Request Body Example:**
 ```
 {
 "__META": {
 "set_by": "SERVER",
-"is_public": true
+"is_public": true,
+"tags": ["tag1", "tag2"]
 }
 ...
 }
@@ -1183,13 +1434,16 @@ SERVER: record can be modified by server only.
 CLIENT: record can be modified by client and server.
 2. is_public (default: false, type: bool)
 Indicate whether the player record is a public record or not.
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 
 **Request Body Example:**
 ```
 {
 "__META": {
 "set_by": "SERVER",
-"is_public": true
+"is_public": true,
+"tags": ["tag1", "tag2"]
 }
 ...
 }

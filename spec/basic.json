@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.18.0"
+    "version": "2.19.0"
   },
   "schemes": [
     "https"
@@ -189,7 +189,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11338\u003c/td\u003e\u003ctd\u003eUnable to {action}: Namespace contains invalid character(s)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11339\u003c/td\u003e\u003ctd\u003eUnable to {action}: Display name contains invalid character(s)\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11338\u003c/td\u003e\u003ctd\u003eUnable to {action}: Namespace contains invalid character(s)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11339\u003c/td\u003e\u003ctd\u003eUnable to {action}: Display name contains invalid character(s)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11340\u003c/td\u003e\u003ctd\u003eUnable to {action}: The maximum number of games namespace for studio:{studio} has been exceeded\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -5951,16 +5951,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-02-23T11:29:47+00:00",
-    "buildID": "2.18.0",
+    "buildDate": "2024-03-08T11:07:25+00:00",
+    "buildID": "2.19.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.209-198.812.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.210-201.852.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "53f0dee447",
-    "gitTag": "2.18.0",
+    "gitHash": "af5d2d5a81",
+    "gitTag": "2.19.0",
     "name": "justice-basic-service",
     "realm": "demo",
-    "version": "2.18.0",
+    "version": "2.19.0",
     "version-roles-seeding": "0.0.10"
   }
 }

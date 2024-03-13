@@ -153,7 +153,7 @@ func (a *Client) PublicListContentLikeV2Short(params *PublicListContentLikeV2Par
 Deprecated: 2022-08-10 - Use UpdateContentLikeStatusV2Short instead.
 
 UpdateContentLikeStatusV2 update like/unlike status to a content
-Requires valid user token
+This endpoint will update like/unlike state from a content
 */
 func (a *Client) UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, *UpdateContentLikeStatusV2BadRequest, *UpdateContentLikeStatusV2Unauthorized, *UpdateContentLikeStatusV2NotFound, *UpdateContentLikeStatusV2TooManyRequests, *UpdateContentLikeStatusV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -217,7 +217,7 @@ func (a *Client) UpdateContentLikeStatusV2(params *UpdateContentLikeStatusV2Para
 
 /*
 UpdateContentLikeStatusV2Short update like/unlike status to a content
-Requires valid user token
+This endpoint will update like/unlike state from a content
 */
 func (a *Client) UpdateContentLikeStatusV2Short(params *UpdateContentLikeStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusV2OK, error) {
 	// TODO: Validate the params before sending

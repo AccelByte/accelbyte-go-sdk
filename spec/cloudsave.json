@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.15.1"
+    "version": "3.16.0"
   },
   "schemes": [
     "https"
@@ -384,7 +384,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new admin game record or append the existing admin game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n",
+        "description": "## Description\n\nThis endpoints will create new admin game record or append the existing admin game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the admin record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPostAdminGameRecordV1",
         "parameters": [
           {
@@ -472,7 +472,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new admin game record or replace the existing admin game record.\n\n**Append example:**\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n",
+        "description": "## Description\n\nThis endpoints will create new admin game record or replace the existing admin game record.\n\n**Append example:**\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the admin record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPutAdminGameRecordV1",
         "parameters": [
           {
@@ -1272,7 +1272,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n**Request Body Example:**\n```\n{\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n}\n```\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n3. tags (default: *empty array*, type: array of string)\n   Indicate the tagging for the admin record.\n**Request Body Example:**\n```\n{\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;,\n\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n}\n```\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "adminPutAdminGameRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -1364,7 +1364,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n}\n```\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n4. tags (default: *empty array*, type: array of string)\n   Indicate the tagging for the game record.\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;,\n\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n}\n```\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "adminPutGameRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -2025,7 +2025,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or append the existing game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t}\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new game record or append the existing game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n3.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the game record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t},\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPostGameRecordHandlerV1",
         "parameters": [
           {
@@ -2116,7 +2116,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t}\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new game record or replace the existing game record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tttl_config (default: *empty*, type: object)\n\tIndicate the TTL configuration for the game record.\n\taction:\n\t- DELETE: record will be deleted after TTL is reached\n3.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the game record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;ttl_config\u0026#34;: {\n\t\t\t\u0026#34;expires_at\u0026#34;: \u0026#34;2026-01-02T15:04:05Z\u0026#34;, // should be in RFC3339 format\n\t\t\t\u0026#34;action\u0026#34;: \u0026#34;DELETE\u0026#34;\n\t\t},\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPutGameRecordHandlerV1",
         "parameters": [
           {
@@ -2810,6 +2810,185 @@
         ]
       }
     },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/records/{key}/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Retrieve player record key and payload in bulk under given namespace.\nMaximum number of user ids per request is 20.\n",
+        "operationId": "adminBulkGetPlayerRecordsByUserIDsHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
+          },
+          {
+            "description": "key of the record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18125\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18126\u003c/td\u003e\u003ctd\u003erequest record keys list exceed max size [%d]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18124\u003c/td\u003e\u003ctd\u003eunable to get record\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18006\u003c/td\u003e\u003ctd\u003eunable to decode record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get player records by multiple user ids",
+        "tags": [
+          "AdminPlayerRecord"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoints will create new player record or replace the existing player record in bulk.\nMaximum number of user ids per request is 10.\nMaximum total size of the request payload is 5 MB.\n",
+        "operationId": "adminBulkPutPlayerRecordsByKeyHandlerV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUpdatePlayerRecordsByKeyRequest"
+            }
+          },
+          {
+            "description": "key of the record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.BulkUpdatePlayerRecordByKeyResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18353\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18356\u003c/td\u003e\u003ctd\u003einvalid request body: size of the request body must be less than [%d]MB\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18354\u003c/td\u003e\u003ctd\u003erecords amount exceeded max limit\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk update player records by key",
+        "tags": [
+          "AdminPlayerRecord"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords": {
       "get": {
         "consumes": [
@@ -3174,7 +3353,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new admin player record or append the existing admin game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n",
+        "description": "## Description\n\nThis endpoints will create new admin player record or append the existing admin game record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the admin record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPostPlayerAdminRecordV1",
         "parameters": [
           {
@@ -3269,7 +3448,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n",
+        "description": "## Description\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the admin record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPutAdminPlayerRecordV1",
         "parameters": [
           {
@@ -4035,7 +4214,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n**Request Body Example:**\n```\n{\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "## Description\n\nThis endpoints will create new admin player record or replace the existing admin player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. updatedAt (required: true)\n               Time format style: RFC3339\n2. value\n               Json\n3. tags (default: *empty array*, type: array of string)\n   Indicate the tagging for the admin record.\n**Request Body Example:**\n```\n{\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;,\n\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "adminPutAdminPlayerRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -4147,7 +4326,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new player record or replace the existing player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "## Description\n\nThis endpoints will create new player record or replace the existing player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n4. tags (default: *empty array*, type: array of string)\n   Indicate the tagging for the game record.\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;,\n\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "adminPutPlayerRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -4262,7 +4441,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "## Description\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Reserved Word\n\nReserved Word List: **__META**\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n## Parameters Notes \n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n4. tags (default: *empty array*, type: array of string)\n   Indicate the tagging for the game record.\n**Request Body Example:**\n```\n{\n\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\u0026#34;value\u0026#34;: {},\n\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;,\n\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n}\n```\n\n## Optimistic Concurrency Control\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "adminPutPlayerPublicRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -4605,7 +4784,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18353\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18356\u003c/td\u003e\u003ctd\u003einvalid request body: size of the request body must be less than [%d]MB\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18354\u003c/td\u003e\u003ctd\u003erecords amount exceeded max limit\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18353\u003c/td\u003e\u003ctd\u003einvalid request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18356\u003c/td\u003e\u003ctd\u003einvalid request body: size of the request body must be less than [%d]MB\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18354\u003c/td\u003e\u003ctd\u003erecords amount exceeded max limit\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18355\u003c/td\u003e\u003ctd\u003eunable to marshal request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -4814,7 +4993,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new player record or append the existing player record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;is_public\u0026#34;: true\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new player record or append the existing player record.\n\n**Append example:**\n\nExample 1\n- \tExisting JSON:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\nExample 2\n-\tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }`\n\n-\tNew JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\n\t`{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n3.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the game record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;is_public\u0026#34;: true,\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPostPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -4912,7 +5091,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "## Description\n\nThis endpoints will create new player record or replace the existing player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;is_public\u0026#34;: true\n\t}\n\t...\n}\n```",
+        "description": "## Description\n\nThis endpoints will create new player record or replace the existing player record.\n\n**Replace behaviour:**\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\n\t`{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }`\n\n- \tNew JSON:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n-\tResult:\n\t\n\t`{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }`\n\n\n\n## Restriction\nThis is the restriction of Key Naming for the record:\n1. Cannot use **\u0026#34;.\u0026#34;** as the key name\n-\t`{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }`\n2. Cannot use **\u0026#34;$\u0026#34;** as the prefix in key names\n-\t`{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }`\n3. Cannot use empty string in key names\n-\t`{ \u0026#34;\u0026#34;: \u0026#34;value\u0026#34; }`\n\t\n\n## Record Metadata\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name **__META**.\nWhen creating record, if **__META** field is not defined, the metadata value will use the default value.\nWhen updating record, if **__META** field is not defined, the existing metadata value will stay as is.\n\n**Metadata List:**\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n3.\ttags (default: *empty array*, type: array of string)\n\tIndicate the tagging for the game record.\n\n**Request Body Example:**\n```\n{\n\t\u0026#34;__META\u0026#34;: {\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;is_public\u0026#34;: true,\n\t\t\u0026#34;tags\u0026#34;: [\u0026#34;tag1\u0026#34;, \u0026#34;tag2\u0026#34;]\n\t}\n\t...\n}\n```",
         "operationId": "adminPutPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -9180,6 +9359,13 @@
           ],
           "type": "string"
         },
+        "tags": {
+          "description": "Tagging for the record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "ttl_config": {
           "$ref": "#/definitions/models.TTLConfigDTO",
           "description": "TTL configuration for the game record"
@@ -9201,6 +9387,13 @@
     },
     "models.AdminGameConcurrentRecordRequest": {
       "properties": {
+        "tags": {
+          "description": "Tagging for admin game record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
           "type": "string"
@@ -9233,6 +9426,13 @@
           "description": "Namespace of the game",
           "type": "string"
         },
+        "tags": {
+          "description": "Tagging for admin game record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "updated_at": {
           "format": "date-time",
           "type": "string",
@@ -9253,6 +9453,13 @@
     },
     "models.AdminPlayerConcurrentRecordRequest": {
       "properties": {
+        "tags": {
+          "description": "Tagging for admin player record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
           "type": "string"
@@ -9300,6 +9507,13 @@
         "namespace": {
           "description": "Namespace of the game",
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for admin player record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updated_at": {
           "format": "date-time",
@@ -9536,6 +9750,44 @@
         "keys"
       ]
     },
+    "models.BulkUpdatePlayerRecordByKeyRequestDetail": {
+      "properties": {
+        "user_id": {
+          "description": "User ID who owns the record, should follow UUID version 4 without hyphen format",
+          "type": "string"
+        },
+        "value": {
+          "description": "Player record data, should be in valid json format",
+          "type": "object"
+        }
+      },
+      "required": [
+        "user_id",
+        "value"
+      ]
+    },
+    "models.BulkUpdatePlayerRecordByKeyResponse": {
+      "properties": {
+        "detail": {
+          "description": "Detail if the update operation failed",
+          "type": "object"
+        },
+        "success": {
+          "description": "Success state of the update operation",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "user_id": {
+          "description": "User ID who owns the record",
+          "type": "string"
+        }
+      },
+      "required": [
+        "detail",
+        "success",
+        "user_id"
+      ]
+    },
     "models.BulkUpdatePlayerRecordRequestDetail": {
       "properties": {
         "key": {
@@ -9572,6 +9824,19 @@
         "detail",
         "key",
         "success"
+      ]
+    },
+    "models.BulkUpdatePlayerRecordsByKeyRequest": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.BulkUpdatePlayerRecordByKeyRequestDetail"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "models.BulkUpdatePlayerRecordsRequest": {
@@ -9756,6 +10021,13 @@
           ],
           "type": "string"
         },
+        "tags": {
+          "description": "Tagging for game binary record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "ttl_config": {
           "$ref": "#/definitions/models.TTLConfigDTO",
           "description": "TTL configuration for the game record"
@@ -9812,6 +10084,13 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for game binary record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "ttl_config": {
           "$ref": "#/definitions/models.TTLConfigDTO",
@@ -9885,6 +10164,13 @@
           ],
           "type": "string"
         },
+        "tags": {
+          "description": "Tagging for game record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "ttl_config": {
           "$ref": "#/definitions/models.TTLConfigDTO",
           "description": "TTL configuration for the game record"
@@ -9933,6 +10219,13 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for game record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updated_at": {
           "format": "date-time",
@@ -10166,6 +10459,13 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for player binary record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       }
     },
@@ -10201,6 +10501,13 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for player binary record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updated_at": {
           "format": "date-time",
@@ -10282,6 +10589,13 @@
             "SERVER"
           ],
           "type": "string"
+        },
+        "tags": {
+          "description": "Tagging for the player record",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updated_at": {
           "format": "date-time",
@@ -10565,11 +10879,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-23T04:06:06+00:00",
-    "gitHash": "2e0dd553d710ce9a779d09af115eb490290db205",
+    "buildDate": "2024-03-08T09:36:53+00:00",
+    "gitHash": "e96a5b3cc2d1a07f65979fabd8718e18f69005fc",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.15.1",
-    "version": "3.15.1",
+    "revisionID": "3.16.0",
+    "version": "3.16.0",
     "version-roles-seeding": "0.0.46"
   }
 }

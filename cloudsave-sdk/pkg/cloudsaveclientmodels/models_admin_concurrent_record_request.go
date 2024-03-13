@@ -25,6 +25,9 @@ type ModelsAdminConcurrentRecordRequest struct {
 	// Required: true
 	SetBy *string `json:"set_by"`
 
+	// Tagging for the record
+	Tags []string `json:"tags,omitempty"`
+
 	// TTL configuration for the game record
 	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
 

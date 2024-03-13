@@ -185,21 +185,23 @@ func (a *Client) PublicGetContentByChannelIDV2Short(params *PublicGetContentByCh
 Deprecated: 2022-08-10 - Use PublicListContentV2Short instead.
 
 PublicListContentV2 list contents
+For advance tag filtering supports & as AND operator and | as OR operator and parentheses ( ) for priority. e.g:
 
-For advance tag filtering supports & as AND operator and | as OR operator and parentheses () for priority. e.g:
 
-`tags=red`
-`tags=red&animal;`
-`tags=red|animal`
-`tags=red&animal;|wild`
-`tags=red&(animal|wild)`
+*tags=red*
+*tags=red&animal;*
+*tags=red|animal*
+*tags=red&animal;|wild*
+*tags=red&(animal|wild)*
 
 The precedence of logical operator is AND > OR, so if no parentheses, AND logical operator will be executed first.
 
-Allowed character for operand: alphanumeric, underscore `_` and dash `-`
-Allowed character for operator: `&` `|` `(` `)`
+Allowed character for operand: alphanumeric, underscore _ and dash -
 
- Please note that value of tags query param should be URL encoded
+Allowed character for operator: & | ( )
+
+
+**Please note that value of tags query param should be URL encoded**
 */
 func (a *Client) PublicListContentV2(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, *PublicListContentV2BadRequest, *PublicListContentV2Unauthorized, *PublicListContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -257,21 +259,23 @@ func (a *Client) PublicListContentV2(params *PublicListContentV2Params, authInfo
 
 /*
 PublicListContentV2Short list contents
+For advance tag filtering supports & as AND operator and | as OR operator and parentheses ( ) for priority. e.g:
 
-For advance tag filtering supports & as AND operator and | as OR operator and parentheses () for priority. e.g:
 
-`tags=red`
-`tags=red&animal;`
-`tags=red|animal`
-`tags=red&animal;|wild`
-`tags=red&(animal|wild)`
+*tags=red*
+*tags=red&animal;*
+*tags=red|animal*
+*tags=red&animal;|wild*
+*tags=red&(animal|wild)*
 
 The precedence of logical operator is AND > OR, so if no parentheses, AND logical operator will be executed first.
 
-Allowed character for operand: alphanumeric, underscore `_` and dash `-`
-Allowed character for operator: `&` `|` `(` `)`
+Allowed character for operand: alphanumeric, underscore _ and dash -
 
- Please note that value of tags query param should be URL encoded
+Allowed character for operator: & | ( )
+
+
+**Please note that value of tags query param should be URL encoded**
 */
 func (a *Client) PublicListContentV2Short(params *PublicListContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListContentV2OK, error) {
 	// TODO: Validate the params before sending
@@ -777,7 +781,7 @@ func (a *Client) PublicGetContentByIDV2Short(params *PublicGetContentByIDV2Param
 Deprecated: 2022-08-10 - Use PublicCreateContentV2Short instead.
 
 PublicCreateContentV2 create a content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
+Create a new content
 */
 func (a *Client) PublicCreateContentV2(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, *PublicCreateContentV2BadRequest, *PublicCreateContentV2Unauthorized, *PublicCreateContentV2NotFound, *PublicCreateContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -838,7 +842,7 @@ func (a *Client) PublicCreateContentV2(params *PublicCreateContentV2Params, auth
 
 /*
 PublicCreateContentV2Short create a content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
+Create a new content
 */
 func (a *Client) PublicCreateContentV2Short(params *PublicCreateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateContentV2Created, error) {
 	// TODO: Validate the params before sending
@@ -893,7 +897,7 @@ func (a *Client) PublicCreateContentV2Short(params *PublicCreateContentV2Params,
 Deprecated: 2022-08-10 - Use PublicUpdateContentByShareCodeV2Short instead.
 
 PublicUpdateContentByShareCodeV2 update content to s3 bucket by share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update content by share code
 */
 func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, *PublicUpdateContentByShareCodeV2BadRequest, *PublicUpdateContentByShareCodeV2Unauthorized, *PublicUpdateContentByShareCodeV2Forbidden, *PublicUpdateContentByShareCodeV2NotFound, *PublicUpdateContentByShareCodeV2Conflict, *PublicUpdateContentByShareCodeV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -960,7 +964,7 @@ func (a *Client) PublicUpdateContentByShareCodeV2(params *PublicUpdateContentByS
 
 /*
 PublicUpdateContentByShareCodeV2Short update content to s3 bucket by share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update content by share code
 */
 func (a *Client) PublicUpdateContentByShareCodeV2Short(params *PublicUpdateContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentByShareCodeV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1019,7 +1023,7 @@ func (a *Client) PublicUpdateContentByShareCodeV2Short(params *PublicUpdateConte
 Deprecated: 2022-08-10 - Use PublicDeleteContentByShareCodeV2Short instead.
 
 PublicDeleteContentByShareCodeV2 delete content by share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete existing content by share code
 */
 func (a *Client) PublicDeleteContentByShareCodeV2(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, *PublicDeleteContentByShareCodeV2Unauthorized, *PublicDeleteContentByShareCodeV2NotFound, *PublicDeleteContentByShareCodeV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1077,7 +1081,7 @@ func (a *Client) PublicDeleteContentByShareCodeV2(params *PublicDeleteContentByS
 
 /*
 PublicDeleteContentByShareCodeV2Short delete content by share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete existing content by share code
 */
 func (a *Client) PublicDeleteContentByShareCodeV2Short(params *PublicDeleteContentByShareCodeV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentByShareCodeV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1130,7 +1134,7 @@ func (a *Client) PublicDeleteContentByShareCodeV2Short(params *PublicDeleteConte
 Deprecated: 2022-08-10 - Use PublicDeleteContentV2Short instead.
 
 PublicDeleteContentV2 delete content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete existing content
 */
 func (a *Client) PublicDeleteContentV2(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, *PublicDeleteContentV2Unauthorized, *PublicDeleteContentV2NotFound, *PublicDeleteContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1188,7 +1192,7 @@ func (a *Client) PublicDeleteContentV2(params *PublicDeleteContentV2Params, auth
 
 /*
 PublicDeleteContentV2Short delete content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete existing content
 */
 func (a *Client) PublicDeleteContentV2Short(params *PublicDeleteContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteContentV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1241,7 +1245,7 @@ func (a *Client) PublicDeleteContentV2Short(params *PublicDeleteContentV2Params,
 Deprecated: 2022-08-10 - Use PublicUpdateContentV2Short instead.
 
 PublicUpdateContentV2 update content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update existing content
 */
 func (a *Client) PublicUpdateContentV2(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, *PublicUpdateContentV2BadRequest, *PublicUpdateContentV2Unauthorized, *PublicUpdateContentV2Forbidden, *PublicUpdateContentV2NotFound, *PublicUpdateContentV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1305,7 +1309,7 @@ func (a *Client) PublicUpdateContentV2(params *PublicUpdateContentV2Params, auth
 
 /*
 PublicUpdateContentV2Short update content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update existing content
 */
 func (a *Client) PublicUpdateContentV2Short(params *PublicUpdateContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1362,8 +1366,7 @@ func (a *Client) PublicUpdateContentV2Short(params *PublicUpdateContentV2Params,
 Deprecated: 2022-08-10 - Use PublicUpdateContentFileLocationShort instead.
 
 PublicUpdateContentFileLocation update content file location
-This endpoint should be used after calling generate upload url endpoint to commit the changes.
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+This endpoint should be used after calling generate upload url endpoint to commit the changes
 */
 func (a *Client) PublicUpdateContentFileLocation(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, *PublicUpdateContentFileLocationBadRequest, *PublicUpdateContentFileLocationUnauthorized, *PublicUpdateContentFileLocationForbidden, *PublicUpdateContentFileLocationNotFound, *PublicUpdateContentFileLocationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1427,8 +1430,7 @@ func (a *Client) PublicUpdateContentFileLocation(params *PublicUpdateContentFile
 
 /*
 PublicUpdateContentFileLocationShort update content file location
-This endpoint should be used after calling generate upload url endpoint to commit the changes.
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+This endpoint should be used after calling generate upload url endpoint to commit the changes
 */
 func (a *Client) PublicUpdateContentFileLocationShort(params *PublicUpdateContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateContentFileLocationOK, error) {
 	// TODO: Validate the params before sending
@@ -1485,8 +1487,6 @@ func (a *Client) PublicUpdateContentFileLocationShort(params *PublicUpdateConten
 Deprecated: 2022-08-10 - Use UpdateContentShareCodeV2Short instead.
 
 UpdateContentShareCodeV2 update content share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE].
-
 This endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.
 
 `shareCode` format should follows:
@@ -1558,8 +1558,6 @@ func (a *Client) UpdateContentShareCodeV2(params *UpdateContentShareCodeV2Params
 
 /*
 UpdateContentShareCodeV2Short update content share code
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE].
-
 This endpoint is used to modify the shareCode of a content. However, this operation is restricted by default and requires the above permission to be granted to the User role.
 
 `shareCode` format should follows:
@@ -1623,7 +1621,7 @@ func (a *Client) UpdateContentShareCodeV2Short(params *UpdateContentShareCodeV2P
 Deprecated: 2022-08-10 - Use PublicGenerateContentUploadURLV2Short instead.
 
 PublicGenerateContentUploadURLV2 generate content upload url
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Generate content upload URL
 */
 func (a *Client) PublicGenerateContentUploadURLV2(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, *PublicGenerateContentUploadURLV2BadRequest, *PublicGenerateContentUploadURLV2Unauthorized, *PublicGenerateContentUploadURLV2Forbidden, *PublicGenerateContentUploadURLV2NotFound, *PublicGenerateContentUploadURLV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1687,7 +1685,7 @@ func (a *Client) PublicGenerateContentUploadURLV2(params *PublicGenerateContentU
 
 /*
 PublicGenerateContentUploadURLV2Short generate content upload url
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Generate content upload URL
 */
 func (a *Client) PublicGenerateContentUploadURLV2Short(params *PublicGenerateContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateContentUploadURLV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1855,8 +1853,7 @@ func (a *Client) PublicGetContentByUserIDV2Short(params *PublicGetContentByUserI
 Deprecated: 2022-08-10 - Use UpdateScreenshotsV2Short instead.
 
 UpdateScreenshotsV2 update screenshot of content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, *UpdateScreenshotsV2BadRequest, *UpdateScreenshotsV2Unauthorized, *UpdateScreenshotsV2Forbidden, *UpdateScreenshotsV2NotFound, *UpdateScreenshotsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1920,8 +1917,7 @@ func (a *Client) UpdateScreenshotsV2(params *UpdateScreenshotsV2Params, authInfo
 
 /*
 UpdateScreenshotsV2Short update screenshot of content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UpdateScreenshotsV2Short(params *UpdateScreenshotsV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1978,12 +1974,10 @@ func (a *Client) UpdateScreenshotsV2Short(params *UpdateScreenshotsV2Params, aut
 Deprecated: 2022-08-10 - Use UploadContentScreenshotV2Short instead.
 
 UploadContentScreenshotV2 upload screenshots for content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
+This endpoint used to request upload URL from content's screenshot.
+If *contentType* is not specified, it will use *fileExtension* value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UploadContentScreenshotV2(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, *UploadContentScreenshotV2BadRequest, *UploadContentScreenshotV2Unauthorized, *UploadContentScreenshotV2Forbidden, *UploadContentScreenshotV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2044,12 +2038,10 @@ func (a *Client) UploadContentScreenshotV2(params *UploadContentScreenshotV2Para
 
 /*
 UploadContentScreenshotV2Short upload screenshots for content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
+This endpoint used to request upload URL from content's screenshot.
+If *contentType* is not specified, it will use *fileExtension* value.
 Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UploadContentScreenshotV2Short(params *UploadContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotV2Created, error) {
 	// TODO: Validate the params before sending
@@ -2104,7 +2096,7 @@ func (a *Client) UploadContentScreenshotV2Short(params *UploadContentScreenshotV
 Deprecated: 2022-08-10 - Use DeleteContentScreenshotV2Short instead.
 
 DeleteContentScreenshotV2 delete screenshots content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete screenshot from a content
 */
 func (a *Client) DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, *DeleteContentScreenshotV2BadRequest, *DeleteContentScreenshotV2Unauthorized, *DeleteContentScreenshotV2Forbidden, *DeleteContentScreenshotV2NotFound, *DeleteContentScreenshotV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2168,7 +2160,7 @@ func (a *Client) DeleteContentScreenshotV2(params *DeleteContentScreenshotV2Para
 
 /*
 DeleteContentScreenshotV2Short delete screenshots content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete screenshot from a content
 */
 func (a *Client) DeleteContentScreenshotV2Short(params *DeleteContentScreenshotV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotV2NoContent, error) {
 	// TODO: Validate the params before sending

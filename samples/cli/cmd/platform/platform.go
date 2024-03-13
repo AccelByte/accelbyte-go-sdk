@@ -451,6 +451,7 @@ func init() {
 	PlatformCmd.AddCommand(entitlement.PublicGetUserEntitlementsByIdsCmd)
 	PlatformCmd.AddCommand(entitlement.PublicGetUserEntitlementByItemIdCmd)
 	PlatformCmd.AddCommand(entitlement.PublicGetUserEntitlementBySkuCmd)
+	PlatformCmd.AddCommand(entitlement.PublicUserEntitlementHistoryCmd)
 	PlatformCmd.AddCommand(entitlement.PublicExistsAnyUserActiveEntitlementCmd)
 	PlatformCmd.AddCommand(entitlement.PublicGetUserAppEntitlementOwnershipByAppIdCmd)
 	PlatformCmd.AddCommand(entitlement.PublicGetUserEntitlementOwnershipByItemIdCmd)

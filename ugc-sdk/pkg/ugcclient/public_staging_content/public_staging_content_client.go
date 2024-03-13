@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListUserStagingContentsShort instead.
 
 ListUserStagingContents list user staging contents
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List user staging contents
 */
 func (a *Client) ListUserStagingContents(params *ListUserStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserStagingContentsOK, *ListUserStagingContentsBadRequest, *ListUserStagingContentsUnauthorized, *ListUserStagingContentsForbidden, *ListUserStagingContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -107,7 +107,7 @@ func (a *Client) ListUserStagingContents(params *ListUserStagingContentsParams, 
 
 /*
 ListUserStagingContentsShort list user staging contents
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List user staging contents
 */
 func (a *Client) ListUserStagingContentsShort(params *ListUserStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserStagingContentsOK, error) {
 	// TODO: Validate the params before sending
@@ -162,7 +162,7 @@ func (a *Client) ListUserStagingContentsShort(params *ListUserStagingContentsPar
 Deprecated: 2022-08-10 - Use GetUserStagingContentByIDShort instead.
 
 GetUserStagingContentByID get user staging content by id
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get user staging content by ID
 */
 func (a *Client) GetUserStagingContentByID(params *GetUserStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStagingContentByIDOK, *GetUserStagingContentByIDUnauthorized, *GetUserStagingContentByIDForbidden, *GetUserStagingContentByIDNotFound, *GetUserStagingContentByIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -223,7 +223,7 @@ func (a *Client) GetUserStagingContentByID(params *GetUserStagingContentByIDPara
 
 /*
 GetUserStagingContentByIDShort get user staging content by id
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get user staging content by ID
 */
 func (a *Client) GetUserStagingContentByIDShort(params *GetUserStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStagingContentByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -278,7 +278,7 @@ func (a *Client) GetUserStagingContentByIDShort(params *GetUserStagingContentByI
 Deprecated: 2022-08-10 - Use UpdateStagingContentShort instead.
 
 UpdateStagingContent update staging content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update staging content
 */
 func (a *Client) UpdateStagingContent(params *UpdateStagingContentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStagingContentOK, *UpdateStagingContentBadRequest, *UpdateStagingContentUnauthorized, *UpdateStagingContentForbidden, *UpdateStagingContentNotFound, *UpdateStagingContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -342,7 +342,7 @@ func (a *Client) UpdateStagingContent(params *UpdateStagingContentParams, authIn
 
 /*
 UpdateStagingContentShort update staging content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
+Update staging content
 */
 func (a *Client) UpdateStagingContentShort(params *UpdateStagingContentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStagingContentOK, error) {
 	// TODO: Validate the params before sending
@@ -399,7 +399,7 @@ func (a *Client) UpdateStagingContentShort(params *UpdateStagingContentParams, a
 Deprecated: 2022-08-10 - Use DeleteUserStagingContentByIDShort instead.
 
 DeleteUserStagingContentByID delete user staging content by id
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete user staging content by ID
 */
 func (a *Client) DeleteUserStagingContentByID(params *DeleteUserStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStagingContentByIDNoContent, *DeleteUserStagingContentByIDUnauthorized, *DeleteUserStagingContentByIDForbidden, *DeleteUserStagingContentByIDNotFound, *DeleteUserStagingContentByIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -460,7 +460,7 @@ func (a *Client) DeleteUserStagingContentByID(params *DeleteUserStagingContentBy
 
 /*
 DeleteUserStagingContentByIDShort delete user staging content by id
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+Delete user staging content by ID
 */
 func (a *Client) DeleteUserStagingContentByIDShort(params *DeleteUserStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStagingContentByIDNoContent, error) {
 	// TODO: Validate the params before sending

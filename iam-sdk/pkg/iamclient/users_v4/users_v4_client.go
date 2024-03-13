@@ -31,6 +31,12 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminListInvitationHistoriesV4(params *AdminListInvitationHistoriesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListInvitationHistoriesV4OK, *AdminListInvitationHistoriesV4BadRequest, *AdminListInvitationHistoriesV4Unauthorized, *AdminListInvitationHistoriesV4Forbidden, *AdminListInvitationHistoriesV4InternalServerError, *AdminListInvitationHistoriesV4NotImplemented, error)
+	AdminListInvitationHistoriesV4Short(params *AdminListInvitationHistoriesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListInvitationHistoriesV4OK, error)
+	AdminGetNamespaceInvitationHistoryV4(params *AdminGetNamespaceInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceInvitationHistoryV4OK, *AdminGetNamespaceInvitationHistoryV4Unauthorized, *AdminGetNamespaceInvitationHistoryV4Forbidden, *AdminGetNamespaceInvitationHistoryV4NotFound, *AdminGetNamespaceInvitationHistoryV4InternalServerError, *AdminGetNamespaceInvitationHistoryV4NotImplemented, error)
+	AdminGetNamespaceInvitationHistoryV4Short(params *AdminGetNamespaceInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceInvitationHistoryV4OK, error)
+	AdminGetNamespaceUserInvitationHistoryV4(params *AdminGetNamespaceUserInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceUserInvitationHistoryV4OK, *AdminGetNamespaceUserInvitationHistoryV4BadRequest, *AdminGetNamespaceUserInvitationHistoryV4Unauthorized, *AdminGetNamespaceUserInvitationHistoryV4Forbidden, *AdminGetNamespaceUserInvitationHistoryV4InternalServerError, *AdminGetNamespaceUserInvitationHistoryV4NotImplemented, error)
+	AdminGetNamespaceUserInvitationHistoryV4Short(params *AdminGetNamespaceUserInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceUserInvitationHistoryV4OK, error)
 	AdminCreateTestUsersV4(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, *AdminCreateTestUsersV4BadRequest, *AdminCreateTestUsersV4InternalServerError, *AdminCreateTestUsersV4NotImplemented, error)
 	AdminCreateTestUsersV4Short(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, error)
 	AdminCreateUserV4(params *AdminCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserV4Created, *AdminCreateUserV4BadRequest, *AdminCreateUserV4Unauthorized, *AdminCreateUserV4Forbidden, *AdminCreateUserV4NotFound, *AdminCreateUserV4Conflict, *AdminCreateUserV4InternalServerError, error)
@@ -145,6 +151,389 @@ type ClientService interface {
 	PublicInviteUserV4Short(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminListInvitationHistoriesV4Short instead.
+
+AdminListInvitationHistoriesV4 admin list invitation histories v4
+This endpoint is to list all Invitation Histories for new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+Accepted Query:
+- namespace
+- offset
+- limit
+*/
+func (a *Client) AdminListInvitationHistoriesV4(params *AdminListInvitationHistoriesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListInvitationHistoriesV4OK, *AdminListInvitationHistoriesV4BadRequest, *AdminListInvitationHistoriesV4Unauthorized, *AdminListInvitationHistoriesV4Forbidden, *AdminListInvitationHistoriesV4InternalServerError, *AdminListInvitationHistoriesV4NotImplemented, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListInvitationHistoriesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListInvitationHistoriesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/invitationHistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListInvitationHistoriesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListInvitationHistoriesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminListInvitationHistoriesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminListInvitationHistoriesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminListInvitationHistoriesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminListInvitationHistoriesV4InternalServerError:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminListInvitationHistoriesV4NotImplemented:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminListInvitationHistoriesV4Short admin list invitation histories v4
+This endpoint is to list all Invitation Histories for new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+Accepted Query:
+- namespace
+- offset
+- limit
+*/
+func (a *Client) AdminListInvitationHistoriesV4Short(params *AdminListInvitationHistoriesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListInvitationHistoriesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListInvitationHistoriesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListInvitationHistoriesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/invitationHistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListInvitationHistoriesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListInvitationHistoriesV4OK:
+		return v, nil
+	case *AdminListInvitationHistoriesV4BadRequest:
+		return nil, v
+	case *AdminListInvitationHistoriesV4Unauthorized:
+		return nil, v
+	case *AdminListInvitationHistoriesV4Forbidden:
+		return nil, v
+	case *AdminListInvitationHistoriesV4InternalServerError:
+		return nil, v
+	case *AdminListInvitationHistoriesV4NotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetNamespaceInvitationHistoryV4Short instead.
+
+AdminGetNamespaceInvitationHistoryV4 admin get invitation history for specific namespace v4
+This endpoint is to Invitation Historiy for specific new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+*/
+func (a *Client) AdminGetNamespaceInvitationHistoryV4(params *AdminGetNamespaceInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceInvitationHistoryV4OK, *AdminGetNamespaceInvitationHistoryV4Unauthorized, *AdminGetNamespaceInvitationHistoryV4Forbidden, *AdminGetNamespaceInvitationHistoryV4NotFound, *AdminGetNamespaceInvitationHistoryV4InternalServerError, *AdminGetNamespaceInvitationHistoryV4NotImplemented, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetNamespaceInvitationHistoryV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetNamespaceInvitationHistoryV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/invitationHistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetNamespaceInvitationHistoryV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetNamespaceInvitationHistoryV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetNamespaceInvitationHistoryV4Unauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetNamespaceInvitationHistoryV4Forbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetNamespaceInvitationHistoryV4NotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetNamespaceInvitationHistoryV4InternalServerError:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetNamespaceInvitationHistoryV4NotImplemented:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetNamespaceInvitationHistoryV4Short admin get invitation history for specific namespace v4
+This endpoint is to Invitation Historiy for specific new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+*/
+func (a *Client) AdminGetNamespaceInvitationHistoryV4Short(params *AdminGetNamespaceInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceInvitationHistoryV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetNamespaceInvitationHistoryV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetNamespaceInvitationHistoryV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/invitationHistories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetNamespaceInvitationHistoryV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetNamespaceInvitationHistoryV4OK:
+		return v, nil
+	case *AdminGetNamespaceInvitationHistoryV4Unauthorized:
+		return nil, v
+	case *AdminGetNamespaceInvitationHistoryV4Forbidden:
+		return nil, v
+	case *AdminGetNamespaceInvitationHistoryV4NotFound:
+		return nil, v
+	case *AdminGetNamespaceInvitationHistoryV4InternalServerError:
+		return nil, v
+	case *AdminGetNamespaceInvitationHistoryV4NotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetNamespaceUserInvitationHistoryV4Short instead.
+
+AdminGetNamespaceUserInvitationHistoryV4 admin get users invitation history for specific namespace v4
+This endpoint is to Get list of users Invitation History for specific new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+Accepted Query:
+- offset
+- limit
+*/
+func (a *Client) AdminGetNamespaceUserInvitationHistoryV4(params *AdminGetNamespaceUserInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceUserInvitationHistoryV4OK, *AdminGetNamespaceUserInvitationHistoryV4BadRequest, *AdminGetNamespaceUserInvitationHistoryV4Unauthorized, *AdminGetNamespaceUserInvitationHistoryV4Forbidden, *AdminGetNamespaceUserInvitationHistoryV4InternalServerError, *AdminGetNamespaceUserInvitationHistoryV4NotImplemented, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetNamespaceUserInvitationHistoryV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetNamespaceUserInvitationHistoryV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/invitationHistories/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetNamespaceUserInvitationHistoryV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetNamespaceUserInvitationHistoryV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetNamespaceUserInvitationHistoryV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetNamespaceUserInvitationHistoryV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetNamespaceUserInvitationHistoryV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetNamespaceUserInvitationHistoryV4InternalServerError:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetNamespaceUserInvitationHistoryV4NotImplemented:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetNamespaceUserInvitationHistoryV4Short admin get users invitation history for specific namespace v4
+This endpoint is to Get list of users Invitation History for specific new studio namespace in multi tenant mode.
+It will return error if the service multi tenant mode is set to false.
+Accepted Query:
+- offset
+- limit
+*/
+func (a *Client) AdminGetNamespaceUserInvitationHistoryV4Short(params *AdminGetNamespaceUserInvitationHistoryV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceUserInvitationHistoryV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetNamespaceUserInvitationHistoryV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetNamespaceUserInvitationHistoryV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/invitationHistories/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetNamespaceUserInvitationHistoryV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetNamespaceUserInvitationHistoryV4OK:
+		return v, nil
+	case *AdminGetNamespaceUserInvitationHistoryV4BadRequest:
+		return nil, v
+	case *AdminGetNamespaceUserInvitationHistoryV4Unauthorized:
+		return nil, v
+	case *AdminGetNamespaceUserInvitationHistoryV4Forbidden:
+		return nil, v
+	case *AdminGetNamespaceUserInvitationHistoryV4InternalServerError:
+		return nil, v
+	case *AdminGetNamespaceUserInvitationHistoryV4NotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

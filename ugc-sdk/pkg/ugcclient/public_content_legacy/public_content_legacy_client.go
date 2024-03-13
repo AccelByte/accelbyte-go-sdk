@@ -2087,8 +2087,7 @@ func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, a
 Deprecated: 2022-08-10 - Use UpdateScreenshotsShort instead.
 
 UpdateScreenshots update screenshot of content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, *UpdateScreenshotsBadRequest, *UpdateScreenshotsUnauthorized, *UpdateScreenshotsForbidden, *UpdateScreenshotsNotFound, *UpdateScreenshotsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2152,8 +2151,7 @@ func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo run
 
 /*
 UpdateScreenshotsShort update screenshot of content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE].
-Maximum description length: 1024.
+Maximum description length: 1024
 */
 func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, error) {
 	// TODO: Validate the params before sending
@@ -2210,12 +2208,11 @@ func (a *Client) UpdateScreenshotsShort(params *UpdateScreenshotsParams, authInf
 Deprecated: 2022-08-10 - Use UploadContentScreenshotShort instead.
 
 UploadContentScreenshot upload screenshots for content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
-Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+All request body are required except for *contentType* field.
+*contentType* values is used to enforce the *Content-Type* header needed by the client to upload the content using the presigned URL.
+If not specified, it will use *fileExtension* value.
+Supported file extensions: *pjp*, *jpg*, *jpeg*, *jfif*, *bmp*, *png*.
+Maximum description length: 1024
 */
 func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, *UploadContentScreenshotBadRequest, *UploadContentScreenshotUnauthorized, *UploadContentScreenshotForbidden, *UploadContentScreenshotNotFound, *UploadContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2279,12 +2276,11 @@ func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, 
 
 /*
 UploadContentScreenshotShort upload screenshots for content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE].
-All request body are required except for contentType field.
-contentType values is used to enforce the Content-Type header needed by the client to upload the content using the presigned URL.
-If not specified, it will use fileExtension value.
-Supported file extensions: pjp, jpg, jpeg, jfif, bmp, png.
-Maximum description length: 1024.
+All request body are required except for *contentType* field.
+*contentType* values is used to enforce the *Content-Type* header needed by the client to upload the content using the presigned URL.
+If not specified, it will use *fileExtension* value.
+Supported file extensions: *pjp*, *jpg*, *jpeg*, *jfif*, *bmp*, *png*.
+Maximum description length: 1024
 */
 func (a *Client) UploadContentScreenshotShort(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, error) {
 	// TODO: Validate the params before sending
@@ -2340,8 +2336,8 @@ func (a *Client) UploadContentScreenshotShort(params *UploadContentScreenshotPar
 /*
 Deprecated: 2022-08-10 - Use DeleteContentScreenshotShort instead.
 
-DeleteContentScreenshot delete screenshots content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+DeleteContentScreenshot delete content's screenshot
+Delete existing screenshot from a content
 */
 func (a *Client) DeleteContentScreenshot(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, *DeleteContentScreenshotBadRequest, *DeleteContentScreenshotUnauthorized, *DeleteContentScreenshotForbidden, *DeleteContentScreenshotNotFound, *DeleteContentScreenshotInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2404,8 +2400,8 @@ func (a *Client) DeleteContentScreenshot(params *DeleteContentScreenshotParams, 
 }
 
 /*
-DeleteContentScreenshotShort delete screenshots content
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE].
+DeleteContentScreenshotShort delete content's screenshot
+Delete existing screenshot from a content
 */
 func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, error) {
 	// TODO: Validate the params before sending

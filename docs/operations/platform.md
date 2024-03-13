@@ -200,6 +200,7 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byIds` | GET | PublicGetUserEntitlementsByIdsShort | [PublicGetUserEntitlementsByIdsShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementsByIdsShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementsByIdsShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlementsByIds.go) |
 | [DEPRECATED] `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId` | GET | PublicGetUserEntitlementByItemIdShort | [PublicGetUserEntitlementByItemIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementByItemIdShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementByItemIdShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlementByItemId.go) |
 | [DEPRECATED] `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku` | GET | PublicGetUserEntitlementBySkuShort | [PublicGetUserEntitlementBySkuShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementBySkuShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementBySkuShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlementBySku.go) |
+| `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/history` | GET | PublicUserEntitlementHistoryShort | [PublicUserEntitlementHistoryShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicUserEntitlementHistoryShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicUserEntitlementHistoryShort](../../samples/cli/cmd/platform/entitlement/publicUserEntitlementHistory.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any` | GET | PublicExistsAnyUserActiveEntitlementShort | [PublicExistsAnyUserActiveEntitlementShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicExistsAnyUserActiveEntitlementShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicExistsAnyUserActiveEntitlementShort](../../samples/cli/cmd/platform/entitlement/publicExistsAnyUserActiveEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId` | GET | PublicGetUserAppEntitlementOwnershipByAppIdShort | [PublicGetUserAppEntitlementOwnershipByAppIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserAppEntitlementOwnershipByAppIdShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserAppEntitlementOwnershipByAppIdShort](../../samples/cli/cmd/platform/entitlement/publicGetUserAppEntitlementOwnershipByAppId.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId` | GET | PublicGetUserEntitlementOwnershipByItemIdShort | [PublicGetUserEntitlementOwnershipByItemIdShort](../../platform-sdk/pkg/platformclient/entitlement/entitlement_client.go) | [PublicGetUserEntitlementOwnershipByItemIdShort](../../services-api/pkg/service/platform/entitlement.go) | [PublicGetUserEntitlementOwnershipByItemIdShort](../../samples/cli/cmd/platform/entitlement/publicGetUserEntitlementOwnershipByItemId.go) |
@@ -691,6 +692,7 @@
 | `EntitlementIfc` | [EntitlementIfc ](../../platform-sdk/pkg/platformclientmodels/entitlement_ifc.go) |
 | `EntitlementInfo` | [EntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/entitlement_info.go) |
 | `EntitlementLootBoxReward` | [EntitlementLootBoxReward ](../../platform-sdk/pkg/platformclientmodels/entitlement_loot_box_reward.go) |
+| `EntitlementOriginSyncResult` | [EntitlementOriginSyncResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_origin_sync_result.go) |
 | `EntitlementOwnership` | [EntitlementOwnership ](../../platform-sdk/pkg/platformclientmodels/entitlement_ownership.go) |
 | `EntitlementPagingSlicedResult` | [EntitlementPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_paging_sliced_result.go) |
 | `EntitlementPlatformConfigInfo` | [EntitlementPlatformConfigInfo ](../../platform-sdk/pkg/platformclientmodels/entitlement_platform_config_info.go) |
@@ -880,6 +882,7 @@
 | `Predicate` | [Predicate ](../../platform-sdk/pkg/platformclientmodels/predicate.go) |
 | `PredicateValidateResult` | [PredicateValidateResult ](../../platform-sdk/pkg/platformclientmodels/predicate_validate_result.go) |
 | `PublicCustomConfigInfo` | [PublicCustomConfigInfo ](../../platform-sdk/pkg/platformclientmodels/public_custom_config_info.go) |
+| `PublicEntitlementHistoryInfo` | [PublicEntitlementHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/public_entitlement_history_info.go) |
 | `PurchaseCondition` | [PurchaseCondition ](../../platform-sdk/pkg/platformclientmodels/purchase_condition.go) |
 | `PurchaseConditionUpdate` | [PurchaseConditionUpdate ](../../platform-sdk/pkg/platformclientmodels/purchase_condition_update.go) |
 | `PurchasedItemCount` | [PurchasedItemCount ](../../platform-sdk/pkg/platformclientmodels/purchased_item_count.go) |
@@ -978,6 +981,7 @@
 | `TwitchSyncResult` | [TwitchSyncResult ](../../platform-sdk/pkg/platformclientmodels/twitch_sync_result.go) |
 | `UserDLC` | [UserDLC ](../../platform-sdk/pkg/platformclientmodels/user_dlc.go) |
 | `UserDLCRecord` | [UserDLCRecord ](../../platform-sdk/pkg/platformclientmodels/user_dlc_record.go) |
+| `UserEntitlementHistoryPagingSlicedResult` | [UserEntitlementHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/user_entitlement_history_paging_sliced_result.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../platform-sdk/pkg/platformclientmodels/validation_error_entity.go) |
 | `ViewCreate` | [ViewCreate ](../../platform-sdk/pkg/platformclientmodels/view_create.go) |
 | `ViewInfo` | [ViewInfo ](../../platform-sdk/pkg/platformclientmodels/view_info.go) |
@@ -1001,4 +1005,3 @@
 | `XsollaConfig` | [XsollaConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_config.go) |
 | `XsollaPaywallConfig` | [XsollaPaywallConfig ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config.go) |
 | `XsollaPaywallConfigRequest` | [XsollaPaywallConfigRequest ](../../platform-sdk/pkg/platformclientmodels/xsolla_paywall_config_request.go) |
-| `entitlement origin sync result` | [EntitlementOriginSyncResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_origin_sync_result.go) |

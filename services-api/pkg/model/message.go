@@ -129,6 +129,7 @@ const (
 	TypeListOutgoingFriendsResponse    = "listOutgoingFriendsResponse"
 	TypeMatchmakingNotif               = "matchmakingNotif"
 	TypeMessageNotif                   = "messageNotif"
+	TypeMessageSessionNotif            = "messageSessionNotif"
 	TypeOfflineNotificationRequest     = "offlineNotificationRequest"
 	TypeOfflineNotificationResponse    = "offlineNotificationResponse"
 	TypeOnlineFriends                  = "onlineFriends"
@@ -940,7 +941,7 @@ type MessageNotif struct {
 	From string
 	*BaseResponse
 	Payload string
-	SentAt  int
+	SentAt  string
 	To      string
 	Topic   string
 }
@@ -948,6 +949,21 @@ type MessageNotif struct {
 // Type implements Message interface
 func (MessageNotif) Type() string {
 	return TypeMessageNotif
+}
+
+// MessageSessionNotif
+type MessageSessionNotif struct {
+	From string
+	*BaseResponse
+	Payload string
+	SentAt  string
+	To      string
+	Topic   string
+}
+
+// Type implements Message interface
+func (MessageSessionNotif) Type() string {
+	return TypeMessageSessionNotif
 }
 
 // OfflineNotificationRequest
@@ -1034,7 +1050,7 @@ type PartyDataUpdateNotif struct {
 	Members          []string
 	Namespace        string
 	PartyID          string
-	UpdatedAt        int
+	UpdatedAt        string
 }
 
 // Type implements Message interface

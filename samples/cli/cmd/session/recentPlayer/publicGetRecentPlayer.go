@@ -27,11 +27,9 @@ var PublicGetRecentPlayerCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
-		userId, _ := cmd.Flags().GetString("userId")
 		input := &recent_player.PublicGetRecentPlayerParams{
 			Namespace: namespace,
 			Limit:     &limit,
-			UserID:    &userId,
 		}
 		ok, errOK := recentPlayerService.PublicGetRecentPlayerShort(input)
 		if errOK != nil {
@@ -50,5 +48,4 @@ func init() {
 	PublicGetRecentPlayerCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetRecentPlayerCmd.MarkFlagRequired("namespace")
 	PublicGetRecentPlayerCmd.Flags().Int64("limit", 20, "Limit")
-	PublicGetRecentPlayerCmd.Flags().String("userId", "", "User id")
 }

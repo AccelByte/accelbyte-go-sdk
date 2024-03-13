@@ -18,6 +18,10 @@ import (
 // swagger:model Model user reward.
 type ModelUserReward struct {
 
+	// challengecode
+	// Required: true
+	ChallengeCode *string `json:"challengeCode"`
+
 	// createdat
 	// Required: true
 	CreatedAt *string `json:"createdAt"`
@@ -64,6 +68,9 @@ type ModelUserReward struct {
 func (m *ModelUserReward) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateChallengeCode(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -98,6 +105,15 @@ func (m *ModelUserReward) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelUserReward) validateChallengeCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("challengeCode", "body", m.ChallengeCode); err != nil {
+		return err
+	}
+
 	return nil
 }
 

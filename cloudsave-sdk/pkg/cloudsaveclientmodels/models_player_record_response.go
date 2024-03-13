@@ -41,6 +41,9 @@ type ModelsPlayerRecordResponse struct {
 	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 
+	// Tagging for the player record
+	Tags []string `json:"tags,omitempty"`
+
 	// updated_at
 	// Required: true
 	// Format: date-time

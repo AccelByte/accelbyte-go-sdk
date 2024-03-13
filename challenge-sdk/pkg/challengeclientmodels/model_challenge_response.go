@@ -42,9 +42,12 @@ type ModelChallengeResponse struct {
 	// Required: true
 	Description *string `json:"description"`
 
+	// endafter
+	// Format: int32
+	EndAfter int32 `json:"endAfter,omitempty"`
+
 	// enddate
-	// Required: true
-	EndDate *string `json:"endDate"`
+	EndDate string `json:"endDate,omitempty"`
 
 	// goalsvisibility
 	// Enum: ['PERIODONLY', 'SHOWALL']
@@ -91,9 +94,6 @@ func (m *ModelChallengeResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateEndDate(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGoalsVisibility(formats); err != nil {
@@ -197,15 +197,6 @@ func (m *ModelChallengeResponse) validateCreatedAt(formats strfmt.Registry) erro
 func (m *ModelChallengeResponse) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelChallengeResponse) validateEndDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("endDate", "body", m.EndDate); err != nil {
 		return err
 	}
 

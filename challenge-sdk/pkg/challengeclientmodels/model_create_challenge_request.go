@@ -36,10 +36,13 @@ type ModelCreateChallengeRequest struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// endafter
+	// Format: int32
+	EndAfter int32 `json:"endAfter,omitempty"`
+
 	// enddate
-	// Required: true
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// goalsvisibility
 	// Enum: ['PERIODONLY', 'SHOWALL']
@@ -69,9 +72,6 @@ func (m *ModelCreateChallengeRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateCode(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateEndDate(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGoalsVisibility(formats); err != nil {
@@ -142,19 +142,6 @@ func (m *ModelCreateChallengeRequest) validateAssignmentRule(formats strfmt.Regi
 func (m *ModelCreateChallengeRequest) validateCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("code", "body", m.Code); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelCreateChallengeRequest) validateEndDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("endDate", "body", strfmt.DateTime(m.EndDate)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("endDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
 		return err
 	}
 

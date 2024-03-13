@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListStagingContentsShort instead.
 
 AdminListStagingContents list staging contents
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List content that need admin's approval
 */
 func (a *Client) AdminListStagingContents(params *AdminListStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListStagingContentsOK, *AdminListStagingContentsBadRequest, *AdminListStagingContentsUnauthorized, *AdminListStagingContentsForbidden, *AdminListStagingContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -107,7 +107,7 @@ func (a *Client) AdminListStagingContents(params *AdminListStagingContentsParams
 
 /*
 AdminListStagingContentsShort list staging contents
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List content that need admin's approval
 */
 func (a *Client) AdminListStagingContentsShort(params *AdminListStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListStagingContentsOK, error) {
 	// TODO: Validate the params before sending
@@ -162,7 +162,7 @@ func (a *Client) AdminListStagingContentsShort(params *AdminListStagingContentsP
 Deprecated: 2022-08-10 - Use AdminGetStagingContentByIDShort instead.
 
 AdminGetStagingContentByID get staging content by id
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get staging content by ID
 */
 func (a *Client) AdminGetStagingContentByID(params *AdminGetStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetStagingContentByIDOK, *AdminGetStagingContentByIDUnauthorized, *AdminGetStagingContentByIDForbidden, *AdminGetStagingContentByIDNotFound, *AdminGetStagingContentByIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -223,7 +223,7 @@ func (a *Client) AdminGetStagingContentByID(params *AdminGetStagingContentByIDPa
 
 /*
 AdminGetStagingContentByIDShort get staging content by id
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get staging content by ID
 */
 func (a *Client) AdminGetStagingContentByIDShort(params *AdminGetStagingContentByIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetStagingContentByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -278,7 +278,7 @@ func (a *Client) AdminGetStagingContentByIDShort(params *AdminGetStagingContentB
 Deprecated: 2022-08-10 - Use AdminApproveStagingContentShort instead.
 
 AdminApproveStagingContent approve or reject content
-Required permission ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE].
+Approved content will shown to public player. Rejected content stays in staging area and couldn't be seen by other player
 */
 func (a *Client) AdminApproveStagingContent(params *AdminApproveStagingContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminApproveStagingContentOK, *AdminApproveStagingContentBadRequest, *AdminApproveStagingContentUnauthorized, *AdminApproveStagingContentForbidden, *AdminApproveStagingContentNotFound, *AdminApproveStagingContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -342,7 +342,7 @@ func (a *Client) AdminApproveStagingContent(params *AdminApproveStagingContentPa
 
 /*
 AdminApproveStagingContentShort approve or reject content
-Required permission ADMIN:NAMESPACE:{namespace}:CONTENT:APPROVAL [CREATE].
+Approved content will shown to public player. Rejected content stays in staging area and couldn't be seen by other player
 */
 func (a *Client) AdminApproveStagingContentShort(params *AdminApproveStagingContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminApproveStagingContentOK, error) {
 	// TODO: Validate the params before sending
@@ -399,7 +399,7 @@ func (a *Client) AdminApproveStagingContentShort(params *AdminApproveStagingCont
 Deprecated: 2022-08-10 - Use AdminListUserStagingContentsShort instead.
 
 AdminListUserStagingContents list user staging contents
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List user content's that need admin approval
 */
 func (a *Client) AdminListUserStagingContents(params *AdminListUserStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserStagingContentsOK, *AdminListUserStagingContentsBadRequest, *AdminListUserStagingContentsUnauthorized, *AdminListUserStagingContentsForbidden, *AdminListUserStagingContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -460,7 +460,7 @@ func (a *Client) AdminListUserStagingContents(params *AdminListUserStagingConten
 
 /*
 AdminListUserStagingContentsShort list user staging contents
-Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+List user content's that need admin approval
 */
 func (a *Client) AdminListUserStagingContentsShort(params *AdminListUserStagingContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserStagingContentsOK, error) {
 	// TODO: Validate the params before sending

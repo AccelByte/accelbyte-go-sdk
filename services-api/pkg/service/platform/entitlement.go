@@ -769,6 +769,20 @@ func (aaa *EntitlementService) PublicGetUserEntitlementBySku(input *entitlement.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicUserEntitlementHistoryShort instead.
+func (aaa *EntitlementService) PublicUserEntitlementHistory(input *entitlement.PublicUserEntitlementHistoryParams) ([]*platformclientmodels.UserEntitlementHistoryPagingSlicedResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.PublicUserEntitlementHistory(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicExistsAnyUserActiveEntitlementShort instead.
 func (aaa *EntitlementService) PublicExistsAnyUserActiveEntitlement(input *entitlement.PublicExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2312,6 +2326,36 @@ func (aaa *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitle
 	}
 
 	ok, err := aaa.Client.Entitlement.PublicGetUserEntitlementBySkuShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) PublicUserEntitlementHistoryShort(input *entitlement.PublicUserEntitlementHistoryParams) ([]*platformclientmodels.UserEntitlementHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Entitlement.PublicUserEntitlementHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

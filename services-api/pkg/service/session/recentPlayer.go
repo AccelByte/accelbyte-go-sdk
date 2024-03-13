@@ -38,6 +38,32 @@ func (aaa *RecentPlayerService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetRecentPlayerShort instead.
+func (aaa *RecentPlayerService) AdminGetRecentPlayer(input *recent_player.AdminGetRecentPlayerParams) (*sessionclientmodels.ModelsRecentPlayerQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.RecentPlayer.AdminGetRecentPlayer(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetRecentPlayerShort instead.
 func (aaa *RecentPlayerService) PublicGetRecentPlayer(input *recent_player.PublicGetRecentPlayerParams) (*sessionclientmodels.ModelsRecentPlayerQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -57,6 +83,36 @@ func (aaa *RecentPlayerService) PublicGetRecentPlayer(input *recent_player.Publi
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *RecentPlayerService) AdminGetRecentPlayerShort(input *recent_player.AdminGetRecentPlayerParams) (*sessionclientmodels.ModelsRecentPlayerQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdRecentPlayer != nil {
+		input.XFlightId = tempFlightIdRecentPlayer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.RecentPlayer.AdminGetRecentPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -1,3 +1,13 @@
+<a name="v0.66.0"></a>
+## [v0.66.0]
+### chore
+- **spec:** add challenge service
+- **:** generate challenge service package
+- **samples:** add challenge root command cli
+### ci
+- **:** switch to extend-builder-ci
+
+
 <a name="v0.65.0"></a>
 ## [v0.65.0]
 ### chore

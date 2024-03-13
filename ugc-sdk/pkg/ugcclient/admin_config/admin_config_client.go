@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetConfigsShort instead.
 
 AdminGetConfigs get configs
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get config paginated
 */
 func (a *Client) AdminGetConfigs(params *AdminGetConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigsOK, *AdminGetConfigsBadRequest, *AdminGetConfigsUnauthorized, *AdminGetConfigsForbidden, *AdminGetConfigsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -103,7 +103,7 @@ func (a *Client) AdminGetConfigs(params *AdminGetConfigsParams, authInfo runtime
 
 /*
 AdminGetConfigsShort get configs
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get config paginated
 */
 func (a *Client) AdminGetConfigsShort(params *AdminGetConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigsOK, error) {
 	// TODO: Validate the params before sending
@@ -158,10 +158,10 @@ func (a *Client) AdminGetConfigsShort(params *AdminGetConfigsParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminUpdateConfigShort instead.
 
 AdminUpdateConfig update config
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE].
-It will create a new config if the key doesn't exist.
+This endpoint will create a new config if the *key* doesn't exist.
+
 Allowed key value:
-- contentReview : enabled , disabled
+- *contentReview*: *enabled*,*disabled*
 */
 func (a *Client) AdminUpdateConfig(params *AdminUpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigCreated, *AdminUpdateConfigBadRequest, *AdminUpdateConfigUnauthorized, *AdminUpdateConfigForbidden, *AdminUpdateConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -222,10 +222,10 @@ func (a *Client) AdminUpdateConfig(params *AdminUpdateConfigParams, authInfo run
 
 /*
 AdminUpdateConfigShort update config
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE].
-It will create a new config if the key doesn't exist.
+This endpoint will create a new config if the *key* doesn't exist.
+
 Allowed key value:
-- contentReview : enabled , disabled
+- *contentReview*: *enabled*,*disabled*
 */
 func (a *Client) AdminUpdateConfigShort(params *AdminUpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigCreated, error) {
 	// TODO: Validate the params before sending

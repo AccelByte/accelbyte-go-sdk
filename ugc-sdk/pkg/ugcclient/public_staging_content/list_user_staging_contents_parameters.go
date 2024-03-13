@@ -22,8 +22,11 @@ import (
 // NewListUserStagingContentsParams creates a new ListUserStagingContentsParams object
 // with the default values initialized.
 func NewListUserStagingContentsParams() *ListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &ListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewListUserStagingContentsParams() *ListUserStagingContentsParams {
 // NewListUserStagingContentsParamsWithTimeout creates a new ListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListUserStagingContentsParamsWithTimeout(timeout time.Duration) *ListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &ListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewListUserStagingContentsParamsWithTimeout(timeout time.Duration) *ListUse
 // NewListUserStagingContentsParamsWithContext creates a new ListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewListUserStagingContentsParamsWithContext(ctx context.Context) *ListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &ListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewListUserStagingContentsParamsWithContext(ctx context.Context) *ListUserS
 // NewListUserStagingContentsParamsWithHTTPClient creates a new ListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListUserStagingContentsParamsWithHTTPClient(client *http.Client) *ListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &ListUserStagingContentsParams{
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -86,17 +98,19 @@ type ListUserStagingContentsParams struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc
-					available value:
-					<ul>
-						<li>createdTime, createdTime:desc, createdTime:asc</li>
-						<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
-						</ul>
+	    sort query result
+	available value:
+	- createdTime
+	- createdTime:desc
+	- createdTime:asc
+	- updatedTime
+	- updatedTime:desc
+	- updatedTime:asc
 
 	*/
 	SortBy *string
 	/*Status
-	  filter by content status [<i>PENDING</i>, <i>REJECTED</i>]
+	  filter by content status [*PENDING*, *REJECTED*]
 
 	*/
 	Status *string

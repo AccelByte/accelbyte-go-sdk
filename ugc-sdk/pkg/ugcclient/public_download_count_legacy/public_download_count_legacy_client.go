@@ -40,7 +40,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AddDownloadCountShort instead.
 
 AddDownloadCount add unique download count to a content
-Requires valid user token
+This endpoint can be used to count how many the ugc downloaded
 */
 func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, *AddDownloadCountUnauthorized, *AddDownloadCountNotFound, *AddDownloadCountInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -98,7 +98,7 @@ func (a *Client) AddDownloadCount(params *AddDownloadCountParams, authInfo runti
 
 /*
 AddDownloadCountShort add unique download count to a content
-Requires valid user token
+This endpoint can be used to count how many the ugc downloaded
 */
 func (a *Client) AddDownloadCountShort(params *AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*AddDownloadCountOK, error) {
 	// TODO: Validate the params before sending

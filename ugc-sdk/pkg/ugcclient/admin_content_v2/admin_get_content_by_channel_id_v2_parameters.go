@@ -119,13 +119,13 @@ type AdminGetContentByChannelIDV2Params struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc.
-
-	available value:
-	<ul>
-	<li>createdTime, createdTime:desc, createdTime:asc</li>
-	<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
-	</ul>
+	    available values:
+					- *createdTime*
+					- *createdTime:desc*
+					- *createdTime:asc*
+					- *updatedTime*
+					- *updatedTime:desc*
+					- *updatedTime:asc*
 
 	*/
 	SortBy *string

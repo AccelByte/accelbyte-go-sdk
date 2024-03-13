@@ -21,8 +21,7 @@ import (
 type ModelsCreateScreenshotRequestItem struct {
 
 	// contenttype
-	// Required: true
-	ContentType *string `json:"contentType"`
+	ContentType string `json:"contentType,omitempty"`
 
 	// description
 	// Required: true
@@ -38,9 +37,6 @@ type ModelsCreateScreenshotRequestItem struct {
 func (m *ModelsCreateScreenshotRequestItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateContentType(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
@@ -51,15 +47,6 @@ func (m *ModelsCreateScreenshotRequestItem) Validate(formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsCreateScreenshotRequestItem) validateContentType(formats strfmt.Registry) error {
-
-	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
-		return err
-	}
-
 	return nil
 }
 

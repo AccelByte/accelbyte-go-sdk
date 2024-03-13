@@ -122,6 +122,8 @@ type ClientService interface {
 	PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, error)
 	PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, *PublicGetUserEntitlementBySkuNotFound, error)
 	PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, error)
+	PublicUserEntitlementHistory(params *PublicUserEntitlementHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUserEntitlementHistoryOK, error)
+	PublicUserEntitlementHistoryShort(params *PublicUserEntitlementHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUserEntitlementHistoryOK, error)
 	PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyUserActiveEntitlementOK, error)
 	PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyUserActiveEntitlementOK, error)
 	PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementOwnershipByAppIDOK, error)
@@ -571,8 +573,20 @@ Deprecated: 2022-08-10 - Use GrantEntitlementsShort instead.
 
 GrantEntitlements grant entitlements to different users
 Grant entitlements to multiple users, skipped granting will be treated as fail.
-Other detail info:
 
+Notes:
+
+Support Item Types:
+
+  *  APP
+  *  INGAMEITEM
+  *  CODE
+  *  SUBSCRIPTION
+  *  MEDIA
+  *  OPTIONBOX
+  *  LOOTBOX
+
+Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT", action=4 (UPDATE)
   *  Returns : bulk grant entitlements result
 */
@@ -627,8 +641,20 @@ func (a *Client) GrantEntitlements(params *GrantEntitlementsParams, authInfo run
 /*
 GrantEntitlementsShort grant entitlements to different users
 Grant entitlements to multiple users, skipped granting will be treated as fail.
-Other detail info:
 
+Notes:
+
+Support Item Types:
+
+  *  APP
+  *  INGAMEITEM
+  *  CODE
+  *  SUBSCRIPTION
+  *  MEDIA
+  *  OPTIONBOX
+  *  LOOTBOX
+
+Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ENTITLEMENT", action=4 (UPDATE)
   *  Returns : bulk grant entitlements result
 */
@@ -1219,8 +1245,22 @@ Deprecated: 2022-08-10 - Use GrantUserEntitlementShort instead.
 
 GrantUserEntitlement grant user entitlement
 Grant user entitlement.
-Other detail info:
 
+Notes:
+
+will skip un-supported item if input un-supported item types, please use /admin/namespaces/{namespace}/users/{userId}/fulfillment endpoint if want to fulfill other item type, like coin item
+
+Support Item Types:
+
+  *  APP
+  *  INGAMEITEM
+  *  CODE
+  *  SUBSCRIPTION
+  *  MEDIA
+  *  OPTIONBOX
+  *  LOOTBOX
+
+Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=1 (CREATE)
   *  Returns : granted entitlement
 */
@@ -1278,8 +1318,22 @@ func (a *Client) GrantUserEntitlement(params *GrantUserEntitlementParams, authIn
 /*
 GrantUserEntitlementShort grant user entitlement
 Grant user entitlement.
-Other detail info:
 
+Notes:
+
+will skip un-supported item if input un-supported item types, please use /admin/namespaces/{namespace}/users/{userId}/fulfillment endpoint if want to fulfill other item type, like coin item
+
+Support Item Types:
+
+  *  APP
+  *  INGAMEITEM
+  *  CODE
+  *  SUBSCRIPTION
+  *  MEDIA
+  *  OPTIONBOX
+  *  LOOTBOX
+
+Other detail info:
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=1 (CREATE)
   *  Returns : granted entitlement
 */
@@ -5251,6 +5305,112 @@ func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitle
 		return v, nil
 	case *PublicGetUserEntitlementBySkuNotFound:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUserEntitlementHistoryShort instead.
+
+PublicUserEntitlementHistory get user entitlements histories.
+Get user entitlement history
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)
+  *  Returns : user entitlement history list
+*/
+func (a *Client) PublicUserEntitlementHistory(params *PublicUserEntitlementHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUserEntitlementHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUserEntitlementHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUserEntitlementHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUserEntitlementHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUserEntitlementHistoryOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUserEntitlementHistoryShort get user entitlements histories.
+Get user entitlement history
+
+Other detail info:
+
+  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)
+  *  Returns : user entitlement history list
+*/
+func (a *Client) PublicUserEntitlementHistoryShort(params *PublicUserEntitlementHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUserEntitlementHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUserEntitlementHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUserEntitlementHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUserEntitlementHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUserEntitlementHistoryOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetTypeShort instead.
 
 AdminGetType get types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get available types paginated
 */
 func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeBadRequest, *AdminGetTypeUnauthorized, *AdminGetTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,7 +104,7 @@ func (a *Client) AdminGetType(params *AdminGetTypeParams, authInfo runtime.Clien
 
 /*
 AdminGetTypeShort get types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]
+Get available types paginated
 */
 func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, error) {
 	// TODO: Validate the params before sending
@@ -157,8 +157,7 @@ func (a *Client) AdminGetTypeShort(params *AdminGetTypeParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use AdminCreateTypeShort instead.
 
 AdminCreateType create types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
-creates a new type and subtype
+Creates a new type and subtype
 */
 func (a *Client) AdminCreateType(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, *AdminCreateTypeBadRequest, *AdminCreateTypeUnauthorized, *AdminCreateTypeConflict, *AdminCreateTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -219,8 +218,7 @@ func (a *Client) AdminCreateType(params *AdminCreateTypeParams, authInfo runtime
 
 /*
 AdminCreateTypeShort create types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]
-creates a new type and subtype
+Creates a new type and subtype
 */
 func (a *Client) AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, error) {
 	// TODO: Validate the params before sending
@@ -275,8 +273,7 @@ func (a *Client) AdminCreateTypeShort(params *AdminCreateTypeParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminUpdateTypeShort instead.
 
 AdminUpdateType update types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
-updates a type and subtype
+Updates a type and subtype
 */
 func (a *Client) AdminUpdateType(params *AdminUpdateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTypeOK, *AdminUpdateTypeBadRequest, *AdminUpdateTypeUnauthorized, *AdminUpdateTypeNotFound, *AdminUpdateTypeConflict, *AdminUpdateTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -340,8 +337,7 @@ func (a *Client) AdminUpdateType(params *AdminUpdateTypeParams, authInfo runtime
 
 /*
 AdminUpdateTypeShort update types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]
-updates a type and subtype
+Updates a type and subtype
 */
 func (a *Client) AdminUpdateTypeShort(params *AdminUpdateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTypeOK, error) {
 	// TODO: Validate the params before sending
@@ -397,8 +393,8 @@ func (a *Client) AdminUpdateTypeShort(params *AdminUpdateTypeParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteTypeShort instead.
 
-AdminDeleteType delete types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+AdminDeleteType delete type
+Delete existing type
 */
 func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeNoContent, *AdminDeleteTypeUnauthorized, *AdminDeleteTypeNotFound, *AdminDeleteTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -455,8 +451,8 @@ func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime
 }
 
 /*
-AdminDeleteTypeShort delete types
-Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
+AdminDeleteTypeShort delete type
+Delete existing type
 */
 func (a *Client) AdminDeleteTypeShort(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeNoContent, error) {
 	// TODO: Validate the params before sending

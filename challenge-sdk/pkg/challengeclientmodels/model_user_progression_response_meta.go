@@ -27,8 +27,7 @@ type ModelUserProgressionResponseMeta struct {
 	Description *string `json:"description"`
 
 	// enddate
-	// Required: true
-	EndDate *string `json:"endDate"`
+	EndDate string `json:"endDate,omitempty"`
 
 	// name
 	// Required: true
@@ -51,9 +50,6 @@ func (m *ModelUserProgressionResponseMeta) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateEndDate(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -84,15 +80,6 @@ func (m *ModelUserProgressionResponseMeta) validateCode(formats strfmt.Registry)
 func (m *ModelUserProgressionResponseMeta) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUserProgressionResponseMeta) validateEndDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("endDate", "body", m.EndDate); err != nil {
 		return err
 	}
 

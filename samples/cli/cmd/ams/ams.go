@@ -53,6 +53,7 @@ func init() {
 	AmsCmd.AddCommand(amsQoS.QoSRegionsUpdateCmd)
 	AmsCmd.AddCommand(amsInfo.InfoRegionsCmd)
 	AmsCmd.AddCommand(servers.FleetServerInfoCmd)
+	AmsCmd.AddCommand(servers.FleetServerConnectionInfoCmd)
 	AmsCmd.AddCommand(servers.ServerHistoryCmd)
 	AmsCmd.AddCommand(amsInfo.InfoSupportedInstancesCmd)
 	AmsCmd.AddCommand(account.AccountGetCmd)

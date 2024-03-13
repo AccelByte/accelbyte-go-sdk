@@ -226,6 +226,35 @@ func (aaa *ChallengeConfigurationService) AdminRandomizeChallenge(input *challen
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminDeleteTiedChallengeShort instead.
+func (aaa *ChallengeConfigurationService) AdminDeleteTiedChallenge(input *challenge_configuration.AdminDeleteTiedChallengeParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminDeleteTiedChallenge(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *ChallengeConfigurationService) AdminGetChallengesShort(input *challenge_configuration.AdminGetChallengesParams) (*challengeclientmodels.ModelListChallengeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -434,4 +463,34 @@ func (aaa *ChallengeConfigurationService) AdminRandomizeChallengeShort(input *ch
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ChallengeConfigurationService) AdminDeleteTiedChallengeShort(input *challenge_configuration.AdminDeleteTiedChallengeParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdChallengeConfiguration != nil {
+		input.XFlightId = tempFlightIdChallengeConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.ChallengeConfiguration.AdminDeleteTiedChallengeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

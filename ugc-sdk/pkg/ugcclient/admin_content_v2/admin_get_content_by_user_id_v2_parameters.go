@@ -114,12 +114,10 @@ type AdminGetContentByUserIDV2Params struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc.
-
-	available value:
-	<ul>
-	<li>createdTime, createdTime:desc, createdTime:asc</li>
-	</ul>
+	    available values:
+					- *createdTime*
+					- *createdTime:desc*
+					- *createdTime:asc*
 
 	*/
 	SortBy *string

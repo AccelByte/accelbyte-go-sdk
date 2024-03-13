@@ -132,7 +132,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;li\u0026gt;rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "adminCreateChallenge",
         "parameters": [
           {
@@ -345,7 +345,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "adminUpdateChallenge",
         "parameters": [
           {
@@ -951,6 +951,77 @@
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "tags": [
+          "Challenge Configuration"
+        ]
+      }
+    },
+    "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied": {
+      "delete": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "adminDeleteTiedChallenge",
+        "parameters": [
+          {
+            "description": "the code of the challenge data to be deleted",
+            "in": "path",
+            "name": "challengeCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]"
             ],
             "authorization": []
           }
@@ -1606,6 +1677,10 @@
         "description": {
           "type": "string"
         },
+        "endAfter": {
+          "format": "int32",
+          "type": "integer"
+        },
         "endDate": {
           "type": "string"
         },
@@ -1649,7 +1724,6 @@
         "code",
         "createdAt",
         "description",
-        "endDate",
         "goalsVisibility",
         "name",
         "rotation",
@@ -1693,10 +1767,14 @@
         "description": {
           "type": "string"
         },
+        "endAfter": {
+          "format": "int32",
+          "type": "integer"
+        },
         "endDate": {
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "goalsVisibility": {
           "enum": [
@@ -1726,7 +1804,6 @@
       "required": [
         "assignmentRule",
         "code",
-        "endDate",
         "goalsVisibility",
         "name",
         "rotation",
@@ -1820,6 +1897,9 @@
     },
     "model.GoalProgressionResponse": {
       "properties": {
+        "challengeCode": {
+          "type": "string"
+        },
         "goalCode": {
           "type": "string"
         },
@@ -1842,6 +1922,7 @@
         }
       },
       "required": [
+        "challengeCode",
         "goalCode",
         "goalProgressionId",
         "requirementProgressions",
@@ -1884,6 +1965,9 @@
           },
           "type": "array"
         },
+        "schedule": {
+          "$ref": "#/definitions/model.GoalSchedule"
+        },
         "tags": {
           "items": {
             "type": "string"
@@ -1912,7 +1996,7 @@
         "endTime": {
           "format": "date-time",
           "type": "string",
-          "x-nullable": false
+          "x-nullable": true
         },
         "order": {
           "format": "int32",
@@ -1925,7 +2009,6 @@
         }
       },
       "required": [
-        "endTime",
         "order",
         "startTime"
       ]
@@ -2228,7 +2311,6 @@
       "required": [
         "code",
         "description",
-        "endDate",
         "name",
         "startDate",
         "userId"
@@ -2236,6 +2318,9 @@
     },
     "model.UserReward": {
       "properties": {
+        "challengeCode": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "string"
         },
@@ -2269,6 +2354,7 @@
         }
       },
       "required": [
+        "challengeCode",
         "createdAt",
         "goalCode",
         "id",
@@ -2320,6 +2406,10 @@
         },
         "description": {
           "type": "string"
+        },
+        "endAfter": {
+          "format": "int32",
+          "type": "integer"
         },
         "endDate": {
           "format": "date-time",
@@ -2389,11 +2479,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-27T08:03:57+00:00",
-    "gitHash": "80fd60ec7c20fe46230912941d4b2e700bd72b14",
+    "buildDate": "2024-03-08T08:02:40+00:00",
+    "gitHash": "3dd11ca9f79d932e6566643818b1ac6730352c11",
     "name": "justice-challenge-service",
     "realm": "staging",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "version-roles-seeding": "1.2.16"
   }
 }

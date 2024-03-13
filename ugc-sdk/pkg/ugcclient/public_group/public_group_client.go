@@ -52,7 +52,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetGroupsShort instead.
 
 GetGroups get all user groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
+Get user groups paginated
 */
 func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, *GetGroupsBadRequest, *GetGroupsUnauthorized, *GetGroupsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -110,7 +110,7 @@ func (a *Client) GetGroups(params *GetGroupsParams, authInfo runtime.ClientAuthI
 
 /*
 GetGroupsShort get all user groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
+Get user groups paginated
 */
 func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -163,7 +163,7 @@ func (a *Client) GetGroupsShort(params *GetGroupsParams, authInfo runtime.Client
 Deprecated: 2022-08-10 - Use CreateGroupShort instead.
 
 CreateGroup create groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
+Create group
 */
 func (a *Client) CreateGroup(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, *CreateGroupBadRequest, *CreateGroupUnauthorized, *CreateGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -221,7 +221,7 @@ func (a *Client) CreateGroup(params *CreateGroupParams, authInfo runtime.ClientA
 
 /*
 CreateGroupShort create groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]
+Create group
 */
 func (a *Client) CreateGroupShort(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, error) {
 	// TODO: Validate the params before sending
@@ -274,7 +274,7 @@ func (a *Client) CreateGroupShort(params *CreateGroupParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use GetGroupShort instead.
 
 GetGroup get user's groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
+Get user groups by group ID
 */
 func (a *Client) GetGroup(params *GetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupOK, *GetGroupUnauthorized, *GetGroupNotFound, *GetGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -332,7 +332,7 @@ func (a *Client) GetGroup(params *GetGroupParams, authInfo runtime.ClientAuthInf
 
 /*
 GetGroupShort get user's groups
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ].
+Get user groups by group ID
 */
 func (a *Client) GetGroupShort(params *GetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -385,8 +385,7 @@ func (a *Client) GetGroupShort(params *GetGroupParams, authInfo runtime.ClientAu
 Deprecated: 2022-08-10 - Use UpdateGroupShort instead.
 
 UpdateGroup update group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
-replace group name and contents with new ones
+Replace group name and contents with new ones
 */
 func (a *Client) UpdateGroup(params *UpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupOK, *UpdateGroupBadRequest, *UpdateGroupUnauthorized, *UpdateGroupNotFound, *UpdateGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -447,8 +446,7 @@ func (a *Client) UpdateGroup(params *UpdateGroupParams, authInfo runtime.ClientA
 
 /*
 UpdateGroupShort update group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]
-replace group name and contents with new ones
+Replace group name and contents with new ones
 */
 func (a *Client) UpdateGroupShort(params *UpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -503,7 +501,7 @@ func (a *Client) UpdateGroupShort(params *UpdateGroupParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use DeleteGroupShort instead.
 
 DeleteGroup delete group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete user group by group ID
 */
 func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -561,7 +559,7 @@ func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientA
 
 /*
 DeleteGroupShort delete group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
+Delete user group by group ID
 */
 func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, error) {
 	// TODO: Validate the params before sending
@@ -614,7 +612,7 @@ func (a *Client) DeleteGroupShort(params *DeleteGroupParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use GetGroupContentShort instead.
 
 GetGroupContent (legacy) get contents belong to a group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get content that belong to a group
 */
 func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, *GetGroupContentBadRequest, *GetGroupContentUnauthorized, *GetGroupContentNotFound, *GetGroupContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -675,7 +673,7 @@ func (a *Client) GetGroupContent(params *GetGroupContentParams, authInfo runtime
 
 /*
 GetGroupContentShort (legacy) get contents belong to a group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get content that belong to a group
 */
 func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupContentOK, error) {
 	// TODO: Validate the params before sending
@@ -730,7 +728,7 @@ func (a *Client) GetGroupContentShort(params *GetGroupContentParams, authInfo ru
 Deprecated: 2022-08-10 - Use PublicGetGroupContentsV2Short instead.
 
 PublicGetGroupContentsV2 get contents belong to a group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get content belong to a group
 */
 func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, *PublicGetGroupContentsV2BadRequest, *PublicGetGroupContentsV2Unauthorized, *PublicGetGroupContentsV2NotFound, *PublicGetGroupContentsV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -791,7 +789,7 @@ func (a *Client) PublicGetGroupContentsV2(params *PublicGetGroupContentsV2Params
 
 /*
 PublicGetGroupContentsV2Short get contents belong to a group
-Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ].
+Get content belong to a group
 */
 func (a *Client) PublicGetGroupContentsV2Short(params *PublicGetGroupContentsV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetGroupContentsV2OK, error) {
 	// TODO: Validate the params before sending

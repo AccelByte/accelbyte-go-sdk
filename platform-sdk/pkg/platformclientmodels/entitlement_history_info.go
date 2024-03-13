@@ -25,6 +25,10 @@ type EntitlementHistoryInfo struct {
 	// Required: true
 	Action *string `json:"action"`
 
+	// The clazz of entitlement
+	// Enum: ['APP', 'CODE', 'ENTITLEMENT', 'LOOTBOX', 'MEDIA', 'OPTIONBOX', 'SUBSCRIPTION']
+	Clazz string `json:"clazz,omitempty"`
+
 	// History create time
 	// Required: true
 	// Format: date-time
@@ -33,6 +37,9 @@ type EntitlementHistoryInfo struct {
 	// The id of entitlement
 	// Required: true
 	EntitlementID *string `json:"entitlementId"`
+
+	// The item id of entitlement
+	ItemID string `json:"itemId,omitempty"`
 
 	// The namespace of entitlement
 	// Required: true
@@ -48,6 +55,9 @@ type EntitlementHistoryInfo struct {
 
 	// reason
 	Reason string `json:"reason,omitempty"`
+
+	// The sku of entitlement
+	Sku string `json:"sku,omitempty"`
 
 	// History update time
 	// Required: true
@@ -154,6 +164,50 @@ func (m *EntitlementHistoryInfo) validateAction(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var entitlementHistoryInfoTypeClazzPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["APP", "CODE", "ENTITLEMENT", "LOOTBOX", "MEDIA", "OPTIONBOX", "SUBSCRIPTION"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		entitlementHistoryInfoTypeClazzPropEnum = append(entitlementHistoryInfoTypeClazzPropEnum, v)
+	}
+}
+
+const (
+
+	// EntitlementHistoryInfoClazzAPP captures enum value "APP"
+	EntitlementHistoryInfoClazzAPP string = "APP"
+
+	// EntitlementHistoryInfoClazzCODE captures enum value "CODE"
+	EntitlementHistoryInfoClazzCODE string = "CODE"
+
+	// EntitlementHistoryInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
+	EntitlementHistoryInfoClazzENTITLEMENT string = "ENTITLEMENT"
+
+	// EntitlementHistoryInfoClazzLOOTBOX captures enum value "LOOTBOX"
+	EntitlementHistoryInfoClazzLOOTBOX string = "LOOTBOX"
+
+	// EntitlementHistoryInfoClazzMEDIA captures enum value "MEDIA"
+	EntitlementHistoryInfoClazzMEDIA string = "MEDIA"
+
+	// EntitlementHistoryInfoClazzOPTIONBOX captures enum value "OPTIONBOX"
+	EntitlementHistoryInfoClazzOPTIONBOX string = "OPTIONBOX"
+
+	// EntitlementHistoryInfoClazzSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	EntitlementHistoryInfoClazzSUBSCRIPTION string = "SUBSCRIPTION"
+)
+
+// prop value enum
+func (m *EntitlementHistoryInfo) validateClazzEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, entitlementHistoryInfoTypeClazzPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

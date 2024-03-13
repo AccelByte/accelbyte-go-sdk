@@ -43,12 +43,6 @@ AdminAnonymizeUserLeaderboardAdminV1 anonymize user's leaderboard
 
 
 This API will delete specified user leaderboard
-
-
-
-
-Required permission
-`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]`
 */
 func (a *Client) AdminAnonymizeUserLeaderboardAdminV1(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, *AdminAnonymizeUserLeaderboardAdminV1Unauthorized, *AdminAnonymizeUserLeaderboardAdminV1Forbidden, *AdminAnonymizeUserLeaderboardAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -109,12 +103,6 @@ AdminAnonymizeUserLeaderboardAdminV1Short anonymize user's leaderboard
 
 
 This API will delete specified user leaderboard
-
-
-
-
-Required permission
-`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]`
 */
 func (a *Client) AdminAnonymizeUserLeaderboardAdminV1Short(params *AdminAnonymizeUserLeaderboardAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAnonymizeUserLeaderboardAdminV1NoContent, error) {
 	// TODO: Validate the params before sending

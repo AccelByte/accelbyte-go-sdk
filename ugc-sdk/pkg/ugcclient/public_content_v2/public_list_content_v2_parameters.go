@@ -25,10 +25,12 @@ func NewPublicListContentV2Params() *PublicListContentV2Params {
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentV2Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -40,10 +42,12 @@ func NewPublicListContentV2ParamsWithTimeout(timeout time.Duration) *PublicListC
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentV2Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -55,10 +59,12 @@ func NewPublicListContentV2ParamsWithContext(ctx context.Context) *PublicListCon
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentV2Params{
 		Limit:  &limitDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -70,10 +76,12 @@ func NewPublicListContentV2ParamsWithHTTPClient(client *http.Client) *PublicList
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentV2Params{
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -111,16 +119,20 @@ type PublicListContentV2Params struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc.
-
+	    sort order of query result
 	available value:
-	<ul>
-	<li>createdTime, createdTime:desc, createdTime:asc</li>
-	<li>download, download:desc, download:asc</li>
-	<li>like, like:desc, like:asc</li>
-	<li>name, name:desc, name:asc</li>
-	<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
-	</ul>
+	- *createdTime*
+	- *createdTime:desc*
+	- *createdTime:asc*
+	- *download*
+	- *download:desc*
+	- *download:asc*
+	- *name*
+	- *name:desc*
+	- *name:asc*
+	- *updatedTime*
+	- *updatedTime:desc*
+	- *updatedTime:asc*
 
 	*/
 	SortBy *string

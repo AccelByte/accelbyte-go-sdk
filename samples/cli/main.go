@@ -1032,11 +1032,27 @@ func serveStandalone() {
 		from := m["from"]
 		id := m["id"]
 		payload := m["payload"]
-		sentAtString := m["sentAt"]
-		sentAt, _ := strconv.ParseInt(sentAtString, 10, 64)
+		sentAt := m["sentAt"]
 		to := m["to"]
 		topic := m["topic"]
 		err := lobbyService.MessageNotif(from, id, payload, sentAt, to, topic)
+		if err != nil {
+			logrus.Error(err)
+
+			return
+		}
+	case model.TypeMessageSessionNotif:
+		m := make(map[string]string)
+		if len(getArgs) >= 1 {
+			m = getParam(getArgs)
+		}
+		from := m["from"]
+		id := m["id"]
+		payload := m["payload"]
+		sentAt := m["sentAt"]
+		to := m["to"]
+		topic := m["topic"]
+		err := lobbyService.MessageSessionNotif(from, id, payload, sentAt, to, topic)
 		if err != nil {
 			logrus.Error(err)
 
@@ -1093,8 +1109,7 @@ func serveStandalone() {
 		from := m["from"]
 		id := m["id"]
 		payload := m["payload"]
-		receivedAtString := m["receivedAt"]
-		receivedAt, _ := strconv.ParseInt(receivedAtString, 10, 64)
+		receivedAt := m["receivedAt"]
 		to := m["to"]
 		err := lobbyService.PartyChatNotif(from, id, payload, receivedAt, to)
 		if err != nil {
@@ -1110,8 +1125,7 @@ func serveStandalone() {
 		from := m["from"]
 		id := m["id"]
 		payload := m["payload"]
-		receivedAtString := m["receivedAt"]
-		receivedAt, _ := strconv.ParseInt(receivedAtString, 10, 64)
+		receivedAt := m["receivedAt"]
 		to := m["to"]
 		err := lobbyService.PartyChatRequest(&from, &id, &payload, &receivedAt, &to)
 		if err != nil {
@@ -1179,8 +1193,7 @@ func serveStandalone() {
 		members = append(members, membersString)
 		namespace := m["namespace"]
 		partyId := m["partyId"]
-		updatedAtString := m["updatedAt"]
-		updatedAt, _ := strconv.ParseInt(updatedAtString, 10, 64)
+		updatedAt := m["updatedAt"]
 		err := lobbyService.PartyDataUpdateNotif(customAttributes, invitees, leader, members, namespace, partyId, updatedAt)
 		if err != nil {
 			logrus.Error(err)
@@ -1512,8 +1525,7 @@ func serveStandalone() {
 		from := m["from"]
 		id := m["id"]
 		payload := m["payload"]
-		receivedAtString := m["receivedAt"]
-		receivedAt, _ := strconv.ParseInt(receivedAtString, 10, 64)
+		receivedAt := m["receivedAt"]
 		to := m["to"]
 		err := lobbyService.PersonalChatNotif(from, id, payload, receivedAt, to)
 		if err != nil {
@@ -1529,8 +1541,7 @@ func serveStandalone() {
 		from := m["from"]
 		id := m["id"]
 		payload := m["payload"]
-		receivedAtString := m["receivedAt"]
-		receivedAt, _ := strconv.ParseInt(receivedAtString, 10, 64)
+		receivedAt := m["receivedAt"]
 		to := m["to"]
 		err := lobbyService.PersonalChatRequest(&from, &id, &payload, &receivedAt, &to)
 		if err != nil {

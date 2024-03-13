@@ -93,11 +93,14 @@ If still defining the field when creating or updating the record, it will be ign
 Time format style: RFC3339
 2. value
 Json
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
 **Request Body Example:**
 ```
 {
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 ## Optimistic Concurrency Control
@@ -214,11 +217,14 @@ If still defining the field when creating or updating the record, it will be ign
 Time format style: RFC3339
 2. value
 Json
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
 **Request Body Example:**
 ```
 {
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 ## Optimistic Concurrency Control
@@ -332,12 +338,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 ## Optimistic Concurrency Control
@@ -458,12 +467,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 ## Optimistic Concurrency Control
@@ -573,11 +585,14 @@ If still defining the field when creating or updating the record, it will be ign
 Time format style: RFC3339
 2. value
 Json
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
 **Request Body Example:**
 ```
 {
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 
@@ -698,11 +713,14 @@ If still defining the field when creating or updating the record, it will be ign
 Time format style: RFC3339
 2. value
 Json
+3. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the admin record.
 **Request Body Example:**
 ```
 {
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 
@@ -819,12 +837,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 
@@ -949,12 +970,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 
@@ -1071,12 +1095,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 
@@ -1201,12 +1228,15 @@ CLIENT: record can be modified by client and server.
 Time format style: RFC3339
 3. value
 Json
+4. tags (default: *empty array*, type: array of string)
+Indicate the tagging for the game record.
 **Request Body Example:**
 ```
 {
 "set_by": "SERVER",
 "value": {},
-"updatedAt": "2022-03-17T10:42:15.444Z"
+"updatedAt": "2022-03-17T10:42:15.444Z",
+"tags": ["tag1", "tag2"]
 }
 ```
 

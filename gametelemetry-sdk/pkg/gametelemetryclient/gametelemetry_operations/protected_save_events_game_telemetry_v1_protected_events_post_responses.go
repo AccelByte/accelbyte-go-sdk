@@ -39,6 +39,18 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostReader) ReadRespon
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 507:
+		result := NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -83,10 +95,10 @@ func NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity
 
 /*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity handles this case with default header values.
 
-  Validation Error
+  Unable to process request
 */
 type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity struct {
-	Payload *gametelemetryclientmodels.HTTPValidationError
+	Payload *gametelemetryclientmodels.BaseErrorResponse
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) Error() string {
@@ -108,7 +120,7 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntit
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) GetPayload() *gametelemetryclientmodels.HTTPValidationError {
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) GetPayload() *gametelemetryclientmodels.BaseErrorResponse {
 	return o.Payload
 }
 
@@ -119,7 +131,113 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntit
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(gametelemetryclientmodels.HTTPValidationError)
+	o.Payload = new(gametelemetryclientmodels.BaseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError creates a ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError with default headers values
+func NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError() *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError {
+	return &ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError{}
+}
+
+/*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError handles this case with default header values.
+
+  Internal Server Error
+*/
+type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError struct {
+	Payload *gametelemetryclientmodels.BaseErrorResponse
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError  %+v", 500, o.ToJSONString())
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError) GetPayload() *gametelemetryclientmodels.BaseErrorResponse {
+	return o.Payload
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gametelemetryclientmodels.BaseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage creates a ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage with default headers values
+func NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage() *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage {
+	return &ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage{}
+}
+
+/*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage handles this case with default header values.
+
+  Insufficient space
+*/
+type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage struct {
+	Payload *gametelemetryclientmodels.BaseErrorResponse
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage) Error() string {
+	return fmt.Sprintf("[POST /game-telemetry/v1/protected/events][%d] protectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage  %+v", 507, o.ToJSONString())
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage) GetPayload() *gametelemetryclientmodels.BaseErrorResponse {
+	return o.Payload
+}
+
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gametelemetryclientmodels.BaseErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

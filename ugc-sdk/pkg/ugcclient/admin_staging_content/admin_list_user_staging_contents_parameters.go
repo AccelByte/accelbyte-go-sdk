@@ -22,8 +22,11 @@ import (
 // NewAdminListUserStagingContentsParams creates a new AdminListUserStagingContentsParams object
 // with the default values initialized.
 func NewAdminListUserStagingContentsParams() *AdminListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &AdminListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminListUserStagingContentsParams() *AdminListUserStagingContentsParams
 // NewAdminListUserStagingContentsParamsWithTimeout creates a new AdminListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminListUserStagingContentsParamsWithTimeout(timeout time.Duration) *AdminListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &AdminListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminListUserStagingContentsParamsWithTimeout(timeout time.Duration) *Ad
 // NewAdminListUserStagingContentsParamsWithContext creates a new AdminListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminListUserStagingContentsParamsWithContext(ctx context.Context) *AdminListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &AdminListUserStagingContentsParams{
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminListUserStagingContentsParamsWithContext(ctx context.Context) *Admi
 // NewAdminListUserStagingContentsParamsWithHTTPClient creates a new AdminListUserStagingContentsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminListUserStagingContentsParamsWithHTTPClient(client *http.Client) *AdminListUserStagingContentsParams {
-	var ()
+	var (
+		sortByDefault = string("createdTimed:desc")
+	)
 	return &AdminListUserStagingContentsParams{
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -86,17 +98,19 @@ type AdminListUserStagingContentsParams struct {
 	*/
 	Offset *int64
 	/*SortBy
-	    default value: createdTime:desc
-						available value:
-						<ul>
-							<li>createdTime, createdTime:desc, createdTime:asc</li>
-							<li>updatedTime, updatedTime:desc, updatedTime:asc</li>
-							</ul>
+	    sort query result
+	available value:
+	- createdTime
+	- createdTime:desc
+	- createdTime:asc
+	- updatedTime
+	- updatedTime:desc
+	- updatedTime:asc
 
 	*/
 	SortBy *string
 	/*Status
-	  filter by content status [<i>PENDING</i>, <i>REJECTED</i>]
+	  filter by content status [*PENDING*, *REJECTED*]
 
 	*/
 	Status *string

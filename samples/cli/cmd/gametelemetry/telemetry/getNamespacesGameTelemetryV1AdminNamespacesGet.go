@@ -26,14 +26,14 @@ var GetNamespacesGameTelemetryV1AdminNamespacesGetCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &telemetry.GetNamespacesGameTelemetryV1AdminNamespacesGetParams{}
-		errOK := telemetryService.GetNamespacesGameTelemetryV1AdminNamespacesGetShort(input)
+		ok, errOK := telemetryService.GetNamespacesGameTelemetryV1AdminNamespacesGetShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

@@ -31,6 +31,10 @@ type ModelsUpdateChallengeRequest struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// endafter
+	// Format: int32
+	EndAfter int32 `json:"endAfter,omitempty"`
+
 	// enddate
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"endDate,omitempty"`

@@ -56,6 +56,9 @@ type ModelGoalResponse struct {
 	// Required: true
 	Rewards []*ModelReward `json:"rewards"`
 
+	// schedule
+	Schedule *ModelGoalSchedule `json:"schedule,omitempty"`
+
 	// tags
 	Tags []string `json:"tags,omitempty"`
 

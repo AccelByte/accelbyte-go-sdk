@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetChannelsShort instead.
 
 GetChannels get channels
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get user channel paginated
 */
 func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsBadRequest, *GetChannelsUnauthorized, *GetChannelsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,7 +104,7 @@ func (a *Client) GetChannels(params *GetChannelsParams, authInfo runtime.ClientA
 
 /*
 GetChannelsShort get channels
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]
+Get user channel paginated
 */
 func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, error) {
 	// TODO: Validate the params before sending
@@ -157,7 +157,7 @@ func (a *Client) GetChannelsShort(params *GetChannelsParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use PublicCreateChannelShort instead.
 
 PublicCreateChannel create channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]
+Create user channel
 */
 func (a *Client) PublicCreateChannel(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, *PublicCreateChannelBadRequest, *PublicCreateChannelUnauthorized, *PublicCreateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -215,7 +215,7 @@ func (a *Client) PublicCreateChannel(params *PublicCreateChannelParams, authInfo
 
 /*
 PublicCreateChannelShort create channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]
+Create user channel
 */
 func (a *Client) PublicCreateChannelShort(params *PublicCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateChannelCreated, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +268,7 @@ func (a *Client) PublicCreateChannelShort(params *PublicCreateChannelParams, aut
 Deprecated: 2022-08-10 - Use UpdateChannelShort instead.
 
 UpdateChannel update channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update user channel
 */
 func (a *Client) UpdateChannel(params *UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChannelOK, *UpdateChannelBadRequest, *UpdateChannelUnauthorized, *UpdateChannelNotFound, *UpdateChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -329,7 +329,7 @@ func (a *Client) UpdateChannel(params *UpdateChannelParams, authInfo runtime.Cli
 
 /*
 UpdateChannelShort update channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]
+Update user channel
 */
 func (a *Client) UpdateChannelShort(params *UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateChannelOK, error) {
 	// TODO: Validate the params before sending
@@ -384,7 +384,7 @@ func (a *Client) UpdateChannelShort(params *UpdateChannelParams, authInfo runtim
 Deprecated: 2022-08-10 - Use DeleteChannelShort instead.
 
 DeleteChannel delete channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete user channel
 */
 func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -442,7 +442,7 @@ func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.Cli
 
 /*
 DeleteChannelShort delete channel
-Required permission NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]
+Delete user channel
 */
 func (a *Client) DeleteChannelShort(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, error) {
 	// TODO: Validate the params before sending

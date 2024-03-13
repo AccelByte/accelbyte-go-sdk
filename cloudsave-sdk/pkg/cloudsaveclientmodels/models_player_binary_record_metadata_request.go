@@ -26,6 +26,9 @@ type ModelsPlayerBinaryRecordMetadataRequest struct {
 	// Indicate which party that could modify the record
 	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
+
+	// Tagging for player binary record
+	Tags []string `json:"tags,omitempty"`
 }
 
 // Validate validates this Models player binary record metadata request

@@ -90,6 +90,32 @@ func (aaa *ServersService) FleetServerInfo(input *servers.FleetServerInfoParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use FleetServerConnectionInfoShort instead.
+func (aaa *ServersService) FleetServerConnectionInfo(input *servers.FleetServerConnectionInfoParams) (*amsclientmodels.APIFleetServerConnectionInfoResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Servers.FleetServerConnectionInfo(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ServerHistoryShort instead.
 func (aaa *ServersService) ServerHistory(input *servers.ServerHistoryParams) (*amsclientmodels.APIFleetServerHistoryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -169,6 +195,36 @@ func (aaa *ServersService) FleetServerInfoShort(input *servers.FleetServerInfoPa
 	}
 
 	ok, err := aaa.Client.Servers.FleetServerInfoShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServersService) FleetServerConnectionInfoShort(input *servers.FleetServerConnectionInfoParams) (*amsclientmodels.APIFleetServerConnectionInfoResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdServers != nil {
+		input.XFlightId = tempFlightIdServers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Servers.FleetServerConnectionInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

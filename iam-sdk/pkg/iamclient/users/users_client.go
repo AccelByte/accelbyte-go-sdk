@@ -8576,6 +8576,17 @@ Deprecated: 2022-08-10 - Use ListAdminsV3Short instead.
 
 ListAdminsV3 list user admins
 List all users that has admin role (role that has admin_role attribute set to true).
+Endpoint behavior :
+- if query parameter is defined, endpoint will search users whose email address and display name match with the query
+- if roleId parameter is defined, endpoint will search users that have the defined roleId
+- if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range
+- if startDate parameter is defined, endpoint will search users that created start from the defined date
+- if endDate parameter is defined, endpoint will search users that created until the defined date
+
+In multi tenant mode :
+- if super admin search in super admin namespace, the result will be all admin users
+- if super admin search in game studio namespace, the result will be all admin users under the game studio namespace
+- if studio admin search in their studio namespace, the result will be all admin user in the game studio namespace
 
 The endpoint will return all admin from all namespace when called from publisher namespace.
 When not called from publisher namespace, the endpoint will return all admin from the path namespace.
@@ -8637,6 +8648,17 @@ func (a *Client) ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.Clien
 /*
 ListAdminsV3Short list user admins
 List all users that has admin role (role that has admin_role attribute set to true).
+Endpoint behavior :
+- if query parameter is defined, endpoint will search users whose email address and display name match with the query
+- if roleId parameter is defined, endpoint will search users that have the defined roleId
+- if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range
+- if startDate parameter is defined, endpoint will search users that created start from the defined date
+- if endDate parameter is defined, endpoint will search users that created until the defined date
+
+In multi tenant mode :
+- if super admin search in super admin namespace, the result will be all admin users
+- if super admin search in game studio namespace, the result will be all admin users under the game studio namespace
+- if studio admin search in their studio namespace, the result will be all admin user in the game studio namespace
 
 The endpoint will return all admin from all namespace when called from publisher namespace.
 When not called from publisher namespace, the endpoint will return all admin from the path namespace.

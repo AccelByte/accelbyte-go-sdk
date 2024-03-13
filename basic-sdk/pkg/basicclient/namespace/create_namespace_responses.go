@@ -128,7 +128,7 @@ func NewCreateNamespaceBadRequest() *CreateNamespaceBadRequest {
 
 /*CreateNamespaceBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>Unable to {action}: Namespace contains invalid character(s)</td></tr><tr><td>11339</td><td>Unable to {action}: Display name contains invalid character(s)</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>Unable to {action}: Namespace contains invalid character(s)</td></tr><tr><td>11339</td><td>Unable to {action}: Display name contains invalid character(s)</td></tr><tr><td>11340</td><td>Unable to {action}: The maximum number of games namespace for studio:{studio} has been exceeded</td></tr></table>
 */
 type CreateNamespaceBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity

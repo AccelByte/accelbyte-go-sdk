@@ -34,6 +34,8 @@ type ClientService interface {
 	FleetServerHistoryShort(params *FleetServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerHistoryOK, error)
 	FleetServerInfo(params *FleetServerInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerInfoOK, *FleetServerInfoUnauthorized, *FleetServerInfoForbidden, *FleetServerInfoNotFound, *FleetServerInfoInternalServerError, error)
 	FleetServerInfoShort(params *FleetServerInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerInfoOK, error)
+	FleetServerConnectionInfo(params *FleetServerConnectionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerConnectionInfoOK, *FleetServerConnectionInfoUnauthorized, *FleetServerConnectionInfoForbidden, *FleetServerConnectionInfoNotFound, *FleetServerConnectionInfoInternalServerError, error)
+	FleetServerConnectionInfoShort(params *FleetServerConnectionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerConnectionInfoOK, error)
 	ServerHistory(params *ServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHistoryOK, *ServerHistoryBadRequest, *ServerHistoryUnauthorized, *ServerHistoryForbidden, *ServerHistoryInternalServerError, error)
 	ServerHistoryShort(params *ServerHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHistoryOK, error)
 
@@ -265,6 +267,122 @@ func (a *Client) FleetServerInfoShort(params *FleetServerInfoParams, authInfo ru
 	case *FleetServerInfoNotFound:
 		return nil, v
 	case *FleetServerInfoInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use FleetServerConnectionInfoShort instead.
+
+FleetServerConnectionInfo get connection info for a dedicated server
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]
+*/
+func (a *Client) FleetServerConnectionInfo(params *FleetServerConnectionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerConnectionInfoOK, *FleetServerConnectionInfoUnauthorized, *FleetServerConnectionInfoForbidden, *FleetServerConnectionInfoNotFound, *FleetServerConnectionInfoInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFleetServerConnectionInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "FleetServerConnectionInfo",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/connectioninfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FleetServerConnectionInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FleetServerConnectionInfoOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *FleetServerConnectionInfoUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *FleetServerConnectionInfoForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *FleetServerConnectionInfoNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *FleetServerConnectionInfoInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+FleetServerConnectionInfoShort get connection info for a dedicated server
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]
+*/
+func (a *Client) FleetServerConnectionInfoShort(params *FleetServerConnectionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*FleetServerConnectionInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFleetServerConnectionInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "FleetServerConnectionInfo",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/connectioninfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FleetServerConnectionInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FleetServerConnectionInfoOK:
+		return v, nil
+	case *FleetServerConnectionInfoUnauthorized:
+		return nil, v
+	case *FleetServerConnectionInfoForbidden:
+		return nil, v
+	case *FleetServerConnectionInfoNotFound:
+		return nil, v
+	case *FleetServerConnectionInfoInternalServerError:
 		return nil, v
 
 	default:

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.11.0"
+    "version": "7.12.0"
   },
   "schemes": [
     "https"
@@ -7838,7 +7838,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/admins": {
       "get": {
-        "description": "List all users that has admin role (role that has admin_role attribute set to true).\n\nThe endpoint will return all admin from all namespace when called from publisher namespace.\nWhen not called from publisher namespace, the endpoint will return all admin from the path namespace.",
+        "description": "List all users that has admin role (role that has admin_role attribute set to true).\nEndpoint behavior :\n- if query parameter is defined, endpoint will search users whose email address and display name match with the query\n- if roleId parameter is defined, endpoint will search users that have the defined roleId\n- if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range\n- if startDate parameter is defined, endpoint will search users that created start from the defined date\n- if endDate parameter is defined, endpoint will search users that created until the defined date\n\nIn multi tenant mode :\n- if super admin search in super admin namespace, the result will be all admin users\n- if super admin search in game studio namespace, the result will be all admin users under the game studio namespace\n- if studio admin search in their studio namespace, the result will be all admin user in the game studio namespace\n\nThe endpoint will return all admin from all namespace when called from publisher namespace.\nWhen not called from publisher namespace, the endpoint will return all admin from the path namespace.",
         "operationId": "ListAdminsV3",
         "parameters": [
           {
@@ -7861,10 +7861,34 @@
             "type": "string"
           },
           {
+            "description": "End Date, format YYYY-MM-DD",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
             "description": "The maximum number of data that may be returned (1...100)",
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "Query, can be either display name or email address",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "Role ID, should follow UUID version 4 without hyphen",
+            "in": "query",
+            "name": "roleId",
+            "type": "string"
+          },
+          {
+            "description": "Start Date, format YYYY-MM-DD",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
           }
         ],
         "produces": [
@@ -7904,6 +7928,13 @@
         "summary": "List User Admins",
         "tags": [
           "Users"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ]
+          }
         ]
       }
     },
@@ -21618,6 +21649,89 @@
         ]
       }
     },
+    "/iam/v4/admin/invitationHistories": {
+      "get": {
+        "description": "This endpoint is to list all Invitation Histories for new studio namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\nAccepted Query:\n- namespace\n- offset\n- limit\n",
+        "operationId": "AdminListInvitationHistoriesV4",
+        "parameters": [
+          {
+            "description": "the maximum number of data that may be returned (1...100), default 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "only accept studio namespace",
+            "in": "query",
+            "name": "namespace",
+            "type": "string"
+          },
+          {
+            "description": "Offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.ListInvitationHistoriesV4Response"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "501": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003enot implemented\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin List Invitation Histories V4",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:USER:INVITE [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v4/admin/namespaces/{namespace}/devices": {
       "get": {
         "consumes": [
@@ -22566,6 +22680,162 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/invitationHistories": {
+      "get": {
+        "description": "This endpoint is to Invitation Historiy for specific new studio namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\n",
+        "operationId": "AdminGetNamespaceInvitationHistoryV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.InvitationHistoryResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "501": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003enot implemented\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Get Invitation History for specific namespace V4",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:INVITE [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/invitationHistories/users": {
+      "get": {
+        "description": "This endpoint is to Get list of users Invitation History for specific new studio namespace in multi tenant mode.\nIt will return error if the service multi tenant mode is set to false.\nAccepted Query:\n- offset\n- limit\n",
+        "operationId": "AdminGetNamespaceUserInvitationHistoryV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the maximum number of data that may be returned (1...100), default 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.NamespaceInvitationHistoryUserV4Response"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "501": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003enot implemented\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Get Users Invitation History for specific namespace V4",
+        "tags": [
+          "Users V4"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:INVITE [READ]"
             ]
           }
         ]
@@ -31589,6 +31859,37 @@
         "version"
       ]
     },
+    "model.InvitationHistoryResponse": {
+      "properties": {
+        "accepted": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "inviter": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "accepted",
+        "createdAt",
+        "inviter",
+        "namespace",
+        "updatedAt"
+      ]
+    },
     "model.InviteUserRequestV3": {
       "properties": {
         "emailAddresses": {
@@ -31885,6 +32186,23 @@
         "listEmailAddressRequest"
       ]
     },
+    "model.ListInvitationHistoriesV4Response": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.InvitationHistoryResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "model.ListRoleV4Response": {
       "properties": {
         "data": {
@@ -31973,6 +32291,23 @@
       "required": [
         "Data",
         "Paging"
+      ]
+    },
+    "model.NamespaceInvitationHistoryUserV4Response": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.UserInvitationHistory"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
       ]
     },
     "model.NamespaceRoleRequest": {
@@ -34050,6 +34385,27 @@
         "Username"
       ]
     },
+    "model.UserInvitationHistory": {
+      "properties": {
+        "accepted": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "invitee": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "accepted",
+        "invitee",
+        "updatedAt"
+      ]
+    },
     "model.UserInvitationV3": {
       "properties": {
         "additionalData": {
@@ -35653,11 +36009,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-23T11:32:23+00:00",
-    "gitHash": "dce015787a29a40075e293f88a545664d2ce6241",
+    "buildDate": "2024-03-08T11:10:19+00:00",
+    "gitHash": "f3ff653157c8563bd21a586b462eef9ab26036c9",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.11.0",
-    "version-roles-seeding": "1.2.7"
+    "version": "7.12.0",
+    "version-roles-seeding": "1.2.20"
   }
 }

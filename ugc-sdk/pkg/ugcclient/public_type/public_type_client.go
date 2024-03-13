@@ -40,7 +40,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetTypeShort instead.
 
 GetType get types
-Requires valid user token
+Get available types paginated
 */
 func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, *GetTypeBadRequest, *GetTypeUnauthorized, *GetTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -98,7 +98,7 @@ func (a *Client) GetType(params *GetTypeParams, authInfo runtime.ClientAuthInfoW
 
 /*
 GetTypeShort get types
-Requires valid user token
+Get available types paginated
 */
 func (a *Client) GetTypeShort(params *GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*GetTypeOK, error) {
 	// TODO: Validate the params before sending

@@ -18,6 +18,10 @@ import (
 // swagger:model Xbl IAP config info.
 type XblIAPConfigInfo struct {
 
+	// businessPartnerCertExpiredTime
+	// Format: date-time
+	BusinessPartnerCertExpiredTime *strfmt.DateTime `json:"businessPartnerCertExpiredTime,omitempty"`
+
 	// businessPartnerCertFileName
 	BusinessPartnerCertFileName string `json:"businessPartnerCertFileName,omitempty"`
 

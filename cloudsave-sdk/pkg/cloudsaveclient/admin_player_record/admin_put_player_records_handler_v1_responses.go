@@ -120,7 +120,7 @@ func NewAdminPutPlayerRecordsHandlerV1BadRequest() *AdminPutPlayerRecordsHandler
 
 /*AdminPutPlayerRecordsHandlerV1BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18353</td><td>invalid request body</td></tr><tr><td>18356</td><td>invalid request body: size of the request body must be less than [%d]MB</td></tr><tr><td>18354</td><td>records amount exceeded max limit</td></tr><tr><td>18355</td><td>unable to marshal request body</td></tr><tr><td>18355</td><td>unable to marshal request body</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18353</td><td>invalid request body</td></tr><tr><td>18356</td><td>invalid request body: size of the request body must be less than [%d]MB</td></tr><tr><td>18354</td><td>records amount exceeded max limit</td></tr><tr><td>18355</td><td>unable to marshal request body</td></tr></table>
 */
 type AdminPutPlayerRecordsHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

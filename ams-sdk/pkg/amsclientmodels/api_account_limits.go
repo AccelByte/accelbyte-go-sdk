@@ -17,6 +17,12 @@ import (
 // swagger:model Api account limits.
 type APIAccountLimits struct {
 
+	// allowednodeclasses
+	AllowedNodeClasses []string `json:"allowedNodeClasses,omitempty"`
+
+	// allowedregions
+	AllowedRegions []string `json:"allowedRegions,omitempty"`
+
 	// fleetcount
 	// Format: int32
 	FleetCount int32 `json:"fleetCount,omitempty"`
@@ -24,6 +30,10 @@ type APIAccountLimits struct {
 	// fleetvmcount
 	// Format: int32
 	FleetVMCount int32 `json:"fleetVmCount,omitempty"`
+
+	// imagestoragequotabytes
+	// Format: int64
+	ImageStorageQuotaBytes int64 `json:"imageStorageQuotaBytes,omitempty"`
 }
 
 // Validate validates this Api account limits

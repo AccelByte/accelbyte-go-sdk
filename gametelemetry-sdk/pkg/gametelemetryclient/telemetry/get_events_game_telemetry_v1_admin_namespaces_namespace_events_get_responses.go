@@ -33,6 +33,12 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetReader) ReadRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -60,10 +66,30 @@ func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK() *GetEvents
   Successful Response
 */
 type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK struct {
+	Payload *gametelemetryclientmodels.PagedResponseGetNamespaceEventResponse
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) Error() string {
-	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK ", 200)
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) GetPayload() *gametelemetryclientmodels.PagedResponseGetNamespaceEventResponse {
+	return o.Payload
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -71,6 +97,66 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) readRespon
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gametelemetryclientmodels.PagedResponseGetNamespaceEventResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest creates a GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest with default headers values
+func NewGetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest() *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest {
+	return &GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest{}
+}
+
+/*GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest struct {
+	Payload *gametelemetryclientmodels.BaseErrorResponse
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) Error() string {
+	return fmt.Sprintf("[GET /game-telemetry/v1/admin/namespaces/{namespace}/events][%d] getEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) GetPayload() *gametelemetryclientmodels.BaseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gametelemetryclientmodels.BaseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

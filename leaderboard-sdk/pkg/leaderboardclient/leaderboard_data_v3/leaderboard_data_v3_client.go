@@ -60,11 +60,6 @@ Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingAdminV3Short instead.
 GetAllTimeLeaderboardRankingAdminV3 get all time leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in an all time leaderboard.
 */
 func (a *Client) GetAllTimeLeaderboardRankingAdminV3(params *GetAllTimeLeaderboardRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV3OK, *GetAllTimeLeaderboardRankingAdminV3BadRequest, *GetAllTimeLeaderboardRankingAdminV3Unauthorized, *GetAllTimeLeaderboardRankingAdminV3Forbidden, *GetAllTimeLeaderboardRankingAdminV3NotFound, *GetAllTimeLeaderboardRankingAdminV3InternalServerError, error) {
@@ -131,11 +126,6 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV3(params *GetAllTimeLeaderboa
 GetAllTimeLeaderboardRankingAdminV3Short get all time leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in an all time leaderboard.
 */
 func (a *Client) GetAllTimeLeaderboardRankingAdminV3Short(params *GetAllTimeLeaderboardRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV3OK, error) {
@@ -193,11 +183,6 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV3Short(params *GetAllTimeLead
 Deprecated: 2022-08-10 - Use GetCurrentCycleLeaderboardRankingAdminV3Short instead.
 
 GetCurrentCycleLeaderboardRankingAdminV3 get cycle leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in cycle leaderboard.
@@ -266,11 +251,6 @@ func (a *Client) GetCurrentCycleLeaderboardRankingAdminV3(params *GetCurrentCycl
 GetCurrentCycleLeaderboardRankingAdminV3Short get cycle leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in cycle leaderboard.
 */
 func (a *Client) GetCurrentCycleLeaderboardRankingAdminV3Short(params *GetCurrentCycleLeaderboardRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingAdminV3OK, error) {
@@ -330,12 +310,7 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingByLeaderboardCodeAdminV3Short inst
 DeleteUserRankingByLeaderboardCodeAdminV3 delete all user ranking by leaderboard code
 
 
-[Test Facility Only]
-
-
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'
+ [Test Facility Only]
 
 
 
@@ -413,11 +388,6 @@ DeleteUserRankingByLeaderboardCodeAdminV3Short delete all user ranking by leader
 
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'
-
-
-
-
 This endpoint will delete user ranking by leaderboard code
 
 
@@ -478,11 +448,6 @@ func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV3Short(params *DeleteUs
 Deprecated: 2022-08-10 - Use GetUserRankingAdminV3Short instead.
 
 GetUserRankingAdminV3 get user ranking
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get user ranking in leaderboard
@@ -548,11 +513,6 @@ func (a *Client) GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, auth
 GetUserRankingAdminV3Short get user ranking
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get user ranking in leaderboard
 */
 func (a *Client) GetUserRankingAdminV3Short(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, error) {
@@ -609,7 +569,6 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingAdminV3Short instead.
 
 DeleteUserRankingAdminV3 delete user ranking
 Delete user ranking
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).
@@ -675,7 +634,6 @@ func (a *Client) DeleteUserRankingAdminV3(params *DeleteUserRankingAdminV3Params
 /*
 DeleteUserRankingAdminV3Short delete user ranking
 Delete user ranking
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).
@@ -735,7 +693,6 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingsAdminV3Short instead.
 
 DeleteUserRankingsAdminV3 delete user ranking across leaderboard(s)
 Delete user ranking across leaderboard
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */
@@ -796,7 +753,6 @@ func (a *Client) DeleteUserRankingsAdminV3(params *DeleteUserRankingsAdminV3Para
 /*
 DeleteUserRankingsAdminV3Short delete user ranking across leaderboard(s)
 Delete user ranking across leaderboard
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */

@@ -18,6 +18,9 @@ import (
 // swagger:model Models admin player concurrent record request.
 type ModelsAdminPlayerConcurrentRecordRequest struct {
 
+	// Tagging for admin player record
+	Tags []string `json:"tags,omitempty"`
+
 	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

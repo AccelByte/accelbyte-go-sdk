@@ -31,6 +31,9 @@ type ModelsAdminGameRecordResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// Tagging for admin game record
+	Tags []string `json:"tags,omitempty"`
+
 	// updated_at
 	// Required: true
 	// Format: date-time

@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.7.0"
+    "version": "2.7.1"
   },
   "schemes": [
     "https"
@@ -2289,11 +2289,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-09T08:39:45+00:00",
-    "gitHash": "339224d495423da4d822f6379b66852a9eacba25",
+    "buildDate": "2024-03-08T11:07:34+00:00",
+    "gitHash": "ec160547c51f42dbddd2ae5fcf2a67e42dd0ac09",
     "name": "justice-gdpr-service",
     "realm": "demo",
-    "version": "2.7.0",
+    "version": "2.7.1",
     "version-roles-seeding": "0.0.48"
   }
 }

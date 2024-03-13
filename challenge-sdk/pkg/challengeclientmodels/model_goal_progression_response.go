@@ -21,6 +21,10 @@ import (
 // swagger:model Model goal progression response.
 type ModelGoalProgressionResponse struct {
 
+	// challengecode
+	// Required: true
+	ChallengeCode *string `json:"challengeCode"`
+
 	// goalcode
 	// Required: true
 	GoalCode *string `json:"goalCode"`
@@ -43,6 +47,9 @@ type ModelGoalProgressionResponse struct {
 func (m *ModelGoalProgressionResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateChallengeCode(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateGoalCode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +66,15 @@ func (m *ModelGoalProgressionResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelGoalProgressionResponse) validateChallengeCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("challengeCode", "body", m.ChallengeCode); err != nil {
+		return err
+	}
+
 	return nil
 }
 

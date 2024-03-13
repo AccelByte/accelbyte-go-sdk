@@ -207,11 +207,6 @@ Deprecated: 2022-08-10 - Use CreateArchivedLeaderboardRankingDataV1HandlerShort 
 CreateArchivedLeaderboardRankingDataV1Handler archive a leadeboard data ranking
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'
-
-
-
-
 Archive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,
 remove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint
 */
@@ -276,11 +271,6 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1Handler(params *CreateArc
 CreateArchivedLeaderboardRankingDataV1HandlerShort archive a leadeboard data ranking
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'
-
-
-
-
 Archive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,
 remove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint
 */
@@ -337,11 +327,6 @@ func (a *Client) CreateArchivedLeaderboardRankingDataV1HandlerShort(params *Crea
 Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingAdminV1Short instead.
 
 GetAllTimeLeaderboardRankingAdminV1 get all time leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in an all time leaderboard.
@@ -410,11 +395,6 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboa
 GetAllTimeLeaderboardRankingAdminV1Short get all time leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in an all time leaderboard.
 */
 func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, error) {
@@ -472,11 +452,6 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLead
 Deprecated: 2022-08-10 - Use GetCurrentMonthLeaderboardRankingAdminV1Short instead.
 
 GetCurrentMonthLeaderboardRankingAdminV1 get current month leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in current month leaderboard.
@@ -545,11 +520,6 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1(params *GetCurrentMont
 GetCurrentMonthLeaderboardRankingAdminV1Short get current month leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in current month leaderboard.
 */
 func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurrentMonthLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingAdminV1OK, error) {
@@ -609,12 +579,7 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingByLeaderboardCodeAdminV1Short inst
 DeleteUserRankingByLeaderboardCodeAdminV1 delete all user ranking by leaderboard code
 
 
-[Test Facility Only]
-
-
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'
+ [Test Facility Only]
 
 
 
@@ -692,11 +657,6 @@ DeleteUserRankingByLeaderboardCodeAdminV1Short delete all user ranking by leader
 
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'
-
-
-
-
 This endpoint will delete user ranking by leaderboard code
 
 
@@ -757,11 +717,6 @@ func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1Short(params *DeleteUs
 Deprecated: 2022-08-10 - Use GetCurrentSeasonLeaderboardRankingAdminV1Short instead.
 
 GetCurrentSeasonLeaderboardRankingAdminV1 get current season leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in current season leaderboard.
@@ -830,11 +785,6 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1(params *GetCurrentSea
 GetCurrentSeasonLeaderboardRankingAdminV1Short get current season leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in current season leaderboard.
 */
 func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurrentSeasonLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingAdminV1OK, error) {
@@ -892,11 +842,6 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurre
 Deprecated: 2022-08-10 - Use GetTodayLeaderboardRankingAdminV1Short instead.
 
 GetTodayLeaderboardRankingAdminV1 get today leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in today leaderboard.
@@ -965,11 +910,6 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1(params *GetTodayLeaderboardRa
 GetTodayLeaderboardRankingAdminV1Short get today leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in today leaderboard.
 */
 func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingAdminV1OK, error) {
@@ -1027,11 +967,6 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderbo
 Deprecated: 2022-08-10 - Use GetUserRankingAdminV1Short instead.
 
 GetUserRankingAdminV1 get user ranking
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get user ranking in leaderboard
@@ -1095,11 +1030,6 @@ func (a *Client) GetUserRankingAdminV1(params *GetUserRankingAdminV1Params, auth
 
 /*
 GetUserRankingAdminV1Short get user ranking
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get user ranking in leaderboard
@@ -1169,9 +1099,6 @@ Other detail info:
 
 
 
-
-
-  * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:(userId):LEADERBOARD", action=4 (UPDATE)
 
 
   * Returns: user ranking
@@ -1252,9 +1179,6 @@ Other detail info:
 
 
 
-  * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:(userId):LEADERBOARD", action=4 (UPDATE)
-
-
   * Returns: user ranking
 */
 func (a *Client) UpdateUserPointAdminV1Short(params *UpdateUserPointAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserPointAdminV1OK, error) {
@@ -1313,7 +1237,6 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingAdminV1Short instead.
 
 DeleteUserRankingAdminV1 delete user ranking
 Delete user ranking
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).
@@ -1379,7 +1302,6 @@ func (a *Client) DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params
 /*
 DeleteUserRankingAdminV1Short delete user ranking
 Delete user ranking
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).
@@ -1438,11 +1360,6 @@ func (a *Client) DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1P
 Deprecated: 2022-08-10 - Use GetCurrentWeekLeaderboardRankingAdminV1Short instead.
 
 GetCurrentWeekLeaderboardRankingAdminV1 get current week leaderboard ranking data
-
-
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
 
 
 Get rankings in current week leaderboard.
@@ -1511,11 +1428,6 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekL
 GetCurrentWeekLeaderboardRankingAdminV1Short get current week leaderboard ranking data
 
 
-Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'
-
-
-
-
 Get rankings in current week leaderboard.
 */
 func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, error) {
@@ -1574,7 +1486,6 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingsAdminV1Short instead.
 
 DeleteUserRankingsAdminV1 delete user ranking across leaderboard(s)
 Delete user ranking across leaderboard
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */
@@ -1635,7 +1546,6 @@ func (a *Client) DeleteUserRankingsAdminV1(params *DeleteUserRankingsAdminV1Para
 /*
 DeleteUserRankingsAdminV1Short delete user ranking across leaderboard(s)
 Delete user ranking across leaderboard
-Required permission: ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]
 
 Remove entry with provided userId from leaderboard.
 */
@@ -2396,7 +2306,6 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingPublicV1Short instead.
 
 DeleteUserRankingPublicV1 delete user ranking
 Delete user ranking
-Required permission: NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).
@@ -2462,7 +2371,6 @@ func (a *Client) DeleteUserRankingPublicV1(params *DeleteUserRankingPublicV1Para
 /*
 DeleteUserRankingPublicV1Short delete user ranking
 Delete user ranking
-Required permission: NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]
 
 Remove entry with provided userId from leaderboard.
 If leaderboard with given leaderboard code not found, it will return http status not found (404).

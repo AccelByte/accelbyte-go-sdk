@@ -23,6 +23,13 @@ type LobbyServiceWebsocket struct {
 	ConnectionManager connectionutils.ConnectionManager
 }
 
+func (lobbyService *LobbyServiceWebsocket) OnAccessTokenChanged(accessToken string) error {
+	logrus.Debug("OnAccessTokenChanged")
+	id := utils.GenerateID()
+
+	return lobbyService.RefreshTokenRequest(&id, &accessToken)
+}
+
 func (lobbyService *LobbyServiceWebsocket) AcceptFriendsNotif(friendId string) error {
 	logrus.Debug("AcceptFriendsNotif")
 	text := fmt.Sprintf("type: %s\n%s\nfriendId: %v", model.TypeAcceptFriendsNotif, utils.GenerateMessageID(), friendId)

@@ -176,6 +176,8 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 	tokenRepoObs := oAuth20Service.TokenRepository
 	configRepoObs := oAuth20Service.ConfigRepository
 
+	oAuth20Service.RefreshTokenRepository = &auth.RefreshTokenImpl{AutoRefresh: true, RefreshRate: 0.01} // Force refresh with shorter time span
+
 	// 2. call websocket endpoint
 	lobbyService := &service.LobbyServiceWebsocket{
 		ConfigRepository:  configRepoObs,
@@ -205,7 +207,7 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 	t.Logf("Expiring in... : %v", secondsTillExpiry)
 
 	// 4. force the Token to be expired
-	expiresIn = int32(5)
+	expiresIn = int32(1)
 	getToken.ExpiresIn = &expiresIn       // monkey-patch, force expiry Token
 	getToken.RefreshExpiresIn = expiresIn // monkey-patch, force expiry refreshToken
 
@@ -230,7 +232,7 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 	errSetAccessToken := observableRepo.SetAccessToken(newToken)
 	assert.NoError(t, errSetAccessToken)
 
-	time.Sleep(time.Duration(*getExpiresIn) * time.Second)
+	// check if really expired
 	hasIndeedExpired := repository.HasTokenExpired(tokenRepoObs, Repository.GetRefreshRate())
 	assert.True(t, hasIndeedExpired) // indeed expired
 

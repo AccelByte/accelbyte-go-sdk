@@ -30,6 +30,9 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// autojoin
 	AutoJoin bool `json:"autoJoin"`
 
+	// autoleavesession
+	AutoLeaveSession bool `json:"autoLeaveSession"`
+
 	// clientversion
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`

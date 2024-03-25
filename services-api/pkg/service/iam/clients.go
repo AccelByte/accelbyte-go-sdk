@@ -352,6 +352,32 @@ func (aaa *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetC
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkUpdateClientsV3Short instead.
+func (aaa *ClientsService) AdminBulkUpdateClientsV3(input *clients.AdminBulkUpdateClientsV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Clients.AdminBulkUpdateClientsV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminCreateClientV3Short instead.
 func (aaa *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -951,6 +977,36 @@ func (aaa *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.Admi
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ClientsService) AdminBulkUpdateClientsV3Short(input *clients.AdminBulkUpdateClientsV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdClients != nil {
+		input.XFlightId = tempFlightIdClients
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Clients.AdminBulkUpdateClientsV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {

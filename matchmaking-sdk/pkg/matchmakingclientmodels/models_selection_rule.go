@@ -7,8 +7,6 @@
 package matchmakingclientmodels
 
 import (
-	"encoding/json"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,7 +19,6 @@ import (
 type ModelsSelectionRule struct {
 
 	// selection
-	// Enum: ['newest', 'oldest', 'pivot', 'random']
 	// Required: true
 	Selection *string `json:"selection"`
 
@@ -48,49 +45,9 @@ func (m *ModelsSelectionRule) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var modelsSelectionRuleTypeSelectionPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["NEWEST", "OLDEST", "PIVOT", "RANDOM"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		modelsSelectionRuleTypeSelectionPropEnum = append(modelsSelectionRuleTypeSelectionPropEnum, v)
-	}
-}
-
-const (
-
-	// ModelsSelectionRuleSelectionNEWEST captures enum value "NEWEST"
-	ModelsSelectionRuleSelectionNEWEST string = "NEWEST"
-
-	// ModelsSelectionRuleSelectionOLDEST captures enum value "OLDEST"
-	ModelsSelectionRuleSelectionOLDEST string = "OLDEST"
-
-	// ModelsSelectionRuleSelectionPIVOT captures enum value "PIVOT"
-	ModelsSelectionRuleSelectionPIVOT string = "PIVOT"
-
-	// ModelsSelectionRuleSelectionRANDOM captures enum value "RANDOM"
-	ModelsSelectionRuleSelectionRANDOM string = "RANDOM"
-)
-
-// prop value enum
-func (m *ModelsSelectionRule) validateSelectionEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, modelsSelectionRuleTypeSelectionPropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *ModelsSelectionRule) validateSelection(formats strfmt.Registry) error {
 
 	if err := validate.Required("selection", "body", m.Selection); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateSelectionEnum("selection", "body", *m.Selection); err != nil {
 		return err
 	}
 

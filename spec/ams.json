@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.12.0"
+    "version": "1.13.0"
   },
   "schemes": [
     "https"
@@ -729,6 +729,286 @@
         "summary": "get a signed URL for a specific artifact",
         "tags": [
           "Artifacts"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/development/server-configurations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "DevelopmentServerConfigurationList",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "development server configurations",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/api.DevelopmentServerConfigurationGetResponse"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "lists all development server configurations",
+        "tags": [
+          "Development",
+          "Fleets",
+          "Images"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
+        "operationId": "DevelopmentServerConfigurationCreate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.DevelopmentServerConfigurationCreateRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "development server configuration created",
+            "schema": {
+              "$ref": "#/definitions/api.DevelopmentServerConfigurationCreateResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "create a new development server configuration",
+        "tags": [
+          "Development",
+          "Fleets",
+          "Images"
+        ]
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
+        "operationId": "DevelopmentServerConfigurationDelete",
+        "parameters": [
+          {
+            "description": "the name of the development server configuration",
+            "in": "path",
+            "name": "developmentServerConfigID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "development server configuration deleted"
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "development server configuration not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "delete a development server configuration",
+        "tags": [
+          "Development",
+          "Fleets",
+          "Images"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
+        "operationId": "DevelopmentServerConfigurationGet",
+        "parameters": [
+          {
+            "description": "the name of the development server configuration",
+            "in": "path",
+            "name": "developmentServerConfigID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "development server configuration",
+            "schema": {
+              "$ref": "#/definitions/api.DevelopmentServerConfigurationGetResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "development server configuration not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "get a development server configuration",
+        "tags": [
+          "Development",
+          "Fleets",
+          "Images"
         ]
       }
     },
@@ -2882,6 +3162,52 @@
         "serversPerVm"
       ]
     },
+    "api.DevelopmentServerConfigurationCreateRequest": {
+      "properties": {
+        "commandLine": {
+          "type": "string"
+        },
+        "imageId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commandLine",
+        "imageId",
+        "name"
+      ]
+    },
+    "api.DevelopmentServerConfigurationCreateResponse": {
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "api.DevelopmentServerConfigurationGetResponse": {
+      "properties": {
+        "commandLine": {
+          "type": "string"
+        },
+        "imageId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commandLine",
+        "imageId",
+        "name"
+      ]
+    },
     "api.FleetArtifactsSampleRules": {
       "properties": {
         "coredumps": {
@@ -3017,6 +3343,10 @@
     },
     "api.FleetListItemResponse": {
       "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "counts": {
           "items": {
             "$ref": "#/definitions/api.FleetRegionalServerCounts"
@@ -3044,6 +3374,7 @@
         }
       },
       "required": [
+        "active",
         "counts",
         "id",
         "image",
@@ -3828,10 +4159,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-06T06:05:12+00:00",
-    "gitHash": "494bfe7ae0e2d66c32fe54295e5b302ae8e88a21",
+    "buildDate": "2024-03-18T22:28:18+00:00",
+    "gitHash": "f3bb6992804e4bc06e4da2af04d903044b638cc7",
     "name": "fleet-commander",
-    "version": "1.12.0",
+    "version": "1.13.0",
     "version-roles-seeding": "1.2.10"
   }
 }

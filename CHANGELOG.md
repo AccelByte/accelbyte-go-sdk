@@ -1,3 +1,15 @@
+<a name="v0.67.0"></a>
+## [v0.67.0]
+### test
+- **integration:** game telemetry change message error
+- **core:** websocket token refresh
+- **core:** fix data race in test
+### feat
+- **:** websocket token refresh
+### chore
+- **samples:** add websocket token refresh
+
+
 <a name="v0.66.0"></a>
 ## [v0.66.0]
 ### chore

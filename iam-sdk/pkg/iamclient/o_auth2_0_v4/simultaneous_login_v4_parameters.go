@@ -20,11 +20,6 @@ import (
 
 // Get the enum in SimultaneousLoginV4Params
 const (
-	SimultaneousLoginV4PspcConstant = "pspc"
-)
-
-// Get the enum in SimultaneousLoginV4Params
-const (
 	SimultaneousLoginV4EpicgamesConstant = "epicgames"
 	SimultaneousLoginV4SteamConstant     = "steam"
 )
@@ -39,12 +34,10 @@ const (
 // with the default values initialized.
 func NewSimultaneousLoginV4Params() *SimultaneousLoginV4Params {
 	var (
-		simultaneousPlatformDefault = string("pspc")
-		codeChallengeMethodDefault  = string("plain")
+		codeChallengeMethodDefault = string("plain")
 	)
 	return &SimultaneousLoginV4Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
-		CodeChallengeMethod:  &codeChallengeMethodDefault,
+		CodeChallengeMethod: &codeChallengeMethodDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -54,12 +47,10 @@ func NewSimultaneousLoginV4Params() *SimultaneousLoginV4Params {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSimultaneousLoginV4ParamsWithTimeout(timeout time.Duration) *SimultaneousLoginV4Params {
 	var (
-		simultaneousPlatformDefault = string("pspc")
-		codeChallengeMethodDefault  = string("plain")
+		codeChallengeMethodDefault = string("plain")
 	)
 	return &SimultaneousLoginV4Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
-		CodeChallengeMethod:  &codeChallengeMethodDefault,
+		CodeChallengeMethod: &codeChallengeMethodDefault,
 
 		timeout: timeout,
 	}
@@ -69,12 +60,10 @@ func NewSimultaneousLoginV4ParamsWithTimeout(timeout time.Duration) *Simultaneou
 // with the default values initialized, and the ability to set a context for a request
 func NewSimultaneousLoginV4ParamsWithContext(ctx context.Context) *SimultaneousLoginV4Params {
 	var (
-		simultaneousPlatformDefault = string("pspc")
-		codeChallengeMethodDefault  = string("plain")
+		codeChallengeMethodDefault = string("plain")
 	)
 	return &SimultaneousLoginV4Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
-		CodeChallengeMethod:  &codeChallengeMethodDefault,
+		CodeChallengeMethod: &codeChallengeMethodDefault,
 
 		Context: ctx,
 	}
@@ -84,13 +73,11 @@ func NewSimultaneousLoginV4ParamsWithContext(ctx context.Context) *SimultaneousL
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSimultaneousLoginV4ParamsWithHTTPClient(client *http.Client) *SimultaneousLoginV4Params {
 	var (
-		simultaneousPlatformDefault = string("pspc")
-		codeChallengeMethodDefault  = string("plain")
+		codeChallengeMethodDefault = string("plain")
 	)
 	return &SimultaneousLoginV4Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
-		CodeChallengeMethod:  &codeChallengeMethodDefault,
-		HTTPClient:           client,
+		CodeChallengeMethod: &codeChallengeMethodDefault,
+		HTTPClient:          client,
 	}
 }
 

@@ -38,8 +38,7 @@ type ModelsGetInboxMessagesResponseData struct {
 	ID *string `json:"id"`
 
 	// message
-	// Required: true
-	Message interface{} `json:"message"`
+	Message interface{} `json:"message,omitempty"`
 
 	// scope
 	// Enum: ['NAMESPACE', 'USER']
@@ -61,8 +60,7 @@ type ModelsGetInboxMessagesResponseData struct {
 	UpdatedAt *int64 `json:"updatedAt"`
 
 	// userids
-	// Required: true
-	UserIds []string `json:"userIds"`
+	UserIds []string `json:"userIds,omitempty"`
 }
 
 // Validate validates this Models get inbox messages response data
@@ -88,9 +86,6 @@ func (m *ModelsGetInboxMessagesResponseData) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserIds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -228,15 +223,6 @@ func (m *ModelsGetInboxMessagesResponseData) validateStatus(formats strfmt.Regis
 func (m *ModelsGetInboxMessagesResponseData) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGetInboxMessagesResponseData) validateUserIds(formats strfmt.Registry) error {
-
-	if err := validate.Required("userIds", "body", m.UserIds); err != nil {
 		return err
 	}
 

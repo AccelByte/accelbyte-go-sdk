@@ -122,6 +122,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	Query *string
+	/*RoleIds
+	  comma separated role ids
+
+	*/
+	RoleIds *string
 	/*SkipLoginQueue
 	  A flag to filter users that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted users
 
@@ -302,6 +307,17 @@ func (o *AdminSearchUserV3Params) SetQuery(query *string) {
 	o.Query = query
 }
 
+// WithRoleIds adds the roleIds to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithRoleIds(roleIds *string) *AdminSearchUserV3Params {
+	o.SetRoleIds(roleIds)
+	return o
+}
+
+// SetRoleIds adds the roleIds to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetRoleIds(roleIds *string) {
+	o.RoleIds = roleIds
+}
+
 // WithSkipLoginQueue adds the skipLoginQueue to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithSkipLoginQueue(skipLoginQueue *bool) *AdminSearchUserV3Params {
 	o.SetSkipLoginQueue(skipLoginQueue)
@@ -470,6 +486,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qQuery := qrQuery
 		if qQuery != "" {
 			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RoleIds != nil {
+
+		// query param roleIds
+		var qrRoleIds string
+		if o.RoleIds != nil {
+			qrRoleIds = *o.RoleIds
+		}
+		qRoleIds := qrRoleIds
+		if qRoleIds != "" {
+			if err := r.SetQueryParam("roleIds", qRoleIds); err != nil {
 				return err
 			}
 		}

@@ -73,8 +73,7 @@ type ModelsCreateChannelResponse struct {
 	RegionLatencyMaxMs *int32 `json:"region_latency_max_ms"`
 
 	// ruleset
-	// Required: true
-	Ruleset *ModelsRuleSet `json:"ruleset"`
+	Ruleset *ModelsRuleSet `json:"ruleset,omitempty"`
 
 	// session_queue_timeout_seconds
 	// Required: true
@@ -143,9 +142,6 @@ func (m *ModelsCreateChannelResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRegionLatencyMaxMs(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRuleset(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSessionQueueTimeoutSeconds(formats); err != nil {
@@ -276,24 +272,6 @@ func (m *ModelsCreateChannelResponse) validateRegionLatencyMaxMs(formats strfmt.
 
 	if err := validate.Required("region_latency_max_ms", "body", m.RegionLatencyMaxMs); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCreateChannelResponse) validateRuleset(formats strfmt.Registry) error {
-
-	if err := validate.Required("ruleset", "body", m.Ruleset); err != nil {
-		return err
-	}
-
-	if m.Ruleset != nil {
-		if err := m.Ruleset.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ruleset")
-			}
-			return err
-		}
 	}
 
 	return nil

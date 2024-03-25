@@ -7,7 +7,6 @@
 package matchmakingclientmodels
 
 import (
-	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -58,7 +57,6 @@ type ModelsUpdateRuleset struct {
 	SubGameModes ModelsUpdateRulesetSubGameModes `json:"sub_game_modes,omitempty"`
 
 	// ticket_flexing_selection
-	// Enum: ['newest', 'oldest', 'pivot', 'random']
 	// Required: true
 	TicketFlexingSelection *string `json:"ticket_flexing_selection"`
 
@@ -197,49 +195,9 @@ func (m *ModelsUpdateRuleset) validateSortTickets(formats strfmt.Registry) error
 	return nil
 }
 
-var modelsUpdateRulesetTypeTicketFlexingSelectionPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["NEWEST", "OLDEST", "PIVOT", "RANDOM"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		modelsUpdateRulesetTypeTicketFlexingSelectionPropEnum = append(modelsUpdateRulesetTypeTicketFlexingSelectionPropEnum, v)
-	}
-}
-
-const (
-
-	// ModelsUpdateRulesetTicketFlexingSelectionNEWEST captures enum value "NEWEST"
-	ModelsUpdateRulesetTicketFlexingSelectionNEWEST string = "NEWEST"
-
-	// ModelsUpdateRulesetTicketFlexingSelectionOLDEST captures enum value "OLDEST"
-	ModelsUpdateRulesetTicketFlexingSelectionOLDEST string = "OLDEST"
-
-	// ModelsUpdateRulesetTicketFlexingSelectionPIVOT captures enum value "PIVOT"
-	ModelsUpdateRulesetTicketFlexingSelectionPIVOT string = "PIVOT"
-
-	// ModelsUpdateRulesetTicketFlexingSelectionRANDOM captures enum value "RANDOM"
-	ModelsUpdateRulesetTicketFlexingSelectionRANDOM string = "RANDOM"
-)
-
-// prop value enum
-func (m *ModelsUpdateRuleset) validateTicketFlexingSelectionEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, modelsUpdateRulesetTypeTicketFlexingSelectionPropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *ModelsUpdateRuleset) validateTicketFlexingSelection(formats strfmt.Registry) error {
 
 	if err := validate.Required("ticket_flexing_selection", "body", m.TicketFlexingSelection); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateTicketFlexingSelectionEnum("ticket_flexing_selection", "body", *m.TicketFlexingSelection); err != nil {
 		return err
 	}
 

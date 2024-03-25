@@ -7,8 +7,6 @@
 package sessionbrowserclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -54,16 +52,14 @@ type ModelsGetSessionHistoryDetailedResponseItem struct {
 	Joinable bool `json:"joinable"`
 
 	// joining
-	// Required: true
-	Joining []*ModelsSessionPlayerJoining `json:"joining"`
+	Joining []*ModelsSessionPlayerJoining `json:"joining,omitempty"`
 
 	// match_id
 	// Required: true
 	MatchID string `json:"match_id"`
 
 	// matching_allies
-	// Required: true
-	MatchingAllies []*ModelsMatchingAlly `json:"matching_allies"`
+	MatchingAllies []*ModelsMatchingAlly `json:"matching_allies,omitempty"`
 
 	// namespace
 	// Required: true
@@ -73,8 +69,7 @@ type ModelsGetSessionHistoryDetailedResponseItem struct {
 	PartyID string `json:"party_id,omitempty"`
 
 	// players
-	// Required: true
-	Players []*ModelsSessionPlayerHistory `json:"players"`
+	Players []*ModelsSessionPlayerHistory `json:"players,omitempty"`
 
 	// region
 	// Required: true
@@ -129,19 +124,10 @@ func (m *ModelsGetSessionHistoryDetailedResponseItem) Validate(formats strfmt.Re
 	if err := m.validateJoinable(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateJoining(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateMatchID(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateMatchingAllies(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePlayers(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegion(formats); err != nil {
@@ -245,31 +231,6 @@ func (m *ModelsGetSessionHistoryDetailedResponseItem) validateJoinable(formats s
 	return nil
 }
 
-func (m *ModelsGetSessionHistoryDetailedResponseItem) validateJoining(formats strfmt.Registry) error {
-
-	if err := validate.Required("joining", "body", m.Joining); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Joining); i++ {
-		if swag.IsZero(m.Joining[i]) { // not required
-			continue
-		}
-
-		if m.Joining[i] != nil {
-			if err := m.Joining[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("joining" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *ModelsGetSessionHistoryDetailedResponseItem) validateMatchID(formats strfmt.Registry) error {
 
 	if err := validate.Required("match_id", "body", m.MatchID); err != nil {
@@ -279,60 +240,10 @@ func (m *ModelsGetSessionHistoryDetailedResponseItem) validateMatchID(formats st
 	return nil
 }
 
-func (m *ModelsGetSessionHistoryDetailedResponseItem) validateMatchingAllies(formats strfmt.Registry) error {
-
-	if err := validate.Required("matching_allies", "body", m.MatchingAllies); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.MatchingAllies); i++ {
-		if swag.IsZero(m.MatchingAllies[i]) { // not required
-			continue
-		}
-
-		if m.MatchingAllies[i] != nil {
-			if err := m.MatchingAllies[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("matching_allies" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *ModelsGetSessionHistoryDetailedResponseItem) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGetSessionHistoryDetailedResponseItem) validatePlayers(formats strfmt.Registry) error {
-
-	if err := validate.Required("players", "body", m.Players); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Players); i++ {
-		if swag.IsZero(m.Players[i]) { // not required
-			continue
-		}
-
-		if m.Players[i] != nil {
-			if err := m.Players[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("players" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

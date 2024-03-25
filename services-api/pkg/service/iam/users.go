@@ -1938,6 +1938,35 @@ func (aaa *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserB
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkUpdateUsersV3Short instead.
+func (aaa *UsersService) AdminBulkUpdateUsersV3(input *users.AdminBulkUpdateUsersV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminBulkUpdateUsersV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetBulkUserBanV3Short instead.
 func (aaa *UsersService) AdminGetBulkUserBanV3(input *users.AdminGetBulkUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2445,6 +2474,35 @@ func (aaa *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdat
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminListUserAllPlatformAccountsDistinctV3Short instead.
+func (aaa *UsersService) AdminListUserAllPlatformAccountsDistinctV3(input *users.AdminListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminListUserAllPlatformAccountsDistinctV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpgradeHeadlessAccountV3Short instead.
 func (aaa *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2813,6 +2871,32 @@ func (aaa *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminPlatformUnlinkAllV3Short instead.
+func (aaa *UsersService) AdminPlatformUnlinkAllV3(input *users.AdminPlatformUnlinkAllV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Users.AdminPlatformUnlinkAllV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
 	}
 	if notFound != nil {
 		return notFound
@@ -6512,6 +6596,36 @@ func (aaa *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) AdminBulkUpdateUsersV3Short(input *users.AdminBulkUpdateUsersV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Users.AdminBulkUpdateUsersV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *UsersService) AdminGetBulkUserBanV3Short(input *users.AdminGetBulkUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7052,6 +7166,36 @@ func (aaa *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.Admin
 	return nil
 }
 
+func (aaa *UsersService) AdminListUserAllPlatformAccountsDistinctV3Short(input *users.AdminListUserAllPlatformAccountsDistinctV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.AdminListUserAllPlatformAccountsDistinctV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7465,6 +7609,36 @@ func (aaa *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUn
 	}
 
 	_, err := aaa.Client.Users.AdminPlatformUnlinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersService) AdminPlatformUnlinkAllV3Short(input *users.AdminPlatformUnlinkAllV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Users.AdminPlatformUnlinkAllV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

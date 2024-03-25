@@ -46,6 +46,8 @@ type ClientService interface {
 	UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error)
 	DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error)
 	DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error)
+	AdminCheckThirdPartyLoginPlatformAvailabilityV3(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden, error)
+	AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error)
 	RetrieveActiveOIDCClientsPublicV3(params *RetrieveActiveOIDCClientsPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveActiveOIDCClientsPublicV3OK, *RetrieveActiveOIDCClientsPublicV3NotFound, *RetrieveActiveOIDCClientsPublicV3InternalServerError, error)
@@ -1074,6 +1076,125 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdP
 	case *DeleteThirdPartyLoginPlatformDomainV3NotFound:
 		return nil, v
 	case *DeleteThirdPartyLoginPlatformDomainV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminCheckThirdPartyLoginPlatformAvailabilityV3Short instead.
+
+AdminCheckThirdPartyLoginPlatformAvailabilityV3 check 3rd party platform availability
+This is the API to check specific 3rd party platform availability.
+supported platform:
+- (psn) ps4web
+- (psn) ps4
+- (psn) ps5
+*/
+func (a *Client) AdminCheckThirdPartyLoginPlatformAvailabilityV3(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCheckThirdPartyLoginPlatformAvailabilityV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCheckThirdPartyLoginPlatformAvailabilityV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/platforms/{platformId}/availability",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCheckThirdPartyLoginPlatformAvailabilityV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized:
+		return nil, nil, v, nil, nil
+
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminCheckThirdPartyLoginPlatformAvailabilityV3Short check 3rd party platform availability
+This is the API to check specific 3rd party platform availability.
+supported platform:
+- (psn) ps4web
+- (psn) ps4
+- (psn) ps5
+*/
+func (a *Client) AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCheckThirdPartyLoginPlatformAvailabilityV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCheckThirdPartyLoginPlatformAvailabilityV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/platforms/{platformId}/availability",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCheckThirdPartyLoginPlatformAvailabilityV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3OK:
+		return v, nil
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest:
+		return nil, v
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized:
+		return nil, v
+	case *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden:
 		return nil, v
 
 	default:

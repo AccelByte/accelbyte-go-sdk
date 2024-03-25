@@ -50,10 +50,11 @@ Creates a new request for matchmaking.
 
 Cross Platform: Allow player to play game with "any" registered platforms.
 1. Cross Platform can be enabled through session service or create match ticket.
-a. via ticket: specify several cross_platform on create match ticket attributes.
+a. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute `cross_platform` will be populated from backend
 This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
 b. via session service: set player/party cross_platform attributes.
 c. Enable match options ruleset with name cross_platform and type "any".
+```
 {
 "name": "co-op",
 "data": {
@@ -65,13 +66,21 @@ c. Enable match options ruleset with name cross_platform and type "any".
 },
 "match_options": {
 "options": [
-{ânameâ: âcross_platformâ, âtypeâ: âanyâ}
+{"name": "cross_platform", "type": "any"}
 ]
 }
 }
 }
-2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
-3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.
+```
+2. Cross Platform can be disabled from the matchpool configuration `crossplay_disabled=true`
+3. When matchpool `crossplay_disabled=false`
+* request attribute cross_platform is empty **[Recommended]**:
+* Matchmaking will consider Party leader `crossplayEnabled` preference or Session attribute `crossplayEnabled` preference.
+* When `crossplayEnabled=true` `cross_platforms` attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform
+* When `crossplayEnabled=false` `cross_platforms` attributes will be set to user's currentPlatform
+* request attribute cross_platform is not empty **[Not Recommended]**:
+* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
+* Multiple cross_platform values is considered to be crossplay enabled
 4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.
 */
 func (a *Client) CreateMatchTicket(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, *CreateMatchTicketBadRequest, *CreateMatchTicketUnauthorized, *CreateMatchTicketForbidden, *CreateMatchTicketNotFound, *CreateMatchTicketConflict, *CreateMatchTicketInternalServerError, error) {
@@ -143,10 +152,11 @@ Creates a new request for matchmaking.
 
 Cross Platform: Allow player to play game with "any" registered platforms.
 1. Cross Platform can be enabled through session service or create match ticket.
-a. via ticket: specify several cross_platform on create match ticket attributes.
+a. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute `cross_platform` will be populated from backend
 This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
 b. via session service: set player/party cross_platform attributes.
 c. Enable match options ruleset with name cross_platform and type "any".
+```
 {
 "name": "co-op",
 "data": {
@@ -158,13 +168,21 @@ c. Enable match options ruleset with name cross_platform and type "any".
 },
 "match_options": {
 "options": [
-{ânameâ: âcross_platformâ, âtypeâ: âanyâ}
+{"name": "cross_platform", "type": "any"}
 ]
 }
 }
 }
-2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
-3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.
+```
+2. Cross Platform can be disabled from the matchpool configuration `crossplay_disabled=true`
+3. When matchpool `crossplay_disabled=false`
+* request attribute cross_platform is empty **[Recommended]**:
+* Matchmaking will consider Party leader `crossplayEnabled` preference or Session attribute `crossplayEnabled` preference.
+* When `crossplayEnabled=true` `cross_platforms` attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform
+* When `crossplayEnabled=false` `cross_platforms` attributes will be set to user's currentPlatform
+* request attribute cross_platform is not empty **[Not Recommended]**:
+* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]
+* Multiple cross_platform values is considered to be crossplay enabled
 4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.
 */
 func (a *Client) CreateMatchTicketShort(params *CreateMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchTicketCreated, error) {

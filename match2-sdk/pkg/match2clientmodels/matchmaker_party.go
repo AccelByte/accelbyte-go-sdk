@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // MatchmakerParty Matchmaker party
@@ -19,46 +18,19 @@ import (
 type MatchmakerParty struct {
 
 	// partyid
-	// Required: true
-	PartyID *string `json:"partyID"`
+	PartyID string `json:"partyID,omitempty"`
 
 	// userids
-	// Required: true
-	UserIDs []string `json:"userIDs"`
+	UserIDs []string `json:"userIDs,omitempty"`
 }
 
 // Validate validates this Matchmaker party
 func (m *MatchmakerParty) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validatePartyID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserIDs(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *MatchmakerParty) validatePartyID(formats strfmt.Registry) error {
-
-	if err := validate.Required("partyID", "body", m.PartyID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MatchmakerParty) validateUserIDs(formats strfmt.Registry) error {
-
-	if err := validate.Required("userIDs", "body", m.UserIDs); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -7,8 +7,6 @@
 package sessionbrowserclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -25,8 +23,7 @@ type ModelsActiveMatchmakingGameResponse struct {
 	Pagination *ModelsPagingCursor `json:"pagination"`
 
 	// sessions
-	// Required: true
-	Sessions []*ModelsGameSession `json:"sessions"`
+	Sessions []*ModelsGameSession `json:"sessions,omitempty"`
 }
 
 // Validate validates this Models active matchmaking game response
@@ -34,9 +31,6 @@ func (m *ModelsActiveMatchmakingGameResponse) Validate(formats strfmt.Registry) 
 	var res []error
 
 	if err := m.validatePagination(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSessions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,31 +53,6 @@ func (m *ModelsActiveMatchmakingGameResponse) validatePagination(formats strfmt.
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *ModelsActiveMatchmakingGameResponse) validateSessions(formats strfmt.Registry) error {
-
-	if err := validate.Required("sessions", "body", m.Sessions); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Sessions); i++ {
-		if swag.IsZero(m.Sessions[i]) { // not required
-			continue
-		}
-
-		if m.Sessions[i] != nil {
-			if err := m.Sessions[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("sessions" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

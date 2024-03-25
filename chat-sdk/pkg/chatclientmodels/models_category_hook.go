@@ -22,24 +22,15 @@ type ModelsCategoryHook struct {
 
 	// driver
 	// Enum: ['KAFKA']
-	// Required: true
-	Driver *string `json:"driver"`
+	Driver string `json:"driver,omitempty"`
 
 	// params
-	// Required: true
-	Params *string `json:"params"`
+	Params interface{} `json:"params,omitempty"`
 }
 
 // Validate validates this Models category hook
 func (m *ModelsCategoryHook) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateDriver(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateParams(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
@@ -70,29 +61,6 @@ func (m *ModelsCategoryHook) validateDriverEnum(path, location string, value str
 	if err := validate.EnumCase(path, location, value, modelsCategoryHookTypeDriverPropEnum, true); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (m *ModelsCategoryHook) validateDriver(formats strfmt.Registry) error {
-
-	if err := validate.Required("driver", "body", m.Driver); err != nil {
-		return err
-	}
-
-	// value enum
-	if err := m.validateDriverEnum("driver", "body", *m.Driver); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCategoryHook) validateParams(formats strfmt.Registry) error {
-
-	if err := validate.Required("params", "body", m.Params); err != nil {
-		return err
-	}
-
 	return nil
 }
 

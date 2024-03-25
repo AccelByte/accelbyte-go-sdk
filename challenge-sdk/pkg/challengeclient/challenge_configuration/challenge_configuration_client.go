@@ -53,7 +53,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetChallengesShort instead.
 
-AdminGetChallenges
+AdminGetChallenges list challenges
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error) {
@@ -111,7 +111,7 @@ func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo r
 }
 
 /*
-AdminGetChallengesShort
+AdminGetChallengesShort list challenges
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -165,7 +165,7 @@ func (a *Client) AdminGetChallengesShort(params *AdminGetChallengesParams, authI
 /*
 Deprecated: 2022-08-10 - Use AdminCreateChallengeShort instead.
 
-AdminCreateChallenge
+AdminCreateChallenge create new challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
 
@@ -246,7 +246,7 @@ func (a *Client) AdminCreateChallenge(params *AdminCreateChallengeParams, authIn
 }
 
 /*
-AdminCreateChallengeShort
+AdminCreateChallengeShort create new challenge
 
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
@@ -321,7 +321,7 @@ func (a *Client) AdminCreateChallengeShort(params *AdminCreateChallengeParams, a
 /*
 Deprecated: 2022-08-10 - Use AdminGetChallengeShort instead.
 
-AdminGetChallenge
+AdminGetChallenge get a challenge
 
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
@@ -384,7 +384,7 @@ func (a *Client) AdminGetChallenge(params *AdminGetChallengeParams, authInfo run
 }
 
 /*
-AdminGetChallengeShort
+AdminGetChallengeShort get a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -440,7 +440,7 @@ func (a *Client) AdminGetChallengeShort(params *AdminGetChallengeParams, authInf
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateChallengeShort instead.
 
-AdminUpdateChallenge
+AdminUpdateChallenge update a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 
@@ -516,7 +516,7 @@ func (a *Client) AdminUpdateChallenge(params *AdminUpdateChallengeParams, authIn
 }
 
 /*
-AdminUpdateChallengeShort
+AdminUpdateChallengeShort update a challenge
 
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
@@ -586,7 +586,7 @@ func (a *Client) AdminUpdateChallengeShort(params *AdminUpdateChallengeParams, a
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteChallengeShort instead.
 
-AdminDeleteChallenge
+AdminDeleteChallenge delete a challenge
 
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
@@ -652,7 +652,7 @@ func (a *Client) AdminDeleteChallenge(params *AdminDeleteChallengeParams, authIn
 }
 
 /*
-AdminDeleteChallengeShort
+AdminDeleteChallengeShort delete a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
 */
@@ -710,7 +710,7 @@ func (a *Client) AdminDeleteChallengeShort(params *AdminDeleteChallengeParams, a
 /*
 Deprecated: 2022-08-10 - Use AdminGetPeriodsShort instead.
 
-AdminGetPeriods
+AdminGetPeriods get challenge's periods
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -772,7 +772,7 @@ func (a *Client) AdminGetPeriods(params *AdminGetPeriodsParams, authInfo runtime
 }
 
 /*
-AdminGetPeriodsShort
+AdminGetPeriodsShort get challenge's periods
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -828,7 +828,7 @@ func (a *Client) AdminGetPeriodsShort(params *AdminGetPeriodsParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use AdminRandomizeChallengeShort instead.
 
-AdminRandomizeChallenge
+AdminRandomizeChallenge randomize goals of a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 
@@ -892,7 +892,7 @@ func (a *Client) AdminRandomizeChallenge(params *AdminRandomizeChallengeParams, 
 }
 
 /*
-AdminRandomizeChallengeShort
+AdminRandomizeChallengeShort randomize goals of a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 
@@ -950,7 +950,7 @@ func (a *Client) AdminRandomizeChallengeShort(params *AdminRandomizeChallengePar
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteTiedChallengeShort instead.
 
-AdminDeleteTiedChallenge
+AdminDeleteTiedChallenge delete tied challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
   * This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS
@@ -1016,7 +1016,7 @@ func (a *Client) AdminDeleteTiedChallenge(params *AdminDeleteTiedChallengeParams
 }
 
 /*
-AdminDeleteTiedChallengeShort
+AdminDeleteTiedChallengeShort delete tied challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
   * This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS

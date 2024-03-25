@@ -34,6 +34,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		platformBy, _ := cmd.Flags().GetString("platformBy")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		query, _ := cmd.Flags().GetString("query")
+		roleIds, _ := cmd.Flags().GetString("roleIds")
 		skipLoginQueue, _ := cmd.Flags().GetBool("skipLoginQueue")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		testAccount, _ := cmd.Flags().GetBool("testAccount")
@@ -47,6 +48,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 			PlatformBy:     &platformBy,
 			PlatformID:     &platformId,
 			Query:          &query,
+			RoleIds:        &roleIds,
 			SkipLoginQueue: &skipLoginQueue,
 			StartDate:      &startDate,
 			TestAccount:    &testAccount,
@@ -75,6 +77,7 @@ func init() {
 	AdminSearchUserV3Cmd.Flags().String("platformBy", "", "Platform by")
 	AdminSearchUserV3Cmd.Flags().String("platformId", "", "Platform id")
 	AdminSearchUserV3Cmd.Flags().String("query", "", "Query")
+	AdminSearchUserV3Cmd.Flags().String("roleIds", "", "Role ids")
 	AdminSearchUserV3Cmd.Flags().Bool("skipLoginQueue", false, "Skip login queue")
 	AdminSearchUserV3Cmd.Flags().String("startDate", "", "Start date")
 	AdminSearchUserV3Cmd.Flags().Bool("testAccount", false, "Test account")

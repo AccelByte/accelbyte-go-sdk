@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.30.1"
+    "version": "2.30.2"
   },
   "schemes": [
     "https"
@@ -3315,7 +3315,6 @@
         "region_expansion_rate_ms",
         "region_latency_initial_range_ms",
         "region_latency_max_ms",
-        "ruleset",
         "session_queue_timeout_seconds",
         "slug",
         "social_matchmaking",
@@ -3506,7 +3505,6 @@
         "region_expansion_rate_ms",
         "region_latency_initial_range_ms",
         "region_latency_max_ms",
-        "ruleSet",
         "sessionQueueTimeoutSeconds",
         "slug",
         "socialMatchmaking",
@@ -3544,7 +3542,6 @@
         }
       },
       "required": [
-        "alliances",
         "has_combination",
         "role_flexing_enable",
         "role_flexing_player",
@@ -3638,7 +3635,6 @@
         "region_expansion_rate_ms",
         "region_latency_initial_range_ms",
         "region_latency_max_ms",
-        "ruleset",
         "session_queue_timeout_seconds",
         "slug",
         "social_matchmaking",
@@ -3991,7 +3987,6 @@
         "party_attributes",
         "party_id",
         "party_members",
-        "ticket_created_at",
         "ticket_id"
       ]
     },
@@ -4576,12 +4571,6 @@
           "type": "object"
         },
         "ticket_flexing_selection": {
-          "enum": [
-            "newest",
-            "oldest",
-            "pivot",
-            "random"
-          ],
           "type": "string"
         },
         "ticket_flexing_selections": {
@@ -4596,16 +4585,9 @@
         }
       },
       "required": [
-        "alliance",
         "batch_size",
-        "flexing_rule",
-        "match_options",
-        "matching_rule",
         "rebalance_enable",
-        "sort_ticket",
-        "sort_tickets",
-        "ticket_flexing_selection",
-        "ticket_flexing_selections"
+        "ticket_flexing_selection"
       ]
     },
     "models.RuleSetV1": {
@@ -4657,12 +4639,6 @@
           "type": "object"
         },
         "ticket_flexing_selection": {
-          "enum": [
-            "newest",
-            "oldest",
-            "pivot",
-            "random"
-          ],
           "type": "string"
         },
         "ticket_flexing_selections": {
@@ -4677,28 +4653,13 @@
         }
       },
       "required": [
-        "alliance",
-        "alliance_flexing_rule",
         "batch_size",
-        "flexingRules",
-        "match_options",
-        "matchingRules",
-        "sort_ticket",
-        "sort_tickets",
-        "sub_game_modes",
-        "ticket_flexing_selection",
-        "ticket_flexing_selections"
+        "ticket_flexing_selection"
       ]
     },
     "models.SelectionRule": {
       "properties": {
         "selection": {
-          "enum": [
-            "newest",
-            "oldest",
-            "pivot",
-            "random"
-          ],
           "type": "string"
         },
         "threshold": {
@@ -4714,23 +4675,9 @@
     "models.SortTicket": {
       "properties": {
         "search_result": {
-          "enum": [
-            "distance",
-            "largestPartySize",
-            "none",
-            "oldestTicketAge",
-            "random"
-          ],
           "type": "string"
         },
         "ticket_queue": {
-          "enum": [
-            "distance",
-            "largestPartySize",
-            "none",
-            "oldestTicketAge",
-            "random"
-          ],
           "type": "string"
         }
       },
@@ -4742,13 +4689,6 @@
     "models.SortTicketRule": {
       "properties": {
         "search_result": {
-          "enum": [
-            "distance",
-            "largestPartySize",
-            "none",
-            "oldestTicketAge",
-            "random"
-          ],
           "type": "string"
         },
         "threshold": {
@@ -4756,13 +4696,6 @@
           "type": "integer"
         },
         "ticket_queue": {
-          "enum": [
-            "distance",
-            "largestPartySize",
-            "none",
-            "oldestTicketAge",
-            "random"
-          ],
           "type": "string"
         }
       },
@@ -4830,7 +4763,6 @@
       },
       "required": [
         "alliance",
-        "alliance_flexing_rule",
         "name"
       ]
     },
@@ -5046,12 +4978,6 @@
           "$ref": "#/definitions/models.UpdateRuleset.sub_game_modes"
         },
         "ticket_flexing_selection": {
-          "enum": [
-            "newest",
-            "oldest",
-            "pivot",
-            "random"
-          ],
           "type": "string"
         },
         "ticket_flexing_selections": {
@@ -5375,9 +5301,9 @@
     "path": "/matchmaking/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-02-15T09:13:34+00:00",
-    "gitHash": "9650f5df0c4b25a21359b37e06f4b165f5d88283",
-    "version": "2.30.1",
+    "buildDate": "2024-03-18T02:52:06+00:00",
+    "gitHash": "62ecfd77a844dc70bbd755b9af6dd2c34f58140c",
+    "version": "2.30.2",
     "version-roles-seeding": "0.0.23"
   }
 }

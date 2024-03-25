@@ -36,6 +36,8 @@ type ClientService interface {
 	UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
 	SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error)
 	SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error)
+	RetrieveCountryListWithPolicies(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error)
+	RetrieveCountryListWithPoliciesShort(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error)
 	RetrieveLatestPolicies(params *RetrieveLatestPoliciesParams) (*RetrieveLatestPoliciesOK, error)
 	RetrieveLatestPoliciesShort(params *RetrieveLatestPoliciesParams) (*RetrieveLatestPoliciesOK, error)
 	RetrieveLatestPoliciesPublic(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, *RetrieveLatestPoliciesPublicNotFound, error)
@@ -356,6 +358,100 @@ func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInf
 		return v, nil
 	case *SetDefaultPolicy2BadRequest:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use RetrieveCountryListWithPoliciesShort instead.
+
+RetrieveCountryListWithPolicies retrieve list of countries that have active legal policies
+Retrieve List of Countries that have Active Legal Policies.
+*/
+func (a *Client) RetrieveCountryListWithPolicies(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveCountryListWithPoliciesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveCountryListWithPolicies",
+		Method:             "GET",
+		PathPattern:        "/agreement/public/policies/countries/list",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveCountryListWithPoliciesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveCountryListWithPoliciesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RetrieveCountryListWithPoliciesShort retrieve list of countries that have active legal policies
+Retrieve List of Countries that have Active Legal Policies.
+*/
+func (a *Client) RetrieveCountryListWithPoliciesShort(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveCountryListWithPoliciesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveCountryListWithPolicies",
+		Method:             "GET",
+		PathPattern:        "/agreement/public/policies/countries/list",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveCountryListWithPoliciesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveCountryListWithPoliciesOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

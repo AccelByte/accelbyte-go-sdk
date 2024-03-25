@@ -33,8 +33,7 @@ type ModelsDictionaryWithChildren struct {
 	Namespace *string `json:"namespace"`
 
 	// parentid
-	// Required: true
-	ParentID *string `json:"parentId"`
+	ParentID string `json:"parentId,omitempty"`
 
 	// word
 	// Required: true
@@ -53,9 +52,6 @@ func (m *ModelsDictionaryWithChildren) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateParentID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateWord(formats); err != nil {
@@ -83,15 +79,6 @@ func (m *ModelsDictionaryWithChildren) validateID(formats strfmt.Registry) error
 func (m *ModelsDictionaryWithChildren) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsDictionaryWithChildren) validateParentID(formats strfmt.Registry) error {
-
-	if err := validate.Required("parentId", "body", m.ParentID); err != nil {
 		return err
 	}
 

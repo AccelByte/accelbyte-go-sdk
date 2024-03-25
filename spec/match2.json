@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.16.0"
+    "version": "2.18.1"
   },
   "schemes": [
     "https"
@@ -61,6 +61,195 @@
         "security": [
           {
             "authorization": []
+          }
+        ]
+      }
+    },
+    "/match2/v1/config": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get matchmaking config of all namespaces. Will only return namespace configs than have been updated.",
+        "operationId": "adminGetAllConfigV1",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.NamespaceConfigList"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get all namespaces config",
+        "tags": [
+          "Config",
+          "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:*:MATCHMAKING:CONFIG [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/match2/v1/config/namespaces/{namespace}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get matchmaking config of a namespaces.",
+        "operationId": "adminGetConfigV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/configmodels.NamespaceConfig"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin get namespace config",
+        "tags": [
+          "Config",
+          "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CONFIG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Patch update matchmaking config of a namespaces. Partially update matchmaking config, will only update value that defined on the request.",
+        "operationId": "adminPatchConfigV1",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.PatchNamespaceConfigRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/configmodels.NamespaceConfig"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin patch update namespace config",
+        "tags": [
+          "Config",
+          "admin"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CONFIG [READ]"
+            ]
           }
         ]
       }
@@ -1586,7 +1775,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. \n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {“name”: “cross_platform”, “type”: “any”}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n2. Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox] \n3. Matchmaking will consider Party leader cross_platform preference or Session attribute cross_platform preference.\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
+        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute \u0026lt;code\u0026gt;cross_platform\u0026lt;/code\u0026gt; will be populated from backend\n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t```\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {\u0026#34;name\u0026#34;: \u0026#34;cross_platform\u0026#34;, \u0026#34;type\u0026#34;: \u0026#34;any\u0026#34;}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n\t```\n2. Cross Platform can be disabled from the matchpool configuration \u0026lt;code\u0026gt;crossplay_disabled=true\u0026lt;/code\u0026gt;\n3. When matchpool \u0026lt;code\u0026gt;crossplay_disabled=false\u0026lt;/code\u0026gt; \n\t* request attribute cross_platform is empty **[Recommended]**:\n\t\t* Matchmaking will consider Party leader \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference or Session attribute \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference.\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=true\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=false\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be set to user\u0026#39;s currentPlatform\n\t* request attribute cross_platform is not empty **[Not Recommended]**:\n\t\t* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]\n\t\t* Multiple cross_platform values is considered to be crossplay enabled\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -2601,6 +2790,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "crossplay_disabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "match_function": {
           "type": "string"
         },
@@ -2609,6 +2802,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "platfrom_group_enabled": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "rule_set": {
           "type": "string"
@@ -2647,11 +2844,19 @@
           "format": "int32",
           "type": "integer"
         },
+        "crossplay_disabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "match_function": {
           "type": "string"
         },
         "match_function_override": {
           "$ref": "#/definitions/api.MatchFunctionOverride"
+        },
+        "platfrom_group_enabled": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "rule_set": {
           "type": "string"
@@ -2764,6 +2969,19 @@
         "data"
       ]
     },
+    "api.NamespaceConfigList": {
+      "properties": {
+        "configs": {
+          "items": {
+            "$ref": "#/definitions/configmodels.NamespaceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "configs"
+      ]
+    },
     "api.Party": {
       "properties": {
         "partyID": {
@@ -2774,6 +2992,19 @@
             "type": "string"
           },
           "type": "array"
+        }
+      }
+    },
+    "api.PatchNamespaceConfigRequest": {
+      "properties": {
+        "platformGroup": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
         }
       }
     },
@@ -2930,6 +3161,25 @@
         "name"
       ]
     },
+    "configmodels.NamespaceConfig": {
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "platformGroup": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "namespace"
+      ]
+    },
     "matchmaker.MatchTicketRecord": {
       "properties": {
         "CreatedAt": {
@@ -2982,11 +3232,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "partyID",
-        "userIDs"
-      ]
+      }
     },
     "matchmaker.ProposedProposal": {
       "properties": {
@@ -3020,11 +3266,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "Parties",
-        "UserIDs"
-      ]
+      }
     },
     "matchmaker.Ticket": {
       "properties": {
@@ -3167,6 +3409,10 @@
         "GameMode": {
           "type": "string"
         },
+        "IsFull": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "JoinType": {
           "type": "string"
         },
@@ -3221,6 +3467,7 @@
       "required": [
         "DSInformation",
         "GameMode",
+        "IsFull",
         "JoinType",
         "Members",
         "attributes",
@@ -3378,6 +3625,9 @@
         "PartyID": {
           "type": "string"
         },
+        "PlatformID": {
+          "type": "string"
+        },
         "PlayerID": {
           "type": "string"
         }
@@ -3385,6 +3635,7 @@
       "required": [
         "Attributes",
         "PartyID",
+        "PlatformID",
         "PlayerID"
       ]
     },
@@ -3412,9 +3663,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-01-30T03:02:52+00:00",
-    "gitHash": "d5e6e367f2935aa067f1e308a29dd24f3f2791b8",
-    "version": "2.16.0",
-    "version-roles-seeding": "1.0.12"
+    "buildDate": "2024-03-15T07:22:57+00:00",
+    "gitHash": "2edcbfb71e915650e8afcc64f48ec7423eaebdf1",
+    "version": "2.18.1",
+    "version-roles-seeding": "1.2.17"
   }
 }

@@ -11,6 +11,13 @@
 | `/match2/healthz` | GET | GetHealthcheckInfoV1Short | [GetHealthcheckInfoV1Short](../../match2-sdk/pkg/match2client/operations/operations_client.go) | [GetHealthcheckInfoV1Short](../../services-api/pkg/service/match2/operations.go) | [GetHealthcheckInfoV1Short](../../samples/cli/cmd/match2/operations/getHealthcheckInfoV1.go) |
 | `/match2/version` | GET | VersionCheckHandlerShort | [VersionCheckHandlerShort](../../match2-sdk/pkg/match2client/operations/operations_client.go) | [VersionCheckHandlerShort](../../services-api/pkg/service/match2/operations.go) | [VersionCheckHandlerShort](../../samples/cli/cmd/match2/operations/versionCheckHandler.go) |
 
+### Config Wrapper:  [Config](../../services-api/pkg/service/match2/config.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/match2/v1/config` | GET | AdminGetAllConfigV1Short | [AdminGetAllConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetAllConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminGetAllConfigV1Short](../../samples/cli/cmd/match2/config/adminGetAllConfigV1.go) |
+| `/match2/v1/config/namespaces/{namespace}` | GET | AdminGetConfigV1Short | [AdminGetConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminGetConfigV1Short](../../samples/cli/cmd/match2/config/adminGetConfigV1.go) |
+| `/match2/v1/config/namespaces/{namespace}` | PATCH | AdminPatchConfigV1Short | [AdminPatchConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminPatchConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminPatchConfigV1Short](../../samples/cli/cmd/match2/config/adminPatchConfigV1.go) |
+
 ### Environment-Variables Wrapper:  [EnvironmentVariables](../../services-api/pkg/service/match2/environmentVariables.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -91,7 +98,9 @@
 | `api.MatchTicketResponse` | [ApiMatchTicketResponse ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_response.go) |
 | `api.MatchTicketStatus` | [ApiMatchTicketStatus ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_status.go) |
 | `api.MatchTicketStatuses` | [ApiMatchTicketStatuses ](../../match2-sdk/pkg/match2clientmodels/api_match_ticket_statuses.go) |
+| `api.NamespaceConfigList` | [ApiNamespaceConfigList ](../../match2-sdk/pkg/match2clientmodels/api_namespace_config_list.go) |
 | `api.Party` | [ApiParty ](../../match2-sdk/pkg/match2clientmodels/api_party.go) |
+| `api.PatchNamespaceConfigRequest` | [ApiPatchNamespaceConfigRequest ](../../match2-sdk/pkg/match2clientmodels/api_patch_namespace_config_request.go) |
 | `api.PlayerData` | [ApiPlayerData ](../../match2-sdk/pkg/match2clientmodels/api_player_data.go) |
 | `api.PlayerMetricRecord` | [ApiPlayerMetricRecord ](../../match2-sdk/pkg/match2clientmodels/api_player_metric_record.go) |
 | `api.ProposedProposal` | [ApiProposedProposal ](../../match2-sdk/pkg/match2clientmodels/api_proposed_proposal.go) |
@@ -101,6 +110,7 @@
 | `api.TicketMetricResultRecord` | [ApiTicketMetricResultRecord ](../../match2-sdk/pkg/match2clientmodels/api_ticket_metric_result_record.go) |
 | `api.backFillRejectRequest` | [ApiBackFillRejectRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_reject_request.go) |
 | `config.EnvironmentVariable` | [ConfigEnvironmentVariable ](../../match2-sdk/pkg/match2clientmodels/config_environment_variable.go) |
+| `configmodels.NamespaceConfig` | [ConfigmodelsNamespaceConfig ](../../match2-sdk/pkg/match2clientmodels/configmodels_namespace_config.go) |
 | `matchmaker.MatchTicketRecord` | [MatchmakerMatchTicketRecord ](../../match2-sdk/pkg/match2clientmodels/matchmaker_match_ticket_record.go) |
 | `matchmaker.Party` | [MatchmakerParty ](../../match2-sdk/pkg/match2clientmodels/matchmaker_party.go) |
 | `matchmaker.ProposedProposal` | [MatchmakerProposedProposal ](../../match2-sdk/pkg/match2clientmodels/matchmaker_proposed_proposal.go) |

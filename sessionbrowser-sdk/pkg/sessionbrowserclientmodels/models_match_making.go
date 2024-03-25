@@ -7,8 +7,6 @@
 package sessionbrowserclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -53,8 +51,7 @@ type ModelsMatchMaking struct {
 	MatchID string `json:"match_id"`
 
 	// matching_allies
-	// Required: true
-	MatchingAllies []*ModelsMatchingAlly `json:"matching_allies"`
+	MatchingAllies []*ModelsMatchingAlly `json:"matching_allies,omitempty"`
 
 	// namespace
 	// Required: true
@@ -85,8 +82,7 @@ type ModelsMatchMaking struct {
 	Status string `json:"status"`
 
 	// sub_game_mode
-	// Required: true
-	SubGameMode []string `json:"sub_game_mode"`
+	SubGameMode []string `json:"sub_game_mode,omitempty"`
 }
 
 // Validate validates this Models match making
@@ -114,9 +110,6 @@ func (m *ModelsMatchMaking) Validate(formats strfmt.Registry) error {
 	if err := m.validateMatchID(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateMatchingAllies(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -130,9 +123,6 @@ func (m *ModelsMatchMaking) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSubGameMode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -209,31 +199,6 @@ func (m *ModelsMatchMaking) validateMatchID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsMatchMaking) validateMatchingAllies(formats strfmt.Registry) error {
-
-	if err := validate.Required("matching_allies", "body", m.MatchingAllies); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.MatchingAllies); i++ {
-		if swag.IsZero(m.MatchingAllies[i]) { // not required
-			continue
-		}
-
-		if m.MatchingAllies[i] != nil {
-			if err := m.MatchingAllies[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("matching_allies" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *ModelsMatchMaking) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
@@ -273,15 +238,6 @@ func (m *ModelsMatchMaking) validateServerName(formats strfmt.Registry) error {
 func (m *ModelsMatchMaking) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsMatchMaking) validateSubGameMode(formats strfmt.Registry) error {
-
-	if err := validate.Required("sub_game_mode", "body", m.SubGameMode); err != nil {
 		return err
 	}
 

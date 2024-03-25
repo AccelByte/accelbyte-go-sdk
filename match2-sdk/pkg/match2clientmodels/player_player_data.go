@@ -26,6 +26,10 @@ type PlayerPlayerData struct {
 	// Required: true
 	PartyID *string `json:"PartyID"`
 
+	// platformid
+	// Required: true
+	PlatformID *string `json:"PlatformID"`
+
 	// playerid
 	// Required: true
 	PlayerID *string `json:"PlayerID"`
@@ -36,6 +40,9 @@ func (m *PlayerPlayerData) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validatePartyID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePlatformID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePlayerID(formats); err != nil {
@@ -51,6 +58,15 @@ func (m *PlayerPlayerData) Validate(formats strfmt.Registry) error {
 func (m *PlayerPlayerData) validatePartyID(formats strfmt.Registry) error {
 
 	if err := validate.Required("PartyID", "body", m.PartyID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PlayerPlayerData) validatePlatformID(formats strfmt.Registry) error {
+
+	if err := validate.Required("PlatformID", "body", m.PlatformID); err != nil {
 		return err
 	}
 

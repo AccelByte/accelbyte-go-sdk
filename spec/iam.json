@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.12.0"
+    "version": "7.13.0"
   },
   "schemes": [
     "https"
@@ -7499,6 +7499,13 @@
             "schema": {
               "$ref": "#/definitions/clientmodel.PermissionSetDeleteGroupRequest"
             }
+          },
+          {
+            "description": "If target deleted group or module is selected by any client, by default it will failed. If this force flag is true, it will success",
+            "in": "query",
+            "name": "forceDelete",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -7593,6 +7600,13 @@
             "schema": {
               "$ref": "#/definitions/clientmodel.ListUpsertModulesRequest"
             }
+          },
+          {
+            "description": "If this update include some delete action and to be deleted group or module is selected by any client, by default it will failed. If this force flag is true, it will success",
+            "in": "query",
+            "name": "forceDelete",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -8720,6 +8734,78 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Updates multiple OAuth 2.0 clients.\nSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\n**Note for Multi Tenant Mode (Confidential Client):**\nOnly Super admin can set permission with resource \u0026amp; action.\nStudio admin \u0026amp; game admin need set permission with permission module.\n\naction code: 10302\n\n**Fields Description:**\n- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce\n- **namespace** : The namespace where the client lives. e.g sample-game\n- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\n- **audiences** : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\n- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\n- **clientPermissions** : Contains the client\u0026#39;s permissions\n- **deletable** : The flag to identify whether client is deletable (optional). e.g. true\n- **clientPlatform** : available client platform (optional). default value: \u0026#34;\u0026#34;.\n\t- Playstation\n\t- Xbox\n\t- Steam\n\t- Epic\n\t- IOS\n\t- GooglePlay\n\t- Nintendo\n\t- Oculus\t\t\t\n- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false\n- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)\n- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified\n- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified\n- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not",
+        "operationId": "AdminBulkUpdateClientsV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/clientmodel.ClientsUpdateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10365\u003c/td\u003e\u003ctd\u003eclient not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk Update Clients",
+        "tags": [
+          "Clients"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]"
             ]
           }
         ]
@@ -10807,6 +10893,84 @@
             ]
           }
         ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint support to bulk update users based on given data.\n------\nSupported fields:\n* skipLoginQueue\n\n",
+        "operationId": "AdminBulkUpdateUsersV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UsersUpdateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update Users",
+        "tags": [
+          "Users"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/iam/v3/admin/namespaces/{namespace}/users/bans": {
@@ -11370,6 +11534,12 @@
             "description": "Query, can be either email address or display name",
             "in": "query",
             "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "comma separated role ids",
+            "in": "query",
+            "name": "roleIds",
             "type": "string"
           },
           {
@@ -12397,6 +12567,85 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/distinctPlatforms": {
+      "get": {
+        "description": "This endpoint retrieves platform accounts linked to user.\nIt will query all linked platform accounts and result will be distinct \u0026amp; grouped, same platform we will pick oldest linked one.",
+        "operationId": "AdminListUserAllPlatformAccountsDistinctV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.DistinctPlatformResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get distinct platform accounts linked to the user",
+        "tags": [
+          "Users"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
             ]
           }
         ]
@@ -13574,6 +13823,86 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/all": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Unlink user\u0026#39;s account from third platform in all namespaces.\n\nThis API support to handling platform group use case:\ni.e. \n1. Steam group: steam, steamopenid\n2. PSN group: ps4, ps5, psnweb\n3. XBOX group: live, xblweb\n\t\nExample: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.",
+        "operationId": "AdminPlatformUnlinkAllV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Unlink user's account from specific platform",
+        "tags": [
+          "Users"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link": {
       "post": {
         "consumes": [
@@ -14610,6 +14939,66 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/platforms/{platformId}/availability": {
+      "get": {
+        "description": "This is the API to check specific 3rd party platform availability.\n\t\t\tsupported platform: \n\t\t\t- (psn) ps4web\n\t\t\t- (psn) ps4\n\t\t\t- (psn) ps5\n\t\t",
+        "operationId": "AdminCheckThirdPartyLoginPlatformAvailabilityV3",
+        "parameters": [
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Platform Availability Check Retrieved",
+            "schema": {
+              "$ref": "#/definitions/model.CheckAvailabilityResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10226\u003c/td\u003e\u003ctd\u003ethird party platform is not supported\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Check 3rd party platform availability",
+        "tags": [
+          "Third Party Credential"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:PLATFORM [READ]"
             ]
           }
         ]
@@ -17384,7 +17773,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Simultaneous login flow. \n\nThe primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform, \nlink their accounts, and provide support for platform sync with a valid 3rd platform access token.\n\n## Given a valid native ticket and empty simultaneous ticket, these cases will be failed\n- Native ticket\u0026#39;s account is not linked AGS account yet\n- Native ticket\u0026#39;s account is linked AGS account, but ASG account is not linked simultaneous platform yet\n- Native ticket\u0026#39;s account is linked AGS account, AGS account is linked simultaneous platform but there is no available simultaneous token.(only if this platform is expected to store the platform token)\n\n## Given a valid native ticket and empty simultaneous ticket, this case will be success\n- Native ticket\u0026#39;s account already linked AGS account, this AGS account already linked simultaneous platform. There is valid simultaneous token.(this is required only when this simultaneous is expected to cache platform token)\n\n## Given a valid native ticket token and valid simultaneous ticket, these cases will be failed\n#### Native ticket\u0026#39;s account is already linked with AGS account\n- Native linked AGS account is linked this simultaneous platform but is different with simultaneous ticket\u0026#39;s account\n- Native linked AGS account is not linked with simultaneous but has a linking history with simultaneous platform and it is different with simultaneous ticket\u0026#39;s account\n#### Native ticket\u0026#39;s account is not linked with AGS account and Simultaneous ticket\u0026#39;s account is already linked wth AGS account\n- Simultaneous linked AGS account is linked this native platform but is different with native ticket\u0026#39;s account\n- Simultaneous linked AGS account is not linked with native but has a linking history with native platform and it is different with native ticket\u0026#39;s account\n\n## Given a valid native ticket and valid simultaneous ticket, these cases will be success\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are both not linked to AGS account yet\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are already linked to same AGS account\n",
+        "description": "# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries\n\t\nSimultaneous login flow. \n\nThe primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform, \nlink their accounts, and provide support for platform sync with a valid 3rd platform access token.\n\n## Given a valid native ticket and empty simultaneous ticket, these cases will be failed\n- Native ticket\u0026#39;s account is not linked AGS account yet\n- Native ticket\u0026#39;s account is linked AGS account, but ASG account is not linked simultaneous platform yet\n- Native ticket\u0026#39;s account is linked AGS account, AGS account is linked simultaneous platform but there is no available simultaneous token.(only if this platform is expected to store the platform token)\n\n## Given a valid native ticket and empty simultaneous ticket, this case will be success\n- Native ticket\u0026#39;s account already linked AGS account, this AGS account already linked simultaneous platform. There is valid simultaneous token.(this is required only when this simultaneous is expected to cache platform token)\n\n## Given a valid native ticket token and valid simultaneous ticket, these cases will be failed\n#### Native ticket\u0026#39;s account is already linked with AGS account\n- Native linked AGS account is linked this simultaneous platform but is different with simultaneous ticket\u0026#39;s account\n- Native linked AGS account is not linked with simultaneous but has a linking history with simultaneous platform and it is different with simultaneous ticket\u0026#39;s account\n#### Native ticket\u0026#39;s account is not linked with AGS account and Simultaneous ticket\u0026#39;s account is already linked wth AGS account\n- Simultaneous linked AGS account is linked this native platform but is different with native ticket\u0026#39;s account\n- Simultaneous linked AGS account is not linked with native but has a linking history with native platform and it is different with native ticket\u0026#39;s account\n\n## Given a valid native ticket and valid simultaneous ticket, these cases will be success\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are both not linked to AGS account yet\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are already linked to same AGS account\n",
         "operationId": "SimultaneousLoginV3",
         "parameters": [
           {
@@ -17406,11 +17795,7 @@
             "type": "string"
           },
           {
-            "default": "pspc",
             "description": "Simultaneous platform",
-            "enum": [
-              "pspc"
-            ],
             "in": "formData",
             "name": "simultaneousPlatform",
             "type": "string"
@@ -26165,7 +26550,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Simultaneous login flow. \n\nThe primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform, \nlink their accounts, and provide support for platform sync with a valid 3rd platform access token.\n\n## Given a valid native ticket and empty simultaneous ticket, these cases will be failed\n- Native ticket\u0026#39;s account is not linked AGS account yet\n- Native ticket\u0026#39;s account is linked AGS account, but ASG account is not linked simultaneous platform yet\n- Native ticket\u0026#39;s account is linked AGS account, AGS account is linked simultaneous platform but there is no available simultaneous token.(only if this platform is expected to store the platform token)\n\n## Given a valid native ticket and empty simultaneous ticket, this case will be success\n- Native ticket\u0026#39;s account already linked AGS account, this AGS account already linked simultaneous platform. There is valid simultaneous token.(this is required only when this simultaneous is expected to cache platform token)\n\n## Given a valid native ticket token and valid simultaneous ticket, these cases will be failed\n#### Native ticket\u0026#39;s account is already linked with AGS account\n- Native linked AGS account is linked this simultaneous platform but is different with simultaneous ticket\u0026#39;s account\n- Native linked AGS account is not linked with simultaneous but has a linking history with simultaneous platform and it is different with simultaneous ticket\u0026#39;s account\n#### Native ticket\u0026#39;s account is not linked with AGS account and Simultaneous ticket\u0026#39;s account is already linked wth AGS account\n- Simultaneous linked AGS account is linked this native platform but is different with native ticket\u0026#39;s account\n- Simultaneous linked AGS account is not linked with native but has a linking history with native platform and it is different with native ticket\u0026#39;s account\n\n## Given a valid native ticket and valid simultaneous ticket, these cases will be success\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are both not linked to AGS account yet\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are already linked to same AGS account\n",
+        "description": "# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries\n\nSimultaneous login flow. \n\nThe primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform, \nlink their accounts, and provide support for platform sync with a valid 3rd platform access token.\n\n## Given a valid native ticket and empty simultaneous ticket, these cases will be failed\n- Native ticket\u0026#39;s account is not linked AGS account yet\n- Native ticket\u0026#39;s account is linked AGS account, but ASG account is not linked simultaneous platform yet\n- Native ticket\u0026#39;s account is linked AGS account, AGS account is linked simultaneous platform but there is no available simultaneous token.(only if this platform is expected to store the platform token)\n\n## Given a valid native ticket and empty simultaneous ticket, this case will be success\n- Native ticket\u0026#39;s account already linked AGS account, this AGS account already linked simultaneous platform. There is valid simultaneous token.(this is required only when this simultaneous is expected to cache platform token)\n\n## Given a valid native ticket token and valid simultaneous ticket, these cases will be failed\n#### Native ticket\u0026#39;s account is already linked with AGS account\n- Native linked AGS account is linked this simultaneous platform but is different with simultaneous ticket\u0026#39;s account\n- Native linked AGS account is not linked with simultaneous but has a linking history with simultaneous platform and it is different with simultaneous ticket\u0026#39;s account\n#### Native ticket\u0026#39;s account is not linked with AGS account and Simultaneous ticket\u0026#39;s account is already linked wth AGS account\n- Simultaneous linked AGS account is linked this native platform but is different with native ticket\u0026#39;s account\n- Simultaneous linked AGS account is not linked with native but has a linking history with native platform and it is different with native ticket\u0026#39;s account\n\n## Given a valid native ticket and valid simultaneous ticket, these cases will be success\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are both not linked to AGS account yet\n- Native ticket\u0026#39;s account \u0026amp; Simultaneous ticket\u0026#39;s account are already linked to same AGS account\n",
         "operationId": "SimultaneousLoginV4",
         "parameters": [
           {
@@ -26187,11 +26572,7 @@
             "type": "string"
           },
           {
-            "default": "pspc",
             "description": "Simultaneous platform",
-            "enum": [
-              "pspc"
-            ],
             "in": "formData",
             "name": "simultaneousPlatform",
             "type": "string"
@@ -29277,6 +29658,9 @@
         "linkedAt": {
           "type": "string"
         },
+        "platformGroup": {
+          "type": "string"
+        },
         "platformName": {
           "type": "string"
         },
@@ -29287,6 +29671,7 @@
       "required": [
         "details",
         "linkedAt",
+        "platformGroup",
         "platformName"
       ]
     },
@@ -30518,8 +30903,7 @@
       },
       "required": [
         "clientPlatform",
-        "description",
-        "skipLoginQueue"
+        "description"
       ]
     },
     "clientmodel.ClientV3Response": {
@@ -30630,6 +31014,24 @@
         "scopes",
         "skipLoginQueue",
         "twoFactorEnabled"
+      ]
+    },
+    "clientmodel.ClientsUpdateRequestV3": {
+      "properties": {
+        "clientIds": {
+          "description": "required and max count is 50",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clientUpdateRequest": {
+          "$ref": "#/definitions/clientmodel.ClientUpdateV3Request"
+        }
+      },
+      "required": [
+        "clientIds",
+        "clientUpdateRequest"
       ]
     },
     "clientmodel.ClientsV3Response": {
@@ -31073,6 +31475,24 @@
           "type": "array"
         }
       }
+    },
+    "model.CheckAvailabilityResponse": {
+      "properties": {
+        "Accessible": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "PlatformErrorMessage": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "Accessible",
+        "PlatformErrorMessage"
+      ]
     },
     "model.CheckValidUserIDRequestV4": {
       "properties": {
@@ -34133,6 +34553,17 @@
         "userId"
       ]
     },
+    "model.UserBulkUpdateRequestV3": {
+      "properties": {
+        "skipLoginQueue": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "skipLoginQueue"
+      ]
+    },
     "model.UserCreateRequest": {
       "properties": {
         "AuthType": {
@@ -35087,6 +35518,23 @@
         "data"
       ]
     },
+    "model.UsersUpdateRequestV3": {
+      "properties": {
+        "updateRequest": {
+          "$ref": "#/definitions/model.UserBulkUpdateRequestV3"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "updateRequest",
+        "userIds"
+      ]
+    },
     "model.ValidUserIDResponseV4": {
       "properties": {
         "exists": {
@@ -36009,11 +36457,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-08T11:10:19+00:00",
-    "gitHash": "f3ff653157c8563bd21a586b462eef9ab26036c9",
+    "buildDate": "2024-03-22T09:45:27+00:00",
+    "gitHash": "cbbed0136bcb2bf32c36324572311bcff39f9092",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.12.0",
-    "version-roles-seeding": "1.2.20"
+    "version": "7.13.0",
+    "version-roles-seeding": "1.2.21"
   }
 }

@@ -34,8 +34,10 @@ var AdminDeleteConfigPermissionsByGroupCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
+		forceDelete, _ := cmd.Flags().GetBool("forceDelete")
 		input := &clients_config_v3.AdminDeleteConfigPermissionsByGroupParams{
-			Body: body,
+			Body:        body,
+			ForceDelete: &forceDelete,
 		}
 		errNoContent := clientsConfigV3Service.AdminDeleteConfigPermissionsByGroupShort(input)
 		if errNoContent != nil {
@@ -53,4 +55,5 @@ var AdminDeleteConfigPermissionsByGroupCmd = &cobra.Command{
 func init() {
 	AdminDeleteConfigPermissionsByGroupCmd.Flags().String("body", "", "Body")
 	_ = AdminDeleteConfigPermissionsByGroupCmd.MarkFlagRequired("body")
+	AdminDeleteConfigPermissionsByGroupCmd.Flags().Bool("forceDelete", false, "Force delete")
 }

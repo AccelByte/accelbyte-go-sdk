@@ -8,6 +8,7 @@ package match2
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/match2/backfill"
+	"github.com/AccelByte/sample-apps/cmd/match2/config"
 	"github.com/AccelByte/sample-apps/cmd/match2/environmentVariables"
 	"github.com/AccelByte/sample-apps/cmd/match2/matchFunctions"
 	"github.com/AccelByte/sample-apps/cmd/match2/matchPools"
@@ -26,6 +27,9 @@ var Match2Cmd = &cobra.Command{
 func init() {
 	Match2Cmd.AddCommand(operations.GetHealthcheckInfoCmd)
 	Match2Cmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
+	Match2Cmd.AddCommand(config.AdminGetAllConfigV1Cmd)
+	Match2Cmd.AddCommand(config.AdminGetConfigV1Cmd)
+	Match2Cmd.AddCommand(config.AdminPatchConfigV1Cmd)
 	Match2Cmd.AddCommand(environmentVariables.EnvironmentVariableListCmd)
 	Match2Cmd.AddCommand(backfill.CreateBackfillCmd)
 	Match2Cmd.AddCommand(backfill.GetBackfillProposalCmd)

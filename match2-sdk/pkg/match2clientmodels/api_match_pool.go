@@ -32,6 +32,9 @@ type APIMatchPool struct {
 	// Format: int32
 	BackfillTicketExpirationSeconds *int32 `json:"backfill_ticket_expiration_seconds"`
 
+	// crossplay_disabled
+	CrossplayDisabled bool `json:"crossplay_disabled"`
+
 	// match_function
 	// Required: true
 	MatchFunction *string `json:"match_function"`
@@ -43,6 +46,9 @@ type APIMatchPool struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
+
+	// platfrom_group_enabled
+	PlatfromGroupEnabled bool `json:"platfrom_group_enabled"`
 
 	// rule_set
 	// Required: true

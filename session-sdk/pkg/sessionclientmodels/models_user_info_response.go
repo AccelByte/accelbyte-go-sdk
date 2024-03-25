@@ -21,11 +21,17 @@ type ModelsUserInfoResponse struct {
 	// Format: date-time
 	LastPlayedTime *strfmt.DateTime `json:"lastPlayedTime,omitempty"`
 
+	// matchpool
+	MatchPool string `json:"matchPool,omitempty"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
 	// platformname
 	PlatformName string `json:"platformName,omitempty"`
+
+	// sessiontemplate
+	SessionTemplate string `json:"sessionTemplate,omitempty"`
 
 	// userid
 	UserID string `json:"userID,omitempty"`

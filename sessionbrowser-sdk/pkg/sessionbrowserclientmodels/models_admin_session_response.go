@@ -28,8 +28,7 @@ type ModelsAdminSessionResponse struct {
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// game_session_setting
-	// Required: true
-	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting"`
+	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting,omitempty"`
 
 	// game_version
 	// Required: true
@@ -40,8 +39,7 @@ type ModelsAdminSessionResponse struct {
 	Joinable *bool `json:"joinable"`
 
 	// match
-	// Required: true
-	Match *ModelsMatchMaking `json:"match"`
+	Match *ModelsMatchMaking `json:"match,omitempty"`
 
 	// namespace
 	// Required: true
@@ -86,16 +84,10 @@ func (m *ModelsAdminSessionResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateGameSessionSetting(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateGameVersion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateJoinable(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateMatch(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
@@ -151,24 +143,6 @@ func (m *ModelsAdminSessionResponse) validateCreatedAt(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *ModelsAdminSessionResponse) validateGameSessionSetting(formats strfmt.Registry) error {
-
-	if err := validate.Required("game_session_setting", "body", m.GameSessionSetting); err != nil {
-		return err
-	}
-
-	if m.GameSessionSetting != nil {
-		if err := m.GameSessionSetting.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("game_session_setting")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ModelsAdminSessionResponse) validateGameVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("game_version", "body", m.GameVersion); err != nil {
@@ -182,24 +156,6 @@ func (m *ModelsAdminSessionResponse) validateJoinable(formats strfmt.Registry) e
 
 	if err := validate.Required("joinable", "body", m.Joinable); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsAdminSessionResponse) validateMatch(formats strfmt.Registry) error {
-
-	if err := validate.Required("match", "body", m.Match); err != nil {
-		return err
-	}
-
-	if m.Match != nil {
-		if err := m.Match.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("match")
-			}
-			return err
-		}
 	}
 
 	return nil

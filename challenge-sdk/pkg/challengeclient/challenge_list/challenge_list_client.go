@@ -41,9 +41,9 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use GetChallengesShort instead.
 
-GetChallenges
+GetChallenges list challenges
 
-  * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -100,9 +100,9 @@ func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.Cli
 }
 
 /*
-GetChallengesShort
+GetChallengesShort list challenges
 
-  * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, error) {
 	// TODO: Validate the params before sending
@@ -154,9 +154,9 @@ func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtim
 /*
 Deprecated: 2022-08-10 - Use PublicGetScheduledGoalsShort instead.
 
-PublicGetScheduledGoals
+PublicGetScheduledGoals list goals of a challenge
 
-  * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -213,9 +213,9 @@ func (a *Client) PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, 
 }
 
 /*
-PublicGetScheduledGoalsShort
+PublicGetScheduledGoalsShort list goals of a challenge
 
-  * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) PublicGetScheduledGoalsShort(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, error) {
 	// TODO: Validate the params before sending

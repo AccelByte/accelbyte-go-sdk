@@ -28,6 +28,10 @@ type ModelsGameSession struct {
 	// Required: true
 	GameMode *string `json:"GameMode"`
 
+	// isfull
+	// Required: true
+	IsFull *bool `json:"IsFull"`
+
 	// jointype
 	// Required: true
 	JoinType *string `json:"JoinType"`
@@ -94,6 +98,9 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	if err := m.validateGameMode(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateIsFull(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateJoinType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -158,6 +165,15 @@ func (m *ModelsGameSession) validateDSInformation(formats strfmt.Registry) error
 func (m *ModelsGameSession) validateGameMode(formats strfmt.Registry) error {
 
 	if err := validate.Required("GameMode", "body", m.GameMode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGameSession) validateIsFull(formats strfmt.Registry) error {
+
+	if err := validate.Required("IsFull", "body", m.IsFull); err != nil {
 		return err
 	}
 

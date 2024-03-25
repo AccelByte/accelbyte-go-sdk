@@ -662,6 +662,8 @@ func (a *Client) PlatformTokenGrantV4Short(params *PlatformTokenGrantV4Params, a
 Deprecated: 2022-08-10 - Use SimultaneousLoginV4Short instead.
 
 SimultaneousLoginV4 simultaneous login
+# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+
 Simultaneous login flow.
 
 The primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform,
@@ -749,6 +751,8 @@ func (a *Client) SimultaneousLoginV4(params *SimultaneousLoginV4Params, authInfo
 
 /*
 SimultaneousLoginV4Short simultaneous login
+# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+
 Simultaneous login flow.
 
 The primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform,

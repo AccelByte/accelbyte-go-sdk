@@ -28,6 +28,10 @@ type AccountcommonDistinctLinkedPlatformV3 struct {
 	// Required: true
 	LinkedAt *string `json:"linkedAt"`
 
+	// platformgroup
+	// Required: true
+	PlatformGroup *string `json:"platformGroup"`
+
 	// platformname
 	// Required: true
 	PlatformName *string `json:"platformName"`
@@ -44,6 +48,9 @@ func (m *AccountcommonDistinctLinkedPlatformV3) Validate(formats strfmt.Registry
 		res = append(res, err)
 	}
 	if err := m.validateLinkedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePlatformGroup(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePlatformName(formats); err != nil {
@@ -84,6 +91,15 @@ func (m *AccountcommonDistinctLinkedPlatformV3) validateDetails(formats strfmt.R
 func (m *AccountcommonDistinctLinkedPlatformV3) validateLinkedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("linkedAt", "body", m.LinkedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonDistinctLinkedPlatformV3) validatePlatformGroup(formats strfmt.Registry) error {
+
+	if err := validate.Required("platformGroup", "body", m.PlatformGroup); err != nil {
 		return err
 	}
 

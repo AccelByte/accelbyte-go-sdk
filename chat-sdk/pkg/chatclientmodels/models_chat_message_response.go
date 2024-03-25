@@ -31,14 +31,12 @@ type ModelsChatMessageResponse struct {
 	Message *string `json:"message"`
 
 	// readat
-	// Required: true
 	// Format: int64
-	ReadAt *int64 `json:"readAt"`
+	ReadAt int64 `json:"readAt,omitempty"`
 
 	// receivedat
-	// Required: true
 	// Format: int64
-	ReceivedAt *int64 `json:"receivedAt"`
+	ReceivedAt int64 `json:"receivedAt,omitempty"`
 
 	// topicid
 	// Required: true
@@ -56,12 +54,6 @@ func (m *ModelsChatMessageResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateMessage(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateReadAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateReceivedAt(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTopicID(formats); err != nil {
@@ -95,24 +87,6 @@ func (m *ModelsChatMessageResponse) validateID(formats strfmt.Registry) error {
 func (m *ModelsChatMessageResponse) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsChatMessageResponse) validateReadAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("readAt", "body", m.ReadAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsChatMessageResponse) validateReceivedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("receivedAt", "body", m.ReceivedAt); err != nil {
 		return err
 	}
 

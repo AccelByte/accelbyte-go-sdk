@@ -176,6 +176,8 @@ type ClientService interface {
 	GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, error)
 	AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, *AdminGetUserByEmailAddressV3BadRequest, *AdminGetUserByEmailAddressV3Unauthorized, *AdminGetUserByEmailAddressV3Forbidden, *AdminGetUserByEmailAddressV3NotFound, *AdminGetUserByEmailAddressV3InternalServerError, error)
 	AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, error)
+	AdminBulkUpdateUsersV3(params *AdminBulkUpdateUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUsersV3NoContent, *AdminBulkUpdateUsersV3BadRequest, *AdminBulkUpdateUsersV3Unauthorized, *AdminBulkUpdateUsersV3Forbidden, *AdminBulkUpdateUsersV3NotFound, *AdminBulkUpdateUsersV3InternalServerError, error)
+	AdminBulkUpdateUsersV3Short(params *AdminBulkUpdateUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUsersV3NoContent, error)
 	AdminGetBulkUserBanV3(params *AdminGetBulkUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserBanV3OK, *AdminGetBulkUserBanV3BadRequest, *AdminGetBulkUserBanV3Unauthorized, *AdminGetBulkUserBanV3Forbidden, *AdminGetBulkUserBanV3NotFound, *AdminGetBulkUserBanV3InternalServerError, error)
 	AdminGetBulkUserBanV3Short(params *AdminGetBulkUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserBanV3OK, error)
 	AdminListUserIDByUserIDsV3(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, *AdminListUserIDByUserIDsV3BadRequest, *AdminListUserIDByUserIDsV3Unauthorized, *AdminListUserIDByUserIDsV3Forbidden, *AdminListUserIDByUserIDsV3InternalServerError, error)
@@ -212,6 +214,8 @@ type ClientService interface {
 	AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, error)
 	AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, *AdminUpdateUserDeletionStatusV3BadRequest, *AdminUpdateUserDeletionStatusV3Unauthorized, *AdminUpdateUserDeletionStatusV3Forbidden, *AdminUpdateUserDeletionStatusV3NotFound, *AdminUpdateUserDeletionStatusV3InternalServerError, error)
 	AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, error)
+	AdminListUserAllPlatformAccountsDistinctV3(params *AdminListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAllPlatformAccountsDistinctV3OK, *AdminListUserAllPlatformAccountsDistinctV3BadRequest, *AdminListUserAllPlatformAccountsDistinctV3Unauthorized, *AdminListUserAllPlatformAccountsDistinctV3Forbidden, *AdminListUserAllPlatformAccountsDistinctV3NotFound, *AdminListUserAllPlatformAccountsDistinctV3InternalServerError, error)
+	AdminListUserAllPlatformAccountsDistinctV3Short(params *AdminListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAllPlatformAccountsDistinctV3OK, error)
 	AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, *AdminUpgradeHeadlessAccountV3BadRequest, *AdminUpgradeHeadlessAccountV3Unauthorized, *AdminUpgradeHeadlessAccountV3Forbidden, *AdminUpgradeHeadlessAccountV3NotFound, *AdminUpgradeHeadlessAccountV3Conflict, *AdminUpgradeHeadlessAccountV3InternalServerError, error)
 	AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, error)
 	AdminDeleteUserInformationV3(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, *AdminDeleteUserInformationV3Unauthorized, *AdminDeleteUserInformationV3Forbidden, *AdminDeleteUserInformationV3NotFound, error)
@@ -240,6 +244,8 @@ type ClientService interface {
 	AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error)
 	AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, *AdminPlatformUnlinkV3BadRequest, *AdminPlatformUnlinkV3Unauthorized, *AdminPlatformUnlinkV3Forbidden, *AdminPlatformUnlinkV3NotFound, *AdminPlatformUnlinkV3InternalServerError, error)
 	AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error)
+	AdminPlatformUnlinkAllV3(params *AdminPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkAllV3NoContent, *AdminPlatformUnlinkAllV3BadRequest, *AdminPlatformUnlinkAllV3Unauthorized, *AdminPlatformUnlinkAllV3NotFound, *AdminPlatformUnlinkAllV3InternalServerError, error)
+	AdminPlatformUnlinkAllV3Short(params *AdminPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkAllV3NoContent, error)
 	AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error)
 	AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error)
 	AdminDeleteUserLinkingHistoryByPlatformIDV3(params *AdminDeleteUserLinkingHistoryByPlatformIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent, *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest, *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized, *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden, *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound, *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError, error)
@@ -9685,6 +9691,133 @@ func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAd
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminBulkUpdateUsersV3Short instead.
+
+AdminBulkUpdateUsersV3 update users
+This endpoint support to bulk update users based on given data.
+------
+Supported fields:
+* skipLoginQueue
+*/
+func (a *Client) AdminBulkUpdateUsersV3(params *AdminBulkUpdateUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUsersV3NoContent, *AdminBulkUpdateUsersV3BadRequest, *AdminBulkUpdateUsersV3Unauthorized, *AdminBulkUpdateUsersV3Forbidden, *AdminBulkUpdateUsersV3NotFound, *AdminBulkUpdateUsersV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUpdateUsersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUpdateUsersV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUpdateUsersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUpdateUsersV3NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminBulkUpdateUsersV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminBulkUpdateUsersV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminBulkUpdateUsersV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminBulkUpdateUsersV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminBulkUpdateUsersV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkUpdateUsersV3Short update users
+This endpoint support to bulk update users based on given data.
+------
+Supported fields:
+* skipLoginQueue
+*/
+func (a *Client) AdminBulkUpdateUsersV3Short(params *AdminBulkUpdateUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateUsersV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUpdateUsersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUpdateUsersV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUpdateUsersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUpdateUsersV3NoContent:
+		return v, nil
+	case *AdminBulkUpdateUsersV3BadRequest:
+		return nil, v
+	case *AdminBulkUpdateUsersV3Unauthorized:
+		return nil, v
+	case *AdminBulkUpdateUsersV3Forbidden:
+		return nil, v
+	case *AdminBulkUpdateUsersV3NotFound:
+		return nil, v
+	case *AdminBulkUpdateUsersV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminGetBulkUserBanV3Short instead.
 
 AdminGetBulkUserBanV3 get bulk user bans
@@ -11968,6 +12101,129 @@ func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDel
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminListUserAllPlatformAccountsDistinctV3Short instead.
+
+AdminListUserAllPlatformAccountsDistinctV3 admin get distinct platform accounts linked to the user
+This endpoint retrieves platform accounts linked to user.
+It will query all linked platform accounts and result will be distinct & grouped, same platform we will pick oldest linked one.
+*/
+func (a *Client) AdminListUserAllPlatformAccountsDistinctV3(params *AdminListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAllPlatformAccountsDistinctV3OK, *AdminListUserAllPlatformAccountsDistinctV3BadRequest, *AdminListUserAllPlatformAccountsDistinctV3Unauthorized, *AdminListUserAllPlatformAccountsDistinctV3Forbidden, *AdminListUserAllPlatformAccountsDistinctV3NotFound, *AdminListUserAllPlatformAccountsDistinctV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserAllPlatformAccountsDistinctV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserAllPlatformAccountsDistinctV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/distinctPlatforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserAllPlatformAccountsDistinctV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserAllPlatformAccountsDistinctV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminListUserAllPlatformAccountsDistinctV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminListUserAllPlatformAccountsDistinctV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminListUserAllPlatformAccountsDistinctV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminListUserAllPlatformAccountsDistinctV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminListUserAllPlatformAccountsDistinctV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminListUserAllPlatformAccountsDistinctV3Short admin get distinct platform accounts linked to the user
+This endpoint retrieves platform accounts linked to user.
+It will query all linked platform accounts and result will be distinct & grouped, same platform we will pick oldest linked one.
+*/
+func (a *Client) AdminListUserAllPlatformAccountsDistinctV3Short(params *AdminListUserAllPlatformAccountsDistinctV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAllPlatformAccountsDistinctV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserAllPlatformAccountsDistinctV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserAllPlatformAccountsDistinctV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/distinctPlatforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserAllPlatformAccountsDistinctV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserAllPlatformAccountsDistinctV3OK:
+		return v, nil
+	case *AdminListUserAllPlatformAccountsDistinctV3BadRequest:
+		return nil, v
+	case *AdminListUserAllPlatformAccountsDistinctV3Unauthorized:
+		return nil, v
+	case *AdminListUserAllPlatformAccountsDistinctV3Forbidden:
+		return nil, v
+	case *AdminListUserAllPlatformAccountsDistinctV3NotFound:
+		return nil, v
+	case *AdminListUserAllPlatformAccountsDistinctV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpgradeHeadlessAccountV3Short instead.
 
 AdminUpgradeHeadlessAccountV3 verify or consume verification code.
@@ -13794,6 +14050,138 @@ func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params,
 	case *AdminPlatformUnlinkV3NotFound:
 		return nil, v
 	case *AdminPlatformUnlinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminPlatformUnlinkAllV3Short instead.
+
+AdminPlatformUnlinkAllV3 unlink user's account from specific platform
+Unlink user's account from third platform in all namespaces.
+
+This API support to handling platform group use case:
+i.e.
+1. Steam group: steam, steamopenid
+2. PSN group: ps4, ps5, psnweb
+3. XBOX group: live, xblweb
+
+Example: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.
+*/
+func (a *Client) AdminPlatformUnlinkAllV3(params *AdminPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkAllV3NoContent, *AdminPlatformUnlinkAllV3BadRequest, *AdminPlatformUnlinkAllV3Unauthorized, *AdminPlatformUnlinkAllV3NotFound, *AdminPlatformUnlinkAllV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPlatformUnlinkAllV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPlatformUnlinkAllV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPlatformUnlinkAllV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPlatformUnlinkAllV3NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPlatformUnlinkAllV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminPlatformUnlinkAllV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPlatformUnlinkAllV3NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminPlatformUnlinkAllV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminPlatformUnlinkAllV3Short unlink user's account from specific platform
+Unlink user's account from third platform in all namespaces.
+
+This API support to handling platform group use case:
+i.e.
+1. Steam group: steam, steamopenid
+2. PSN group: ps4, ps5, psnweb
+3. XBOX group: live, xblweb
+
+Example: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.
+*/
+func (a *Client) AdminPlatformUnlinkAllV3Short(params *AdminPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkAllV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPlatformUnlinkAllV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPlatformUnlinkAllV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPlatformUnlinkAllV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPlatformUnlinkAllV3NoContent:
+		return v, nil
+	case *AdminPlatformUnlinkAllV3BadRequest:
+		return nil, v
+	case *AdminPlatformUnlinkAllV3Unauthorized:
+		return nil, v
+	case *AdminPlatformUnlinkAllV3NotFound:
+		return nil, v
+	case *AdminPlatformUnlinkAllV3InternalServerError:
 		return nil, v
 
 	default:

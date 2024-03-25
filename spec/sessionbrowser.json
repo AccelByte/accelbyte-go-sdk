@@ -1677,8 +1677,7 @@
         }
       },
       "required": [
-        "pagination",
-        "sessions"
+        "pagination"
       ]
     },
     "models.AddPlayerRequest": {
@@ -1767,10 +1766,8 @@
       "required": [
         "all_players",
         "created_at",
-        "game_session_setting",
         "game_version",
         "joinable",
-        "match",
         "namespace",
         "players",
         "server",
@@ -1874,16 +1871,11 @@
         }
       },
       "required": [
-        "all_players",
         "created_at",
-        "game_session_setting",
         "joinable",
         "namespace",
-        "players",
-        "server",
         "session_id",
-        "session_type",
-        "spectators"
+        "session_type"
       ]
     },
     "models.GameSession": {
@@ -1944,18 +1936,13 @@
         }
       },
       "required": [
-        "all_players",
         "created_at",
-        "game_session_setting",
         "game_version",
         "joinable",
-        "match",
         "namespace",
-        "players",
         "server",
         "session_id",
         "session_type",
-        "spectators",
         "user_id",
         "username"
       ]
@@ -2008,8 +1995,7 @@
         "max_player",
         "mode",
         "num_bot",
-        "password",
-        "settings"
+        "password"
       ]
     },
     "models.GetSessionHistoryDetailedResponseItem": {
@@ -2110,11 +2096,8 @@
         "event_name",
         "game_mode",
         "joinable",
-        "joining",
         "match_id",
-        "matching_allies",
         "namespace",
-        "players",
         "region",
         "removed_reason",
         "server_name",
@@ -2188,14 +2171,11 @@
         "created_at",
         "game_mode",
         "joinable",
-        "joining",
         "match_id",
         "namespace",
-        "players",
         "removed_reason",
         "session_type",
         "status",
-        "sub_game_mode",
         "user_id"
       ]
     },
@@ -2321,14 +2301,12 @@
         "event",
         "game_mode",
         "match_id",
-        "matching_allies",
         "namespace",
         "party_attributes",
         "queued_at",
         "region",
         "server_name",
-        "status",
-        "sub_game_mode"
+        "status"
       ]
     },
     "models.MatchingAlly": {
@@ -2339,10 +2317,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "matching_parties"
-      ]
+      }
     },
     "models.MatchingParty": {
       "properties": {
@@ -2364,10 +2339,7 @@
         }
       },
       "required": [
-        "match_attributes",
-        "party_attributes",
-        "party_id",
-        "party_members"
+        "party_id"
       ]
     },
     "models.Pagination": {
@@ -2417,7 +2389,6 @@
         }
       },
       "required": [
-        "extra_attributes",
         "user_id"
       ]
     },
@@ -2554,7 +2525,6 @@
       },
       "required": [
         "allocation_id",
-        "alternate_ips",
         "cpu_limit",
         "cpu_request",
         "deployment",
@@ -2569,12 +2539,10 @@
         "params",
         "pod_name",
         "port",
-        "ports",
         "provider",
         "region",
         "session_id",
-        "status",
-        "status_history"
+        "status"
       ]
     },
     "models.SessionByUserIDsResponse": {

@@ -68,8 +68,7 @@ type ClientmodelClientUpdateV3Request struct {
 	Scopes []string `json:"scopes,omitempty"`
 
 	// exempt this client from login queue
-	// Required: true
-	SkipLoginQueue *bool `json:"skipLoginQueue"`
+	SkipLoginQueue bool `json:"skipLoginQueue"`
 
 	// twofactorenabled
 	TwoFactorEnabled bool `json:"twoFactorEnabled"`
@@ -83,9 +82,6 @@ func (m *ClientmodelClientUpdateV3Request) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSkipLoginQueue(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -107,15 +103,6 @@ func (m *ClientmodelClientUpdateV3Request) validateClientPlatform(formats strfmt
 func (m *ClientmodelClientUpdateV3Request) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ClientmodelClientUpdateV3Request) validateSkipLoginQueue(formats strfmt.Registry) error {
-
-	if err := validate.Required("skipLoginQueue", "body", m.SkipLoginQueue); err != nil {
 		return err
 	}
 

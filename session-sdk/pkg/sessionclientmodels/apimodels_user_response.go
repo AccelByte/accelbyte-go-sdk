@@ -30,6 +30,10 @@ type ApimodelsUserResponse struct {
 	// Required: true
 	PlatformUserID *string `json:"platformUserID"`
 
+	// previousstatus
+	// Required: true
+	PreviousStatus *string `json:"previousStatus"`
+
 	// status
 	// Required: true
 	Status *string `json:"status"`
@@ -54,6 +58,9 @@ func (m *ApimodelsUserResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePlatformUserID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePreviousStatus(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
@@ -93,6 +100,15 @@ func (m *ApimodelsUserResponse) validatePlatformID(formats strfmt.Registry) erro
 func (m *ApimodelsUserResponse) validatePlatformUserID(formats strfmt.Registry) error {
 
 	if err := validate.Required("platformUserID", "body", m.PlatformUserID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsUserResponse) validatePreviousStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("previousStatus", "body", m.PreviousStatus); err != nil {
 		return err
 	}
 

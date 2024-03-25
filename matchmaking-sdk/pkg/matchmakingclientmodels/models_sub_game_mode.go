@@ -7,8 +7,6 @@
 package matchmakingclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -25,8 +23,7 @@ type ModelsSubGameMode struct {
 	Alliance *ModelsAllianceRule `json:"alliance"`
 
 	// alliance_flexing_rule
-	// Required: true
-	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule"`
+	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule,omitempty"`
 
 	// name
 	// Required: true
@@ -38,9 +35,6 @@ func (m *ModelsSubGameMode) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAlliance(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateAllianceFlexingRule(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -66,31 +60,6 @@ func (m *ModelsSubGameMode) validateAlliance(formats strfmt.Registry) error {
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *ModelsSubGameMode) validateAllianceFlexingRule(formats strfmt.Registry) error {
-
-	if err := validate.Required("alliance_flexing_rule", "body", m.AllianceFlexingRule); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AllianceFlexingRule); i++ {
-		if swag.IsZero(m.AllianceFlexingRule[i]) { // not required
-			continue
-		}
-
-		if m.AllianceFlexingRule[i] != nil {
-			if err := m.AllianceFlexingRule[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("alliance_flexing_rule" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

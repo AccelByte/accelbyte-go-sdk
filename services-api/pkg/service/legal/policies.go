@@ -86,6 +86,16 @@ func (aaa *PoliciesService) SetDefaultPolicy2(input *policies.SetDefaultPolicy2P
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use RetrieveCountryListWithPoliciesShort instead.
+func (aaa *PoliciesService) RetrieveCountryListWithPolicies(input *policies.RetrieveCountryListWithPoliciesParams) ([]string, error) {
+	ok, err := aaa.Client.Policies.RetrieveCountryListWithPolicies(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveLatestPoliciesShort instead.
 func (aaa *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := aaa.Client.Policies.RetrieveLatestPolicies(input)
@@ -211,6 +221,29 @@ func (aaa *PoliciesService) SetDefaultPolicy2Short(input *policies.SetDefaultPol
 	}
 
 	return nil
+}
+
+func (aaa *PoliciesService) RetrieveCountryListWithPoliciesShort(input *policies.RetrieveCountryListWithPoliciesParams) ([]string, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPolicies != nil {
+		input.XFlightId = tempFlightIdPolicies
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Policies.RetrieveCountryListWithPoliciesShort(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {

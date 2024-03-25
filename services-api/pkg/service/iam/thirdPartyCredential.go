@@ -255,6 +255,29 @@ func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3(in
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminCheckThirdPartyLoginPlatformAvailabilityV3Short instead.
+func (aaa *ThirdPartyCredentialService) AdminCheckThirdPartyLoginPlatformAvailabilityV3(input *third_party_credential.AdminCheckThirdPartyLoginPlatformAvailabilityV3Params) (*iamclientmodels.ModelCheckAvailabilityResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, err := aaa.Client.ThirdPartyCredential.AdminCheckThirdPartyLoginPlatformAvailabilityV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead.
 func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -539,6 +562,36 @@ func (aaa *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Sho
 	}
 
 	return nil
+}
+
+func (aaa *ThirdPartyCredentialService) AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(input *third_party_credential.AdminCheckThirdPartyLoginPlatformAvailabilityV3Params) (*iamclientmodels.ModelCheckAvailabilityResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdThirdPartyCredential != nil {
+		input.XFlightId = tempFlightIdThirdPartyCredential
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.ThirdPartyCredential.AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {

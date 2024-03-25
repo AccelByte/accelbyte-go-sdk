@@ -19,8 +19,7 @@ import (
 type ModelsPartyMember struct {
 
 	// extra_attributes
-	// Required: true
-	ExtraAttributes interface{} `json:"extra_attributes"`
+	ExtraAttributes interface{} `json:"extra_attributes,omitempty"`
 
 	// user_id
 	// Required: true

@@ -49,7 +49,8 @@ Deprecated: 2022-08-10 - Use AdminReadSessionStorageShort instead.
 
 AdminReadSessionStorage read session storage.
 
-Read Session Storage.
+Read Session Storage by sessionID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminReadSessionStorage(params *AdminReadSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadSessionStorageOK, *AdminReadSessionStorageBadRequest, *AdminReadSessionStorageUnauthorized, *AdminReadSessionStorageNotFound, *AdminReadSessionStorageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,7 +112,8 @@ func (a *Client) AdminReadSessionStorage(params *AdminReadSessionStorageParams, 
 /*
 AdminReadSessionStorageShort read session storage.
 
-Read Session Storage.
+Read Session Storage by sessionID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminReadSessionStorageShort(params *AdminReadSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadSessionStorageOK, error) {
 	// TODO: Validate the params before sending
@@ -167,7 +169,8 @@ Deprecated: 2022-08-10 - Use AdminDeleteUserSessionStorageShort instead.
 
 AdminDeleteUserSessionStorage delete session storage.
 
-Delete Session Storage.
+Delete Session Storage By sessionID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminDeleteUserSessionStorage(params *AdminDeleteUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserSessionStorageNoContent, *AdminDeleteUserSessionStorageBadRequest, *AdminDeleteUserSessionStorageUnauthorized, *AdminDeleteUserSessionStorageNotFound, *AdminDeleteUserSessionStorageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -229,7 +232,8 @@ func (a *Client) AdminDeleteUserSessionStorage(params *AdminDeleteUserSessionSto
 /*
 AdminDeleteUserSessionStorageShort delete session storage.
 
-Delete Session Storage.
+Delete Session Storage By sessionID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminDeleteUserSessionStorageShort(params *AdminDeleteUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserSessionStorageNoContent, error) {
 	// TODO: Validate the params before sending
@@ -285,7 +289,8 @@ Deprecated: 2022-08-10 - Use AdminReadUserSessionStorageShort instead.
 
 AdminReadUserSessionStorage read session storage user.
 
-Read Session Storage User.
+Read Session Storage by sessionID and userID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminReadUserSessionStorage(params *AdminReadUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadUserSessionStorageOK, *AdminReadUserSessionStorageBadRequest, *AdminReadUserSessionStorageUnauthorized, *AdminReadUserSessionStorageNotFound, *AdminReadUserSessionStorageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -347,7 +352,8 @@ func (a *Client) AdminReadUserSessionStorage(params *AdminReadUserSessionStorage
 /*
 AdminReadUserSessionStorageShort read session storage user.
 
-Read Session Storage User.
+Read Session Storage by sessionID and userID
+Session Storage feature only available for Gamesession
 */
 func (a *Client) AdminReadUserSessionStorageShort(params *AdminReadUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadUserSessionStorageOK, error) {
 	// TODO: Validate the params before sending
@@ -412,6 +418,8 @@ example json can store :
 },
 "data": 123
 }
+game Admin can update or insert session storage
+Session Storage feature only available for Gamesession
 */
 func (a *Client) PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, *PublicUpdateInsertSessionStorageLeaderBadRequest, *PublicUpdateInsertSessionStorageLeaderUnauthorized, *PublicUpdateInsertSessionStorageLeaderForbidden, *PublicUpdateInsertSessionStorageLeaderNotFound, *PublicUpdateInsertSessionStorageLeaderInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -485,6 +493,8 @@ example json can store :
 },
 "data": 123
 }
+game Admin can update or insert session storage
+Session Storage feature only available for Gamesession
 */
 func (a *Client) PublicUpdateInsertSessionStorageLeaderShort(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, error) {
 	// TODO: Validate the params before sending
@@ -551,6 +561,8 @@ example json can store :
 },
 "data": 123
 }
+game Admin can update or insert session storage
+Session Storage feature only available for Gamesession
 */
 func (a *Client) PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, *PublicUpdateInsertSessionStorageBadRequest, *PublicUpdateInsertSessionStorageUnauthorized, *PublicUpdateInsertSessionStorageForbidden, *PublicUpdateInsertSessionStorageNotFound, *PublicUpdateInsertSessionStorageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -624,6 +636,8 @@ example json can store :
 },
 "data": 123
 }
+game Admin can update or insert session storage
+Session Storage feature only available for Gamesession
 */
 func (a *Client) PublicUpdateInsertSessionStorageShort(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, error) {
 	// TODO: Validate the params before sending

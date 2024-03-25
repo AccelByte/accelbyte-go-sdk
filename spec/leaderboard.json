@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.28.0"
+    "version": "2.29.0"
   },
   "schemes": [
     "https"
@@ -21,7 +21,9 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {},
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]": "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]"
+      },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -835,7 +837,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/hard": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;[Test Facility Only]\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will delete leaderboard configuration and its data\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: this endpoint only works on development environment, you might want to use \u0026lt;b\u0026gt;archive endpoint\u0026lt;/b\u0026gt; instead hard delete.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;[Test Facility Only]\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will delete leaderboard configuration and its data\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: this endpoint only works on development environment, you might want to use \u0026lt;b\u0026gt;archive endpoint\u0026lt;/b\u0026gt; instead hard delete.\u0026lt;/p\u0026gt;",
         "operationId": "hardDeleteLeaderboardAdminV1",
         "parameters": [
           {
@@ -873,7 +875,7 @@
             }
           },
           "403": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -893,6 +895,9 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]"
+            ],
             "authorization": []
           }
         ],
@@ -908,7 +913,7 @@
           },
           {
             "userPermissions": [
-              "ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]"
+              "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]"
             ]
           }
         ]
@@ -3985,7 +3990,7 @@
     },
     "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/hard": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;[Test Facility Only]\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will delete leaderboard configuration and its data\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: this endpoint only works on development environment, you might want to use \u0026lt;b\u0026gt;archive endpoint\u0026lt;/b\u0026gt; instead hard delete.\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;[Test Facility Only]\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will delete leaderboard configuration and its data\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note: this endpoint only works on development environment, you might want to use \u0026lt;b\u0026gt;archive endpoint\u0026lt;/b\u0026gt; instead hard delete.\u0026lt;/p\u0026gt;",
         "operationId": "hardDeleteLeaderboardAdminV3",
         "parameters": [
           {
@@ -4023,7 +4028,7 @@
             }
           },
           "403": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e71241\u003c/td\u003e\u003ctd\u003eforbidden environment\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -4043,6 +4048,9 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]"
+            ],
             "authorization": []
           }
         ],
@@ -6391,11 +6399,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-08T08:04:35+00:00",
-    "gitHash": "9f7041f02316735df93142fca9cfd386adeb5c23",
+    "buildDate": "2024-03-22T03:22:44+00:00",
+    "gitHash": "6bbfca1a08dce83b99f8e57afac67f0ed746de13",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.28.0",
-    "version-roles-seeding": "1.0.4"
+    "version": "2.29.0",
+    "version-roles-seeding": "1.2.19"
   }
 }

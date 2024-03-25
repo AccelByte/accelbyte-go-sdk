@@ -20,6 +20,10 @@ import (
 // swagger:model Api fleet list item response.
 type APIFleetListItemResponse struct {
 
+	// active
+	// Required: true
+	Active *bool `json:"active"`
+
 	// counts
 	// Required: true
 	Counts []*APIFleetRegionalServerCounts `json:"counts"`
@@ -49,6 +53,9 @@ type APIFleetListItemResponse struct {
 func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateActive(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateCounts(formats); err != nil {
 		res = append(res, err)
 	}
@@ -71,6 +78,15 @@ func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIFleetListItemResponse) validateActive(formats strfmt.Registry) error {
+
+	if err := validate.Required("active", "body", m.Active); err != nil {
+		return err
+	}
+
 	return nil
 }
 

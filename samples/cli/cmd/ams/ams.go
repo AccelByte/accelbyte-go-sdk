@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/ams/amsQoS"
 	"github.com/AccelByte/sample-apps/cmd/ams/artifacts"
 	"github.com/AccelByte/sample-apps/cmd/ams/auth"
+	"github.com/AccelByte/sample-apps/cmd/ams/development"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleetCommander"
 	"github.com/AccelByte/sample-apps/cmd/ams/fleets"
 	"github.com/AccelByte/sample-apps/cmd/ams/images"
@@ -37,6 +38,10 @@ func init() {
 	AmsCmd.AddCommand(artifacts.ArtifactUsageGetCmd)
 	AmsCmd.AddCommand(artifacts.ArtifactDeleteCmd)
 	AmsCmd.AddCommand(artifacts.ArtifactGetURLCmd)
+	AmsCmd.AddCommand(development.DevelopmentServerConfigurationListCmd)
+	AmsCmd.AddCommand(development.DevelopmentServerConfigurationCreateCmd)
+	AmsCmd.AddCommand(development.DevelopmentServerConfigurationGetCmd)
+	AmsCmd.AddCommand(development.DevelopmentServerConfigurationDeleteCmd)
 	AmsCmd.AddCommand(fleets.FleetListCmd)
 	AmsCmd.AddCommand(fleets.FleetCreateCmd)
 	AmsCmd.AddCommand(fleets.FleetGetCmd)

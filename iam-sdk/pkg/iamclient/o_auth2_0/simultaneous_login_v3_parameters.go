@@ -20,11 +20,6 @@ import (
 
 // Get the enum in SimultaneousLoginV3Params
 const (
-	SimultaneousLoginV3PspcConstant = "pspc"
-)
-
-// Get the enum in SimultaneousLoginV3Params
-const (
 	SimultaneousLoginV3EpicgamesConstant = "epicgames"
 	SimultaneousLoginV3SteamConstant     = "steam"
 )
@@ -32,11 +27,8 @@ const (
 // NewSimultaneousLoginV3Params creates a new SimultaneousLoginV3Params object
 // with the default values initialized.
 func NewSimultaneousLoginV3Params() *SimultaneousLoginV3Params {
-	var (
-		simultaneousPlatformDefault = string("pspc")
-	)
+	var ()
 	return &SimultaneousLoginV3Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -45,11 +37,8 @@ func NewSimultaneousLoginV3Params() *SimultaneousLoginV3Params {
 // NewSimultaneousLoginV3ParamsWithTimeout creates a new SimultaneousLoginV3Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSimultaneousLoginV3ParamsWithTimeout(timeout time.Duration) *SimultaneousLoginV3Params {
-	var (
-		simultaneousPlatformDefault = string("pspc")
-	)
+	var ()
 	return &SimultaneousLoginV3Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
 
 		timeout: timeout,
 	}
@@ -58,11 +47,8 @@ func NewSimultaneousLoginV3ParamsWithTimeout(timeout time.Duration) *Simultaneou
 // NewSimultaneousLoginV3ParamsWithContext creates a new SimultaneousLoginV3Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewSimultaneousLoginV3ParamsWithContext(ctx context.Context) *SimultaneousLoginV3Params {
-	var (
-		simultaneousPlatformDefault = string("pspc")
-	)
+	var ()
 	return &SimultaneousLoginV3Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
 
 		Context: ctx,
 	}
@@ -71,12 +57,9 @@ func NewSimultaneousLoginV3ParamsWithContext(ctx context.Context) *SimultaneousL
 // NewSimultaneousLoginV3ParamsWithHTTPClient creates a new SimultaneousLoginV3Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSimultaneousLoginV3ParamsWithHTTPClient(client *http.Client) *SimultaneousLoginV3Params {
-	var (
-		simultaneousPlatformDefault = string("pspc")
-	)
+	var ()
 	return &SimultaneousLoginV3Params{
-		SimultaneousPlatform: &simultaneousPlatformDefault,
-		HTTPClient:           client,
+		HTTPClient: client,
 	}
 }
 

@@ -43,9 +43,9 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetUserRewardsShort instead.
 
-AdminGetUserRewards
+AdminGetUserRewards list user's rewards
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) AdminGetUserRewards(params *AdminGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserRewardsOK, *AdminGetUserRewardsUnauthorized, *AdminGetUserRewardsForbidden, *AdminGetUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -102,9 +102,9 @@ func (a *Client) AdminGetUserRewards(params *AdminGetUserRewardsParams, authInfo
 }
 
 /*
-AdminGetUserRewardsShort
+AdminGetUserRewardsShort list user's rewards
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) AdminGetUserRewardsShort(params *AdminGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -156,7 +156,9 @@ func (a *Client) AdminGetUserRewardsShort(params *AdminGetUserRewardsParams, aut
 /*
 Deprecated: 2022-08-10 - Use PublicGetUserRewardsShort instead.
 
-PublicGetUserRewards
+PublicGetUserRewards list user's rewards
+
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, *PublicGetUserRewardsUnauthorized, *PublicGetUserRewardsForbidden, *PublicGetUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -213,7 +215,9 @@ func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authIn
 }
 
 /*
-PublicGetUserRewardsShort
+PublicGetUserRewardsShort list user's rewards
+
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewardsShort(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -265,7 +269,9 @@ func (a *Client) PublicGetUserRewardsShort(params *PublicGetUserRewardsParams, a
 /*
 Deprecated: 2022-08-10 - Use PublicClaimUserRewardsShort instead.
 
-PublicClaimUserRewards
+PublicClaimUserRewards claim user's rewards
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]
 */
 func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, *PublicClaimUserRewardsUnauthorized, *PublicClaimUserRewardsForbidden, *PublicClaimUserRewardsNotFound, *PublicClaimUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -325,7 +331,9 @@ func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, au
 }
 
 /*
-PublicClaimUserRewardsShort
+PublicClaimUserRewardsShort claim user's rewards
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]
 */
 func (a *Client) PublicClaimUserRewardsShort(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, error) {
 	// TODO: Validate the params before sending

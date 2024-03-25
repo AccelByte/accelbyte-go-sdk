@@ -72,7 +72,7 @@ func NewPublicGetScheduledGoalsOK() *PublicGetScheduledGoalsOK {
   OK
 */
 type PublicGetScheduledGoalsOK struct {
-	Payload []*challengeclientmodels.ModelGoalResponse
+	Payload *challengeclientmodels.ModelGetGoalsResponse
 }
 
 func (o *PublicGetScheduledGoalsOK) Error() string {
@@ -94,7 +94,7 @@ func (o *PublicGetScheduledGoalsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicGetScheduledGoalsOK) GetPayload() []*challengeclientmodels.ModelGoalResponse {
+func (o *PublicGetScheduledGoalsOK) GetPayload() *challengeclientmodels.ModelGetGoalsResponse {
 	return o.Payload
 }
 
@@ -105,8 +105,10 @@ func (o *PublicGetScheduledGoalsOK) readResponse(response runtime.ClientResponse
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(challengeclientmodels.ModelGetGoalsResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

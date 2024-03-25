@@ -43,9 +43,9 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminEvaluateProgressShort instead.
 
-AdminEvaluateProgress
+AdminEvaluateProgress evaluate user's progressions
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -105,9 +105,9 @@ func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, auth
 }
 
 /*
-AdminEvaluateProgressShort
+AdminEvaluateProgressShort evaluate user's progressions
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -161,7 +161,9 @@ func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams,
 /*
 Deprecated: 2022-08-10 - Use EvaluateMyProgressShort instead.
 
-EvaluateMyProgress
+EvaluateMyProgress evaluate user's challenge progressions
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -218,7 +220,9 @@ func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo r
 }
 
 /*
-EvaluateMyProgressShort
+EvaluateMyProgressShort evaluate user's challenge progressions
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -270,7 +274,9 @@ func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authI
 /*
 Deprecated: 2022-08-10 - Use PublicGetUserProgressionShort instead.
 
-PublicGetUserProgression
+PublicGetUserProgression list user's progressions
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -330,7 +336,9 @@ func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams
 }
 
 /*
-PublicGetUserProgressionShort
+PublicGetUserProgressionShort list user's progressions
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetUserProgressionShort(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, error) {
 	// TODO: Validate the params before sending

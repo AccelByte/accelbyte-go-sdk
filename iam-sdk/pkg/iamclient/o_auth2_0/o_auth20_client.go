@@ -1793,6 +1793,8 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 Deprecated: 2022-08-10 - Use SimultaneousLoginV3Short instead.
 
 SimultaneousLoginV3 simultaneous login
+# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+
 Simultaneous login flow.
 
 The primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform,
@@ -1877,6 +1879,8 @@ func (a *Client) SimultaneousLoginV3(params *SimultaneousLoginV3Params, authInfo
 
 /*
 SimultaneousLoginV3Short simultaneous login
+# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+
 Simultaneous login flow.
 
 The primary goals of this project are to entitle players to authenticate on a native PC platform(Steam/Epic) and the PlayStation platform,

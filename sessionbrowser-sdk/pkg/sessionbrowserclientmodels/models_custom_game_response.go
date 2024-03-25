@@ -19,8 +19,7 @@ import (
 type ModelsCustomGameResponse struct {
 
 	// all_players
-	// Required: true
-	AllPlayers []string `json:"all_players"`
+	AllPlayers []string `json:"all_players,omitempty"`
 
 	// created_at
 	// Required: true
@@ -28,8 +27,7 @@ type ModelsCustomGameResponse struct {
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// game_session_setting
-	// Required: true
-	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting"`
+	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting,omitempty"`
 
 	// joinable
 	// Required: true
@@ -40,12 +38,10 @@ type ModelsCustomGameResponse struct {
 	Namespace *string `json:"namespace"`
 
 	// players
-	// Required: true
-	Players []string `json:"players"`
+	Players []string `json:"players,omitempty"`
 
 	// server
-	// Required: true
-	Server *ModelsServer `json:"server"`
+	Server *ModelsServer `json:"server,omitempty"`
 
 	// session_id
 	// Required: true
@@ -56,21 +52,14 @@ type ModelsCustomGameResponse struct {
 	SessionType *string `json:"session_type"`
 
 	// spectators
-	// Required: true
-	Spectators []string `json:"spectators"`
+	Spectators []string `json:"spectators,omitempty"`
 }
 
 // Validate validates this Models custom game response
 func (m *ModelsCustomGameResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAllPlayers(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateGameSessionSetting(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateJoinable(formats); err != nil {
@@ -79,34 +68,16 @@ func (m *ModelsCustomGameResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validatePlayers(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateServer(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateSessionID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSessionType(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateSpectators(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsCustomGameResponse) validateAllPlayers(formats strfmt.Registry) error {
-
-	if err := validate.Required("all_players", "body", m.AllPlayers); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -118,24 +89,6 @@ func (m *ModelsCustomGameResponse) validateCreatedAt(formats strfmt.Registry) er
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomGameResponse) validateGameSessionSetting(formats strfmt.Registry) error {
-
-	if err := validate.Required("game_session_setting", "body", m.GameSessionSetting); err != nil {
-		return err
-	}
-
-	if m.GameSessionSetting != nil {
-		if err := m.GameSessionSetting.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("game_session_setting")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -159,33 +112,6 @@ func (m *ModelsCustomGameResponse) validateNamespace(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *ModelsCustomGameResponse) validatePlayers(formats strfmt.Registry) error {
-
-	if err := validate.Required("players", "body", m.Players); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomGameResponse) validateServer(formats strfmt.Registry) error {
-
-	if err := validate.Required("server", "body", m.Server); err != nil {
-		return err
-	}
-
-	if m.Server != nil {
-		if err := m.Server.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("server")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ModelsCustomGameResponse) validateSessionID(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_id", "body", m.SessionID); err != nil {
@@ -198,15 +124,6 @@ func (m *ModelsCustomGameResponse) validateSessionID(formats strfmt.Registry) er
 func (m *ModelsCustomGameResponse) validateSessionType(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsCustomGameResponse) validateSpectators(formats strfmt.Registry) error {
-
-	if err := validate.Required("spectators", "body", m.Spectators); err != nil {
 		return err
 	}
 

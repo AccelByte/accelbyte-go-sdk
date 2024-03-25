@@ -23,7 +23,10 @@
         "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]": "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]",
-        "NAMESPACE:{namespace}:CHALLENGE [READ]": "NAMESPACE:{namespace}:CHALLENGE [READ]"
+        "NAMESPACE:{namespace}:CHALLENGE [READ]": "NAMESPACE:{namespace}:CHALLENGE [READ]",
+        "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]": "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]",
+        "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]": "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]",
+        "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]": "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -124,6 +127,7 @@
             "authorization": []
           }
         ],
+        "summary": "List Challenges",
         "tags": [
           "Challenge Configuration"
         ]
@@ -200,6 +204,7 @@
             "authorization": []
           }
         ],
+        "summary": "Create New Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -271,6 +276,7 @@
             "authorization": []
           }
         ],
+        "summary": "Delete a Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -337,6 +343,7 @@
             "authorization": []
           }
         ],
+        "summary": "Get a Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -420,6 +427,7 @@
             "authorization": []
           }
         ],
+        "summary": "Update a Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -508,6 +516,7 @@
             "authorization": []
           }
         ],
+        "summary": "List Goals of a Challenge",
         "tags": [
           "Goal Configuration"
         ]
@@ -516,7 +525,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description:  text describing the goal (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule:  a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups:  list of conditions that conform with the goal progressions. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete  \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.",
         "operationId": "adminCreateGoal",
         "parameters": [
           {
@@ -591,6 +600,7 @@
             "authorization": []
           }
         ],
+        "summary": "Create New Goal",
         "tags": [
           "Goal Configuration"
         ]
@@ -657,6 +667,7 @@
             "authorization": []
           }
         ],
+        "summary": "Delete Goal",
         "tags": [
           "Goal Configuration"
         ]
@@ -730,6 +741,7 @@
             "authorization": []
           }
         ],
+        "summary": "Get Goal",
         "tags": [
           "Goal Configuration"
         ]
@@ -802,6 +814,7 @@
             "authorization": []
           }
         ],
+        "summary": "Update Goal",
         "tags": [
           "Goal Configuration"
         ]
@@ -884,6 +897,7 @@
             "authorization": []
           }
         ],
+        "summary": "Get Challenge's Periods",
         "tags": [
           "Challenge Configuration"
         ]
@@ -955,6 +969,7 @@
             "authorization": []
           }
         ],
+        "summary": "Randomize Goals of a Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -1026,6 +1041,7 @@
             "authorization": []
           }
         ],
+        "summary": "Delete Tied Challenge",
         "tags": [
           "Challenge Configuration"
         ]
@@ -1095,6 +1111,7 @@
             "authorization": []
           }
         ],
+        "summary": "Evaluate User's Progressions",
         "tags": [
           "Challenge Progression"
         ]
@@ -1187,6 +1204,7 @@
             "authorization": []
           }
         ],
+        "summary": "List User's Rewards",
         "tags": [
           "Player Reward"
         ]
@@ -1273,6 +1291,7 @@
             "authorization": []
           }
         ],
+        "summary": "List Challenges",
         "tags": [
           "Challenge List"
         ]
@@ -1329,10 +1348,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/model.GoalResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/model.GetGoalsResponse"
             }
           },
           "401": {
@@ -1362,6 +1378,7 @@
             "authorization": []
           }
         ],
+        "summary": "List Goals of a Challenge",
         "tags": [
           "Challenge List"
         ]
@@ -1369,6 +1386,7 @@
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/evaluate": {
       "post": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "EvaluateMyProgress",
         "parameters": [
           {
@@ -1407,9 +1425,13 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]"
+            ],
             "authorization": []
           }
         ],
+        "summary": "Evaluate User's Challenge Progressions",
         "tags": [
           "Challenge Progression"
         ]
@@ -1417,6 +1439,7 @@
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}": {
       "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProgression",
         "parameters": [
           {
@@ -1477,9 +1500,13 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]"
+            ],
             "authorization": []
           }
         ],
+        "summary": "List User's Progressions",
         "tags": [
           "Challenge Progression"
         ]
@@ -1487,6 +1514,7 @@
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards": {
       "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserRewards",
         "parameters": [
           {
@@ -1558,9 +1586,13 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]"
+            ],
             "authorization": []
           }
         ],
+        "summary": "List User's Rewards",
         "tags": [
           "Player Reward"
         ]
@@ -1571,6 +1603,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicClaimUserRewards",
         "parameters": [
           {
@@ -1629,9 +1662,13 @@
         },
         "security": [
           {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]"
+            ],
             "authorization": []
           }
         ],
+        "summary": "Claim User's Rewards",
         "tags": [
           "Player Reward"
         ]
@@ -2479,11 +2516,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-08T08:02:40+00:00",
-    "gitHash": "3dd11ca9f79d932e6566643818b1ac6730352c11",
+    "buildDate": "2024-03-22T03:20:36+00:00",
+    "gitHash": "93c858b58e86e228a0083690f27501f2ec0224d8",
     "name": "justice-challenge-service",
     "realm": "staging",
-    "version": "1.2.0",
+    "version": "1.2.3",
     "version-roles-seeding": "1.2.16"
   }
 }

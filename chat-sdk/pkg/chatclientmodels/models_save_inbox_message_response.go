@@ -34,8 +34,7 @@ type ModelsSaveInboxMessageResponse struct {
 	ID *string `json:"id"`
 
 	// message
-	// Required: true
-	Message interface{} `json:"message"`
+	Message interface{} `json:"message,omitempty"`
 
 	// scope
 	// Enum: ['NAMESPACE', 'USER']
@@ -48,8 +47,7 @@ type ModelsSaveInboxMessageResponse struct {
 	Status *string `json:"status"`
 
 	// userids
-	// Required: true
-	UserIDs []string `json:"userIDs"`
+	UserIDs []string `json:"userIDs,omitempty"`
 }
 
 // Validate validates this Models save inbox message response
@@ -69,9 +67,6 @@ func (m *ModelsSaveInboxMessageResponse) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserIDs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,15 +186,6 @@ func (m *ModelsSaveInboxMessageResponse) validateStatus(formats strfmt.Registry)
 
 	// value enum
 	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsSaveInboxMessageResponse) validateUserIDs(formats strfmt.Registry) error {
-
-	if err := validate.Required("userIDs", "body", m.UserIDs); err != nil {
 		return err
 	}
 

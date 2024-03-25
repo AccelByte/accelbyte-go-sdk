@@ -28,8 +28,7 @@ type ModelsAddInboxCategoryResponse struct {
 	ExpiresIn *int64 `json:"expiresIn"`
 
 	// hook
-	// Required: true
-	Hook *ModelsCategoryHook `json:"hook"`
+	Hook *ModelsCategoryHook `json:"hook,omitempty"`
 
 	// jsonschema
 	JSONSchema interface{} `json:"jsonSchema,omitempty"`
@@ -55,9 +54,6 @@ func (m *ModelsAddInboxCategoryResponse) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 	if err := m.validateExpiresIn(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateHook(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -89,24 +85,6 @@ func (m *ModelsAddInboxCategoryResponse) validateExpiresIn(formats strfmt.Regist
 
 	if err := validate.Required("expiresIn", "body", m.ExpiresIn); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsAddInboxCategoryResponse) validateHook(formats strfmt.Registry) error {
-
-	if err := validate.Required("hook", "body", m.Hook); err != nil {
-		return err
-	}
-
-	if m.Hook != nil {
-		if err := m.Hook.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("hook")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -62,7 +62,7 @@ func (aaa *ChallengeListService) GetChallenges(input *challenge_list.GetChalleng
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetScheduledGoalsShort instead.
-func (aaa *ChallengeListService) PublicGetScheduledGoals(input *challenge_list.PublicGetScheduledGoalsParams) ([]*challengeclientmodels.ModelGoalResponse, error) {
+func (aaa *ChallengeListService) PublicGetScheduledGoals(input *challenge_list.PublicGetScheduledGoalsParams) (*challengeclientmodels.ModelGetGoalsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -114,7 +114,7 @@ func (aaa *ChallengeListService) GetChallengesShort(input *challenge_list.GetCha
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ChallengeListService) PublicGetScheduledGoalsShort(input *challenge_list.PublicGetScheduledGoalsParams) ([]*challengeclientmodels.ModelGoalResponse, error) {
+func (aaa *ChallengeListService) PublicGetScheduledGoalsShort(input *challenge_list.PublicGetScheduledGoalsParams) (*challengeclientmodels.ModelGetGoalsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

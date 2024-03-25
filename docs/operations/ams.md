@@ -35,6 +35,14 @@
 | `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules` | GET | FleetArtifactSamplingRulesGetShort | [FleetArtifactSamplingRulesGetShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [FleetArtifactSamplingRulesGetShort](../../services-api/pkg/service/ams/artifacts.go) | [FleetArtifactSamplingRulesGetShort](../../samples/cli/cmd/ams/artifacts/fleetArtifactSamplingRulesGet.go) |
 | `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules` | PUT | FleetArtifactSamplingRulesSetShort | [FleetArtifactSamplingRulesSetShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [FleetArtifactSamplingRulesSetShort](../../services-api/pkg/service/ams/artifacts.go) | [FleetArtifactSamplingRulesSetShort](../../samples/cli/cmd/ams/artifacts/fleetArtifactSamplingRulesSet.go) |
 
+### Development Wrapper:  [Development](../../services-api/pkg/service/ams/development.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/ams/v1/admin/namespaces/{namespace}/development/server-configurations` | GET | DevelopmentServerConfigurationListShort | [DevelopmentServerConfigurationListShort](../../ams-sdk/pkg/amsclient/development/development_client.go) | [DevelopmentServerConfigurationListShort](../../services-api/pkg/service/ams/development.go) | [DevelopmentServerConfigurationListShort](../../samples/cli/cmd/ams/development/developmentServerConfigurationList.go) |
+| `/ams/v1/admin/namespaces/{namespace}/development/server-configurations` | POST | DevelopmentServerConfigurationCreateShort | [DevelopmentServerConfigurationCreateShort](../../ams-sdk/pkg/amsclient/development/development_client.go) | [DevelopmentServerConfigurationCreateShort](../../services-api/pkg/service/ams/development.go) | [DevelopmentServerConfigurationCreateShort](../../samples/cli/cmd/ams/development/developmentServerConfigurationCreate.go) |
+| `/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}` | GET | DevelopmentServerConfigurationGetShort | [DevelopmentServerConfigurationGetShort](../../ams-sdk/pkg/amsclient/development/development_client.go) | [DevelopmentServerConfigurationGetShort](../../services-api/pkg/service/ams/development.go) | [DevelopmentServerConfigurationGetShort](../../samples/cli/cmd/ams/development/developmentServerConfigurationGet.go) |
+| `/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}` | DELETE | DevelopmentServerConfigurationDeleteShort | [DevelopmentServerConfigurationDeleteShort](../../ams-sdk/pkg/amsclient/development/development_client.go) | [DevelopmentServerConfigurationDeleteShort](../../services-api/pkg/service/ams/development.go) | [DevelopmentServerConfigurationDeleteShort](../../samples/cli/cmd/ams/development/developmentServerConfigurationDelete.go) |
+
 ### Fleets Wrapper:  [Fleets](../../services-api/pkg/service/ams/fleets.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -106,6 +114,9 @@
 | `api.DSHistoryEvent` | [ApiDSHistoryEvent ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_event.go) |
 | `api.DSHistoryList` | [ApiDSHistoryList ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_list.go) |
 | `api.DSHostConfiguration` | [ApiDSHostConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_d_s_host_configuration.go) |
+| `api.DevelopmentServerConfigurationCreateRequest` | [ApiDevelopmentServerConfigurationCreateRequest ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_request.go) |
+| `api.DevelopmentServerConfigurationCreateResponse` | [ApiDevelopmentServerConfigurationCreateResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_response.go) |
+| `api.DevelopmentServerConfigurationGetResponse` | [ApiDevelopmentServerConfigurationGetResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_get_response.go) |
 | `api.FleetArtifactsSampleRules` | [ApiFleetArtifactsSampleRules ](../../ams-sdk/pkg/amsclientmodels/api_fleet_artifacts_sample_rules.go) |
 | `api.FleetClaimByKeysReq` | [ApiFleetClaimByKeysReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_by_keys_req.go) |
 | `api.FleetClaimReq` | [ApiFleetClaimReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_req.go) |

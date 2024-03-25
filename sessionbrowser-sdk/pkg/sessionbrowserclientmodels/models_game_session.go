@@ -19,8 +19,7 @@ import (
 type ModelsGameSession struct {
 
 	// all_players
-	// Required: true
-	AllPlayers []string `json:"all_players"`
+	AllPlayers []string `json:"all_players,omitempty"`
 
 	// created_at
 	// Required: true
@@ -28,8 +27,7 @@ type ModelsGameSession struct {
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// game_session_setting
-	// Required: true
-	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting"`
+	GameSessionSetting *ModelsGameSessionSetting `json:"game_session_setting,omitempty"`
 
 	// game_version
 	// Required: true
@@ -40,16 +38,14 @@ type ModelsGameSession struct {
 	Joinable *bool `json:"joinable"`
 
 	// match
-	// Required: true
-	Match *ModelsMatchMaking `json:"match"`
+	Match *ModelsMatchMaking `json:"match,omitempty"`
 
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
 
 	// players
-	// Required: true
-	Players []string `json:"players"`
+	Players []string `json:"players,omitempty"`
 
 	// server
 	// Required: true
@@ -64,8 +60,7 @@ type ModelsGameSession struct {
 	SessionType *string `json:"session_type"`
 
 	// spectators
-	// Required: true
-	Spectators []string `json:"spectators"`
+	Spectators []string `json:"spectators,omitempty"`
 
 	// user_id
 	// Required: true
@@ -80,13 +75,7 @@ type ModelsGameSession struct {
 func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAllPlayers(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateGameSessionSetting(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGameVersion(formats); err != nil {
@@ -95,13 +84,7 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	if err := m.validateJoinable(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateMatch(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePlayers(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateServer(formats); err != nil {
@@ -111,9 +94,6 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateSessionType(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSpectators(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -129,15 +109,6 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsGameSession) validateAllPlayers(formats strfmt.Registry) error {
-
-	if err := validate.Required("all_players", "body", m.AllPlayers); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsGameSession) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
@@ -146,24 +117,6 @@ func (m *ModelsGameSession) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameSession) validateGameSessionSetting(formats strfmt.Registry) error {
-
-	if err := validate.Required("game_session_setting", "body", m.GameSessionSetting); err != nil {
-		return err
-	}
-
-	if m.GameSessionSetting != nil {
-		if err := m.GameSessionSetting.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("game_session_setting")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -187,36 +140,9 @@ func (m *ModelsGameSession) validateJoinable(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsGameSession) validateMatch(formats strfmt.Registry) error {
-
-	if err := validate.Required("match", "body", m.Match); err != nil {
-		return err
-	}
-
-	if m.Match != nil {
-		if err := m.Match.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("match")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ModelsGameSession) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameSession) validatePlayers(formats strfmt.Registry) error {
-
-	if err := validate.Required("players", "body", m.Players); err != nil {
 		return err
 	}
 
@@ -253,15 +179,6 @@ func (m *ModelsGameSession) validateSessionID(formats strfmt.Registry) error {
 func (m *ModelsGameSession) validateSessionType(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsGameSession) validateSpectators(formats strfmt.Registry) error {
-
-	if err := validate.Required("spectators", "body", m.Spectators); err != nil {
 		return err
 	}
 

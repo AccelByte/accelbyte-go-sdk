@@ -380,9 +380,9 @@ input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1Protect
 	SteamID:  steamId,
 }
 
-err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+resp, err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 if err != nil {
-	assert.Contains(t, err.Error(), "returns an error 404")
+	assert.Contains(t, err.Error(), "user not found")
 
 	t.Skip("User was not found.")
 }

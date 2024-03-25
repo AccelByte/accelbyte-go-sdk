@@ -7,8 +7,6 @@
 package sessionbrowserclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,33 +19,24 @@ import (
 type ModelsMatchingParty struct {
 
 	// match_attributes
-	// Required: true
-	MatchAttributes *ModelsMatchAttributes `json:"match_attributes"`
+	MatchAttributes *ModelsMatchAttributes `json:"match_attributes,omitempty"`
 
 	// party_attributes
-	// Required: true
-	PartyAttributes interface{} `json:"party_attributes"`
+	PartyAttributes interface{} `json:"party_attributes,omitempty"`
 
 	// party_id
 	// Required: true
 	PartyID string `json:"party_id"`
 
 	// party_members
-	// Required: true
-	PartyMembers []*ModelsPartyMember `json:"party_members"`
+	PartyMembers []*ModelsPartyMember `json:"party_members,omitempty"`
 }
 
 // Validate validates this Models matching party
 func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateMatchAttributes(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validatePartyID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePartyMembers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,53 +46,10 @@ func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsMatchingParty) validateMatchAttributes(formats strfmt.Registry) error {
-
-	if err := validate.Required("match_attributes", "body", m.MatchAttributes); err != nil {
-		return err
-	}
-
-	if m.MatchAttributes != nil {
-		if err := m.MatchAttributes.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("match_attributes")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ModelsMatchingParty) validatePartyID(formats strfmt.Registry) error {
 
 	if err := validate.Required("party_id", "body", m.PartyID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsMatchingParty) validatePartyMembers(formats strfmt.Registry) error {
-
-	if err := validate.Required("party_members", "body", m.PartyMembers); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.PartyMembers); i++ {
-		if swag.IsZero(m.PartyMembers[i]) { // not required
-			continue
-		}
-
-		if m.PartyMembers[i] != nil {
-			if err := m.PartyMembers[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("party_members" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

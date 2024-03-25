@@ -182,6 +182,7 @@ Other detail info:
                   *  Returns : created stat template
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
+                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -257,6 +258,7 @@ Other detail info:
                   *  Returns : created stat template
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
+                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error) {
 	// TODO: Validate the params before sending
@@ -919,6 +921,7 @@ Update stat.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
                   *  Returns : updated stat
+                  *  Field globalAggregationMethod will be ignored when the stat is not set as global
                   *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
@@ -987,6 +990,7 @@ Update stat.
 Other detail info:
                   *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
                   *  Returns : updated stat
+                  *  Field globalAggregationMethod will be ignored when the stat is not set as global
                   *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
@@ -1175,6 +1179,7 @@ Other detail info:
                   *  Returns : created stat template
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
+                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1BadRequest, *CreateStat1Unauthorized, *CreateStat1Forbidden, *CreateStat1NotFound, *CreateStat1Conflict, *CreateStat1UnprocessableEntity, *CreateStat1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1250,6 +1255,7 @@ Other detail info:
                   *  Returns : created stat template
                   * default minimum value is 0
                   * default maximum value is 1.7976931348623157e+308
+                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error) {
 	// TODO: Validate the params before sending

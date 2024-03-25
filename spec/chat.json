@@ -5308,7 +5308,6 @@
       "required": [
         "enabled",
         "expiresIn",
-        "hook",
         "name",
         "saveInbox",
         "sendNotification"
@@ -5349,13 +5348,9 @@
           "type": "string"
         },
         "params": {
-          "type": "string"
+          "type": "object"
         }
-      },
-      "required": [
-        "driver",
-        "params"
-      ]
+      }
     },
     "models.ChannelTopicResponse": {
       "properties": {
@@ -5478,8 +5473,6 @@
         "from",
         "id",
         "message",
-        "readAt",
-        "receivedAt",
         "topicId"
       ]
     },
@@ -5854,7 +5847,6 @@
       "required": [
         "id",
         "namespace",
-        "parentId",
         "word",
         "wordType"
       ]
@@ -6056,7 +6048,6 @@
       "required": [
         "id",
         "namespace",
-        "parentId",
         "word",
         "wordType"
       ]
@@ -6211,12 +6202,10 @@
         "createdAt",
         "expiredAt",
         "id",
-        "message",
         "scope",
         "senderId",
         "status",
-        "updatedAt",
-        "userIds"
+        "updatedAt"
       ]
     },
     "models.GetInboxStatsResponse": {
@@ -6464,10 +6453,8 @@
         "category",
         "expiredAt",
         "id",
-        "message",
         "scope",
-        "status",
-        "userIDs"
+        "status"
       ]
     },
     "models.SendInboxMessageRequest": {},

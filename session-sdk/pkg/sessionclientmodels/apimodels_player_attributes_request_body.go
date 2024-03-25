@@ -38,6 +38,10 @@ type ApimodelsPlayerAttributesRequestBody struct {
 
 	// roles
 	Roles []string `json:"roles,omitempty"`
+
+	// simultaneousplatform
+	// Required: true
+	SimultaneousPlatform *string `json:"simultaneousPlatform"`
 }
 
 // Validate validates this Apimodels player attributes request body
@@ -51,6 +55,9 @@ func (m *ApimodelsPlayerAttributesRequestBody) Validate(formats strfmt.Registry)
 		res = append(res, err)
 	}
 	if err := m.validatePlatforms(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSimultaneousPlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,6 +105,15 @@ func (m *ApimodelsPlayerAttributesRequestBody) validatePlatforms(formats strfmt.
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPlayerAttributesRequestBody) validateSimultaneousPlatform(formats strfmt.Registry) error {
+
+	if err := validate.Required("simultaneousPlatform", "body", m.SimultaneousPlatform); err != nil {
+		return err
 	}
 
 	return nil

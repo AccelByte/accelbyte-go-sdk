@@ -47,7 +47,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use AdminGetGoalsShort instead.
 
-AdminGetGoals
+AdminGetGoals list goals of a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -109,7 +109,7 @@ func (a *Client) AdminGetGoals(params *AdminGetGoalsParams, authInfo runtime.Cli
 }
 
 /*
-AdminGetGoalsShort
+AdminGetGoalsShort list goals of a challenge
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
@@ -165,10 +165,18 @@ func (a *Client) AdminGetGoalsShort(params *AdminGetGoalsParams, authInfo runtim
 /*
 Deprecated: 2022-08-10 - Use AdminCreateGoalShort instead.
 
-AdminCreateGoal
+AdminCreateGoal create new goal
 
   * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
 
+Request body:
+    * code: unique within a challenge
+    * name: name of the goal
+    * description: text describing the goal (optional)
+    * schedule: a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule
+    * requirementGroups: list of conditions that conform with the goal progressions.
+    * rewards: list of rewards that will be claimable once a goal is complete
+    * tag: goal's labels
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
 */
 func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error) {
@@ -232,10 +240,18 @@ func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime
 }
 
 /*
-AdminCreateGoalShort
+AdminCreateGoalShort create new goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
+    * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
 
+Request body:
+      * code: unique within a challenge
+      * name: name of the goal
+      * description: text describing the goal (optional)
+      * schedule: a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule
+      * requirementGroups: list of conditions that conform with the goal progressions.
+      * rewards: list of rewards that will be claimable once a goal is complete
+      * tag: goal's labels
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
 */
 func (a *Client) AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, error) {
@@ -292,9 +308,9 @@ func (a *Client) AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo ru
 /*
 Deprecated: 2022-08-10 - Use AdminGetGoalShort instead.
 
-AdminGetGoal
+AdminGetGoal get goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetGoal(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, *AdminGetGoalUnauthorized, *AdminGetGoalForbidden, *AdminGetGoalNotFound, *AdminGetGoalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -354,9 +370,9 @@ func (a *Client) AdminGetGoal(params *AdminGetGoalParams, authInfo runtime.Clien
 }
 
 /*
-AdminGetGoalShort
+AdminGetGoalShort get goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetGoalShort(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, error) {
 	// TODO: Validate the params before sending
@@ -410,9 +426,9 @@ func (a *Client) AdminGetGoalShort(params *AdminGetGoalParams, authInfo runtime.
 /*
 Deprecated: 2022-08-10 - Use AdminUpdateGoalsShort instead.
 
-AdminUpdateGoals
+AdminUpdateGoals update goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 */
 func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -466,9 +482,9 @@ func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runti
 }
 
 /*
-AdminUpdateGoalsShort
+AdminUpdateGoalsShort update goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 */
 func (a *Client) AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, error) {
 	// TODO: Validate the params before sending
@@ -518,9 +534,9 @@ func (a *Client) AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use AdminDeleteGoalShort instead.
 
-AdminDeleteGoal
+AdminDeleteGoal delete goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
 */
 func (a *Client) AdminDeleteGoal(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, *AdminDeleteGoalBadRequest, *AdminDeleteGoalNotFound, *AdminDeleteGoalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -577,9 +593,9 @@ func (a *Client) AdminDeleteGoal(params *AdminDeleteGoalParams, authInfo runtime
 }
 
 /*
-AdminDeleteGoalShort
+AdminDeleteGoalShort delete goal
 
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
 */
 func (a *Client) AdminDeleteGoalShort(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, error) {
 	// TODO: Validate the params before sending

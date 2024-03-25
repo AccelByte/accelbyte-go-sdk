@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
@@ -68,6 +69,11 @@ type AdminDeleteConfigPermissionsByGroupParams struct {
 	RetryPolicy *utils.Retry
 	/*Body*/
 	Body *iamclientmodels.ClientmodelPermissionSetDeleteGroupRequest
+	/*ForceDelete
+	  If target deleted group or module is selected by any client, by default it will failed. If this force flag is true, it will success
+
+	*/
+	ForceDelete *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -145,6 +151,17 @@ func (o *AdminDeleteConfigPermissionsByGroupParams) SetBody(body *iamclientmodel
 	o.Body = body
 }
 
+// WithForceDelete adds the forceDelete to the admin delete config permissions by group params
+func (o *AdminDeleteConfigPermissionsByGroupParams) WithForceDelete(forceDelete *bool) *AdminDeleteConfigPermissionsByGroupParams {
+	o.SetForceDelete(forceDelete)
+	return o
+}
+
+// SetForceDelete adds the forceDelete to the admin delete config permissions by group params
+func (o *AdminDeleteConfigPermissionsByGroupParams) SetForceDelete(forceDelete *bool) {
+	o.ForceDelete = forceDelete
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminDeleteConfigPermissionsByGroupParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +174,22 @@ func (o *AdminDeleteConfigPermissionsByGroupParams) WriteToRequest(r runtime.Cli
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
+	}
+
+	if o.ForceDelete != nil {
+
+		// query param forceDelete
+		var qrForceDelete bool
+		if o.ForceDelete != nil {
+			qrForceDelete = *o.ForceDelete
+		}
+		qForceDelete := swag.FormatBool(qrForceDelete)
+		if qForceDelete != "" {
+			if err := r.SetQueryParam("forceDelete", qForceDelete); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

@@ -43,6 +43,10 @@ Deprecated: 2022-08-10 - Use AdminGetRecentPlayerShort instead.
 
 AdminGetRecentPlayer query recent player with given user id.
 Query recent player with given user id.
+
+If user id parameter is empty:
+1. Using User Token : It will get the user id from the token
+2. Using client token : it will throw an error
 */
 func (a *Client) AdminGetRecentPlayer(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, *AdminGetRecentPlayerBadRequest, *AdminGetRecentPlayerUnauthorized, *AdminGetRecentPlayerNotFound, *AdminGetRecentPlayerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,6 +108,10 @@ func (a *Client) AdminGetRecentPlayer(params *AdminGetRecentPlayerParams, authIn
 /*
 AdminGetRecentPlayerShort query recent player with given user id.
 Query recent player with given user id.
+
+If user id parameter is empty:
+1. Using User Token : It will get the user id from the token
+2. Using client token : it will throw an error
 */
 func (a *Client) AdminGetRecentPlayerShort(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, error) {
 	// TODO: Validate the params before sending
@@ -157,8 +165,8 @@ func (a *Client) AdminGetRecentPlayerShort(params *AdminGetRecentPlayerParams, a
 /*
 Deprecated: 2022-08-10 - Use PublicGetRecentPlayerShort instead.
 
-PublicGetRecentPlayer query recent player with given user id.
-Query recent player with given user id.
+PublicGetRecentPlayer query user's recent player
+Query user's recent player.
 */
 func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, *PublicGetRecentPlayerBadRequest, *PublicGetRecentPlayerUnauthorized, *PublicGetRecentPlayerNotFound, *PublicGetRecentPlayerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -218,8 +226,8 @@ func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, auth
 }
 
 /*
-PublicGetRecentPlayerShort query recent player with given user id.
-Query recent player with given user id.
+PublicGetRecentPlayerShort query user's recent player
+Query user's recent player.
 */
 func (a *Client) PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, error) {
 	// TODO: Validate the params before sending

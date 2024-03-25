@@ -60,8 +60,7 @@ type ModelsGameSessionSetting struct {
 	Password *string `json:"password"`
 
 	// settings
-	// Required: true
-	Settings interface{} `json:"settings"`
+	Settings interface{} `json:"settings,omitempty"`
 }
 
 // Validate validates this Models game session setting

@@ -56,6 +56,8 @@ type ClientService interface {
 	DeleteClientByNamespaceShort(params *DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientByNamespaceNoContent, error)
 	AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, *AdminGetClientsByNamespaceV3BadRequest, *AdminGetClientsByNamespaceV3Unauthorized, *AdminGetClientsByNamespaceV3Forbidden, error)
 	AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, error)
+	AdminBulkUpdateClientsV3(params *AdminBulkUpdateClientsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateClientsV3NoContent, *AdminBulkUpdateClientsV3BadRequest, *AdminBulkUpdateClientsV3Unauthorized, *AdminBulkUpdateClientsV3Forbidden, *AdminBulkUpdateClientsV3NotFound, error)
+	AdminBulkUpdateClientsV3Short(params *AdminBulkUpdateClientsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateClientsV3NoContent, error)
 	AdminCreateClientV3(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, *AdminCreateClientV3BadRequest, *AdminCreateClientV3Unauthorized, *AdminCreateClientV3Forbidden, *AdminCreateClientV3Conflict, error)
 	AdminCreateClientV3Short(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, error)
 	AdminGetClientsbyNamespacebyIDV3(params *AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsbyNamespacebyIDV3OK, *AdminGetClientsbyNamespacebyIDV3BadRequest, *AdminGetClientsbyNamespacebyIDV3Unauthorized, *AdminGetClientsbyNamespacebyIDV3Forbidden, *AdminGetClientsbyNamespacebyIDV3NotFound, error)
@@ -1585,6 +1587,184 @@ func (a *Client) AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByName
 	case *AdminGetClientsByNamespaceV3Unauthorized:
 		return nil, v
 	case *AdminGetClientsByNamespaceV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminBulkUpdateClientsV3Short instead.
+
+AdminBulkUpdateClientsV3 bulk update clients
+Updates multiple OAuth 2.0 clients.
+Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
+
+action code: 10302
+
+**Fields Description:**
+- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). e.g. true
+- **clientPlatform** : available client platform (optional). default value: "".
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
+- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not
+*/
+func (a *Client) AdminBulkUpdateClientsV3(params *AdminBulkUpdateClientsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateClientsV3NoContent, *AdminBulkUpdateClientsV3BadRequest, *AdminBulkUpdateClientsV3Unauthorized, *AdminBulkUpdateClientsV3Forbidden, *AdminBulkUpdateClientsV3NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUpdateClientsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUpdateClientsV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUpdateClientsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUpdateClientsV3NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBulkUpdateClientsV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBulkUpdateClientsV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBulkUpdateClientsV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBulkUpdateClientsV3NotFound:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkUpdateClientsV3Short bulk update clients
+Updates multiple OAuth 2.0 clients.
+Specify only the fields you want to update in the request payload, e.g. {"ClientName":"E-commerce", "BaseUri":"https://example.net"}
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module.
+
+action code: 10302
+
+**Fields Description:**
+- **clientName** : The client name. It should not be empty if the field exists in the body. e.g E-commerce
+- **namespace** : The namespace where the client lives. e.g sample-game
+- **redirectUri** : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body. e.g https://example.net/platform
+- **audiences** : List of target client IDs who is intended to receive the token. e.g ["eaaa65618fe24293b00a61454182b435", "40073ee9bc3446d3a051a71b48509a5d"]
+- **baseUri** : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform
+- **clientPermissions** : Contains the client's permissions
+- **deletable** : The flag to identify whether client is deletable (optional). e.g. true
+- **clientPlatform** : available client platform (optional). default value: "".
+- Playstation
+- Xbox
+- Steam
+- Epic
+- IOS
+- GooglePlay
+- Nintendo
+- Oculus
+- **twoFactorEnabled**: The flag to indicate whether 2FA validation is enable for this client. default value: false
+- **oauthAccessTokenExpiration**: a configurable expiration time for **access_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthRefreshTokenExpiration**: a configurable expiration time for **refresh_token**, default value: 0 (mean fetch value from environment variable)
+- **oauthAccessTokenExpirationTimeUnit**: a configurable expiration time unit for **access_token**, will use previous value if not specified
+- **oauthRefreshTokenExpirationTimeUnit**: a configurable expiration time unit for **refresh_token**, will use previous value if not specified
+- **skipLoginQueue**: a flag to indicate whether this client should be exempted from login queue or not
+*/
+func (a *Client) AdminBulkUpdateClientsV3Short(params *AdminBulkUpdateClientsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUpdateClientsV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUpdateClientsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUpdateClientsV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUpdateClientsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUpdateClientsV3NoContent:
+		return v, nil
+	case *AdminBulkUpdateClientsV3BadRequest:
+		return nil, v
+	case *AdminBulkUpdateClientsV3Unauthorized:
+		return nil, v
+	case *AdminBulkUpdateClientsV3Forbidden:
+		return nil, v
+	case *AdminBulkUpdateClientsV3NotFound:
 		return nil, v
 
 	default:

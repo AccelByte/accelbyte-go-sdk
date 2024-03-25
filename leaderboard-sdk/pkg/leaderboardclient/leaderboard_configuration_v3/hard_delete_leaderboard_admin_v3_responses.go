@@ -213,7 +213,7 @@ func NewHardDeleteLeaderboardAdminV3Forbidden() *HardDeleteLeaderboardAdminV3For
 
 /*HardDeleteLeaderboardAdminV3Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>71241</td><td>forbidden environment</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>
 */
 type HardDeleteLeaderboardAdminV3Forbidden struct {
 	Payload *leaderboardclientmodels.ResponseErrorResponse

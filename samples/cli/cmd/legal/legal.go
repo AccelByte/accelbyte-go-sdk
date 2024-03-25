@@ -92,6 +92,7 @@ func init() {
 	LegalCmd.AddCommand(eligibilities.RetrieveEligibilitiesPublicIndirectCmd)
 	LegalCmd.AddCommand(localizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2Cmd)
 	LegalCmd.AddCommand(localizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion3Cmd)
+	LegalCmd.AddCommand(policies.RetrieveCountryListWithPoliciesCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesPublicCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd)

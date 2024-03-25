@@ -916,6 +916,11 @@ HardDeleteLeaderboardAdminV1 hard delete leaderboard config and data by leaderbo
 
 
 
+Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]'
+
+
+
+
 This endpoint will delete leaderboard configuration and its data
 
 
@@ -988,6 +993,11 @@ HardDeleteLeaderboardAdminV1Short hard delete leaderboard config and data by lea
 
 
  [Test Facility Only]
+
+
+
+
+Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD:HARDDELETE [DELETE]'
 
 
 

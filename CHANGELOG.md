@@ -8,6 +8,9 @@
 - **:** websocket token refresh
 ### chore
 - **samples:** add websocket token refresh
+- **challenge:** model name changes
+### docs
+- **migrations:** add migration guide-v0.66-to-v0.67.md
 
 
 <a name="v0.66.0"></a>

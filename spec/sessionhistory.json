@@ -1,0 +1,4792 @@
+{
+  "host": "demo.accelbyte.io",
+  "info": {
+    "description": "Justice Session History Service",
+    "title": "justice-session-history-service",
+    "version": "1.9.3"
+  },
+  "schemes": [
+    "https"
+  ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://demo.accelbyte.io/sessionhistory/apidocs"
+  },
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/healthz": {
+      "get": {
+        "operationId": "GetHealthcheckInfo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/sessionhistory/healthz": {
+      "get": {
+        "operationId": "GetHealthcheckInfoV1",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/gamesessions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get all game sessions.",
+        "operationId": "adminQueryGameSessionDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "gamesession ID",
+            "in": "query",
+            "name": "gameSessionID",
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Order of the result. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Order result by specific attribute. Supported: expiredAt (default)",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.GameSessionDetailQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get all game sessions history.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get game session detail.\n",
+        "operationId": "getGameSessionDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.GameSessionDetail"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get game session detail.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/matchmaking": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get all matchmaking.",
+        "operationId": "adminQueryMatchmakingDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "gamesession ID",
+            "in": "query",
+            "name": "gameSessionID",
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Order of the result. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Order result by specific attribute. Supported: expiredAt (default)",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "description": "ticket ID",
+            "in": "query",
+            "name": "ticketID",
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.MatchmakingDetailQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get all matchmaking history.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/matchmaking/session/{sessionId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get detail matchmaking history by session ID.",
+        "operationId": "adminGetMatchmakingDetailBySessionID",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.MatchmakingDetail"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get detail matchmaking history by session ID.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/matchmaking/ticket/{ticketId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get detail matchmaking history by ticket ID.",
+        "operationId": "adminGetMatchmakingDetailByTicketID",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ticket ID",
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.MatchmakingDetail"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get detail matchmaking history by ticket ID.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/parties": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get all parties.",
+        "operationId": "adminQueryPartyDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Order of the result. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Order result by specific attribute. Supported: expiredAt (default)",
+            "in": "query",
+            "name": "orderBy",
+            "type": "string"
+          },
+          {
+            "description": "party ID",
+            "in": "query",
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.PartyDetailQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get all parties history.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/parties/{sessionId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get party detail.\n",
+        "operationId": "getPartyDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.PartyDetail"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get party detail.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get all matchmaking ticket.",
+        "operationId": "adminQueryTicketDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End Date 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "Game Mode",
+            "in": "query",
+            "name": "gameMode",
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Order of the result. Supported: desc (default), asc",
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Party ID",
+            "in": "query",
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "Region",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "Start Date 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "type": "string"
+          },
+          {
+            "description": "User IDs",
+            "in": "query",
+            "name": "userIDs",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.TicketDetailQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get all matchmaking ticket history.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v1/admin/namespaces/{namespace}/tickets/{ticketId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get detail matchmaking ticket history by ticket ID.",
+        "operationId": "adminTicketDetailGetByTicketID",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ticket ID",
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.TicketObservabilityDetail"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get detail matchmaking ticket history by ticket ID.",
+        "tags": [
+          "Game Session Detail"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/match-pools/{poolName}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match pool.\n",
+        "operationId": "queryXrayMatchPool",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "path",
+            "name": "poolName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchPoolQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match pool",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/match-pools/{poolName}/pods/{podName}/ticks": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match pool ticks.\n",
+        "operationId": "queryDetailTickMatchPool",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "pod name",
+            "in": "path",
+            "name": "podName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "path",
+            "name": "poolName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Set value to 'true' to get all record, included with 0 value",
+            "in": "query",
+            "name": "all",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchPoolPodTickQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match pool ticks",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/match-pools/{poolName}/pods/{podName}/ticks/{tickId}/matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match pool tick matches by tick id.\n",
+        "operationId": "queryDetailTickMatchPoolMatches",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "pod name",
+            "in": "path",
+            "name": "podName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "path",
+            "name": "poolName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "tick id",
+            "in": "path",
+            "name": "tickId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchPoolPodTickMatchResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match pool tick matches by tick id",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/match-pools/{poolName}/pods/{podName}/ticks/{tickId}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match pool tick tickets detail by tick id.\n",
+        "operationId": "queryDetailTickMatchPoolTicket",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "pod name",
+            "in": "path",
+            "name": "podName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "path",
+            "name": "poolName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "tick id",
+            "in": "path",
+            "name": "tickId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchPoolPodTickTicketResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match pool tick tickets by tick id",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/matches/{matchId}/histories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match histories.\n",
+        "operationId": "queryMatchHistories",
+        "parameters": [
+          {
+            "description": "match id",
+            "in": "path",
+            "name": "matchId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchHistorQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match histories",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/matches/{matchId}/ticket-histories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray match ticket histories.\n",
+        "operationId": "queryMatchTicketHistories",
+        "parameters": [
+          {
+            "description": "match id",
+            "in": "path",
+            "name": "matchId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchTicketHistoryQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray match ticket histories",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/matches/{matchId}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray timeline by matchID.\n",
+        "operationId": "queryXrayMatch",
+        "parameters": [
+          {
+            "description": "match ID",
+            "in": "path",
+            "name": "matchId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchesQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray timeline by matchID",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/acquiring-ds": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total success and failed claim DS.\n",
+        "operationId": "queryAcquiringDS",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayAcquiringDsQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total success and failed claim DS",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/acquiring-ds-wait-time-avg": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query acquiring ds wait time average. time in seconds\n",
+        "operationId": "queryAcquiringDSWaitTimeAvg",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayAcquiringDsWaitTimeQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query acquiring ds wait time average",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/match-length-duration-avg": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query match length duration avg. time in seconds\n",
+        "operationId": "queryMatchLengthDurationpAvg",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchLengthDurationQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query match length duration avg",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/match-length-duration-p99": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query match length duration p99. time in seconds\n",
+        "operationId": "queryMatchLengthDurationp99",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchLengthDurationQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query match length duration p99",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-active-session": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total active session.\n",
+        "operationId": "queryTotalActiveSession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "region name",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTotalActiveSessionQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total active session",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-match": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total match.\n",
+        "operationId": "queryTotalMatchmakingMatch",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchMatchmakingQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total match",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-player-persession-avg": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total player persession average. \n",
+        "operationId": "queryTotalPlayerPersession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTotalPlayerPersessionAVGQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total player persession average",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-ticket-canceled": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total ticket canceled.\n",
+        "operationId": "queryTotalMatchmakingCanceled",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayCanceledMatchmakingTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total ticket canceled",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-ticket-created": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total ticket created.\n",
+        "operationId": "queryTotalMatchmakingCreated",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayCreatedMatchmakingTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total ticket created",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-ticket-expired": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total ticket expired.\n",
+        "operationId": "queryTotalMatchmakingExpired",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayExpiredMatchmakingTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total ticket expired",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/metrics/total-ticket-match": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query total ticket match.\n",
+        "operationId": "queryTotalMatchmakingMatchTicket",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "match pool name",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayMatchMatchmakingTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query total ticket match",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets/{ticketId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray timeline by ticketID\n",
+        "operationId": "queryXrayTimelineByTicketID",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ticket ID",
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray timeline",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/users/{userId}/tickets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query xray timeline by userID or ticketID\n",
+        "operationId": "queryXrayTimelineByUserID",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End date time: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "endDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start date time. Format: 2024-03-20T15:12:03Z",
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Pagination limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTicketQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query xray timeline",
+        "tags": [
+          "XRay"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [READ]"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apimodels.AcquiringDS": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.AcquiringDsWaitTime": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "apimodels.CanceledMatchmakingTicket": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.CreatedMatchmakingTicket": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.EventMatchHistory": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "match": {
+          "$ref": "#/definitions/models.Match"
+        },
+        "matchID": {
+          "type": "string"
+        },
+        "matchpool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "podName": {
+          "type": "string"
+        },
+        "ruleSet": {
+          "type": "string"
+        },
+        "tickID": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "action",
+        "matchID",
+        "matchpool",
+        "namespace",
+        "podName",
+        "timestamp"
+      ]
+    },
+    "apimodels.ExpiredMatchmakingTicket": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.GameSessionDetail": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "histories": {
+          "items": {
+            "$ref": "#/definitions/apimodels.History"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "sessionID": {
+          "type": "string"
+        },
+        "session_template": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created_at",
+        "histories",
+        "namespace",
+        "sessionID",
+        "session_template"
+      ]
+    },
+    "apimodels.GameSessionDetailQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.GameSessionDetail"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.History": {
+      "properties": {
+        "eventName": {
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/definitions/models.GameSession"
+        },
+        "requesterClientID": {
+          "type": "string"
+        },
+        "requesterUserID": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "eventName",
+        "payload",
+        "timestamp"
+      ]
+    },
+    "apimodels.MatchLengthDuration": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "apimodels.MatchMatchmaking": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.MatchMatchmakingTicket": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.MatchmakingDetail": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "expiredAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "gameSessionID": {
+          "type": "string"
+        },
+        "histories": {
+          "items": {
+            "$ref": "#/definitions/apimodels.MatchmakingHistory"
+          },
+          "type": "array"
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "matchRule": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "partySessionID": {
+          "type": "string"
+        },
+        "ticketID": {
+          "type": "string"
+        }
+      }
+    },
+    "apimodels.MatchmakingDetailQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.MatchmakingDetail"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.MatchmakingHistory": {
+      "properties": {
+        "backfillProposal": {
+          "$ref": "#/definitions/models.BackfillProposal"
+        },
+        "backfillTicket": {
+          "$ref": "#/definitions/models.BackfillTicket"
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "requestedUserID": {
+          "type": "string"
+        },
+        "ticket": {
+          "$ref": "#/definitions/models.Ticket"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "unbackfillReason": {
+          "type": "string"
+        }
+      }
+    },
+    "apimodels.Pagination": {
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous"
+      ]
+    },
+    "apimodels.PartyDetail": {
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "histories": {
+          "items": {
+            "$ref": "#/definitions/apimodels.PartyHistory"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "partySessionID": {
+          "type": "string"
+        },
+        "session_template": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created_at",
+        "histories",
+        "namespace",
+        "partySessionID",
+        "session_template"
+      ]
+    },
+    "apimodels.PartyDetailQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.PartyDetail"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.PartyHistory": {
+      "properties": {
+        "eventName": {
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/definitions/models.Party"
+        },
+        "requesterClientID": {
+          "type": "string"
+        },
+        "requesterUserID": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "eventName",
+        "payload",
+        "timestamp"
+      ]
+    },
+    "apimodels.TicketDetailQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.TicketObservabilityDetail"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.TicketObservabilityDetail": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "expiredAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string"
+        },
+        "history": {
+          "items": {
+            "$ref": "#/definitions/apimodels.TicketObservabilityHistory"
+          },
+          "type": "array"
+        },
+        "lastData": {
+          "$ref": "#/definitions/models.TicketObservability"
+        },
+        "matchId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "string"
+        },
+        "remainingPlayersPerTicket": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "remainingTickets": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestedRegion": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ticket": {
+          "$ref": "#/definitions/models.Ticket"
+        },
+        "ticket_id": {
+          "type": "string"
+        },
+        "timeToMatchSec": {
+          "format": "double",
+          "type": "number"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "action",
+        "createdAt",
+        "expiredAt",
+        "game_mode",
+        "matchId",
+        "namespace",
+        "party_id",
+        "regions",
+        "remainingTickets",
+        "ticket_id",
+        "updatedAt"
+      ]
+    },
+    "apimodels.TicketObservabilityHistory": {
+      "properties": {
+        "Action": {
+          "type": "string"
+        },
+        "ExpiredAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "ID": {
+          "type": "string"
+        },
+        "Payload": {
+          "type": "object"
+        },
+        "PodName": {
+          "type": "string"
+        },
+        "TickID": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_id": {
+          "type": "string"
+        },
+        "ticket_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Action",
+        "ExpiredAt",
+        "ID",
+        "Payload",
+        "PodName",
+        "TickID",
+        "Timestamp",
+        "party_id",
+        "ticket_id"
+      ]
+    },
+    "apimodels.TotalActiveSession": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "apimodels.TotalPlayerPersession": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "matchPool": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "value": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "apimodels.XRayAcquiringDsQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.AcquiringDS"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayAcquiringDsWaitTimeQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.AcquiringDsWaitTime"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayCanceledMatchmakingTicketQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.CanceledMatchmakingTicket"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayCreatedMatchmakingTicketQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.CreatedMatchmakingTicket"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayExpiredMatchmakingTicketQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.ExpiredMatchmakingTicket"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchHistorQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.EventMatchHistory"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.XRayMatchLengthDurationQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.MatchLengthDuration"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchMatchmakingQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.MatchMatchmaking"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchMatchmakingTicketQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.MatchMatchmakingTicket"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchPoolPodTickMatchResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.EventMatchHistory"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchPoolPodTickQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayMatchPoolPodTickResult"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.XRayMatchPoolPodTickResult": {
+      "properties": {
+        "podName": {
+          "type": "string"
+        },
+        "tickId": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "totalMatchBackfilled": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalMatchCreated": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalMatchToBackfill": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTicketBackfilled": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTicketForBackfill": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTicketForMatch": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTicketInQueue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTicketMatched": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "podName",
+        "tickId",
+        "timestamp",
+        "totalMatchBackfilled",
+        "totalMatchCreated",
+        "totalMatchToBackfill",
+        "totalTicketBackfilled",
+        "totalTicketForBackfill",
+        "totalTicketForMatch",
+        "totalTicketInQueue",
+        "totalTicketMatched"
+      ]
+    },
+    "apimodels.XRayMatchPoolPodTickTicketResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.TicketStatus"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchPoolQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayMatchPoolResult"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchPoolResult": {
+      "properties": {
+        "podName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "podName"
+      ]
+    },
+    "apimodels.XRayMatchTicketHistory": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "match": {
+          "$ref": "#/definitions/apimodels.EventMatchHistory"
+        },
+        "ticket": {
+          "$ref": "#/definitions/models.Ticket"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "action",
+        "timestamp"
+      ]
+    },
+    "apimodels.XRayMatchTicketHistoryQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayMatchTicketHistory"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayMatchesQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayTicketMatchesResult"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayTicketMatchesResult": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "Latencies": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "PartySessionID": {
+          "type": "string"
+        },
+        "Players": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerData"
+          },
+          "type": "array"
+        },
+        "ProposedProposal": {
+          "$ref": "#/definitions/models.ProposedProposal"
+        },
+        "TicketAttributes": {
+          "type": "object"
+        },
+        "TicketID": {
+          "type": "string"
+        }
+      }
+    },
+    "apimodels.XRayTicketQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayTicketResult"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "apimodels.XRayTicketResult": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "matchpool": {
+          "type": "string"
+        },
+        "podName": {
+          "type": "string"
+        },
+        "tickId": {
+          "type": "string"
+        },
+        "ticketId": {
+          "type": "string"
+        },
+        "ticketStatus": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "id",
+        "matchpool",
+        "podName",
+        "tickId",
+        "ticketId",
+        "ticketStatus",
+        "timestamp"
+      ]
+    },
+    "apimodels.XRayTotalActiveSessionQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.TotalActiveSession"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "apimodels.XRayTotalPlayerPersessionAVGQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.TotalPlayerPersession"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.AllianceRule": {
+      "properties": {
+        "max_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "min_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "player_max_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "player_min_number": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_number",
+        "min_number",
+        "player_max_number",
+        "player_min_number"
+      ]
+    },
+    "models.BackfillProposal": {
+      "properties": {
+        "AddedTickets": {
+          "items": {
+            "$ref": "#/definitions/models.Ticket"
+          },
+          "type": "array"
+        },
+        "BackfillTicketID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "MatchSessionID": {
+          "type": "string"
+        },
+        "ProposalID": {
+          "type": "string"
+        },
+        "ProposedTeams": {
+          "items": {
+            "$ref": "#/definitions/models.Team"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.BackfillTicket": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "MatchSessionID": {
+          "type": "string"
+        },
+        "MatchSessionVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "PartialMatch": {
+          "$ref": "#/definitions/models.Match"
+        },
+        "TicketID": {
+          "type": "string"
+        }
+      }
+    },
+    "models.DSInformation": {
+      "properties": {
+        "RequestedAt": {
+          "type": "string"
+        },
+        "Server": {
+          "$ref": "#/definitions/models.GameServer"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "StatusV2": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GameServer": {
+      "properties": {
+        "alternate_ips": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "custom_attribute": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "image_version": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "is_override_game_version": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "last_update": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "pod_name": {
+          "type": "string"
+        },
+        "port": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ports": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GameSession": {
+      "properties": {
+        "Attributes": {
+          "type": "object"
+        },
+        "BackfillTicketID": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Configuration": {
+          "$ref": "#/definitions/models.SessionConfig"
+        },
+        "ConfigurationName": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "DSInformation": {
+          "$ref": "#/definitions/models.DSInformation"
+        },
+        "GameMode": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "IsFull": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "LeaderID": {
+          "type": "string"
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "Members": {
+          "items": {
+            "$ref": "#/definitions/models.User"
+          },
+          "type": "array"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "ProcessingTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Teams": {
+          "items": {
+            "$ref": "#/definitions/models.GameSessionTeam"
+          },
+          "type": "array"
+        },
+        "TicketIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "Version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
+    "models.GameSessionTeam": {
+      "properties": {
+        "parties": {
+          "items": {
+            "$ref": "#/definitions/models.PartyMembers"
+          },
+          "type": "array"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.Match": {
+      "properties": {
+        "Backfill": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ClientVersion": {
+          "type": "string"
+        },
+        "MatchAttributes": {
+          "type": "object"
+        },
+        "RegionPreference": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ServerName": {
+          "type": "string"
+        },
+        "Teams": {
+          "items": {
+            "$ref": "#/definitions/models.Team"
+          },
+          "type": "array"
+        },
+        "Tickets": {
+          "items": {
+            "$ref": "#/definitions/models.Ticket"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.MatchingAlly": {
+      "properties": {
+        "matching_parties": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingParty"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "matching_parties"
+      ]
+    },
+    "models.MatchingParty": {
+      "properties": {
+        "first_ticket_created_at": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_members": {
+          "items": {
+            "$ref": "#/definitions/models.PartyMember"
+          },
+          "type": "array"
+        },
+        "ticket_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "first_ticket_created_at",
+        "party_id",
+        "party_members",
+        "ticket_id"
+      ]
+    },
+    "models.MatchingRule": {
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "criteria": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "reference": {
+          "format": "double",
+          "type": "number",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "attribute",
+        "criteria",
+        "reference"
+      ]
+    },
+    "models.MatchmakingResult": {
+      "properties": {
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "deployment": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "error_code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "error_message": {
+          "type": "string"
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": true,
+          "x-omitempty": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "match_session_id": {
+          "type": "string"
+        },
+        "matching_allies": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "queued_at": {
+          "format": "int64",
+          "type": "integer",
+          "x-nullable": false
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "ticket_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "match_id",
+        "matching_allies",
+        "queued_at",
+        "ticket_id",
+        "updated_at"
+      ]
+    },
+    "models.Party": {
+      "properties": {
+        "Attributes": {
+          "type": "object"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Configuration": {
+          "$ref": "#/definitions/models.SessionConfiguration"
+        },
+        "ConfigurationName": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "ExpiredAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "ID": {
+          "type": "string"
+        },
+        "IsActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "IsFull": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "LeaderID": {
+          "type": "string"
+        },
+        "Members": {
+          "items": {
+            "$ref": "#/definitions/models.User"
+          },
+          "type": "array"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "Version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "models.PartyMember": {
+      "properties": {
+        "extra_attributes": {
+          "type": "object"
+        },
+        "user_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "user_id"
+      ]
+    },
+    "models.PartyMembers": {
+      "properties": {
+        "partyID": {
+          "type": "string"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.PartyTeam": {
+      "properties": {
+        "PartyID": {
+          "type": "string"
+        },
+        "UserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.PlayerData": {
+      "properties": {
+        "Attributes": {
+          "type": "object"
+        },
+        "PartyID": {
+          "type": "string"
+        },
+        "PlatformID": {
+          "type": "string"
+        },
+        "PlayerID": {
+          "type": "string"
+        }
+      }
+    },
+    "models.ProposedProposal": {
+      "properties": {
+        "BackfillID": {
+          "type": "string"
+        },
+        "ProposalID": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        }
+      }
+    },
+    "models.SessionConfig": {
+      "properties": {
+        "ClientVersion": {
+          "type": "string"
+        },
+        "Deployment": {
+          "type": "string"
+        },
+        "InactiveTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "InviteTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Joinability": {
+          "type": "string"
+        },
+        "MaxPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MinPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "RequestedRegions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Type": {
+          "type": "string"
+        }
+      }
+    },
+    "models.SessionConfiguration": {
+      "properties": {
+        "ClientVersion": {
+          "type": "string"
+        },
+        "Deployment": {
+          "type": "string"
+        },
+        "InactiveTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "InviteTimeout": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Joinability": {
+          "type": "string"
+        },
+        "MaxPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MinPlayers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "RequestedRegions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "TextChat": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "Type": {
+          "type": "string"
+        }
+      }
+    },
+    "models.Team": {
+      "properties": {
+        "Parties": {
+          "items": {
+            "$ref": "#/definitions/models.PartyTeam"
+          },
+          "type": "array"
+        },
+        "UserIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "models.Ticket": {
+      "properties": {
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "Latencies": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "MatchPool": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "PartySessionID": {
+          "type": "string"
+        },
+        "Players": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerData"
+          },
+          "type": "array"
+        },
+        "ProposedProposal": {
+          "$ref": "#/definitions/models.ProposedProposal"
+        },
+        "TicketAttributes": {
+          "type": "object"
+        },
+        "TicketID": {
+          "type": "string"
+        }
+      }
+    },
+    "models.TicketData": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "activeAllianceRule": {
+          "$ref": "#/definitions/models.AllianceRule"
+        },
+        "activeMatchingRule": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingRule"
+          },
+          "type": "array"
+        },
+        "function": {
+          "type": "string"
+        },
+        "gameMode": {
+          "type": "string"
+        },
+        "isBackfillMatch": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isRuleSetFlexed": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "iteration": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "matchID": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "partyID": {
+          "type": "string"
+        },
+        "podName": {
+          "type": "string"
+        },
+        "remainingPlayersPerTicket": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "remainingTickets": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "session": {
+          "$ref": "#/definitions/models.MatchmakingResult"
+        },
+        "sessionTickID": {
+          "type": "string"
+        },
+        "tickID": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "timeToMatchSec": {
+          "format": "double",
+          "type": "number"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "unbackfillReason": {
+          "type": "string"
+        },
+        "unmatchReason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "gameMode",
+        "isBackfillMatch",
+        "isRuleSetFlexed",
+        "namespace",
+        "partyID",
+        "podName",
+        "sessionTickID",
+        "tickID",
+        "timestamp"
+      ]
+    },
+    "models.TicketObservability": {
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/models.TicketData"
+        }
+      },
+      "required": [
+        "ticket"
+      ]
+    },
+    "models.TicketStatus": {
+      "properties": {
+        "matched": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ticket": {
+          "$ref": "#/definitions/models.Ticket"
+        }
+      },
+      "required": [
+        "matched",
+        "ticket"
+      ]
+    },
+    "models.User": {
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "PlatformID": {
+          "type": "string"
+        },
+        "PlatformUserID": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "StatusV2": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "response.Error": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "attributes",
+        "errorCode",
+        "errorMessage",
+        "message",
+        "name"
+      ]
+    }
+  },
+  "x-docs": {
+    "alias": "sessionhistory",
+    "host": "https://demo.accelbyte.io",
+    "path": "/sessionhistory/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2024-03-15T07:13:46+00:00",
+    "gitHash": "0c0e9fec7fed2b41a61b211708dd4a0b4135e21c",
+    "version": "1.9.3",
+    "version-roles-seeding": "0.0.39"
+  }
+}

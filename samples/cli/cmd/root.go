@@ -37,6 +37,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/qosm"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass"
 	"github.com/AccelByte/sample-apps/cmd/sessionbrowser"
+	"github.com/AccelByte/sample-apps/cmd/sessionhistory"
 	"github.com/AccelByte/sample-apps/cmd/social"
 	"github.com/AccelByte/sample-apps/cmd/ugc"
 
@@ -84,15 +85,20 @@ func init() {
 
 	// Parent Commands
 	RootCmd.AddCommand(achievement.AchievementCmd)
+	RootCmd.AddCommand(ams.AmsCmd)
 	RootCmd.AddCommand(basic.BasicCmd)
+	RootCmd.AddCommand(challenge.ChallengeCmd)
+	RootCmd.AddCommand(chat.ChatCmd)
 	RootCmd.AddCommand(cloudsave.CloudsaveCmd)
 	RootCmd.AddCommand(dsmc.DsmcCmd)
+	RootCmd.AddCommand(dsartifact.DsartifactCmd)
 	RootCmd.AddCommand(dslogmanager.DslogmanagerCmd)
 	RootCmd.AddCommand(eventlog.EventlogCmd)
 	RootCmd.AddCommand(gametelemetry.GametelemetryCmd)
 	RootCmd.AddCommand(gdpr.GdprCmd)
 	RootCmd.AddCommand(group.GroupCmd)
 	RootCmd.AddCommand(iam.IamCmd)
+	RootCmd.AddCommand(inventory.InventoryCmd)
 	RootCmd.AddCommand(leaderboard.LeaderboardCmd)
 	RootCmd.AddCommand(legal.LegalCmd)
 	RootCmd.AddCommand(lobby.LobbyCmd)
@@ -100,17 +106,13 @@ func init() {
 	RootCmd.AddCommand(matchmaking.MatchmakingCmd)
 	RootCmd.AddCommand(platform.PlatformCmd)
 	RootCmd.AddCommand(qosm.QosmCmd)
+	RootCmd.AddCommand(reporting.ReportingCmd)
 	RootCmd.AddCommand(seasonpass.SeasonpassCmd)
 	RootCmd.AddCommand(session.SessionCmd)
 	RootCmd.AddCommand(sessionbrowser.SessionbrowserCmd)
+	RootCmd.AddCommand(sessionhistory.SessionhistoryCmd)
 	RootCmd.AddCommand(social.SocialCmd)
 	RootCmd.AddCommand(ugc.UgcCmd)
-	RootCmd.AddCommand(reporting.ReportingCmd)
-	RootCmd.AddCommand(ams.AmsCmd)
-	RootCmd.AddCommand(inventory.InventoryCmd)
-	RootCmd.AddCommand(chat.ChatCmd)
-	RootCmd.AddCommand(dsartifact.DsartifactCmd)
-	RootCmd.AddCommand(challenge.ChallengeCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

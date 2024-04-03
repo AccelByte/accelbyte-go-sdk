@@ -204,7 +204,7 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 		if !ok {
 			return "", fmt.Errorf("%s", strings.Join(e, " "))
 		}
-		
+
 		return "", fmt.Errorf("%s: %s", strings.Join(e, " "), strings.Join(d, " "))
 	}
 	requestID := query["request_id"][0]

@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.12.3"
+    "version": "2.12.5"
   },
   "schemes": [
     "https"
@@ -10369,16 +10369,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-03-22T03:23:09+00:00",
-    "buildID": "2.12.3",
+    "buildDate": "2024-04-05T06:50:41+00:00",
+    "buildID": "2.12.5",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.210-201.852.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.210-201.855.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "e82fd0b7a3",
-    "gitTag": "2.12.3",
+    "gitHash": "a600f67733",
+    "gitTag": "2.12.5",
     "name": "justice-social-service",
     "realm": "demo",
-    "version": "2.12.3",
+    "version": "2.12.5",
     "version-roles-seeding": "0.0.12"
   }
 }

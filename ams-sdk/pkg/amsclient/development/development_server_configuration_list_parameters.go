@@ -16,13 +16,19 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewDevelopmentServerConfigurationListParams creates a new DevelopmentServerConfigurationListParams object
 // with the default values initialized.
 func NewDevelopmentServerConfigurationListParams() *DevelopmentServerConfigurationListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &DevelopmentServerConfigurationListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +37,13 @@ func NewDevelopmentServerConfigurationListParams() *DevelopmentServerConfigurati
 // NewDevelopmentServerConfigurationListParamsWithTimeout creates a new DevelopmentServerConfigurationListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewDevelopmentServerConfigurationListParamsWithTimeout(timeout time.Duration) *DevelopmentServerConfigurationListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &DevelopmentServerConfigurationListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +52,13 @@ func NewDevelopmentServerConfigurationListParamsWithTimeout(timeout time.Duratio
 // NewDevelopmentServerConfigurationListParamsWithContext creates a new DevelopmentServerConfigurationListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewDevelopmentServerConfigurationListParamsWithContext(ctx context.Context) *DevelopmentServerConfigurationListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &DevelopmentServerConfigurationListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +67,13 @@ func NewDevelopmentServerConfigurationListParamsWithContext(ctx context.Context)
 // NewDevelopmentServerConfigurationListParamsWithHTTPClient creates a new DevelopmentServerConfigurationListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDevelopmentServerConfigurationListParamsWithHTTPClient(client *http.Client) *DevelopmentServerConfigurationListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &DevelopmentServerConfigurationListParams{
+		Count:      &countDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -69,6 +90,16 @@ type DevelopmentServerConfigurationListParams struct {
 
 	*/
 	Namespace string
+	/*Count
+	  defines the maximum number of records returned in one page.
+
+	*/
+	Count *int64
+	/*Offset
+	  specifies the start index for the records returned.
+
+	*/
+	Offset *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -146,6 +177,28 @@ func (o *DevelopmentServerConfigurationListParams) SetNamespace(namespace string
 	o.Namespace = namespace
 }
 
+// WithCount adds the count to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithCount(count *int64) *DevelopmentServerConfigurationListParams {
+	o.SetCount(count)
+	return o
+}
+
+// SetCount adds the count to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetCount(count *int64) {
+	o.Count = count
+}
+
+// WithOffset adds the offset to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithOffset(offset *int64) *DevelopmentServerConfigurationListParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DevelopmentServerConfigurationListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +210,38 @@ func (o *DevelopmentServerConfigurationListParams) WriteToRequest(r runtime.Clie
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Count != nil {
+
+		// query param count
+		var qrCount int64
+		if o.Count != nil {
+			qrCount = *o.Count
+		}
+		qCount := swag.FormatInt64(qrCount)
+		if qCount != "" {
+			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

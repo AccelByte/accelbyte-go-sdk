@@ -44,6 +44,8 @@ type ClientService interface {
 	AdminBulkRemoveItemsShort(params *AdminBulkRemoveItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkRemoveItemsOK, error)
 	AdminSaveItem(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, *AdminSaveItemBadRequest, *AdminSaveItemInternalServerError, error)
 	AdminSaveItemShort(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, error)
+	AdminSyncUserEntitlements(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, *AdminSyncUserEntitlementsBadRequest, *AdminSyncUserEntitlementsUnauthorized, *AdminSyncUserEntitlementsForbidden, *AdminSyncUserEntitlementsNotFound, *AdminSyncUserEntitlementsInternalServerError, error)
+	AdminSyncUserEntitlementsShort(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -773,6 +775,9 @@ so no new item with same sourceItemId will be created
 Tags will be auto-created.
 ItemType will be auto-created.
 
+For Ecommerce item, this fields will be override by ecommerce configuration
+(slotUsed, serverCustomAttributes, customAttributes, type)
+
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
 func (a *Client) AdminSaveItem(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, *AdminSaveItemBadRequest, *AdminSaveItemInternalServerError, error) {
@@ -839,6 +844,9 @@ so no new item with same sourceItemId will be created
 Tags will be auto-created.
 ItemType will be auto-created.
 
+For Ecommerce item, this fields will be override by ecommerce configuration
+(slotUsed, serverCustomAttributes, customAttributes, type)
+
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
 func (a *Client) AdminSaveItemShort(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, error) {
@@ -879,6 +887,129 @@ func (a *Client) AdminSaveItemShort(params *AdminSaveItemParams, authInfo runtim
 	case *AdminSaveItemBadRequest:
 		return nil, v
 	case *AdminSaveItemInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSyncUserEntitlementsShort instead.
+
+AdminSyncUserEntitlements to sync user's entitlements to e-commerce
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
+*/
+func (a *Client) AdminSyncUserEntitlements(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, *AdminSyncUserEntitlementsBadRequest, *AdminSyncUserEntitlementsUnauthorized, *AdminSyncUserEntitlementsForbidden, *AdminSyncUserEntitlementsNotFound, *AdminSyncUserEntitlementsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncUserEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSyncUserEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/entitlements/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncUserEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncUserEntitlementsNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminSyncUserEntitlementsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminSyncUserEntitlementsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminSyncUserEntitlementsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminSyncUserEntitlementsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminSyncUserEntitlementsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncUserEntitlementsShort to sync user's entitlements to e-commerce
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
+*/
+func (a *Client) AdminSyncUserEntitlementsShort(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncUserEntitlementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSyncUserEntitlements",
+		Method:             "PUT",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/entitlements/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncUserEntitlementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncUserEntitlementsNoContent:
+		return v, nil
+	case *AdminSyncUserEntitlementsBadRequest:
+		return nil, v
+	case *AdminSyncUserEntitlementsUnauthorized:
+		return nil, v
+	case *AdminSyncUserEntitlementsForbidden:
+		return nil, v
+	case *AdminSyncUserEntitlementsNotFound:
+		return nil, v
+	case *AdminSyncUserEntitlementsInternalServerError:
 		return nil, v
 
 	default:

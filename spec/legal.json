@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.39.0"
+    "version": "1.40.0"
   },
   "schemes": [
     "https"
@@ -107,7 +107,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will Update Preference Consent. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will Update Preference Consent. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "changePreferenceConsent",
         "parameters": [
           {
@@ -169,7 +169,7 @@
     },
     "/agreement/admin/agreements/policies/users/{userId}": {
       "get": {
-        "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAcceptedAgreements",
         "parameters": [
           {
@@ -213,7 +213,7 @@
     },
     "/agreement/admin/agreements/policy-versions/users": {
       "get": {
-        "description": "This API will return all users who has accepted a specific policy version.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return users who has accepted a specific policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllUsersByPolicyVersion",
         "parameters": [
           {
@@ -276,7 +276,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve All Users Accepting Legal Agreements",
+        "summary": "Retrieve Users Accepting Legal Agreements",
         "tags": [
           "Agreement"
         ]
@@ -858,7 +858,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game accountOther detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game account.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAcceptedAgreementsForMultiUsers",
         "parameters": [
           {
@@ -910,7 +910,7 @@
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policies/users/{userId}": {
       "get": {
-        "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAcceptedAgreements_1",
         "parameters": [
           {
@@ -970,7 +970,7 @@
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users": {
       "get": {
-        "description": "This API will return all users who has accepted a specific policy version.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all users who has accepted a specific policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllUsersByPolicyVersion_1",
         "parameters": [
           {
@@ -1049,7 +1049,121 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve All Users Accepting Legal Agreements",
+        "summary": "Retrieve Users Accepting Legal Agreements",
+        "tags": [
+          "Agreement With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/download": {
+      "get": {
+        "description": "This API will check the status of export process.\u0026lt;br\u0026gt;If the export process has been completed, the response body will include the download url.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "downloadExportedAgreementsInCSV",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "query",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DownloadExportedAgreementsInCSVResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003ePolicy version with id: [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eExported agreements for policyVersionId [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Download Exported Users Accepted Agreements in CSV",
+        "tags": [
+          "Agreement With Namespace"
+        ]
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/initiate": {
+      "post": {
+        "description": "This API will initiate a worker to export list of users who has accepted a specific policy version into a CSV file.\u0026lt;br\u0026gt;To check the export state after initialize it, use `GET /admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/download` API.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;This Initiate API is \u0026lt;b\u0026gt;not allow\u0026lt;/b\u0026gt; multiple export worker running for the same namespace, it will return 409 http error if so.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "initiateExportAgreementsToCSV",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "query",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/InitiateExportAgreementsToCSVResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003ePolicy version with id: [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40071\u003c/td\u003e\u003ctd\u003ePrevious export still running for namespace [{namespace}] and policyVersionId [{policyVersionId}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Initiate Export Users Accepted Agreements to CSV",
         "tags": [
           "Agreement With Namespace"
         ]
@@ -2134,7 +2248,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicy",
         "parameters": [
           {
@@ -2840,7 +2954,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will anonymize agreement record for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will anonymize agreement record for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "anonymizeUserAgreement",
         "parameters": [
           {
@@ -3908,6 +4022,23 @@
       ],
       "type": "object"
     },
+    "DownloadExportedAgreementsInCSVResponse": {
+      "properties": {
+        "done": {
+          "description": "Flag indicating whether the export process has been completed.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "downloadUrl": {
+          "description": "Download url for CSV file, only available once the export process has been completed.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "done"
+      ],
+      "type": "object"
+    },
     "ErrorEntity": {
       "properties": {
         "devStackTrace": {
@@ -3958,6 +4089,19 @@
           "type": "object"
         }
       },
+      "type": "object"
+    },
+    "InitiateExportAgreementsToCSVResponse": {
+      "properties": {
+        "processing": {
+          "description": "Processing the export",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "processing"
+      ],
       "type": "object"
     },
     "LegalReadinessStatusResponse": {
@@ -5208,16 +5352,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-03-22T09:44:27+00:00",
-    "buildID": "1.39.0",
+    "buildDate": "2024-04-05T09:56:05+00:00",
+    "buildID": "1.40.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.210-201.852.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.210-201.855.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "988f29d57d",
-    "gitTag": "1.39.0",
+    "gitHash": "7518d2af67",
+    "gitTag": "1.40.0",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.39.0",
+    "version": "1.40.0",
     "version-roles-seeding": "0.0.3"
   }
 }

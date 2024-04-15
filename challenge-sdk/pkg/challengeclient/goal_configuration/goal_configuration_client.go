@@ -32,7 +32,7 @@ type Client struct {
 type ClientService interface {
 	AdminGetGoals(params *AdminGetGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalsOK, *AdminGetGoalsUnauthorized, *AdminGetGoalsForbidden, *AdminGetGoalsNotFound, *AdminGetGoalsInternalServerError, error)
 	AdminGetGoalsShort(params *AdminGetGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalsOK, error)
-	AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error)
+	AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalBadRequest, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error)
 	AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, error)
 	AdminGetGoal(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, *AdminGetGoalUnauthorized, *AdminGetGoalForbidden, *AdminGetGoalNotFound, *AdminGetGoalInternalServerError, error)
 	AdminGetGoalShort(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, error)
@@ -179,7 +179,7 @@ Request body:
     * tag: goal's labels
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
 */
-func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error) {
+func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalBadRequest, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminCreateGoalParams()
@@ -211,31 +211,34 @@ func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminCreateGoalCreated:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminCreateGoalBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminCreateGoalUnauthorized:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminCreateGoalForbidden:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminCreateGoalNotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *AdminCreateGoalConflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminCreateGoalInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -289,6 +292,8 @@ func (a *Client) AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo ru
 
 	case *AdminCreateGoalCreated:
 		return v, nil
+	case *AdminCreateGoalBadRequest:
+		return nil, v
 	case *AdminCreateGoalUnauthorized:
 		return nil, v
 	case *AdminCreateGoalForbidden:

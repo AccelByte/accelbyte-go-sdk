@@ -51,6 +51,12 @@ func (o *CreateUserFromInvitationV4Reader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewCreateUserFromInvitationV4Conflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewCreateUserFromInvitationV4InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -264,6 +270,59 @@ func (o *CreateUserFromInvitationV4NotFound) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *CreateUserFromInvitationV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateUserFromInvitationV4Conflict creates a CreateUserFromInvitationV4Conflict with default headers values
+func NewCreateUserFromInvitationV4Conflict() *CreateUserFromInvitationV4Conflict {
+	return &CreateUserFromInvitationV4Conflict{}
+}
+
+/*CreateUserFromInvitationV4Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10222</td><td>unique display name already exists</td></tr></table>
+*/
+type CreateUserFromInvitationV4Conflict struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *CreateUserFromInvitationV4Conflict) Error() string {
+	return fmt.Sprintf("[POST /iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}][%d] createUserFromInvitationV4Conflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *CreateUserFromInvitationV4Conflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateUserFromInvitationV4Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *CreateUserFromInvitationV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

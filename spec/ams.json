@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.13.0"
+    "version": "1.15.0"
   },
   "schemes": [
     "https"
@@ -746,6 +746,22 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "defines the maximum number of records returned in one page.",
+            "in": "query",
+            "maximum": 500,
+            "minimum": 10,
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "specifies the start index for the records returned.",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -755,10 +771,7 @@
           "200": {
             "description": "development server configurations",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/api.DevelopmentServerConfigurationGetResponse"
-              },
-              "type": "array"
+              "$ref": "#/definitions/api.DevelopmentServerConfigurationListResponse"
             }
           },
           "401": {
@@ -788,18 +801,16 @@
             "authorization": []
           }
         ],
-        "summary": "lists all development server configurations",
+        "summary": "lists development server configurations with pagination",
         "tags": [
-          "Development",
-          "Fleets",
-          "Images"
+          "Development"
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
+        "description": "Configuration name can be up to 128 characters and must conform to ^[.a-zA-Z0-9_-]+$\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
         "operationId": "DevelopmentServerConfigurationCreate",
         "parameters": [
           {
@@ -863,9 +874,7 @@
         ],
         "summary": "create a new development server configuration",
         "tags": [
-          "Development",
-          "Fleets",
-          "Images"
+          "Development"
         ]
       }
     },
@@ -934,9 +943,7 @@
         ],
         "summary": "delete a development server configuration",
         "tags": [
-          "Development",
-          "Fleets",
-          "Images"
+          "Development"
         ]
       },
       "get": {
@@ -1006,9 +1013,7 @@
         ],
         "summary": "get a development server configuration",
         "tags": [
-          "Development",
-          "Fleets",
-          "Images"
+          "Development"
         ]
       }
     },
@@ -3164,7 +3169,7 @@
     },
     "api.DevelopmentServerConfigurationCreateRequest": {
       "properties": {
-        "commandLine": {
+        "commandLineArguments": {
           "type": "string"
         },
         "imageId": {
@@ -3175,7 +3180,7 @@
         }
       },
       "required": [
-        "commandLine",
+        "commandLineArguments",
         "imageId",
         "name"
       ]
@@ -3192,7 +3197,7 @@
     },
     "api.DevelopmentServerConfigurationGetResponse": {
       "properties": {
-        "commandLine": {
+        "commandLineArguments": {
           "type": "string"
         },
         "imageId": {
@@ -3203,9 +3208,27 @@
         }
       },
       "required": [
-        "commandLine",
+        "commandLineArguments",
         "imageId",
         "name"
+      ]
+    },
+    "api.DevelopmentServerConfigurationListResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/api.DevelopmentServerConfigurationGetResponse"
+          },
+          "type": "array"
+        },
+        "totalData": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "data",
+        "totalData"
       ]
     },
     "api.FleetArtifactsSampleRules": {
@@ -3323,6 +3346,10 @@
         "name": {
           "type": "string"
         },
+        "onDemand": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "regions": {
           "items": {
             "$ref": "#/definitions/api.RegionConfig"
@@ -3338,6 +3365,7 @@
         "imageDeploymentProfile",
         "isLocal",
         "name",
+        "onDemand",
         "regions"
       ]
     },
@@ -3366,6 +3394,10 @@
         "name": {
           "type": "string"
         },
+        "onDemand": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "regions": {
           "items": {
             "type": "string"
@@ -3380,6 +3412,7 @@
         "image",
         "isLocal",
         "name",
+        "onDemand",
         "regions"
       ]
     },
@@ -3417,6 +3450,10 @@
         "name": {
           "type": "string"
         },
+        "onDemand": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "regions": {
           "items": {
             "$ref": "#/definitions/api.RegionConfig"
@@ -3432,6 +3469,7 @@
         "dsHostConfiguration",
         "imageDeploymentProfile",
         "name",
+        "onDemand",
         "regions"
       ]
     },
@@ -4159,10 +4197,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-18T22:28:18+00:00",
-    "gitHash": "f3bb6992804e4bc06e4da2af04d903044b638cc7",
+    "buildDate": "2024-04-02T18:35:03+00:00",
+    "gitHash": "c2e40918ebc04611f63d439f7fd12487db661167",
     "name": "fleet-commander",
-    "version": "1.13.0",
+    "version": "1.15.0",
     "version-roles-seeding": "1.2.10"
   }
 }

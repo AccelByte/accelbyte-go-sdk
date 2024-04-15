@@ -352,7 +352,7 @@ func NewAdminUpdateUserV3Conflict() *AdminUpdateUserV3Conflict {
 
 /*AdminUpdateUserV3Conflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10222</td><td>unique display name already exists</td></tr></table>
 */
 type AdminUpdateUserV3Conflict struct {
 	Payload *iamclientmodels.RestErrorResponse

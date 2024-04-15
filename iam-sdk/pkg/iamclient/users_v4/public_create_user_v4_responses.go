@@ -293,7 +293,7 @@ func NewPublicCreateUserV4Conflict() *PublicCreateUserV4Conflict {
 
 /*PublicCreateUserV4Conflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10177</td><td>username already used</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10177</td><td>username already used</td></tr><tr><td>10222</td><td>unique display name already exists</td></tr></table>
 */
 type PublicCreateUserV4Conflict struct {
 	Payload *iamclientmodels.RestErrorResponse

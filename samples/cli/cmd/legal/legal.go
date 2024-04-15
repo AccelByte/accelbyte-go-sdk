@@ -50,6 +50,8 @@ func init() {
 	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAcceptedAgreementsForMultiUsersCmd)
 	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAcceptedAgreements1Cmd)
 	LegalCmd.AddCommand(agreementWithNamespace.RetrieveAllUsersByPolicyVersion1Cmd)
+	LegalCmd.AddCommand(agreementWithNamespace.DownloadExportedAgreementsInCSVCmd)
+	LegalCmd.AddCommand(agreementWithNamespace.InitiateExportAgreementsToCSVCmd)
 	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveAllLegalPoliciesByNamespaceCmd)
 	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.CreatePolicy1Cmd)
 	LegalCmd.AddCommand(baseLegalPoliciesWithNamespace.RetrieveSinglePolicy1Cmd)

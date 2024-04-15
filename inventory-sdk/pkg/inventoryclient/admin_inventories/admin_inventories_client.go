@@ -40,6 +40,8 @@ type ClientService interface {
 	AdminUpdateInventoryShort(params *AdminUpdateInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInventoryOK, error)
 	DeleteInventory(params *DeleteInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInventoryNoContent, *DeleteInventoryBadRequest, *DeleteInventoryNotFound, *DeleteInventoryInternalServerError, error)
 	DeleteInventoryShort(params *DeleteInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInventoryNoContent, error)
+	AdminPurchasable(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, *AdminPurchasableBadRequest, *AdminPurchasableNotFound, *AdminPurchasableConflict, *AdminPurchasableInternalServerError, error)
+	AdminPurchasableShort(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -628,6 +630,128 @@ func (a *Client) DeleteInventoryShort(params *DeleteInventoryParams, authInfo ru
 	case *DeleteInventoryNotFound:
 		return nil, v
 	case *DeleteInventoryInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminPurchasableShort instead.
+
+AdminPurchasable to validate user inventory capacity when purchase ecommerce item
+
+Validate purchase ecommerce item.
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
+*/
+func (a *Client) AdminPurchasable(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, *AdminPurchasableBadRequest, *AdminPurchasableNotFound, *AdminPurchasableConflict, *AdminPurchasableInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPurchasableParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPurchasable",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/purchaseable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPurchasableReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPurchasableNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminPurchasableBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminPurchasableNotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminPurchasableConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminPurchasableInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminPurchasableShort to validate user inventory capacity when purchase ecommerce item
+
+Validate purchase ecommerce item.
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
+*/
+func (a *Client) AdminPurchasableShort(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPurchasableParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPurchasable",
+		Method:             "POST",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/purchaseable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPurchasableReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPurchasableNoContent:
+		return v, nil
+	case *AdminPurchasableBadRequest:
+		return nil, v
+	case *AdminPurchasableNotFound:
+		return nil, v
+	case *AdminPurchasableConflict:
+		return nil, v
+	case *AdminPurchasableInternalServerError:
 		return nil, v
 
 	default:

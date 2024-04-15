@@ -40,7 +40,9 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicyShort instead.
 
 IndirectBulkAcceptVersionedPolicy admin bulk accept policy versions
-Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info:
+Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL", action=1 (CREATE)
 */
 func (a *Client) IndirectBulkAcceptVersionedPolicy(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error) {
@@ -90,7 +92,9 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy(params *IndirectBulkAcceptVer
 
 /*
 IndirectBulkAcceptVersionedPolicyShort admin bulk accept policy versions
-Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info:
+Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL", action=1 (CREATE)
 */
 func (a *Client) IndirectBulkAcceptVersionedPolicyShort(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error) {

@@ -3,7 +3,7 @@
   "info": {
     "description": "justice-inventory-service",
     "title": "justice-inventory-service",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "schemes": [
     "https"
@@ -21,6 +21,9 @@
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]",
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]",
+        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]",
@@ -130,6 +133,308 @@
         "summary": "To Create Chaining Operation",
         "tags": [
           "Admin Chaining Operations"
+        ]
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tListing all integration configurations in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]\n\t\t",
+        "operationId": "AdminListIntegrationConfigurations",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "default 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "createdAt",
+            "description": "Only support one level of sortBy; default createdAt",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ListIntegrationConfigurationsResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To list integration configurations",
+        "tags": [
+          "Admin Integration Configurations"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tCreating integration configuration.\n\t\t\tThere cannot be one duplicate serviceName per namespace.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]\n\t\t",
+        "operationId": "AdminCreateIntegrationConfiguration",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.CreateIntegrationConfigurationReq"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/apimodels.IntegrationConfigurationResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To create integration configuration",
+        "tags": [
+          "Admin Integration Configurations"
+        ]
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations/{integrationConfigurationId}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tto update integration configuration\n\t\t\tThere cannot be duplicate serviceName per namespace.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]\n\t\t",
+        "operationId": "AdminUpdateIntegrationConfiguration",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.UpdateIntegrationConfigurationReq"
+            }
+          },
+          {
+            "description": "integrationConfigurationID",
+            "in": "path",
+            "name": "integrationConfigurationId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.IntegrationConfigurationResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To update integration configuration",
+        "tags": [
+          "Admin Integration Configurations"
+        ]
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations/{integrationConfigurationId}/status": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tto update status  integration configuration to be Active / Not Active.\n\t\t\tThere cannot be duplicate serviceName per namespace.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]\n\t\t",
+        "operationId": "AdminUpdateStatusIntegrationConfiguration",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.UpdateStatusIntegrationConfigurationReq"
+            }
+          },
+          {
+            "description": "integrationConfigurationID",
+            "in": "path",
+            "name": "integrationConfigurationId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.IntegrationConfigurationResp"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To update status integration configuration to be active / not active ",
+        "tags": [
+          "Admin Integration Configurations"
         ]
       }
     },
@@ -1783,7 +2088,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminSaveItem",
         "parameters": [
           {
@@ -1843,6 +2148,158 @@
         "summary": "To save item",
         "tags": [
           "Admin Items"
+        ]
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/entitlements/sync": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
+        "operationId": "AdminSyncUserEntitlements",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "userID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To sync user's entitlements to e-commerce",
+        "tags": [
+          "Admin Items"
+        ]
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/purchaseable": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tValidate purchase ecommerce item.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]\n\t\t",
+        "operationId": "AdminPurchasable",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.PurchaseValidationReq"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UserID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "To validate user inventory capacity when purchase ecommerce item",
+        "tags": [
+          "Admin Inventories"
         ]
       }
     },
@@ -2755,6 +3212,26 @@
         "sourceItemId"
       ]
     },
+    "apimodels.CreateIntegrationConfigurationReq": {
+      "properties": {
+        "mapItemType": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "targetInventoryCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "serviceName",
+        "targetInventoryCode"
+      ]
+    },
     "apimodels.CreateInventoryConfigurationReq": {
       "properties": {
         "code": {
@@ -2955,6 +3432,59 @@
         "errorMessage"
       ]
     },
+    "apimodels.IntegrationConfigurationResp": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "id": {
+          "type": "string"
+        },
+        "itemTypes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "targetInventoryCode": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "itemTypes",
+        "namespace",
+        "serviceName",
+        "status",
+        "targetInventoryCode",
+        "updatedAt"
+      ]
+    },
+    "apimodels.InventoryConfig": {
+      "properties": {
+        "slotUsed": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
     "apimodels.InventoryConfigurationReq": {
       "properties": {
         "code": {
@@ -3119,6 +3649,10 @@
         "namespace": {
           "type": "string"
         },
+        "platformAvailable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "qty": {
           "format": "int32",
           "type": "integer"
@@ -3173,6 +3707,23 @@
         "type",
         "updatedAt",
         "userId"
+      ]
+    },
+    "apimodels.ListIntegrationConfigurationsResp": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodels.IntegrationConfigurationResp"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/apimodels.Paging"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
       ]
     },
     "apimodels.ListInventoryConfigurationsResp": {
@@ -3368,6 +3919,80 @@
         "previous"
       ]
     },
+    "apimodels.PurchaseValidationItemReq": {
+      "properties": {
+        "bundledQty": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "entitlementType": {
+          "type": "string"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/apimodels.InventoryConfig"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "useCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bundledQty",
+        "entitlementType",
+        "inventoryConfig",
+        "itemId",
+        "itemType",
+        "sku"
+      ]
+    },
+    "apimodels.PurchaseValidationReq": {
+      "properties": {
+        "entitlementType": {
+          "type": "string"
+        },
+        "inventoryConfig": {
+          "$ref": "#/definitions/apimodels.InventoryConfig"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemType": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/apimodels.PurchaseValidationItemReq"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "useCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "itemId",
+        "itemType",
+        "quantity",
+        "sku"
+      ]
+    },
     "apimodels.RemoveInventoryItemReq": {
       "properties": {
         "slotId": {
@@ -3422,6 +4047,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "source": {
+          "enum": [
+            "ECOMMERCE",
+            "OTHER"
+          ],
+          "type": "string"
+        },
         "sourceItemId": {
           "type": "string"
         },
@@ -3442,6 +4074,7 @@
         "serverCustomAttributes",
         "slotId",
         "slotUsed",
+        "source",
         "sourceItemId",
         "tags",
         "type"
@@ -3466,6 +4099,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "source": {
+          "enum": [
+            "ECOMMERCE",
+            "OTHER"
+          ],
+          "type": "string"
+        },
         "sourceItemId": {
           "type": "string"
         },
@@ -3485,6 +4125,7 @@
         "serverCustomAttributes",
         "slotId",
         "slotUsed",
+        "source",
         "sourceItemId",
         "tags",
         "type"
@@ -3526,6 +4167,26 @@
         "qty",
         "slotId",
         "sourceItemId"
+      ]
+    },
+    "apimodels.UpdateIntegrationConfigurationReq": {
+      "properties": {
+        "mapItemType": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "targetInventoryCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "serviceName",
+        "targetInventoryCode"
       ]
     },
     "apimodels.UpdateInventoryReq": {
@@ -3622,6 +4283,20 @@
         "sourceItemId",
         "success"
       ]
+    },
+    "apimodels.UpdateStatusIntegrationConfigurationReq": {
+      "properties": {
+        "status": {
+          "enum": [
+            "INIT",
+            "TIED"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
     }
   },
   "x-docs": {
@@ -3630,11 +4305,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2023-10-24T10:07:41+00:00",
-    "gitHash": "be9474eaf07c93341c7002d66eb1ff1d23c389a3",
+    "buildDate": "2024-04-05T08:56:09+00:00",
+    "gitHash": "673cab70bff2c35842fecb793abb2003644ed57c",
     "name": "justice-inventory-service",
     "realm": "staging",
-    "version": "0.1.0",
-    "version-roles-seeding": "0.0.47"
+    "version": "0.1.1",
+    "version-roles-seeding": "1.2.32"
   }
 }

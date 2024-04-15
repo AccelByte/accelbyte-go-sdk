@@ -7,6 +7,8 @@
 package inventoryclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -40,6 +42,11 @@ type ApimodelsSaveItemToInventoryReq struct {
 	// Format: int32
 	SlotUsed *int32 `json:"slotUsed"`
 
+	// source
+	// Enum: ['ECOMMERCE', 'OTHER']
+	// Required: true
+	Source *string `json:"source"`
+
 	// sourceitemid
 	// Required: true
 	SourceItemID *string `json:"sourceItemId"`
@@ -64,6 +71,9 @@ func (m *ApimodelsSaveItemToInventoryReq) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 	if err := m.validateSlotUsed(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSourceItemID(formats); err != nil {
@@ -103,6 +113,49 @@ func (m *ApimodelsSaveItemToInventoryReq) validateSlotID(formats strfmt.Registry
 func (m *ApimodelsSaveItemToInventoryReq) validateSlotUsed(formats strfmt.Registry) error {
 
 	if err := validate.Required("slotUsed", "body", m.SlotUsed); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var apimodelsSaveItemToInventoryReqTypeSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ECOMMERCE", "OTHER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsSaveItemToInventoryReqTypeSourcePropEnum = append(apimodelsSaveItemToInventoryReqTypeSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsSaveItemToInventoryReqSourceECOMMERCE captures enum value "ECOMMERCE"
+	ApimodelsSaveItemToInventoryReqSourceECOMMERCE string = "ECOMMERCE"
+
+	// ApimodelsSaveItemToInventoryReqSourceOTHER captures enum value "OTHER"
+	ApimodelsSaveItemToInventoryReqSourceOTHER string = "OTHER"
+)
+
+// prop value enum
+func (m *ApimodelsSaveItemToInventoryReq) validateSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsSaveItemToInventoryReqTypeSourcePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ApimodelsSaveItemToInventoryReq) validateSource(formats strfmt.Registry) error {
+
+	if err := validate.Required("source", "body", m.Source); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSourceEnum("source", "body", *m.Source); err != nil {
 		return err
 	}
 

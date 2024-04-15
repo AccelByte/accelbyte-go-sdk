@@ -7,6 +7,8 @@
 package adminGameRecord
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
@@ -29,9 +31,16 @@ var ListGameRecordsHandlerV1Cmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		query, _ := cmd.Flags().GetString("query")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &admin_game_record.ListGameRecordsHandlerV1Params{
 			Namespace: namespace,
 			Query:     &query,
+			Tags:      tags,
 			Limit:     limit,
 			Offset:    offset,
 		}
@@ -52,6 +61,7 @@ func init() {
 	ListGameRecordsHandlerV1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("namespace")
 	ListGameRecordsHandlerV1Cmd.Flags().String("query", "", "Query")
+	ListGameRecordsHandlerV1Cmd.Flags().String("tags", "", "Tags")
 	ListGameRecordsHandlerV1Cmd.Flags().Int64("limit", 20, "Limit")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("limit")
 	ListGameRecordsHandlerV1Cmd.Flags().Int64("offset", 0, "Offset")

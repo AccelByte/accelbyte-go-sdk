@@ -101,7 +101,7 @@ type ClientService interface {
 	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
 	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error)
 	PublicCreateUserV4Short(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, error)
-	CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4Forbidden, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4InternalServerError, error)
+	CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4Forbidden, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4Conflict, *CreateUserFromInvitationV4InternalServerError, error)
 	CreateUserFromInvitationV4Short(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, error)
 	PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, *PublicUpdateUserV4BadRequest, *PublicUpdateUserV4Unauthorized, *PublicUpdateUserV4Forbidden, *PublicUpdateUserV4Conflict, *PublicUpdateUserV4InternalServerError, error)
 	PublicUpdateUserV4Short(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, error)
@@ -4651,7 +4651,7 @@ Required attributes:
 - password: Please refer to the rule from /v3/public/inputValidations API.
 - username: Please refer to the rule from /v3/public/inputValidations API.
 */
-func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4Forbidden, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4InternalServerError, error) {
+func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4Forbidden, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4Conflict, *CreateUserFromInvitationV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserFromInvitationV4Params()
@@ -4683,28 +4683,31 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateUserFromInvitationV4Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV4Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV4NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CreateUserFromInvitationV4Conflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *CreateUserFromInvitationV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4771,6 +4774,8 @@ func (a *Client) CreateUserFromInvitationV4Short(params *CreateUserFromInvitatio
 	case *CreateUserFromInvitationV4Forbidden:
 		return nil, v
 	case *CreateUserFromInvitationV4NotFound:
+		return nil, v
+	case *CreateUserFromInvitationV4Conflict:
 		return nil, v
 	case *CreateUserFromInvitationV4InternalServerError:
 		return nil, v

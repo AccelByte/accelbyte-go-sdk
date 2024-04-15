@@ -105,6 +105,11 @@ type AdminRetrievePlayerRecordsParams struct {
 
 	*/
 	Offset *int64
+	/*Tags
+	  filter list by tags, max 5 tags per request
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -215,6 +220,17 @@ func (o *AdminRetrievePlayerRecordsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithTags adds the tags to the admin retrieve player records params
+func (o *AdminRetrievePlayerRecordsParams) WithTags(tags []string) *AdminRetrievePlayerRecordsParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the admin retrieve player records params
+func (o *AdminRetrievePlayerRecordsParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminRetrievePlayerRecordsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -263,6 +279,14 @@ func (o *AdminRetrievePlayerRecordsParams) WriteToRequest(r runtime.ClientReques
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

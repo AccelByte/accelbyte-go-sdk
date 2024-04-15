@@ -15,6 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_chaining_operations"
+	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_integration_configurations"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_inventories"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_inventory_configurations"
 	"github.com/AccelByte/accelbyte-go-sdk/inventory-sdk/pkg/inventoryclient/admin_item_types"
@@ -76,6 +77,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.AdminChainingOperations = admin_chaining_operations.New(transport, formats)
+	cli.AdminIntegrationConfigurations = admin_integration_configurations.New(transport, formats)
 	cli.AdminInventories = admin_inventories.New(transport, formats)
 	cli.AdminInventoryConfigurations = admin_inventory_configurations.New(transport, formats)
 	cli.AdminItemTypes = admin_item_types.New(transport, formats)
@@ -148,6 +150,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeInventoryService struct {
 	AdminChainingOperations admin_chaining_operations.ClientService
 
+	AdminIntegrationConfigurations admin_integration_configurations.ClientService
+
 	AdminInventories admin_inventories.ClientService
 
 	AdminInventoryConfigurations admin_inventory_configurations.ClientService
@@ -176,6 +180,7 @@ type JusticeInventoryService struct {
 func (c *JusticeInventoryService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.AdminChainingOperations.SetTransport(transport)
+	c.AdminIntegrationConfigurations.SetTransport(transport)
 	c.AdminInventories.SetTransport(transport)
 	c.AdminInventoryConfigurations.SetTransport(transport)
 	c.AdminItemTypes.SetTransport(transport)

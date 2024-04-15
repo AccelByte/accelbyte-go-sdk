@@ -294,7 +294,7 @@ type ClientService interface {
 	PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error)
 	GetAdminInvitationV3(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, *GetAdminInvitationV3NotFound, *GetAdminInvitationV3InternalServerError, error)
 	GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error)
-	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
+	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3Conflict, *CreateUserFromInvitationV3InternalServerError, error)
 	CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error)
 	UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Forbidden, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error)
 	UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error)
@@ -3708,8 +3708,8 @@ GetUserMapping get user mapping
 
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
-If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
+If targetNamespace filled with publisher namespace then this endpoint will return its publisher user id and publisher namespace.
+If targetNamespace filled with game namespace then this endpoint will return its game user id and game namespace. **Will create game user id if not exists.**
 */
 func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, *GetUserMappingBadRequest, *GetUserMappingUnauthorized, *GetUserMappingForbidden, *GetUserMappingNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3776,8 +3776,8 @@ GetUserMappingShort get user mapping
 
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
-If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
+If targetNamespace filled with publisher namespace then this endpoint will return its publisher user id and publisher namespace.
+If targetNamespace filled with game namespace then this endpoint will return its game user id and game namespace. **Will create game user id if not exists.**
 */
 func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, error) {
 	// TODO: Validate the params before sending
@@ -13530,8 +13530,8 @@ Deprecated: 2022-08-10 - Use AdminGetUserMappingShort instead.
 AdminGetUserMapping get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
-If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
+If targetNamespace filled with publisher namespace then this endpoint will return its publisher user id and publisher namespace.
+If targetNamespace filled with game namespace then this endpoint will return its game user id and game namespace.
 */
 func (a *Client) AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, *AdminGetUserMappingBadRequest, *AdminGetUserMappingUnauthorized, *AdminGetUserMappingForbidden, *AdminGetUserMappingNotFound, error) {
 	// TODO: Validate the params before sending
@@ -13594,8 +13594,8 @@ func (a *Client) AdminGetUserMapping(params *AdminGetUserMappingParams, authInfo
 AdminGetUserMappingShort get user mapping
 This endpoint requires the client access token as the bearer token
 This endpoint will support publisher access to game and game access to publisher
-If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace
-If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace. Will create game user id if not exists.
+If targetNamespace filled with publisher namespace then this endpoint will return its publisher user id and publisher namespace.
+If targetNamespace filled with game namespace then this endpoint will return its game user id and game namespace.
 */
 func (a *Client) AdminGetUserMappingShort(params *AdminGetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserMappingOK, error) {
 	// TODO: Validate the params before sending
@@ -16231,16 +16231,20 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 Deprecated: 2022-08-10 - Use PublicSearchUserV3Short instead.
 
 PublicSearchUserV3 search user
-This endpoint search all users on the specified namespace that match the query on these fields: display name, and username or by 3rd party display name.
-The query length should greater than 2ï¼otherwise will not query the database. The default limit value is 100.
-**Note: searching by 3rd party platform display name is exact query**
----
-When searching by 3rd party platform display name:
+This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.
+The query length should between 3-20, otherwise will not query the database.
+The default limit value is 20.
+
+## Searching by 3rd party platform
+
+**Note: searching by 3rd party platform display name will use exact query.**
+
+Step when searching by 3rd party platform display name:
 1. set __by__ to __thirdPartyPlatform__
 2. set __platformId__ to the supported platform id
 3. set __platformBy__ to __platformDisplayName__
----
-Supported platform id:
+
+### Supported platform id:
 
 * steam
 * steamopenid
@@ -16325,16 +16329,20 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
 
 /*
 PublicSearchUserV3Short search user
-This endpoint search all users on the specified namespace that match the query on these fields: display name, and username or by 3rd party display name.
-The query length should greater than 2ï¼otherwise will not query the database. The default limit value is 100.
-**Note: searching by 3rd party platform display name is exact query**
----
-When searching by 3rd party platform display name:
+This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.
+The query length should between 3-20, otherwise will not query the database.
+The default limit value is 20.
+
+## Searching by 3rd party platform
+
+**Note: searching by 3rd party platform display name will use exact query.**
+
+Step when searching by 3rd party platform display name:
 1. set __by__ to __thirdPartyPlatform__
 2. set __platformId__ to the supported platform id
 3. set __platformBy__ to __platformDisplayName__
----
-Supported platform id:
+
+### Supported platform id:
 
 * steam
 * steamopenid
@@ -17244,7 +17252,7 @@ EMAILPASSWD: an authentication type used for new user registration through email
 Country use ISO3166-1 alpha-2 two letter, e.g. US.
 Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
 */
-func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error) {
+func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3Forbidden, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3Conflict, *CreateUserFromInvitationV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserFromInvitationV3Params()
@@ -17276,28 +17284,31 @@ func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Pa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateUserFromInvitationV3Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *CreateUserFromInvitationV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CreateUserFromInvitationV3Conflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *CreateUserFromInvitationV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -17354,6 +17365,8 @@ func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitatio
 	case *CreateUserFromInvitationV3Forbidden:
 		return nil, v
 	case *CreateUserFromInvitationV3NotFound:
+		return nil, v
+	case *CreateUserFromInvitationV3Conflict:
 		return nil, v
 	case *CreateUserFromInvitationV3InternalServerError:
 		return nil, v
@@ -19373,14 +19386,18 @@ Note:
 __Supported 3rd platforms:__
 
 * __PSN(ps4web, ps4, ps5)__
+* account id
 * display name
 * avatar
 * __Xbox(live, xblweb)__
+* xuid or pxuid
 * display name
 * __Steam(steam, steamopenid)__
+* steam id
 * display name
 * avatar
 * __EpicGames(epicgames)__
+* epic account id
 * display name
 */
 func (a *Client) PublicGetUsersPlatformInfosV3(params *PublicGetUsersPlatformInfosV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUsersPlatformInfosV3OK, *PublicGetUsersPlatformInfosV3BadRequest, *PublicGetUsersPlatformInfosV3Unauthorized, *PublicGetUsersPlatformInfosV3InternalServerError, error) {
@@ -19447,14 +19464,18 @@ Note:
 __Supported 3rd platforms:__
 
 * __PSN(ps4web, ps4, ps5)__
+* account id
 * display name
 * avatar
 * __Xbox(live, xblweb)__
+* xuid or pxuid
 * display name
 * __Steam(steam, steamopenid)__
+* steam id
 * display name
 * avatar
 * __EpicGames(epicgames)__
+* epic account id
 * display name
 */
 func (a *Client) PublicGetUsersPlatformInfosV3Short(params *PublicGetUsersPlatformInfosV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUsersPlatformInfosV3OK, error) {
@@ -20953,14 +20974,18 @@ Get my user data
 __Supported 3rd platforms:__
 
 * __PSN(ps4web, ps4, ps5)__
+* account id
 * display name
 * avatar
 * __Xbox(live, xblweb)__
+* xuid or pxuid
 * display name
 * __Steam(steam, steamopenid)__
+* steam id
 * display name
 * avatar
 * __EpicGames(epicgames)__
+* epic account id
 * display name
 
 action code : 10147
@@ -21023,14 +21048,18 @@ Get my user data
 __Supported 3rd platforms:__
 
 * __PSN(ps4web, ps4, ps5)__
+* account id
 * display name
 * avatar
 * __Xbox(live, xblweb)__
+* xuid or pxuid
 * display name
 * __Steam(steam, steamopenid)__
+* steam id
 * display name
 * avatar
 * __EpicGames(epicgames)__
+* epic account id
 * display name
 
 action code : 10147

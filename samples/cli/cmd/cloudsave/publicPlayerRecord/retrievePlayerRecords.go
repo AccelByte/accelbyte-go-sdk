@@ -7,6 +7,8 @@
 package publicPlayerRecord
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
@@ -28,10 +30,17 @@ var RetrievePlayerRecordsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &public_player_record.RetrievePlayerRecordsParams{
 			Namespace: namespace,
 			Limit:     &limit,
 			Offset:    &offset,
+			Tags:      tags,
 		}
 		ok, errOK := publicPlayerRecordService.RetrievePlayerRecordsShort(input)
 		if errOK != nil {
@@ -51,4 +60,5 @@ func init() {
 	_ = RetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
 	RetrievePlayerRecordsCmd.Flags().Int64("limit", 20, "Limit")
 	RetrievePlayerRecordsCmd.Flags().Int64("offset", 0, "Offset")
+	RetrievePlayerRecordsCmd.Flags().String("tags", "", "Tags")
 }

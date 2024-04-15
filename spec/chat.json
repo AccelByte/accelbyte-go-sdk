@@ -5342,9 +5342,6 @@
     "models.CategoryHook": {
       "properties": {
         "driver": {
-          "enum": [
-            "KAFKA"
-          ],
           "type": "string"
         },
         "params": {

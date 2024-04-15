@@ -352,7 +352,7 @@ func NewPublicUpgradeHeadlessAccountV3Conflict() *PublicUpgradeHeadlessAccountV3
 
 /*PublicUpgradeHeadlessAccountV3Conflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10153</td><td>user exist</td></tr><tr><td>10170</td><td>account is already a full account</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10153</td><td>user exist</td></tr><tr><td>10170</td><td>account is already a full account</td></tr><tr><td>10222</td><td>unique display name already exists</td></tr></table>
 */
 type PublicUpgradeHeadlessAccountV3Conflict struct {
 	Payload *iamclientmodels.RestErrorResponse

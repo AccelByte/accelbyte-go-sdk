@@ -147,6 +147,32 @@ func (aaa *AdminInventoriesService) DeleteInventory(input *admin_inventories.Del
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminPurchasableShort instead.
+func (aaa *AdminInventoriesService) AdminPurchasable(input *admin_inventories.AdminPurchasableParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, notFound, conflict, internalServerError, err := aaa.Client.AdminInventories.AdminPurchasable(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *AdminInventoriesService) AdminListInventoriesShort(input *admin_inventories.AdminListInventoriesParams) (*inventoryclientmodels.ApimodelsListInventoryResp, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -290,6 +316,36 @@ func (aaa *AdminInventoriesService) DeleteInventoryShort(input *admin_inventorie
 	}
 
 	_, err := aaa.Client.AdminInventories.DeleteInventoryShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *AdminInventoriesService) AdminPurchasableShort(input *admin_inventories.AdminPurchasableParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminInventories != nil {
+		input.XFlightId = tempFlightIdAdminInventories
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.AdminInventories.AdminPurchasableShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

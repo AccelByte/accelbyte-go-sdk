@@ -1085,7 +1085,7 @@ func (aaa *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUser
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.CreateUserFromInvitationV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.CreateUserFromInvitationV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1094,6 +1094,9 @@ func (aaa *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUser
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

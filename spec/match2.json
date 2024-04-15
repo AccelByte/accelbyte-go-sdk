@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.18.1"
+    "version": "2.18.3"
   },
   "schemes": [
     "https"
@@ -1775,7 +1775,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;any\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute \u0026lt;code\u0026gt;cross_platform\u0026lt;/code\u0026gt; will be populated from backend\n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;any\u0026#34;.\n\t```\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {\u0026#34;name\u0026#34;: \u0026#34;cross_platform\u0026#34;, \u0026#34;type\u0026#34;: \u0026#34;any\u0026#34;}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n\t```\n2. Cross Platform can be disabled from the matchpool configuration \u0026lt;code\u0026gt;crossplay_disabled=true\u0026lt;/code\u0026gt;\n3. When matchpool \u0026lt;code\u0026gt;crossplay_disabled=false\u0026lt;/code\u0026gt; \n\t* request attribute cross_platform is empty **[Recommended]**:\n\t\t* Matchmaking will consider Party leader \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference or Session attribute \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference.\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=true\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=false\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be set to user\u0026#39;s currentPlatform\n\t* request attribute cross_platform is not empty **[Not Recommended]**:\n\t\t* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]\n\t\t* Multiple cross_platform values is considered to be crossplay enabled\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
+        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;all\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute \u0026lt;code\u0026gt;cross_platform\u0026lt;/code\u0026gt; will be populated from backend\n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;all\u0026#34;.\n\t```\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {\u0026#34;name\u0026#34;: \u0026#34;cross_platform\u0026#34;, \u0026#34;type\u0026#34;: \u0026#34;all\u0026#34;}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n\t```\n2. Cross Platform can be disabled from the matchpool configuration \u0026lt;code\u0026gt;crossplay_disabled=true\u0026lt;/code\u0026gt;\n3. When matchpool \u0026lt;code\u0026gt;crossplay_disabled=false\u0026lt;/code\u0026gt; \n\t* request attribute cross_platform is empty **[Recommended]**:\n\t\t* Matchmaking will consider Party leader \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference or Session attribute \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference.\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=true\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=false\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be set to user\u0026#39;s currentPlatform\n\t* request attribute cross_platform is not empty **[Not Recommended]**:\n\t\t* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]\n\t\t* Multiple cross_platform values is considered to be crossplay enabled\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -2178,7 +2178,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
+        "description": "Creates a new rules set.\n\nA rule set has a name and contains arbitrary data which is meaningful to some particular match function(s)\nThe name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.\n\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n\nWhen custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.\n",
         "operationId": "CreateRuleSet",
         "parameters": [
           {
@@ -2400,7 +2400,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an existing matchmaking rule set.\n\t\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n",
+        "description": "Updates an existing matchmaking rule set.\n\t\nTo use custom rules set please set enable_custom_match_function=true. Default (false).\n\nWhen custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.\n",
         "operationId": "UpdateRuleSet",
         "parameters": [
           {
@@ -3663,9 +3663,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-15T07:22:57+00:00",
-    "gitHash": "2edcbfb71e915650e8afcc64f48ec7423eaebdf1",
-    "version": "2.18.1",
+    "buildDate": "2024-04-05T03:59:57+00:00",
+    "gitHash": "3d1e70d7b6dd3e9614a74dc31272943005ec26ee",
+    "version": "2.18.3",
     "version-roles-seeding": "1.2.17"
   }
 }

@@ -48,12 +48,12 @@ Deprecated: 2022-08-10 - Use CreateMatchTicketShort instead.
 CreateMatchTicket create a matchmaking ticket
 Creates a new request for matchmaking.
 
-Cross Platform: Allow player to play game with "any" registered platforms.
+Cross Platform: Allow player to play game with "all" registered platforms.
 1. Cross Platform can be enabled through session service or create match ticket.
 a. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute `cross_platform` will be populated from backend
 This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
 b. via session service: set player/party cross_platform attributes.
-c. Enable match options ruleset with name cross_platform and type "any".
+c. Enable match options ruleset with name cross_platform and type "all".
 ```
 {
 "name": "co-op",
@@ -66,7 +66,7 @@ c. Enable match options ruleset with name cross_platform and type "any".
 },
 "match_options": {
 "options": [
-{"name": "cross_platform", "type": "any"}
+{"name": "cross_platform", "type": "all"}
 ]
 }
 }
@@ -150,12 +150,12 @@ func (a *Client) CreateMatchTicket(params *CreateMatchTicketParams, authInfo run
 CreateMatchTicketShort create a matchmaking ticket
 Creates a new request for matchmaking.
 
-Cross Platform: Allow player to play game with "any" registered platforms.
+Cross Platform: Allow player to play game with "all" registered platforms.
 1. Cross Platform can be enabled through session service or create match ticket.
 a. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute `cross_platform` will be populated from backend
 This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]
 b. via session service: set player/party cross_platform attributes.
-c. Enable match options ruleset with name cross_platform and type "any".
+c. Enable match options ruleset with name cross_platform and type "all".
 ```
 {
 "name": "co-op",
@@ -168,7 +168,7 @@ c. Enable match options ruleset with name cross_platform and type "any".
 },
 "match_options": {
 "options": [
-{"name": "cross_platform", "type": "any"}
+{"name": "cross_platform", "type": "all"}
 ]
 }
 }

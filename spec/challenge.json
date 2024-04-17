@@ -26,7 +26,8 @@
         "NAMESPACE:{namespace}:CHALLENGE [READ]": "NAMESPACE:{namespace}:CHALLENGE [READ]",
         "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]": "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]",
         "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]": "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]",
-        "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]": "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]"
+        "NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]": "NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]",
+        "NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]": "NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -559,6 +560,12 @@
             "description": "Created",
             "schema": {
               "$ref": "#/definitions/model.GoalResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
             }
           },
           "401": {
@@ -1514,7 +1521,7 @@
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserRewards",
         "parameters": [
           {
@@ -1587,7 +1594,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]"
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]"
             ],
             "authorization": []
           }
@@ -1603,7 +1610,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicClaimUserRewards",
         "parameters": [
           {
@@ -1663,7 +1670,7 @@
         "security": [
           {
             "HasPermission": [
-              "NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]"
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
             ],
             "authorization": []
           }
@@ -2516,11 +2523,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-22T03:20:36+00:00",
-    "gitHash": "93c858b58e86e228a0083690f27501f2ec0224d8",
+    "buildDate": "2024-04-05T06:48:09+00:00",
+    "gitHash": "040d82ff5fc075fe92822513a55d5887ead40fb6",
     "name": "justice-challenge-service",
     "realm": "staging",
-    "version": "1.2.3",
+    "version": "1.3.0",
     "version-roles-seeding": "1.2.16"
   }
 }

@@ -62,17 +62,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetMemberRolesListAdminV1Short instead.
 
 GetMemberRolesListAdminV1 get all list of member roles
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]
-
-
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -135,17 +125,7 @@ func (a *Client) GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Para
 
 /*
 GetMemberRolesListAdminV1Short get all list of member roles
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]
-
-
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -202,39 +182,17 @@ func (a *Client) GetMemberRolesListAdminV1Short(params *GetMemberRolesListAdminV
 Deprecated: 2022-08-10 - Use CreateMemberRoleAdminV1Short instead.
 
 CreateMemberRoleAdminV1 create new member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]
-
-
-
-
 This endpoint is used to create new member role
-
-
-
 
 Action Code: 73202
 
 
 
-
-
-
 memberRolePermissions example value :
-
-
-
 
 "action": 1
 
-
-
-
 "resourceName": "GROUP:ROLE"
-
-
-
 
 The changes will give user with that role have a permission to create a role for new group member
 */
@@ -297,39 +255,17 @@ func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, 
 
 /*
 CreateMemberRoleAdminV1Short create new member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]
-
-
-
-
 This endpoint is used to create new member role
-
-
-
 
 Action Code: 73202
 
 
 
-
-
-
 memberRolePermissions example value :
-
-
-
 
 "action": 1
 
-
-
-
 "resourceName": "GROUP:ROLE"
-
-
-
 
 The changes will give user with that role have a permission to create a role for new group member
 */
@@ -386,17 +322,7 @@ func (a *Client) CreateMemberRoleAdminV1Short(params *CreateMemberRoleAdminV1Par
 Deprecated: 2022-08-10 - Use GetSingleMemberRoleAdminV1Short instead.
 
 GetSingleMemberRoleAdminV1 get member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]
-
-
-
-
 This endpoint is used to get member role based on the role ID
-
-
-
 
 Action Code: 73203
 */
@@ -462,17 +388,7 @@ func (a *Client) GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Pa
 
 /*
 GetSingleMemberRoleAdminV1Short get member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]
-
-
-
-
 This endpoint is used to get member role based on the role ID
-
-
-
 
 Action Code: 73203
 */
@@ -531,17 +447,7 @@ func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdmi
 Deprecated: 2022-08-10 - Use DeleteMemberRoleAdminV1Short instead.
 
 DeleteMemberRoleAdminV1 delete member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]
-
-
-
-
 This endpoint is used to delete member role. Any member role can't be deleted if the specific role is applied to the configuration (admin and member role)
-
-
-
 
 Action Code: 73207
 */
@@ -607,17 +513,7 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 
 /*
 DeleteMemberRoleAdminV1Short delete member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]
-
-
-
-
 This endpoint is used to delete member role. Any member role can't be deleted if the specific role is applied to the configuration (admin and member role)
-
-
-
 
 Action Code: 73207
 */
@@ -676,17 +572,7 @@ func (a *Client) DeleteMemberRoleAdminV1Short(params *DeleteMemberRoleAdminV1Par
 Deprecated: 2022-08-10 - Use UpdateMemberRoleAdminV1Short instead.
 
 UpdateMemberRoleAdminV1 update member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]
-
-
-
-
 This endpoint is used to update member role
-
-
-
 
 Action Code: 73204
 */
@@ -752,17 +638,7 @@ func (a *Client) UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, 
 
 /*
 UpdateMemberRoleAdminV1Short update member role
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]
-
-
-
-
 This endpoint is used to update member role
-
-
-
 
 Action Code: 73204
 */
@@ -821,39 +697,17 @@ func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Par
 Deprecated: 2022-08-10 - Use UpdateMemberRolePermissionAdminV1Short instead.
 
 UpdateMemberRolePermissionAdminV1 update member role permission
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]
-
-
-
-
 This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint
-
-
-
 
 Action Code: 73205
 
 
 
-
-
-
 memberRolePermissions example value :
-
-
-
 
 "action": 2
 
-
-
-
 "resourceName": "GROUP:ROLE"
-
-
-
 
 The changes will update user role to be able to read a role of other member
 */
@@ -919,39 +773,17 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 
 /*
 UpdateMemberRolePermissionAdminV1Short update member role permission
-
-
-Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]
-
-
-
-
 This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint
-
-
-
 
 Action Code: 73205
 
 
 
-
-
-
 memberRolePermissions example value :
-
-
-
 
 "action": 2
 
-
-
-
 "resourceName": "GROUP:ROLE"
-
-
-
 
 The changes will update user role to be able to read a role of other member
 */
@@ -1010,17 +842,9 @@ func (a *Client) UpdateMemberRolePermissionAdminV1Short(params *UpdateMemberRole
 Deprecated: 2022-08-10 - Use GetMemberRolesListPublicV1Short instead.
 
 GetMemberRolesListPublicV1 get all list of member roles
-
-
 Required Member Role Permission: "GROUP:ROLE [READ]"
 
-
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -1083,17 +907,9 @@ func (a *Client) GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Pa
 
 /*
 GetMemberRolesListPublicV1Short get all list of member roles
-
-
 Required Member Role Permission: "GROUP:ROLE [READ]"
 
-
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -1152,13 +968,7 @@ Deprecated: 2022-08-10 - Use UpdateMemberRolePublicV1Short instead.
 UpdateMemberRolePublicV1 assign role to group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]
 
-
-
-
 This endpoint is used to assign role to group member
-
-
-
 
 Action Code: 73204
 */
@@ -1226,13 +1036,7 @@ func (a *Client) UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params
 UpdateMemberRolePublicV1Short assign role to group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]
 
-
-
-
 This endpoint is used to assign role to group member
-
-
-
 
 Action Code: 73204
 */
@@ -1293,13 +1097,7 @@ Deprecated: 2022-08-10 - Use DeleteMemberRolePublicV1Short instead.
 DeleteMemberRolePublicV1 remove role from group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]"
 
-
-
-
 This endpoint is used to remove role from group member
-
-
-
 
 Action Code: 73204
 */
@@ -1370,13 +1168,7 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 DeleteMemberRolePublicV1Short remove role from group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]"
 
-
-
-
 This endpoint is used to remove role from group member
-
-
-
 
 Action Code: 73204
 */
@@ -1437,12 +1229,7 @@ func (a *Client) DeleteMemberRolePublicV1Short(params *DeleteMemberRolePublicV1P
 Deprecated: 2022-08-10 - Use GetMemberRolesListPublicV2Short instead.
 
 GetMemberRolesListPublicV2 get all list of member roles
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -1505,12 +1292,7 @@ func (a *Client) GetMemberRolesListPublicV2(params *GetMemberRolesListPublicV2Pa
 
 /*
 GetMemberRolesListPublicV2Short get all list of member roles
-
-
 This endpoint is used to get list of member roles
-
-
-
 
 Action Code: 73201
 */
@@ -1569,13 +1351,7 @@ Deprecated: 2022-08-10 - Use UpdateMemberRolePublicV2Short instead.
 UpdateMemberRolePublicV2 assign role to group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]
 
-
-
-
 This endpoint is used to assign role to group member
-
-
-
 
 Action Code: 73204
 */
@@ -1643,13 +1419,7 @@ func (a *Client) UpdateMemberRolePublicV2(params *UpdateMemberRolePublicV2Params
 UpdateMemberRolePublicV2Short assign role to group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]
 
-
-
-
 This endpoint is used to assign role to group member
-
-
-
 
 Action Code: 73204
 */
@@ -1710,13 +1480,7 @@ Deprecated: 2022-08-10 - Use DeleteMemberRolePublicV2Short instead.
 DeleteMemberRolePublicV2 remove role from group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]"
 
-
-
-
 This endpoint is used to remove role from group member
-
-
-
 
 Action Code: 73204
 */
@@ -1787,13 +1551,7 @@ func (a *Client) DeleteMemberRolePublicV2(params *DeleteMemberRolePublicV2Params
 DeleteMemberRolePublicV2Short remove role from group member
 Required Member Role Permission: "GROUP:ROLE [UPDATE]"
 
-
-
-
 This endpoint is used to remove role from group member
-
-
-
 
 Action Code: 73204
 */

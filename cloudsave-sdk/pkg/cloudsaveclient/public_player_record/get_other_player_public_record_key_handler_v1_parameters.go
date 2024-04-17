@@ -105,6 +105,11 @@ type GetOtherPlayerPublicRecordKeyHandlerV1Params struct {
 
 	*/
 	Offset *int64
+	/*Tags
+	  filter list by tags, max 5 tags per request
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -215,6 +220,17 @@ func (o *GetOtherPlayerPublicRecordKeyHandlerV1Params) SetOffset(offset *int64) 
 	o.Offset = offset
 }
 
+// WithTags adds the tags to the get other player public record key handler v1 params
+func (o *GetOtherPlayerPublicRecordKeyHandlerV1Params) WithTags(tags []string) *GetOtherPlayerPublicRecordKeyHandlerV1Params {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the get other player public record key handler v1 params
+func (o *GetOtherPlayerPublicRecordKeyHandlerV1Params) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOtherPlayerPublicRecordKeyHandlerV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -263,6 +279,14 @@ func (o *GetOtherPlayerPublicRecordKeyHandlerV1Params) WriteToRequest(r runtime.
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

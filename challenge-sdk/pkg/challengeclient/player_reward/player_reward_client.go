@@ -158,7 +158,7 @@ Deprecated: 2022-08-10 - Use PublicGetUserRewardsShort instead.
 
 PublicGetUserRewards list user's rewards
 
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, *PublicGetUserRewardsUnauthorized, *PublicGetUserRewardsForbidden, *PublicGetUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -217,7 +217,7 @@ func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authIn
 /*
 PublicGetUserRewardsShort list user's rewards
 
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewardsShort(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -271,7 +271,7 @@ Deprecated: 2022-08-10 - Use PublicClaimUserRewardsShort instead.
 
 PublicClaimUserRewards claim user's rewards
 
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, *PublicClaimUserRewardsUnauthorized, *PublicClaimUserRewardsForbidden, *PublicClaimUserRewardsNotFound, *PublicClaimUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -333,7 +333,7 @@ func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, au
 /*
 PublicClaimUserRewardsShort claim user's rewards
 
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD:CLAIM [UPDATE]
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewardsShort(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, error) {
 	// TODO: Validate the params before sending

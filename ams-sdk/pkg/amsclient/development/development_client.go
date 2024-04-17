@@ -45,7 +45,7 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use DevelopmentServerConfigurationListShort instead.
 
-DevelopmentServerConfigurationList lists all development server configurations
+DevelopmentServerConfigurationList lists development server configurations with pagination
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) DevelopmentServerConfigurationList(params *DevelopmentServerConfigurationListParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationListOK, *DevelopmentServerConfigurationListUnauthorized, *DevelopmentServerConfigurationListForbidden, *DevelopmentServerConfigurationListInternalServerError, error) {
@@ -103,7 +103,7 @@ func (a *Client) DevelopmentServerConfigurationList(params *DevelopmentServerCon
 }
 
 /*
-DevelopmentServerConfigurationListShort lists all development server configurations
+DevelopmentServerConfigurationListShort lists development server configurations with pagination
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]
 */
 func (a *Client) DevelopmentServerConfigurationListShort(params *DevelopmentServerConfigurationListParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationListOK, error) {
@@ -157,6 +157,8 @@ func (a *Client) DevelopmentServerConfigurationListShort(params *DevelopmentServ
 Deprecated: 2022-08-10 - Use DevelopmentServerConfigurationCreateShort instead.
 
 DevelopmentServerConfigurationCreate create a new development server configuration
+Configuration name can be up to 128 characters and must conform to ^[.a-zA-Z0-9_-]+$
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) DevelopmentServerConfigurationCreate(params *DevelopmentServerConfigurationCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationCreateCreated, *DevelopmentServerConfigurationCreateBadRequest, *DevelopmentServerConfigurationCreateUnauthorized, *DevelopmentServerConfigurationCreateForbidden, *DevelopmentServerConfigurationCreateInternalServerError, error) {
@@ -218,6 +220,8 @@ func (a *Client) DevelopmentServerConfigurationCreate(params *DevelopmentServerC
 
 /*
 DevelopmentServerConfigurationCreateShort create a new development server configuration
+Configuration name can be up to 128 characters and must conform to ^[.a-zA-Z0-9_-]+$
+
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
 func (a *Client) DevelopmentServerConfigurationCreateShort(params *DevelopmentServerConfigurationCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationCreateCreated, error) {

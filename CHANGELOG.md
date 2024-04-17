@@ -1,3 +1,19 @@
+<a name="v0.68.0"></a>
+## [v0.68.0]
+### feat
+- **api:** add sessionhistory service
+### test
+- **:** make compatible with docker desktop
+### fix
+- **:** add error checking to the found.Location parsed url
+- **:** linter issue
+### chore
+- **:** go mod tidy
+- **:** go mod tidy
+- **:** gofmt auth
+- **:** revert gomod and gosumg
+
+
 <a name="v0.67.0"></a>
 ## [v0.67.0]
 ### test

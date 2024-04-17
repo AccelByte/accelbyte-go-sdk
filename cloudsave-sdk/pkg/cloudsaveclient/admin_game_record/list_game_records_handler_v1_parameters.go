@@ -95,6 +95,11 @@ type ListGameRecordsHandlerV1Params struct {
 
 	*/
 	Query *string
+	/*Tags
+	  filter list by tags, max 5 tags per request
+
+	*/
+	Tags []string
 	/*Limit
 	  the number of data retrieved in a page, default 25
 
@@ -193,6 +198,17 @@ func (o *ListGameRecordsHandlerV1Params) SetQuery(query *string) {
 	o.Query = query
 }
 
+// WithTags adds the tags to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) WithTags(tags []string) *ListGameRecordsHandlerV1Params {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WithLimit adds the limit to the list game records handler v1 params
 func (o *ListGameRecordsHandlerV1Params) WithLimit(limit int64) *ListGameRecordsHandlerV1Params {
 	o.SetLimit(limit)
@@ -242,6 +258,14 @@ func (o *ListGameRecordsHandlerV1Params) WriteToRequest(r runtime.ClientRequest,
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// query param limit

@@ -18,9 +18,9 @@ import (
 // swagger:model Api development server configuration get response.
 type APIDevelopmentServerConfigurationGetResponse struct {
 
-	// commandline
+	// commandlinearguments
 	// Required: true
-	CommandLine *string `json:"commandLine"`
+	CommandLineArguments *string `json:"commandLineArguments"`
 
 	// imageid
 	// Required: true
@@ -35,7 +35,7 @@ type APIDevelopmentServerConfigurationGetResponse struct {
 func (m *APIDevelopmentServerConfigurationGetResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCommandLine(formats); err != nil {
+	if err := m.validateCommandLineArguments(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateImageID(formats); err != nil {
@@ -51,9 +51,9 @@ func (m *APIDevelopmentServerConfigurationGetResponse) Validate(formats strfmt.R
 	return nil
 }
 
-func (m *APIDevelopmentServerConfigurationGetResponse) validateCommandLine(formats strfmt.Registry) error {
+func (m *APIDevelopmentServerConfigurationGetResponse) validateCommandLineArguments(formats strfmt.Registry) error {
 
-	if err := validate.Required("commandLine", "body", m.CommandLine); err != nil {
+	if err := validate.Required("commandLineArguments", "body", m.CommandLineArguments); err != nil {
 		return err
 	}
 

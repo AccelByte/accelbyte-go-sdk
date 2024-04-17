@@ -48,6 +48,10 @@ type APIFleetGetResponse struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// ondemand
+	// Required: true
+	OnDemand *bool `json:"onDemand"`
+
 	// regions
 	// Required: true
 	Regions []*APIRegionConfig `json:"regions"`
@@ -76,6 +80,9 @@ func (m *APIFleetGetResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateOnDemand(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegions(formats); err != nil {
@@ -163,6 +170,15 @@ func (m *APIFleetGetResponse) validateIsLocal(formats strfmt.Registry) error {
 func (m *APIFleetGetResponse) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetGetResponse) validateOnDemand(formats strfmt.Registry) error {
+
+	if err := validate.Required("onDemand", "body", m.OnDemand); err != nil {
 		return err
 	}
 

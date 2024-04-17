@@ -40,6 +40,9 @@ type ModelsGameBinaryRecordResponse struct {
 	// Enum: ['CLIENT', 'SERVER']
 	SetBy string `json:"set_by,omitempty"`
 
+	// Tagging for game binary record
+	Tags []string `json:"tags,omitempty"`
+
 	// updated_at
 	// Required: true
 	// Format: date-time

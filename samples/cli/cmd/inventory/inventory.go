@@ -8,6 +8,7 @@ package inventory
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminChainingOperations"
+	"github.com/AccelByte/sample-apps/cmd/inventory/adminIntegrationConfigurations"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminInventories"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminInventoryConfigurations"
 	"github.com/AccelByte/sample-apps/cmd/inventory/adminItemTypes"
@@ -29,6 +30,10 @@ var InventoryCmd = &cobra.Command{
 
 func init() {
 	InventoryCmd.AddCommand(adminChainingOperations.AdminCreateChainingOperationsCmd)
+	InventoryCmd.AddCommand(adminIntegrationConfigurations.AdminListIntegrationConfigurationsCmd)
+	InventoryCmd.AddCommand(adminIntegrationConfigurations.AdminCreateIntegrationConfigurationCmd)
+	InventoryCmd.AddCommand(adminIntegrationConfigurations.AdminUpdateIntegrationConfigurationCmd)
+	InventoryCmd.AddCommand(adminIntegrationConfigurations.AdminUpdateStatusIntegrationConfigurationCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminListInventoriesCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminCreateInventoryCmd)
 	InventoryCmd.AddCommand(adminInventories.AdminGetInventoryCmd)
@@ -52,6 +57,8 @@ func init() {
 	InventoryCmd.AddCommand(adminItems.AdminSaveItemToInventoryCmd)
 	InventoryCmd.AddCommand(adminItems.AdminBulkRemoveItemsCmd)
 	InventoryCmd.AddCommand(adminItems.AdminSaveItemCmd)
+	InventoryCmd.AddCommand(adminItems.AdminSyncUserEntitlementsCmd)
+	InventoryCmd.AddCommand(adminInventories.AdminPurchasableCmd)
 	InventoryCmd.AddCommand(publicInventoryConfigurations.PublicListInventoryConfigurationsCmd)
 	InventoryCmd.AddCommand(publicItemTypes.PublicListItemTypesCmd)
 	InventoryCmd.AddCommand(publicTags.PublicListTagsCmd)

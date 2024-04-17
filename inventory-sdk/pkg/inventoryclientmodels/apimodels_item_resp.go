@@ -39,6 +39,9 @@ type ApimodelsItemResp struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// platformavailable
+	PlatformAvailable bool `json:"platformAvailable"`
+
 	// qty
 	// Required: true
 	// Format: int32

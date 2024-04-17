@@ -117,6 +117,7 @@
 | `api.DevelopmentServerConfigurationCreateRequest` | [ApiDevelopmentServerConfigurationCreateRequest ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_request.go) |
 | `api.DevelopmentServerConfigurationCreateResponse` | [ApiDevelopmentServerConfigurationCreateResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_response.go) |
 | `api.DevelopmentServerConfigurationGetResponse` | [ApiDevelopmentServerConfigurationGetResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_get_response.go) |
+| `api.DevelopmentServerConfigurationListResponse` | [ApiDevelopmentServerConfigurationListResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_list_response.go) |
 | `api.FleetArtifactsSampleRules` | [ApiFleetArtifactsSampleRules ](../../ams-sdk/pkg/amsclientmodels/api_fleet_artifacts_sample_rules.go) |
 | `api.FleetClaimByKeysReq` | [ApiFleetClaimByKeysReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_by_keys_req.go) |
 | `api.FleetClaimReq` | [ApiFleetClaimReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_req.go) |

@@ -3541,7 +3541,7 @@ func (aaa *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromI
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, internalServerError, err := aaa.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3550,6 +3550,9 @@ func (aaa *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromI
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

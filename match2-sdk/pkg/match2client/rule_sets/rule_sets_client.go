@@ -165,6 +165,8 @@ A rule set has a name and contains arbitrary data which is meaningful to some pa
 The name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
+
+When custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.
 */
 func (a *Client) CreateRuleSet(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, *CreateRuleSetBadRequest, *CreateRuleSetUnauthorized, *CreateRuleSetForbidden, *CreateRuleSetConflict, *CreateRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -234,6 +236,8 @@ A rule set has a name and contains arbitrary data which is meaningful to some pa
 The name is used for a match pool to select the ruleset data that should be sent to the match function when matchmaking in that pool.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
+
+When custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.
 */
 func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRuleSetCreated, error) {
 	// TODO: Validate the params before sending
@@ -404,6 +408,8 @@ UpdateRuleSet update a match rule set
 Updates an existing matchmaking rule set.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
+
+When custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.
 */
 func (a *Client) UpdateRuleSet(params *UpdateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRuleSetOK, *UpdateRuleSetBadRequest, *UpdateRuleSetUnauthorized, *UpdateRuleSetForbidden, *UpdateRuleSetNotFound, *UpdateRuleSetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -470,6 +476,8 @@ UpdateRuleSetShort update a match rule set
 Updates an existing matchmaking rule set.
 
 To use custom rules set please set enable_custom_match_function=true. Default (false).
+
+When custom enable_custom_match_function=true, the ruleset will only validate if the rule is valid json.
 */
 func (a *Client) UpdateRuleSetShort(params *UpdateRuleSetParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRuleSetOK, error) {
 	// TODO: Validate the params before sending

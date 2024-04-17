@@ -56,7 +56,8 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ChangePreferenceConsentShort instead.
 
 ChangePreferenceConsent change preference consent
-This API will Update Preference Consent. Other detail info:
+This API will Update Preference Consent.
+Other detail info:
 
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=4 (UPDATE)
 */
@@ -110,7 +111,9 @@ func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, 
 
 /*
 ChangePreferenceConsentShort change preference consent
-This API will Update Preference Consent. Other detail info:
+This API will Update Preference Consent.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error) {
@@ -160,7 +163,9 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 Deprecated: 2022-08-10 - Use RetrieveAcceptedAgreementsShort instead.
 
 RetrieveAcceptedAgreements retrieve accepted legal agreements
-This API will return all accepted Legal Agreements for specified user. Other detail info:
+This API will return all accepted Legal Agreements for specified user.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error) {
@@ -210,7 +215,9 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 
 /*
 RetrieveAcceptedAgreementsShort retrieve accepted legal agreements
-This API will return all accepted Legal Agreements for specified user. Other detail info:
+This API will return all accepted Legal Agreements for specified user.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error) {
@@ -257,8 +264,10 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 /*
 Deprecated: 2022-08-10 - Use RetrieveAllUsersByPolicyVersionShort instead.
 
-RetrieveAllUsersByPolicyVersion retrieve all users accepting legal agreements
-This API will return all users who has accepted a specific policy version.Other detail info:
+RetrieveAllUsersByPolicyVersion retrieve users accepting legal agreements
+This API will return users who has accepted a specific policy version.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, *RetrieveAllUsersByPolicyVersionNotFound, error) {
@@ -310,8 +319,10 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 }
 
 /*
-RetrieveAllUsersByPolicyVersionShort retrieve all users accepting legal agreements
-This API will return all users who has accepted a specific policy version.Other detail info:
+RetrieveAllUsersByPolicyVersionShort retrieve users accepting legal agreements
+This API will return users who has accepted a specific policy version.
+Other detail info:
+
   * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, error) {

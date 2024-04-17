@@ -73,6 +73,12 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	Scope *string `json:"scope"`
 
+	// simultaneous_platform_id
+	SimultaneousPlatformID string `json:"simultaneous_platform_id,omitempty"`
+
+	// simultaneous_platform_user_id
+	SimultaneousPlatformUserID string `json:"simultaneous_platform_user_id,omitempty"`
+
 	// token_type
 	// Required: true
 	TokenType *string `json:"token_type"`

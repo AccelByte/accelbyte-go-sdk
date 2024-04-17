@@ -105,6 +105,11 @@ type ListGameBinaryRecordsV1Params struct {
 
 	*/
 	Query *string
+	/*Tags
+	  filter list by tags, max 5 tags per request
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -215,6 +220,17 @@ func (o *ListGameBinaryRecordsV1Params) SetQuery(query *string) {
 	o.Query = query
 }
 
+// WithTags adds the tags to the list game binary records v1 params
+func (o *ListGameBinaryRecordsV1Params) WithTags(tags []string) *ListGameBinaryRecordsV1Params {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the list game binary records v1 params
+func (o *ListGameBinaryRecordsV1Params) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListGameBinaryRecordsV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -274,6 +290,14 @@ func (o *ListGameBinaryRecordsV1Params) WriteToRequest(r runtime.ClientRequest, 
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

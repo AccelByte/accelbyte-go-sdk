@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.19.2"
+    "version": "2.19.4"
   },
   "schemes": [
     "https"
@@ -22,17 +22,6 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:GROUP [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP [READ]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]",
         "GROUP [DELETE]": "GROUP [DELETE]",
         "GROUP [READ]": "GROUP [READ]",
         "GROUP [UPDATE]": "GROUP [UPDATE]",
@@ -59,7 +48,7 @@
   "paths": {
     "/group/v1/admin/namespaces/{namespace}/configuration": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\n\nAction Code: 73101\n\t\t",
         "operationId": "listGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -125,22 +114,31 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "List Group Configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;For each of the global rule, it will be the rule detail that consists of these fields: \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleAttribute\u0026lt;/b\u0026gt;: attribute of the player that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleCriteria\u0026lt;/b\u0026gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleValue\u0026lt;/b\u0026gt;: value that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Allowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is \u0026lt;b\u0026gt;\u0026#34;createGroup\u0026#34;\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73103\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.\n\nFor each of the global rule, it will be the rule detail that consists of these fields:\n\n*   **ruleAttribute**: attribute of the player that needs to be checked\n*   **ruleCriteria**: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\n*   **ruleValue**: value that needs to be checked\n\nAllowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is **\u0026#34;createGroup\u0026#34;**\n\nAction Code: 73103\n\t\t",
         "operationId": "createGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -202,21 +200,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "create new configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/initiate": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Default Permission for admin role will cover these permission: \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Permission to invite user to group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Permission to accept or reject join request\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Permission to kick group member\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Default max member value will be 50 and global rules will be empty\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73104\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to initiate configuration.  \nThis endpoint will automatically create default configuration and member roles with default permission  \nDefault Permission for admin role will cover these permission:  \n- Permission to invite user to group\n- Permission to accept or reject join request\n- Permission to kick group member  \n\nDefault max member value will be 50 and global rules will be empty  \nAction Code: 73104",
         "operationId": "initiateGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -264,21 +271,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "initiate configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to delete group configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to delete group configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\n\nAction Code: 73101\n\t\t",
         "operationId": "deleteGroupConfigurationV1",
         "parameters": [
           {
@@ -336,19 +352,28 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete group configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\n\nAction Code: 73101\n\t\t",
         "operationId": "getGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -409,22 +434,31 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "get existing configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won\u0026#39;t be able to be updated. User can try to change the member role permission instead for each of those member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73102\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won\u0026#39;t be able to be updated. User can try to change the member role permission instead for each of those member role\n\nAction Code: 73102\n\t\t",
         "operationId": "updateGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -493,9 +527,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -507,7 +538,7 @@
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73105\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule\n\nAction Code: 73105\n\t\t",
         "operationId": "deleteGroupConfigurationGlobalRuleAdminV1",
         "parameters": [
           {
@@ -575,22 +606,31 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "delete existing configuration global rule based on allowed action",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73106\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request\n\nAction Code: 73106\n\t\t",
         "operationId": "updateGroupConfigurationGlobalRuleAdminV1",
         "parameters": [
           {
@@ -666,21 +706,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "update existing configuration global rule",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required Permission: \u0026#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]\u0026#34; \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups. This endpoint will show any types of group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73301\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Get list of groups. This endpoint will show any types of group\n\nAction Code: 73301\n\t\t",
         "operationId": "getGroupListAdminV1",
         "parameters": [
           {
@@ -758,21 +807,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "get list of groups",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups/{groupId}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required Permission: \u0026#34;ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73302\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.\n\nAction Code: 73302\n\t\t",
         "operationId": "deleteGroupAdminV1",
         "parameters": [
           {
@@ -830,19 +888,28 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Delete existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required Permission: \u0026#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get single group information. This endpoint will show the group information by the groupId\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73306\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Get single group information. This endpoint will show the group information by the groupId\n\nAction Code: 73306\n\t\t",
         "operationId": "getSingleGroupAdminV1",
         "parameters": [
           {
@@ -903,21 +970,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "get single group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups/{groupId}/members": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get list of group members.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73410\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get list of group members.\n\nAction Code: 73410\n\t\t",
         "operationId": "getGroupMembersListAdminV1",
         "parameters": [
           {
@@ -996,21 +1072,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "Get list of group members",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/roles": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get list of member roles\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73201\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get list of member roles\n\nAction Code: 73201\n\t\t",
         "operationId": "getMemberRolesListAdminV1",
         "parameters": [
           {
@@ -1070,22 +1155,31 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "get all list of member roles",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73202\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The changes will give user with that role have a permission to create a role for new group member\u0026lt;p/\u0026gt;\n\t\t",
+        "description": "This endpoint is used to create new member role\n\nAction Code: 73202\n\n  \n\nmemberRolePermissions example value :\n\n\u0026#34;action\u0026#34;: 1\n\n\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\n\nThe changes will give user with that role have a permission to create a role for new group member\n\t\t",
         "operationId": "createMemberRoleAdminV1",
         "parameters": [
           {
@@ -1141,21 +1235,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "create new member role",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to delete member role. Any member role can\u0026#39;t be deleted if the specific role is applied to the configuration (admin and member role)\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73207\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to delete member role. Any member role can\u0026#39;t be deleted if the specific role is applied to the configuration (admin and member role)\n\nAction Code: 73207\n\t\t",
         "operationId": "deleteMemberRoleAdminV1",
         "parameters": [
           {
@@ -1213,19 +1316,28 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "delete member role",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get member role based on the role ID\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73203\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get member role based on the role ID\n\nAction Code: 73203\n\t\t",
         "operationId": "getSingleMemberRoleAdminV1",
         "parameters": [
           {
@@ -1286,22 +1398,31 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "get member role",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
+            ]
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to update member role\n\nAction Code: 73204\n\t\t",
         "operationId": "updateMemberRoleAdminV1",
         "parameters": [
           {
@@ -1370,15 +1491,24 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "update member role",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -1387,7 +1517,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73205\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 2\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The changes will update user role to be able to read a role of other member \u0026lt;p/\u0026gt;\n\t\t",
+        "description": "This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint\n\nAction Code: 73205\n\n  \n\nmemberRolePermissions example value :\n\n\u0026#34;action\u0026#34;: 2\n\n\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\n\nThe changes will update user role to be able to read a role of other member\n\t\t",
         "operationId": "updateMemberRolePermissionAdminV1",
         "parameters": [
           {
@@ -1456,21 +1586,30 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "update member role permission",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
+            ]
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the \u0026#34;groupName\u0026#34; query parameter\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73303\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nGet list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the \u0026#34;groupName\u0026#34; query parameter\n\nAction Code: 73303\n\t\t",
         "operationId": "getGroupListPublicV1",
         "parameters": [
           {
@@ -1548,13 +1687,23 @@
         "summary": "get list of groups",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;There are some fields that needs to be fulfilled\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupDescription\u0026lt;/b\u0026gt;: the description of the group (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupIcon\u0026lt;/b\u0026gt;: group icon URL link (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupName\u0026lt;/b\u0026gt;: name of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRegion\u0026lt;/b\u0026gt;: region of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRules\u0026lt;/b\u0026gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;allowedAction\u0026lt;/b\u0026gt;: available action in group service. It consist of joinGroup and inviteGroup\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleAttribute\u0026lt;/b\u0026gt;: attribute of the player that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleCriteria\u0026lt;/b\u0026gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleValue\u0026lt;/b\u0026gt;: value that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;customAttributes\u0026lt;/b\u0026gt;: additional custom group attributes (optional)\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73304\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to create new group\n\nThere are some fields that needs to be fulfilled\n\n*   **groupDescription**: the description of the group (optional)\n*   **groupIcon**: group icon URL link (optional)\n*   **groupName**: name of the group\n*   **groupRegion**: region of the group\n*   **groupRules**: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\n*   **allowedAction**: available action in group service. It consist of joinGroup and inviteGroup\n*   **ruleAttribute**: attribute of the player that needs to be checked\n*   **ruleCriteria**: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\n*   **ruleValue**: value that needs to be checked\n*   **customAttributes**: additional custom group attributes (optional)\n\nAction Code: 73304\n\t\t",
         "operationId": "createNewGroupPublicV1",
         "parameters": [
           {
@@ -1622,12 +1771,22 @@
         "summary": "create new group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73305\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [DELETE]\u0026#34;\n\nDelete existing group. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73305\n\t\t",
         "operationId": "deleteGroupPublicV1",
         "parameters": [
           {
@@ -1694,10 +1853,20 @@
         "summary": "Delete existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get single group information. This endpoint will show the group information by the groupId\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73306\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nGet single group information. This endpoint will show the group information by the groupId\n\nAction Code: 73306\n\t\t",
         "operationId": "getSingleGroupPublicV1",
         "parameters": [
           {
@@ -1764,13 +1933,23 @@
         "summary": "get single group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73307\n\t\t",
         "operationId": "updatePatchSingleGroupPublicV1",
         "parameters": [
           {
@@ -1848,13 +2027,23 @@
         "summary": "update existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73307\n\t\t",
         "operationId": "updateSingleGroupV1",
         "parameters": [
           {
@@ -1932,6 +2121,16 @@
         "summary": "update existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -1940,7 +2139,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73311\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Requires valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\n\nThis endpoint replaces current group custom attributes entirely. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73311\n\t\t",
         "operationId": "updateGroupCustomAttributesPublicV1",
         "parameters": [
           {
@@ -2018,12 +2217,22 @@
         "summary": "Update group custom attributes",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the user who access this endpoint is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Existing members will receive notification of newly accepted member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73401\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
         "operationId": "acceptGroupInvitationPublicV1",
         "parameters": [
           {
@@ -2096,12 +2305,22 @@
         "summary": "Accept Group Invitation",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73402\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
         "operationId": "rejectGroupInvitationPublicV1",
         "parameters": [
           {
@@ -2174,12 +2393,22 @@
         "summary": "Reject Group Invitation",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to join as group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Additional Information:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;User cannot join to the group with PRIVATE type\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining OPEN group type will make this user become member of that group immediately\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73403\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the the the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
         "operationId": "JoinGroupV1",
         "parameters": [
           {
@@ -2246,12 +2475,22 @@
         "summary": "Join to group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Requires valid user authentication\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint allows user to cancel request to join specific group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73411\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Requires valid user authentication\n\nThis endpoint allows user to cancel request to join specific group.\n\nAction Code: 73411\n\t\t",
         "operationId": "CancelGroupJoinRequestV1",
         "parameters": [
           {
@@ -2318,12 +2557,22 @@
         "summary": "Cancel request to join group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Join Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73501\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\n\nThis endpoint is used to Get Group Join Request List\n\nGet Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\n\nAction Code: 73501\n\t\t",
         "operationId": "getGroupJoinRequestPublicV1",
         "parameters": [
           {
@@ -2396,12 +2645,22 @@
         "summary": "Get Group Join Request List",
         "tags": [
           "Member Request"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/members": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get list of group members.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73410\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to get list of group members.\n\nAction Code: 73410\n\t\t",
         "operationId": "getGroupMembersListPublicV1",
         "parameters": [
           {
@@ -2486,6 +2745,16 @@
         "summary": "Get list of group members",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -2494,7 +2763,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73308\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nUpdate group custom rule. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73308\n\t\t",
         "operationId": "updateGroupCustomRulePublicV1",
         "parameters": [
           {
@@ -2569,12 +2838,22 @@
         "summary": "update group custom rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73309\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nDelete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73309\n\t\t",
         "operationId": "deleteGroupPredefinedRulePublicV1",
         "parameters": [
           {
@@ -2648,13 +2927,23 @@
         "summary": "Delete group predefined rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73310\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate predefined group rule. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nIf the rule action is not defined in the group, it will be added immediately to the predefined group rule\n\nAction Code: 73310\n\t\t",
         "operationId": "updateGroupPredefinedRulePublicV1",
         "parameters": [
           {
@@ -2739,12 +3028,22 @@
         "summary": "update predefined group rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/leave": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to leave from group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73404\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to leave from group.\n\nleave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\n\nAction Code: 73404\n\t\t",
         "operationId": "leaveGroupPublicV1",
         "parameters": [
           {
@@ -2804,12 +3103,22 @@
         "summary": "Leave group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/roles": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:ROLE [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get list of member roles\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73201\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE \\[READ\\]\u0026#34;\n\nThis endpoint is used to get list of member roles\n\nAction Code: 73201\n\t\t",
         "operationId": "getMemberRolesListPublicV1",
         "parameters": [
           {
@@ -2875,6 +3184,16 @@
         "summary": "get all list of member roles",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -2883,7 +3202,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to remove role from group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026#34;\n\nThis endpoint is used to remove role from group member\n\nAction Code: 73204",
         "operationId": "deleteMemberRolePublicV1",
         "parameters": [
           {
@@ -2961,13 +3280,23 @@
         "summary": "Remove role from group member",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to assign role to group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\n\nThis endpoint is used to assign role to group member\n\nAction Code: 73204",
         "operationId": "updateMemberRolePublicV1",
         "parameters": [
           {
@@ -3042,12 +3371,22 @@
         "summary": "Assign role to group member",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/me/invite/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Invitation Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Invitation Request List for the user calling this endpoint. It will check any group invitation for this user\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73502\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to Get Group Invitation Request List\n\nGet Group Invitation Request List for the user calling this endpoint. It will check any group invitation for this user\n\nAction Code: 73502\n\t\t",
         "operationId": "getGroupInvitationRequestPublicV1",
         "parameters": [
           {
@@ -3113,12 +3452,22 @@
         "summary": "Get Group Invitation Request List",
         "tags": [
           "Member Request"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOIN : status of user requested to join group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;INVITE: status of user invited to a group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73405\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to get user group information.\n\nGet user group information. If user does not belong to any group, it will return warning to give information about it\n\nGroup Member Status:\n\n*   JOIN : status of user requested to join group\n*   INVITE: status of user invited to a group\n*   JOINED: status of user already joined to a group\n\nAction Code: 73405\n\t\t",
         "operationId": "getUserGroupInformationPublicV1",
         "parameters": [
           {
@@ -3185,12 +3534,22 @@
         "summary": "Get User Group Information",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/invite": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to invite specific user to the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Invited user will receive notification through lobby.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73406\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The invited user will have a permission to invite another user to the group\u0026lt;p/\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\n\nThis endpoint is used to invite specific user to the group.\n\ninvite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\n\nInvited user will receive notification through lobby.\n\nAction Code: 73406\n\n  \n\nmemberRolePermissions example value :\n\n\u0026#34;action\u0026#34;: 1\n\n\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\n\nThe invited user will have a permission to invite another user to the group\n\t\t",
         "operationId": "inviteGroupPublicV1",
         "parameters": [
           {
@@ -3266,12 +3625,22 @@
         "summary": "Invite user to group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/accept": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73407\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
         "operationId": "acceptGroupJoinRequestPublicV1",
         "parameters": [
           {
@@ -3344,12 +3713,22 @@
         "summary": "Accept Group Join Request",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/reject": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73408\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
         "operationId": "rejectGroupJoinRequestPublicV1",
         "parameters": [
           {
@@ -3422,12 +3801,22 @@
         "summary": "Reject Group Join Request",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/kick": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to kick group member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "kickGroupMemberPublicV1",
         "parameters": [
           {
@@ -3494,6 +3883,16 @@
         "summary": "Kick Group Member",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -3502,7 +3901,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups by group Ids.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73303\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nGet list of groups by group Ids.\n\nAction Code: 73303\n\t\t",
         "operationId": "getListGroupByIDsAdminV2",
         "parameters": [
           {
@@ -3564,12 +3963,24 @@
         "summary": "get list of groups by group Ids",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
+            ]
+          }
         ]
       }
     },
     "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user joined group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to get user joined group information.\n\nGet user group joined information. If user does not belong to any group, it will return warning to give information about it\n\nGroup Member Status:\n\n*   JOINED: status of user already joined to a group\n\t\t",
         "operationId": "getUserJoinedGroupInformationPublicV2",
         "parameters": [
           {
@@ -3648,12 +4059,22 @@
         "summary": "Get User Joined Group Information",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/status": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required Permission: \u0026#34;ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group status information.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get user group status information.",
         "operationId": "AdminGetUserGroupStatusInformationV2",
         "parameters": [
           {
@@ -3715,15 +4136,22 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]"
-            ],
             "authorization": []
           }
         ],
         "summary": "User Group Status Information",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -3732,7 +4160,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;There are some fields that needs to be fulfilled\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupDescription\u0026lt;/b\u0026gt;: the description of the group (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupIcon\u0026lt;/b\u0026gt;: group icon URL link (optional)\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupName\u0026lt;/b\u0026gt;: name of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRegion\u0026lt;/b\u0026gt;: region of the group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;groupRules\u0026lt;/b\u0026gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;allowedAction\u0026lt;/b\u0026gt;: available action in group service. It consist of joinGroup and inviteGroup\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleAttribute\u0026lt;/b\u0026gt;: attribute of the player that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleCriteria\u0026lt;/b\u0026gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;ruleValue\u0026lt;/b\u0026gt;: value that needs to be checked\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;customAttributes\u0026lt;/b\u0026gt;: additional custom group attributes (optional)\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73304\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to create new group\n\nThere are some fields that needs to be fulfilled\n\n*   **groupDescription**: the description of the group (optional)\n*   **groupIcon**: group icon URL link (optional)\n*   **groupName**: name of the group\n*   **groupRegion**: region of the group\n*   **groupRules**: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\n*   **allowedAction**: available action in group service. It consist of joinGroup and inviteGroup\n*   **ruleAttribute**: attribute of the player that needs to be checked\n*   **ruleCriteria**: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\n*   **ruleValue**: value that needs to be checked\n*   **customAttributes**: additional custom group attributes (optional)\n\nAction Code: 73304\n\t\t",
         "operationId": "createNewGroupPublicV2",
         "parameters": [
           {
@@ -3800,6 +4228,16 @@
         "summary": "create new group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -3808,7 +4246,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get list of groups by group Ids.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73303\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nGet list of groups by group Ids.\n\nAction Code: 73303\n\t\t",
         "operationId": "getListGroupByIDsV2",
         "parameters": [
           {
@@ -3870,12 +4308,22 @@
         "summary": "get list of groups by group Ids",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73305\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [DELETE]\u0026#34;\n\nDelete existing group. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73305\n\t\t",
         "operationId": "deleteGroupPublicV2",
         "parameters": [
           {
@@ -3942,13 +4390,23 @@
         "summary": "Delete existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73307\n\t\t",
         "operationId": "updatePatchSingleGroupPublicV2",
         "parameters": [
           {
@@ -4026,13 +4484,23 @@
         "summary": "update existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73307\n\t\t",
         "operationId": "updatePutSingleGroupPublicV2",
         "parameters": [
           {
@@ -4110,6 +4578,16 @@
         "summary": "update existing group",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -4118,7 +4596,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73311\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Requires valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nThis endpoint replaces current group custom attributes entirely. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73311\n\t\t",
         "operationId": "updateGroupCustomAttributesPublicV2",
         "parameters": [
           {
@@ -4196,12 +4674,22 @@
         "summary": "Update group custom attributes",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the user who access this endpoint is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Existing members will receive notification of newly accepted member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73401\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
         "operationId": "acceptGroupInvitationPublicV2",
         "parameters": [
           {
@@ -4274,12 +4762,22 @@
         "summary": "Accept Group Invitation",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group invitation.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73402\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
         "operationId": "rejectGroupInvitationPublicV2",
         "parameters": [
           {
@@ -4352,12 +4850,22 @@
         "summary": "Reject Group Invitation",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Invite Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Invite Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73501\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\n\nThis endpoint is used to Get Group Invite Request List\n\nGet Group Invite Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\n\nAction Code: 73501\n\t\t",
         "operationId": "getGroupInviteRequestPublicV2",
         "parameters": [
           {
@@ -4430,12 +4938,22 @@
         "summary": "Get Group Invite Request List",
         "tags": [
           "Member Request"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to join as group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Additional Information:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;User cannot join to the group with PRIVATE type\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Joining OPEN group type will make this user become member of that group immediately\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73403\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the the the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
         "operationId": "JoinGroupV2",
         "parameters": [
           {
@@ -4502,12 +5020,22 @@
         "summary": "Join to group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Join Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73501\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [READ]\u0026#34;\n\nThis endpoint is used to Get Group Join Request List\n\nGet Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\n\nAction Code: 73501\n\t\t",
         "operationId": "getGroupJoinRequestPublicV2",
         "parameters": [
           {
@@ -4580,12 +5108,22 @@
         "summary": "Get Group Join Request List",
         "tags": [
           "Member Request"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/leave": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to leave from group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73404\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to leave from group.\n\nleave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\n\nAction Code: 73404\n\t\t",
         "operationId": "leaveGroupPublicV2",
         "parameters": [
           {
@@ -4652,6 +5190,16 @@
         "summary": "Leave group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -4660,7 +5208,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73308\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nUpdate group custom rule. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73308\n\t\t",
         "operationId": "updateGroupCustomRulePublicV2",
         "parameters": [
           {
@@ -4735,12 +5283,22 @@
         "summary": "update group custom rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73309\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nDelete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nAction Code: 73309\n\t\t",
         "operationId": "deleteGroupPredefinedRulePublicV2",
         "parameters": [
           {
@@ -4814,13 +5372,23 @@
         "summary": "Delete group predefined rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73310\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\n\nUpdate predefined group rule. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. It will also check the member role of the user based on the access token\n\nIf the rule action is not defined in the group, it will be added immediately to the predefined group rule\n\nAction Code: 73310\n\t\t",
         "operationId": "updateGroupPredefinedRulePublicV2",
         "parameters": [
           {
@@ -4905,12 +5473,22 @@
         "summary": "update predefined group rule",
         "tags": [
           "Group"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/roles": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;This endpoint is used to get list of member roles\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73201\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "This endpoint is used to get list of member roles\n\nAction Code: 73201\n\t\t",
         "operationId": "getMemberRolesListPublicV2",
         "parameters": [
           {
@@ -4976,6 +5554,16 @@
         "summary": "get all list of member roles",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
@@ -4984,7 +5572,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to remove role from group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE \\[UPDATE\\]\u0026#34;\n\nThis endpoint is used to remove role from group member\n\nAction Code: 73204",
         "operationId": "deleteMemberRolePublicV2",
         "parameters": [
           {
@@ -5069,13 +5657,23 @@
         "summary": "Remove role from group member",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to assign role to group member\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;",
+        "description": "Required Member Role Permission: \u0026#34;GROUP:ROLE [UPDATE]\n\nThis endpoint is used to assign role to group member\n\nAction Code: 73204",
         "operationId": "updateMemberRolePublicV2",
         "parameters": [
           {
@@ -5157,12 +5755,22 @@
         "summary": "Assign role to group member",
         "tags": [
           "Group Roles"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/me/groups": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user joined group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group joined information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73405\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to get user joined group information.\n\nGet user group joined information. If user does not belong to any group, it will return warning to give information about it\n\nGroup Member Status:\n\n*   JOINED: status of user already joined to a group\n\nAction Code: 73405\n\t\t",
         "operationId": "getUserGroupInformationPublicV2",
         "parameters": [
           {
@@ -5234,12 +5842,22 @@
         "summary": "Get User Joined Group Information",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/me/join/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get My Join Request To The Groups\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get My Join Request To The Groups for the user calling this endpoint. It will check any join request group for this user\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73502\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to Get My Join Request To The Groups\n\nGet My Join Request To The Groups for the user calling this endpoint. It will check any join request group for this user\n\nAction Code: 73502\n\t\t",
         "operationId": "GetMyGroupJoinRequestV2",
         "parameters": [
           {
@@ -5305,12 +5923,22 @@
         "summary": "Get My Join Request To The Groups",
         "tags": [
           "Member Request"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to invite specific user to the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Invited user will receive notification through lobby.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73406\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The invited user will have a permission to invite another user to the group\u0026lt;p/\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\n\nThis endpoint is used to invite specific user to the group.\n\ninvite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\n\nInvited user will receive notification through lobby.\n\nAction Code: 73406\n\n  \n\nmemberRolePermissions example value :\n\n\u0026#34;action\u0026#34;: 1\n\n\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\n\nThe invited user will have a permission to invite another user to the group\n\t\t",
         "operationId": "inviteGroupPublicV2",
         "parameters": [
           {
@@ -5393,12 +6021,22 @@
         "summary": "Invite user to group",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [DELETE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to cancel invitation group member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:INVITE [DELETE]\u0026#34;\n\nThis endpoint is used to cancel invitation group member.\n\ncancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "CancelInvitationGroupMemberV2",
         "parameters": [
           {
@@ -5475,12 +6113,22 @@
         "summary": "Cancel Invitation Group Member",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/accept": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to accept group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73407\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
         "operationId": "acceptGroupJoinRequestPublicV2",
         "parameters": [
           {
@@ -5560,12 +6208,22 @@
         "summary": "Accept Group Join Request",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/reject": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to reject group join request.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will also check if the specific user is already joined to specific group\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73408\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
         "operationId": "rejectGroupJoinRequestPublicV2",
         "parameters": [
           {
@@ -5645,12 +6303,22 @@
         "summary": "Reject Group Join Request",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/kick": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to kick group member.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "kickGroupMemberPublicV2",
         "parameters": [
           {
@@ -5724,12 +6392,22 @@
         "summary": "Kick Group Member",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/status": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [READ]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group status information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73409\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [READ]\u0026#34;\n\nThis endpoint is used to get user group status information.\n\nget user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "GetUserGroupStatusInformationV2",
         "parameters": [
           {
@@ -5800,6 +6478,16 @@
         "summary": "User Group Status Information",
         "tags": [
           "Group Member"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
         ]
       }
     }
@@ -6696,11 +7384,11 @@
     "path": "/group/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-22T03:21:15+00:00",
-    "gitHash": "8a08409a13bf6764af3dfc65502f0ee867d79540",
+    "buildDate": "2024-04-05T06:48:38+00:00",
+    "gitHash": "1e88c27cb1c84cdd6a6fffedf7d8d4ee0f49c5d8",
     "name": "justice-group-service",
     "realm": "demo",
-    "version": "2.19.2",
+    "version": "2.19.4",
     "version-roles-seeding": "0.0.3"
   }
 }

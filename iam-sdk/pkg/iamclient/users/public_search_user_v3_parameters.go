@@ -71,22 +71,22 @@ type PublicSearchUserV3Params struct {
 	*/
 	Namespace string
 	/*By
-	  Search by given attribute, possible values are displayName and uniqueDisplayName and username and thirdPartyPlatform
+	  Search by given attribute, possible values are displayName, uniqueDisplayName, username, and thirdPartyPlatform
 
 	*/
 	By *string
 	/*Limit
-	  The number of data retrieved in a page, default 100
+	  The number of data retrieved in a page, default 20
 
 	*/
 	Limit *int64
 	/*Offset
-	  number of offset, default 0
+	  The number of offset, default 0
 
 	*/
 	Offset *int64
 	/*PlatformBy
-	  Search platformBy given attribute, possible values are platformDisplayName
+	  Search platformBy given attribute, possible value is platformDisplayName
 
 	*/
 	PlatformBy *string
@@ -96,7 +96,7 @@ type PublicSearchUserV3Params struct {
 	*/
 	PlatformID *string
 	/*Query
-	  Query, can be either display name or username
+	  Query, can be either display name or username. Max character is 50
 
 	*/
 	Query *string

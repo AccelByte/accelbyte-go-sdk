@@ -7,12 +7,9 @@
 package chatclientmodels
 
 import (
-	"encoding/json"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ModelsCategoryHook Models category hook
@@ -21,7 +18,6 @@ import (
 type ModelsCategoryHook struct {
 
 	// driver
-	// Enum: ['KAFKA']
 	Driver string `json:"driver,omitempty"`
 
 	// params
@@ -34,32 +30,6 @@ func (m *ModelsCategoryHook) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-var modelsCategoryHookTypeDriverPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["KAFKA"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		modelsCategoryHookTypeDriverPropEnum = append(modelsCategoryHookTypeDriverPropEnum, v)
-	}
-}
-
-const (
-
-	// ModelsCategoryHookDriverKAFKA captures enum value "KAFKA"
-	ModelsCategoryHookDriverKAFKA string = "KAFKA"
-)
-
-// prop value enum
-func (m *ModelsCategoryHook) validateDriverEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, modelsCategoryHookTypeDriverPropEnum, true); err != nil {
-		return err
 	}
 	return nil
 }

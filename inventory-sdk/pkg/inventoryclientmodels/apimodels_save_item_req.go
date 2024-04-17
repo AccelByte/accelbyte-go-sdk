@@ -7,6 +7,8 @@
 package inventoryclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -44,6 +46,11 @@ type ApimodelsSaveItemReq struct {
 	// Format: int32
 	SlotUsed *int32 `json:"slotUsed"`
 
+	// source
+	// Enum: ['ECOMMERCE', 'OTHER']
+	// Required: true
+	Source *string `json:"source"`
+
 	// sourceitemid
 	// Required: true
 	SourceItemID *string `json:"sourceItemId"`
@@ -71,6 +78,9 @@ func (m *ApimodelsSaveItemReq) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateSlotUsed(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateSourceItemID(formats); err != nil {
@@ -119,6 +129,49 @@ func (m *ApimodelsSaveItemReq) validateSlotID(formats strfmt.Registry) error {
 func (m *ApimodelsSaveItemReq) validateSlotUsed(formats strfmt.Registry) error {
 
 	if err := validate.Required("slotUsed", "body", m.SlotUsed); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var apimodelsSaveItemReqTypeSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ECOMMERCE", "OTHER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsSaveItemReqTypeSourcePropEnum = append(apimodelsSaveItemReqTypeSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsSaveItemReqSourceECOMMERCE captures enum value "ECOMMERCE"
+	ApimodelsSaveItemReqSourceECOMMERCE string = "ECOMMERCE"
+
+	// ApimodelsSaveItemReqSourceOTHER captures enum value "OTHER"
+	ApimodelsSaveItemReqSourceOTHER string = "OTHER"
+)
+
+// prop value enum
+func (m *ApimodelsSaveItemReq) validateSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsSaveItemReqTypeSourcePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ApimodelsSaveItemReq) validateSource(formats strfmt.Registry) error {
+
+	if err := validate.Required("source", "body", m.Source); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateSourceEnum("source", "body", *m.Source); err != nil {
 		return err
 	}
 

@@ -7,6 +7,8 @@
 package publicPlayerBinaryRecord
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_binary_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
@@ -29,11 +31,18 @@ var ListOtherPlayerPublicBinaryRecordsV1Cmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &public_player_binary_record.ListOtherPlayerPublicBinaryRecordsV1Params{
 			Namespace: namespace,
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			Tags:      tags,
 		}
 		ok, errOK := publicPlayerBinaryRecordService.ListOtherPlayerPublicBinaryRecordsV1Short(input)
 		if errOK != nil {
@@ -55,4 +64,5 @@ func init() {
 	_ = ListOtherPlayerPublicBinaryRecordsV1Cmd.MarkFlagRequired("userId")
 	ListOtherPlayerPublicBinaryRecordsV1Cmd.Flags().Int64("limit", 20, "Limit")
 	ListOtherPlayerPublicBinaryRecordsV1Cmd.Flags().Int64("offset", 0, "Offset")
+	ListOtherPlayerPublicBinaryRecordsV1Cmd.Flags().String("tags", "", "Tags")
 }

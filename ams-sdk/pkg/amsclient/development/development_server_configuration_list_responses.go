@@ -72,7 +72,7 @@ func NewDevelopmentServerConfigurationListOK() *DevelopmentServerConfigurationLi
   development server configurations
 */
 type DevelopmentServerConfigurationListOK struct {
-	Payload []*amsclientmodels.APIDevelopmentServerConfigurationGetResponse
+	Payload *amsclientmodels.APIDevelopmentServerConfigurationListResponse
 }
 
 func (o *DevelopmentServerConfigurationListOK) Error() string {
@@ -94,7 +94,7 @@ func (o *DevelopmentServerConfigurationListOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *DevelopmentServerConfigurationListOK) GetPayload() []*amsclientmodels.APIDevelopmentServerConfigurationGetResponse {
+func (o *DevelopmentServerConfigurationListOK) GetPayload() *amsclientmodels.APIDevelopmentServerConfigurationListResponse {
 	return o.Payload
 }
 
@@ -105,8 +105,10 @@ func (o *DevelopmentServerConfigurationListOK) readResponse(response runtime.Cli
 		consumer = runtime.ByteStreamConsumer()
 	}
 
+	o.Payload = new(amsclientmodels.APIDevelopmentServerConfigurationListResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

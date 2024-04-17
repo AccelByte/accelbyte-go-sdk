@@ -26,8 +26,12 @@ var DevelopmentServerConfigurationListCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		count, _ := cmd.Flags().GetInt64("count")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &development.DevelopmentServerConfigurationListParams{
 			Namespace: namespace,
+			Count:     &count,
+			Offset:    &offset,
 		}
 		ok, errOK := developmentService.DevelopmentServerConfigurationListShort(input)
 		if errOK != nil {
@@ -45,4 +49,6 @@ var DevelopmentServerConfigurationListCmd = &cobra.Command{
 func init() {
 	DevelopmentServerConfigurationListCmd.Flags().String("namespace", "", "Namespace")
 	_ = DevelopmentServerConfigurationListCmd.MarkFlagRequired("namespace")
+	DevelopmentServerConfigurationListCmd.Flags().Int64("count", 1, "Count")
+	DevelopmentServerConfigurationListCmd.Flags().Int64("offset", 0, "Offset")
 }

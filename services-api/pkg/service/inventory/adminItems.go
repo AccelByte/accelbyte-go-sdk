@@ -190,6 +190,35 @@ func (aaa *AdminItemsService) AdminSaveItem(input *admin_items.AdminSaveItemPara
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminSyncUserEntitlementsShort instead.
+func (aaa *AdminItemsService) AdminSyncUserEntitlements(input *admin_items.AdminSyncUserEntitlementsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminItems.AdminSyncUserEntitlements(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *AdminItemsService) AdminListItemsShort(input *admin_items.AdminListItemsParams) (*inventoryclientmodels.ApimodelsListItemResp, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -398,4 +427,34 @@ func (aaa *AdminItemsService) AdminSaveItemShort(input *admin_items.AdminSaveIte
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminItemsService) AdminSyncUserEntitlementsShort(input *admin_items.AdminSyncUserEntitlementsParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminItems != nil {
+		input.XFlightId = tempFlightIdAdminItems
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.AdminItems.AdminSyncUserEntitlementsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -55,7 +55,7 @@ func Test_AdminQueryMatchmakingDetail(t *testing.T) {
 func Test_AdminQueryPartyDetail(t *testing.T) {
 	Init()
 
-	// CASE Query a party detail
+	// CASE Query a matchmaking match count
 	param := game_session_detail.NewAdminQueryPartyDetailParams()
 	param.SetNamespace(integration.NamespaceTest)
 

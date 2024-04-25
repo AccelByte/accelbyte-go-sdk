@@ -19,7 +19,7 @@ pipeline {
   stages {
     stage('Prepare') {
       agent {
-        label "master"
+        label "extend-builder-ci"
       }
       steps {
         script {

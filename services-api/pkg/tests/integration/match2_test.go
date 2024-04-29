@@ -44,8 +44,47 @@ var (
 	poolName          = "go_sdk_pool_" + RandStringBytes(4)
 	matchFunction     = "basic"
 	expirationSeconds = int32(600)
-	data              = "{\"alliance\":{\"minNumber\":\"2\",\"maxNumber\":\"10\",\"playerMinNumber\":\"2\",\"playerMaxNumber\":\"4\"},\"matchingRules\":[{\"attribute\":\"\",\"criteria\":\"distance\",\"reference\":\"\"}],\"flexingRules\":[{\"duration\":\"600\",\"attribute\":\"\",\"criteria\":\"distance\",\"reference\":\"\"}],\"match_options\":{\"options\":[{\"name\":\"\",\"type\":\"any\"}]},\"alliance_flexing_rule\":[{\"duration\":\"600\",\"min_number\":\"\",\"max_number\":\"\",\"player_min_number\":\"\",\"player_max_number\":\"\"}]}"
-	bodyMatchPool     = &match2clientmodels.APIMatchPool{
+	data              = map[string]interface{}{
+		"alliance": map[string]string{
+			"minNumber":       "2",
+			"maxNumber":       "10",
+			"playerMinNumber": "2",
+			"playerMaxNumber": "4",
+		},
+		"matchingRules": []map[string]string{
+			{
+				"attribute": "",
+				"criteria":  "distance",
+				"reference": "",
+			},
+		},
+		"flexingRules": []map[string]string{
+			{
+				"duration":  "600",
+				"attribute": "",
+				"criteria":  "distance",
+				"reference": "",
+			},
+		},
+		"match_options": map[string]interface{}{
+			"options": []map[string]string{
+				{
+					"name": "",
+					"type": "any",
+				},
+			},
+		},
+		"alliance_flexing_rule": []map[string]int{
+			{
+				"duration":          600,
+				"min_number":        0,
+				"max_number":        0,
+				"player_min_number": 0,
+				"player_max_number": 0,
+			},
+		},
+	}
+	bodyMatchPool = &match2clientmodels.APIMatchPool{
 		BackfillTicketExpirationSeconds: &expirationSeconds,
 		MatchFunction:                   &matchFunction,
 		Name:                            &poolName,

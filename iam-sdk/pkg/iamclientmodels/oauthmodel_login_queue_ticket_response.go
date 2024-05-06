@@ -27,6 +27,11 @@ type OauthmodelLoginQueueTicketResponse struct {
 	// Format: int32
 	EstimatedWaitingTimeInSeconds *int32 `json:"estimatedWaitingTimeInSeconds"`
 
+	// playerpollingtimeinseconds
+	// Required: true
+	// Format: int32
+	PlayerPollingTimeInSeconds *int32 `json:"playerPollingTimeInSeconds"`
+
 	// position
 	// Required: true
 	// Format: int32
@@ -54,6 +59,9 @@ func (m *OauthmodelLoginQueueTicketResponse) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 	if err := m.validateEstimatedWaitingTimeInSeconds(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePlayerPollingTimeInSeconds(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePosition(formats); err != nil {
@@ -96,6 +104,15 @@ func (m *OauthmodelLoginQueueTicketResponse) validateCancel(formats strfmt.Regis
 func (m *OauthmodelLoginQueueTicketResponse) validateEstimatedWaitingTimeInSeconds(formats strfmt.Registry) error {
 
 	if err := validate.Required("estimatedWaitingTimeInSeconds", "body", m.EstimatedWaitingTimeInSeconds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *OauthmodelLoginQueueTicketResponse) validatePlayerPollingTimeInSeconds(formats strfmt.Registry) error {
+
+	if err := validate.Required("playerPollingTimeInSeconds", "body", m.PlayerPollingTimeInSeconds); err != nil {
 		return err
 	}
 

@@ -35,6 +35,90 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/chat/admin/namespaces/{namespace}/chat/filter": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "For testing purpose, doesn\u0026#39;t send any message to the topic. Always do filter regardless of enableProfanityFilter configuration.",
+        "operationId": "adminFilterChatMessage",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.MessageRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "To show what filter driver is used",
+            "in": "query",
+            "name": "detail",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MessageResultWithAttributes"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Return filtered chat message",
+        "tags": [
+          "topic"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHAT:TOPIC [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/chat/admin/namespaces/{namespace}/chats": {
       "get": {
         "consumes": [
@@ -4893,6 +4977,75 @@
         "summary": "get service messages"
       }
     },
+    "/chat/v1/public/config/namespaces/{namespace}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get chat config of a namespace.",
+        "operationId": "publicGetConfigV1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PublicConfigResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "public get namespace config",
+        "tags": [
+          "config"
+        ],
+        "x-security": []
+      }
+    },
     "/chat/v1/public/namespaces/{namespace}/topic/{topic}/snapshot/{chatId}": {
       "get": {
         "consumes": [
@@ -5637,6 +5790,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "maxChatMessageLength": {
+          "format": "int32",
+          "type": "integer"
+        },
         "useDefaultDictionary": {
           "type": "boolean",
           "x-omitempty": false
@@ -5795,6 +5952,10 @@
         },
         "generalRateLimitDuration": {
           "format": "int64",
+          "type": "integer"
+        },
+        "maxChatMessageLength": {
+          "format": "int32",
           "type": "integer"
         },
         "shardCapacityLimit": {
@@ -6276,6 +6437,74 @@
     "models.JSONSchemaType": {
       "type": "object"
     },
+    "models.MessageRequest": {
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "topicType": {
+          "enum": [
+            "GROUP",
+            "PERSONAL"
+          ],
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "models.MessageResultWithAttributes": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object"
+        },
+        "cencoredWords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "classifications": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "finalMessage": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "action",
+        "finalMessage",
+        "id",
+        "timestamp"
+      ]
+    },
     "models.MessageStats": {
       "properties": {
         "id": {
@@ -6339,6 +6568,52 @@
       },
       "required": [
         "userIDs"
+      ]
+    },
+    "models.PublicConfigResponse": {
+      "properties": {
+        "chatRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "chatRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "generalRateLimitBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "generalRateLimitDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "maxChatMessageLength": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatBurst": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "spamChatDuration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "spamMuteDuration": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "chatRateLimitBurst",
+        "chatRateLimitDuration",
+        "generalRateLimitBurst",
+        "generalRateLimitDuration",
+        "maxChatMessageLength",
+        "spamChatBurst",
+        "spamChatDuration",
+        "spamMuteDuration"
       ]
     },
     "models.PublicUnbanTopicMembersRequest": {
@@ -6807,11 +7082,11 @@
     "path": "/chat/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-08T08:37:16+00:00",
-    "gitHash": "724aa708ab92c1faedb33d937467c34bad388955",
+    "buildDate": "2024-05-03T06:57:19+00:00",
+    "gitHash": "0e0fa08e36e3fb2f290e712ffbdf9f5dad64ead0",
     "name": "justice-chat-service",
-    "revisionID": "0.4.23",
-    "version": "0.4.23",
+    "revisionID": "0.4.28",
+    "version": "0.4.28",
     "version-roles-seeding": "1.2.15"
   }
 }

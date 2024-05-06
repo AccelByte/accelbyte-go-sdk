@@ -23,6 +23,9 @@ type CampaignUpdate struct {
 	// The description of the campaign, max length is 1024 characters
 	Description string `json:"description,omitempty"`
 
+	// Discount Config
+	DiscountConfig *DiscountConfig `json:"discountConfig,omitempty"`
+
 	// Redeemable Items
 	Items []*RedeemableItem `json:"items,omitempty"`
 
@@ -55,7 +58,7 @@ type CampaignUpdate struct {
 	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 
 	// Redeem Type. Allowed values: ITEM
-	// Enum: ['ITEM']
+	// Enum: ['DISCOUNT', 'ITEM']
 	RedeemType string `json:"redeemType,omitempty"`
 
 	// The status of the campaign
@@ -93,7 +96,7 @@ var campaignUpdateTypeRedeemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DISCOUNT", "ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -102,6 +105,9 @@ func init() {
 }
 
 const (
+
+	// CampaignUpdateRedeemTypeDISCOUNT captures enum value "DISCOUNT"
+	CampaignUpdateRedeemTypeDISCOUNT string = "DISCOUNT"
 
 	// CampaignUpdateRedeemTypeITEM captures enum value "ITEM"
 	CampaignUpdateRedeemTypeITEM string = "ITEM"

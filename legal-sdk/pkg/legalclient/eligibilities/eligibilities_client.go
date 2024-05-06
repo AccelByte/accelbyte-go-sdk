@@ -44,9 +44,6 @@ Deprecated: 2022-08-10 - Use RetrieveEligibilitiesPublicShort instead.
 RetrieveEligibilitiesPublic check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.
-
-Other detail info:
-      * Required permission : login user
 */
 func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, *RetrieveEligibilitiesPublicBadRequest, *RetrieveEligibilitiesPublicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -103,9 +100,6 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 RetrieveEligibilitiesPublicShort check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.
-
-Other detail info:
-      * Required permission : login user
 */
 func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error) {
 	// TODO: Validate the params before sending
@@ -158,9 +152,6 @@ Deprecated: 2022-08-10 - Use RetrieveEligibilitiesPublicIndirectShort instead.
 RetrieveEligibilitiesPublicIndirect check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
-
-Other detail info:
-      * Required permission : login user
 */
 func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, *RetrieveEligibilitiesPublicIndirectBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -214,9 +205,6 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 RetrieveEligibilitiesPublicIndirectShort check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
-
-Other detail info:
-      * Required permission : login user
 */
 func (a *Client) RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error) {
 	// TODO: Validate the params before sending

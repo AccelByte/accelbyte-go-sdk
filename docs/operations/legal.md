@@ -158,6 +158,7 @@
 | `LocalizedPolicyVersionObject` | [LocalizedPolicyVersionObject ](../../legal-sdk/pkg/legalclientmodels/localized_policy_version_object.go) |
 | `PagedRetrieveUserAcceptedAgreementResponse` | [PagedRetrieveUserAcceptedAgreementResponse ](../../legal-sdk/pkg/legalclientmodels/paged_retrieve_user_accepted_agreement_response.go) |
 | `Paging` | [Paging ](../../legal-sdk/pkg/legalclientmodels/paging.go) |
+| `Permission` | [Permission ](../../legal-sdk/pkg/legalclientmodels/permission.go) |
 | `PolicyObject` | [PolicyObject ](../../legal-sdk/pkg/legalclientmodels/policy_object.go) |
 | `PolicyVersionObject` | [PolicyVersionObject ](../../legal-sdk/pkg/legalclientmodels/policy_version_object.go) |
 | `PolicyVersionWithLocalizedVersionObject` | [PolicyVersionWithLocalizedVersionObject ](../../legal-sdk/pkg/legalclientmodels/policy_version_with_localized_version_object.go) |

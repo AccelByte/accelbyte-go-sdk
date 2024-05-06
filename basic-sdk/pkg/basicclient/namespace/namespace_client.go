@@ -52,6 +52,8 @@ type ClientService interface {
 	ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, error)
 	PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error)
 	PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error)
+	GetNamespace1(params *GetNamespace1Params) (*GetNamespace1OK, *GetNamespace1NotFound, error)
+	GetNamespace1Short(params *GetNamespace1Params) (*GetNamespace1OK, error)
 	PublicGetNamespacePublisher(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, *PublicGetNamespacePublisherBadRequest, *PublicGetNamespacePublisherUnauthorized, *PublicGetNamespacePublisherForbidden, *PublicGetNamespacePublisherNotFound, error)
 	PublicGetNamespacePublisherShort(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, error)
 
@@ -65,8 +67,7 @@ GetNamespaces get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE" , action=2 (READ)
-  *  Action code : 11303
+  * Action code : 11303
   *  Returns : list of namespaces
 */
 func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, *GetNamespacesUnauthorized, *GetNamespacesForbidden, error) {
@@ -125,8 +126,7 @@ GetNamespacesShort get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE" , action=2 (READ)
-  *  Action code : 11303
+  * Action code : 11303
   *  Returns : list of namespaces
 */
 func (a *Client) GetNamespacesShort(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, error) {
@@ -183,8 +183,7 @@ By default the namespace is enabled.
 In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE" , action=1 (CREATE)
-  *  Action code : 11301
+  * Action code : 11301
   *  Returns : created namespace
 */
 func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, *CreateNamespaceBadRequest, *CreateNamespaceUnauthorized, *CreateNamespaceForbidden, *CreateNamespaceConflict, error) {
@@ -251,8 +250,7 @@ By default the namespace is enabled.
 In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE" , action=1 (CREATE)
-  *  Action code : 11301
+  * Action code : 11301
   *  Returns : created namespace
 */
 func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error) {
@@ -312,8 +310,7 @@ Get a namespace.
 In multi tenant mode, parentNamespace will be returned.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11304
+  * Action code : 11304
   *  Returns : namespace
 */
 func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error) {
@@ -379,8 +376,7 @@ Get a namespace.
 In multi tenant mode, parentNamespace will be returned.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11304
+  * Action code : 11304
   *  Returns : namespace
 */
 func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error) {
@@ -439,8 +435,7 @@ DeleteNamespace delete a namespace
 Delete a namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=8 (DELETE)
-  *  Action code : 11307
+  * Action code : 11307
   *  Returns : deleted namespace
 */
 func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, *DeleteNamespaceBadRequest, *DeleteNamespaceUnauthorized, *DeleteNamespaceForbidden, *DeleteNamespaceNotFound, *DeleteNamespaceConflict, error) {
@@ -508,8 +503,7 @@ DeleteNamespaceShort delete a namespace
 Delete a namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=8 (DELETE)
-  *  Action code : 11307
+  * Action code : 11307
   *  Returns : deleted namespace
 */
 func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error) {
@@ -570,8 +564,7 @@ UpdateNamespace update namespace basic info
 Update namespace basic info.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=4 (UPDATE)
-  *  Action code : 11302
+  * Action code : 11302
   *  Returns : updated namespace
 */
 func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, *UpdateNamespaceBadRequest, *UpdateNamespaceUnauthorized, *UpdateNamespaceForbidden, *UpdateNamespaceNotFound, *UpdateNamespaceConflict, error) {
@@ -639,8 +632,7 @@ UpdateNamespaceShort update namespace basic info
 Update namespace basic info.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=4 (UPDATE)
-  *  Action code : 11302
+  * Action code : 11302
   *  Returns : updated namespace
 */
 func (a *Client) UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, error) {
@@ -703,8 +695,7 @@ If input namespace is publisher namespace, then it will return its all studio na
 If input namespace is studio namespace, then it will return its all game namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Returns : list of child namespaces
+  * Returns : list of child namespaces
 */
 func (a *Client) GetChildNamespaces(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, *GetChildNamespacesUnauthorized, *GetChildNamespacesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -764,8 +755,7 @@ If input namespace is publisher namespace, then it will return its all studio na
 If input namespace is studio namespace, then it will return its all game namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Returns : list of child namespaces
+  * Returns : list of child namespaces
 */
 func (a *Client) GetChildNamespacesShort(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, error) {
 	// TODO: Validate the params before sending
@@ -819,8 +809,7 @@ GetNamespaceContext get context of namespace
 Get context of namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Returns : context of namespace
+  * Returns : context of namespace
 */
 func (a *Client) GetNamespaceContext(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, *GetNamespaceContextUnauthorized, *GetNamespaceContextForbidden, error) {
 	// TODO: Validate the params before sending
@@ -878,8 +867,7 @@ GetNamespaceContextShort get context of namespace
 Get context of namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Returns : context of namespace
+  * Returns : context of namespace
 */
 func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, error) {
 	// TODO: Validate the params before sending
@@ -934,8 +922,7 @@ Get game namespaces.
 In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11308
+  * Action code : 11308
   *  Returns : list of namespaces
 */
 func (a *Client) GetGameNamespaces(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, *GetGameNamespacesUnauthorized, *GetGameNamespacesForbidden, error) {
@@ -995,8 +982,7 @@ Get game namespaces.
 In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11308
+  * Action code : 11308
   *  Returns : list of namespaces
 */
 func (a *Client) GetGameNamespacesShort(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, error) {
@@ -1051,8 +1037,7 @@ GetNamespacePublisher get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11305
+  * Action code : 11305
   *  Returns : Namespace info related publisher namespace
 */
 func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error) {
@@ -1117,8 +1102,7 @@ GetNamespacePublisherShort get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11305
+  * Action code : 11305
   *  Returns : Namespace info related publisher namespace
 */
 func (a *Client) GetNamespacePublisherShort(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, error) {
@@ -1177,7 +1161,6 @@ ChangeNamespaceStatus change namespace status
 Change a namespace status.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=4 (UPDATE)
   * Action code : 11306
   *  Returns : updated namespace
 */
@@ -1246,7 +1229,6 @@ ChangeNamespaceStatusShort change namespace status
 Change a namespace status.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:NAMESPACE" , action=4 (UPDATE)
   * Action code : 11306
   *  Returns : updated namespace
 */
@@ -1308,8 +1290,7 @@ PublicGetNamespaces get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11303
+  * Action code : 11303
   *  Returns : list of namespaces
 */
 func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error) {
@@ -1365,8 +1346,7 @@ PublicGetNamespacesShort get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11303
+  * Action code : 11303
   *  Returns : list of namespaces
 */
 func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error) {
@@ -1413,14 +1393,118 @@ func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, aut
 }
 
 /*
+Deprecated: 2022-08-10 - Use GetNamespace1Short instead.
+
+GetNamespace1 get a namespace info
+Get a namespace info.
+Other detail info:
+
+  * Returns : namespace info
+*/
+func (a *Client) GetNamespace1(params *GetNamespace1Params) (*GetNamespace1OK, *GetNamespace1NotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespace1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespace_1",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespace1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespace1OK:
+		return v, nil, nil
+
+	case *GetNamespace1NotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetNamespace1Short get a namespace info
+Get a namespace info.
+Other detail info:
+
+  * Returns : namespace info
+*/
+func (a *Client) GetNamespace1Short(params *GetNamespace1Params) (*GetNamespace1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespace1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespace_1",
+		Method:             "GET",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespace1Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespace1OK:
+		return v, nil
+	case *GetNamespace1NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetNamespacePublisherShort instead.
 
 PublicGetNamespacePublisher get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11305
+  * Action code : 11305
   *  Returns : Namespace info related publisher namespace
 */
 func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, *PublicGetNamespacePublisherBadRequest, *PublicGetNamespacePublisherUnauthorized, *PublicGetNamespacePublisherForbidden, *PublicGetNamespacePublisherNotFound, error) {
@@ -1485,8 +1569,7 @@ PublicGetNamespacePublisherShort get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:NAMESPACE" , action=2 (READ)
-  *  Action code : 11305
+  * Action code : 11305
   *  Returns : Namespace info related publisher namespace
 */
 func (a *Client) PublicGetNamespacePublisherShort(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, error) {

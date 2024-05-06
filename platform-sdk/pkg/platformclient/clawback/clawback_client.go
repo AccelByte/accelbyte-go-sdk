@@ -45,8 +45,7 @@ QueryIAPClawbackHistory query clawback history
 Query clawback history.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK, action=2 (READ)
-  *  Returns : paginated clawback history
+  * Returns : paginated clawback history
 */
 func (a *Client) QueryIAPClawbackHistory(params *QueryIAPClawbackHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryIAPClawbackHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -98,8 +97,7 @@ QueryIAPClawbackHistoryShort query clawback history
 Query clawback history.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK, action=2 (READ)
-  *  Returns : paginated clawback history
+  * Returns : paginated clawback history
 */
 func (a *Client) QueryIAPClawbackHistoryShort(params *QueryIAPClawbackHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryIAPClawbackHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -147,10 +145,6 @@ Deprecated: 2022-08-10 - Use MockPlayStationStreamEventShort instead.
 
 MockPlayStationStreamEvent mock sync playstation clawback event.
 Mock Sync PlayStation Clawback event..
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK, action=1(CREATE)
 */
 func (a *Client) MockPlayStationStreamEvent(params *MockPlayStationStreamEventParams, authInfo runtime.ClientAuthInfoWriter) (*MockPlayStationStreamEventOK, error) {
 	// TODO: Validate the params before sending
@@ -200,10 +194,6 @@ func (a *Client) MockPlayStationStreamEvent(params *MockPlayStationStreamEventPa
 /*
 MockPlayStationStreamEventShort mock sync playstation clawback event.
 Mock Sync PlayStation Clawback event..
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK, action=1(CREATE)
 */
 func (a *Client) MockPlayStationStreamEventShort(params *MockPlayStationStreamEventParams, authInfo runtime.ClientAuthInfoWriter) (*MockPlayStationStreamEventOK, error) {
 	// TODO: Validate the params before sending

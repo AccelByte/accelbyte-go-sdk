@@ -48,6 +48,14 @@ type OrderInfo struct {
 	// Required: true
 	Currency *CurrencySummary `json:"currency"`
 
+	// Total of deduction, Order final price should be discounted price - deduction.
+	// Required: true
+	// Format: int32
+	Deduction *int32 `json:"deduction"`
+
+	// Deduction details, include every discount code actual deducted value
+	DeductionDetails []*DeductionDetail `json:"deductionDetails,omitempty"`
+
 	// Order discounted price
 	// Required: true
 	// Format: int32
@@ -184,6 +192,9 @@ func (m *OrderInfo) Validate(formats strfmt.Registry) error {
 	if err := m.validateCurrency(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateDeduction(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDiscountedPrice(formats); err != nil {
 		res = append(res, err)
 	}
@@ -250,6 +261,15 @@ func (m *OrderInfo) validateCurrency(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *OrderInfo) validateDeduction(formats strfmt.Registry) error {
+
+	if err := validate.Required("deduction", "body", m.Deduction); err != nil {
+		return err
 	}
 
 	return nil

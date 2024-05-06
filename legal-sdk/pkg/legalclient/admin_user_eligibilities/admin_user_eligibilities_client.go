@@ -42,10 +42,6 @@ Deprecated: 2022-08-10 - Use AdminRetrieveEligibilitiesShort instead.
 AdminRetrieveEligibilities check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL", action=2 (READ)
 */
 func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, *AdminRetrieveEligibilitiesBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -99,10 +95,6 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 AdminRetrieveEligibilitiesShort check user legal eligibility
 Retrieve the active policies and its conformance status by user.
 This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL", action=2 (READ)
 */
 func (a *Client) AdminRetrieveEligibilitiesShort(params *AdminRetrieveEligibilitiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveEligibilitiesOK, error) {
 	// TODO: Validate the params before sending

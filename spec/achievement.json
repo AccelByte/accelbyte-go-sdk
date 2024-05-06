@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.21.14"
+    "version": "2.22.0"
   },
   "schemes": [
     "https"
@@ -1089,6 +1089,82 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/platforms/psn/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create PSN UDS events. Player need to login first using playstation token to IAM service.",
+        "operationId": "BulkCreatePSNEvent",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkCreatePSNEvents"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.BulkCreatePSNEventResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create PSN UDS events",
+        "tags": [
+          "Platform Achievement"
+        ],
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT:PLATFORM [CREATE]"
             ]
           }
         ]
@@ -2943,6 +3019,32 @@
         "numberOfVisibleAchievements"
       ]
     },
+    "models.BulkCreatePSNEventResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.PSNEventResult"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.BulkCreatePSNEvents": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.CreatePSNEvent"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.ContributorResponse": {
       "properties": {
         "achievementCode": {
@@ -2979,6 +3081,42 @@
         "id",
         "namespace",
         "userId"
+      ]
+    },
+    "models.CreatePSNEvent": {
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/definitions/models.PSNEvent"
+          },
+          "type": "array"
+        },
+        "thirdPartyUserId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "events",
+        "thirdPartyUserId",
+        "userId"
+      ]
+    },
+    "models.ErrorDetails": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
       ]
     },
     "models.GlobalAchievementResponse": {
@@ -3044,6 +3182,60 @@
       "required": [
         "slug",
         "url"
+      ]
+    },
+    "models.PSNEvent": {
+      "properties": {
+        "dateTime": {
+          "type": "string"
+        },
+        "eventData": {
+          "$ref": "#/definitions/models.PSNEventData"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dateTime",
+        "eventData",
+        "eventId",
+        "version"
+      ]
+    },
+    "models.PSNEventData": {
+      "properties": {
+        "eventName": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "eventName",
+        "properties"
+      ]
+    },
+    "models.PSNEventResult": {
+      "properties": {
+        "errorDetail": {
+          "$ref": "#/definitions/models.ErrorDetails"
+        },
+        "isSuccess": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "thirdPartyUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isSuccess",
+        "thirdPartyUserId"
       ]
     },
     "models.PaginatedAchievementResponse": {
@@ -3426,11 +3618,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-22T03:20:50+00:00",
-    "gitHash": "ca613ef32975c077916db4bbadf66d1ebc7e0670",
+    "buildDate": "2024-05-03T07:36:40+00:00",
+    "gitHash": "26c6f2d0e1fa9076bceaa017699d9eb8bc390456",
     "name": "justice-achievement-service",
     "realm": "demo",
-    "version": "2.21.14",
+    "version": "2.22.0",
     "version-roles-seeding": "1.0.7"
   }
 }

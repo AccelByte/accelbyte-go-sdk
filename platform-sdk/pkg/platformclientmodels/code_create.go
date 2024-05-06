@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // CodeCreate Code create
@@ -18,32 +17,21 @@ import (
 // swagger:model Code create.
 type CodeCreate struct {
 
-	// The quantity of codes to generate
-	// Required: true
+	// custom code value, allowed characters alpha numeric with length range from 6 to 20, only generate one custom code value if this codeValue is not null
+	CodeValue string `json:"codeValue,omitempty"`
+
+	// The quantity of codes to generate when not set custom code value.
 	// Format: int32
-	Quantity *int32 `json:"quantity"`
+	Quantity int32 `json:"quantity,omitempty"`
 }
 
 // Validate validates this Code create
 func (m *CodeCreate) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateQuantity(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *CodeCreate) validateQuantity(formats strfmt.Registry) error {
-
-	if err := validate.Required("quantity", "body", m.Quantity); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -32,6 +32,9 @@ type ErrorEntity struct {
 
 	// message variables
 	MessageVariables map[string]string `json:"messageVariables,omitempty"`
+
+	// requiredpermission
+	RequiredPermission *Permission `json:"requiredPermission,omitempty"`
 }
 
 // Validate validates this Error entity

@@ -38,6 +38,32 @@ func (aaa *TopicService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminFilterChatMessageShort instead.
+func (aaa *TopicService) AdminFilterChatMessage(input *topic.AdminFilterChatMessageParams) (*chatclientmodels.ModelsMessageResultWithAttributes, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminFilterChatMessage(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminChatHistoryShort instead.
 func (aaa *TopicService) AdminChatHistory(input *topic.AdminChatHistoryParams) (*chatclientmodels.ModelsChatMessageWithPaginationResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -721,6 +747,36 @@ func (aaa *TopicService) PublicUnmuteUser(input *topic.PublicUnmuteUserParams) e
 	}
 
 	return nil
+}
+
+func (aaa *TopicService) AdminFilterChatMessageShort(input *topic.AdminFilterChatMessageParams) (*chatclientmodels.ModelsMessageResultWithAttributes, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdTopic != nil {
+		input.XFlightId = tempFlightIdTopic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Topic.AdminFilterChatMessageShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *TopicService) AdminChatHistoryShort(input *topic.AdminChatHistoryParams) (*chatclientmodels.ModelsChatMessageWithPaginationResponse, error) {

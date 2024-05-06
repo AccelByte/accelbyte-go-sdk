@@ -27,6 +27,11 @@
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/of-friends` | GET | AdminListFriendsOfFriendsShort | [AdminListFriendsOfFriendsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [AdminListFriendsOfFriendsShort](../../services-api/pkg/service/lobby/friends.go) | [AdminListFriendsOfFriendsShort](../../samples/cli/cmd/lobby/friends/adminListFriendsOfFriends.go) |
 | `/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}/outgoing` | GET | GetOutgoingFriendRequestsShort | [GetOutgoingFriendRequestsShort](../../lobby-sdk/pkg/lobbyclient/friends/friends_client.go) | [GetOutgoingFriendRequestsShort](../../services-api/pkg/service/lobby/friends.go) | [GetOutgoingFriendRequestsShort](../../samples/cli/cmd/lobby/friends/getOutgoingFriendRequests.go) |
 
+### blocks Wrapper:  [Blocks](../../services-api/pkg/service/lobby/blocks.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/lobby/sync/namespaces/{namespace}/me/block` | PATCH | SyncNativeBlockedUserShort | [SyncNativeBlockedUserShort](../../lobby-sdk/pkg/lobbyclient/blocks/blocks_client.go) | [SyncNativeBlockedUserShort](../../services-api/pkg/service/lobby/blocks.go) | [SyncNativeBlockedUserShort](../../samples/cli/cmd/lobby/blocks/syncNativeBlockedUser.go) |
+
 ### config Wrapper:  [Config](../../services-api/pkg/service/lobby/config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -76,6 +81,7 @@
 | `/lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}` | DELETE | DeleteNotificationTopicV1AdminShort | [DeleteNotificationTopicV1AdminShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [DeleteNotificationTopicV1AdminShort](../../services-api/pkg/service/lobby/notification.go) | [DeleteNotificationTopicV1AdminShort](../../samples/cli/cmd/lobby/notification/deleteNotificationTopicV1Admin.go) |
 | `/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify` | POST | SendSpecificUserFreeformNotificationV1AdminShort | [SendSpecificUserFreeformNotificationV1AdminShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [SendSpecificUserFreeformNotificationV1AdminShort](../../services-api/pkg/service/lobby/notification.go) | [SendSpecificUserFreeformNotificationV1AdminShort](../../samples/cli/cmd/lobby/notification/sendSpecificUserFreeformNotificationV1Admin.go) |
 | `/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify` | POST | SendSpecificUserTemplatedNotificationV1AdminShort | [SendSpecificUserTemplatedNotificationV1AdminShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [SendSpecificUserTemplatedNotificationV1AdminShort](../../services-api/pkg/service/lobby/notification.go) | [SendSpecificUserTemplatedNotificationV1AdminShort](../../samples/cli/cmd/lobby/notification/sendSpecificUserTemplatedNotificationV1Admin.go) |
+| `/notification/namespaces/{namespace}/me` | GET | GetMyNotificationsShort | [GetMyNotificationsShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [GetMyNotificationsShort](../../services-api/pkg/service/lobby/notification.go) | [GetMyNotificationsShort](../../samples/cli/cmd/lobby/notification/getMyNotifications.go) |
 | `/notification/namespaces/{namespace}/topics` | GET | GetTopicByNamespaceShort | [GetTopicByNamespaceShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [GetTopicByNamespaceShort](../../services-api/pkg/service/lobby/notification.go) | [GetTopicByNamespaceShort](../../samples/cli/cmd/lobby/notification/getTopicByNamespace.go) |
 | `/notification/namespaces/{namespace}/topics` | POST | CreateTopicShort | [CreateTopicShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [CreateTopicShort](../../services-api/pkg/service/lobby/notification.go) | [CreateTopicShort](../../samples/cli/cmd/lobby/notification/createTopic.go) |
 | `/notification/namespaces/{namespace}/topics/{topic}` | GET | GetTopicByTopicNameShort | [GetTopicByTopicNameShort](../../lobby-sdk/pkg/lobbyclient/notification/notification_client.go) | [GetTopicByTopicNameShort](../../services-api/pkg/service/lobby/notification.go) | [GetTopicByTopicNameShort](../../samples/cli/cmd/lobby/notification/getTopicByTopicName.go) |
@@ -181,6 +187,9 @@
 | `model.Localization` | [ModelLocalization ](../../lobby-sdk/pkg/lobbyclientmodels/model_localization.go) |
 | `model.NativeFriendRequest` | [ModelNativeFriendRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_friend_request.go) |
 | `model.NativeFriendSyncResponse` | [ModelNativeFriendSyncResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_friend_sync_response.go) |
+| `model.NativeUserBlockRequest` | [ModelNativeUserBlockRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_user_block_request.go) |
+| `model.NativeUserBlockResponse` | [ModelNativeUserBlockResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_native_user_block_response.go) |
+| `model.NotificationResponse` | [ModelNotificationResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_response.go) |
 | `model.NotificationTemplateResponse` | [ModelNotificationTemplateResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_template_response.go) |
 | `model.NotificationTopicResponse` | [ModelNotificationTopicResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_topic_response.go) |
 | `model.NotificationTopicResponseV1` | [ModelNotificationTopicResponseV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_notification_topic_response_v1.go) |

@@ -93,8 +93,7 @@ GetUserProfileInfoByPublicID get user profile info by public id
 Get user profile by public id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Returns : user profile info
+  * Returns : user profile info
 */
 func (a *Client) GetUserProfileInfoByPublicID(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, *GetUserProfileInfoByPublicIDBadRequest, *GetUserProfileInfoByPublicIDUnauthorized, *GetUserProfileInfoByPublicIDForbidden, *GetUserProfileInfoByPublicIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -158,8 +157,7 @@ GetUserProfileInfoByPublicIDShort get user profile info by public id
 Get user profile by public id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Returns : user profile info
+  * Returns : user profile info
 */
 func (a *Client) GetUserProfileInfoByPublicIDShort(params *GetUserProfileInfoByPublicIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoByPublicIDOK, error) {
 	// TODO: Validate the params before sending
@@ -328,8 +326,7 @@ GetUserProfileInfo get user profile
 Get user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : user profile
+  * Returns : user profile
   *  Action code : 11403
 */
 func (a *Client) GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoOK, *GetUserProfileInfoBadRequest, *GetUserProfileInfoUnauthorized, *GetUserProfileInfoForbidden, *GetUserProfileInfoNotFound, error) {
@@ -394,8 +391,7 @@ GetUserProfileInfoShort get user profile
 Get user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : user profile
+  * Returns : user profile
   *  Action code : 11403
 */
 func (a *Client) GetUserProfileInfoShort(params *GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoOK, error) {
@@ -454,8 +450,7 @@ UpdateUserProfile update user profile
 Update user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Returns : Updated user profile
 */
 func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileOK, *UpdateUserProfileBadRequest, *UpdateUserProfileUnauthorized, *UpdateUserProfileForbidden, *UpdateUserProfileNotFound, error) {
@@ -520,8 +515,7 @@ UpdateUserProfileShort update user profile
 Update user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Returns : Updated user profile
 */
 func (a *Client) UpdateUserProfileShort(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileOK, error) {
@@ -580,8 +574,7 @@ DeleteUserProfile delete user profile
 Delete user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=8 (DELETE)
-  *  Action code : 11407
+  * Action code : 11407
   *  Returns : Delete user profile
 */
 func (a *Client) DeleteUserProfile(params *DeleteUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserProfileOK, *DeleteUserProfileBadRequest, *DeleteUserProfileUnauthorized, *DeleteUserProfileForbidden, *DeleteUserProfileNotFound, error) {
@@ -646,8 +639,7 @@ DeleteUserProfileShort delete user profile
 Delete user profile.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=8 (DELETE)
-  *  Action code : 11407
+  * Action code : 11407
   *  Returns : Delete user profile
 */
 func (a *Client) DeleteUserProfileShort(params *DeleteUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserProfileOK, error) {
@@ -706,8 +698,7 @@ GetCustomAttributesInfo get user custom attributes
 Get user custom attributes.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfoOK, *GetCustomAttributesInfoUnauthorized, *GetCustomAttributesInfoForbidden, *GetCustomAttributesInfoNotFound, error) {
@@ -769,8 +760,7 @@ GetCustomAttributesInfoShort get user custom attributes
 Get user custom attributes.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetCustomAttributesInfoShort(params *GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfoOK, error) {
@@ -827,8 +817,7 @@ UpdateCustomAttributesPartially update partially custom attributes tied to the u
 Update partially custom attributes tied to the user id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -894,8 +883,7 @@ UpdateCustomAttributesPartiallyShort update partially custom attributes tied to 
 Update partially custom attributes tied to the user id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -955,8 +943,7 @@ GetPrivateCustomAttributesInfo get user private custom attributes
 Get user private custom attributes.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetPrivateCustomAttributesInfo(params *GetPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetPrivateCustomAttributesInfoOK, *GetPrivateCustomAttributesInfoUnauthorized, *GetPrivateCustomAttributesInfoForbidden, *GetPrivateCustomAttributesInfoNotFound, error) {
@@ -1018,8 +1005,7 @@ GetPrivateCustomAttributesInfoShort get user private custom attributes
 Get user private custom attributes.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetPrivateCustomAttributesInfoShort(params *GetPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetPrivateCustomAttributesInfoOK, error) {
@@ -1076,8 +1062,7 @@ UpdatePrivateCustomAttributesPartially update partially private custom attribute
 Update partially private custom attributes tied to the user id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -1143,8 +1128,7 @@ UpdatePrivateCustomAttributesPartiallyShort update partially private custom attr
 Update partially private custom attributes tied to the user id.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -1204,8 +1188,7 @@ UpdateUserProfileStatus update user profile status
 Update user profile status.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11406
+  * Action code : 11406
   *  Returns : user profile
 */
 func (a *Client) UpdateUserProfileStatus(params *UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileStatusOK, *UpdateUserProfileStatusBadRequest, *UpdateUserProfileStatusUnauthorized, *UpdateUserProfileStatusForbidden, *UpdateUserProfileStatusNotFound, error) {
@@ -1270,8 +1253,7 @@ UpdateUserProfileStatusShort update user profile status
 Update user profile status.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11406
+  * Action code : 11406
   *  Returns : user profile
 */
 func (a *Client) UpdateUserProfileStatusShort(params *UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileStatusOK, error) {
@@ -1548,8 +1530,7 @@ Get my profile
  Client with user token can get user profile in target namespace
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Action code : 11403
+  * Action code : 11403
   *  Returns : user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to get publisher user profile
@@ -1620,8 +1601,7 @@ Get my profile
  Client with user token can get user profile in target namespace
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Action code : 11403
+  * Action code : 11403
   *  Returns : user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to get publisher user profile
@@ -1686,8 +1666,7 @@ Update my profile.
 Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Returns : user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to update publisher user profile
@@ -1758,8 +1737,7 @@ Update my profile.
 Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Returns : user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to update publisher user profile
@@ -1824,8 +1802,7 @@ Create my profile.
  Client with user token can create user profile in target namespace
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=1 (CREATE)
-  *  Action code : 11401
+  * Action code : 11401
   *  Returns : Created user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to create publisher user profile
@@ -1900,8 +1877,7 @@ Create my profile.
  Client with user token can create user profile in target namespace
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=1 (CREATE)
-  *  Action code : 11401
+  * Action code : 11401
   *  Returns : Created user profile
   *  Path's namespace :
     * can be filled with publisher namespace in order to create publisher user profile
@@ -1968,8 +1944,7 @@ GetMyPrivateCustomAttributesInfo get my private custom attributes
 Get my private custom attributes.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetMyPrivateCustomAttributesInfo(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, *GetMyPrivateCustomAttributesInfoUnauthorized, *GetMyPrivateCustomAttributesInfoForbidden, *GetMyPrivateCustomAttributesInfoNotFound, error) {
@@ -2031,8 +2006,7 @@ GetMyPrivateCustomAttributesInfoShort get my private custom attributes
 Get my private custom attributes.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Returns : custom attributes
+  * Returns : custom attributes
   *  Action code : 11403
 */
 func (a *Client) GetMyPrivateCustomAttributesInfoShort(params *GetMyPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyPrivateCustomAttributesInfoOK, error) {
@@ -2089,8 +2063,7 @@ UpdateMyPrivateCustomAttributesPartially update partially private custom attribu
 Update partially private custom attributes tied to me.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -2156,8 +2129,7 @@ UpdateMyPrivateCustomAttributesPartiallyShort update partially private custom at
 Update partially private custom attributes tied to me.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -2217,8 +2189,7 @@ GetMyZipCode get my zip code
 Get my zip code.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Action code : 11407
+  * Action code : 11407
   *  Returns : user zip code
 */
 func (a *Client) GetMyZipCode(params *GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyZipCodeOK, *GetMyZipCodeUnauthorized, *GetMyZipCodeForbidden, error) {
@@ -2277,8 +2248,7 @@ GetMyZipCodeShort get my zip code
 Get my zip code.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=2 (READ)
-  *  Action code : 11407
+  * Action code : 11407
   *  Returns : user zip code
 */
 func (a *Client) GetMyZipCodeShort(params *GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyZipCodeOK, error) {
@@ -2333,8 +2303,7 @@ UpdateMyZipCode update my zip code
 Update my zip code.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11408
+  * Action code : 11408
   *  Returns : user zip code
 */
 func (a *Client) UpdateMyZipCode(params *UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyZipCodeOK, *UpdateMyZipCodeBadRequest, *UpdateMyZipCodeUnauthorized, *UpdateMyZipCodeForbidden, error) {
@@ -2396,8 +2365,7 @@ UpdateMyZipCodeShort update my zip code
 Update my zip code.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11408
+  * Action code : 11408
   *  Returns : user zip code
 */
 func (a *Client) UpdateMyZipCodeShort(params *UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyZipCodeOK, error) {
@@ -2454,8 +2422,7 @@ PublicGetUserProfileInfo get user profile
 Get user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Action code : 11403
+  * Action code : 11403
   *  Returns : user profile
 */
 func (a *Client) PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, *PublicGetUserProfileInfoBadRequest, *PublicGetUserProfileInfoUnauthorized, *PublicGetUserProfileInfoForbidden, *PublicGetUserProfileInfoNotFound, error) {
@@ -2520,8 +2487,7 @@ PublicGetUserProfileInfoShort get user profile
 Get user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=2 (READ)
-  *  Action code : 11403
+  * Action code : 11403
   *  Returns : user profile
 */
 func (a *Client) PublicGetUserProfileInfoShort(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, error) {
@@ -2580,8 +2546,7 @@ PublicUpdateUserProfile update user profile
 Update user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Language : allowed format: en, en-US
   *  Timezone : IANA time zone, e.g. Asia/Shanghai
   *  Returns : Updated user profile
@@ -2648,8 +2613,7 @@ PublicUpdateUserProfileShort update user profile
 Update user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Language : allowed format: en, en-US
   *  Timezone : IANA time zone, e.g. Asia/Shanghai
   *  Returns : Updated user profile
@@ -2710,8 +2674,7 @@ PublicCreateUserProfile create user profile
 Create user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=1 (CREATE)
-  *  Action code : 11401
+  * Action code : 11401
   *  Language : allowed format: en, en-US
   *  Timezone : IANA time zone, e.g. Asia/Shanghai
   *  Returns : Created user profile
@@ -2778,8 +2741,7 @@ PublicCreateUserProfileShort create user profile
 Create user profile.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=1 (CREATE)
-  *  Action code : 11401
+  * Action code : 11401
   *  Language : allowed format: en, en-US
   *  Timezone : IANA time zone, e.g. Asia/Shanghai
   *  Returns : Created user profile
@@ -2947,8 +2909,7 @@ PublicUpdateCustomAttributesPartially update partially custom attributes tied to
 Update partially custom attributes tied to user id.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -3014,8 +2975,7 @@ PublicUpdateCustomAttributesPartiallyShort update partially custom attributes ti
 Update partially custom attributes tied to user id.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11402
+  * Action code : 11402
   *  Request body : allowed format: JSON object
   *  Returns : Updated custom attributes
 */
@@ -3187,8 +3147,7 @@ PublicUpdateUserProfileStatus update user profile status
 Update user profile status.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11406
+  * Action code : 11406
   *  Returns : user profile
 */
 func (a *Client) PublicUpdateUserProfileStatus(params *PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileStatusOK, *PublicUpdateUserProfileStatusBadRequest, *PublicUpdateUserProfileStatusUnauthorized, *PublicUpdateUserProfileStatusForbidden, *PublicUpdateUserProfileStatusNotFound, error) {
@@ -3253,8 +3212,7 @@ PublicUpdateUserProfileStatusShort update user profile status
 Update user profile status.
 Other detail info:
 
-  * Required permission : resource= "NAMESPACE:{namespace}:USER:{userId}:PROFILE" , action=4 (UPDATE)
-  *  Action code : 11406
+  * Action code : 11406
   *  Returns : user profile
 */
 func (a *Client) PublicUpdateUserProfileStatusShort(params *PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileStatusOK, error) {

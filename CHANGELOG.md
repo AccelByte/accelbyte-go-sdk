@@ -1,3 +1,14 @@
+<a name="v0.69.0"></a>
+## [v0.69.0]
+### test
+- **:** integration test session history
+- **match2:** update ruleset data
+### chore
+- **:** change comment
+### ci
+- **:** do not use jenkins master
+
+
 <a name="v0.68.0"></a>
 ## [v0.68.0]
 ### feat

@@ -53,9 +53,6 @@ Deprecated: 2022-08-10 - Use RetrieveLocalizedPolicyVersionsShort instead.
 
 RetrieveLocalizedPolicyVersions retrieve versions from country-specific policy
 Retrieve versions of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error) {
 	// TODO: Validate the params before sending
@@ -105,9 +102,6 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 /*
 RetrieveLocalizedPolicyVersionsShort retrieve versions from country-specific policy
 Retrieve versions of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error) {
 	// TODO: Validate the params before sending
@@ -155,9 +149,6 @@ Deprecated: 2022-08-10 - Use CreateLocalizedPolicyVersionShort instead.
 
 CreateLocalizedPolicyVersion create a localized version from country-specific policy
 Create a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, *CreateLocalizedPolicyVersionBadRequest, *CreateLocalizedPolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
@@ -213,9 +204,6 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 /*
 CreateLocalizedPolicyVersionShort create a localized version from country-specific policy
 Create a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, error) {
 	// TODO: Validate the params before sending
@@ -267,9 +255,6 @@ Deprecated: 2022-08-10 - Use RetrieveSingleLocalizedPolicyVersionShort instead.
 
 RetrieveSingleLocalizedPolicyVersion retrieve a localized version from country-specific policy
 Retrieve a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -322,9 +307,6 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 /*
 RetrieveSingleLocalizedPolicyVersionShort retrieve a localized version from country-specific policy
 Retrieve a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
@@ -374,9 +356,6 @@ Deprecated: 2022-08-10 - Use UpdateLocalizedPolicyVersionShort instead.
 
 UpdateLocalizedPolicyVersion update a localized version from country-specific policy
 Update a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, *UpdateLocalizedPolicyVersionBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -429,9 +408,6 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 /*
 UpdateLocalizedPolicyVersionShort update a localized version from country-specific policy
 Update a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
@@ -481,9 +457,6 @@ Deprecated: 2022-08-10 - Use RequestPresignedURLShort instead.
 
 RequestPresignedURL request presigned url for upload document
 Request presigned URL for upload attachment for a particular localized version of base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, *RequestPresignedURLBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -536,9 +509,6 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 /*
 RequestPresignedURLShort request presigned url for upload document
 Request presigned URL for upload attachment for a particular localized version of base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error) {
 	// TODO: Validate the params before sending
@@ -588,9 +558,6 @@ Deprecated: 2022-08-10 - Use SetDefaultPolicyShort instead.
 
 SetDefaultPolicy set default localized policy
 Update a localized version policy to be the default.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -643,9 +610,6 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 /*
 SetDefaultPolicyShort set default localized policy
 Update a localized version policy to be the default.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error) {
 	// TODO: Validate the params before sending

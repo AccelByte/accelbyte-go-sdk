@@ -45,10 +45,6 @@ Deprecated: 2022-08-10 - Use UnlockSteamUserAchievementShort instead.
 
 UnlockSteamUserAchievement unlock steam achievement.
 This API is used to unlock steam achievement.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)
 */
 func (a *Client) UnlockSteamUserAchievement(params *UnlockSteamUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UnlockSteamUserAchievementNoContent, *UnlockSteamUserAchievementBadRequest, *UnlockSteamUserAchievementNotFound, error) {
 	// TODO: Validate the params before sending
@@ -104,10 +100,6 @@ func (a *Client) UnlockSteamUserAchievement(params *UnlockSteamUserAchievementPa
 /*
 UnlockSteamUserAchievementShort unlock steam achievement.
 This API is used to unlock steam achievement.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)
 */
 func (a *Client) UnlockSteamUserAchievementShort(params *UnlockSteamUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UnlockSteamUserAchievementNoContent, error) {
 	// TODO: Validate the params before sending
@@ -159,10 +151,6 @@ Deprecated: 2022-08-10 - Use GetXblUserAchievementsShort instead.
 
 GetXblUserAchievements get xbox live user achievements.
 This API is used to get xbox live user achievements(Only for test).
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=2 (READ)
 */
 func (a *Client) GetXblUserAchievements(params *GetXblUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblUserAchievementsOK, *GetXblUserAchievementsBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -215,10 +203,6 @@ func (a *Client) GetXblUserAchievements(params *GetXblUserAchievementsParams, au
 /*
 GetXblUserAchievementsShort get xbox live user achievements.
 This API is used to get xbox live user achievements(Only for test).
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=2 (READ)
 */
 func (a *Client) GetXblUserAchievementsShort(params *GetXblUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblUserAchievementsOK, error) {
 	// TODO: Validate the params before sending
@@ -268,10 +252,6 @@ Deprecated: 2022-08-10 - Use UpdateXblUserAchievementShort instead.
 
 UpdateXblUserAchievement update xbox live achievements.
 This API is used to update xbox live achievements.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)
 */
 func (a *Client) UpdateXblUserAchievement(params *UpdateXblUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblUserAchievementNoContent, *UpdateXblUserAchievementBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -324,10 +304,6 @@ func (a *Client) UpdateXblUserAchievement(params *UpdateXblUserAchievementParams
 /*
 UpdateXblUserAchievementShort update xbox live achievements.
 This API is used to update xbox live achievements.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT, action=4 (UPDATE)
 */
 func (a *Client) UpdateXblUserAchievementShort(params *UpdateXblUserAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblUserAchievementNoContent, error) {
 	// TODO: Validate the params before sending

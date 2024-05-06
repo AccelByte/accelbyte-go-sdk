@@ -56,9 +56,8 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetListPersonalDataRequestShort instead.
 
 AdminGetListPersonalDataRequest get list personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]` and scope `account`
+Get list personal data requests
+Scope: account
 */
 func (a *Client) AdminGetListPersonalDataRequest(params *AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListPersonalDataRequestOK, *AdminGetListPersonalDataRequestBadRequest, *AdminGetListPersonalDataRequestUnauthorized, *AdminGetListPersonalDataRequestForbidden, *AdminGetListPersonalDataRequestNotFound, *AdminGetListPersonalDataRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -122,9 +121,8 @@ func (a *Client) AdminGetListPersonalDataRequest(params *AdminGetListPersonalDat
 
 /*
 AdminGetListPersonalDataRequestShort get list personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]` and scope `account`
+Get list personal data requests
+Scope: account
 */
 func (a *Client) AdminGetListPersonalDataRequestShort(params *AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListPersonalDataRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -181,9 +179,8 @@ func (a *Client) AdminGetListPersonalDataRequestShort(params *AdminGetListPerson
 Deprecated: 2022-08-10 - Use AdminGetUserPersonalDataRequestsShort instead.
 
 AdminGetUserPersonalDataRequests get user's personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+Get user's personal data requests
+Scope: account
 */
 func (a *Client) AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPersonalDataRequestsOK, *AdminGetUserPersonalDataRequestsBadRequest, *AdminGetUserPersonalDataRequestsUnauthorized, *AdminGetUserPersonalDataRequestsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -241,9 +238,8 @@ func (a *Client) AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDa
 
 /*
 AdminGetUserPersonalDataRequestsShort get user's personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+Get user's personal data requests
+Scope: account
 */
 func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPersonalDataRequestsOK, error) {
 	// TODO: Validate the params before sending
@@ -296,14 +292,9 @@ func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPerso
 Deprecated: 2022-08-10 - Use AdminRequestDataRetrievalShort instead.
 
 AdminRequestDataRetrieval submit user personal data retrieval request
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]` and scope `account`
-
-
-
-
+Submit user personal data retrieval request
 If admin request data for themselves, password is need to be set
+Scope: account
 */
 func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, *AdminRequestDataRetrievalBadRequest, *AdminRequestDataRetrievalUnauthorized, *AdminRequestDataRetrievalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -361,14 +352,9 @@ func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalPara
 
 /*
 AdminRequestDataRetrievalShort submit user personal data retrieval request
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]` and scope `account`
-
-
-
-
+Submit user personal data retrieval request
 If admin request data for themselves, password is need to be set
+Scope: account
 */
 func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
@@ -421,9 +407,8 @@ func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrieva
 Deprecated: 2022-08-10 - Use AdminCancelUserPersonalDataRequestShort instead.
 
 AdminCancelUserPersonalDataRequest cancel user's personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]` and scope `account`
+Cancel user's personal data requests
+Scope: account
 */
 func (a *Client) AdminCancelUserPersonalDataRequest(params *AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserPersonalDataRequestNoContent, *AdminCancelUserPersonalDataRequestUnauthorized, *AdminCancelUserPersonalDataRequestNotFound, *AdminCancelUserPersonalDataRequestConflict, *AdminCancelUserPersonalDataRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -484,9 +469,8 @@ func (a *Client) AdminCancelUserPersonalDataRequest(params *AdminCancelUserPerso
 
 /*
 AdminCancelUserPersonalDataRequestShort cancel user's personal data requests
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]` and scope `account`
+Cancel user's personal data requests
+Scope: account
 */
 func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserPersonalDataRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -541,9 +525,8 @@ func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUser
 Deprecated: 2022-08-10 - Use AdminGeneratePersonalDataURLShort instead.
 
 AdminGeneratePersonalDataURL generate personal data download url
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+Generate personal data download url
+Scope: account
 */
 func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, *AdminGeneratePersonalDataURLBadRequest, *AdminGeneratePersonalDataURLUnauthorized, *AdminGeneratePersonalDataURLNotFound, *AdminGeneratePersonalDataURLInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -604,9 +587,8 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 
 /*
 AdminGeneratePersonalDataURLShort generate personal data download url
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+Generate personal data download url
+Scope: account
 */
 func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending
@@ -661,9 +643,9 @@ func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonal
 Deprecated: 2022-08-10 - Use PublicGetUserPersonalDataRequestsShort instead.
 
 PublicGetUserPersonalDataRequests get user's personal data requests
-
-
+Get user's personal data requests
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicGetUserPersonalDataRequests(params *PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPersonalDataRequestsOK, *PublicGetUserPersonalDataRequestsBadRequest, *PublicGetUserPersonalDataRequestsUnauthorized, *PublicGetUserPersonalDataRequestsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -721,9 +703,9 @@ func (a *Client) PublicGetUserPersonalDataRequests(params *PublicGetUserPersonal
 
 /*
 PublicGetUserPersonalDataRequestsShort get user's personal data requests
-
-
+Get user's personal data requests
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPersonalDataRequestsOK, error) {
 	// TODO: Validate the params before sending
@@ -776,9 +758,8 @@ func (a *Client) PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPer
 Deprecated: 2022-08-10 - Use PublicRequestDataRetrievalShort instead.
 
 PublicRequestDataRetrieval submit personal data retrieval request
-
-
-Requires valid user access token
+Submit personal data retrieval request.
+Scope: account
 */
 func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, *PublicRequestDataRetrievalBadRequest, *PublicRequestDataRetrievalUnauthorized, *PublicRequestDataRetrievalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -836,9 +817,8 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 
 /*
 PublicRequestDataRetrievalShort submit personal data retrieval request
-
-
-Requires valid user access token
+Submit personal data retrieval request.
+Scope: account
 */
 func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
@@ -891,9 +871,9 @@ func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrie
 Deprecated: 2022-08-10 - Use PublicCancelUserPersonalDataRequestShort instead.
 
 PublicCancelUserPersonalDataRequest cancel user's personal data requests
-
-
+Cancel user's personal data requests
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicCancelUserPersonalDataRequest(params *PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserPersonalDataRequestNoContent, *PublicCancelUserPersonalDataRequestUnauthorized, *PublicCancelUserPersonalDataRequestNotFound, *PublicCancelUserPersonalDataRequestConflict, *PublicCancelUserPersonalDataRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -954,9 +934,9 @@ func (a *Client) PublicCancelUserPersonalDataRequest(params *PublicCancelUserPer
 
 /*
 PublicCancelUserPersonalDataRequestShort cancel user's personal data requests
-
-
+Cancel user's personal data requests
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicCancelUserPersonalDataRequestShort(params *PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserPersonalDataRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1011,9 +991,9 @@ func (a *Client) PublicCancelUserPersonalDataRequestShort(params *PublicCancelUs
 Deprecated: 2022-08-10 - Use PublicGeneratePersonalDataURLShort instead.
 
 PublicGeneratePersonalDataURL generate personal data download url
-
-
+Generate personal data download url
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePersonalDataURLOK, *PublicGeneratePersonalDataURLBadRequest, *PublicGeneratePersonalDataURLUnauthorized, *PublicGeneratePersonalDataURLNotFound, *PublicGeneratePersonalDataURLInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1074,9 +1054,9 @@ func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDat
 
 /*
 PublicGeneratePersonalDataURLShort generate personal data download url
-
-
+Generate personal data download url
 Requires valid user access token
+Scope: account
 */
 func (a *Client) PublicGeneratePersonalDataURLShort(params *PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending

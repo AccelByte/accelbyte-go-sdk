@@ -18,7 +18,7 @@ import (
 // swagger:model Model user progression response meta.
 type ModelUserProgressionResponseMeta struct {
 
-	// code
+	// challenge code
 	// Required: true
 	Code *string `json:"code"`
 

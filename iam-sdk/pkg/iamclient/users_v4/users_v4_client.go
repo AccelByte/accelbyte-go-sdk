@@ -99,7 +99,7 @@ type ClientService interface {
 	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
 	PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, *PublicCreateTestUserV4BadRequest, *PublicCreateTestUserV4NotFound, *PublicCreateTestUserV4Conflict, *PublicCreateTestUserV4InternalServerError, error)
 	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
-	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error)
+	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4TooManyRequests, *PublicCreateUserV4InternalServerError, error)
 	PublicCreateUserV4Short(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, error)
 	CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4Forbidden, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4Conflict, *CreateUserFromInvitationV4InternalServerError, error)
 	CreateUserFromInvitationV4Short(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, error)
@@ -147,7 +147,7 @@ type ClientService interface {
 	PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error)
 	PublicGetUserPublicInfoByUserIDV4(params *PublicGetUserPublicInfoByUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPublicInfoByUserIDV4OK, *PublicGetUserPublicInfoByUserIDV4BadRequest, *PublicGetUserPublicInfoByUserIDV4NotFound, *PublicGetUserPublicInfoByUserIDV4InternalServerError, error)
 	PublicGetUserPublicInfoByUserIDV4Short(params *PublicGetUserPublicInfoByUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPublicInfoByUserIDV4OK, error)
-	PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4InternalServerError, error)
+	PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4TooManyRequests, *PublicInviteUserV4InternalServerError, error)
 	PublicInviteUserV4Short(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -4499,7 +4499,7 @@ Create a new user with unique email address and username.
 - displayName: Please refer to the rule from /v3/public/inputValidations API.
 This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
 */
-func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error) {
+func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4TooManyRequests, *PublicCreateUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicCreateUserV4Params()
@@ -4531,31 +4531,34 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicCreateUserV4Created:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicCreateUserV4BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicCreateUserV4Forbidden:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PublicCreateUserV4NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicCreateUserV4Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicCreateUserV4TooManyRequests:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicCreateUserV4InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4617,6 +4620,8 @@ func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authI
 	case *PublicCreateUserV4NotFound:
 		return nil, v
 	case *PublicCreateUserV4Conflict:
+		return nil, v
+	case *PublicCreateUserV4TooManyRequests:
 		return nil, v
 	case *PublicCreateUserV4InternalServerError:
 		return nil, v
@@ -7548,7 +7553,7 @@ Request body details:
 
 The invited users will also be assigned with "User" role by default.
 */
-func (a *Client) PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4InternalServerError, error) {
+func (a *Client) PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4TooManyRequests, *PublicInviteUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicInviteUserV4Params()
@@ -7580,28 +7585,31 @@ func (a *Client) PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicInviteUserV4Created:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicInviteUserV4BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicInviteUserV4Conflict:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicInviteUserV4UnprocessableEntity:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicInviteUserV4TooManyRequests:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicInviteUserV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -7658,6 +7666,8 @@ func (a *Client) PublicInviteUserV4Short(params *PublicInviteUserV4Params, authI
 	case *PublicInviteUserV4Conflict:
 		return nil, v
 	case *PublicInviteUserV4UnprocessableEntity:
+		return nil, v
+	case *PublicInviteUserV4TooManyRequests:
 		return nil, v
 	case *PublicInviteUserV4InternalServerError:
 		return nil, v

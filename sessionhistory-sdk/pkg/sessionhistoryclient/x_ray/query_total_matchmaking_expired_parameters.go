@@ -75,12 +75,12 @@ type QueryTotalMatchmakingExpiredParams struct {
 	*/
 	MatchPool *string
 	/*EndDate
-	  End date time: 2024-03-20T15:12:03Z
+	  End date time: 2024-05-06T03:48:23Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-03-20T15:12:03Z
+	  Start date time. Format: 2024-05-06T03:48:23Z
 
 	*/
 	StartDate string

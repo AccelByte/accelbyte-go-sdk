@@ -31,6 +31,7 @@ var AdminListAdminUserRecordsV1Cmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		query, _ := cmd.Flags().GetString("query")
 		tagsString := cmd.Flag("tags").Value.String()
 		var tags []string
 		errTags := json.Unmarshal([]byte(tagsString), &tags)
@@ -42,6 +43,7 @@ var AdminListAdminUserRecordsV1Cmd = &cobra.Command{
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			Query:     &query,
 			Tags:      tags,
 		}
 		ok, errOK := adminRecordService.AdminListAdminUserRecordsV1Short(input)
@@ -64,5 +66,6 @@ func init() {
 	_ = AdminListAdminUserRecordsV1Cmd.MarkFlagRequired("userId")
 	AdminListAdminUserRecordsV1Cmd.Flags().Int64("limit", 20, "Limit")
 	AdminListAdminUserRecordsV1Cmd.Flags().Int64("offset", 0, "Offset")
+	AdminListAdminUserRecordsV1Cmd.Flags().String("query", "", "Query")
 	AdminListAdminUserRecordsV1Cmd.Flags().String("tags", "", "Tags")
 }

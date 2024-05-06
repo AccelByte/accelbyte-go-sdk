@@ -10,6 +10,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/achievement/achievements"
 	"github.com/AccelByte/sample-apps/cmd/achievement/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/achievement/globalAchievements"
+	"github.com/AccelByte/sample-apps/cmd/achievement/platformAchievement"
 	"github.com/AccelByte/sample-apps/cmd/achievement/tags"
 	"github.com/AccelByte/sample-apps/cmd/achievement/userAchievements"
 	"github.com/spf13/cobra"
@@ -33,6 +34,7 @@ func init() {
 	AchievementCmd.AddCommand(globalAchievements.AdminListGlobalAchievementsCmd)
 	AchievementCmd.AddCommand(globalAchievements.AdminListGlobalAchievementContributorsCmd)
 	AchievementCmd.AddCommand(globalAchievements.ResetGlobalAchievementCmd)
+	AchievementCmd.AddCommand(platformAchievement.BulkCreatePSNEventCmd)
 	AchievementCmd.AddCommand(tags.AdminListTagsCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminListUserAchievementsCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminResetAchievementCmd)

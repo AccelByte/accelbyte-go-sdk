@@ -43,8 +43,8 @@ type APIMatchPoolConfig struct {
 	// Required: true
 	MatchFunctionOverride *APIMatchFunctionOverride `json:"match_function_override"`
 
-	// platfrom_group_enabled
-	PlatfromGroupEnabled bool `json:"platfrom_group_enabled"`
+	// platform_group_enabled
+	PlatformGroupEnabled bool `json:"platform_group_enabled"`
 
 	// rule_set
 	// Required: true

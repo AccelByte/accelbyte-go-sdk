@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.15.0"
+    "version": "1.17.0"
   },
   "schemes": [
     "https"
@@ -3582,7 +3582,9 @@
     "api.FleetServerInfoResponse": {
       "properties": {
         "createdAt": {
-          "$ref": "#/definitions/time.Time"
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "fleetId": {
           "type": "string"
@@ -3617,6 +3619,9 @@
         "region": {
           "type": "string"
         },
+        "serverConfiguration": {
+          "type": "string"
+        },
         "serverId": {
           "type": "string"
         },
@@ -3638,6 +3643,7 @@
         "portConfiguration",
         "ports",
         "region",
+        "serverConfiguration",
         "serverId",
         "sessionId",
         "status"
@@ -4197,10 +4203,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-02T18:35:03+00:00",
-    "gitHash": "c2e40918ebc04611f63d439f7fd12487db661167",
+    "buildDate": "2024-05-02T23:07:44+00:00",
+    "gitHash": "d78ff58a1c093757ea6c54dc6b26515a16b78ead",
     "name": "fleet-commander",
-    "version": "1.15.0",
-    "version-roles-seeding": "1.2.10"
+    "version": "1.17.0",
+    "version-roles-seeding": "1.2.31"
   }
 }

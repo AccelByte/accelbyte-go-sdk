@@ -22,7 +22,8 @@ type APIFleetServerInfoResponse struct {
 
 	// createdat
 	// Required: true
-	CreatedAt *string `json:"createdAt"`
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// fleetid
 	// Required: true
@@ -59,6 +60,10 @@ type APIFleetServerInfoResponse struct {
 	// region
 	// Required: true
 	Region *string `json:"region"`
+
+	// serverconfiguration
+	// Required: true
+	ServerConfiguration *string `json:"serverConfiguration"`
 
 	// serverid
 	// Required: true
@@ -104,6 +109,9 @@ func (m *APIFleetServerInfoResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateRegion(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateServerConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateServerID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -122,7 +130,11 @@ func (m *APIFleetServerInfoResponse) Validate(formats strfmt.Registry) error {
 
 func (m *APIFleetServerInfoResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
 	}
 
@@ -211,6 +223,15 @@ func (m *APIFleetServerInfoResponse) validatePortConfiguration(formats strfmt.Re
 func (m *APIFleetServerInfoResponse) validateRegion(formats strfmt.Registry) error {
 
 	if err := validate.Required("region", "body", m.Region); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetServerInfoResponse) validateServerConfiguration(formats strfmt.Registry) error {
+
+	if err := validate.Required("serverConfiguration", "body", m.ServerConfiguration); err != nil {
 		return err
 	}
 

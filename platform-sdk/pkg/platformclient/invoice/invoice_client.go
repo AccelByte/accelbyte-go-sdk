@@ -46,8 +46,7 @@ DownloadInvoiceDetails download invoice details
 Download invoice details as a csv file.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)
-  *  Returns : invoice details csv file
+  * Returns : invoice details csv file
 */
 func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -99,8 +98,7 @@ DownloadInvoiceDetailsShort download invoice details
 Download invoice details as a csv file.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)
-  *  Returns : invoice details csv file
+  * Returns : invoice details csv file
 */
 func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -150,8 +148,7 @@ GenerateInvoiceSummary generate invoice summary
 Generate invoice summary.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)
-  *  Returns : query orders
+  * Returns : query orders
 */
 func (a *Client) GenerateInvoiceSummary(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, *GenerateInvoiceSummaryUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -206,8 +203,7 @@ GenerateInvoiceSummaryShort generate invoice summary
 Generate invoice summary.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)
-  *  Returns : query orders
+  * Returns : query orders
 */
 func (a *Client) GenerateInvoiceSummaryShort(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, error) {
 	// TODO: Validate the params before sending

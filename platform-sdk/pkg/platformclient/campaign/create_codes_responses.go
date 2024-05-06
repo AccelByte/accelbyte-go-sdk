@@ -39,6 +39,12 @@ func (o *CreateCodesReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewCreateCodesConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewCreateCodesUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -146,6 +152,59 @@ func (o *CreateCodesNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *CreateCodesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateCodesConflict creates a CreateCodesConflict with default headers values
+func NewCreateCodesConflict() *CreateCodesConflict {
+	return &CreateCodesConflict{}
+}
+
+/*CreateCodesConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>37180</td><td>Code [{code}] already exists in namespace [{namespace}]</td></tr></table>
+*/
+type CreateCodesConflict struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *CreateCodesConflict) Error() string {
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *CreateCodesConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateCodesConflict) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreateCodesConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

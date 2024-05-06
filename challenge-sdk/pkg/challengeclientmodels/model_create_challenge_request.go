@@ -53,6 +53,10 @@ type ModelCreateChallengeRequest struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// repeatafter
+	// Format: int32
+	RepeatAfter int32 `json:"repeatAfter,omitempty"`
+
 	// rotation
 	// Enum: ['DAILY', 'MONTHLY', 'NONE', 'WEEKLY']
 	// Required: true

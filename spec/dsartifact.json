@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Artifact Service",
     "title": "justice-ds-artifact-manager",
-    "version": "1.11.1"
+    "version": "1.11.3"
   },
   "schemes": [
     "https"
@@ -1663,11 +1663,11 @@
     "path": "/dsartifact/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-20T02:15:27+00:00",
-    "gitHash": "55ef7ee079c70e428e425cf01ef20cc6ecb277fb",
+    "buildDate": "2024-05-03T07:35:06+00:00",
+    "gitHash": "e087c451e753e3ec959f47efc662e11e9aa9bf15",
     "name": "justice-ds-artifact-manager",
-    "revisionID": "1.11.1",
-    "version": "1.11.1",
+    "revisionID": "1.11.3",
+    "version": "1.11.3",
     "version-roles-seeding": "0.0.3"
   }
 }

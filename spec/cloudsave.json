@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.17.1"
+    "version": "3.18.0"
   },
   "schemes": [
     "https"
@@ -3056,6 +3056,12 @@
             "type": "integer"
           },
           {
+            "description": "query, search admin player records by key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
             "collectionFormat": "csv",
             "description": "filter list by tags, max 5 tags per request",
             "in": "query",
@@ -4636,6 +4642,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "query, search player records by key",
+            "in": "query",
+            "name": "query",
+            "type": "string"
           },
           {
             "collectionFormat": "csv",
@@ -10996,11 +11008,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-01T02:55:35+00:00",
-    "gitHash": "0a1be114855dfd34297f3b1448ebf164af12fd3f",
+    "buildDate": "2024-05-03T07:37:14+00:00",
+    "gitHash": "9740d5ade65bd23d7cb70ce635e3e240a8987081",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.17.1",
-    "version": "3.17.1",
+    "revisionID": "3.18.0",
+    "version": "3.18.0",
     "version-roles-seeding": "0.0.46"
   }
 }

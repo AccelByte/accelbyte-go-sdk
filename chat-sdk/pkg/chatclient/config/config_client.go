@@ -40,6 +40,8 @@ type ClientService interface {
 	ExportConfigShort(params *ExportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigOK, error)
 	ImportConfig(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, *ImportConfigUnauthorized, *ImportConfigForbidden, *ImportConfigInternalServerError, error)
 	ImportConfigShort(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, error)
+	PublicGetConfigV1(params *PublicGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigV1OK, *PublicGetConfigV1BadRequest, *PublicGetConfigV1Unauthorized, *PublicGetConfigV1Forbidden, *PublicGetConfigV1NotFound, *PublicGetConfigV1InternalServerError, error)
+	PublicGetConfigV1Short(params *PublicGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -633,6 +635,127 @@ func (a *Client) ImportConfigShort(params *ImportConfigParams, authInfo runtime.
 	case *ImportConfigForbidden:
 		return nil, v
 	case *ImportConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetConfigV1Short instead.
+
+PublicGetConfigV1 public get namespace config
+Get chat config of a namespace.
+*/
+func (a *Client) PublicGetConfigV1(params *PublicGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigV1OK, *PublicGetConfigV1BadRequest, *PublicGetConfigV1Unauthorized, *PublicGetConfigV1Forbidden, *PublicGetConfigV1NotFound, *PublicGetConfigV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetConfigV1",
+		Method:             "GET",
+		PathPattern:        "/chat/v1/public/config/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetConfigV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetConfigV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGetConfigV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGetConfigV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGetConfigV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetConfigV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetConfigV1Short public get namespace config
+Get chat config of a namespace.
+*/
+func (a *Client) PublicGetConfigV1Short(params *PublicGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetConfigV1",
+		Method:             "GET",
+		PathPattern:        "/chat/v1/public/config/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetConfigV1OK:
+		return v, nil
+	case *PublicGetConfigV1BadRequest:
+		return nil, v
+	case *PublicGetConfigV1Unauthorized:
+		return nil, v
+	case *PublicGetConfigV1Forbidden:
+		return nil, v
+	case *PublicGetConfigV1NotFound:
+		return nil, v
+	case *PublicGetConfigV1InternalServerError:
 		return nil, v
 
 	default:

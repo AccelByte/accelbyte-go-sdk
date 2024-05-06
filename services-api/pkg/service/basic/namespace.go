@@ -300,6 +300,19 @@ func (aaa *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNames
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetNamespace1Short instead.
+func (aaa *NamespaceService) GetNamespace1(input *namespace.GetNamespace1Params) (*basicclientmodels.NamespaceSimpleInfo, error) {
+	ok, notFound, err := aaa.Client.Namespace.GetNamespace1(input)
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetNamespacePublisherShort instead.
 func (aaa *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -649,6 +662,29 @@ func (aaa *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGet
 	}
 
 	ok, err := aaa.Client.Namespace.PublicGetNamespacesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *NamespaceService) GetNamespace1Short(input *namespace.GetNamespace1Params) (*basicclientmodels.NamespaceSimpleInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdNamespace != nil {
+		input.XFlightId = tempFlightIdNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Namespace.GetNamespace1Short(input)
 	if err != nil {
 		return nil, err
 	}

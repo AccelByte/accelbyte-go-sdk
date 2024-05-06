@@ -208,7 +208,6 @@ Concat payload json string and private key and then do sha1Hex.
 #### Other detail info:
 
   * Token type : client token
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=1 (CREATE)
   *  Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
   * It will be forbidden while the target user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  cross namespace allowed
@@ -440,7 +439,6 @@ Concat payload json string and private key and then do sha1Hex.
 #### Other detail info:
 
   * Token type : client token
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=1 (CREATE)
   *  Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
   * It will be forbidden while the target user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  cross namespace allowed
@@ -644,7 +642,6 @@ Concat payload json string and private key and then do sha1Hex.
 #### Other detail info:
 
   * Token type : client token
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
   *  cross namespace allowed
 */
 func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, *RefundPaymentOrderByDedicatedNoContent, *RefundPaymentOrderByDedicatedNotFound, *RefundPaymentOrderByDedicatedConflict, *RefundPaymentOrderByDedicatedUnprocessableEntity, error) {
@@ -849,7 +846,6 @@ Concat payload json string and private key and then do sha1Hex.
 #### Other detail info:
 
   * Token type : client token
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
   *  cross namespace allowed
 */
 func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, error) {
@@ -908,8 +904,7 @@ SyncPaymentOrders sync payment orders
  [Not Supported Yet In Starter] Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
 Other detail info:
 
-  * Required permission : resource="ADMIN:PAYMENT", action=2 (READ)
-  *  Returns : sync payment orders
+  * Returns : sync payment orders
 */
 func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -961,8 +956,7 @@ SyncPaymentOrdersShort sync payment orders
  [Not Supported Yet In Starter] Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.
 Other detail info:
 
-  * Required permission : resource="ADMIN:PAYMENT", action=2 (READ)
-  *  Returns : sync payment orders
+  * Returns : sync payment orders
 */
 func (a *Client) SyncPaymentOrdersShort(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending

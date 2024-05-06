@@ -18,34 +18,17 @@
 | `/basic/v1/admin/namespaces/{namespace}/publisher` | GET | GetNamespacePublisherShort | [GetNamespacePublisherShort](../../basic-sdk/pkg/basicclient/namespace/namespace_client.go) | [GetNamespacePublisherShort](../../services-api/pkg/service/basic/namespace.go) | [GetNamespacePublisherShort](../../samples/cli/cmd/basic/namespace/getNamespacePublisher.go) |
 | `/basic/v1/admin/namespaces/{namespace}/status` | PATCH | ChangeNamespaceStatusShort | [ChangeNamespaceStatusShort](../../basic-sdk/pkg/basicclient/namespace/namespace_client.go) | [ChangeNamespaceStatusShort](../../services-api/pkg/service/basic/namespace.go) | [ChangeNamespaceStatusShort](../../samples/cli/cmd/basic/namespace/changeNamespaceStatus.go) |
 | `/basic/v1/public/namespaces` | GET | PublicGetNamespacesShort | [PublicGetNamespacesShort](../../basic-sdk/pkg/basicclient/namespace/namespace_client.go) | [PublicGetNamespacesShort](../../services-api/pkg/service/basic/namespace.go) | [PublicGetNamespacesShort](../../samples/cli/cmd/basic/namespace/publicGetNamespaces.go) |
+| `/basic/v1/public/namespaces/{namespace}` | GET | GetNamespace1Short | [GetNamespace1Short](../../basic-sdk/pkg/basicclient/namespace/namespace_client.go) | [GetNamespace1Short](../../services-api/pkg/service/basic/namespace.go) | [GetNamespace1Short](../../samples/cli/cmd/basic/namespace/getNamespace1.go) |
 | `/basic/v1/public/namespaces/{namespace}/publisher` | GET | PublicGetNamespacePublisherShort | [PublicGetNamespacePublisherShort](../../basic-sdk/pkg/basicclient/namespace/namespace_client.go) | [PublicGetNamespacePublisherShort](../../services-api/pkg/service/basic/namespace.go) | [PublicGetNamespacePublisherShort](../../samples/cli/cmd/basic/namespace/publicGetNamespacePublisher.go) |
-
-### UserAction Wrapper:  [UserAction](../../services-api/pkg/service/basic/userAction.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/basic/v1/admin/namespaces/{namespace}/actions` | GET | GetActionsShort | [GetActionsShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [GetActionsShort](../../services-api/pkg/service/basic/userAction.go) | [GetActionsShort](../../samples/cli/cmd/basic/userAction/getActions.go) |
-| `/basic/v1/admin/namespaces/{namespace}/actions/ban` | POST | BanUsersShort | [BanUsersShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [BanUsersShort](../../services-api/pkg/service/basic/userAction.go) | [BanUsersShort](../../samples/cli/cmd/basic/userAction/banUsers.go) |
-| `/basic/v1/admin/namespaces/{namespace}/actions/banned` | GET | GetBannedUsersShort | [GetBannedUsersShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [GetBannedUsersShort](../../services-api/pkg/service/basic/userAction.go) | [GetBannedUsersShort](../../samples/cli/cmd/basic/userAction/getBannedUsers.go) |
-| `/basic/v1/admin/namespaces/{namespace}/actions/report` | POST | ReportUserShort | [ReportUserShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [ReportUserShort](../../services-api/pkg/service/basic/userAction.go) | [ReportUserShort](../../samples/cli/cmd/basic/userAction/reportUser.go) |
-| `/basic/v1/admin/namespaces/{namespace}/actions/status` | GET | GetUserStatusShort | [GetUserStatusShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [GetUserStatusShort](../../services-api/pkg/service/basic/userAction.go) | [GetUserStatusShort](../../samples/cli/cmd/basic/userAction/getUserStatus.go) |
-| `/basic/v1/admin/namespaces/{namespace}/actions/unban` | POST | UnBanUsersShort | [UnBanUsersShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [UnBanUsersShort](../../services-api/pkg/service/basic/userAction.go) | [UnBanUsersShort](../../samples/cli/cmd/basic/userAction/unBanUsers.go) |
-| `/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report` | POST | PublicReportUserShort | [PublicReportUserShort](../../basic-sdk/pkg/basicclient/user_action/user_action_client.go) | [PublicReportUserShort](../../services-api/pkg/service/basic/userAction.go) | [PublicReportUserShort](../../samples/cli/cmd/basic/userAction/publicReportUser.go) |
 
 ### Config Wrapper:  [Config](../../services-api/pkg/service/basic/config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/basic/v1/admin/namespaces/{namespace}/configs` | POST | CreateConfigShort | [CreateConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [CreateConfigShort](../../services-api/pkg/service/basic/config.go) | [CreateConfigShort](../../samples/cli/cmd/basic/config/createConfig.go) |
-| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | GET | GetConfig1Short | [GetConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [GetConfig1Short](../../services-api/pkg/service/basic/config.go) | [GetConfig1Short](../../samples/cli/cmd/basic/config/getConfig1.go) |
-| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | DELETE | DeleteConfig1Short | [DeleteConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [DeleteConfig1Short](../../services-api/pkg/service/basic/config.go) | [DeleteConfig1Short](../../samples/cli/cmd/basic/config/deleteConfig1.go) |
-| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | PATCH | UpdateConfig1Short | [UpdateConfig1Short](../../basic-sdk/pkg/basicclient/config/config_client.go) | [UpdateConfig1Short](../../services-api/pkg/service/basic/config.go) | [UpdateConfig1Short](../../samples/cli/cmd/basic/config/updateConfig1.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | GET | GetConfigShort | [GetConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [GetConfigShort](../../services-api/pkg/service/basic/config.go) | [GetConfigShort](../../samples/cli/cmd/basic/config/getConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | DELETE | DeleteConfigShort | [DeleteConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [DeleteConfigShort](../../services-api/pkg/service/basic/config.go) | [DeleteConfigShort](../../samples/cli/cmd/basic/config/deleteConfig.go) |
+| `/basic/v1/admin/namespaces/{namespace}/configs/{configKey}` | PATCH | UpdateConfigShort | [UpdateConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [UpdateConfigShort](../../services-api/pkg/service/basic/config.go) | [UpdateConfigShort](../../samples/cli/cmd/basic/config/updateConfig.go) |
 | `/basic/v1/admin/namespaces/{namespace}/publisher/configs/{configKey}` | GET | GetPublisherConfigShort | [GetPublisherConfigShort](../../basic-sdk/pkg/basicclient/config/config_client.go) | [GetPublisherConfigShort](../../services-api/pkg/service/basic/config.go) | [GetPublisherConfigShort](../../samples/cli/cmd/basic/config/getPublisherConfig.go) |
-
-### EQU8Config Wrapper:  [EQU8Config](../../services-api/pkg/service/basic/equ8Config.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | GET | GetConfigShort | [GetConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [GetConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [GetConfigShort](../../samples/cli/cmd/basic/equ8Config/getConfig.go) |
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | DELETE | DeleteConfigShort | [DeleteConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [DeleteConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [DeleteConfigShort](../../samples/cli/cmd/basic/equ8Config/deleteConfig.go) |
-| `/basic/v1/admin/namespaces/{namespace}/equ8/config` | PATCH | UpdateConfigShort | [UpdateConfigShort](../../basic-sdk/pkg/basicclient/equ8_config/equ8_config_client.go) | [UpdateConfigShort](../../services-api/pkg/service/basic/equ8Config.go) | [UpdateConfigShort](../../samples/cli/cmd/basic/equ8Config/updateConfig.go) |
 
 ### FileUpload Wrapper:  [FileUpload](../../services-api/pkg/service/basic/fileUpload.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -112,11 +95,6 @@
 
 | Model Struct | Class |
 |---|---|
-| `A DTO for unban user API call.` | [ADTOForUnbanUserAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_unban_user_api_call.go) |
-| `A DTO for update equ8 config API call.` | [ADTOForUpdateEqu8ConfigAPICall ](../../basic-sdk/pkg/basicclientmodels/a_dto_for_update_equ8_config_api_call.go) |
-| `A DTO object for equ8 user ban status` | [ADTOObjectForEqu8UserBanStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_ban_status.go) |
-| `A DTO object for equ8 user status` | [ADTOObjectForEqu8UserStatus ](../../basic-sdk/pkg/basicclientmodels/a_dto_object_for_equ8_user_status.go) |
-| `Action` | [Action ](../../basic-sdk/pkg/basicclientmodels/action.go) |
 | `AddCountryGroupRequest` | [AddCountryGroupRequest ](../../basic-sdk/pkg/basicclientmodels/add_country_group_request.go) |
 | `AddCountryGroupResponse` | [AddCountryGroupResponse ](../../basic-sdk/pkg/basicclientmodels/add_country_group_response.go) |
 | `ConfigCreate` | [ConfigCreate ](../../basic-sdk/pkg/basicclientmodels/config_create.go) |
@@ -124,7 +102,6 @@
 | `ConfigUpdate` | [ConfigUpdate ](../../basic-sdk/pkg/basicclientmodels/config_update.go) |
 | `CountryGroupObject` | [CountryGroupObject ](../../basic-sdk/pkg/basicclientmodels/country_group_object.go) |
 | `CountryObject` | [CountryObject ](../../basic-sdk/pkg/basicclientmodels/country_object.go) |
-| `Equ8Config` | [Equ8Config ](../../basic-sdk/pkg/basicclientmodels/equ8_config.go) |
 | `ErrorEntity` | [ErrorEntity ](../../basic-sdk/pkg/basicclientmodels/error_entity.go) |
 | `FieldValidationError` | [FieldValidationError ](../../basic-sdk/pkg/basicclientmodels/field_validation_error.go) |
 | `FileUploadUrlInfo` | [FileUploadUrlInfo ](../../basic-sdk/pkg/basicclientmodels/file_upload_url_info.go) |
@@ -132,12 +109,13 @@
 | `NamespaceCreate` | [NamespaceCreate ](../../basic-sdk/pkg/basicclientmodels/namespace_create.go) |
 | `NamespaceInfo` | [NamespaceInfo ](../../basic-sdk/pkg/basicclientmodels/namespace_info.go) |
 | `NamespacePublisherInfo` | [NamespacePublisherInfo ](../../basic-sdk/pkg/basicclientmodels/namespace_publisher_info.go) |
+| `NamespaceSimpleInfo` | [NamespaceSimpleInfo ](../../basic-sdk/pkg/basicclientmodels/namespace_simple_info.go) |
 | `NamespaceStatusUpdate` | [NamespaceStatusUpdate ](../../basic-sdk/pkg/basicclientmodels/namespace_status_update.go) |
 | `NamespaceUpdate` | [NamespaceUpdate ](../../basic-sdk/pkg/basicclientmodels/namespace_update.go) |
+| `Permission` | [Permission ](../../basic-sdk/pkg/basicclientmodels/permission.go) |
 | `RetrieveCountryGroupResponse` | [RetrieveCountryGroupResponse ](../../basic-sdk/pkg/basicclientmodels/retrieve_country_group_response.go) |
 | `RetrieveTimeResponse` | [RetrieveTimeResponse ](../../basic-sdk/pkg/basicclientmodels/retrieve_time_response.go) |
 | `UpdateCountryGroupRequest` | [UpdateCountryGroupRequest ](../../basic-sdk/pkg/basicclientmodels/update_country_group_request.go) |
-| `UserBanRequest` | [UserBanRequest ](../../basic-sdk/pkg/basicclientmodels/user_ban_request.go) |
 | `UserProfileAdmin` | [UserProfileAdmin ](../../basic-sdk/pkg/basicclientmodels/user_profile_admin.go) |
 | `UserProfileBulkRequest` | [UserProfileBulkRequest ](../../basic-sdk/pkg/basicclientmodels/user_profile_bulk_request.go) |
 | `UserProfileCreate` | [UserProfileCreate ](../../basic-sdk/pkg/basicclientmodels/user_profile_create.go) |
@@ -147,7 +125,6 @@
 | `UserProfilePublicInfo` | [UserProfilePublicInfo ](../../basic-sdk/pkg/basicclientmodels/user_profile_public_info.go) |
 | `UserProfileStatusUpdate` | [UserProfileStatusUpdate ](../../basic-sdk/pkg/basicclientmodels/user_profile_status_update.go) |
 | `UserProfileUpdate` | [UserProfileUpdate ](../../basic-sdk/pkg/basicclientmodels/user_profile_update.go) |
-| `UserReportRequest` | [UserReportRequest ](../../basic-sdk/pkg/basicclientmodels/user_report_request.go) |
 | `UserZipCode` | [UserZipCode ](../../basic-sdk/pkg/basicclientmodels/user_zip_code.go) |
 | `UserZipCodeUpdate` | [UserZipCodeUpdate ](../../basic-sdk/pkg/basicclientmodels/user_zip_code_update.go) |
 | `ValidationErrorEntity` | [ValidationErrorEntity ](../../basic-sdk/pkg/basicclientmodels/validation_error_entity.go) |

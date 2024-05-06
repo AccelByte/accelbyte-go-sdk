@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.8.1"
+    "version": "2.9.0"
   },
   "schemes": [
     "https"
@@ -21,19 +21,7 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]",
-        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -59,7 +47,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Retrieve all user\u0026#39;s account deletion requests in specified date\nScope: account",
         "operationId": "AdminGetListDeletionDataRequest",
         "parameters": [
           {
@@ -153,6 +141,13 @@
         "summary": "Retrieve all user's account deletion requests in specified date",
         "tags": [
           "Data Deletion"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]"
+            ]
+          }
         ]
       }
     },
@@ -161,7 +156,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete a list of admin email addresses to stop receiving personal data request notification. \n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Delete a list of admin email addresses to stop receiving personal data request notification. \nScope: account",
         "operationId": "DeleteAdminEmailConfiguration",
         "parameters": [
           {
@@ -223,9 +218,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -235,13 +228,20 @@
         "summary": "Delete admin emails configurations",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Get list of admin email address configuration. \n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Get list of admin email address configuration. \nScope: account",
         "operationId": "GetAdminEmailConfiguration",
         "parameters": [
           {
@@ -280,9 +280,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -292,13 +290,20 @@
         "summary": "Get admin email addresses configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Add admin email address for receiving personal data request notification. \n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Add admin email address for receiving personal data request notification. \nScope: account",
         "operationId": "SaveAdminEmailConfiguration",
         "parameters": [
           {
@@ -348,9 +353,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -360,13 +363,20 @@
         "summary": "Add admin email address configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update admin email address for receiving personal data request notification. \u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Update admin email address for receiving personal data request notification.\nScope: account",
         "operationId": "UpdateAdminEmailConfiguration",
         "parameters": [
           {
@@ -416,8 +426,9 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]"
+            "HasPermission": [],
+            "HasScope": [
+              "account"
             ],
             "authorization": []
           }
@@ -425,6 +436,13 @@
         "summary": "Update admin email address configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -433,7 +451,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Get list personal data requests\nScope: account",
         "operationId": "AdminGetListPersonalDataRequest",
         "parameters": [
           {
@@ -505,9 +523,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -517,6 +533,13 @@
         "summary": "Get list personal data requests",
         "tags": [
           "Data Retrieval"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]"
+            ]
+          }
         ]
       }
     },
@@ -525,7 +548,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get Registered Services Configuration.\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Get Registered Services Configuration.\nScope: account",
         "operationId": "AdminGetServicesConfiguration",
         "parameters": [
           {
@@ -567,9 +590,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -579,13 +600,20 @@
         "summary": "Get Registered Services Configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]"
+            ]
+          }
         ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update Registered Services Configuration.\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Update Registered Services Configuration.\nScope: account",
         "operationId": "AdminUpdateServicesConfiguration",
         "parameters": [
           {
@@ -635,9 +663,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -647,6 +673,13 @@
         "summary": "Update Registered Services Configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]"
+            ]
+          }
         ]
       }
     },
@@ -655,7 +688,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY]\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;Reset Registered Services Configuration to use the default configuration.\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "**[TEST FACILITY ONLY]**\nReset Registered Services Configuration to use the default configuration.\nScope: account",
         "operationId": "AdminResetServicesConfiguration",
         "parameters": [
           {
@@ -688,9 +721,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -700,6 +731,13 @@
         "summary": "Reset Registered Services Configuration",
         "tags": [
           "Configuration"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -708,7 +746,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Cancel user\u0026#39;s account deletion request\nScope: account",
         "operationId": "AdminCancelUserAccountDeletionRequest",
         "parameters": [
           {
@@ -766,9 +804,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -778,13 +814,20 @@
         "summary": "Cancel user's account deletion request",
         "tags": [
           "Data Deletion"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
+            ]
+          }
         ]
       },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Retrieve specific user\u0026#39;s account deletion request\nScope: account",
         "operationId": "AdminGetUserAccountDeletionRequest",
         "parameters": [
           {
@@ -849,13 +892,20 @@
         "summary": "Retrieve specific user's account deletion request",
         "tags": [
           "Data Deletion"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "*/*"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Submit user\u0026#39;s account deletion requests\nScope: account",
         "operationId": "AdminSubmitUserAccountDeletionRequest",
         "parameters": [
           {
@@ -916,9 +966,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -928,6 +976,13 @@
         "summary": "Submit user's account deletion requests",
         "tags": [
           "Data Deletion"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -936,7 +991,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Get user\u0026#39;s personal data requests\nScope: account",
         "operationId": "AdminGetUserPersonalDataRequests",
         "parameters": [
           {
@@ -997,9 +1052,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -1009,13 +1062,20 @@
         "summary": "Get user's personal data requests",
         "tags": [
           "Data Retrieval"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+            ]
+          }
         ]
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;If admin request data for themselves, password is need to be set\u0026lt;/p\u0026gt;",
+        "description": "Submit user personal data retrieval request\nIf admin request data for themselves, password is need to be set\t\t\t\nScope: account",
         "operationId": "AdminRequestDataRetrieval",
         "parameters": [
           {
@@ -1070,9 +1130,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -1082,6 +1140,13 @@
         "summary": "Submit user personal data retrieval request",
         "tags": [
           "Data Retrieval"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
+            ]
+          }
         ]
       }
     },
@@ -1090,7 +1155,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Cancel user\u0026#39;s personal data requests\nScope: account",
         "operationId": "AdminCancelUserPersonalDataRequest",
         "parameters": [
           {
@@ -1149,9 +1214,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -1161,6 +1224,13 @@
         "summary": "Cancel user's personal data requests",
         "tags": [
           "Data Retrieval"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
+            ]
+          }
         ]
       }
     },
@@ -1169,7 +1239,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "Generate personal data download url\nScope: account",
         "operationId": "AdminGeneratePersonalDataURL",
         "parameters": [
           {
@@ -1238,9 +1308,7 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
-            ],
+            "HasPermission": [],
             "HasScope": [
               "account"
             ],
@@ -1250,6 +1318,13 @@
         "summary": "Generate personal data download url",
         "tags": [
           "Data Retrieval"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+            ]
+          }
         ]
       }
     },
@@ -1258,7 +1333,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Cancel user\u0026#39;s account deletion request\nRequires valid user access token\nScope: account",
         "operationId": "PublicCancelUserAccountDeletionRequest",
         "parameters": [
           {
@@ -1310,19 +1385,24 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Cancel user's account deletion request",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token and password",
+        "description": "Submit user\u0026#39;s account deletion requests\nRequires valid user access token and password\nScope: account",
         "operationId": "PublicSubmitUserAccountDeletionRequest",
         "parameters": [
           {
@@ -1390,13 +1470,18 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Submit user's account deletion requests",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status": {
@@ -1404,7 +1489,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Retrieve specific user\u0026#39;s account deletion status\nRequires valid user access token\nScope: account",
         "operationId": "PublicGetUserAccountDeletionStatus",
         "parameters": [
           {
@@ -1453,13 +1538,18 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Retrieve specific user's account deletion status",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests": {
@@ -1467,7 +1557,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Get user\u0026#39;s personal data requests\nRequires valid user access token\nScope: account",
         "operationId": "PublicGetUserPersonalDataRequests",
         "parameters": [
           {
@@ -1528,19 +1618,24 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Get user's personal data requests",
         "tags": [
           "Data Retrieval"
-        ]
+        ],
+        "x-security": []
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Submit personal data retrieval request.\nScope: account",
         "operationId": "PublicRequestDataRetrieval",
         "parameters": [
           {
@@ -1596,13 +1691,18 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Submit personal data retrieval request",
         "tags": [
           "Data Retrieval"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}": {
@@ -1610,7 +1710,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Cancel user\u0026#39;s personal data requests\nRequires valid user access token\nScope: account",
         "operationId": "PublicCancelUserPersonalDataRequest",
         "parameters": [
           {
@@ -1669,13 +1769,18 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Cancel user's personal data requests",
         "tags": [
           "Data Retrieval"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate": {
@@ -1683,7 +1788,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Generate personal data download url\nRequires valid user access token\nScope: account",
         "operationId": "PublicGeneratePersonalDataURL",
         "parameters": [
           {
@@ -1752,13 +1857,18 @@
         },
         "security": [
           {
+            "HasPermission": [],
+            "HasScope": [
+              "account"
+            ],
             "authorization": []
           }
         ],
         "summary": "Generate personal data download url",
         "tags": [
           "Data Retrieval"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/users/me/deletions": {
@@ -1766,7 +1876,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Cancel my account deletion request\nRequires valid user access token",
         "operationId": "PublicCancelMyAccountDeletionRequest",
         "produces": [
           "application/json"
@@ -1808,13 +1918,14 @@
         "summary": "Cancel my account deletion request",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;br\u0026gt;\n\t\tThis is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use \u0026lt;a href=\u0026#39;#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest\u0026#39;\u0026gt;/gdpr/public/namespaces/{namespace}/users/{userId}/deletions\u0026lt;/a\u0026gt;\t\n\t\t",
+        "description": "Submit my account deletion requests.\nRequires valid user access token\nThis is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use [/gdpr/public/namespaces/{namespace}/users/{userId}/deletions](#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest)",
         "operationId": "PublicSubmitMyAccountDeletionRequest",
         "parameters": [
           {
@@ -1881,7 +1992,8 @@
         "summary": "Submit my account deletion requests.",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       }
     },
     "/gdpr/public/users/me/deletions/status": {
@@ -1889,7 +2001,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
+        "description": "Retrieve my account deletion status\nRequires valid user access token",
         "operationId": "PublicGetMyAccountDeletionStatus",
         "produces": [
           "application/json"
@@ -1928,7 +2040,8 @@
         "summary": "Retrieve my account deletion status",
         "tags": [
           "Data Deletion"
-        ]
+        ],
+        "x-security": []
       }
     }
   },
@@ -2289,11 +2402,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-05T09:55:17+00:00",
-    "gitHash": "71c5f280ab7b24b66dfb8c077232ad93a8c5bfa8",
+    "buildDate": "2024-05-03T10:47:45+00:00",
+    "gitHash": "e9e4c6bb1d29f8e2ac2e051017779809dc98e93e",
     "name": "justice-gdpr-service",
     "realm": "demo",
-    "version": "2.8.1",
+    "version": "2.9.0",
     "version-roles-seeding": "0.0.48"
   }
 }

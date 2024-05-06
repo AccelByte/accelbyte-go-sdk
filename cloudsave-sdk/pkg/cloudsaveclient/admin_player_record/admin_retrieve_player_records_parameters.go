@@ -105,6 +105,11 @@ type AdminRetrievePlayerRecordsParams struct {
 
 	*/
 	Offset *int64
+	/*Query
+	  query, search player records by key
+
+	*/
+	Query *string
 	/*Tags
 	  filter list by tags, max 5 tags per request
 
@@ -220,6 +225,17 @@ func (o *AdminRetrievePlayerRecordsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithQuery adds the query to the admin retrieve player records params
+func (o *AdminRetrievePlayerRecordsParams) WithQuery(query *string) *AdminRetrievePlayerRecordsParams {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the admin retrieve player records params
+func (o *AdminRetrievePlayerRecordsParams) SetQuery(query *string) {
+	o.Query = query
+}
+
 // WithTags adds the tags to the admin retrieve player records params
 func (o *AdminRetrievePlayerRecordsParams) WithTags(tags []string) *AdminRetrievePlayerRecordsParams {
 	o.SetTags(tags)
@@ -275,6 +291,22 @@ func (o *AdminRetrievePlayerRecordsParams) WriteToRequest(r runtime.ClientReques
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+			if err := r.SetQueryParam("query", qQuery); err != nil {
 				return err
 			}
 		}

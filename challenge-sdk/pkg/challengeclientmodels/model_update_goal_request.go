@@ -25,8 +25,7 @@ type ModelUpdateGoalRequest struct {
 	Description *string `json:"description"`
 
 	// isactive
-	// Required: true
-	IsActive *bool `json:"isActive"`
+	IsActive bool `json:"isActive"`
 
 	// name
 	// Required: true
@@ -55,9 +54,6 @@ func (m *ModelUpdateGoalRequest) Validate(formats strfmt.Registry) error {
 	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateIsActive(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -80,15 +76,6 @@ func (m *ModelUpdateGoalRequest) Validate(formats strfmt.Registry) error {
 func (m *ModelUpdateGoalRequest) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUpdateGoalRequest) validateIsActive(formats strfmt.Registry) error {
-
-	if err := validate.Required("isActive", "body", m.IsActive); err != nil {
 		return err
 	}
 

@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.24.1"
+    "version": "1.24.2"
   },
   "schemes": [
     "https"
@@ -456,7 +456,7 @@
           "title": "Eventnamespace",
           "type": "string"
         },
-        "EventTimeStamp": {
+        "EventTimestamp": {
           "title": "Eventtimestamp",
           "type": "string"
         },
@@ -481,10 +481,7 @@
         "EventId",
         "EventName",
         "EventNamespace",
-        "EventTimeStamp",
-        "FlightId",
-        "UserId",
-        "UserNamespace"
+        "EventTimestamp"
       ],
       "title": "GetNamespaceEventResponse",
       "type": "object"
@@ -528,8 +525,7 @@
           "type": "array"
         },
         "paging": {
-          "title": "Paging",
-          "type": "integer"
+          "$ref": "#/definitions/Paging"
         }
       },
       "required": [
@@ -537,6 +533,20 @@
         "paging"
       ],
       "title": "PagedResponse[GetNamespaceEventResponse]",
+      "type": "object"
+    },
+    "Paging": {
+      "properties": {
+        "next": {
+          "title": "Next",
+          "type": "string"
+        },
+        "previous": {
+          "title": "Previous",
+          "type": "string"
+        }
+      },
+      "title": "Paging",
       "type": "object"
     },
     "PlayTimeResponse": {
@@ -627,11 +637,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2024-03-12T07:23:03+00:00",
-    "gitHash": "e48917e82b6b60926c94266104fa28c1ce5d36a1",
+    "buildDate": "2024-05-06T02:31:11+00:00",
+    "gitHash": "4b5681193696f2a83d474adf2b0e10b1d66274c1",
     "name": "analytics-game-telemetry",
     "realm": "demo",
-    "version": "1.24.1",
+    "version": "1.24.2",
     "version-roles-seeding": "1.0.18"
   }
 }

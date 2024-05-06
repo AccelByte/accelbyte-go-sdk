@@ -63,8 +63,7 @@ GetCountries list countries
 List countries.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11204
+  * Action code : 11204
   *  Returns : country code list
 */
 func (a *Client) GetCountries(params *GetCountriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountriesOK, *GetCountriesBadRequest, *GetCountriesUnauthorized, error) {
@@ -123,8 +122,7 @@ GetCountriesShort list countries
 List countries.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11204
+  * Action code : 11204
   *  Returns : country code list
 */
 func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountriesOK, error) {
@@ -179,8 +177,7 @@ GetCountryGroups list country groups
 List country groups. Will return all available country groups if the query param is not specified
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=2 (READ)
-  *  Action code : 11203
+  * Action code : 11203
   *  Returns : list of country groups
 */
 func (a *Client) GetCountryGroups(params *GetCountryGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountryGroupsOK, *GetCountryGroupsBadRequest, *GetCountryGroupsUnauthorized, *GetCountryGroupsForbidden, *GetCountryGroupsNotFound, error) {
@@ -245,8 +242,7 @@ GetCountryGroupsShort list country groups
 List country groups. Will return all available country groups if the query param is not specified
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=2 (READ)
-  *  Action code : 11203
+  * Action code : 11203
   *  Returns : list of country groups
 */
 func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountryGroupsOK, error) {
@@ -306,8 +302,7 @@ Add a country groups
 Country code must follow ISO3166-1 alpha-2.
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=1 (CREATE)
-  *  Action code : 11201
+  * Action code : 11201
   *  Returns : newly created country group
 */
 func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AddCountryGroupCreated, *AddCountryGroupBadRequest, *AddCountryGroupUnauthorized, *AddCountryGroupForbidden, *AddCountryGroupConflict, error) {
@@ -373,8 +368,7 @@ Add a country groups
 Country code must follow ISO3166-1 alpha-2.
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=1 (CREATE)
-  *  Action code : 11201
+  * Action code : 11201
   *  Returns : newly created country group
 */
 func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AddCountryGroupCreated, error) {
@@ -436,8 +430,7 @@ Valid update behaviour :
 - To update countries only, do not include countryGroupName key or just specify it with blank value.
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=4 (UPDATE)
-  *  Action code : 11202
+  * Action code : 11202
   *  Returns : updated country group
 */
 func (a *Client) UpdateCountryGroup(params *UpdateCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryGroupOK, *UpdateCountryGroupBadRequest, *UpdateCountryGroupUnauthorized, *UpdateCountryGroupForbidden, *UpdateCountryGroupNotFound, error) {
@@ -505,8 +498,7 @@ Valid update behaviour :
 - To update countries only, do not include countryGroupName key or just specify it with blank value.
 Other detail info:
 
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=4 (UPDATE)
-  *  Action code : 11202
+  * Action code : 11202
   *  Returns : updated country group
 */
 func (a *Client) UpdateCountryGroupShort(params *UpdateCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryGroupOK, error) {
@@ -563,9 +555,6 @@ Deprecated: 2022-08-10 - Use DeleteCountryGroupShort instead.
 
 DeleteCountryGroup delete a country group
 Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.
-Other detail info:
-
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=8 (DELETE)
 */
 func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupOK, *DeleteCountryGroupBadRequest, *DeleteCountryGroupUnauthorized, *DeleteCountryGroupForbidden, *DeleteCountryGroupNotFound, error) {
 	// TODO: Validate the params before sending
@@ -627,9 +616,6 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 /*
 DeleteCountryGroupShort delete a country group
 Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.
-Other detail info:
-
-  * Required permission : resource = "ADMIN:NAMESPACE:{namespace}:MISC" , action=8 (DELETE)
 */
 func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -687,8 +673,7 @@ GetLanguages list languages.
 List languages.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11206
+  * Action code : 11206
   *  Returns : language list
 */
 func (a *Client) GetLanguages(params *GetLanguagesParams, authInfo runtime.ClientAuthInfoWriter) (*GetLanguagesOK, *GetLanguagesBadRequest, *GetLanguagesUnauthorized, error) {
@@ -747,8 +732,7 @@ GetLanguagesShort list languages.
 List languages.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11206
+  * Action code : 11206
   *  Returns : language list
 */
 func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.ClientAuthInfoWriter) (*GetLanguagesOK, error) {
@@ -803,8 +787,7 @@ GetTimeZones list time zones
 List time zones.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11205
+  * Action code : 11205
   *  Returns : time zones
 */
 func (a *Client) GetTimeZones(params *GetTimeZonesParams, authInfo runtime.ClientAuthInfoWriter) (*GetTimeZonesOK, *GetTimeZonesBadRequest, *GetTimeZonesUnauthorized, error) {
@@ -863,8 +846,7 @@ GetTimeZonesShort list time zones
 List time zones.
 Other detail info:
 
-  * Required permission : login user
-  *  Action code : 11205
+  * Action code : 11205
   *  Returns : time zones
 */
 func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.ClientAuthInfoWriter) (*GetTimeZonesOK, error) {

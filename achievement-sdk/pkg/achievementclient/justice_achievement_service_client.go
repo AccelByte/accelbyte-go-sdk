@@ -17,6 +17,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/global_achievements"
+	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/platform_achievement"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/tags"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/user_achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -72,6 +73,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Achievements = achievements.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.GlobalAchievements = global_achievements.New(transport, formats)
+	cli.PlatformAchievement = platform_achievement.New(transport, formats)
 	cli.Tags = tags.New(transport, formats)
 	cli.UserAchievements = user_achievements.New(transport, formats)
 
@@ -140,6 +142,8 @@ type JusticeAchievementService struct {
 
 	GlobalAchievements global_achievements.ClientService
 
+	PlatformAchievement platform_achievement.ClientService
+
 	Tags tags.ClientService
 
 	UserAchievements user_achievements.ClientService
@@ -154,6 +158,7 @@ func (c *JusticeAchievementService) SetTransport(transport runtime.ClientTranspo
 	c.Achievements.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
 	c.GlobalAchievements.SetTransport(transport)
+	c.PlatformAchievement.SetTransport(transport)
 	c.Tags.SetTransport(transport)
 	c.UserAchievements.SetTransport(transport)
 }

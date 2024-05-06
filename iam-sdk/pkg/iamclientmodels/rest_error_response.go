@@ -29,6 +29,9 @@ type RestErrorResponse struct {
 
 	// messagevariables
 	MessageVariables map[string]string `json:"messageVariables,omitempty"`
+
+	// requiredpermission
+	RequiredPermission *RestPermission `json:"requiredPermission,omitempty"`
 }
 
 // Validate validates this Rest error response

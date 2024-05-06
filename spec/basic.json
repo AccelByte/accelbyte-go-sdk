@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.19.2"
+    "version": "2.20.0"
   },
   "schemes": [
     "https"
@@ -21,9 +21,6 @@
       "name": "Config"
     },
     {
-      "name": "EQU8Config"
-    },
-    {
       "name": "FileUpload"
     },
     {
@@ -31,9 +28,6 @@
     },
     {
       "name": "Namespace"
-    },
-    {
-      "name": "UserAction"
     },
     {
       "name": "UserProfile"
@@ -48,40 +42,7 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
-        "ADMIN:NAMESPACE [CREATE]": "ADMIN:NAMESPACE [CREATE]",
-        "ADMIN:NAMESPACE [READ]": "ADMIN:NAMESPACE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]": "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]": "ADMIN:NAMESPACE:{namespace}:ACTION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]": "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]": "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:MISC [READ]": "ADMIN:NAMESPACE:{namespace}:MISC [READ]",
-        "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]": "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]": "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:PROFILE []": "ADMIN:NAMESPACE:{namespace}:PROFILE []",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]",
-        "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]": "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]",
-        "NAMESPACE:{namespace}:NAMESPACE [READ]": "NAMESPACE:{namespace}:NAMESPACE [READ]",
-        "NAMESPACE:{namespace}:PROFILE [CREATE]": "NAMESPACE:{namespace}:PROFILE [CREATE]",
-        "NAMESPACE:{namespace}:PROFILE [READ]": "NAMESPACE:{namespace}:PROFILE [READ]",
-        "NAMESPACE:{namespace}:PROFILE [UPDATE]": "NAMESPACE:{namespace}:PROFILE [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+        "ADMIN:NAMESPACE:{namespace}:PROFILE []": "ADMIN:NAMESPACE:{namespace}:PROFILE []"
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
@@ -103,7 +64,7 @@
   "paths": {
     "/basic/v1/admin/namespaces": {
       "get": {
-        "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespaces",
         "parameters": [
           {
@@ -145,28 +106,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get all namespaces",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createNamespace",
         "parameters": [
           {
@@ -216,27 +170,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE [CREATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}": {
       "delete": {
-        "description": "Delete a namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11307\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: deleted namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Delete a namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11307\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: deleted namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteNamespace",
         "parameters": [
           {
@@ -291,25 +238,18 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]"
         }
       },
       "get": {
-        "description": "Get a namespace.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be returned.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11304\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get a namespace.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be returned.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11304\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespace",
         "parameters": [
           {
@@ -367,459 +307,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions": {
-      "get": {
-        "description": "Get configured actions.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getActions",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/Action"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11041\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get configured actions",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions/ban": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Ban user.\u0026lt;br\u0026gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "banUsers",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/UserBanRequest"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11041\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Ban user(temporarily or permanently)",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions/banned": {
-      "get": {
-        "description": "Get banned status.\u0026lt;br\u0026gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getBannedUsers",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "collectionFormat": "multi",
-            "description": "user ids",
-            "in": "query",
-            "items": {
-              "type": "string"
-            },
-            "name": "userIds",
-            "required": true,
-            "type": "array"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/A DTO object for equ8 user ban status"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11641\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get banned user",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions/report": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "This API is for game service to report a game player.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "reportUser",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/UserReportRequest"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "successful operation"
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Report a game player(for game service)",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions/status": {
-      "get": {
-        "description": "Get user status.\u0026lt;br\u0026gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getUserStatus",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user id, should follow UUID version 4 without hyphen",
-            "in": "query",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/A DTO object for equ8 user status"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11641\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get user status",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/actions/unban": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Unban user.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "unBanUsers",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/A DTO for unban user API call."
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11041\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Unban user",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
@@ -828,7 +323,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update namespace basic info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11302\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update namespace basic info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11302\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateNamespace",
         "parameters": [
           {
@@ -891,27 +386,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update namespace basic info",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/child": {
       "get": {
-        "description": "Get child namespaces.\u0026lt;br\u0026gt;If input namespace is publisher namespace, then it will return its all studio namespace.\u0026lt;br\u0026gt;If input namespace is studio namespace, then it will return its all game namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of child namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get child namespaces.\u0026lt;br\u0026gt;If input namespace is publisher namespace, then it will return its all studio namespace.\u0026lt;br\u0026gt;If input namespace is studio namespace, then it will return its all game namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of child namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getChildNamespaces",
         "parameters": [
           {
@@ -959,21 +447,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get child namespaces",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
@@ -982,7 +463,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createConfig",
         "parameters": [
           {
@@ -1038,21 +519,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a config",
         "tags": [
           "Config"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]"
         }
       }
     },
@@ -1061,8 +535,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "deleteConfig_1",
+        "description": "Delete a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteConfig",
         "parameters": [
           {
             "in": "path",
@@ -1112,26 +586,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a config",
         "tags": [
           "Config"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]"
         }
       },
       "get": {
-        "description": "Get a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getConfig_1",
+        "description": "Get a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getConfig",
         "parameters": [
           {
             "in": "path",
@@ -1185,29 +652,22 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a config",
         "tags": [
           "Config"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "updateConfig_1",
+        "description": "Update a config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateConfig",
         "parameters": [
           {
             "in": "path",
@@ -1268,27 +728,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a config",
         "tags": [
           "Config"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/context": {
       "get": {
-        "description": "Get context of namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: context of namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get context of namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: context of namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespaceContext",
         "parameters": [
           {
@@ -1324,175 +777,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get context of namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
-        }
-      }
-    },
-    "/basic/v1/admin/namespaces/{namespace}/equ8/config": {
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Delete equ8 config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "deleteConfig",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "Delete equ8 config successfully"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "Delete equ8 config",
-        "tags": [
-          "EQU8Config"
-        ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"
-        }
-      },
-      "get": {
-        "description": "Get equ8 config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getConfig",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Equ8Config"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11641\u003c/td\u003e\u003ctd\u003eEqu8 config not found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "Get equ8 config",
-        "tags": [
-          "EQU8Config"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update equ8 config, create if not exists.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "updateConfig",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/A DTO for update equ8 config API call."
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Equ8Config"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "500": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "summary": "Create or Update equ8 config",
-        "tags": [
-          "EQU8Config"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/folders/{folder}/files": {
       "post": {
-        "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUploadUrl",
         "parameters": [
           {
@@ -1555,27 +853,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Generate Upload URL",
         "tags": [
           "FileUpload"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/game": {
       "get": {
-        "description": "Get game namespaces.\u0026lt;br\u0026gt;In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get game namespaces.\u0026lt;br\u0026gt;In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getGameNamespaces",
         "parameters": [
           {
@@ -1623,28 +914,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get game namespaces",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/misc/countries": {
       "get": {
         "deprecated": true,
-        "description": "List countries.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11204\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: country code list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List countries.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11204\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: country code list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCountries",
         "parameters": [
           {
@@ -1698,14 +982,14 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "-"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups": {
       "get": {
-        "description": "List country groups. Will return all available country groups if the query param is not specified\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11203\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of country groups\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List country groups. Will return all available country groups if the query param is not specified\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11203\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of country groups\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCountryGroups",
         "parameters": [
           {
@@ -1764,27 +1048,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List country groups",
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Add a country groups\u0026lt;br\u0026gt;Country code must follow ISO3166-1 alpha-2.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11201\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: newly created country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Add a country groups\u0026lt;br\u0026gt;Country code must follow ISO3166-1 alpha-2.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11201\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: newly created country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "addCountryGroup",
         "parameters": [
           {
@@ -1841,26 +1119,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Add a country group",
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}": {
       "delete": {
-        "description": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.\u0026lt;br\u0026gt;",
         "operationId": "deleteCountryGroup",
         "parameters": [
           {
@@ -1913,27 +1185,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a country group",
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update a country groups. The countryGroupCode must be exist beforehand.\u0026lt;br\u0026gt;Valid update behaviour :\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; key or just specify it with empty array.\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; key or just specify it with blank value.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11202\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a country groups. The countryGroupCode must be exist beforehand.\u0026lt;br\u0026gt;Valid update behaviour :\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; key or just specify it with empty array.\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; key or just specify it with blank value.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11202\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateCountryGroup",
         "parameters": [
           {
@@ -1997,26 +1263,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a country group",
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/misc/languages": {
       "get": {
-        "description": "List languages.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11206\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: language list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List languages.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11206\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: language list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getLanguages",
         "parameters": [
           {
@@ -2062,14 +1322,14 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "-"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/misc/timezones": {
       "get": {
-        "description": "List time zones.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11205\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: time zones\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List time zones.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11205\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: time zones\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getTimeZones",
         "parameters": [
           {
@@ -2115,14 +1375,14 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "-"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/profiles/byPublicId": {
       "get": {
-        "description": "Get user profile by public id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user profile by public id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserProfileInfoByPublicId",
         "parameters": [
           {
@@ -2178,21 +1438,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user profile info by public id",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]"
         }
       }
     },
@@ -2262,7 +1515,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get namespace info related publisher namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11305\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Namespace info related publisher namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get namespace info related publisher namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11305\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Namespace info related publisher namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespacePublisher",
         "parameters": [
           {
@@ -2311,27 +1564,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get namespace info related publisher namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/publisher/configs/{configKey}": {
       "get": {
-        "description": "Get a publisher config.\u0026lt;br\u0026gt;It will return a publisher namespace config of the given namespace and key.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get a publisher config.\u0026lt;br\u0026gt;It will return a publisher namespace config of the given namespace and key.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPublisherConfig",
         "parameters": [
           {
@@ -2386,21 +1632,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a publisher config",
         "tags": [
           "Config"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
         }
       }
     },
@@ -2409,7 +1648,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Change a namespace status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Action code\u0026lt;i\u0026gt;\u0026lt;/i\u0026gt;: 11306\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Change a namespace status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Action code\u0026lt;i\u0026gt;\u0026lt;/i\u0026gt;: 11306\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "changeNamespaceStatus",
         "parameters": [
           {
@@ -2472,21 +1711,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Change namespace status",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
         }
       }
     },
@@ -2495,7 +1727,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Anonymize user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11501\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Anonymize user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11501\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "anonymizeUserProfile",
         "parameters": [
           {
@@ -2542,27 +1774,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "anonymize user profile",
         "tags": [
           "Anonymization"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUserUploadContentUrl",
         "parameters": [
           {
@@ -2639,21 +1864,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Generate Upload URL For User Content",
         "tags": [
           "FileUpload"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
         }
       }
     },
@@ -2662,7 +1880,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11407\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Delete user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Delete user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11407\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Delete user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteUserProfile",
         "parameters": [
           {
@@ -2718,25 +1936,18 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]"
         }
       },
       "get": {
-        "description": "Get user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserProfileInfo",
         "parameters": [
           {
@@ -2792,28 +2003,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateUserProfile",
         "parameters": [
           {
@@ -2877,27 +2081,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
       "get": {
-        "description": "Get user custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCustomAttributesInfo",
         "parameters": [
           {
@@ -2950,28 +2147,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user custom attributes",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update partially custom attributes tied to the user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update partially custom attributes tied to the user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateCustomAttributesPartially",
         "parameters": [
           {
@@ -3041,27 +2231,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update partially custom attributes tied to the user id",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes": {
       "get": {
-        "description": "Get user private custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user private custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPrivateCustomAttributesInfo",
         "parameters": [
           {
@@ -3114,28 +2297,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user private custom attributes",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update partially private custom attributes tied to the user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update partially private custom attributes tied to the user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePrivateCustomAttributesPartially",
         "parameters": [
           {
@@ -3205,21 +2381,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update partially private custom attributes tied to the user id",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
@@ -3228,7 +2397,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update user profile status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11406\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user profile status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11406\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateUserProfileStatus",
         "parameters": [
           {
@@ -3292,21 +2461,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user profile status",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
@@ -3334,7 +2496,7 @@
     },
     "/basic/v1/public/namespaces": {
       "get": {
-        "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetNamespaces",
         "parameters": [
           {
@@ -3376,14 +2538,50 @@
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "authenticated": "true"
+        "x-security": {
+          "userPermissions": "-"
         }
+      }
+    },
+    "/basic/v1/public/namespaces/{namespace}": {
+      "get": {
+        "description": "Get a namespace info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getNamespace_1",
+        "parameters": [
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceSimpleInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11337\u003c/td\u003e\u003ctd\u003eUnable to {action}: Namespace not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "summary": "Get a namespace info",
+        "tags": [
+          "Namespace"
+        ]
       }
     },
     "/basic/v1/public/namespaces/{namespace}/folders/{folder}/files": {
       "post": {
-        "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUploadUrl",
         "parameters": [
           {
@@ -3446,21 +2644,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Generate Upload URL",
         "tags": [
           "FileUpload"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:FILEUPLOAD"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
         }
       }
     },
@@ -3699,7 +2890,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get namespace info related publisher namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11305\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Namespace info related publisher namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get namespace info related publisher namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11305\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Namespace info related publisher namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetNamespacePublisher",
         "parameters": [
           {
@@ -3748,27 +2939,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:NAMESPACE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get namespace info related publisher namespace",
         "tags": [
           "Namespace"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:NAMESPACE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/users/me/profiles": {
       "get": {
-        "description": "Get my profile\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Client with user token can get user profile in target namespace\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get my profile\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Client with user token can get user profile in target namespace\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getMyProfileInfo",
         "parameters": [
           {
@@ -3817,28 +3001,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get my profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create my profile.\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Client with user token can create user profile in target namespace\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11401\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Created user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to create \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to create \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Country\u0026lt;/i\u0026gt;  : ISO3166-1 alpha-2 two letter, e.g. US \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create my profile.\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Client with user token can create user profile in target namespace\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11401\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Created user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to create \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to create \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Country\u0026lt;/i\u0026gt;  : ISO3166-1 alpha-2 two letter, e.g. US \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createMyProfile",
         "parameters": [
           {
@@ -3901,28 +3078,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create my profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [CREATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update my profile.\u0026lt;br\u0026gt;Updates user profile in the target namespace (namespace in the path). If token\u0026#39;s namespace doesn\u0026#39;t match the target namespace, the service automatically maps the token\u0026#39;s user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to update \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to update \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update my profile.\u0026lt;br\u0026gt;Updates user profile in the target namespace (namespace in the path). If token\u0026#39;s namespace doesn\u0026#39;t match the target namespace, the service automatically maps the token\u0026#39;s user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to update \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to update \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateMyProfile",
         "parameters": [
           {
@@ -3979,27 +3149,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update my profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/users/me/profiles/privateCustomAttributes": {
       "get": {
-        "description": "Get my private custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get my private custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getMyPrivateCustomAttributesInfo",
         "parameters": [
           {
@@ -4045,28 +3208,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get my private custom attributes",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update partially private custom attributes tied to me.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update partially private custom attributes tied to me.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateMyPrivateCustomAttributesPartially",
         "parameters": [
           {
@@ -4129,21 +3285,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update partially private custom attributes tied to me",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
       }
     },
@@ -4152,7 +3301,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get my zip code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11407\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user zip code\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get my zip code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11407\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user zip code\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getMyZipCode",
         "parameters": [
           {
@@ -4189,28 +3338,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get my zip code",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update my zip code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11408\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user zip code\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update my zip code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11408\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user zip code\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateMyZipCode",
         "parameters": [
           {
@@ -4261,99 +3403,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update my zip code",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:PROFILE"
-        }
-      }
-    },
-    "/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report": {
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "This API is used to report a game user.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ACTION\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicReportUser",
-        "parameters": [
-          {
-            "description": "namespace, only accept alphabet and numeric",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "reporter user id, should follow UUID version 4 without hyphen",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/UserReportRequest"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "422": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Report a game user",
-        "tags": [
-          "UserAction"
-        ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:ACTION"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;The threshold of those limitations is different between upload category that is used.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;The threshold of those limitations is different between upload category that is used.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUserUploadContentUrl",
         "parameters": [
           {
@@ -4430,27 +3493,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Generate Upload URL For User Content",
         "tags": [
           "FileUpload"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
         }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
-        "description": "Get user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfileInfo",
         "parameters": [
           {
@@ -4506,28 +3562,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11401\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Created user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11401\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Created user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateUserProfile",
         "parameters": [
           {
@@ -4591,28 +3640,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserProfile",
         "parameters": [
           {
@@ -4676,21 +3718,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user profile",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
@@ -4743,7 +3778,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update partially custom attributes tied to user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt; : allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update partially custom attributes tied to user id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11402\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt; : allowed format: JSON object\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Updated custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateCustomAttributesPartially",
         "parameters": [
           {
@@ -4813,21 +3848,14 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update partially custom attributes tied to user id",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     },
@@ -4885,7 +3913,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update user profile status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11406\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user profile status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11406\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserProfileStatus",
         "parameters": [
           {
@@ -4949,135 +3977,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user profile status",
         "tags": [
           "UserProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE"
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
       }
     }
   },
   "definitions": {
-    "A DTO for unban user API call.": {
-      "properties": {
-        "comment": {
-          "description": "comment",
-          "type": "string"
-        },
-        "userIds": {
-          "description": "user ids",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "userIds"
-      ],
-      "type": "object"
-    },
-    "A DTO for update equ8 config API call.": {
-      "properties": {
-        "apiKey": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "A DTO object for equ8 user ban status": {
-      "properties": {
-        "expires": {
-          "description": "expire time, null if the user is permanently banned",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
-        },
-        "userId": {
-          "description": "userId",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "A DTO object for equ8 user status": {
-      "properties": {
-        "actionComment": {
-          "description": "action comment of this active action",
-          "type": "string"
-        },
-        "actionId": {
-          "description": "action id",
-          "format": "int32",
-          "type": "integer"
-        },
-        "expires": {
-          "description": "action end date",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
-        },
-        "userId": {
-          "description": "current user",
-          "type": "string"
-        },
-        "when": {
-          "description": "action start date",
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
-        }
-      },
-      "type": "object"
-    },
-    "Action": {
-      "description": "A DTO object for equ8 action.",
-      "properties": {
-        "color": {
-          "description": "color",
-          "type": "string"
-        },
-        "description": {
-          "description": "action description",
-          "type": "string"
-        },
-        "duration": {
-          "description": "action duration",
-          "format": "int64",
-          "type": "integer"
-        },
-        "icon": {
-          "description": "icon",
-          "type": "string"
-        },
-        "id": {
-          "description": "action id",
-          "format": "int32",
-          "type": "integer"
-        },
-        "name": {
-          "description": "action name",
-          "type": "string"
-        },
-        "priority": {
-          "description": "action priority",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "AddCountryGroupRequest": {
       "properties": {
         "countries": {
@@ -5193,17 +4105,6 @@
       },
       "type": "object"
     },
-    "Equ8Config": {
-      "properties": {
-        "apiKey": {
-          "type": "string"
-        },
-        "namespace": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ErrorEntity": {
       "properties": {
         "devStackTrace": {
@@ -5225,6 +4126,9 @@
           },
           "description": "message variables",
           "type": "object"
+        },
+        "requiredPermission": {
+          "$ref": "#/definitions/Permission"
         }
       },
       "required": [
@@ -5377,6 +4281,18 @@
       },
       "type": "object"
     },
+    "NamespaceSimpleInfo": {
+      "properties": {
+        "displayName": {
+          "description": "namespace display name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "displayName"
+      ],
+      "type": "object"
+    },
     "NamespaceStatusUpdate": {
       "description": "A DTO object for updating namespace status API call.",
       "properties": {
@@ -5404,6 +4320,18 @@
       "required": [
         "displayName"
       ],
+      "type": "object"
+    },
+    "Permission": {
+      "properties": {
+        "action": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RetrieveCountryGroupResponse": {
@@ -5445,32 +4373,6 @@
       },
       "type": "object"
     },
-    "UserBanRequest": {
-      "description": "A DTO for ban(temporarily/permanently) user API call.",
-      "properties": {
-        "actionId": {
-          "description": "action id",
-          "format": "int32",
-          "type": "integer"
-        },
-        "comment": {
-          "description": "comment",
-          "type": "string"
-        },
-        "userIds": {
-          "description": "user ids that will be banned",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "actionId",
-        "userIds"
-      ],
-      "type": "object"
-    },
     "UserProfileAdmin": {
       "description": "A DTO object for updating user profile API call.",
       "properties": {
@@ -5500,6 +4402,7 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
@@ -5508,6 +4411,7 @@
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "privateCustomAttributes": {
@@ -5575,6 +4479,7 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
@@ -5583,6 +4488,7 @@
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "timeZone": {
@@ -5616,12 +4522,14 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "namespace": {
@@ -5678,6 +4586,7 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
@@ -5686,6 +4595,7 @@
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "privateCustomAttributes": {
@@ -5725,12 +4635,14 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "namespace": {
@@ -5842,6 +4754,7 @@
           "x-nullable": true
         },
         "firstName": {
+          "description": "deprecated",
           "type": "string"
         },
         "language": {
@@ -5850,6 +4763,7 @@
           "type": "string"
         },
         "lastName": {
+          "description": "deprecated",
           "type": "string"
         },
         "privateCustomAttributes": {
@@ -5867,36 +4781,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "UserReportRequest": {
-      "description": "A DTO object for reporting user API call.",
-      "properties": {
-        "category": {
-          "description": "category",
-          "type": "string"
-        },
-        "description": {
-          "description": "description",
-          "type": "string"
-        },
-        "gameSessionId": {
-          "description": "gameSessionId",
-          "type": "string"
-        },
-        "subcategory": {
-          "description": "subcategory, default: general",
-          "type": "string"
-        },
-        "userId": {
-          "description": "reportee user id",
-          "type": "string"
-        }
-      },
-      "required": [
-        "category",
-        "userId"
-      ],
       "type": "object"
     },
     "UserZipCode": {
@@ -5951,16 +4835,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-04-05T09:55:07+00:00",
-    "buildID": "2.19.2",
+    "buildDate": "2024-05-03T10:46:10+00:00",
+    "buildID": "2.20.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.210-201.855.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.214-202.855.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "236f656b8b",
-    "gitTag": "2.19.2",
+    "gitHash": "508ab3e7b2",
+    "gitTag": "2.20.0",
     "name": "justice-basic-service",
     "realm": "demo",
-    "version": "2.19.2",
+    "version": "2.20.0",
     "version-roles-seeding": "0.0.10"
   }
 }

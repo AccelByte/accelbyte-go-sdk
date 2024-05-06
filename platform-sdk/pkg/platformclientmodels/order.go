@@ -58,6 +58,13 @@ type Order struct {
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`
 
+	// deduction
+	// Format: int32
+	Deduction int32 `json:"deduction,omitempty"`
+
+	// deductiondetails
+	DeductionDetails []*DeductionDetail `json:"deductionDetails,omitempty"`
+
 	// discountedprice
 	// Format: int32
 	DiscountedPrice int32 `json:"discountedPrice,omitempty"`
@@ -68,6 +75,10 @@ type Order struct {
 
 	// ext
 	Ext interface{} `json:"ext,omitempty"`
+
+	// finalprice
+	// Format: int32
+	FinalPrice int32 `json:"finalPrice,omitempty"`
 
 	// free
 	Free bool `json:"free"`

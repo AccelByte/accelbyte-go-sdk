@@ -31,6 +31,7 @@ var AdminRetrievePlayerRecordsCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		query, _ := cmd.Flags().GetString("query")
 		tagsString := cmd.Flag("tags").Value.String()
 		var tags []string
 		errTags := json.Unmarshal([]byte(tagsString), &tags)
@@ -42,6 +43,7 @@ var AdminRetrievePlayerRecordsCmd = &cobra.Command{
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			Query:     &query,
 			Tags:      tags,
 		}
 		ok, errOK := adminPlayerRecordService.AdminRetrievePlayerRecordsShort(input)
@@ -64,5 +66,6 @@ func init() {
 	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
 	AdminRetrievePlayerRecordsCmd.Flags().Int64("limit", 20, "Limit")
 	AdminRetrievePlayerRecordsCmd.Flags().Int64("offset", 0, "Offset")
+	AdminRetrievePlayerRecordsCmd.Flags().String("query", "", "Query")
 	AdminRetrievePlayerRecordsCmd.Flags().String("tags", "", "Tags")
 }

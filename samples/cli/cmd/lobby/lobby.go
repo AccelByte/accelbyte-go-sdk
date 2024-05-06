@@ -8,6 +8,7 @@ package lobby
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/lobby/admin"
+	"github.com/AccelByte/sample-apps/cmd/lobby/blocks"
 	"github.com/AccelByte/sample-apps/cmd/lobby/config"
 	"github.com/AccelByte/sample-apps/cmd/lobby/friends"
 	"github.com/AccelByte/sample-apps/cmd/lobby/lobbyOperations"
@@ -42,6 +43,7 @@ func init() {
 	LobbyCmd.AddCommand(friends.AddFriendsWithoutConfirmationCmd)
 	LobbyCmd.AddCommand(friends.BulkDeleteFriendsCmd)
 	LobbyCmd.AddCommand(friends.SyncNativeFriendsCmd)
+	LobbyCmd.AddCommand(blocks.SyncNativeBlockedUserCmd)
 	LobbyCmd.AddCommand(config.AdminGetAllConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminGetConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminUpdateConfigV1Cmd)
@@ -113,6 +115,7 @@ func init() {
 	LobbyCmd.AddCommand(player.PublicUnblockPlayerV1Cmd)
 	LobbyCmd.AddCommand(presence.UsersPresenceHandlerV1Cmd)
 	LobbyCmd.AddCommand(admin.FreeFormNotificationCmd)
+	LobbyCmd.AddCommand(notification.GetMyNotificationsCmd)
 	LobbyCmd.AddCommand(admin.NotificationWithTemplateCmd)
 	LobbyCmd.AddCommand(admin.GetGameTemplateCmd)
 	LobbyCmd.AddCommand(admin.CreateTemplateCmd)

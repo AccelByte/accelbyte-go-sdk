@@ -54,8 +54,7 @@ This API is used to list all views.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : the list of views
+  * Returns : the list of views
 */
 func (a *Client) ListViews(params *ListViewsParams, authInfo runtime.ClientAuthInfoWriter) (*ListViewsOK, *ListViewsNotFound, *ListViewsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -114,8 +113,7 @@ This API is used to list all views.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : the list of views
+  * Returns : the list of views
 */
 func (a *Client) ListViewsShort(params *ListViewsParams, authInfo runtime.ClientAuthInfoWriter) (*ListViewsOK, error) {
 	// TODO: Validate the params before sending
@@ -170,8 +168,7 @@ This API is used to create a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created a view
+  * Returns : created a view
 
 
 
@@ -254,8 +251,7 @@ This API is used to create a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created a view
+  * Returns : created a view
 
 
 
@@ -332,8 +328,7 @@ This API is used to get a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : view data
+  * Returns : view data
 */
 func (a *Client) GetView(params *GetViewParams, authInfo runtime.ClientAuthInfoWriter) (*GetViewOK, *GetViewNotFound, error) {
 	// TODO: Validate the params before sending
@@ -389,8 +384,7 @@ This API is used to get a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : view data
+  * Returns : view data
 */
 func (a *Client) GetViewShort(params *GetViewParams, authInfo runtime.ClientAuthInfoWriter) (*GetViewOK, error) {
 	// TODO: Validate the params before sending
@@ -443,8 +437,7 @@ This API is used to update a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated view data
+  * Returns : updated view data
 
 
 
@@ -527,8 +520,7 @@ This API is used to update a view.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated view data
+  * Returns : updated view data
 
 
 
@@ -602,10 +594,6 @@ Deprecated: 2022-08-10 - Use DeleteViewShort instead.
 
 DeleteView delete a view
 This API is used to delete a view.It will also delete all the related sections
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeleteView(params *DeleteViewParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteViewNoContent, *DeleteViewNotFound, *DeleteViewConflict, error) {
 	// TODO: Validate the params before sending
@@ -661,10 +649,6 @@ func (a *Client) DeleteView(params *DeleteViewParams, authInfo runtime.ClientAut
 /*
 DeleteViewShort delete a view
 This API is used to delete a view.It will also delete all the related sections
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeleteViewShort(params *DeleteViewParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteViewNoContent, error) {
 	// TODO: Validate the params before sending
@@ -719,8 +703,7 @@ This API is used to get all views.
 
 Other detail info:
 
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:STORE, action=2 (READ)
-  *  Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store views)
+  * Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store views)
   *  Optional permission : resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store views)
   *  Returns : all views
 */
@@ -775,8 +758,7 @@ This API is used to get all views.
 
 Other detail info:
 
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:STORE, action=2 (READ)
-  *  Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store views)
+  * Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store views)
   *  Optional permission : resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store views)
   *  Returns : all views
 */

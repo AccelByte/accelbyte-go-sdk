@@ -32,22 +32,19 @@ type GetNamespaceEventResponse struct {
 
 	// eventtimestamp
 	// Required: true
-	EventTimeStamp *string `json:"EventTimeStamp"`
+	EventTimestamp *string `json:"EventTimestamp"`
 
 	// flightid
-	// Required: true
-	FlightID *string `json:"FlightId"`
+	FlightID string `json:"FlightId,omitempty"`
 
 	// payload
 	Payload interface{} `json:"Payload,omitempty"`
 
 	// userid
-	// Required: true
-	UserID *string `json:"UserId"`
+	UserID string `json:"UserId,omitempty"`
 
 	// usernamespace
-	// Required: true
-	UserNamespace *string `json:"UserNamespace"`
+	UserNamespace string `json:"UserNamespace,omitempty"`
 }
 
 // Validate validates this Get namespace event response
@@ -63,16 +60,7 @@ func (m *GetNamespaceEventResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateEventNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateEventTimeStamp(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateFlightID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserNamespace(formats); err != nil {
+	if err := m.validateEventTimestamp(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -109,36 +97,9 @@ func (m *GetNamespaceEventResponse) validateEventNamespace(formats strfmt.Regist
 	return nil
 }
 
-func (m *GetNamespaceEventResponse) validateEventTimeStamp(formats strfmt.Registry) error {
+func (m *GetNamespaceEventResponse) validateEventTimestamp(formats strfmt.Registry) error {
 
-	if err := validate.Required("EventTimeStamp", "body", m.EventTimeStamp); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetNamespaceEventResponse) validateFlightID(formats strfmt.Registry) error {
-
-	if err := validate.Required("FlightId", "body", m.FlightID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetNamespaceEventResponse) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("UserId", "body", m.UserID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetNamespaceEventResponse) validateUserNamespace(formats strfmt.Registry) error {
-
-	if err := validate.Required("UserNamespace", "body", m.UserNamespace); err != nil {
+	if err := validate.Required("EventTimestamp", "body", m.EventTimestamp); err != nil {
 		return err
 	}
 

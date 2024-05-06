@@ -91,7 +91,7 @@ type PublicSearchUserV3Params struct {
 	*/
 	PlatformBy *string
 	/*PlatformID
-	  Platform Id that want to be searched, find the values from **Supported platform id** in the api doc
+	  Platform Id that want to be searched.
 
 	*/
 	PlatformID *string

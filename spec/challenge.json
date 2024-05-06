@@ -137,7 +137,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;li\u0026gt;rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;li\u0026gt;repeatAfter: describe number of period challenge\u0026#39;s goals will be repeated after. Leave it empty if you don\u0026#39;t want to repeat the challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "adminCreateChallenge",
         "parameters": [
           {
@@ -526,7 +526,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description:  text describing the goal (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule:  a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups:  list of conditions that conform with the goal progressions. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete  \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description:  text describing the goal (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule:  a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups:  list of conditions that conform with the goal progressions. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete  \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.",
         "operationId": "adminCreateGoal",
         "parameters": [
           {
@@ -757,7 +757,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the goal \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description:  text describing the goal (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule (optional):  a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups:  list of conditions that conform with the goal progressions. \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete  \u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive (optional): when goal is in a schedule, isActive determine whether goal is active to progress or not\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.",
         "operationId": "adminUpdateGoals",
         "parameters": [
           {
@@ -1468,6 +1468,30 @@
             "in": "query",
             "name": "goalCode",
             "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit the amount of data retrieved",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "filter goals by tags, comma separated value",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
           }
         ],
         "produces": [
@@ -1738,6 +1762,10 @@
         "name": {
           "type": "string"
         },
+        "repeatAfter": {
+          "format": "int32",
+          "type": "integer"
+        },
         "rotation": {
           "enum": [
             "DAILY",
@@ -1829,6 +1857,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "repeatAfter": {
+          "format": "int32",
+          "type": "integer"
         },
         "rotation": {
           "enum": [
@@ -1924,6 +1956,44 @@
         "paging"
       ]
     },
+    "model.GoalMeta": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "requirementGroups": {
+          "items": {
+            "$ref": "#/definitions/model.Requirement"
+          },
+          "type": "array"
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/model.Reward"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "description",
+        "name",
+        "requirementGroups",
+        "rewards"
+      ]
+    },
     "model.GoalOrder": {
       "properties": {
         "goal": {
@@ -1944,6 +2014,9 @@
         "challengeCode": {
           "type": "string"
         },
+        "goal": {
+          "$ref": "#/definitions/model.GoalMeta"
+        },
         "goalCode": {
           "type": "string"
         },
@@ -1960,6 +2033,7 @@
           "enum": [
             "ACTIVE",
             "COMPLETED",
+            "NOT_STARTED",
             "RETIRED"
           ],
           "type": "string"
@@ -1967,6 +2041,7 @@
       },
       "required": [
         "challengeCode",
+        "goal",
         "goalCode",
         "goalProgressionId",
         "requirementProgressions",
@@ -2190,11 +2265,20 @@
         "completedAt": {
           "type": "string"
         },
-        "currrentValue": {
+        "currentValue": {
           "format": "double",
           "type": "number"
         },
         "id": {
+          "type": "string"
+        },
+        "matcher": {
+          "type": "string"
+        },
+        "parameterName": {
+          "type": "string"
+        },
+        "parameterType": {
           "type": "string"
         },
         "targetValue": {
@@ -2203,7 +2287,11 @@
         }
       },
       "required": [
+        "currentValue",
         "id",
+        "matcher",
+        "parameterName",
+        "parameterType",
         "targetValue"
       ]
     },
@@ -2307,7 +2395,6 @@
       },
       "required": [
         "description",
-        "isActive",
         "name",
         "requirementGroups",
         "rewards",
@@ -2324,16 +2411,21 @@
         },
         "meta": {
           "$ref": "#/definitions/model.UserProgressionResponseMeta"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
         }
       },
       "required": [
         "data",
-        "meta"
+        "meta",
+        "paging"
       ]
     },
     "model.UserProgressionResponseMeta": {
       "properties": {
         "code": {
+          "description": "challenge code",
           "type": "string"
         },
         "description": {
@@ -2470,6 +2562,10 @@
         "name": {
           "type": "string"
         },
+        "repeatAfter": {
+          "format": "int32",
+          "type": "integer"
+        },
         "rotation": {
           "enum": [
             "DAILY",
@@ -2523,11 +2619,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-05T06:48:09+00:00",
-    "gitHash": "040d82ff5fc075fe92822513a55d5887ead40fb6",
+    "buildDate": "2024-05-03T07:36:42+00:00",
+    "gitHash": "09bd3b9ad14e30f503d5fbcc90bd252ebb0d4dde",
     "name": "justice-challenge-service",
     "realm": "staging",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "version-roles-seeding": "1.2.16"
   }
 }

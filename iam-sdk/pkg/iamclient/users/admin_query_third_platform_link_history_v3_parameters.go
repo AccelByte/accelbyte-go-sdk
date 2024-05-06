@@ -86,7 +86,32 @@ type AdminQueryThirdPlatformLinkHistoryV3Params struct {
 	*/
 	PlatformUserID *string
 	/*PlatformID
-	  Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, nintendo, oculus, aws cognito, facebook, google, discord, twitch, snapchat or amazon
+	    Platform Id that want to be searched,
+	Supported Platform:
+	- Steam group(steamnetwork):
+		- steam
+		- steamopenid
+	- PSN group(psn)
+		- ps4web
+		- ps4
+		- ps5
+	- XBOX group(xbox)
+		- live
+		- xblweb
+	- Oculus group(oculusgroup)
+		- oculus
+		- oculusweb
+	- epicgames
+	- nintendo
+	- aws cognito
+	- facebook
+	- google
+	- discord
+	- twitch
+	- snapchat
+	- amazon
+
+	Note: you can use either platform ID or platform group as platformId query parameter
 
 	*/
 	PlatformID string

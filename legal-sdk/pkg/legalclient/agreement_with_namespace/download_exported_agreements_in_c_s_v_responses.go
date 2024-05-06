@@ -110,7 +110,7 @@ func NewDownloadExportedAgreementsInCSVNotFound() *DownloadExportedAgreementsInC
 
 /*DownloadExportedAgreementsInCSVNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>Policy version with id: [{policyVersionId}] not found</td></tr><tr><td>40047</td><td>Exported agreements for policyVersionId [{policyVersionId}] not found</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40047</td><td>Exported agreements for exportId [{exportId}] not found</td></tr></table>
 */
 type DownloadExportedAgreementsInCSVNotFound struct {
 	Payload *legalclientmodels.ErrorEntity

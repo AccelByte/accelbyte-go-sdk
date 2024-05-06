@@ -33,7 +33,7 @@ type Client struct {
 type ClientService interface {
 	QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error)
 	QueryCampaignsShort(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error)
-	CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error)
+	CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignBadRequest, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error)
 	CreateCampaignShort(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, error)
 	GetCampaign(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, *GetCampaignNotFound, error)
 	GetCampaignShort(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, error)
@@ -43,7 +43,7 @@ type ClientService interface {
 	GetCampaignDynamicShort(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, error)
 	QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error)
 	QueryCodesShort(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error)
-	CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesUnprocessableEntity, error)
+	CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesConflict, *CreateCodesUnprocessableEntity, error)
 	CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error)
 	Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error)
 	DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error)
@@ -72,8 +72,7 @@ QueryCampaigns query campaigns
 Query campaigns, if name is presented, it's fuzzy match.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : slice of campaigns
+  * Returns : slice of campaigns
 */
 func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error) {
 	// TODO: Validate the params before sending
@@ -125,8 +124,7 @@ QueryCampaignsShort query campaigns
 Query campaigns, if name is presented, it's fuzzy match.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : slice of campaigns
+  * Returns : slice of campaigns
 */
 func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error) {
 	// TODO: Validate the params before sending
@@ -176,10 +174,9 @@ CreateCampaign create campaign
 Create campaign.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)
-  *  Returns : created campaign
+  * Returns : created campaign
 */
-func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error) {
+func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignBadRequest, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateCampaignParams()
@@ -211,22 +208,25 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateCampaignCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *CreateCampaignBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *CreateCampaignConflict:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *CreateCampaignUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -235,8 +235,7 @@ CreateCampaignShort create campaign
 Create campaign.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)
-  *  Returns : created campaign
+  * Returns : created campaign
 */
 func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, error) {
 	// TODO: Validate the params before sending
@@ -273,6 +272,8 @@ func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runt
 
 	case *CreateCampaignCreated:
 		return v, nil
+	case *CreateCampaignBadRequest:
+		return nil, v
 	case *CreateCampaignConflict:
 		return nil, v
 	case *CreateCampaignUnprocessableEntity:
@@ -290,8 +291,7 @@ GetCampaign get campaign
 Get campaign info.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : campaign info
+  * Returns : campaign info
 */
 func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, *GetCampaignNotFound, error) {
 	// TODO: Validate the params before sending
@@ -346,8 +346,7 @@ GetCampaignShort get campaign
 Get campaign info.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : campaign info
+  * Returns : campaign info
 */
 func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, error) {
 	// TODO: Validate the params before sending
@@ -399,8 +398,7 @@ UpdateCampaign update campaign
 Update campaign.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : updated campaign
+  * Returns : updated campaign
 */
 func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, *UpdateCampaignNotFound, *UpdateCampaignConflict, *UpdateCampaignUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -461,8 +459,7 @@ UpdateCampaignShort update campaign
 Update campaign.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : updated campaign
+  * Returns : updated campaign
 */
 func (a *Client) UpdateCampaignShort(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, error) {
 	// TODO: Validate the params before sending
@@ -518,8 +515,7 @@ GetCampaignDynamic get campaign dynamic
 Get campaign dynamic.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : campaign dynamic
+  * Returns : campaign dynamic
 */
 func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, *GetCampaignDynamicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -574,8 +570,7 @@ GetCampaignDynamicShort get campaign dynamic
 Get campaign dynamic.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : campaign dynamic
+  * Returns : campaign dynamic
 */
 func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, error) {
 	// TODO: Validate the params before sending
@@ -627,8 +622,7 @@ QueryCodes query codes
 Query campaign codes.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : list of codes
+  * Returns : list of codes
 */
 func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -680,8 +674,7 @@ QueryCodesShort query codes
 Query campaign codes.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : list of codes
+  * Returns : list of codes
 */
 func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -731,10 +724,9 @@ CreateCodes create campaign codes
 This API is used to create campaign codes, it will increase the batch No. based on last creation.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)
-  *  Returns : number of codes created
+  * Returns : number of codes created
 */
-func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesUnprocessableEntity, error) {
+func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesConflict, *CreateCodesUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateCodesParams()
@@ -766,22 +758,25 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateCodesCreated:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *CreateCodesNotFound:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
+
+	case *CreateCodesConflict:
+		return nil, nil, v, nil, nil
 
 	case *CreateCodesUnprocessableEntity:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -790,8 +785,7 @@ CreateCodesShort create campaign codes
 This API is used to create campaign codes, it will increase the batch No. based on last creation.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)
-  *  Returns : number of codes created
+  * Returns : number of codes created
 */
 func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error) {
 	// TODO: Validate the params before sending
@@ -830,6 +824,8 @@ func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.Cl
 		return v, nil
 	case *CreateCodesNotFound:
 		return nil, v
+	case *CreateCodesConflict:
+		return nil, v
 	case *CreateCodesUnprocessableEntity:
 		return nil, v
 
@@ -845,8 +841,7 @@ Download download codes
 Download all or a batch of campaign's codes as a csv file.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : codes csv file
+  * Returns : codes csv file
 */
 func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
@@ -898,8 +893,7 @@ DownloadShort download codes
 Download all or a batch of campaign's codes as a csv file.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : codes csv file
+  * Returns : codes csv file
 */
 func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
@@ -951,8 +945,7 @@ Bulk disable codes.
 Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : the number of code actually disabled
+  * Returns : the number of code actually disabled
 */
 func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -1006,8 +999,7 @@ Bulk disable codes.
 Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : the number of code actually disabled
+  * Returns : the number of code actually disabled
 */
 func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -1057,8 +1049,7 @@ BulkEnableCodes bulk enable codes
 Bulk enable campaign codes.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : the number of code actually enabled
+  * Returns : the number of code actually enabled
 */
 func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -1110,8 +1101,7 @@ BulkEnableCodesShort bulk enable codes
 Bulk enable campaign codes.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : the number of code actually enabled
+  * Returns : the number of code actually enabled
 */
 func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -1161,8 +1151,7 @@ QueryRedeemHistory query redeem history
 Query redeem history.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : slice of redeem history
+  * Returns : slice of redeem history
 */
 func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -1214,8 +1203,7 @@ QueryRedeemHistoryShort query redeem history
 Query redeem history.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)
-  *  Returns : slice of redeem history
+  * Returns : slice of redeem history
 */
 func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -1265,8 +1253,7 @@ GetCode get code info
 Get campaign code, it will check code whether available to redeem if redeemable true.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : code info
+  * Returns : code info
 */
 func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, *GetCodeNotFound, *GetCodeConflict, error) {
 	// TODO: Validate the params before sending
@@ -1324,8 +1311,7 @@ GetCodeShort get code info
 Get campaign code, it will check code whether available to redeem if redeemable true.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)
-  *  Returns : code info
+  * Returns : code info
 */
 func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -1381,8 +1367,7 @@ Disable code.
 Disable an active code, the code can't be disabled if it has already been redeemed.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : disabled code
+  * Returns : disabled code
 */
 func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, *DisableCodeNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1439,8 +1424,7 @@ Disable code.
 Disable an active code, the code can't be disabled if it has already been redeemed.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : disabled code
+  * Returns : disabled code
 */
 func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -1492,8 +1476,7 @@ EnableCode enable code
 Enable code.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : enabled code
+  * Returns : enabled code
 */
 func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, *EnableCodeNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1548,8 +1531,7 @@ EnableCodeShort enable code
 Enable code.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)
-  *  Returns : enabled code
+  * Returns : enabled code
 */
 func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -1601,8 +1583,7 @@ ApplyUserRedemption redeem code
  [SERVICE COMMUNICATION ONLY] Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn't be redeemed even if its status is ACTIVE.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION", action=1 (CREATE)
-  *  Returns : Redeem result
+  * Returns : Redeem result
 */
 func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, *ApplyUserRedemptionNotFound, *ApplyUserRedemptionConflict, *ApplyUserRedemptionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1663,8 +1644,7 @@ ApplyUserRedemptionShort redeem code
  [SERVICE COMMUNICATION ONLY] Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn't be redeemed even if its status is ACTIVE.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION", action=1 (CREATE)
-  *  Returns : Redeem result
+  * Returns : Redeem result
 */
 func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, error) {
 	// TODO: Validate the params before sending

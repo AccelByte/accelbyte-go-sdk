@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.14.1"
+    "version": "3.14.5"
   },
   "schemes": [
     "https"
@@ -2435,7 +2435,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query recent player with given user id.\n\nIf user id parameter is empty:\n1. Using User Token : It will get the user id from the token\n2. Using client token : it will throw an error\n",
+        "description": "Query recent player with given user id.\n\nIf user id parameter is empty:\n1. Using User Token : It will get the user id from the token\n2. Using client token : it will throw an error\n\nPlease ensure environment variable \u0026#34;RECENT_PLAYER_ENABLED\u0026#34; is set to \u0026#34;TRUE\u0026#34; to use this feature.\n",
         "operationId": "adminGetRecentPlayer",
         "parameters": [
           {
@@ -2500,6 +2500,88 @@
           }
         ],
         "summary": "Query recent player with given user id.",
+        "tags": [
+          "Recent Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/recent-team-player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query recent player who were on the same team with given user id.\n\nIf user id parameter is empty:\n1. Using User Token : It will get the user id from the token\n2. Using client token : it will throw an error\n\nPlease ensure environment variable \u0026#34;RECENT_TEAM_PLAYER_ENABLED\u0026#34; is set to \u0026#34;TRUE\u0026#34; to use this feature.\n",
+        "operationId": "adminGetRecentTeamPlayer",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Recent Player Limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "recent team player UserID. If this field empty, will use UserID from token",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.RecentPlayerQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query recent player who were on the same team with given user id.",
         "tags": [
           "Recent Player"
         ],
@@ -5410,7 +5492,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query user\u0026#39;s recent player.",
+        "description": "Query user\u0026#39;s recent player.\n\nPlease ensure environment variable \u0026#34;RECENT_PLAYER_ENABLED\u0026#34; is set to \u0026#34;TRUE\u0026#34; to use this feature.\n",
         "operationId": "publicGetRecentPlayer",
         "parameters": [
           {
@@ -5469,6 +5551,82 @@
           }
         ],
         "summary": "Query user's recent player",
+        "tags": [
+          "Recent Player"
+        ],
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:PLAYER [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/public/namespaces/{namespace}/recent-team-player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query user\u0026#39;s recent player who were on the same team.\n\nPlease ensure environment variable \u0026#34;RECENT_TEAM_PLAYER_ENABLED\u0026#34; is set to \u0026#34;TRUE\u0026#34; to use this feature.\n",
+        "operationId": "publicGetRecentTeamPlayer",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "Recent Player Limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.RecentPlayerQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query user's recent player who were on the same team.",
         "tags": [
           "Recent Player"
         ],
@@ -7702,7 +7860,6 @@
         "id",
         "platformID",
         "platformUserID",
-        "previousStatus",
         "status",
         "statusV2",
         "updatedAt"
@@ -8184,9 +8341,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-03-15T07:16:58+00:00",
-    "gitHash": "663d5c9b75fd753641aa719388d9a7a2390dfd89",
-    "version": "3.14.1",
-    "version-roles-seeding": "1.0.20"
+    "buildDate": "2024-04-24T13:27:11+00:00",
+    "gitHash": "7e58da4f27defcdbe1bebef4e3f8d088b939a595",
+    "version": "3.14.5",
+    "version-roles-seeding": "1.2.33"
   }
 }

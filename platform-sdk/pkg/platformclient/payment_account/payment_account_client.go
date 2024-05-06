@@ -45,8 +45,7 @@ PublicGetPaymentAccounts get payment accounts
  [Not Supported Yet In Starter] Get payment accounts.
 Other detail info:
 
-  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=2 (READ)
-  *  Returns : Payment account list
+  * Returns : Payment account list
 */
 func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPaymentAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -98,8 +97,7 @@ PublicGetPaymentAccountsShort get payment accounts
  [Not Supported Yet In Starter] Get payment accounts.
 Other detail info:
 
-  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=2 (READ)
-  *  Returns : Payment account list
+  * Returns : Payment account list
 */
 func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPaymentAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -149,8 +147,7 @@ PublicDeletePaymentAccount delete payment account
  [Not Supported Yet In Starter] Delete payment account.
 Other detail info:
 
-  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=8 (DELETE)
-  *  Returns :
+  * Returns :
 */
 func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePaymentAccountNoContent, error) {
 	// TODO: Validate the params before sending
@@ -202,8 +199,7 @@ PublicDeletePaymentAccountShort delete payment account
  [Not Supported Yet In Starter] Delete payment account.
 Other detail info:
 
-  * Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT", action=8 (DELETE)
-  *  Returns :
+  * Returns :
 */
 func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePaymentAccountNoContent, error) {
 	// TODO: Validate the params before sending

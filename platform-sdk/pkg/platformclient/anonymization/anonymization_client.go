@@ -57,9 +57,6 @@ Deprecated: 2022-08-10 - Use AnonymizeCampaignShort instead.
 
 AnonymizeCampaign anonymize campaign
 Anonymize campaign. At current it will only anonymize redeem history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeCampaignNoContent, error) {
 	// TODO: Validate the params before sending
@@ -109,9 +106,6 @@ func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo run
 /*
 AnonymizeCampaignShort anonymize campaign
 Anonymize campaign. At current it will only anonymize redeem history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeCampaignNoContent, error) {
 	// TODO: Validate the params before sending
@@ -159,9 +153,6 @@ Deprecated: 2022-08-10 - Use AnonymizeEntitlementShort instead.
 
 AnonymizeEntitlement anonymize entitlement
 Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
@@ -211,9 +202,6 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 /*
 AnonymizeEntitlementShort anonymize entitlement
 Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
@@ -261,9 +249,6 @@ Deprecated: 2022-08-10 - Use AnonymizeFulfillmentShort instead.
 
 AnonymizeFulfillment anonymize fulfillment
 Anonymize fulfillment. At current it will only anonymize fulfillment history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeFulfillmentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -313,9 +298,6 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 /*
 AnonymizeFulfillmentShort anonymize fulfillment
 Anonymize fulfillment. At current it will only anonymize fulfillment history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeFulfillmentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -363,9 +345,6 @@ Deprecated: 2022-08-10 - Use AnonymizeIntegrationShort instead.
 
 AnonymizeIntegration anonymize integrations
 Anonymize integrations. At current it will only anonymize iap histories.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeIntegrationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -415,9 +394,6 @@ func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authIn
 /*
 AnonymizeIntegrationShort anonymize integrations
 Anonymize integrations. At current it will only anonymize iap histories.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeIntegrationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -465,9 +441,6 @@ Deprecated: 2022-08-10 - Use AnonymizeOrderShort instead.
 
 AnonymizeOrder anonymize order
 Anonymize order. At current it will only anonymize order, order history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error) {
 	// TODO: Validate the params before sending
@@ -517,9 +490,6 @@ func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.C
 /*
 AnonymizeOrderShort anonymize order
 Anonymize order. At current it will only anonymize order, order history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error) {
 	// TODO: Validate the params before sending
@@ -567,9 +537,6 @@ Deprecated: 2022-08-10 - Use AnonymizePaymentShort instead.
 
 AnonymizePayment anonymize payment
 Anonymize payment. At current it will only anonymize payment order, payment order history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -619,9 +586,6 @@ func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runti
 /*
 AnonymizePaymentShort anonymize payment
 Anonymize payment. At current it will only anonymize payment order, payment order history.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -669,9 +633,6 @@ Deprecated: 2022-08-10 - Use AnonymizeRevocationShort instead.
 
 AnonymizeRevocation anonymize revocation
 Anonymize revocation. At current it will only anonymize revocation history.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION, action=8 (DELETE)
 */
 func (a *Client) AnonymizeRevocation(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -721,9 +682,6 @@ func (a *Client) AnonymizeRevocation(params *AnonymizeRevocationParams, authInfo
 /*
 AnonymizeRevocationShort anonymize revocation
 Anonymize revocation. At current it will only anonymize revocation history.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION, action=8 (DELETE)
 */
 func (a *Client) AnonymizeRevocationShort(params *AnonymizeRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeRevocationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -771,9 +729,6 @@ Deprecated: 2022-08-10 - Use AnonymizeSubscriptionShort instead.
 
 AnonymizeSubscription anonymize subscription
 Anonymize subscription. At current it will anonymize subscription, billing history and subscription activity.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -823,9 +778,6 @@ func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, auth
 /*
 AnonymizeSubscriptionShort anonymize subscription
 Anonymize subscription. At current it will anonymize subscription, billing history and subscription activity.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -873,9 +825,6 @@ Deprecated: 2022-08-10 - Use AnonymizeWalletShort instead.
 
 AnonymizeWallet anonymize wallet
 Anonymize wallet. At current it will only anonymize wallet, wallet transaction.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeWalletNoContent, error) {
 	// TODO: Validate the params before sending
@@ -925,9 +874,6 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 /*
 AnonymizeWalletShort anonymize wallet
 Anonymize wallet. At current it will only anonymize wallet, wallet transaction.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)
 */
 func (a *Client) AnonymizeWalletShort(params *AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeWalletNoContent, error) {
 	// TODO: Validate the params before sending

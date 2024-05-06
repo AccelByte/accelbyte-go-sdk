@@ -134,7 +134,7 @@ type ItemSnapshot struct {
 	// Target currency code of coin item
 	TargetCurrencyCode string `json:"targetCurrencyCode,omitempty"`
 
-	// Target item id of mapping from game namespace to publisher namespace
+	// [Going to deprecate]Target item id of mapping from game namespace to publisher namespace
 	TargetItemID string `json:"targetItemId,omitempty"`
 
 	// The target namespace of a cross namespace item

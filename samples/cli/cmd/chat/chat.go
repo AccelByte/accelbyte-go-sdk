@@ -23,6 +23,7 @@ var ChatCmd = &cobra.Command{
 }
 
 func init() {
+	ChatCmd.AddCommand(topic.AdminFilterChatMessageCmd)
 	ChatCmd.AddCommand(topic.AdminChatHistoryCmd)
 	ChatCmd.AddCommand(topic.AdminCreateNamespaceTopicCmd)
 	ChatCmd.AddCommand(topic.AdminTopicListCmd)
@@ -81,5 +82,6 @@ func init() {
 	ChatCmd.AddCommand(profanity.AdminProfanityUpdateCmd)
 	ChatCmd.AddCommand(profanity.AdminProfanityDeleteCmd)
 	ChatCmd.AddCommand(operations.PublicGetMessagesCmd)
+	ChatCmd.AddCommand(config.PublicGetConfigV1Cmd)
 	ChatCmd.AddCommand(moderation.PublicGetChatSnapshotCmd)
 }

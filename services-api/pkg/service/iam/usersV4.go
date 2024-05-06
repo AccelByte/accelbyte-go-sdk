@@ -1056,7 +1056,7 @@ func (aaa *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, forbidden, notFound, conflict, internalServerError, err := aaa.Client.UsersV4.PublicCreateUserV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, forbidden, notFound, conflict, tooManyRequests, internalServerError, err := aaa.Client.UsersV4.PublicCreateUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1068,6 +1068,9 @@ func (aaa *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -1764,7 +1767,7 @@ func (aaa *UsersV4Service) PublicInviteUserV4(input *users_v4.PublicInviteUserV4
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, conflict, unprocessableEntity, internalServerError, err := aaa.Client.UsersV4.PublicInviteUserV4(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, conflict, unprocessableEntity, tooManyRequests, internalServerError, err := aaa.Client.UsersV4.PublicInviteUserV4(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1773,6 +1776,9 @@ func (aaa *UsersV4Service) PublicInviteUserV4(input *users_v4.PublicInviteUserV4
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

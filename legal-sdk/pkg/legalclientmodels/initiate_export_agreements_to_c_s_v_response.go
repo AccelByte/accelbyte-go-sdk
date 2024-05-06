@@ -18,6 +18,10 @@ import (
 // swagger:model Initiate export agreements to CSV response.
 type InitiateExportAgreementsToCSVResponse struct {
 
+	// Export Id is a combination of request timestamp, start time and end time.
+	// Required: true
+	ExportID *string `json:"exportId"`
+
 	// Processing the export
 	// Required: true
 	Processing *bool `json:"processing"`
@@ -27,6 +31,9 @@ type InitiateExportAgreementsToCSVResponse struct {
 func (m *InitiateExportAgreementsToCSVResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateExportID(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateProcessing(formats); err != nil {
 		res = append(res, err)
 	}
@@ -34,6 +41,15 @@ func (m *InitiateExportAgreementsToCSVResponse) Validate(formats strfmt.Registry
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InitiateExportAgreementsToCSVResponse) validateExportID(formats strfmt.Registry) error {
+
+	if err := validate.Required("exportId", "body", m.ExportID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

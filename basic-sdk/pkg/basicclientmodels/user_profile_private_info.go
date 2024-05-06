@@ -36,13 +36,13 @@ type UserProfilePrivateInfo struct {
 	// Format: date
 	DateOfBirth *string `json:"dateOfBirth,omitempty"`
 
-	// firstname
+	// deprecated
 	FirstName string `json:"firstName,omitempty"`
 
 	// language
 	Language string `json:"language,omitempty"`
 
-	// lastname
+	// deprecated
 	LastName string `json:"lastName,omitempty"`
 
 	// namespace

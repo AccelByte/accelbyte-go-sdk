@@ -79,6 +79,11 @@ type AdminRetrieveUserThirdPartyPlatformTokenV3Params struct {
 
 	*/
 	UserID string
+	/*PlatformUserID
+	  Platform user id.
+
+	*/
+	PlatformUserID *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +183,17 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) SetUserID(userID stri
 	o.UserID = userID
 }
 
+// WithPlatformUserID adds the platformUserID to the admin retrieve user third party platform token v3 params
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) WithPlatformUserID(platformUserID *string) *AdminRetrieveUserThirdPartyPlatformTokenV3Params {
+	o.SetPlatformUserID(platformUserID)
+	return o
+}
+
+// SetPlatformUserID adds the platformUserId to the admin retrieve user third party platform token v3 params
+func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) SetPlatformUserID(platformUserID *string) {
+	o.PlatformUserID = platformUserID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -199,6 +215,22 @@ func (o *AdminRetrieveUserThirdPartyPlatformTokenV3Params) WriteToRequest(r runt
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.PlatformUserID != nil {
+
+		// query param platformUserId
+		var qrPlatformUserID string
+		if o.PlatformUserID != nil {
+			qrPlatformUserID = *o.PlatformUserID
+		}
+		qPlatformUserID := qrPlatformUserID
+		if qPlatformUserID != "" {
+			if err := r.SetQueryParam("platformUserId", qPlatformUserID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.14.0"
+    "version": "7.15.0"
   },
   "schemes": [
     "https"
@@ -7537,7 +7537,13 @@
         "tags": [
           "Clients Config V3"
         ],
-        "x-security": {}
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CLIENTCONFIG [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
         "description": "List Client available permissions",
@@ -7638,7 +7644,13 @@
         "tags": [
           "Clients Config V3"
         ],
-        "x-security": {}
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CLIENTCONFIG [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/iam/v3/admin/clientConfig/templates": {
@@ -10567,7 +10579,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Admin List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID \n\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "description": "Admin List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID\n\nSupported platform:\n- steam\n- steamopenid\n- ps4web\n- ps4\n- ps5 \n- live\n- xblweb \n- oculus\n- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "AdminListUserIDByPlatformUserIDsV3",
         "parameters": [
           {
@@ -10656,7 +10668,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}": {
       "get": {
-        "description": "Get User By Platform User ID\n\t\t\nThis endpoint return user information by given platform ID and platform user ID \n\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "description": "Get User By Platform User ID\nThis endpoint return user information by given platform ID and platform user ID.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.\nexample: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.\n\nSupported platform:\n- Steam group(steamnetwork)\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "AdminGetUserByPlatformUserIDV3",
         "parameters": [
           {
@@ -11329,7 +11341,7 @@
             "type": "string"
           },
           {
-            "description": "Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, nintendo, oculus, aws cognito, facebook, google, discord, twitch, snapchat or amazon",
+            "description": "Platform Id that want to be searched,\nSupported Platform: \n- Steam group(steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- epicgames\n- nintendo\n- aws cognito\n- facebook\n- google\n- discord\n- twitch\n- snapchat\n- amazon\n\nNote: you can use either platform ID or platform group as platformId query parameter",
             "in": "query",
             "name": "platformId",
             "required": true,
@@ -11539,7 +11551,7 @@
             "type": "string"
           },
           {
-            "description": "Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, nintendo, oculus, aws cognito, facebook, google, discord, twitch, snapchat or amazon",
+            "description": "Platform Id that want to be searched. \nSupported Platform: \n- Steam group(steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- epicgames\n- nintendo\n- aws cognito\n- facebook\n- google\n- discord\n- twitch\n- snapchat\n- amazon\n\nNote: you can use either platform ID or platform group as platformId query parameter",
             "in": "query",
             "name": "platformId",
             "type": "string"
@@ -13824,7 +13836,7 @@
             "authorization": []
           }
         ],
-        "summary": "Unlink user's account from specific platform",
+        "summary": "Admin unlink user's account from specific platform",
         "tags": [
           "Users"
         ],
@@ -13842,7 +13854,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Unlink user\u0026#39;s account from third platform in all namespaces.\n\nThis API support to handling platform group use case:\ni.e. \n1. Steam group: steam, steamopenid\n2. PSN group: ps4, ps5, psnweb\n3. XBOX group: live, xblweb\n\t\nExample: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.",
+        "description": "Unlink user\u0026#39;s account from third platform in all namespaces.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter. \nexample: to unlink steam third party account, you can use steamnetwork / steam / steamopenid as platformId path parameter\n\nSupported platform:\n- Steam group(steamnetwork)\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\t\nNote: \nif user unlink platform account that have group, the API logic will unlink all of platform account under that group as well. \nexample: if user unlink from ps4, the API logic will unlink ps5 and ps4web as well",
         "operationId": "AdminPlatformUnlinkAllV3",
         "parameters": [
           {
@@ -13904,7 +13916,7 @@
             "authorization": []
           }
         ],
-        "summary": "Unlink user's account from specific platform",
+        "summary": "Admin unlink user's account from specific platform for all namespaces",
         "tags": [
           "Users"
         ],
@@ -14009,7 +14021,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link/histories": {
       "delete": {
-        "description": "This API is for admin to delete user\u0026#39;s linking history with target platform id",
+        "description": "This API is for admin to delete user\u0026#39;s linking history with target platform id.\nSupported platform:\n- Steam group(steamnetwork)\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- facebook\n- google\n- twitch\n- discord\t\n- apple\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote: you can use either platform ID or platform group as platformId query parameter",
         "operationId": "AdminDeleteUserLinkingHistoryByPlatformIDV3",
         "parameters": [
           {
@@ -14188,7 +14200,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/metadata": {
       "get": {
-        "description": "This endpoint gets user single platform account metadata.\nSupported platforms are same with the supported login platforms.",
+        "description": "This endpoint gets user single platform account metadata.\nSupported Platform: \n- Steam group(steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- epicgames\n- nintendo\n- aws cognito\n- facebook\n- google\n- discord\n- twitch\n- snapchat\n- amazon\n\nNote: you can use either platform ID or platform group as platformId query parameter\n",
         "operationId": "AdminGetUserSinglePlatformAccount",
         "parameters": [
           {
@@ -14960,7 +14972,7 @@
     },
     "/iam/v3/admin/platforms/{platformId}/availability": {
       "get": {
-        "description": "This is the API to check specific 3rd party platform availability.\n\t\t\tsupported platform: \n\t\t\t- (psn) ps4web\n\t\t\t- (psn) ps4\n\t\t\t- (psn) ps5\n\t\t",
+        "description": "This is the API to check specific 3rd party platform availability. \nPassing platform group name or it\u0026#39;s member will return same platform availability data\nSupported third party platform and platform group:\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n",
         "operationId": "AdminCheckThirdPartyLoginPlatformAvailabilityV3",
         "parameters": [
           {
@@ -16929,7 +16941,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Admin Retrieve User Third Party Platform Token\nThis endpoint used for retrieving third party platform token for user that login using third party,\nif user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members.\n\nNotes:\nThe third party platform and platform group covered for this is:\n- (psn) ps4web\n- (psn) ps4\n- (psn) ps5\n- epicgames\n- twitch\n- awscognito\n- amazon\n- eaorigin\n- snapchat\n- twitch\n- live",
+        "description": "Admin Retrieve User Third Party Platform Token\nThis endpoint used for retrieving third party platform token for user that login using third party,\nif user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members.\nIf platformUserId provided, IAM will prefer to get platform token by platform user id.\n\nNotes:\nThe third party platform and platform group covered for this is:\n- (psn) ps4web\n- (psn) ps4\n- (psn) ps5\n- epicgames\n- twitch\n- awscognito\n- amazon\n- eaorigin\n- snapchat\n- twitch\n- live",
         "operationId": "AdminRetrieveUserThirdPartyPlatformTokenV3",
         "parameters": [
           {
@@ -16951,6 +16963,12 @@
             "in": "path",
             "name": "userId",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform user id.",
+            "in": "query",
+            "name": "platformUserId",
             "type": "string"
           }
         ],
@@ -17081,7 +17099,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Initializes OAuth2.0 authorization code flow\nThe endpoint stores authorization request and redirects to login page with the authorization request id.\nThe user can then do the authentication on the login page. \nThe user will be redirected back to the requesting client with authorization code if successfully authenticated. \n\nOnly authorization code flow supported by this endpoint, implicit flow is not supported.\n- **Authorize success**: \n\tredirects to login page with the following information: ?request_id={authorization_request_id}\n- **Authorize failure**: \n\tredirects to the given redirect uri with the following information:\n\t?error={error_code}\u0026amp;error_description={error description}\t\t\t\t\n\nFollowing are the error code based on the specification:\n- invalid_request: The request is missing a required parameter, \n\tincludes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.\n- server_error: \n\tThe authorization server encountered an unexpected condition that prevented it from fulfilling the request.\n- unauthorized_client: The client is not authorized to request a token using this method.\n- access_denied: The resource owner or authorization server denied the request.\n- invalid_scope: The requested scope is invalid, unknown, or malformed.\n- unsupported_response_type: The authorization server does not support obtaining a token using this method.\n- temporarily_unavailable: The authorization server is currently unable to handle the request \n\tdue to a temporary overloading or maintenance of the server.\nPlease refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1\naction code: 10701",
+        "description": "Initializes OAuth2.0 authorization code flow\nThe endpoint stores authorization request and redirects to login page with the authorization request id.\nThe user can then do the authentication on the login page. \nThe user will be redirected back to the requesting client with authorization code if successfully authenticated. \n\nOnly authorization code flow supported by this endpoint, implicit flow is not supported.\n- **Authorize success**: \n\tredirects to login page with the following information: ?request_id={authorization_request_id}\n- **Authorize failure**: \n\tredirects to the given redirect uri with the following information:\n\t?error={error_code}\u0026amp;error_description={error description}\t\t\t\t\n\nFor Public Client case, it\u0026#39;s mandatory to fill **code_challenge** to avoid authorization code interception attack.\nPlease refer to the RFC for more information about Proof Key for Code Exchange(PKCE): https://datatracker.ietf.org/doc/html/rfc7636 \n\nFollowing are the error code based on the specification:\n- invalid_request: The request is missing a required parameter, \n\tincludes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.\n- server_error: \n\tThe authorization server encountered an unexpected condition that prevented it from fulfilling the request.\n- unauthorized_client: The client is not authorized to request a token using this method.\n- access_denied: The resource owner or authorization server denied the request.\n- invalid_scope: The requested scope is invalid, unknown, or malformed.\n- unsupported_response_type: The authorization server does not support obtaining a token using this method.\n- temporarily_unavailable: The authorization server is currently unable to handle the request \n\tdue to a temporary overloading or maintenance of the server.\nPlease refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1\naction code: 10701",
         "operationId": "AuthorizeV3",
         "parameters": [
           {
@@ -17612,7 +17630,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\nThis endpoint requires all requests to have Authorization header set with Basic access authentication\nconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\nshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\nalong with platform_token parameter against publisher namespace.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Supported platforms:\n- **steam**: The platform_token’s value is the binary ticket returned by Steam.\n\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: \u0026lt;code\u0026gt;{identity}:{ticket}\u0026lt;/code\u0026gt;, the \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt; was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain \u0026lt;code\u0026gt;:\u0026lt;/code\u0026gt; in this \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt;.\n- **steamopenid**: Steam\u0026#39;s user authentication method using OpenID 2.0. The platform_token\u0026#39;s value is URL generated by Steam on web authentication\n- **facebook**: The platform_token’s value is the authorization code returned by Facebook OAuth\n- **google**: The platform_token’s value is the authorization code returned by Google OAuth\n- **oculus**: The platform_token’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **discord**: The platform_token’s value is the authorization code returned by Discord OAuth\n- **android**: The device_id is the Android’s device ID\n- **ios**: The device_id is the iOS’s device ID.\n- **apple**: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)\n- **device**: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.\n- **justice**: The platform_token’s value is the designated user’s access token.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **nintendo**: The platform_token’s value is the id_token returned by Nintendo OAuth.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **xblweb**: The platform_token’s value is code returned by xbox after login\n- **netflix**: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\n\n## Account Group\nSeveral platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \nLogin using one of these platform will returns the same IAM user. \nFollowing is the current registered account grouping:\n-  (psn) ps4web \n-  (psn) ps4 \n-  (psn) ps5 \n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the client ID.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **sub**. The UserID. The sub is omitted if the token is generated from client credential\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n\naction code : 10704",
+        "description": "Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\nThis endpoint requires all requests to have Authorization header set with Basic access authentication\nconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\nshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\nalong with platform_token parameter against publisher namespace.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Supported platforms:\n- **steam**: The platform_token’s value is the binary ticket returned by Steam.\n\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: \u0026lt;code\u0026gt;{identity}:{ticket}\u0026lt;/code\u0026gt;, the \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt; was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain \u0026lt;code\u0026gt;:\u0026lt;/code\u0026gt; in this \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt;.\n- **steamopenid**: Steam\u0026#39;s user authentication method using OpenID 2.0. The platform_token\u0026#39;s value is URL generated by Steam on web authentication\n- **facebook**: The platform_token’s value is the authorization code returned by Facebook OAuth\n- **google**: The platform_token’s value is the authorization code returned by Google OAuth\n- **oculus**: The platform_token’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **discord**: The platform_token’s value is the authorization code returned by Discord OAuth\n- **android**: The device_id is the Android’s device ID\n- **ios**: The device_id is the iOS’s device ID.\n- **apple**: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)\n- **device**: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.\n- **justice**: The platform_token’s value is the designated user’s access token.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **nintendo**: The platform_token’s value is the id_token returned by Nintendo OAuth.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **xblweb**: The platform_token’s value is code returned by xbox after login\n- **netflix**: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\n\n## Account Group\nSeveral platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \nLogin using one of these platform will returns the same IAM user. \nFollowing is the current registered account grouping:\n- Steam group(steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the client ID.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **sub**. The UserID. The sub is omitted if the token is generated from client credential\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n\naction code : 10704",
         "operationId": "PlatformTokenGrantV3",
         "parameters": [
           {
@@ -18601,7 +18619,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID \n\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "description": "List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID \n\nSupported platform:\n- steam\n- steamopenid\n- ps4web\n- ps4\n- ps5 \n- live\n- xblweb \n- oculus\n- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "PublicListUserIDByPlatformUserIDsV3",
         "parameters": [
           {
@@ -18684,7 +18702,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}": {
       "get": {
-        "description": "Get User By Platform User ID\nThis endpoint return user information by given platform ID and platform user ID\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "description": "Get User By Platform User ID.\nThis endpoint return user information by given platform ID and platform user ID.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.\nexample: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.\n\nSupported platform:\n- Steam group(steamnetwork)\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "PublicGetUserByPlatformUserIDV3",
         "parameters": [
           {
@@ -18819,7 +18837,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users": {
       "get": {
-        "description": "This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.\nThe query length should between 3-20, otherwise will not query the database. \nThe default limit value is 20.\n\n## Searching by 3rd party platform\n\n**Note: searching by 3rd party platform display name will use exact query.**\n\nStep when searching by 3rd party platform display name:\n  1. set __by__ to __thirdPartyPlatform__\n  2. set __platformId__ to the supported platform id\n  3. set __platformBy__ to __platformDisplayName__\n\n### Supported platform id:\n\n* steam\n* steamopenid\n* facebook\n* google\n* oculus\n* oculusweb\n* twitch\n* discord\n* android\n* ios\n* apple\n* device\n* epicgames\n* ps4\n* ps5\n* ps4web\n* nintendo\n* awscognito\n* live\n* xblweb\n* netflix\n* snapchat\n* oidc platform id\n",
+        "description": "This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.\nThe query length should between 3-20, otherwise will not query the database. \nThe default limit value is 20.\n\n## Searching by 3rd party platform\n\n**Note: searching by 3rd party platform display name will use exact query, not fuzzy query.**\n\nStep when searching by 3rd party platform display name:\n  1. set __by__ to __thirdPartyPlatform__\n  2. set __platformId__ to the _supported platform id_\n  3. set __platformBy__ to __platformDisplayName__\n\n### Supported platform id:\n* Steam group(steamnetwork)\n\t* steam\n\t* steamopenid\n* PSN group(psn)\n\t* ps4web\n\t* ps4\n\t* ps5\n* XBOX group(xbox) \n\t* live\n\t* xblweb\n* Oculus group(oculusgroup) \n\t* oculus\n\t* oculusweb\n* facebook\n* google\n* twitch\n* discord\n* android\n* ios\n* apple\n* device\n* epicgames\n* nintendo\n* awscognito\n* netflix\n* snapchat\n* _oidc platform id_\n\nNote: you can use either platform ID or platform group as __platformId__ query parameter.\n\n",
         "operationId": "PublicSearchUserV3",
         "parameters": [
           {
@@ -18854,7 +18872,7 @@
             "type": "string"
           },
           {
-            "description": "Platform Id that want to be searched, find the values from **Supported platform id** in the api doc",
+            "description": "Platform Id that want to be searched.",
             "in": "query",
             "name": "platformId",
             "type": "string"
@@ -18890,6 +18908,12 @@
           },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18965,6 +18989,12 @@
           },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10222\u003c/td\u003e\u003ctd\u003eunique display name already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19145,6 +19175,12 @@
           },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19911,6 +19947,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "500": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -20071,7 +20113,7 @@
             "authorization": []
           }
         ],
-        "summary": "Unlink user's account from specific platform",
+        "summary": "Public unlink user's account from specific platform",
         "tags": [
           "Users"
         ],
@@ -20167,7 +20209,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Unlink user\u0026#39;s account from third platform in all namespaces.\n\nThis API support to handling platform group use case:\ni.e. \n1. Steam group: steam, steamopenid\n2. PSN group: ps4, ps5, psnweb\n3. XBOX group: live, xblweb\n\t\nExample: if user unlink from ps4, the API logic will unlink ps5 and psnweb as well.",
+        "description": "Unlink user\u0026#39;s account from third platform in all namespaces.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter. \nexample: to unlink steam third party account, you can use steamnetwork / steam / steamopenid as platformId path parameter.\n\nSupported platform:\n- Steam group(steamnetwork)\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb\n- facebook\n- google\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\t\nNote: \nif user unlink platform account that have group, the API logic will unlink all of platform account under that group as well. \nexample: if user unlink from ps4, the API logic will unlink ps5 and ps4web as well",
         "operationId": "PublicPlatformUnlinkAllV3",
         "parameters": [
           {
@@ -20222,7 +20264,7 @@
             "authorization": []
           }
         ],
-        "summary": "Unlink user's account from specific platform",
+        "summary": "Public unlink user's account from specific platform for all namespaces",
         "tags": [
           "Users"
         ],
@@ -20311,7 +20353,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link": {
       "get": {
-        "description": "This endpoint is used to generate third party login page which will redirected to establish endpoint.",
+        "description": "This endpoint is used to generate third party login page which will redirected to establish endpoint.\nSupported platforms:\n- ps4web\n- xblweb\n- steamopenid\n- epicgames\n- facebook\n- twitch\n- google\n- apple\n- snapchat\n- discord\n- amazon\n- oculusweb\n",
         "operationId": "PublicWebLinkPlatform",
         "parameters": [
           {
@@ -20384,7 +20426,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/establish": {
       "get": {
-        "description": "This endpoint is used by third party to redirect the code for the purpose of linking the account third party to IAM account.",
+        "description": "This endpoint is used by third party to redirect the code for the purpose of linking the account third party to IAM account.\nSupported platforms:\n- ps4web\n- xblweb\n- steamopenid\n- epicgames\n- facebook\n- twitch\n- google\n- apple\n- snapchat\n- discord\n- amazon\n- oculusweb\n",
         "operationId": "PublicWebLinkPlatformEstablish",
         "parameters": [
           {
@@ -20446,7 +20488,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint is used to process third party account link, this endpoint will return the link status directly instead of redirecting to the original page.\nThe param **state** comes from the response of \u0026lt;code\u0026gt;/users/me/platforms/{platformId}/web/link\u0026lt;/code\u0026gt;",
+        "description": "This endpoint is used to process third party account link, this endpoint will return the link status directly instead of redirecting to the original page.\nThe param **state** comes from the response of \u0026lt;code\u0026gt;/users/me/platforms/{platformId}/web/link\u0026lt;/code\u0026gt;\nSupported platforms:\n- ps4web\n- xblweb\n- steamopenid\n- epicgames\n- facebook\n- twitch\n- google\n- apple\n- snapchat\n- discord\n- amazon\n- oculusweb\n",
         "operationId": "PublicProcessWebLinkPlatformV3",
         "parameters": [
           {
@@ -20927,13 +20969,7 @@
         "tags": [
           "Users"
         ],
-        "x-security": [
-          {
-            "userPermissions": [
-              "NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
-            ]
-          }
-        ]
+        "x-security": {}
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories": {
@@ -26439,7 +26475,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\nThis endpoint requires all requests to have Authorization header set with Basic access authentication\nconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\nshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\nalong with platform_token parameter against publisher namespace.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Supported platforms:\n- **steam**: The platform_token’s value is the binary ticket returned by Steam.\n\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: \u0026lt;code\u0026gt;{identity}:{ticket}\u0026lt;/code\u0026gt;, the \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt; was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain \u0026lt;code\u0026gt;:\u0026lt;/code\u0026gt; in this \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt;.\n- **steamopenid**: Steam\u0026#39;s user authentication method using OpenID 2.0. The platform_token\u0026#39;s value is URL generated by Steam on web authentication\n- **facebook**: The platform_token’s value is the authorization code returned by Facebook OAuth\n- **google**: The platform_token’s value is the authorization code returned by Google OAuth\n- **oculus**: The platform_token’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **discord**: The platform_token’s value is the authorization code returned by Discord OAuth\n- **android**: The device_id is the Android’s device ID\n- **ios**: The device_id is the iOS’s device ID.\n- **apple**: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)\n- **device**: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.\n- **justice**: The platform_token’s value is the designated user’s access token.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **nintendo**: The platform_token’s value is the id_token returned by Nintendo OAuth.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **xblweb**: The platform_token’s value is code returned by xbox after login\n- **netflix**: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\n\n## Account Group\nSeveral platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \nLogin using one of these platform will returns the same IAM user. \nFollowing is the current registered account grouping:\n-  (psn) ps4web \n-  (psn) ps4 \n-  (psn) ps5 \n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the client ID.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **sub**. The UserID. The sub is omitted if the token is generated from client credential\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n\naction code : 10704",
+        "description": "Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\nThis endpoint requires all requests to have Authorization header set with Basic access authentication\nconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\nshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\nalong with platform_token parameter against publisher namespace.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token\n## Supported platforms:\n- **steam**: The platform_token’s value is the binary ticket returned by Steam.\n\tIf this ticket was generated by Steam GetAuthTicketForWebApi with version \u0026gt;= 1.57, then platform token should use this style: \u0026lt;code\u0026gt;{identity}:{ticket}\u0026lt;/code\u0026gt;, the \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt; was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain \u0026lt;code\u0026gt;:\u0026lt;/code\u0026gt; in this \u0026lt;code\u0026gt;{identity}\u0026lt;/code\u0026gt;.\n- **steamopenid**: Steam\u0026#39;s user authentication method using OpenID 2.0. The platform_token\u0026#39;s value is URL generated by Steam on web authentication\n- **facebook**: The platform_token’s value is the authorization code returned by Facebook OAuth\n- **google**: The platform_token’s value is the authorization code returned by Google OAuth\n- **oculus**: The platform_token’s value is a string composed of Oculus\u0026#39;s user ID and the nonce separated by a colon (:).\n- **twitch**: The platform_token’s value is the authorization code returned by Twitch OAuth.\n- **discord**: The platform_token’s value is the authorization code returned by Discord OAuth\n- **android**: The device_id is the Android’s device ID\n- **ios**: The device_id is the iOS’s device ID.\n- **apple**: The platform_token’s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)\n- **device**: Every device that does’nt run Android and iOS is categorized as a device. The device_id is the device’s ID.\n- **justice**: The platform_token’s value is the designated user’s access token.\n- **epicgames**: The platform_token’s value is an access-token or authorization code obtained from Epicgames EOS Account Service.\n- **ps4**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **ps5**: The platform_token’s value is the authorization code returned by Sony OAuth.\n- **nintendo**: The platform_token’s value is the id_token returned by Nintendo OAuth.\n- **awscognito**: The platform_token’s value is the aws cognito access token or id token (JWT).\n- **live**: The platform_token’s value is xbox XSTS token\n- **xblweb**: The platform_token’s value is code returned by xbox after login\n- **netflix**: The platform_token’s value is GAT (Gamer Access Token) returned by Netflix backend\n- **snapchat**: The platform_token’s value is the authorization code returned by Snapchat OAuth.\n- **for specific generic oauth (OIDC)**: The platform_token’s value should be the same type as created OIDC auth type whether it is auth code, idToken or bearerToken.\n\n## Account Group\nSeveral platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \nLogin using one of these platform will returns the same IAM user. \nFollowing is the current registered account grouping:\n- Steam group(steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group(psn)\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox) \n\t- live\n\t- xblweb\n- Oculus group(oculusgroup) \n\t- oculus\n\t- oculusweb \n\n## Access Token Content\nFollowing is the access token’s content:\n- **namespace**. It is the namespace the token was generated from.\n- **display_name**. The display name of the sub. It is empty if the token is generated from the client credential\n- **roles**. The sub’s roles. It is empty if the token is generated from the client credential\n- **namespace_roles**. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\n- **permissions**. The sub or aud’ permissions\n- **bans**. The sub’s list of bans. It is used by the IAM client for validating the token.\n- **jflgs**. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\n\t- 1: Email Address Verified\n\t- 2: Phone Number Verified\n\t- 4: Anonymous\n\t- 8: Suspicious Login\n- **aud**. The aud is the client ID.\n- **iat**. The time the token issues at. It is in Epoch time format\n- **exp**. The time the token expires. It is in Epoch time format\n- **sub**. The UserID. The sub is omitted if the token is generated from client credential\n\n## Bans\nThe JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\n\naction code : 10704",
         "operationId": "PlatformTokenGrantV4",
         "parameters": [
           {
@@ -27024,6 +27060,12 @@
           },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10177\u003c/td\u003e\u003ctd\u003eusername already used\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10222\u003c/td\u003e\u003ctd\u003eunique display name already exists\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -28700,6 +28742,12 @@
           },
           "422": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10183\u003c/td\u003e\u003ctd\u003eunprocessable entity\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "429": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20007\u003c/td\u003e\u003ctd\u003etoo many requests\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -32925,6 +32973,9 @@
         },
         "PlatformName": {
           "type": "string"
+        },
+        "TokenAuthenticationType": {
+          "type": "string"
         }
       },
       "required": [
@@ -32933,7 +32984,8 @@
         "Environment",
         "IsActive",
         "PlatformId",
-        "PlatformName"
+        "PlatformName",
+        "TokenAuthenticationType"
       ]
     },
     "model.PublicUserInformationResponseV3": {
@@ -35988,6 +36040,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "playerPollingTimeInSeconds": {
+          "format": "int32",
+          "type": "integer"
+        },
         "position": {
           "format": "int32",
           "type": "integer"
@@ -36006,6 +36062,7 @@
       "required": [
         "cancel",
         "estimatedWaitingTimeInSeconds",
+        "playerPollingTimeInSeconds",
         "position",
         "reconnectExpiredAt",
         "refresh",
@@ -36459,6 +36516,9 @@
             "type": "string"
           },
           "type": "object"
+        },
+        "requiredPermission": {
+          "$ref": "#/definitions/rest.Permission"
         }
       },
       "required": [
@@ -36487,6 +36547,21 @@
         "errorCode",
         "errorMessage"
       ]
+    },
+    "rest.Permission": {
+      "properties": {
+        "action": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "resource"
+      ]
     }
   },
   "x-docs": {
@@ -36495,11 +36570,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-05T09:57:34+00:00",
-    "gitHash": "0f1535c310b501dd5f434db660020de9fcd65b2d",
+    "buildDate": "2024-05-03T10:48:39+00:00",
+    "gitHash": "162434641fd1b6b1b3a962e4bd3b56e673594b95",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.14.0",
+    "version": "7.15.0",
     "version-roles-seeding": "1.2.21"
   }
 }

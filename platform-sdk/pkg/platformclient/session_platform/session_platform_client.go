@@ -41,10 +41,6 @@ Deprecated: 2022-08-10 - Use RegisterXblSessionsShort instead.
 
 RegisterXblSessions register/update a session
 This API is used to register/update a session on xbox.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION, action=4 (UPDATE)
 */
 func (a *Client) RegisterXblSessions(params *RegisterXblSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*RegisterXblSessionsOK, *RegisterXblSessionsBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -97,10 +93,6 @@ func (a *Client) RegisterXblSessions(params *RegisterXblSessionsParams, authInfo
 /*
 RegisterXblSessionsShort register/update a session
 This API is used to register/update a session on xbox.
-
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION, action=4 (UPDATE)
 */
 func (a *Client) RegisterXblSessionsShort(params *RegisterXblSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*RegisterXblSessionsOK, error) {
 	// TODO: Validate the params before sending

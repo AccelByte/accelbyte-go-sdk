@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.40.0"
+    "version": "1.41.0"
   },
   "schemes": [
     "https"
@@ -71,19 +71,7 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:*:LEGAL [CREATE]": "ADMIN:NAMESPACE:*:LEGAL [CREATE]",
-        "ADMIN:NAMESPACE:*:LEGAL [DELETE]": "ADMIN:NAMESPACE:*:LEGAL [DELETE]",
-        "ADMIN:NAMESPACE:*:LEGAL [READ]": "ADMIN:NAMESPACE:*:LEGAL [READ]",
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]",
-        "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]",
-        "NAMESPACE:{namespace}:LEGAL [CREATE]": "NAMESPACE:{namespace}:LEGAL [CREATE]",
-        "NAMESPACE:{namespace}:LEGAL [READ]": "NAMESPACE:{namespace}:LEGAL [READ]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -107,7 +95,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will Update Preference Consent. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will Update Preference Consent",
         "operationId": "changePreferenceConsent",
         "parameters": [
           {
@@ -153,23 +141,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Change Preference Consent",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/agreements/policies/users/{userId}": {
       "get": {
-        "description": "This API will return all accepted Legal Agreements for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for specified user",
         "operationId": "retrieveAcceptedAgreements",
         "parameters": [
           {
@@ -197,23 +182,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Accepted Legal Agreements",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/agreements/policy-versions/users": {
       "get": {
-        "description": "This API will return users who has accepted a specific policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return users who has accepted a specific policy version.",
         "operationId": "retrieveAllUsersByPolicyVersion",
         "parameters": [
           {
@@ -268,23 +250,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Users Accepting Legal Agreements",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/base-policies": {
       "get": {
-        "description": "Retrieve all base policies.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all base policies.",
         "operationId": "retrieveAllLegalPolicies",
         "parameters": [],
         "produces": [
@@ -304,24 +283,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve All Base Legal Policy",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a legal policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a legal policy.",
         "operationId": "createPolicy",
         "parameters": [
           {
@@ -365,23 +341,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Base Legal Policy",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/base-policies/{basePolicyId}": {
       "get": {
-        "description": "Retrieve a base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a base policy.",
         "operationId": "retrieveSinglePolicy",
         "parameters": [
           {
@@ -412,24 +385,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Base Legal Policy",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update an existing base policy.",
         "operationId": "partialUpdatePolicy",
         "parameters": [
           {
@@ -474,23 +444,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update Base Legal Policy",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
-        "description": "Retrieve a Base Legal Policy based on a Particular Country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a Base Legal Policy based on a Particular Country.",
         "operationId": "retrievePolicyCountry",
         "parameters": [
           {
@@ -528,23 +495,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Base Legal Policy based on a Particular Country",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
-        "description": "Retrieve versions of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve versions of a particular country-specific policy.",
         "operationId": "retrieveLocalizedPolicyVersions",
         "parameters": [
           {
@@ -572,24 +536,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Versions from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a version of a particular country-specific policy.",
         "operationId": "createLocalizedPolicyVersion",
         "parameters": [
           {
@@ -634,23 +595,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
-        "description": "Retrieve a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a version of a particular country-specific policy.",
         "operationId": "retrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
@@ -681,24 +639,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a version of a particular country-specific policy.",
         "operationId": "updateLocalizedPolicyVersion",
         "parameters": [
           {
@@ -737,18 +692,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
@@ -756,7 +708,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.",
         "operationId": "requestPresignedURL",
         "parameters": [
           {
@@ -795,23 +747,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Request Presigned URL for Upload Document",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
-        "description": "Update a localized version policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a localized version policy to be the default.",
         "operationId": "setDefaultPolicy",
         "parameters": [
           {
@@ -839,18 +788,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Set Default Localized Policy",
         "tags": [
           "Localized Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/agreements": {
@@ -858,7 +804,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game account.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for each user, including agreements of game users if publisher user has corresponding game account.",
         "operationId": "retrieveAcceptedAgreementsForMultiUsers",
         "parameters": [
           {
@@ -894,23 +840,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Accepted Legal Agreements For Multi Users",
         "tags": [
           "Agreement With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policies/users/{userId}": {
       "get": {
-        "description": "This API will return all accepted Legal Agreements for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all accepted Legal Agreements for specified user.",
         "operationId": "retrieveAcceptedAgreements_1",
         "parameters": [
           {
@@ -954,23 +897,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Accepted Legal Agreements",
         "tags": [
           "Agreement With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users": {
       "get": {
-        "description": "This API will return all users who has accepted a specific policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will return all users who has accepted a specific policy version.",
         "operationId": "retrieveAllUsersByPolicyVersion_1",
         "parameters": [
           {
@@ -1041,23 +981,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Users Accepting Legal Agreements",
         "tags": [
           "Agreement With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/download": {
       "get": {
-        "description": "This API will check the status of export process.\u0026lt;br\u0026gt;If the export process has been completed, the response body will include the download url.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will check the status of export process.\u0026lt;br\u0026gt;If the export process has been completed, the response body will include the download url.",
         "operationId": "downloadExportedAgreementsInCSV",
         "parameters": [
           {
@@ -1068,9 +1005,9 @@
             "type": "string"
           },
           {
-            "description": "Policy Version Id",
+            "description": "Export Id",
             "in": "query",
-            "name": "policyVersionId",
+            "name": "exportId",
             "required": true,
             "type": "string"
           }
@@ -1086,7 +1023,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003ePolicy version with id: [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eExported agreements for policyVersionId [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eExported agreements for exportId [{exportId}] not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1095,23 +1032,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Download Exported Users Accepted Agreements in CSV",
         "tags": [
           "Agreement With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/initiate": {
       "post": {
-        "description": "This API will initiate a worker to export list of users who has accepted a specific policy version into a CSV file.\u0026lt;br\u0026gt;To check the export state after initialize it, use `GET /admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/download` API.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;This Initiate API is \u0026lt;b\u0026gt;not allow\u0026lt;/b\u0026gt; multiple export worker running for the same namespace, it will return 409 http error if so.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will initiate a worker to export list of users who has accepted a specific policy version into a CSV file.\u0026lt;br\u0026gt;To check the export state after initialize it, use `GET /admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/download` API.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;This Initiate API is \u0026lt;b\u0026gt;not allow\u0026lt;/b\u0026gt; multiple export worker running for the same namespace, it will return 409 http error if so.\u0026lt;br/\u0026gt;",
         "operationId": "initiateExportAgreementsToCSV",
         "parameters": [
           {
@@ -1127,6 +1061,20 @@
             "name": "policyVersionId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Start time of signed_date to retrieve. Using ISO 8601 format yyyy-MM-dd'T'HH:mm:ss'Z', e.g. 2024-01-01T00:00:00Z",
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "End time of signed_date to retrieve, will use current time if not specified. Using ISO 8601 format yyyy-MM-dd'T'HH:mm:ss'Z', e.g. 2024-01-01T00:00:00Z",
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "type": "string"
           }
         ],
         "produces": [
@@ -1139,14 +1087,20 @@
               "$ref": "#/definitions/InitiateExportAgreementsToCSVResponse"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40027\u003c/td\u003e\u003ctd\u003eToo many export running currently\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003ePolicy version with id: [{policyVersionId}] not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40045\u003c/td\u003e\u003ctd\u003ePolicy version with id: [{policyVersionId}] not found on namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40071\u003c/td\u003e\u003ctd\u003ePrevious export still running for namespace [{namespace}] and policyVersionId [{policyVersionId}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40071\u003c/td\u003e\u003ctd\u003ePrevious export still running for namespace [{namespace}] with exportId [{exportId}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1155,23 +1109,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Initiate Export Users Accepted Agreements to CSV",
         "tags": [
           "Agreement With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/base-policies": {
       "get": {
-        "description": "Retrieve all base policies in the namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all base policies in the namespace.",
         "operationId": "retrieveAllLegalPoliciesByNamespace",
         "parameters": [
           {
@@ -1199,24 +1150,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve All Base Legal Policy in the namespace",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a legal policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a legal policy.",
         "operationId": "createPolicy_1",
         "parameters": [
           {
@@ -1267,23 +1215,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Base Legal Policy",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}": {
       "get": {
-        "description": "Retrieve a base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a base policy.",
         "operationId": "retrieveSinglePolicy_1",
         "parameters": [
           {
@@ -1321,24 +1266,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Base Legal Policy",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update an existing base policy.",
         "operationId": "partialUpdatePolicy_1",
         "parameters": [
           {
@@ -1384,23 +1326,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update Base Legal Policy",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
-        "description": "Retrieve a Base Legal Policy based on a Particular Country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a Base Legal Policy based on a Particular Country.",
         "operationId": "retrievePolicyCountry_1",
         "parameters": [
           {
@@ -1445,23 +1384,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Base Legal Policy based on a Particular Country",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
-        "description": "Retrieve versions of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve versions of a particular country-specific policy.",
         "operationId": "retrieveLocalizedPolicyVersions_1",
         "parameters": [
           {
@@ -1496,24 +1432,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Versions from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a version of a particular country-specific policy.",
         "operationId": "createLocalizedPolicyVersion_1",
         "parameters": [
           {
@@ -1565,23 +1498,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
-        "description": "Retrieve a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a version of a particular country-specific policy.",
         "operationId": "retrieveSingleLocalizedPolicyVersion_1",
         "parameters": [
           {
@@ -1619,24 +1549,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a version of a particular country-specific policy.",
         "operationId": "updateLocalizedPolicyVersion_1",
         "parameters": [
           {
@@ -1682,18 +1609,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a Localized Version from Country-Specific Policy",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
@@ -1701,7 +1625,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.",
         "operationId": "requestPresignedURL_1",
         "parameters": [
           {
@@ -1747,23 +1671,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Request Presigned URL for Upload Document",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
-        "description": "Update a localized version policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a localized version policy to be the default.",
         "operationId": "setDefaultPolicy_1",
         "parameters": [
           {
@@ -1792,18 +1713,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Set Default Localized Policy",
         "tags": [
           "Localized Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}": {
@@ -1811,7 +1729,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a particular policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a particular policy version.",
         "operationId": "updatePolicyVersion_1",
         "parameters": [
           {
@@ -1863,23 +1781,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a Version of Policy",
         "tags": [
           "Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/latest": {
       "patch": {
-        "description": "Manually publish a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Manually publish a version of a particular country-specific policy.",
         "operationId": "publishPolicyVersion_1",
         "parameters": [
           {
@@ -1929,18 +1844,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Manually Publish a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}": {
@@ -1948,7 +1860,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update country-specific policy.",
         "operationId": "updatePolicy_1",
         "parameters": [
           {
@@ -1991,23 +1903,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update Country-Specific Policy",
         "tags": [
           "Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}/default": {
       "patch": {
-        "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a policy to be the default.",
         "operationId": "setDefaultPolicy_3",
         "parameters": [
           {
@@ -2042,23 +1951,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Set Default Policy",
         "tags": [
           "Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions": {
       "get": {
-        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.",
         "operationId": "retrieveSinglePolicyVersion_1",
         "parameters": [
           {
@@ -2106,24 +2012,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a version of a particular country-specific policy.",
         "operationId": "createPolicyVersion_1",
         "parameters": [
           {
@@ -2169,23 +2072,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/policy-types": {
       "get": {
-        "description": "Retrieve all supported policy types.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all supported policy types.",
         "operationId": "retrieveAllPolicyTypes_1",
         "parameters": [
           {
@@ -2229,18 +2129,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve All Policy Type",
         "tags": [
           "Base Legal Policies With Namespace"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies": {
@@ -2248,7 +2145,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement.",
         "operationId": "indirectBulkAcceptVersionedPolicy",
         "parameters": [
           {
@@ -2312,23 +2209,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Admin bulk accept Policy Versions",
         "tags": [
           "Admin User Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities": {
       "get": {
-        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.",
         "operationId": "adminRetrieveEligibilities",
         "parameters": [
           {
@@ -2387,23 +2281,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Check User Legal Eligibility",
         "tags": [
           "Admin User Eligibilities"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/policies/countries/{countryCode}": {
       "get": {
-        "description": "Retrieve all active policies based on a country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all active policies based on a country.",
         "operationId": "retrievePolicies",
         "parameters": [
           {
@@ -2431,18 +2322,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve Policies by Country",
         "tags": [
           "Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/policies/versions/{policyVersionId}": {
@@ -2450,7 +2338,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a particular policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a particular policy version.",
         "operationId": "updatePolicyVersion",
         "parameters": [
           {
@@ -2495,23 +2383,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a Version of Policy",
         "tags": [
           "Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/policies/versions/{policyVersionId}/latest": {
       "patch": {
-        "description": "Manually publish a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Manually publish a version of a particular country-specific policy.",
         "operationId": "publishPolicyVersion",
         "parameters": [
           {
@@ -2554,18 +2439,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Manually Publish a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/policies/{policyId}": {
@@ -2573,7 +2455,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update country-specific policy.",
         "operationId": "updatePolicy",
         "parameters": [
           {
@@ -2609,23 +2491,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update Country-Specific Policy",
         "tags": [
           "Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/policies/{policyId}/default": {
       "patch": {
-        "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update a policy to be the default.",
         "operationId": "setDefaultPolicy_2",
         "parameters": [
           {
@@ -2653,23 +2532,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Set Default Policy",
         "tags": [
           "Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/policies/{policyId}/versions": {
       "get": {
-        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.",
         "operationId": "retrieveSinglePolicyVersion",
         "parameters": [
           {
@@ -2710,24 +2586,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a version of a particular country-specific policy.",
         "operationId": "createPolicyVersion",
         "parameters": [
           {
@@ -2766,23 +2639,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a Version from Country-Specific Policy",
         "tags": [
           "Policy Versions"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/admin/policy-types": {
       "get": {
-        "description": "Retrieve all supported policy types.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all supported policy types.",
         "operationId": "retrieveAllPolicyTypes",
         "parameters": [
           {
@@ -2819,24 +2689,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retrieve All Policy Type",
         "tags": [
           "Base Legal Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       }
     },
     "/agreement/admin/userInfo": {
       "delete": {
         "deprecated": true,
-        "description": "Invalidate user info cache in agreement service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Invalidate user info cache in agreement service.",
         "operationId": "invalidateUserInfoCache",
         "parameters": [
           {
@@ -2858,21 +2725,18 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Invalidate user info cache",
         "tags": [
           "UserInfo"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+        }
       },
       "get": {
-        "description": "Get user info cache last updated time per namespace.\u0026lt;br\u0026gt;The query parameter namespaces can be a list of namespace separated by comma.\u0026lt;br\u0026gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get user info cache last updated time per namespace.\u0026lt;br\u0026gt;The query parameter namespaces can be a list of namespace separated by comma.\u0026lt;br\u0026gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. ",
         "operationId": "getUserInfoStatus",
         "parameters": [
           {
@@ -2899,22 +2763,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user info cache status",
         "tags": [
           "UserInfo"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [READ]"
+        }
       },
       "put": {
         "deprecated": true,
-        "description": "Sync user info cache in agreement service with iam service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Sync user info cache in agreement service with iam service.",
         "operationId": "syncUserInfo",
         "parameters": [
           {
@@ -2935,18 +2796,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Sync user info with iam service ",
         "tags": [
           "UserInfo"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+        }
       }
     },
     "/agreement/admin/users/{userId}/anonymization/agreements": {
@@ -2954,7 +2812,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API will anonymize agreement record for specified user. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API will anonymize agreement record for specified user.",
         "operationId": "anonymizeUserAgreement",
         "parameters": [
           {
@@ -2982,18 +2840,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Anonymize user's agreement record",
         "tags": [
           "Anonymization"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+        }
       }
     },
     "/agreement/public/agreements/localized-policy-versions/preferences": {
@@ -3001,7 +2856,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Change marketing preference consent.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Change marketing preference consent.",
         "operationId": "changePreferenceConsent_1",
         "parameters": [
           {
@@ -3038,12 +2893,15 @@
         "summary": "Accept/Revoke Marketing Preference Consent",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}": {
       "post": {
-        "description": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement",
         "operationId": "acceptVersionedPolicy",
         "parameters": [
           {
@@ -3076,12 +2934,15 @@
         "summary": "Accept a Policy Version",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/agreements/policies": {
       "get": {
-        "description": "Retrieve accepted Legal Agreements.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve accepted Legal Agreements.",
         "operationId": "retrieveAgreementsPublic",
         "parameters": [],
         "produces": [
@@ -3112,13 +2973,16 @@
         "summary": "Retrieve the accepted Legal Agreements",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.",
         "operationId": "bulkAcceptVersionedPolicy",
         "parameters": [
           {
@@ -3158,7 +3022,10 @@
         "summary": "Bulk Accept Policy Versions",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
@@ -3167,7 +3034,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.",
         "operationId": "indirectBulkAcceptVersionedPolicyV2",
         "parameters": [
           {
@@ -3224,18 +3091,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:LEGAL [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk Accept Policy Versions (Indirect)",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:LEGAL [CREATE]"
+        }
       }
     },
     "/agreement/public/agreements/policies/users/{userId}": {
@@ -3244,7 +3108,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.",
         "operationId": "indirectBulkAcceptVersionedPolicy_1",
         "parameters": [
           {
@@ -3291,12 +3155,15 @@
         "summary": "Bulk Accept Policy Versions (Indirect)",
         "tags": [
           "Agreement"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/eligibilities/namespaces/{namespace}": {
       "get": {
-        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.",
         "operationId": "retrieveEligibilitiesPublic",
         "parameters": [
           {
@@ -3341,12 +3208,15 @@
         "summary": "Check User Legal Eligibility",
         "tags": [
           "Eligibilities"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
       "get": {
-        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.",
         "operationId": "retrieveEligibilitiesPublicIndirect",
         "parameters": [
           {
@@ -3403,7 +3273,10 @@
         "summary": "Check User Legal Eligibility",
         "tags": [
           "Eligibilities"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}": {
@@ -3571,7 +3444,7 @@
     },
     "/agreement/public/policies/namespaces/{namespace}": {
       "get": {
-        "description": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission: login user \u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLatestPoliciesPublic",
         "parameters": [
           {
@@ -3644,7 +3517,10 @@
         "summary": "Retrieve Latest Policies by Namespace and Country",
         "tags": [
           "Policies"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "-"
+        }
       }
     },
     "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}": {
@@ -3723,7 +3599,7 @@
     },
     "/agreement/public/readiness": {
       "get": {
-        "description": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.",
         "operationId": "checkReadiness",
         "parameters": [],
         "produces": [
@@ -3740,18 +3616,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:LEGAL [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Check Legal Data Readiness",
         "tags": [
           "Utility"
-        ]
+        ],
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:LEGAL [READ]"
+        }
       }
     }
   },
@@ -4060,6 +3933,9 @@
           },
           "description": "message variables",
           "type": "object"
+        },
+        "requiredPermission": {
+          "$ref": "#/definitions/Permission"
         }
       },
       "required": [
@@ -4093,6 +3969,10 @@
     },
     "InitiateExportAgreementsToCSVResponse": {
       "properties": {
+        "exportId": {
+          "description": "Export Id is a combination of request timestamp, start time and end time.",
+          "type": "string"
+        },
         "processing": {
           "description": "Processing the export",
           "type": "boolean",
@@ -4100,6 +3980,7 @@
         }
       },
       "required": [
+        "exportId",
         "processing"
       ],
       "type": "object"
@@ -4186,6 +4067,18 @@
           "type": "string"
         },
         "previous": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Permission": {
+      "properties": {
+        "action": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resource": {
           "type": "string"
         }
       },
@@ -5352,16 +5245,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-04-05T09:56:05+00:00",
-    "buildID": "1.40.0",
+    "buildDate": "2024-05-03T10:47:45+00:00",
+    "buildID": "1.41.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.210-201.855.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.214-202.855.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "7518d2af67",
-    "gitTag": "1.40.0",
+    "gitHash": "a4bfb91d24",
+    "gitTag": "1.41.0",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.40.0",
+    "version": "1.41.0",
     "version-roles-seeding": "0.0.3"
   }
 }

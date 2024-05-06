@@ -70,6 +70,8 @@ type ClientService interface {
 	SendSpecificUserFreeformNotificationV1AdminShort(params *SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserFreeformNotificationV1AdminNoContent, error)
 	SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserTemplatedNotificationV1AdminNoContent, *SendSpecificUserTemplatedNotificationV1AdminBadRequest, *SendSpecificUserTemplatedNotificationV1AdminUnauthorized, *SendSpecificUserTemplatedNotificationV1AdminForbidden, *SendSpecificUserTemplatedNotificationV1AdminNotFound, error)
 	SendSpecificUserTemplatedNotificationV1AdminShort(params *SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserTemplatedNotificationV1AdminNoContent, error)
+	GetMyNotifications(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, *GetMyNotificationsBadRequest, *GetMyNotificationsUnauthorized, *GetMyNotificationsForbidden, *GetMyNotificationsNotFound, *GetMyNotificationsInternalServerError, error)
+	GetMyNotificationsShort(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, error)
 	GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, *GetTopicByNamespaceUnauthorized, *GetTopicByNamespaceForbidden, *GetTopicByNamespaceNotFound, *GetTopicByNamespaceInternalServerError, error)
 	GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, error)
 	CreateTopic(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, *CreateTopicBadRequest, *CreateTopicUnauthorized, *CreateTopicForbidden, *CreateTopicConflict, error)
@@ -2535,6 +2537,131 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1AdminShort(params *SendS
 	case *SendSpecificUserTemplatedNotificationV1AdminForbidden:
 		return nil, v
 	case *SendSpecificUserTemplatedNotificationV1AdminNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetMyNotificationsShort instead.
+
+GetMyNotifications get list of notifications
+Get list of notifications in a namespace.
+The query parameters **startTime** and **endTime** can be filled with the **sequenceID** value in the notification, where the value is an epoch timestamp.
+Example **sequenceID** or epoch timestamp value: **1706595813**
+*/
+func (a *Client) GetMyNotifications(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, *GetMyNotificationsBadRequest, *GetMyNotificationsUnauthorized, *GetMyNotificationsForbidden, *GetMyNotificationsNotFound, *GetMyNotificationsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyNotificationsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyNotifications",
+		Method:             "GET",
+		PathPattern:        "/notification/namespaces/{namespace}/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyNotificationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyNotificationsOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetMyNotificationsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetMyNotificationsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetMyNotificationsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetMyNotificationsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetMyNotificationsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetMyNotificationsShort get list of notifications
+Get list of notifications in a namespace.
+The query parameters **startTime** and **endTime** can be filled with the **sequenceID** value in the notification, where the value is an epoch timestamp.
+Example **sequenceID** or epoch timestamp value: **1706595813**
+*/
+func (a *Client) GetMyNotificationsShort(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyNotificationsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyNotifications",
+		Method:             "GET",
+		PathPattern:        "/notification/namespaces/{namespace}/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyNotificationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyNotificationsOK:
+		return v, nil
+	case *GetMyNotificationsBadRequest:
+		return nil, v
+	case *GetMyNotificationsUnauthorized:
+		return nil, v
+	case *GetMyNotificationsForbidden:
+		return nil, v
+	case *GetMyNotificationsNotFound:
+		return nil, v
+	case *GetMyNotificationsInternalServerError:
 		return nil, v
 
 	default:

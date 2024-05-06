@@ -33,6 +33,12 @@ func (o *InitiateExportAgreementsToCSVReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewInitiateExportAgreementsToCSVBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewInitiateExportAgreementsToCSVNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -109,6 +115,59 @@ func (o *InitiateExportAgreementsToCSVOK) readResponse(response runtime.ClientRe
 	return nil
 }
 
+// NewInitiateExportAgreementsToCSVBadRequest creates a InitiateExportAgreementsToCSVBadRequest with default headers values
+func NewInitiateExportAgreementsToCSVBadRequest() *InitiateExportAgreementsToCSVBadRequest {
+	return &InitiateExportAgreementsToCSVBadRequest{}
+}
+
+/*InitiateExportAgreementsToCSVBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40027</td><td>Too many export running currently</td></tr></table>
+*/
+type InitiateExportAgreementsToCSVBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *InitiateExportAgreementsToCSVBadRequest) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/agreements/policy-versions/users/export-csv/initiate][%d] initiateExportAgreementsToCSVBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *InitiateExportAgreementsToCSVBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *InitiateExportAgreementsToCSVBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *InitiateExportAgreementsToCSVBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewInitiateExportAgreementsToCSVNotFound creates a InitiateExportAgreementsToCSVNotFound with default headers values
 func NewInitiateExportAgreementsToCSVNotFound() *InitiateExportAgreementsToCSVNotFound {
 	return &InitiateExportAgreementsToCSVNotFound{}
@@ -116,7 +175,7 @@ func NewInitiateExportAgreementsToCSVNotFound() *InitiateExportAgreementsToCSVNo
 
 /*InitiateExportAgreementsToCSVNotFound handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>Policy version with id: [{policyVersionId}] not found</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40045</td><td>Policy version with id: [{policyVersionId}] not found on namespace [{namespace}]</td></tr></table>
 */
 type InitiateExportAgreementsToCSVNotFound struct {
 	Payload *legalclientmodels.ErrorEntity
@@ -169,7 +228,7 @@ func NewInitiateExportAgreementsToCSVConflict() *InitiateExportAgreementsToCSVCo
 
 /*InitiateExportAgreementsToCSVConflict handles this case with default header values.
 
-  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40071</td><td>Previous export still running for namespace [{namespace}] and policyVersionId [{policyVersionId}]</td></tr></table>
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40071</td><td>Previous export still running for namespace [{namespace}] with exportId [{exportId}]</td></tr></table>
 */
 type InitiateExportAgreementsToCSVConflict struct {
 	Payload *legalclientmodels.ErrorEntity

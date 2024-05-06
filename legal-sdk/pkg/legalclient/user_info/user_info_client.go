@@ -47,8 +47,6 @@ GetUserInfoStatus get user info cache status
 Get user info cache last updated time per namespace.
 The query parameter namespaces can be a list of namespace separated by comma.
 If query parameter namespaces is empty, user info cache status for all available namespaces will be returned.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -100,8 +98,6 @@ GetUserInfoStatusShort get user info cache status
 Get user info cache last updated time per namespace.
 The query parameter namespaces can be a list of namespace separated by comma.
 If query parameter namespaces is empty, user info cache status for all available namespaces will be returned.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -149,8 +145,6 @@ Deprecated: 2022-08-10 - Use SyncUserInfoShort instead.
 
 SyncUserInfo sync user info with iam service
 Sync user info cache in agreement service with iam service.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -200,8 +194,6 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 /*
 SyncUserInfoShort sync user info with iam service
 Sync user info cache in agreement service with iam service.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -249,8 +241,6 @@ Deprecated: 2022-08-10 - Use InvalidateUserInfoCacheShort instead.
 
 InvalidateUserInfoCache invalidate user info cache
 Invalidate user info cache in agreement service.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)
 */
 func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error) {
 	// TODO: Validate the params before sending
@@ -300,8 +290,6 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 /*
 InvalidateUserInfoCacheShort invalidate user info cache
 Invalidate user info cache in agreement service.
-Other detail info:
-      * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)
 */
 func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error) {
 	// TODO: Validate the params before sending

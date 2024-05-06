@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/group/groupMember"
 	"github.com/AccelByte/sample-apps/cmd/group/groupRoles"
 	"github.com/AccelByte/sample-apps/cmd/group/memberRequest"
+	"github.com/AccelByte/sample-apps/cmd/group/operations"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,14 @@ var GroupCmd = &cobra.Command{
 }
 
 func init() {
+	GroupCmd.AddCommand(operations.IndexHandlerCmd)
+	GroupCmd.AddCommand(operations.BlockHandlerCmd)
+	GroupCmd.AddCommand(operations.CmdlineHandlerCmd)
+	GroupCmd.AddCommand(operations.GoroutineHandlerCmd)
+	GroupCmd.AddCommand(operations.HeapHandlerCmd)
+	GroupCmd.AddCommand(operations.ProfileCmd)
+	GroupCmd.AddCommand(operations.SymbolHandlerCmd)
+	GroupCmd.AddCommand(operations.ThreadcreateHandlerCmd)
 	GroupCmd.AddCommand(configuration.ListGroupConfigurationAdminV1Cmd)
 	GroupCmd.AddCommand(configuration.CreateGroupConfigurationAdminV1Cmd)
 	GroupCmd.AddCommand(configuration.InitiateGroupConfigurationAdminV1Cmd)

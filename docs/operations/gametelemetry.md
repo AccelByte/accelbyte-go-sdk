@@ -29,6 +29,7 @@
 | `HTTPValidationError` | [HTTPValidationError ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/http_validation_error.go) |
 | `ListBaseResponse_str_` | [ListBaseResponseStr ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/list_base_response_str.go) |
 | `PagedResponse_GetNamespaceEventResponse_` | [PagedResponseGetNamespaceEventResponse ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/paged_response_get_namespace_event_response.go) |
+| `Paging` | [Paging ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/paging.go) |
 | `PlayTimeResponse` | [PlayTimeResponse ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/play_time_response.go) |
 | `TelemetryBody` | [TelemetryBody ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/telemetry_body.go) |
 | `ValidationError` | [ValidationError ](../../gametelemetry-sdk/pkg/gametelemetryclientmodels/validation_error.go) |

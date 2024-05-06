@@ -25,6 +25,10 @@ type ModelGoalProgressionResponse struct {
 	// Required: true
 	ChallengeCode *string `json:"challengeCode"`
 
+	// goal
+	// Required: true
+	Goal *ModelGoalMeta `json:"goal"`
+
 	// goalcode
 	// Required: true
 	GoalCode *string `json:"goalCode"`
@@ -38,7 +42,7 @@ type ModelGoalProgressionResponse struct {
 	RequirementProgressions []*ModelRequirementProgressionResponse `json:"requirementProgressions"`
 
 	// status
-	// Enum: ['ACTIVE', 'COMPLETED', 'RETIRED']
+	// Enum: ['ACTIVE', 'COMPLETED', 'NOT_STARTED', 'RETIRED']
 	// Required: true
 	Status *string `json:"status"`
 }
@@ -48,6 +52,9 @@ func (m *ModelGoalProgressionResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateChallengeCode(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateGoal(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGoalCode(formats); err != nil {
@@ -73,6 +80,24 @@ func (m *ModelGoalProgressionResponse) validateChallengeCode(formats strfmt.Regi
 
 	if err := validate.Required("challengeCode", "body", m.ChallengeCode); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelGoalProgressionResponse) validateGoal(formats strfmt.Registry) error {
+
+	if err := validate.Required("goal", "body", m.Goal); err != nil {
+		return err
+	}
+
+	if m.Goal != nil {
+		if err := m.Goal.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("goal")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -125,7 +150,7 @@ var modelGoalProgressionResponseTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE", "COMPLETED", "RETIRED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE", "COMPLETED", "NOT_STARTED", "RETIRED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -140,6 +165,9 @@ const (
 
 	// ModelGoalProgressionResponseStatusCOMPLETED captures enum value "COMPLETED"
 	ModelGoalProgressionResponseStatusCOMPLETED string = "COMPLETED"
+
+	// ModelGoalProgressionResponseStatusNOTSTARTED captures enum value "NOT_STARTED"
+	ModelGoalProgressionResponseStatusNOTSTARTED string = "NOT_STARTED"
 
 	// ModelGoalProgressionResponseStatusRETIRED captures enum value "RETIRED"
 	ModelGoalProgressionResponseStatusRETIRED string = "RETIRED"

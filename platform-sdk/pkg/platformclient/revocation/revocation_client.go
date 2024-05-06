@@ -51,8 +51,7 @@ GetRevocationConfig get revocation configuration
 Get revocation configuration.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)
-  *  Returns : Revocation config
+  * Returns : Revocation config
 */
 func (a *Client) GetRevocationConfig(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, *GetRevocationConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -107,8 +106,7 @@ GetRevocationConfigShort get revocation configuration
 Get revocation configuration.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)
-  *  Returns : Revocation config
+  * Returns : Revocation config
 */
 func (a *Client) GetRevocationConfigShort(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -160,8 +158,7 @@ UpdateRevocationConfig update revocation configuration
 Update revocation configuration.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=4 (UPDATE)
-  *  Returns : Revocation config
+  * Returns : Revocation config
 */
 func (a *Client) UpdateRevocationConfig(params *UpdateRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -213,8 +210,7 @@ UpdateRevocationConfigShort update revocation configuration
 Update revocation configuration.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=4 (UPDATE)
-  *  Returns : Revocation config
+  * Returns : Revocation config
 */
 func (a *Client) UpdateRevocationConfigShort(params *UpdateRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -262,9 +258,6 @@ Deprecated: 2022-08-10 - Use DeleteRevocationConfigShort instead.
 
 DeleteRevocationConfig delete revocation config
 Delete revocation config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=8 (DELETE)
 */
 func (a *Client) DeleteRevocationConfig(params *DeleteRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -314,9 +307,6 @@ func (a *Client) DeleteRevocationConfig(params *DeleteRevocationConfigParams, au
 /*
 DeleteRevocationConfigShort delete revocation config
 Delete revocation config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=8 (DELETE)
 */
 func (a *Client) DeleteRevocationConfigShort(params *DeleteRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -366,8 +356,7 @@ QueryRevocationHistories query revocation histories
 Query revocation histories in a namespace.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)
-  *  Returns : query revocation history
+  * Returns : query revocation history
 */
 func (a *Client) QueryRevocationHistories(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -419,8 +408,7 @@ QueryRevocationHistoriesShort query revocation histories
 Query revocation histories in a namespace.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:REVOCATION, action=2 (READ)
-  *  Returns : query revocation history
+  * Returns : query revocation history
 */
 func (a *Client) QueryRevocationHistoriesShort(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -470,8 +458,7 @@ DoRevocation do revocation.
 Do revocation.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION, action=4 (UPDATE)
-  *  Returns : revocation results
+  * Returns : revocation results
 */
 func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error) {
 	// TODO: Validate the params before sending
@@ -523,8 +510,7 @@ DoRevocationShort do revocation.
 Do revocation.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION, action=4 (UPDATE)
-  *  Returns : revocation results
+  * Returns : revocation results
 */
 func (a *Client) DoRevocationShort(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error) {
 	// TODO: Validate the params before sending

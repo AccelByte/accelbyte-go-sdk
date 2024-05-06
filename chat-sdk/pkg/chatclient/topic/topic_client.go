@@ -30,6 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminFilterChatMessage(params *AdminFilterChatMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFilterChatMessageOK, *AdminFilterChatMessageBadRequest, *AdminFilterChatMessageUnauthorized, *AdminFilterChatMessageForbidden, *AdminFilterChatMessageInternalServerError, error)
+	AdminFilterChatMessageShort(params *AdminFilterChatMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFilterChatMessageOK, error)
 	AdminChatHistory(params *AdminChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChatHistoryOK, *AdminChatHistoryBadRequest, *AdminChatHistoryUnauthorized, *AdminChatHistoryForbidden, *AdminChatHistoryInternalServerError, error)
 	AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChatHistoryOK, error)
 	AdminCreateNamespaceTopic(params *AdminCreateNamespaceTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNamespaceTopicOK, error)
@@ -90,6 +92,122 @@ type ClientService interface {
 	PublicUnmuteUserShort(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminFilterChatMessageShort instead.
+
+AdminFilterChatMessage return filtered chat message
+For testing purpose, doesn't send any message to the topic. Always do filter regardless of enableProfanityFilter configuration.
+*/
+func (a *Client) AdminFilterChatMessage(params *AdminFilterChatMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFilterChatMessageOK, *AdminFilterChatMessageBadRequest, *AdminFilterChatMessageUnauthorized, *AdminFilterChatMessageForbidden, *AdminFilterChatMessageInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminFilterChatMessageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminFilterChatMessage",
+		Method:             "POST",
+		PathPattern:        "/chat/admin/namespaces/{namespace}/chat/filter",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminFilterChatMessageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminFilterChatMessageOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminFilterChatMessageBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminFilterChatMessageUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminFilterChatMessageForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminFilterChatMessageInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminFilterChatMessageShort return filtered chat message
+For testing purpose, doesn't send any message to the topic. Always do filter regardless of enableProfanityFilter configuration.
+*/
+func (a *Client) AdminFilterChatMessageShort(params *AdminFilterChatMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminFilterChatMessageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminFilterChatMessageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminFilterChatMessage",
+		Method:             "POST",
+		PathPattern:        "/chat/admin/namespaces/{namespace}/chat/filter",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminFilterChatMessageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminFilterChatMessageOK:
+		return v, nil
+	case *AdminFilterChatMessageBadRequest:
+		return nil, v
+	case *AdminFilterChatMessageUnauthorized:
+		return nil, v
+	case *AdminFilterChatMessageForbidden:
+		return nil, v
+	case *AdminFilterChatMessageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

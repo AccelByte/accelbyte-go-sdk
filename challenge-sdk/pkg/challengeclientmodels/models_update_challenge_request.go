@@ -46,6 +46,10 @@ type ModelsUpdateChallengeRequest struct {
 	// name
 	Name string `json:"name,omitempty"`
 
+	// repeatafter
+	// Format: int32
+	RepeatAfter int32 `json:"repeatAfter,omitempty"`
+
 	// rotation
 	// Enum: ['DAILY', 'MONTHLY', 'NONE', 'WEEKLY']
 	Rotation string `json:"rotation,omitempty"`

@@ -51,8 +51,7 @@ GetTicketDynamic get ticket dynamic
  [SERVICE COMMUNICATION ONLY] Get ticket(code/key) dynamic based on booth name.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=2 (READ)
-  *  Returns : ticket dynamic
+  * Returns : ticket dynamic
 */
 func (a *Client) GetTicketDynamic(params *GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDynamicOK, *GetTicketDynamicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -107,8 +106,7 @@ GetTicketDynamicShort get ticket dynamic
  [SERVICE COMMUNICATION ONLY] Get ticket(code/key) dynamic based on booth name.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=2 (READ)
-  *  Returns : ticket dynamic
+  * Returns : ticket dynamic
 */
 func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDynamicOK, error) {
 	// TODO: Validate the params before sending
@@ -158,9 +156,6 @@ Deprecated: 2022-08-10 - Use DecreaseTicketSaleShort instead.
 
 DecreaseTicketSale decrease ticket sale
  [SERVICE COMMUNICATION ONLY] Decrease ticket(code/key) sale if requested orderNo is already increased.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=4 (UPDATE)
 */
 func (a *Client) DecreaseTicketSale(params *DecreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*DecreaseTicketSaleNoContent, *DecreaseTicketSaleNotFound, *DecreaseTicketSaleUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -216,9 +211,6 @@ func (a *Client) DecreaseTicketSale(params *DecreaseTicketSaleParams, authInfo r
 /*
 DecreaseTicketSaleShort decrease ticket sale
  [SERVICE COMMUNICATION ONLY] Decrease ticket(code/key) sale if requested orderNo is already increased.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=4 (UPDATE)
 */
 func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*DecreaseTicketSaleNoContent, error) {
 	// TODO: Validate the params before sending
@@ -272,8 +264,7 @@ GetTicketBoothID get ticket booth id
 Get ticket(code/key) booth ID.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=2 (READ)
-  *  Returns : ticket booth id
+  * Returns : ticket booth id
 */
 func (a *Client) GetTicketBoothID(params *GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketBoothIDOK, *GetTicketBoothIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -328,8 +319,7 @@ GetTicketBoothIDShort get ticket booth id
 Get ticket(code/key) booth ID.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=2 (READ)
-  *  Returns : ticket booth id
+  * Returns : ticket booth id
 */
 func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketBoothIDOK, error) {
 	// TODO: Validate the params before sending
@@ -381,8 +371,7 @@ IncreaseTicketSale increase ticket sale
  [SERVICE COMMUNICATION ONLY] increase ticket(code/key) sale.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=4 (UPDATE)
-  *  Returns : Ticket sale increment result
+  * Returns : Ticket sale increment result
 */
 func (a *Client) IncreaseTicketSale(params *IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*IncreaseTicketSaleOK, *IncreaseTicketSaleNotFound, *IncreaseTicketSaleUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -440,8 +429,7 @@ IncreaseTicketSaleShort increase ticket sale
  [SERVICE COMMUNICATION ONLY] increase ticket(code/key) sale.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:TICKET", action=4 (UPDATE)
-  *  Returns : Ticket sale increment result
+  * Returns : Ticket sale increment result
 */
 func (a *Client) IncreaseTicketSaleShort(params *IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*IncreaseTicketSaleOK, error) {
 	// TODO: Validate the params before sending
@@ -495,8 +483,7 @@ AcquireUserTicket acquire ticket
  [SERVICE COMMUNICATION ONLY] Acquire ticket(code/key) based on booth name.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET", action=1 (CREATE)
-  *  Returns : acquire result
+  * Returns : acquire result
 */
 func (a *Client) AcquireUserTicket(params *AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireUserTicketOK, *AcquireUserTicketNotFound, *AcquireUserTicketConflict, *AcquireUserTicketUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -557,8 +544,7 @@ AcquireUserTicketShort acquire ticket
  [SERVICE COMMUNICATION ONLY] Acquire ticket(code/key) based on booth name.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET", action=1 (CREATE)
-  *  Returns : acquire result
+  * Returns : acquire result
 */
 func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireUserTicketOK, error) {
 	// TODO: Validate the params before sending

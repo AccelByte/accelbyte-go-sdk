@@ -9,11 +9,9 @@ package basic
 import (
 	"github.com/AccelByte/sample-apps/cmd/basic/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/basic/config"
-	"github.com/AccelByte/sample-apps/cmd/basic/equ8Config"
 	"github.com/AccelByte/sample-apps/cmd/basic/fileUpload"
 	"github.com/AccelByte/sample-apps/cmd/basic/misc"
 	"github.com/AccelByte/sample-apps/cmd/basic/namespace"
-	"github.com/AccelByte/sample-apps/cmd/basic/userAction"
 	"github.com/AccelByte/sample-apps/cmd/basic/userProfile"
 	"github.com/spf13/cobra"
 )
@@ -29,22 +27,13 @@ func init() {
 	BasicCmd.AddCommand(namespace.CreateNamespaceCmd)
 	BasicCmd.AddCommand(namespace.GetNamespaceCmd)
 	BasicCmd.AddCommand(namespace.DeleteNamespaceCmd)
-	BasicCmd.AddCommand(userAction.GetActionsCmd)
-	BasicCmd.AddCommand(userAction.BanUsersCmd)
-	BasicCmd.AddCommand(userAction.GetBannedUsersCmd)
-	BasicCmd.AddCommand(userAction.ReportUserCmd)
-	BasicCmd.AddCommand(userAction.GetUserStatusCmd)
-	BasicCmd.AddCommand(userAction.UnBanUsersCmd)
 	BasicCmd.AddCommand(namespace.UpdateNamespaceCmd)
 	BasicCmd.AddCommand(namespace.GetChildNamespacesCmd)
 	BasicCmd.AddCommand(config.CreateConfigCmd)
-	BasicCmd.AddCommand(config.GetConfig1Cmd)
-	BasicCmd.AddCommand(config.DeleteConfig1Cmd)
-	BasicCmd.AddCommand(config.UpdateConfig1Cmd)
+	BasicCmd.AddCommand(config.GetConfigCmd)
+	BasicCmd.AddCommand(config.DeleteConfigCmd)
+	BasicCmd.AddCommand(config.UpdateConfigCmd)
 	BasicCmd.AddCommand(namespace.GetNamespaceContextCmd)
-	BasicCmd.AddCommand(equ8Config.GetConfigCmd)
-	BasicCmd.AddCommand(equ8Config.DeleteConfigCmd)
-	BasicCmd.AddCommand(equ8Config.UpdateConfigCmd)
 	BasicCmd.AddCommand(fileUpload.GeneratedUploadUrlCmd)
 	BasicCmd.AddCommand(namespace.GetGameNamespacesCmd)
 	BasicCmd.AddCommand(misc.GetCountriesCmd)
@@ -71,6 +60,7 @@ func init() {
 	BasicCmd.AddCommand(userProfile.UpdateUserProfileStatusCmd)
 	BasicCmd.AddCommand(misc.PublicGetTimeCmd)
 	BasicCmd.AddCommand(namespace.PublicGetNamespacesCmd)
+	BasicCmd.AddCommand(namespace.GetNamespace1Cmd)
 	BasicCmd.AddCommand(fileUpload.PublicGeneratedUploadUrlCmd)
 	BasicCmd.AddCommand(misc.PublicGetCountriesCmd)
 	BasicCmd.AddCommand(misc.PublicGetLanguagesCmd)
@@ -85,7 +75,6 @@ func init() {
 	BasicCmd.AddCommand(userProfile.UpdateMyPrivateCustomAttributesPartiallyCmd)
 	BasicCmd.AddCommand(userProfile.GetMyZipCodeCmd)
 	BasicCmd.AddCommand(userProfile.UpdateMyZipCodeCmd)
-	BasicCmd.AddCommand(userAction.PublicReportUserCmd)
 	BasicCmd.AddCommand(fileUpload.PublicGeneratedUserUploadContentUrlCmd)
 	BasicCmd.AddCommand(userProfile.PublicGetUserProfileInfoCmd)
 	BasicCmd.AddCommand(userProfile.PublicUpdateUserProfileCmd)

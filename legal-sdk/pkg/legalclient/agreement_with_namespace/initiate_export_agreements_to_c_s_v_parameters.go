@@ -69,11 +69,21 @@ type InitiateExportAgreementsToCSVParams struct {
 
 	*/
 	Namespace string
+	/*End
+	  End time of signed_date to retrieve, will use current time if not specified. Using ISO 8601 format yyyy-MM-dd'T'HH:mm:ss'Z', e.g. 2024-01-01T00:00:00Z
+
+	*/
+	End *string
 	/*PolicyVersionID
 	  Policy Version Id
 
 	*/
 	PolicyVersionID string
+	/*Start
+	  Start time of signed_date to retrieve. Using ISO 8601 format yyyy-MM-dd'T'HH:mm:ss'Z', e.g. 2024-01-01T00:00:00Z
+
+	*/
+	Start string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -151,6 +161,17 @@ func (o *InitiateExportAgreementsToCSVParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithEnd adds the end to the initiate export agreements to csv params
+func (o *InitiateExportAgreementsToCSVParams) WithEnd(end *string) *InitiateExportAgreementsToCSVParams {
+	o.SetEnd(end)
+	return o
+}
+
+// SetEnd adds the end to the initiate export agreements to csv params
+func (o *InitiateExportAgreementsToCSVParams) SetEnd(end *string) {
+	o.End = end
+}
+
 // WithPolicyVersionID adds the policyVersionID to the initiate export agreements to csv params
 func (o *InitiateExportAgreementsToCSVParams) WithPolicyVersionID(policyVersionID string) *InitiateExportAgreementsToCSVParams {
 	o.SetPolicyVersionID(policyVersionID)
@@ -160,6 +181,17 @@ func (o *InitiateExportAgreementsToCSVParams) WithPolicyVersionID(policyVersionI
 // SetPolicyVersionID adds the policyVersionId to the initiate export agreements to csv params
 func (o *InitiateExportAgreementsToCSVParams) SetPolicyVersionID(policyVersionID string) {
 	o.PolicyVersionID = policyVersionID
+}
+
+// WithStart adds the start to the initiate export agreements to csv params
+func (o *InitiateExportAgreementsToCSVParams) WithStart(start string) *InitiateExportAgreementsToCSVParams {
+	o.SetStart(start)
+	return o
+}
+
+// SetStart adds the start to the initiate export agreements to csv params
+func (o *InitiateExportAgreementsToCSVParams) SetStart(start string) {
+	o.Start = start
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -175,11 +207,36 @@ func (o *InitiateExportAgreementsToCSVParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 
+	if o.End != nil {
+
+		// query param end
+		var qrEnd string
+		if o.End != nil {
+			qrEnd = *o.End
+		}
+		qEnd := qrEnd
+		if qEnd != "" {
+			if err := r.SetQueryParam("end", qEnd); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	// query param policyVersionId
 	qrPolicyVersionID := o.PolicyVersionID
 	qPolicyVersionID := qrPolicyVersionID
 	if qPolicyVersionID != "" {
 		if err := r.SetQueryParam("policyVersionId", qPolicyVersionID); err != nil {
+			return err
+		}
+	}
+
+	// query param start
+	qrStart := o.Start
+	qStart := qrStart
+	if qStart != "" {
+		if err := r.SetQueryParam("start", qStart); err != nil {
 			return err
 		}
 	}

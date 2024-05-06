@@ -27,6 +27,10 @@ type AdminOrderCreate struct {
 	// currency namespace, if options.skipPriceValidation is true, then this is required. If current namespace is publisher namespace, then currency namespace must be publisher namespace; if current is game namespace, currency namespace must be the same game namespace or publisher namespace
 	CurrencyNamespace string `json:"currencyNamespace,omitempty"`
 
+	// Discount codes, min size is 1, max size is 10notes: The same data will be auto merged, for example input discount code [111, 111] in request body, final discount code list should be 111
+	// Unique: true
+	DiscountCodes []string `json:"discountCodes"`
+
 	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.
 	// Required: true
 	// Format: int32

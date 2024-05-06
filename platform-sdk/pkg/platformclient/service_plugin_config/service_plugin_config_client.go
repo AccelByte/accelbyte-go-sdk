@@ -71,9 +71,6 @@ Deprecated: 2022-08-10 - Use GetLootBoxPluginConfigShort instead.
 
 GetLootBoxPluginConfig get lootbox plugin config
 Get lootbox plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetLootBoxPluginConfig(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -123,9 +120,6 @@ func (a *Client) GetLootBoxPluginConfig(params *GetLootBoxPluginConfigParams, au
 /*
 GetLootBoxPluginConfigShort get lootbox plugin config
 Get lootbox plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetLootBoxPluginConfigShort(params *GetLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -173,8 +167,7 @@ Deprecated: 2022-08-10 - Use UpdateLootBoxPluginConfigShort instead.
 
 UpdateLootBoxPluginConfig update lootbox plugin config
 Update lootbox plugin config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateLootBoxPluginConfig(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, *UpdateLootBoxPluginConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -227,8 +220,7 @@ func (a *Client) UpdateLootBoxPluginConfig(params *UpdateLootBoxPluginConfigPara
 /*
 UpdateLootBoxPluginConfigShort update lootbox plugin config
 Update lootbox plugin config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateLootBoxPluginConfigShort(params *UpdateLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLootBoxPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -278,9 +270,6 @@ Deprecated: 2022-08-10 - Use DeleteLootBoxPluginConfigShort instead.
 
 DeleteLootBoxPluginConfig delete lootbox plugin config
 Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
 */
 func (a *Client) DeleteLootBoxPluginConfig(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -330,9 +319,6 @@ func (a *Client) DeleteLootBoxPluginConfig(params *DeleteLootBoxPluginConfigPara
 /*
 DeleteLootBoxPluginConfigShort delete lootbox plugin config
 Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
 */
 func (a *Client) DeleteLootBoxPluginConfigShort(params *DeleteLootBoxPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLootBoxPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -380,8 +366,7 @@ Deprecated: 2022-08-10 - Use UplodLootBoxPluginConfigCertShort instead.
 
 UplodLootBoxPluginConfigCert upload lootbox plugin custom config tls cert
 Upload lootbox plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UplodLootBoxPluginConfigCert(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, *UplodLootBoxPluginConfigCertUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -434,8 +419,7 @@ func (a *Client) UplodLootBoxPluginConfigCert(params *UplodLootBoxPluginConfigCe
 /*
 UplodLootBoxPluginConfigCertShort upload lootbox plugin custom config tls cert
 Upload lootbox plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UplodLootBoxPluginConfigCertShort(params *UplodLootBoxPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UplodLootBoxPluginConfigCertOK, error) {
 	// TODO: Validate the params before sending
@@ -485,9 +469,6 @@ Deprecated: 2022-08-10 - Use GetLootBoxGrpcInfoShort instead.
 
 GetLootBoxGrpcInfo get lootbox plugin grpc info
 Get lootbox plugin gRPC info.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetLootBoxGrpcInfo(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -537,9 +518,6 @@ func (a *Client) GetLootBoxGrpcInfo(params *GetLootBoxGrpcInfoParams, authInfo r
 /*
 GetLootBoxGrpcInfoShort get lootbox plugin grpc info
 Get lootbox plugin gRPC info.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetLootBoxGrpcInfoShort(params *GetLootBoxGrpcInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetLootBoxGrpcInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -587,9 +565,6 @@ Deprecated: 2022-08-10 - Use GetSectionPluginConfigShort instead.
 
 GetSectionPluginConfig get section plugin config
 Get section plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetSectionPluginConfig(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -639,9 +614,6 @@ func (a *Client) GetSectionPluginConfig(params *GetSectionPluginConfigParams, au
 /*
 GetSectionPluginConfigShort get section plugin config
 Get section plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG , action=2 (READ)
 */
 func (a *Client) GetSectionPluginConfigShort(params *GetSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -689,8 +661,7 @@ Deprecated: 2022-08-10 - Use UpdateSectionPluginConfigShort instead.
 
 UpdateSectionPluginConfig update section plugin config
 Update section config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateSectionPluginConfig(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, *UpdateSectionPluginConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -743,8 +714,7 @@ func (a *Client) UpdateSectionPluginConfig(params *UpdateSectionPluginConfigPara
 /*
 UpdateSectionPluginConfigShort update section plugin config
 Update section config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateSectionPluginConfigShort(params *UpdateSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSectionPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -794,9 +764,6 @@ Deprecated: 2022-08-10 - Use DeleteSectionPluginConfigShort instead.
 
 DeleteSectionPluginConfig delete section plugin config
 Delete section plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
 */
 func (a *Client) DeleteSectionPluginConfig(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -846,9 +813,6 @@ func (a *Client) DeleteSectionPluginConfig(params *DeleteSectionPluginConfigPara
 /*
 DeleteSectionPluginConfigShort delete section plugin config
 Delete section plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=8 (DELETE)
 */
 func (a *Client) DeleteSectionPluginConfigShort(params *DeleteSectionPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -896,8 +860,7 @@ Deprecated: 2022-08-10 - Use UploadSectionPluginConfigCertShort instead.
 
 UploadSectionPluginConfigCert upload section plugin custom config tls cert
 Upload section plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UploadSectionPluginConfigCert(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, *UploadSectionPluginConfigCertUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -950,8 +913,7 @@ func (a *Client) UploadSectionPluginConfigCert(params *UploadSectionPluginConfig
 /*
 UploadSectionPluginConfigCertShort upload section plugin custom config tls cert
 Upload section plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UploadSectionPluginConfigCertShort(params *UploadSectionPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadSectionPluginConfigCertOK, error) {
 	// TODO: Validate the params before sending
@@ -1000,10 +962,7 @@ func (a *Client) UploadSectionPluginConfigCertShort(params *UploadSectionPluginC
 Deprecated: 2022-08-10 - Use GetServicePluginConfigShort instead.
 
 GetServicePluginConfig get service plugin config
-Get service plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN , action=2 (READ)
+Get service plugin config
 */
 func (a *Client) GetServicePluginConfig(params *GetServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicePluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1052,10 +1011,7 @@ func (a *Client) GetServicePluginConfig(params *GetServicePluginConfigParams, au
 
 /*
 GetServicePluginConfigShort get service plugin config
-Get service plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN , action=2 (READ)
+Get service plugin config
 */
 func (a *Client) GetServicePluginConfigShort(params *GetServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetServicePluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1103,8 +1059,7 @@ Deprecated: 2022-08-10 - Use UpdateServicePluginConfigShort instead.
 
 UpdateServicePluginConfig update service plugin config service
 Update catalog config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateServicePluginConfig(params *UpdateServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServicePluginConfigOK, *UpdateServicePluginConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1157,8 +1112,7 @@ func (a *Client) UpdateServicePluginConfig(params *UpdateServicePluginConfigPara
 /*
 UpdateServicePluginConfigShort update service plugin config service
 Update catalog config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateServicePluginConfigShort(params *UpdateServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServicePluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1207,10 +1161,7 @@ func (a *Client) UpdateServicePluginConfigShort(params *UpdateServicePluginConfi
 Deprecated: 2022-08-10 - Use DeleteServicePluginConfigShort instead.
 
 DeleteServicePluginConfig delete service plugin config
-Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=8 (DELETE)
+Delete service plugin config
 */
 func (a *Client) DeleteServicePluginConfig(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1259,10 +1210,7 @@ func (a *Client) DeleteServicePluginConfig(params *DeleteServicePluginConfigPara
 
 /*
 DeleteServicePluginConfigShort delete service plugin config
-Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN, action=8 (DELETE)
+Delete service plugin config
 */
 func (a *Client) DeleteServicePluginConfigShort(params *DeleteServicePluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServicePluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1310,9 +1258,6 @@ Deprecated: 2022-08-10 - Use GetRevocationPluginConfigShort instead.
 
 GetRevocationPluginConfig get revocation plugin config
 Get revocation plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
 */
 func (a *Client) GetRevocationPluginConfig(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1362,9 +1307,6 @@ func (a *Client) GetRevocationPluginConfig(params *GetRevocationPluginConfigPara
 /*
 GetRevocationPluginConfigShort get revocation plugin config
 Get revocation plugin config.
-Other detail info:
-
-  * Required permission : resource= ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION , action=2 (READ)
 */
 func (a *Client) GetRevocationPluginConfigShort(params *GetRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1412,8 +1354,7 @@ Deprecated: 2022-08-10 - Use UpdateRevocationPluginConfigShort instead.
 
 UpdateRevocationPluginConfig update revocation plugin config
 Update revocation plugin config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateRevocationPluginConfig(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, *UpdateRevocationPluginConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1466,8 +1407,7 @@ func (a *Client) UpdateRevocationPluginConfig(params *UpdateRevocationPluginConf
 /*
 UpdateRevocationPluginConfigShort update revocation plugin config
 Update revocation plugin config. Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UpdateRevocationPluginConfigShort(params *UpdateRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationPluginConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1517,9 +1457,6 @@ Deprecated: 2022-08-10 - Use DeleteRevocationPluginConfigShort instead.
 
 DeleteRevocationPluginConfig delete revocation plugin config
 Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
 */
 func (a *Client) DeleteRevocationPluginConfig(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1569,9 +1506,6 @@ func (a *Client) DeleteRevocationPluginConfig(params *DeleteRevocationPluginConf
 /*
 DeleteRevocationPluginConfigShort delete revocation plugin config
 Delete service plugin config.
-Other detail info:
-
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=8 (DELETE)
 */
 func (a *Client) DeleteRevocationPluginConfigShort(params *DeleteRevocationPluginConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationPluginConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1619,8 +1553,7 @@ Deprecated: 2022-08-10 - Use UploadRevocationPluginConfigCertShort instead.
 
 UploadRevocationPluginConfigCert upload revocation plugin custom config tls cert
 Upload revocation plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UploadRevocationPluginConfigCert(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, *UploadRevocationPluginConfigCertUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1673,8 +1606,7 @@ func (a *Client) UploadRevocationPluginConfigCert(params *UploadRevocationPlugin
 /*
 UploadRevocationPluginConfigCertShort upload revocation plugin custom config tls cert
 Upload revocation plugin custom config tls cert.Other detail info:
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION, action=4 (UPDATE)
-  *  Returns : updated service plugin config
+  * Returns : updated service plugin config
 */
 func (a *Client) UploadRevocationPluginConfigCertShort(params *UploadRevocationPluginConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UploadRevocationPluginConfigCertOK, error) {
 	// TODO: Validate the params before sending

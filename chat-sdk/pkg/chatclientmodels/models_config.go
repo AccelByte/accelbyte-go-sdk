@@ -102,6 +102,10 @@ type ModelsConfig struct {
 	// enableclanchat
 	EnableClanChat bool `json:"enableClanChat"`
 
+	// maxchatmessagelength
+	// Format: int32
+	MaxChatMessageLength int32 `json:"maxChatMessageLength,omitempty"`
+
 	// usedefaultdictionary
 	UseDefaultDictionary bool `json:"useDefaultDictionary"`
 }

@@ -53,9 +53,7 @@ Deprecated: 2022-08-10 - Use GetAdminEmailConfigurationShort instead.
 
 GetAdminEmailConfiguration get admin email addresses configuration
 Get list of admin email address configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]` and scope `account`
+Scope: account
 */
 func (a *Client) GetAdminEmailConfiguration(params *GetAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminEmailConfigurationOK, *GetAdminEmailConfigurationUnauthorized, *GetAdminEmailConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,9 +109,7 @@ func (a *Client) GetAdminEmailConfiguration(params *GetAdminEmailConfigurationPa
 /*
 GetAdminEmailConfigurationShort get admin email addresses configuration
 Get list of admin email address configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]` and scope `account`
+Scope: account
 */
 func (a *Client) GetAdminEmailConfigurationShort(params *GetAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminEmailConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -165,8 +161,7 @@ Deprecated: 2022-08-10 - Use UpdateAdminEmailConfigurationShort instead.
 
 UpdateAdminEmailConfiguration update admin email address configuration
 Update admin email address for receiving personal data request notification.
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]`
+Scope: account
 */
 func (a *Client) UpdateAdminEmailConfiguration(params *UpdateAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdminEmailConfigurationNoContent, *UpdateAdminEmailConfigurationBadRequest, *UpdateAdminEmailConfigurationUnauthorized, *UpdateAdminEmailConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -225,8 +220,7 @@ func (a *Client) UpdateAdminEmailConfiguration(params *UpdateAdminEmailConfigura
 /*
 UpdateAdminEmailConfigurationShort update admin email address configuration
 Update admin email address for receiving personal data request notification.
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]`
+Scope: account
 */
 func (a *Client) UpdateAdminEmailConfigurationShort(params *UpdateAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -280,9 +274,7 @@ Deprecated: 2022-08-10 - Use SaveAdminEmailConfigurationShort instead.
 
 SaveAdminEmailConfiguration add admin email address configuration
 Add admin email address for receiving personal data request notification.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]` and scope `account`
+Scope: account
 */
 func (a *Client) SaveAdminEmailConfiguration(params *SaveAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*SaveAdminEmailConfigurationNoContent, *SaveAdminEmailConfigurationBadRequest, *SaveAdminEmailConfigurationUnauthorized, *SaveAdminEmailConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -341,9 +333,7 @@ func (a *Client) SaveAdminEmailConfiguration(params *SaveAdminEmailConfiguration
 /*
 SaveAdminEmailConfigurationShort add admin email address configuration
 Add admin email address for receiving personal data request notification.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]` and scope `account`
+Scope: account
 */
 func (a *Client) SaveAdminEmailConfigurationShort(params *SaveAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*SaveAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -397,9 +387,7 @@ Deprecated: 2022-08-10 - Use DeleteAdminEmailConfigurationShort instead.
 
 DeleteAdminEmailConfiguration delete admin emails configurations
 Delete a list of admin email addresses to stop receiving personal data request notification.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]` and scope `account`
+Scope: account
 */
 func (a *Client) DeleteAdminEmailConfiguration(params *DeleteAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminEmailConfigurationNoContent, *DeleteAdminEmailConfigurationBadRequest, *DeleteAdminEmailConfigurationUnauthorized, *DeleteAdminEmailConfigurationForbidden, *DeleteAdminEmailConfigurationNotFound, *DeleteAdminEmailConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -464,9 +452,7 @@ func (a *Client) DeleteAdminEmailConfiguration(params *DeleteAdminEmailConfigura
 /*
 DeleteAdminEmailConfigurationShort delete admin emails configurations
 Delete a list of admin email addresses to stop receiving personal data request notification.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]` and scope `account`
+Scope: account
 */
 func (a *Client) DeleteAdminEmailConfigurationShort(params *DeleteAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminEmailConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -524,9 +510,7 @@ Deprecated: 2022-08-10 - Use AdminGetServicesConfigurationShort instead.
 
 AdminGetServicesConfiguration get registered services configuration
 Get Registered Services Configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminGetServicesConfiguration(params *AdminGetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetServicesConfigurationOK, *AdminGetServicesConfigurationUnauthorized, *AdminGetServicesConfigurationNotFound, *AdminGetServicesConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -585,9 +569,7 @@ func (a *Client) AdminGetServicesConfiguration(params *AdminGetServicesConfigura
 /*
 AdminGetServicesConfigurationShort get registered services configuration
 Get Registered Services Configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminGetServicesConfigurationShort(params *AdminGetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetServicesConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -641,9 +623,7 @@ Deprecated: 2022-08-10 - Use AdminUpdateServicesConfigurationShort instead.
 
 AdminUpdateServicesConfiguration update registered services configuration
 Update Registered Services Configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminUpdateServicesConfiguration(params *AdminUpdateServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateServicesConfigurationOK, *AdminUpdateServicesConfigurationBadRequest, *AdminUpdateServicesConfigurationUnauthorized, *AdminUpdateServicesConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -702,9 +682,7 @@ func (a *Client) AdminUpdateServicesConfiguration(params *AdminUpdateServicesCon
 /*
 AdminUpdateServicesConfigurationShort update registered services configuration
 Update Registered Services Configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminUpdateServicesConfigurationShort(params *AdminUpdateServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateServicesConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -757,11 +735,9 @@ func (a *Client) AdminUpdateServicesConfigurationShort(params *AdminUpdateServic
 Deprecated: 2022-08-10 - Use AdminResetServicesConfigurationShort instead.
 
 AdminResetServicesConfiguration reset registered services configuration
- [TEST FACILITY ONLY]
+**[TEST FACILITY ONLY]**
 Reset Registered Services Configuration to use the default configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminResetServicesConfiguration(params *AdminResetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetServicesConfigurationNoContent, *AdminResetServicesConfigurationUnauthorized, *AdminResetServicesConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -816,11 +792,9 @@ func (a *Client) AdminResetServicesConfiguration(params *AdminResetServicesConfi
 
 /*
 AdminResetServicesConfigurationShort reset registered services configuration
- [TEST FACILITY ONLY]
+**[TEST FACILITY ONLY]**
 Reset Registered Services Configuration to use the default configuration.
-
-
-Required permission `ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [DELETE]` and scope `account`
+Scope: account
 */
 func (a *Client) AdminResetServicesConfigurationShort(params *AdminResetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetServicesConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

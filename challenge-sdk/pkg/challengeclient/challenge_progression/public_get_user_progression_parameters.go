@@ -16,13 +16,19 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicGetUserProgressionParams creates a new PublicGetUserProgressionParams object
 // with the default values initialized.
 func NewPublicGetUserProgressionParams() *PublicGetUserProgressionParams {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &PublicGetUserProgressionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +37,13 @@ func NewPublicGetUserProgressionParams() *PublicGetUserProgressionParams {
 // NewPublicGetUserProgressionParamsWithTimeout creates a new PublicGetUserProgressionParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicGetUserProgressionParamsWithTimeout(timeout time.Duration) *PublicGetUserProgressionParams {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &PublicGetUserProgressionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +52,13 @@ func NewPublicGetUserProgressionParamsWithTimeout(timeout time.Duration) *Public
 // NewPublicGetUserProgressionParamsWithContext creates a new PublicGetUserProgressionParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicGetUserProgressionParamsWithContext(ctx context.Context) *PublicGetUserProgressionParams {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &PublicGetUserProgressionParams{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +67,13 @@ func NewPublicGetUserProgressionParamsWithContext(ctx context.Context) *PublicGe
 // NewPublicGetUserProgressionParamsWithHTTPClient creates a new PublicGetUserProgressionParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicGetUserProgressionParamsWithHTTPClient(client *http.Client) *PublicGetUserProgressionParams {
-	var ()
+	var (
+		limitDefault  = int64(20)
+		offsetDefault = int64(0)
+	)
 	return &PublicGetUserProgressionParams{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -79,6 +100,21 @@ type PublicGetUserProgressionParams struct {
 
 	*/
 	GoalCode *string
+	/*Limit
+	  limit the amount of data retrieved
+
+	*/
+	Limit *int64
+	/*Offset
+	  offset
+
+	*/
+	Offset *int64
+	/*Tags
+	  filter goals by tags, comma separated value
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +214,39 @@ func (o *PublicGetUserProgressionParams) SetGoalCode(goalCode *string) {
 	o.GoalCode = goalCode
 }
 
+// WithLimit adds the limit to the public get user progression params
+func (o *PublicGetUserProgressionParams) WithLimit(limit *int64) *PublicGetUserProgressionParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the public get user progression params
+func (o *PublicGetUserProgressionParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOffset adds the offset to the public get user progression params
+func (o *PublicGetUserProgressionParams) WithOffset(offset *int64) *PublicGetUserProgressionParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the public get user progression params
+func (o *PublicGetUserProgressionParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
+// WithTags adds the tags to the public get user progression params
+func (o *PublicGetUserProgressionParams) WithTags(tags []string) *PublicGetUserProgressionParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the public get user progression params
+func (o *PublicGetUserProgressionParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicGetUserProgressionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -210,6 +279,46 @@ func (o *PublicGetUserProgressionParams) WriteToRequest(r runtime.ClientRequest,
 			}
 		}
 
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

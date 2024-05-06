@@ -27,6 +27,10 @@ type ModelUserProgressionResponse struct {
 	// meta
 	// Required: true
 	Meta *ModelUserProgressionResponseMeta `json:"meta"`
+
+	// paging
+	// Required: true
+	Paging *ModelPagination `json:"paging"`
 }
 
 // Validate validates this Model user progression response
@@ -37,6 +41,9 @@ func (m *ModelUserProgressionResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateMeta(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePaging(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,6 +88,24 @@ func (m *ModelUserProgressionResponse) validateMeta(formats strfmt.Registry) err
 		if err := m.Meta.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ModelUserProgressionResponse) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
 			}
 			return err
 		}

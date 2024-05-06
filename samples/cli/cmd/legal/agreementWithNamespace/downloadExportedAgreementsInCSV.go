@@ -26,10 +26,10 @@ var DownloadExportedAgreementsInCSVCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		policyVersionId, _ := cmd.Flags().GetString("policyVersionId")
+		exportId, _ := cmd.Flags().GetString("exportId")
 		input := &agreement_with_namespace.DownloadExportedAgreementsInCSVParams{
-			Namespace:       namespace,
-			PolicyVersionID: policyVersionId,
+			Namespace: namespace,
+			ExportID:  exportId,
 		}
 		ok, errOK := agreementWithNamespaceService.DownloadExportedAgreementsInCSVShort(input)
 		if errOK != nil {
@@ -47,6 +47,6 @@ var DownloadExportedAgreementsInCSVCmd = &cobra.Command{
 func init() {
 	DownloadExportedAgreementsInCSVCmd.Flags().String("namespace", "", "Namespace")
 	_ = DownloadExportedAgreementsInCSVCmd.MarkFlagRequired("namespace")
-	DownloadExportedAgreementsInCSVCmd.Flags().String("policyVersionId", "", "Policy version id")
-	_ = DownloadExportedAgreementsInCSVCmd.MarkFlagRequired("policyVersionId")
+	DownloadExportedAgreementsInCSVCmd.Flags().String("exportId", "", "Export id")
+	_ = DownloadExportedAgreementsInCSVCmd.MarkFlagRequired("exportId")
 }

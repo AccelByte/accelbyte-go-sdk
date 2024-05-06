@@ -339,6 +339,35 @@ func (aaa *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrde
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicPreviewOrderPriceShort instead.
+func (aaa *OrderService) PublicPreviewOrderPrice(input *order.PublicPreviewOrderPriceParams) (*platformclientmodels.OrderDiscountPreviewResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := aaa.Client.Order.PublicPreviewOrderPrice(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetUserOrderShort instead.
 func (aaa *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -888,6 +917,36 @@ func (aaa *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUse
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *OrderService) PublicPreviewOrderPriceShort(input *order.PublicPreviewOrderPriceParams) (*platformclientmodels.OrderDiscountPreviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdOrder != nil {
+		input.XFlightId = tempFlightIdOrder
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Order.PublicPreviewOrderPriceShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {

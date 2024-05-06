@@ -22,6 +22,10 @@ type OrderCreate struct {
 	// Required: true
 	CurrencyCode *string `json:"currencyCode"`
 
+	// Discount codes, min size is 1, max size is 10notes: The same data will be auto merged, for example input discount code [111, 111] in request body, final discount code list should be 111
+	// Unique: true
+	DiscountCodes []string `json:"discountCodes"`
+
 	// Discounted price of order, this should match (item_discounted_price * quantity) ifitem discounted price is available, otherwise it should equal to (item_price * quantity) if item is not flexible bundle, if item is flexible bundle, item discounted price should equal estimate discounted price.
 	// Required: true
 	// Format: int32

@@ -56,8 +56,7 @@ This API is used to query sections.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : paginated sections
+  * Returns : paginated sections
 */
 func (a *Client) QuerySections(params *QuerySectionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySectionsOK, *QuerySectionsNotFound, *QuerySectionsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -116,8 +115,7 @@ This API is used to query sections.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : paginated sections
+  * Returns : paginated sections
 */
 func (a *Client) QuerySectionsShort(params *QuerySectionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySectionsOK, error) {
 	// TODO: Validate the params before sending
@@ -172,8 +170,7 @@ This API is used to create a section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created a section
+  * Returns : created a section
 
 
 
@@ -256,8 +253,7 @@ This API is used to create a section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created a section
+  * Returns : created a section
 
 
 
@@ -331,10 +327,6 @@ Deprecated: 2022-08-10 - Use PurgeExpiredSectionShort instead.
 
 PurgeExpiredSection purge expired section
 This API is used to purge expired section.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) PurgeExpiredSection(params *PurgeExpiredSectionParams, authInfo runtime.ClientAuthInfoWriter) (*PurgeExpiredSectionNoContent, *PurgeExpiredSectionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -387,10 +379,6 @@ func (a *Client) PurgeExpiredSection(params *PurgeExpiredSectionParams, authInfo
 /*
 PurgeExpiredSectionShort purge expired section
 This API is used to purge expired section.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) PurgeExpiredSectionShort(params *PurgeExpiredSectionParams, authInfo runtime.ClientAuthInfoWriter) (*PurgeExpiredSectionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -443,8 +431,7 @@ This API is used to get a section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : section data
+  * Returns : section data
 */
 func (a *Client) GetSection(params *GetSectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionOK, *GetSectionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -500,8 +487,7 @@ This API is used to get a section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : section data
+  * Returns : section data
 */
 func (a *Client) GetSectionShort(params *GetSectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSectionOK, error) {
 	// TODO: Validate the params before sending
@@ -554,8 +540,7 @@ This API is used to update s section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated section data
+  * Returns : updated section data
 
 
 
@@ -638,8 +623,7 @@ This API is used to update s section.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated section data
+  * Returns : updated section data
 
 
 
@@ -713,10 +697,6 @@ Deprecated: 2022-08-10 - Use DeleteSectionShort instead.
 
 DeleteSection delete a section
 This API is used to delete s section.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeleteSection(params *DeleteSectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionNoContent, *DeleteSectionNotFound, *DeleteSectionConflict, error) {
 	// TODO: Validate the params before sending
@@ -772,10 +752,6 @@ func (a *Client) DeleteSection(params *DeleteSectionParams, authInfo runtime.Cli
 /*
 DeleteSectionShort delete a section
 This API is used to delete s section.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeleteSectionShort(params *DeleteSectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSectionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -830,8 +806,7 @@ This API is used to list active section contents.
 
 Other detail info:
 
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:STORE, action=2 (READ)
-  *  Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store sections)
+  * Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store sections)
   *  Optional permission : resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store sections)
   *  Returns : active section contents
 */
@@ -889,8 +864,7 @@ This API is used to list active section contents.
 
 Other detail info:
 
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:STORE, action=2 (READ)
-  *  Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store sections)
+  * Optional permission : resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store sections)
   *  Optional permission : resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store sections)
   *  Returns : active section contents
 */

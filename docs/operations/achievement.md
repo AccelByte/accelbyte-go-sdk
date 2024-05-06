@@ -30,6 +30,11 @@
 | `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements` | GET | ListUserContributionsShort | [ListUserContributionsShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ListUserContributionsShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ListUserContributionsShort](../../samples/cli/cmd/achievement/globalAchievements/listUserContributions.go) |
 | `/achievement/v1/public/namespaces/{namespace}/users/{userId}/global/achievements/{achievementCode}/claim` | POST | ClaimGlobalAchievementRewardShort | [ClaimGlobalAchievementRewardShort](../../achievement-sdk/pkg/achievementclient/global_achievements/global_achievements_client.go) | [ClaimGlobalAchievementRewardShort](../../services-api/pkg/service/achievement/globalAchievements.go) | [ClaimGlobalAchievementRewardShort](../../samples/cli/cmd/achievement/globalAchievements/claimGlobalAchievementReward.go) |
 
+### Platform Achievement Wrapper:  [PlatformAchievement](../../services-api/pkg/service/achievement/platformAchievement.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/achievement/v1/admin/namespaces/{namespace}/platforms/psn/bulk` | POST | BulkCreatePSNEventShort | [BulkCreatePSNEventShort](../../achievement-sdk/pkg/achievementclient/platform_achievement/platform_achievement_client.go) | [BulkCreatePSNEventShort](../../services-api/pkg/service/achievement/platformAchievement.go) | [BulkCreatePSNEventShort](../../samples/cli/cmd/achievement/platformAchievement/bulkCreatePSNEvent.go) |
+
 ### Tags Wrapper:  [Tags](../../services-api/pkg/service/achievement/tags.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -62,9 +67,16 @@
 | `models.AchievementResponse` | [ModelsAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_response.go) |
 | `models.AchievementUpdateRequest` | [ModelsAchievementUpdateRequest ](../../achievement-sdk/pkg/achievementclientmodels/models_achievement_update_request.go) |
 | `models.AdditionalInfo` | [ModelsAdditionalInfo ](../../achievement-sdk/pkg/achievementclientmodels/models_additional_info.go) |
+| `models.BulkCreatePSNEventResponse` | [ModelsBulkCreatePSNEventResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_bulk_create_p_s_n_event_response.go) |
+| `models.BulkCreatePSNEvents` | [ModelsBulkCreatePSNEvents ](../../achievement-sdk/pkg/achievementclientmodels/models_bulk_create_p_s_n_events.go) |
 | `models.ContributorResponse` | [ModelsContributorResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_contributor_response.go) |
+| `models.CreatePSNEvent` | [ModelsCreatePSNEvent ](../../achievement-sdk/pkg/achievementclientmodels/models_create_p_s_n_event.go) |
+| `models.ErrorDetails` | [ModelsErrorDetails ](../../achievement-sdk/pkg/achievementclientmodels/models_error_details.go) |
 | `models.GlobalAchievementResponse` | [ModelsGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_global_achievement_response.go) |
 | `models.Icon` | [ModelsIcon ](../../achievement-sdk/pkg/achievementclientmodels/models_icon.go) |
+| `models.PSNEvent` | [ModelsPSNEvent ](../../achievement-sdk/pkg/achievementclientmodels/models_p_s_n_event.go) |
+| `models.PSNEventData` | [ModelsPSNEventData ](../../achievement-sdk/pkg/achievementclientmodels/models_p_s_n_event_data.go) |
+| `models.PSNEventResult` | [ModelsPSNEventResult ](../../achievement-sdk/pkg/achievementclientmodels/models_p_s_n_event_result.go) |
 | `models.PaginatedAchievementResponse` | [ModelsPaginatedAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_achievement_response.go) |
 | `models.PaginatedContributorResponse` | [ModelsPaginatedContributorResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_contributor_response.go) |
 | `models.PaginatedGlobalAchievementResponse` | [ModelsPaginatedGlobalAchievementResponse ](../../achievement-sdk/pkg/achievementclientmodels/models_paginated_global_achievement_response.go) |

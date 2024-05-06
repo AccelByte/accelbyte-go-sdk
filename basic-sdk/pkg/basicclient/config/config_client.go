@@ -32,12 +32,12 @@ type Client struct {
 type ClientService interface {
 	CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigForbidden, *CreateConfigConflict, error)
 	CreateConfigShort(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, error)
-	GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, *GetConfig1BadRequest, *GetConfig1Unauthorized, *GetConfig1Forbidden, *GetConfig1NotFound, error)
-	GetConfig1Short(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, error)
-	DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, *DeleteConfig1BadRequest, *DeleteConfig1Unauthorized, *DeleteConfig1Forbidden, *DeleteConfig1NotFound, error)
-	DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, error)
-	UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error)
-	UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, error)
+	GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigBadRequest, *GetConfigUnauthorized, *GetConfigForbidden, *GetConfigNotFound, error)
+	GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error)
+	DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, *DeleteConfigBadRequest, *DeleteConfigUnauthorized, *DeleteConfigForbidden, *DeleteConfigNotFound, error)
+	DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error)
+	UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigUnauthorized, *UpdateConfigForbidden, *UpdateConfigNotFound, error)
+	UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error)
 	GetPublisherConfig(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, *GetPublisherConfigBadRequest, *GetPublisherConfigUnauthorized, *GetPublisherConfigForbidden, *GetPublisherConfigNotFound, error)
 	GetPublisherConfigShort(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, error)
 
@@ -51,8 +51,7 @@ CreateConfig create a config
 Create a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=1 (CREATE)
-  *  Returns : created config
+  * Returns : created config
 */
 func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigForbidden, *CreateConfigConflict, error) {
 	// TODO: Validate the params before sending
@@ -116,8 +115,7 @@ CreateConfigShort create a config
 Create a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=1 (CREATE)
-  *  Returns : created config
+  * Returns : created config
 */
 func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, error) {
 	// TODO: Validate the params before sending
@@ -169,19 +167,18 @@ func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.
 }
 
 /*
-Deprecated: 2022-08-10 - Use GetConfig1Short instead.
+Deprecated: 2022-08-10 - Use GetConfigShort instead.
 
-GetConfig1 get a config
+GetConfig get a config
 Get a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=2 (READ)
-  *  Returns : config
+  * Returns : config
 */
-func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, *GetConfig1BadRequest, *GetConfig1Unauthorized, *GetConfig1Forbidden, *GetConfig1NotFound, error) {
+func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigBadRequest, *GetConfigUnauthorized, *GetConfigForbidden, *GetConfigNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetConfig1Params()
+		params = NewGetConfigParams()
 	}
 
 	if params.Context == nil {
@@ -197,14 +194,14 @@ func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAut
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getConfig_1",
+		ID:                 "getConfig",
 		Method:             "GET",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetConfig1Reader{formats: a.formats},
+		Reader:             &GetConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -215,19 +212,19 @@ func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAut
 
 	switch v := result.(type) {
 
-	case *GetConfig1OK:
+	case *GetConfigOK:
 		return v, nil, nil, nil, nil, nil
 
-	case *GetConfig1BadRequest:
+	case *GetConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *GetConfig1Unauthorized:
+	case *GetConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *GetConfig1Forbidden:
+	case *GetConfigForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *GetConfig1NotFound:
+	case *GetConfigNotFound:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -236,17 +233,16 @@ func (a *Client) GetConfig1(params *GetConfig1Params, authInfo runtime.ClientAut
 }
 
 /*
-GetConfig1Short get a config
+GetConfigShort get a config
 Get a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=2 (READ)
-  *  Returns : config
+  * Returns : config
 */
-func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetConfig1OK, error) {
+func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetConfig1Params()
+		params = NewGetConfigParams()
 	}
 
 	if params.Context == nil {
@@ -258,14 +254,14 @@ func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.Clie
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getConfig_1",
+		ID:                 "getConfig",
 		Method:             "GET",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetConfig1Reader{formats: a.formats},
+		Reader:             &GetConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -276,15 +272,15 @@ func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.Clie
 
 	switch v := result.(type) {
 
-	case *GetConfig1OK:
+	case *GetConfigOK:
 		return v, nil
-	case *GetConfig1BadRequest:
+	case *GetConfigBadRequest:
 		return nil, v
-	case *GetConfig1Unauthorized:
+	case *GetConfigUnauthorized:
 		return nil, v
-	case *GetConfig1Forbidden:
+	case *GetConfigForbidden:
 		return nil, v
-	case *GetConfig1NotFound:
+	case *GetConfigNotFound:
 		return nil, v
 
 	default:
@@ -293,19 +289,18 @@ func (a *Client) GetConfig1Short(params *GetConfig1Params, authInfo runtime.Clie
 }
 
 /*
-Deprecated: 2022-08-10 - Use DeleteConfig1Short instead.
+Deprecated: 2022-08-10 - Use DeleteConfigShort instead.
 
-DeleteConfig1 delete a config
+DeleteConfig delete a config
 Delete a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=8 (DELETE)
-  *  Returns : created config
+  * Returns : created config
 */
-func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, *DeleteConfig1BadRequest, *DeleteConfig1Unauthorized, *DeleteConfig1Forbidden, *DeleteConfig1NotFound, error) {
+func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, *DeleteConfigBadRequest, *DeleteConfigUnauthorized, *DeleteConfigForbidden, *DeleteConfigNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteConfig1Params()
+		params = NewDeleteConfigParams()
 	}
 
 	if params.Context == nil {
@@ -321,14 +316,14 @@ func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.Cli
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteConfig_1",
+		ID:                 "deleteConfig",
 		Method:             "DELETE",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteConfig1Reader{formats: a.formats},
+		Reader:             &DeleteConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -339,19 +334,19 @@ func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *DeleteConfig1NoContent:
+	case *DeleteConfigNoContent:
 		return v, nil, nil, nil, nil, nil
 
-	case *DeleteConfig1BadRequest:
+	case *DeleteConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *DeleteConfig1Unauthorized:
+	case *DeleteConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *DeleteConfig1Forbidden:
+	case *DeleteConfigForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *DeleteConfig1NotFound:
+	case *DeleteConfigNotFound:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -360,17 +355,16 @@ func (a *Client) DeleteConfig1(params *DeleteConfig1Params, authInfo runtime.Cli
 }
 
 /*
-DeleteConfig1Short delete a config
+DeleteConfigShort delete a config
 Delete a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=8 (DELETE)
-  *  Returns : created config
+  * Returns : created config
 */
-func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfig1NoContent, error) {
+func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteConfig1Params()
+		params = NewDeleteConfigParams()
 	}
 
 	if params.Context == nil {
@@ -382,14 +376,14 @@ func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtim
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteConfig_1",
+		ID:                 "deleteConfig",
 		Method:             "DELETE",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteConfig1Reader{formats: a.formats},
+		Reader:             &DeleteConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -400,15 +394,15 @@ func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *DeleteConfig1NoContent:
+	case *DeleteConfigNoContent:
 		return v, nil
-	case *DeleteConfig1BadRequest:
+	case *DeleteConfigBadRequest:
 		return nil, v
-	case *DeleteConfig1Unauthorized:
+	case *DeleteConfigUnauthorized:
 		return nil, v
-	case *DeleteConfig1Forbidden:
+	case *DeleteConfigForbidden:
 		return nil, v
-	case *DeleteConfig1NotFound:
+	case *DeleteConfigNotFound:
 		return nil, v
 
 	default:
@@ -417,19 +411,18 @@ func (a *Client) DeleteConfig1Short(params *DeleteConfig1Params, authInfo runtim
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdateConfig1Short instead.
+Deprecated: 2022-08-10 - Use UpdateConfigShort instead.
 
-UpdateConfig1 update a config
+UpdateConfig update a config
 Update a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=4 (UPDATE)
-  *  Returns : created config
+  * Returns : created config
 */
-func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, *UpdateConfig1BadRequest, *UpdateConfig1Unauthorized, *UpdateConfig1Forbidden, *UpdateConfig1NotFound, error) {
+func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigUnauthorized, *UpdateConfigForbidden, *UpdateConfigNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateConfig1Params()
+		params = NewUpdateConfigParams()
 	}
 
 	if params.Context == nil {
@@ -445,14 +438,14 @@ func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.Cli
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateConfig_1",
+		ID:                 "updateConfig",
 		Method:             "PATCH",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateConfig1Reader{formats: a.formats},
+		Reader:             &UpdateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -463,19 +456,19 @@ func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *UpdateConfig1OK:
+	case *UpdateConfigOK:
 		return v, nil, nil, nil, nil, nil
 
-	case *UpdateConfig1BadRequest:
+	case *UpdateConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *UpdateConfig1Unauthorized:
+	case *UpdateConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *UpdateConfig1Forbidden:
+	case *UpdateConfigForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *UpdateConfig1NotFound:
+	case *UpdateConfigNotFound:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -484,17 +477,16 @@ func (a *Client) UpdateConfig1(params *UpdateConfig1Params, authInfo runtime.Cli
 }
 
 /*
-UpdateConfig1Short update a config
+UpdateConfigShort update a config
 Update a config.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=4 (UPDATE)
-  *  Returns : created config
+  * Returns : created config
 */
-func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfig1OK, error) {
+func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateConfig1Params()
+		params = NewUpdateConfigParams()
 	}
 
 	if params.Context == nil {
@@ -506,14 +498,14 @@ func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtim
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateConfig_1",
+		ID:                 "updateConfig",
 		Method:             "PATCH",
 		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/configs/{configKey}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateConfig1Reader{formats: a.formats},
+		Reader:             &UpdateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -524,15 +516,15 @@ func (a *Client) UpdateConfig1Short(params *UpdateConfig1Params, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *UpdateConfig1OK:
+	case *UpdateConfigOK:
 		return v, nil
-	case *UpdateConfig1BadRequest:
+	case *UpdateConfigBadRequest:
 		return nil, v
-	case *UpdateConfig1Unauthorized:
+	case *UpdateConfigUnauthorized:
 		return nil, v
-	case *UpdateConfig1Forbidden:
+	case *UpdateConfigForbidden:
 		return nil, v
-	case *UpdateConfig1NotFound:
+	case *UpdateConfigNotFound:
 		return nil, v
 
 	default:
@@ -548,8 +540,7 @@ Get a publisher config.
 It will return a publisher namespace config of the given namespace and key.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=2 (READ)
-  *  Returns : config
+  * Returns : config
 */
 func (a *Client) GetPublisherConfig(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, *GetPublisherConfigBadRequest, *GetPublisherConfigUnauthorized, *GetPublisherConfigForbidden, *GetPublisherConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -614,8 +605,7 @@ Get a publisher config.
 It will return a publisher namespace config of the given namespace and key.
 Other detail info:
 
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG" , action=2 (READ)
-  *  Returns : config
+  * Returns : config
 */
 func (a *Client) GetPublisherConfigShort(params *GetPublisherConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherConfigOK, error) {
 	// TODO: Validate the params before sending

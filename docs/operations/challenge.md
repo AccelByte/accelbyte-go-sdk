@@ -59,6 +59,7 @@
 | `model.CreateGoalRequest` | [ModelCreateGoalRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_create_goal_request.go) |
 | `model.EvaluatePlayerProgressionRequest` | [ModelEvaluatePlayerProgressionRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_evaluate_player_progression_request.go) |
 | `model.GetGoalsResponse` | [ModelGetGoalsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_get_goals_response.go) |
+| `model.GoalMeta` | [ModelGoalMeta ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_meta.go) |
 | `model.GoalOrder` | [ModelGoalOrder ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_order.go) |
 | `model.GoalProgressionResponse` | [ModelGoalProgressionResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_progression_response.go) |
 | `model.GoalResponse` | [ModelGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_response.go) |

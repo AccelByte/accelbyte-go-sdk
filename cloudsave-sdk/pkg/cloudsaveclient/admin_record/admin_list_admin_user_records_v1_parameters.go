@@ -105,6 +105,11 @@ type AdminListAdminUserRecordsV1Params struct {
 
 	*/
 	Offset *int64
+	/*Query
+	  query, search admin player records by key
+
+	*/
+	Query *string
 	/*Tags
 	  filter list by tags, max 5 tags per request
 
@@ -220,6 +225,17 @@ func (o *AdminListAdminUserRecordsV1Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithQuery adds the query to the admin list admin user records v1 params
+func (o *AdminListAdminUserRecordsV1Params) WithQuery(query *string) *AdminListAdminUserRecordsV1Params {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the admin list admin user records v1 params
+func (o *AdminListAdminUserRecordsV1Params) SetQuery(query *string) {
+	o.Query = query
+}
+
 // WithTags adds the tags to the admin list admin user records v1 params
 func (o *AdminListAdminUserRecordsV1Params) WithTags(tags []string) *AdminListAdminUserRecordsV1Params {
 	o.SetTags(tags)
@@ -275,6 +291,22 @@ func (o *AdminListAdminUserRecordsV1Params) WriteToRequest(r runtime.ClientReque
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+			if err := r.SetQueryParam("query", qQuery); err != nil {
 				return err
 			}
 		}

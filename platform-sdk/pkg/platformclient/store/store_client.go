@@ -31,6 +31,10 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetCatalogConfig(params *GetCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogConfigOK, error)
+	GetCatalogConfigShort(params *GetCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogConfigOK, error)
+	UpdateCatalogConfig(params *UpdateCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCatalogConfigOK, *UpdateCatalogConfigUnprocessableEntity, error)
+	UpdateCatalogConfigShort(params *UpdateCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCatalogConfigOK, error)
 	ListStores(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error)
 	ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error)
 	CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error)
@@ -76,6 +80,205 @@ type ClientService interface {
 }
 
 /*
+Deprecated: 2022-08-10 - Use GetCatalogConfigShort instead.
+
+GetCatalogConfig get catalog config
+Get catalog config.
+*/
+func (a *Client) GetCatalogConfig(params *GetCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCatalogConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCatalogConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCatalogConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCatalogConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetCatalogConfigShort get catalog config
+Get catalog config.
+*/
+func (a *Client) GetCatalogConfigShort(params *GetCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCatalogConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCatalogConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCatalogConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCatalogConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateCatalogConfigShort instead.
+
+UpdateCatalogConfig update catalog config
+Update catalog config. Other detail info:
+  * Returns : updated catalog config
+*/
+func (a *Client) UpdateCatalogConfig(params *UpdateCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCatalogConfigOK, *UpdateCatalogConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCatalogConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCatalogConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCatalogConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCatalogConfigOK:
+		return v, nil, nil
+
+	case *UpdateCatalogConfigUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateCatalogConfigShort update catalog config
+Update catalog config. Other detail info:
+  * Returns : updated catalog config
+*/
+func (a *Client) UpdateCatalogConfigShort(params *UpdateCatalogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCatalogConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCatalogConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCatalogConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/catalog/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCatalogConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCatalogConfigOK:
+		return v, nil
+	case *UpdateCatalogConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use ListStoresShort instead.
 
 ListStores list stores
@@ -83,8 +286,7 @@ This API is used to list stores in a namespace.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : the list of stores
+  * Returns : the list of stores
 */
 func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error) {
 	// TODO: Validate the params before sending
@@ -137,8 +339,7 @@ This API is used to list stores in a namespace.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : the list of stores
+  * Returns : the list of stores
 */
 func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error) {
 	// TODO: Validate the params before sending
@@ -189,8 +390,7 @@ This API is used to create a non published store in a namespace.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created store data
+  * Returns : created store data
 */
 func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -249,8 +449,7 @@ This API is used to create a non published store in a namespace.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : created store data
+  * Returns : created store data
 */
 func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, error) {
 	// TODO: Validate the params before sending
@@ -305,8 +504,7 @@ This API is used to get catalog definition for import/export store by CSV
 
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:STORE, action=2 (READ)
-  *  Returns : catalog definition
+  * Returns : catalog definition
 */
 func (a *Client) GetCatalogDefinition(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error) {
 	// TODO: Validate the params before sending
@@ -359,8 +557,7 @@ This API is used to get catalog definition for import/export store by CSV
 
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:STORE, action=2 (READ)
-  *  Returns : catalog definition
+  * Returns : catalog definition
 */
 func (a *Client) GetCatalogDefinitionShort(params *GetCatalogDefinitionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCatalogDefinitionOK, error) {
 	// TODO: Validate the params before sending
@@ -408,10 +605,6 @@ Deprecated: 2022-08-10 - Use DownloadCSVTemplatesShort instead.
 
 DownloadCSVTemplates download store csv templates
 This API is used to download store csv templates for store importing by CSV feature
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) DownloadCSVTemplates(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error) {
 	// TODO: Validate the params before sending
@@ -461,10 +654,6 @@ func (a *Client) DownloadCSVTemplates(params *DownloadCSVTemplatesParams, authIn
 /*
 DownloadCSVTemplatesShort download store csv templates
 This API is used to download store csv templates for store importing by CSV feature
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) DownloadCSVTemplatesShort(params *DownloadCSVTemplatesParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadCSVTemplatesOK, error) {
 	// TODO: Validate the params before sending
@@ -512,10 +701,6 @@ Deprecated: 2022-08-10 - Use ExportStoreByCSVShort instead.
 
 ExportStoreByCSV export a store to csv format
 This API is used to export a store to CSV format
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStoreByCSV(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, *ExportStoreByCSVBadRequest, *ExportStoreByCSVNotFound, *ExportStoreByCSVConflict, error) {
 	// TODO: Validate the params before sending
@@ -574,10 +759,6 @@ func (a *Client) ExportStoreByCSV(params *ExportStoreByCSVParams, authInfo runti
 /*
 ExportStoreByCSVShort export a store to csv format
 This API is used to export a store to CSV format
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStoreByCSVShort(params *ExportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreByCSVOK, error) {
 	// TODO: Validate the params before sending
@@ -633,9 +814,6 @@ ImportStore import a store
 This API is used to import a store.
 
 This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/import to import store.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, *ImportStoreBadRequest, *ImportStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -693,9 +871,6 @@ ImportStoreShort import a store
 This API is used to import a store.
 
 This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/import to import store.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -750,8 +925,7 @@ This API is used to get a published store basic info, exclude category and item 
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store data
+  * Returns : store data
 */
 func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -807,8 +981,7 @@ This API is used to get a published store basic info, exclude category and item 
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store data
+  * Returns : store data
 */
 func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -860,10 +1033,6 @@ DeletePublishedStore delete published store
 This API is used to delete published store including category and items before release to public.
 
  Warning: Please do not use this API once published to public user.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, *DeletePublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -918,10 +1087,6 @@ DeletePublishedStoreShort delete published store
 This API is used to delete published store including category and items before release to public.
 
  Warning: Please do not use this API once published to public user.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
 */
 func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -974,8 +1139,7 @@ This API is used to get a store's backup.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store backup info
+  * Returns : store backup info
 */
 func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, *GetPublishedStoreBackupNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1031,8 +1195,7 @@ This API is used to get a store's backup.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store backup info
+  * Returns : store backup info
 */
 func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, error) {
 	// TODO: Validate the params before sending
@@ -1085,8 +1248,7 @@ This API is used to rollback a published store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated store info
+  * Returns : updated store info
 */
 func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, *RollbackPublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1142,8 +1304,7 @@ This API is used to rollback a published store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated store info
+  * Returns : updated store info
 */
 func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1196,8 +1357,7 @@ This API is used to get a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store data
+  * Returns : store data
 */
 func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, *GetStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1253,8 +1413,7 @@ This API is used to get a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
-  *  Returns : store data
+  * Returns : store data
 */
 func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1307,8 +1466,7 @@ This API is used to Update a store basic info.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated store data
+  * Returns : updated store data
 */
 func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, *UpdateStoreNotFound, *UpdateStoreConflict, *UpdateStoreUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1370,8 +1528,7 @@ This API is used to Update a store basic info.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
-  *  Returns : updated store data
+  * Returns : updated store data
 */
 func (a *Client) UpdateStoreShort(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1427,8 +1584,7 @@ DeleteStore delete a store
 This API is used to delete a store. Only non published store can be deleted.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
-  *  Returns : store
+  * Returns : store
 */
 func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, *DeleteStoreNotFound, *DeleteStoreConflict, error) {
 	// TODO: Validate the params before sending
@@ -1486,8 +1642,7 @@ DeleteStoreShort delete a store
 This API is used to delete a store. Only non published store can be deleted.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)
-  *  Returns : store
+  * Returns : store
 */
 func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1542,8 +1697,7 @@ This API is used to clone a store. Usually clone a draft store to published stor
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : clone store info
+  * Returns : clone store info
 */
 func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, *CloneStoreBadRequest, *CloneStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1602,8 +1756,7 @@ This API is used to clone a store. Usually clone a draft store to published stor
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)
-  *  Returns : clone store info
+  * Returns : clone store info
 */
 func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1657,9 +1810,6 @@ ExportStore export a store
 This API is used to export a store.
 
 This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/export to export store.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, *ExportStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1714,9 +1864,6 @@ ExportStoreShort export a store
 This API is used to export a store.
 
 This api has been deprecated, pls use /v2/admin/namespaces/{namespace}/stores/export to export store.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -1766,10 +1913,6 @@ Deprecated: 2022-08-10 - Use QueryImportHistoryShort instead.
 
 QueryImportHistory query import store history
 This API is used to query import store history
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) QueryImportHistory(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, *QueryImportHistoryBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1822,10 +1965,6 @@ func (a *Client) QueryImportHistory(params *QueryImportHistoryParams, authInfo r
 /*
 QueryImportHistoryShort query import store history
 This API is used to query import store history
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) QueryImportHistoryShort(params *QueryImportHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryImportHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -1875,10 +2014,6 @@ Deprecated: 2022-08-10 - Use ImportStoreByCSVShort instead.
 
 ImportStoreByCSV import store using csv format
 This API is used to import a store by CSV format.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, *ImportStoreByCSVBadRequest, *ImportStoreByCSVNotFound, *ImportStoreByCSVConflict, error) {
 	// TODO: Validate the params before sending
@@ -1937,10 +2072,6 @@ func (a *Client) ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runti
 /*
 ImportStoreByCSVShort import store using csv format
 This API is used to import a store by CSV format.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStoreByCSVShort(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, error) {
 	// TODO: Validate the params before sending
@@ -2100,10 +2231,6 @@ Deprecated: 2022-08-10 - Use ImportStore1Short instead.
 
 ImportStore1 import a store
 This API is used to import a store.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStore1(params *ImportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportStore1OK, *ImportStore1BadRequest, *ImportStore1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2159,10 +2286,6 @@ func (a *Client) ImportStore1(params *ImportStore1Params, authInfo runtime.Clien
 /*
 ImportStore1Short import a store
 This API is used to import a store.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)
 */
 func (a *Client) ImportStore1Short(params *ImportStore1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportStore1OK, error) {
 	// TODO: Validate the params before sending
@@ -2214,10 +2337,6 @@ Deprecated: 2022-08-10 - Use ExportStore1Short instead.
 
 ExportStore1 export a store
 This API is used to export a whole or partial store.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, *ExportStore1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2270,10 +2389,6 @@ func (a *Client) ExportStore1(params *ExportStore1Params, authInfo runtime.Clien
 /*
 ExportStore1Short export a store
 This API is used to export a whole or partial store.
-
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)
 */
 func (a *Client) ExportStore1Short(params *ExportStore1Params, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStore1OK, error) {
 	// TODO: Validate the params before sending

@@ -69,11 +69,11 @@ type DownloadExportedAgreementsInCSVParams struct {
 
 	*/
 	Namespace string
-	/*PolicyVersionID
-	  Policy Version Id
+	/*ExportID
+	  Export Id
 
 	*/
-	PolicyVersionID string
+	ExportID string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -151,15 +151,15 @@ func (o *DownloadExportedAgreementsInCSVParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithPolicyVersionID adds the policyVersionID to the download exported agreements in csv params
-func (o *DownloadExportedAgreementsInCSVParams) WithPolicyVersionID(policyVersionID string) *DownloadExportedAgreementsInCSVParams {
-	o.SetPolicyVersionID(policyVersionID)
+// WithExportID adds the exportID to the download exported agreements in csv params
+func (o *DownloadExportedAgreementsInCSVParams) WithExportID(exportID string) *DownloadExportedAgreementsInCSVParams {
+	o.SetExportID(exportID)
 	return o
 }
 
-// SetPolicyVersionID adds the policyVersionId to the download exported agreements in csv params
-func (o *DownloadExportedAgreementsInCSVParams) SetPolicyVersionID(policyVersionID string) {
-	o.PolicyVersionID = policyVersionID
+// SetExportID adds the exportId to the download exported agreements in csv params
+func (o *DownloadExportedAgreementsInCSVParams) SetExportID(exportID string) {
+	o.ExportID = exportID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -175,11 +175,11 @@ func (o *DownloadExportedAgreementsInCSVParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 
-	// query param policyVersionId
-	qrPolicyVersionID := o.PolicyVersionID
-	qPolicyVersionID := qrPolicyVersionID
-	if qPolicyVersionID != "" {
-		if err := r.SetQueryParam("policyVersionId", qPolicyVersionID); err != nil {
+	// query param exportId
+	qrExportID := o.ExportID
+	qExportID := qrExportID
+	if qExportID != "" {
+		if err := r.SetQueryParam("exportId", qExportID); err != nil {
 			return err
 		}
 	}

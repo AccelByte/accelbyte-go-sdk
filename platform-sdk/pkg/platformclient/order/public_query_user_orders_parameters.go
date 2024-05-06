@@ -38,12 +38,14 @@ const (
 // with the default values initialized.
 func NewPublicQueryUserOrdersParams() *PublicQueryUserOrdersParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		discountedDefault = bool(false)
+		limitDefault      = int32(20)
+		offsetDefault     = int32(0)
 	)
 	return &PublicQueryUserOrdersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Discounted: &discountedDefault,
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -53,12 +55,14 @@ func NewPublicQueryUserOrdersParams() *PublicQueryUserOrdersParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicQueryUserOrdersParamsWithTimeout(timeout time.Duration) *PublicQueryUserOrdersParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		discountedDefault = bool(false)
+		limitDefault      = int32(20)
+		offsetDefault     = int32(0)
 	)
 	return &PublicQueryUserOrdersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Discounted: &discountedDefault,
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -68,12 +72,14 @@ func NewPublicQueryUserOrdersParamsWithTimeout(timeout time.Duration) *PublicQue
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicQueryUserOrdersParamsWithContext(ctx context.Context) *PublicQueryUserOrdersParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		discountedDefault = bool(false)
+		limitDefault      = int32(20)
+		offsetDefault     = int32(0)
 	)
 	return &PublicQueryUserOrdersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Discounted: &discountedDefault,
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 
 		Context: ctx,
 	}
@@ -83,10 +89,12 @@ func NewPublicQueryUserOrdersParamsWithContext(ctx context.Context) *PublicQuery
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicQueryUserOrdersParamsWithHTTPClient(client *http.Client) *PublicQueryUserOrdersParams {
 	var (
-		limitDefault  = int32(20)
-		offsetDefault = int32(0)
+		discountedDefault = bool(false)
+		limitDefault      = int32(20)
+		offsetDefault     = int32(0)
 	)
 	return &PublicQueryUserOrdersParams{
+		Discounted: &discountedDefault,
 		Limit:      &limitDefault,
 		Offset:     &offsetDefault,
 		HTTPClient: client,
@@ -104,6 +112,8 @@ type PublicQueryUserOrdersParams struct {
 	Namespace string
 	/*UserID*/
 	UserID string
+	/*Discounted*/
+	Discounted *bool
 	/*ItemID*/
 	ItemID *string
 	/*Limit*/
@@ -200,6 +210,17 @@ func (o *PublicQueryUserOrdersParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithDiscounted adds the discounted to the public query user orders params
+func (o *PublicQueryUserOrdersParams) WithDiscounted(discounted *bool) *PublicQueryUserOrdersParams {
+	o.SetDiscounted(discounted)
+	return o
+}
+
+// SetDiscounted adds the discounted to the public query user orders params
+func (o *PublicQueryUserOrdersParams) SetDiscounted(discounted *bool) {
+	o.Discounted = discounted
+}
+
 // WithItemID adds the itemID to the public query user orders params
 func (o *PublicQueryUserOrdersParams) WithItemID(itemID *string) *PublicQueryUserOrdersParams {
 	o.SetItemID(itemID)
@@ -260,6 +281,22 @@ func (o *PublicQueryUserOrdersParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.Discounted != nil {
+
+		// query param discounted
+		var qrDiscounted bool
+		if o.Discounted != nil {
+			qrDiscounted = *o.Discounted
+		}
+		qDiscounted := swag.FormatBool(qrDiscounted)
+		if qDiscounted != "" {
+			if err := r.SetQueryParam("discounted", qDiscounted); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.ItemID != nil {

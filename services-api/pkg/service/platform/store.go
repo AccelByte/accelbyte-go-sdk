@@ -40,6 +40,37 @@ func (aaa *StoreService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetCatalogConfigShort instead.
+func (aaa *StoreService) GetCatalogConfig(input *store.GetCatalogConfigParams) (*platformclientmodels.CatalogConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Store.GetCatalogConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateCatalogConfigShort instead.
+func (aaa *StoreService) UpdateCatalogConfig(input *store.UpdateCatalogConfigParams) (*platformclientmodels.CatalogConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.Store.UpdateCatalogConfig(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ListStoresShort instead.
 func (aaa *StoreService) ListStores(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -390,6 +421,66 @@ func (aaa *StoreService) ExportStore1(input *store.ExportStore1Params, writer io
 	if notFound != nil {
 		return nil, notFound
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) GetCatalogConfigShort(input *store.GetCatalogConfigParams) (*platformclientmodels.CatalogConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.GetCatalogConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *StoreService) UpdateCatalogConfigShort(input *store.UpdateCatalogConfigParams) (*platformclientmodels.CatalogConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStore != nil {
+		input.XFlightId = tempFlightIdStore
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Store.UpdateCatalogConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

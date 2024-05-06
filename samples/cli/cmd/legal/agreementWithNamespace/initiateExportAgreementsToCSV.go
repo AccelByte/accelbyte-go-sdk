@@ -27,9 +27,13 @@ var InitiateExportAgreementsToCSVCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		policyVersionId, _ := cmd.Flags().GetString("policyVersionId")
+		start, _ := cmd.Flags().GetString("start")
+		end, _ := cmd.Flags().GetString("end")
 		input := &agreement_with_namespace.InitiateExportAgreementsToCSVParams{
 			Namespace:       namespace,
+			End:             &end,
 			PolicyVersionID: policyVersionId,
+			Start:           start,
 		}
 		ok, errOK := agreementWithNamespaceService.InitiateExportAgreementsToCSVShort(input)
 		if errOK != nil {
@@ -47,6 +51,9 @@ var InitiateExportAgreementsToCSVCmd = &cobra.Command{
 func init() {
 	InitiateExportAgreementsToCSVCmd.Flags().String("namespace", "", "Namespace")
 	_ = InitiateExportAgreementsToCSVCmd.MarkFlagRequired("namespace")
+	InitiateExportAgreementsToCSVCmd.Flags().String("end", "", "End")
 	InitiateExportAgreementsToCSVCmd.Flags().String("policyVersionId", "", "Policy version id")
 	_ = InitiateExportAgreementsToCSVCmd.MarkFlagRequired("policyVersionId")
+	InitiateExportAgreementsToCSVCmd.Flags().String("start", "", "Start")
+	_ = InitiateExportAgreementsToCSVCmd.MarkFlagRequired("start")
 }

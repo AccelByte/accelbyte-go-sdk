@@ -33,13 +33,13 @@ type UserProfileUpdate struct {
 	// Format: date
 	DateOfBirth *string `json:"dateOfBirth,omitempty"`
 
-	// firstname
+	// deprecated
 	FirstName string `json:"firstName,omitempty"`
 
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
 
-	// lastname
+	// deprecated
 	LastName string `json:"lastName,omitempty"`
 
 	// privatecustomattributes

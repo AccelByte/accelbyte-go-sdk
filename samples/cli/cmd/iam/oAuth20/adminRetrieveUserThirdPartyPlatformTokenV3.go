@@ -28,10 +28,12 @@ var AdminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		userId, _ := cmd.Flags().GetString("userId")
+		platformUserId, _ := cmd.Flags().GetString("platformUserId")
 		input := &o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params{
-			Namespace:  namespace,
-			PlatformID: platformId,
-			UserID:     userId,
+			Namespace:      namespace,
+			PlatformID:     platformId,
+			UserID:         userId,
+			PlatformUserID: &platformUserId,
 		}
 		ok, errOK := oAuth20Service.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input)
 		if errOK != nil {
@@ -53,4 +55,5 @@ func init() {
 	_ = AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("platformId")
 	AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().String("userId", "", "User id")
 	_ = AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("userId")
+	AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().String("platformUserId", "", "Platform user id")
 }

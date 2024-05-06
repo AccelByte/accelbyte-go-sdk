@@ -53,9 +53,6 @@ Deprecated: 2022-08-10 - Use RetrievePoliciesShort instead.
 
 RetrievePolicies retrieve policies by country
 Retrieve all active policies based on a country.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrievePolicies(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error) {
 	// TODO: Validate the params before sending
@@ -105,9 +102,6 @@ func (a *Client) RetrievePolicies(params *RetrievePoliciesParams, authInfo runti
 /*
 RetrievePoliciesShort retrieve policies by country
 Retrieve all active policies based on a country.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error) {
 	// TODO: Validate the params before sending
@@ -155,9 +149,6 @@ Deprecated: 2022-08-10 - Use UpdatePolicyShort instead.
 
 UpdatePolicy update country-specific policy
 Update country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -210,9 +201,6 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 /*
 UpdatePolicyShort update country-specific policy
 Update country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error) {
 	// TODO: Validate the params before sending
@@ -262,9 +250,6 @@ Deprecated: 2022-08-10 - Use SetDefaultPolicy2Short instead.
 
 SetDefaultPolicy2 set default policy
 Update a policy to be the default.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -317,9 +302,6 @@ func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo run
 /*
 SetDefaultPolicy2Short set default policy
 Update a policy to be the default.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error) {
 	// TODO: Validate the params before sending
@@ -579,7 +561,6 @@ Other detail info:
     * User: Region UA
     * Query: alwaysIncludeDefault: true
     * Response: Document 1 (UA), Document 2 (US), Document 3 (US)
-  *  Required permission: login user
 */
 func (a *Client) RetrieveLatestPoliciesPublic(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, *RetrieveLatestPoliciesPublicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -644,7 +625,6 @@ Other detail info:
     * User: Region UA
     * Query: alwaysIncludeDefault: true
     * Response: Document 1 (UA), Document 2 (US), Document 3 (US)
-  *  Required permission: login user
 */
 func (a *Client) RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, error) {
 	// TODO: Validate the params before sending

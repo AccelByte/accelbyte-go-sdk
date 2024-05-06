@@ -55,6 +55,10 @@ type ModelsConfigResponse struct {
 	// Format: int64
 	GeneralRateLimitDuration int64 `json:"generalRateLimitDuration,omitempty"`
 
+	// maxchatmessagelength
+	// Format: int32
+	MaxChatMessageLength int32 `json:"maxChatMessageLength,omitempty"`
+
 	// shardcapacitylimit
 	// Format: int32
 	ShardCapacityLimit int32 `json:"shardCapacityLimit,omitempty"`

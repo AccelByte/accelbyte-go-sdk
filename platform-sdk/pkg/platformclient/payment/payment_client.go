@@ -59,8 +59,7 @@ QueryPaymentNotifications query payment notifications
  [Not Supported Yet In Starter] Query payment notifications.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION", action=2 (READ)
-  *  Returns : Payment notifications
+  * Returns : Payment notifications
 */
 func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error) {
 	// TODO: Validate the params before sending
@@ -112,8 +111,7 @@ QueryPaymentNotificationsShort query payment notifications
  [Not Supported Yet In Starter] Query payment notifications.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION", action=2 (READ)
-  *  Returns : Payment notifications
+  * Returns : Payment notifications
 */
 func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error) {
 	// TODO: Validate the params before sending
@@ -163,8 +161,7 @@ QueryPaymentOrders query payment orders
  [Not Supported Yet In Starter] Query payment orders.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : query payment orders
+  * Returns : query payment orders
 */
 func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -216,8 +213,7 @@ QueryPaymentOrdersShort query payment orders
  [Not Supported Yet In Starter] Query payment orders.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : query payment orders
+  * Returns : query payment orders
 */
 func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -267,8 +263,7 @@ ListExtOrderNoByExtTxID list external order no by external transaction id
  [Not Supported Yet In Starter] List external order No by external transaction id.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment orders
+  * Returns : payment orders
 */
 func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error) {
 	// TODO: Validate the params before sending
@@ -320,8 +315,7 @@ ListExtOrderNoByExtTxIDShort list external order no by external transaction id
  [Not Supported Yet In Starter] List external order No by external transaction id.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment orders
+  * Returns : payment orders
 */
 func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error) {
 	// TODO: Validate the params before sending
@@ -371,8 +365,7 @@ GetPaymentOrder get payment order
  [Not Supported Yet In Starter] Get payment order by paymentOrderNo.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment order instance
+  * Returns : payment order instance
 */
 func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, *GetPaymentOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -427,8 +420,7 @@ GetPaymentOrderShort get payment order
  [Not Supported Yet In Starter] Get payment order by paymentOrderNo.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment order instance
+  * Returns : payment order instance
 */
 func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -480,8 +472,7 @@ ChargePaymentOrder charge payment order without payment flow
  [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
-  *  Returns : payment order instance
+  * Returns : payment order instance
 */
 func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, *ChargePaymentOrderBadRequest, *ChargePaymentOrderNotFound, *ChargePaymentOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -542,8 +533,7 @@ ChargePaymentOrderShort charge payment order without payment flow
  [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
-  *  Returns : payment order instance
+  * Returns : payment order instance
 */
 func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -599,8 +589,7 @@ SimulatePaymentOrderNotification simulate payment notification
  [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
-  *  Returns : notification process result
+  * Returns : notification process result
 */
 func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -658,8 +647,7 @@ SimulatePaymentOrderNotificationShort simulate payment notification
  [Not Supported Yet In Starter] [TEST FACILITY ONLY] Forbidden in live environment. Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)
-  *  Returns : notification process result
+  * Returns : notification process result
 */
 func (a *Client) SimulatePaymentOrderNotificationShort(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, error) {
 	// TODO: Validate the params before sending
@@ -713,8 +701,7 @@ GetPaymentOrderChargeStatus get payment order charge status
  [Not Supported Yet In Starter] Get payment order charge status.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment order charge status
+  * Returns : payment order charge status
 */
 func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, *GetPaymentOrderChargeStatusNotFound, error) {
 	// TODO: Validate the params before sending
@@ -769,8 +756,7 @@ GetPaymentOrderChargeStatusShort get payment order charge status
  [Not Supported Yet In Starter] Get payment order charge status.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)
-  *  Returns : payment order charge status
+  * Returns : payment order charge status
 */
 func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -822,7 +808,6 @@ CreateUserPaymentOrder create payment order
  [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
   * It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
 
@@ -909,7 +894,6 @@ CreateUserPaymentOrderShort create payment order
  [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to create payment order from justice service. The result contains the payment station url.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)
   * It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT
   *  Returns : created order
 
@@ -987,9 +971,6 @@ Deprecated: 2022-08-10 - Use RefundUserPaymentOrderShort instead.
 
 RefundUserPaymentOrder refund payment order
  [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=4 (UPDATE)
 */
 func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, *RefundUserPaymentOrderNotFound, *RefundUserPaymentOrderConflict, *RefundUserPaymentOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1048,9 +1029,6 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 /*
 RefundUserPaymentOrderShort refund payment order
  [Not Supported Yet In Starter] [SERVICE COMMUNICATION ONLY] This API is used to refund order by paymentOrderNo from justice service.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=4 (UPDATE)
 */
 func (a *Client) RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, error) {
 	// TODO: Validate the params before sending

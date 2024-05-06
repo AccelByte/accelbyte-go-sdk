@@ -47,9 +47,6 @@ Deprecated: 2022-08-10 - Use UpdatePolicyVersion1Short instead.
 
 UpdatePolicyVersion1 update a version of policy
 Update a particular policy version.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, *UpdatePolicyVersion1BadRequest, *UpdatePolicyVersion1Conflict, error) {
 	// TODO: Validate the params before sending
@@ -105,9 +102,6 @@ func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authIn
 /*
 UpdatePolicyVersion1Short update a version of policy
 Update a particular policy version.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, error) {
 	// TODO: Validate the params before sending
@@ -159,9 +153,6 @@ Deprecated: 2022-08-10 - Use PublishPolicyVersion1Short instead.
 
 PublishPolicyVersion1 manually publish a version from country-specific policy
 Manually publish a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, *PublishPolicyVersion1BadRequest, *PublishPolicyVersion1Conflict, error) {
 	// TODO: Validate the params before sending
@@ -217,9 +208,6 @@ func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, auth
 /*
 PublishPolicyVersion1Short manually publish a version from country-specific policy
 Manually publish a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) PublishPolicyVersion1Short(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, error) {
 	// TODO: Validate the params before sending
@@ -271,9 +259,6 @@ Deprecated: 2022-08-10 - Use RetrieveSinglePolicyVersion1Short instead.
 
 RetrieveSinglePolicyVersion1 retrieve a version from country-specific policy
 Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, *RetrieveSinglePolicyVersion1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -326,9 +311,6 @@ func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersio
 /*
 RetrieveSinglePolicyVersion1Short retrieve a version from country-specific policy
 Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, error) {
 	// TODO: Validate the params before sending
@@ -378,9 +360,6 @@ Deprecated: 2022-08-10 - Use CreatePolicyVersion1Short instead.
 
 CreatePolicyVersion1 create a version from country-specific policy
 Create a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, *CreatePolicyVersion1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -433,9 +412,6 @@ func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authIn
 /*
 CreatePolicyVersion1Short create a version from country-specific policy
 Create a version of a particular country-specific policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, error) {
 	// TODO: Validate the params before sending

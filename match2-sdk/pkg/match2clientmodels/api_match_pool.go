@@ -47,8 +47,8 @@ type APIMatchPool struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// platfrom_group_enabled
-	PlatfromGroupEnabled bool `json:"platfrom_group_enabled"`
+	// platform_group_enabled
+	PlatformGroupEnabled bool `json:"platform_group_enabled"`
 
 	// rule_set
 	// Required: true

@@ -27,17 +27,19 @@ var QueryUserOrdersCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		discounted, _ := cmd.Flags().GetBool("discounted")
 		itemId, _ := cmd.Flags().GetString("itemId")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		status, _ := cmd.Flags().GetString("status")
 		input := &order.QueryUserOrdersParams{
-			Namespace: namespace,
-			UserID:    userId,
-			ItemID:    &itemId,
-			Limit:     &limit,
-			Offset:    &offset,
-			Status:    &status,
+			Namespace:  namespace,
+			UserID:     userId,
+			Discounted: &discounted,
+			ItemID:     &itemId,
+			Limit:      &limit,
+			Offset:     &offset,
+			Status:     &status,
 		}
 		ok, errOK := orderService.QueryUserOrdersShort(input)
 		if errOK != nil {
@@ -57,6 +59,7 @@ func init() {
 	_ = QueryUserOrdersCmd.MarkFlagRequired("namespace")
 	QueryUserOrdersCmd.Flags().String("userId", "", "User id")
 	_ = QueryUserOrdersCmd.MarkFlagRequired("userId")
+	QueryUserOrdersCmd.Flags().Bool("discounted", false, "Discounted")
 	QueryUserOrdersCmd.Flags().String("itemId", "", "Item id")
 	QueryUserOrdersCmd.Flags().Int32("limit", 20, "Limit")
 	QueryUserOrdersCmd.Flags().Int32("offset", 0, "Offset")

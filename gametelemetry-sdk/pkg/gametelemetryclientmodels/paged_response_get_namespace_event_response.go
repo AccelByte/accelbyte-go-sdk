@@ -26,7 +26,7 @@ type PagedResponseGetNamespaceEventResponse struct {
 
 	// paging
 	// Required: true
-	Paging *int64 `json:"paging"`
+	Paging *Paging `json:"paging"`
 }
 
 // Validate validates this Paged response get namespace event response
@@ -75,6 +75,15 @@ func (m *PagedResponseGetNamespaceEventResponse) validatePaging(formats strfmt.R
 
 	if err := validate.Required("paging", "body", m.Paging); err != nil {
 		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
 	}
 
 	return nil

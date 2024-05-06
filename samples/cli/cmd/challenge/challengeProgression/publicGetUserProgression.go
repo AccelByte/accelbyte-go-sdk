@@ -7,6 +7,8 @@
 package challengeProgression
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/challenge_progression"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/challenge"
@@ -28,10 +30,21 @@ var PublicGetUserProgressionCmd = &cobra.Command{
 		challengeCode, _ := cmd.Flags().GetString("challengeCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		goalCode, _ := cmd.Flags().GetString("goalCode")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &challenge_progression.PublicGetUserProgressionParams{
 			ChallengeCode: challengeCode,
 			Namespace:     namespace,
 			GoalCode:      &goalCode,
+			Limit:         &limit,
+			Offset:        &offset,
+			Tags:          tags,
 		}
 		ok, errOK := challengeProgressionService.PublicGetUserProgressionShort(input)
 		if errOK != nil {
@@ -52,4 +65,7 @@ func init() {
 	PublicGetUserProgressionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserProgressionCmd.MarkFlagRequired("namespace")
 	PublicGetUserProgressionCmd.Flags().String("goalCode", "", "Goal code")
+	PublicGetUserProgressionCmd.Flags().Int64("limit", 20, "Limit")
+	PublicGetUserProgressionCmd.Flags().Int64("offset", 0, "Offset")
+	PublicGetUserProgressionCmd.Flags().String("tags", "", "Tags")
 }

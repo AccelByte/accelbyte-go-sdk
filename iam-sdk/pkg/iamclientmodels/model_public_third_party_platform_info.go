@@ -41,6 +41,10 @@ type ModelPublicThirdPartyPlatformInfo struct {
 	// platformname
 	// Required: true
 	PlatformName *string `json:"PlatformName"`
+
+	// tokenauthenticationtype
+	// Required: true
+	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 }
 
 // Validate validates this Model public third party platform info
@@ -63,6 +67,9 @@ func (m *ModelPublicThirdPartyPlatformInfo) Validate(formats strfmt.Registry) er
 		res = append(res, err)
 	}
 	if err := m.validatePlatformName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTokenAuthenticationType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,6 +127,15 @@ func (m *ModelPublicThirdPartyPlatformInfo) validatePlatformID(formats strfmt.Re
 func (m *ModelPublicThirdPartyPlatformInfo) validatePlatformName(formats strfmt.Registry) error {
 
 	if err := validate.Required("PlatformName", "body", m.PlatformName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelPublicThirdPartyPlatformInfo) validateTokenAuthenticationType(formats strfmt.Registry) error {
+
+	if err := validate.Required("TokenAuthenticationType", "body", m.TokenAuthenticationType); err != nil {
 		return err
 	}
 

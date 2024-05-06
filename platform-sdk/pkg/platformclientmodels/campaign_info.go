@@ -32,6 +32,9 @@ type CampaignInfo struct {
 	// campaign description
 	Description string `json:"description,omitempty"`
 
+	// discount config
+	DiscountConfig *DiscountConfig `json:"discountConfig,omitempty"`
+
 	// campaign id
 	// Required: true
 	ID *string `json:"id"`
@@ -76,7 +79,7 @@ type CampaignInfo struct {
 	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 
 	// redeem type
-	// Enum: ['ITEM']
+	// Enum: ['DISCOUNT', 'ITEM']
 	// Required: true
 	RedeemType *string `json:"redeemType"`
 
@@ -238,7 +241,7 @@ var campaignInfoTypeRedeemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DISCOUNT", "ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -247,6 +250,9 @@ func init() {
 }
 
 const (
+
+	// CampaignInfoRedeemTypeDISCOUNT captures enum value "DISCOUNT"
+	CampaignInfoRedeemTypeDISCOUNT string = "DISCOUNT"
 
 	// CampaignInfoRedeemTypeITEM captures enum value "ITEM"
 	CampaignInfoRedeemTypeITEM string = "ITEM"

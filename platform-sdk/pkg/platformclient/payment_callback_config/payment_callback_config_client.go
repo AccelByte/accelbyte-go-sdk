@@ -45,8 +45,7 @@ GetPaymentCallbackConfig get payment callback configuration
  [Not Supported Yet In Starter] Get payment callback configuration.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG", action=2 (READ)
-  *  Returns : Payment callback config
+  * Returns : Payment callback config
 */
 func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfigOK, *GetPaymentCallbackConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -101,8 +100,7 @@ GetPaymentCallbackConfigShort get payment callback configuration
  [Not Supported Yet In Starter] Get payment callback configuration.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG", action=2 (READ)
-  *  Returns : Payment callback config
+  * Returns : Payment callback config
 */
 func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -154,8 +152,7 @@ UpdatePaymentCallbackConfig update payment callback configuration
  [Not Supported Yet In Starter] Update payment callback configuration.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG", action=4 (UPDATE)
-  *  Returns : Payment callback config
+  * Returns : Payment callback config
 */
 func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -207,8 +204,7 @@ UpdatePaymentCallbackConfigShort update payment callback configuration
  [Not Supported Yet In Starter] Update payment callback configuration.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG", action=4 (UPDATE)
-  *  Returns : Payment callback config
+  * Returns : Payment callback config
 */
 func (a *Client) UpdatePaymentCallbackConfigShort(params *UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending

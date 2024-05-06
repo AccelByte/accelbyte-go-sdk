@@ -51,9 +51,6 @@ Deprecated: 2022-08-10 - Use RetrieveAllLegalPoliciesByNamespaceShort instead.
 
 RetrieveAllLegalPoliciesByNamespace retrieve all base legal policy in the namespace
 Retrieve all base policies in the namespace.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllLegalPoliciesByNamespace(params *RetrieveAllLegalPoliciesByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesByNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -103,9 +100,6 @@ func (a *Client) RetrieveAllLegalPoliciesByNamespace(params *RetrieveAllLegalPol
 /*
 RetrieveAllLegalPoliciesByNamespaceShort retrieve all base legal policy in the namespace
 Retrieve all base policies in the namespace.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllLegalPoliciesByNamespaceShort(params *RetrieveAllLegalPoliciesByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesByNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -153,9 +147,6 @@ Deprecated: 2022-08-10 - Use CreatePolicy1Short instead.
 
 CreatePolicy1 create a base legal policy
 Create a legal policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, *CreatePolicy1BadRequest, *CreatePolicy1Conflict, *CreatePolicy1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -214,9 +205,6 @@ func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.Cli
 /*
 CreatePolicy1Short create a base legal policy
 Create a legal policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=1 (CREATE)
 */
 func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, error) {
 	// TODO: Validate the params before sending
@@ -270,9 +258,6 @@ Deprecated: 2022-08-10 - Use RetrieveSinglePolicy1Short instead.
 
 RetrieveSinglePolicy1 retrieve a base legal policy
 Retrieve a base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, *RetrieveSinglePolicy1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -325,9 +310,6 @@ func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, auth
 /*
 RetrieveSinglePolicy1Short retrieve a base legal policy
 Retrieve a base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, error) {
 	// TODO: Validate the params before sending
@@ -377,9 +359,6 @@ Deprecated: 2022-08-10 - Use PartialUpdatePolicy1Short instead.
 
 PartialUpdatePolicy1 update base legal policy
 Update an existing base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, *PartialUpdatePolicy1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -432,9 +411,6 @@ func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authIn
 /*
 PartialUpdatePolicy1Short update base legal policy
 Update an existing base policy.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=4 (UPDATE)
 */
 func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, error) {
 	// TODO: Validate the params before sending
@@ -484,9 +460,6 @@ Deprecated: 2022-08-10 - Use RetrievePolicyCountry1Short instead.
 
 RetrievePolicyCountry1 retrieve a base legal policy based on a particular country
 Retrieve a Base Legal Policy based on a Particular Country.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, *RetrievePolicyCountry1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -539,9 +512,6 @@ func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, au
 /*
 RetrievePolicyCountry1Short retrieve a base legal policy based on a particular country
 Retrieve a Base Legal Policy based on a Particular Country.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, error) {
 	// TODO: Validate the params before sending
@@ -591,9 +561,6 @@ Deprecated: 2022-08-10 - Use RetrieveAllPolicyTypes1Short instead.
 
 RetrieveAllPolicyTypes1 retrieve all policy type
 Retrieve all supported policy types.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error) {
 	// TODO: Validate the params before sending
@@ -643,9 +610,6 @@ func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, 
 /*
 RetrieveAllPolicyTypes1Short retrieve all policy type
 Retrieve all supported policy types.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:LEGAL", action=2 (READ)
 */
 func (a *Client) RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error) {
 	// TODO: Validate the params before sending

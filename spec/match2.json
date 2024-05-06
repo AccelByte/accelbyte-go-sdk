@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.18.3"
+    "version": "2.19.2"
   },
   "schemes": [
     "https"
@@ -2803,7 +2803,7 @@
         "name": {
           "type": "string"
         },
-        "platfrom_group_enabled": {
+        "platform_group_enabled": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -2854,7 +2854,7 @@
         "match_function_override": {
           "$ref": "#/definitions/api.MatchFunctionOverride"
         },
-        "platfrom_group_enabled": {
+        "platform_group_enabled": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -3663,9 +3663,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-05T03:59:57+00:00",
-    "gitHash": "3d1e70d7b6dd3e9614a74dc31272943005ec26ee",
-    "version": "2.18.3",
+    "buildDate": "2024-04-24T13:27:15+00:00",
+    "gitHash": "4ccfec3f6a087acdd285c09b02b42d50f04503ca",
+    "version": "2.19.2",
     "version-roles-seeding": "1.2.17"
   }
 }

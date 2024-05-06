@@ -32,8 +32,12 @@ type Client struct {
 type ClientService interface {
 	AdminGetRecentPlayer(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, *AdminGetRecentPlayerBadRequest, *AdminGetRecentPlayerUnauthorized, *AdminGetRecentPlayerNotFound, *AdminGetRecentPlayerInternalServerError, error)
 	AdminGetRecentPlayerShort(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, error)
+	AdminGetRecentTeamPlayer(params *AdminGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentTeamPlayerOK, *AdminGetRecentTeamPlayerBadRequest, *AdminGetRecentTeamPlayerUnauthorized, *AdminGetRecentTeamPlayerNotFound, *AdminGetRecentTeamPlayerInternalServerError, error)
+	AdminGetRecentTeamPlayerShort(params *AdminGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentTeamPlayerOK, error)
 	PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, *PublicGetRecentPlayerBadRequest, *PublicGetRecentPlayerUnauthorized, *PublicGetRecentPlayerNotFound, *PublicGetRecentPlayerInternalServerError, error)
 	PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, error)
+	PublicGetRecentTeamPlayer(params *PublicGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentTeamPlayerOK, *PublicGetRecentTeamPlayerBadRequest, *PublicGetRecentTeamPlayerUnauthorized, *PublicGetRecentTeamPlayerNotFound, *PublicGetRecentTeamPlayerInternalServerError, error)
+	PublicGetRecentTeamPlayerShort(params *PublicGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentTeamPlayerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,6 +51,8 @@ Query recent player with given user id.
 If user id parameter is empty:
 1. Using User Token : It will get the user id from the token
 2. Using client token : it will throw an error
+
+Please ensure environment variable "RECENT_PLAYER_ENABLED" is set to "TRUE" to use this feature.
 */
 func (a *Client) AdminGetRecentPlayer(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, *AdminGetRecentPlayerBadRequest, *AdminGetRecentPlayerUnauthorized, *AdminGetRecentPlayerNotFound, *AdminGetRecentPlayerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +118,8 @@ Query recent player with given user id.
 If user id parameter is empty:
 1. Using User Token : It will get the user id from the token
 2. Using client token : it will throw an error
+
+Please ensure environment variable "RECENT_PLAYER_ENABLED" is set to "TRUE" to use this feature.
 */
 func (a *Client) AdminGetRecentPlayerShort(params *AdminGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentPlayerOK, error) {
 	// TODO: Validate the params before sending
@@ -163,10 +171,140 @@ func (a *Client) AdminGetRecentPlayerShort(params *AdminGetRecentPlayerParams, a
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetRecentTeamPlayerShort instead.
+
+AdminGetRecentTeamPlayer query recent player who were on the same team with given user id.
+Query recent player who were on the same team with given user id.
+
+If user id parameter is empty:
+1. Using User Token : It will get the user id from the token
+2. Using client token : it will throw an error
+
+Please ensure environment variable "RECENT_TEAM_PLAYER_ENABLED" is set to "TRUE" to use this feature.
+*/
+func (a *Client) AdminGetRecentTeamPlayer(params *AdminGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentTeamPlayerOK, *AdminGetRecentTeamPlayerBadRequest, *AdminGetRecentTeamPlayerUnauthorized, *AdminGetRecentTeamPlayerNotFound, *AdminGetRecentTeamPlayerInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRecentTeamPlayerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetRecentTeamPlayer",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/recent-team-player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRecentTeamPlayerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRecentTeamPlayerOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetRecentTeamPlayerBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetRecentTeamPlayerUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetRecentTeamPlayerNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetRecentTeamPlayerInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetRecentTeamPlayerShort query recent player who were on the same team with given user id.
+Query recent player who were on the same team with given user id.
+
+If user id parameter is empty:
+1. Using User Token : It will get the user id from the token
+2. Using client token : it will throw an error
+
+Please ensure environment variable "RECENT_TEAM_PLAYER_ENABLED" is set to "TRUE" to use this feature.
+*/
+func (a *Client) AdminGetRecentTeamPlayerShort(params *AdminGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRecentTeamPlayerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRecentTeamPlayerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetRecentTeamPlayer",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/recent-team-player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRecentTeamPlayerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRecentTeamPlayerOK:
+		return v, nil
+	case *AdminGetRecentTeamPlayerBadRequest:
+		return nil, v
+	case *AdminGetRecentTeamPlayerUnauthorized:
+		return nil, v
+	case *AdminGetRecentTeamPlayerNotFound:
+		return nil, v
+	case *AdminGetRecentTeamPlayerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetRecentPlayerShort instead.
 
 PublicGetRecentPlayer query user's recent player
 Query user's recent player.
+
+Please ensure environment variable "RECENT_PLAYER_ENABLED" is set to "TRUE" to use this feature.
 */
 func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, *PublicGetRecentPlayerBadRequest, *PublicGetRecentPlayerUnauthorized, *PublicGetRecentPlayerNotFound, *PublicGetRecentPlayerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -228,6 +366,8 @@ func (a *Client) PublicGetRecentPlayer(params *PublicGetRecentPlayerParams, auth
 /*
 PublicGetRecentPlayerShort query user's recent player
 Query user's recent player.
+
+Please ensure environment variable "RECENT_PLAYER_ENABLED" is set to "TRUE" to use this feature.
 */
 func (a *Client) PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentPlayerOK, error) {
 	// TODO: Validate the params before sending
@@ -271,6 +411,126 @@ func (a *Client) PublicGetRecentPlayerShort(params *PublicGetRecentPlayerParams,
 	case *PublicGetRecentPlayerNotFound:
 		return nil, v
 	case *PublicGetRecentPlayerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetRecentTeamPlayerShort instead.
+
+PublicGetRecentTeamPlayer query user's recent player who were on the same team.
+Query user's recent player who were on the same team.
+
+Please ensure environment variable "RECENT_TEAM_PLAYER_ENABLED" is set to "TRUE" to use this feature.
+*/
+func (a *Client) PublicGetRecentTeamPlayer(params *PublicGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentTeamPlayerOK, *PublicGetRecentTeamPlayerBadRequest, *PublicGetRecentTeamPlayerUnauthorized, *PublicGetRecentTeamPlayerNotFound, *PublicGetRecentTeamPlayerInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetRecentTeamPlayerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetRecentTeamPlayer",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-team-player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetRecentTeamPlayerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetRecentTeamPlayerOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetRecentTeamPlayerBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetRecentTeamPlayerUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetRecentTeamPlayerNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetRecentTeamPlayerInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetRecentTeamPlayerShort query user's recent player who were on the same team.
+Query user's recent player who were on the same team.
+
+Please ensure environment variable "RECENT_TEAM_PLAYER_ENABLED" is set to "TRUE" to use this feature.
+*/
+func (a *Client) PublicGetRecentTeamPlayerShort(params *PublicGetRecentTeamPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRecentTeamPlayerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetRecentTeamPlayerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetRecentTeamPlayer",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/recent-team-player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetRecentTeamPlayerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetRecentTeamPlayerOK:
+		return v, nil
+	case *PublicGetRecentTeamPlayerBadRequest:
+		return nil, v
+	case *PublicGetRecentTeamPlayerUnauthorized:
+		return nil, v
+	case *PublicGetRecentTeamPlayerNotFound:
+		return nil, v
+	case *PublicGetRecentTeamPlayerInternalServerError:
 		return nil, v
 
 	default:

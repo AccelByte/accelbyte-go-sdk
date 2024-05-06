@@ -64,13 +64,13 @@ func (aaa *ConfigService) CreateConfig(input *config.CreateConfigParams) (*basic
 	return created.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use GetConfig1Short instead.
-func (aaa *ConfigService) GetConfig1(input *config.GetConfig1Params) (*basicclientmodels.ConfigInfo, error) {
+// Deprecated: 2022-01-10 - please use GetConfigShort instead.
+func (aaa *ConfigService) GetConfig(input *config.GetConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.GetConfig1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.GetConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -90,13 +90,13 @@ func (aaa *ConfigService) GetConfig1(input *config.GetConfig1Params) (*basicclie
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use DeleteConfig1Short instead.
-func (aaa *ConfigService) DeleteConfig1(input *config.DeleteConfig1Params) error {
+// Deprecated: 2022-01-10 - please use DeleteConfigShort instead.
+func (aaa *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.DeleteConfig1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -116,13 +116,13 @@ func (aaa *ConfigService) DeleteConfig1(input *config.DeleteConfig1Params) error
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdateConfig1Short instead.
-func (aaa *ConfigService) UpdateConfig1(input *config.UpdateConfig1Params) (*basicclientmodels.ConfigInfo, error) {
+// Deprecated: 2022-01-10 - please use UpdateConfigShort instead.
+func (aaa *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.UpdateConfig1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := aaa.Client.Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -198,7 +198,7 @@ func (aaa *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*
 	return created.GetPayload(), nil
 }
 
-func (aaa *ConfigService) GetConfig1Short(input *config.GetConfig1Params) (*basicclientmodels.ConfigInfo, error) {
+func (aaa *ConfigService) GetConfigShort(input *config.GetConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -220,7 +220,7 @@ func (aaa *ConfigService) GetConfig1Short(input *config.GetConfig1Params) (*basi
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Config.GetConfig1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.GetConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -228,7 +228,7 @@ func (aaa *ConfigService) GetConfig1Short(input *config.GetConfig1Params) (*basi
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ConfigService) DeleteConfig1Short(input *config.DeleteConfig1Params) error {
+func (aaa *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -250,7 +250,7 @@ func (aaa *ConfigService) DeleteConfig1Short(input *config.DeleteConfig1Params) 
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.Config.DeleteConfig1Short(input, authInfoWriter)
+	_, err := aaa.Client.Config.DeleteConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -258,7 +258,7 @@ func (aaa *ConfigService) DeleteConfig1Short(input *config.DeleteConfig1Params) 
 	return nil
 }
 
-func (aaa *ConfigService) UpdateConfig1Short(input *config.UpdateConfig1Params) (*basicclientmodels.ConfigInfo, error) {
+func (aaa *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*basicclientmodels.ConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -280,7 +280,7 @@ func (aaa *ConfigService) UpdateConfig1Short(input *config.UpdateConfig1Params) 
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Config.UpdateConfig1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Config.UpdateConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

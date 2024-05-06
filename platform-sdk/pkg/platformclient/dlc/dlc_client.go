@@ -69,9 +69,6 @@ Deprecated: 2022-08-10 - Use GetDLCItemConfigShort instead.
 
 GetDLCItemConfig get dlc item config
 Get DLC item config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=2 (READ)
 */
 func (a *Client) GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, *GetDLCItemConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -124,9 +121,6 @@ func (a *Client) GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runti
 /*
 GetDLCItemConfigShort get dlc item config
 Get DLC item config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=2 (READ)
 */
 func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -176,8 +170,7 @@ Deprecated: 2022-08-10 - Use UpdateDLCItemConfigShort instead.
 
 UpdateDLCItemConfig update dlc item config
 Update DLC item config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
-  *  Returns : updated DLC item config
+  * Returns : updated DLC item config
 */
 func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigBadRequest, *UpdateDLCItemConfigConflict, *UpdateDLCItemConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -236,8 +229,7 @@ func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo
 /*
 UpdateDLCItemConfigShort update dlc item config
 Update DLC item config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
-  *  Returns : updated DLC item config
+  * Returns : updated DLC item config
 */
 func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -291,9 +283,6 @@ Deprecated: 2022-08-10 - Use DeleteDLCItemConfigShort instead.
 
 DeleteDLCItemConfig delete a dlc item config
 delete a DLC item config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=8 (DELETE)
 */
 func (a *Client) DeleteDLCItemConfig(params *DeleteDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDLCItemConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -343,9 +332,6 @@ func (a *Client) DeleteDLCItemConfig(params *DeleteDLCItemConfigParams, authInfo
 /*
 DeleteDLCItemConfigShort delete a dlc item config
 delete a DLC item config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=8 (DELETE)
 */
 func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDLCItemConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -393,9 +379,6 @@ Deprecated: 2022-08-10 - Use GetPlatformDLCConfigShort instead.
 
 GetPlatformDLCConfig get platform dlc config
 Get Platform DLC config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=2 (READ)
 */
 func (a *Client) GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, *GetPlatformDLCConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -448,9 +431,6 @@ func (a *Client) GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authIn
 /*
 GetPlatformDLCConfigShort get platform dlc config
 Get Platform DLC config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=2 (READ)
 */
 func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformDLCConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -500,8 +480,7 @@ Deprecated: 2022-08-10 - Use UpdatePlatformDLCConfigShort instead.
 
 UpdatePlatformDLCConfig update platform dlc config
 Update Platform DLC config. Other detail info:
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
-  *  Returns : updated Platform DLC config
+  * Returns : updated Platform DLC config
 
 
 
@@ -573,8 +552,7 @@ func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, 
 UpdatePlatformDLCConfigShort update platform dlc config
 Update Platform DLC config. Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:DLC:CONFIG", action=4 (UPDATE)
-  *  Returns : updated Platform DLC config
+  * Returns : updated Platform DLC config
 
 
 
@@ -642,9 +620,6 @@ Deprecated: 2022-08-10 - Use DeletePlatformDLCConfigShort instead.
 
 DeletePlatformDLCConfig delete a platform dlc config
 delete a Platform DLC config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=8 (DELETE)
 */
 func (a *Client) DeletePlatformDLCConfig(params *DeletePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlatformDLCConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -694,9 +669,6 @@ func (a *Client) DeletePlatformDLCConfig(params *DeletePlatformDLCConfigParams, 
 /*
 DeletePlatformDLCConfigShort delete a platform dlc config
 delete a Platform DLC config.
-Other detail info:
-
-  * Required permission : resource= "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG" , action=8 (DELETE)
 */
 func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlatformDLCConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -746,8 +718,7 @@ GetUserDLCByPlatform get user dlc by platform
 Get user dlc by platform.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=2 (READ)
-  *  Returns : user dlc
+  * Returns : user dlc
 */
 func (a *Client) GetUserDLCByPlatform(params *GetUserDLCByPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCByPlatformOK, error) {
 	// TODO: Validate the params before sending
@@ -799,8 +770,7 @@ GetUserDLCByPlatformShort get user dlc by platform
 Get user dlc by platform.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=2 (READ)
-  *  Returns : user dlc
+  * Returns : user dlc
 */
 func (a *Client) GetUserDLCByPlatformShort(params *GetUserDLCByPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCByPlatformOK, error) {
 	// TODO: Validate the params before sending
@@ -850,8 +820,7 @@ GetUserDLC get user dlc records
 Get user dlc records.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=2 (READ)
-  *  Returns : user dlc
+  * Returns : user dlc
 */
 func (a *Client) GetUserDLC(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error) {
 	// TODO: Validate the params before sending
@@ -903,8 +872,7 @@ GetUserDLCShort get user dlc records
 Get user dlc records.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=2 (READ)
-  *  Returns : user dlc
+  * Returns : user dlc
 */
 func (a *Client) GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error) {
 	// TODO: Validate the params before sending
@@ -951,10 +919,7 @@ func (a *Client) GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use GeDLCDurableRewardShortMapShort instead.
 
 GeDLCDurableRewardShortMap get dlc durable reward simple map
-Get dlc reward simple map, only return the sku of durable item reward
-Other detail info:
-
-  * Required permission : Authorized user
+Get dlc reward simple map, only return the sku of durable item reward.
 */
 func (a *Client) GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, *GeDLCDurableRewardShortMapNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1006,10 +971,7 @@ func (a *Client) GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapPa
 
 /*
 GeDLCDurableRewardShortMapShort get dlc durable reward simple map
-Get dlc reward simple map, only return the sku of durable item reward
-Other detail info:
-
-  * Required permission : Authorized user
+Get dlc reward simple map, only return the sku of durable item reward.
 */
 func (a *Client) GeDLCDurableRewardShortMapShort(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, error) {
 	// TODO: Validate the params before sending
@@ -1058,12 +1020,7 @@ func (a *Client) GeDLCDurableRewardShortMapShort(params *GeDLCDurableRewardShort
 Deprecated: 2022-08-10 - Use SyncEpicGameDLCShort instead.
 
 SyncEpicGameDLC sync epic games dlc items
-Sync epic games dlc items.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync epic games dlc items
 */
 func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1115,12 +1072,7 @@ func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime
 
 /*
 SyncEpicGameDLCShort sync epic games dlc items
-Sync epic games dlc items.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync epic games dlc items
 */
 func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1169,12 +1121,7 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 Deprecated: 2022-08-10 - Use SyncOculusDLCShort instead.
 
 SyncOculusDLC sync oculus dlc.
-Sync oculus dlc.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync oculus dlc
 */
 func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1226,12 +1173,7 @@ func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.Cli
 
 /*
 SyncOculusDLCShort sync oculus dlc.
-Sync oculus dlc.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync oculus dlc
 */
 func (a *Client) SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1280,12 +1222,8 @@ func (a *Client) SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtim
 Deprecated: 2022-08-10 - Use PublicSyncPsnDLCInventoryShort instead.
 
 PublicSyncPsnDLCInventory synchronize with dlc entitlements in psn store.
-Synchronize with dlc entitlements in PSN Store.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns : result of synchronization
+Synchronize with dlc entitlements in PSN Store.Other detail info:
+  * Returns : result of synchronization
 */
 func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1337,12 +1275,8 @@ func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryPara
 
 /*
 PublicSyncPsnDLCInventoryShort synchronize with dlc entitlements in psn store.
-Synchronize with dlc entitlements in PSN Store.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns : result of synchronization
+Synchronize with dlc entitlements in PSN Store.Other detail info:
+  * Returns : result of synchronization
 */
 func (a *Client) PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1391,12 +1325,8 @@ func (a *Client) PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventor
 Deprecated: 2022-08-10 - Use PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort instead.
 
 PublicSyncPsnDLCInventoryWithMultipleServiceLabels synchronize with dlc entitlements in psn store with multiple service labels.
-Synchronize with dlc entitlements in PSN Store with multiple service labels.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns : result of synchronization
+Synchronize with dlc entitlements in PSN Store with multiple service labels.Other detail info:
+  * Returns : result of synchronization
 */
 func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1448,12 +1378,8 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *Publ
 
 /*
 PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort synchronize with dlc entitlements in psn store with multiple service labels.
-Synchronize with dlc entitlements in PSN Store with multiple service labels.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns : result of synchronization
+Synchronize with dlc entitlements in PSN Store with multiple service labels.Other detail info:
+  * Returns : result of synchronization
 */
 func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1502,12 +1428,7 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(params 
 Deprecated: 2022-08-10 - Use SyncSteamDLCShort instead.
 
 SyncSteamDLC sync steam dlc.
-Sync steam dlc.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync steam dlc
 */
 func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1559,12 +1480,7 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 
 /*
 SyncSteamDLCShort sync steam dlc.
-Sync steam dlc.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync steam dlc
 */
 func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1613,12 +1529,7 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use SyncXboxDLCShort instead.
 
 SyncXboxDLC sync xbox dlc items.
-Sync Xbox inventory's dlc items.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync Xbox inventory's dlc items
 */
 func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1670,12 +1581,7 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 
 /*
 SyncXboxDLCShort sync xbox dlc items.
-Sync Xbox inventory's dlc items.
-
-Other detail info:
-
-  * Required permission : resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)
-  *  Returns :
+Sync Xbox inventory's dlc items
 */
 func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error) {
 	// TODO: Validate the params before sending

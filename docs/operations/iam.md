@@ -772,3 +772,4 @@
 | `oauthmodel.UserBan` | [OauthmodelUserBan ](../../iam-sdk/pkg/iamclientmodels/oauthmodel_user_ban.go) |
 | `rest.ErrorResponse` | [RestErrorResponse ](../../iam-sdk/pkg/iamclientmodels/rest_error_response.go) |
 | `rest.ErrorResponseWithConflictedUserPlatformAccounts` | [RestErrorResponseWithConflictedUserPlatformAccounts ](../../iam-sdk/pkg/iamclientmodels/rest_error_response_with_conflicted_user_platform_accounts.go) |
+| `rest.Permission` | [RestPermission ](../../iam-sdk/pkg/iamclientmodels/rest_permission.go) |

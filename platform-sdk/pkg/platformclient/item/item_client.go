@@ -138,8 +138,7 @@ ListItemTypeConfigs get all item type configs
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) ListItemTypeConfigs(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error) {
 	// TODO: Validate the params before sending
@@ -192,8 +191,7 @@ ListItemTypeConfigsShort get all item type configs
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) ListItemTypeConfigsShort(params *ListItemTypeConfigsParams, authInfo runtime.ClientAuthInfoWriter) (*ListItemTypeConfigsOK, error) {
 	// TODO: Validate the params before sending
@@ -242,7 +240,6 @@ Deprecated: 2022-08-10 - Use CreateItemTypeConfigShort instead.
 CreateItemTypeConfig create an item type config
  [Not Supported Yet In Starter] This API is used to create an item type config.
 
-*  Required permission : resource="ADMIN:ITEM:CONFIG", action=1 (CREATE)
 *  Returns : item type config data
 */
 func (a *Client) CreateItemTypeConfig(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, *CreateItemTypeConfigBadRequest, *CreateItemTypeConfigConflict, *CreateItemTypeConfigUnprocessableEntity, error) {
@@ -303,7 +300,6 @@ func (a *Client) CreateItemTypeConfig(params *CreateItemTypeConfigParams, authIn
 CreateItemTypeConfigShort create an item type config
  [Not Supported Yet In Starter] This API is used to create an item type config.
 
-*  Required permission : resource="ADMIN:ITEM:CONFIG", action=1 (CREATE)
 *  Returns : item type config data
 */
 func (a *Client) CreateItemTypeConfigShort(params *CreateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemTypeConfigCreated, error) {
@@ -361,8 +357,7 @@ SearchItemTypeConfig get an item type config
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : item type config data
+  * Returns : item type config data
 */
 func (a *Client) SearchItemTypeConfig(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, *SearchItemTypeConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -418,8 +413,7 @@ SearchItemTypeConfigShort get an item type config
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : item type config data
+  * Returns : item type config data
 */
 func (a *Client) SearchItemTypeConfigShort(params *SearchItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemTypeConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -472,8 +466,7 @@ GetItemTypeConfig get an item type config
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : item type config data
+  * Returns : item type config data
 */
 func (a *Client) GetItemTypeConfig(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, *GetItemTypeConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -529,8 +522,7 @@ GetItemTypeConfigShort get an item type config
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=2 (READ)
-  *  Returns : item type config data
+  * Returns : item type config data
 */
 func (a *Client) GetItemTypeConfigShort(params *GetItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemTypeConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -581,7 +573,6 @@ Deprecated: 2022-08-10 - Use UpdateItemTypeConfigShort instead.
 UpdateItemTypeConfig update an item type config
  [Not Supported Yet In Starter] This API is used to update an item type config.
 
-*  Required permission : resource="ADMIN:ITEM:CONFIG", action=4 (UPDATE)
 *  Returns : item type config data
 */
 func (a *Client) UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, *UpdateItemTypeConfigNotFound, *UpdateItemTypeConfigConflict, *UpdateItemTypeConfigUnprocessableEntity, error) {
@@ -642,7 +633,6 @@ func (a *Client) UpdateItemTypeConfig(params *UpdateItemTypeConfigParams, authIn
 UpdateItemTypeConfigShort update an item type config
  [Not Supported Yet In Starter] This API is used to update an item type config.
 
-*  Required permission : resource="ADMIN:ITEM:CONFIG", action=4 (UPDATE)
 *  Returns : item type config data
 */
 func (a *Client) UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemTypeConfigOK, error) {
@@ -696,9 +686,7 @@ func (a *Client) UpdateItemTypeConfigShort(params *UpdateItemTypeConfigParams, a
 Deprecated: 2022-08-10 - Use DeleteItemTypeConfigShort instead.
 
 DeleteItemTypeConfig delete an item type config
- [Not Supported Yet In Starter] This API is used to delete an item type config permanently.Other detail info:
-
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=8 (DELETE)
+ [Not Supported Yet In Starter] This API is used to delete an item type config permanently.
 */
 func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, *DeleteItemTypeConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -750,9 +738,7 @@ func (a *Client) DeleteItemTypeConfig(params *DeleteItemTypeConfigParams, authIn
 
 /*
 DeleteItemTypeConfigShort delete an item type config
- [Not Supported Yet In Starter] This API is used to delete an item type config permanently.Other detail info:
-
-  * Required permission : resource="ADMIN:ITEM:CONFIG", action=8 (DELETE)
+ [Not Supported Yet In Starter] This API is used to delete an item type config permanently.
 */
 func (a *Client) DeleteItemTypeConfigShort(params *DeleteItemTypeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemTypeConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -807,8 +793,7 @@ The synced item has an additional field targetItemId besides targetNamespace, mo
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, *SyncInGameItemBadRequest, *SyncInGameItemNotFound, *SyncInGameItemConflict, *SyncInGameItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -875,8 +860,7 @@ The synced item has an additional field targetItemId besides targetNamespace, mo
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) SyncInGameItemShort(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, error) {
 	// TODO: Validate the params before sending
@@ -1148,8 +1132,7 @@ An item create example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=1 (CREATE)
-  *  Returns : created item data
+  * Returns : created item data
 
 
 
@@ -1445,8 +1428,7 @@ An item create example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=1 (CREATE)
-  *  Returns : created item data
+  * Returns : created item data
 
 
 
@@ -1523,8 +1505,7 @@ This API is used to get the item by appId.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the item with that appId
+  * Returns : the item with that appId
 */
 func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, *GetItemByAppIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1580,8 +1561,7 @@ This API is used to get the item by appId.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the item with that appId
+  * Returns : the item with that appId
 */
 func (a *Client) GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1634,8 +1614,7 @@ This API is used to query items by criteria within a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1694,8 +1673,7 @@ This API is used to query items by criteria within a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -1750,8 +1728,7 @@ ListBasicItemsByFeatures list basic items by features
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of basic items
+  * Returns : the list of basic items
 */
 func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error) {
 	// TODO: Validate the params before sending
@@ -1804,8 +1781,7 @@ ListBasicItemsByFeaturesShort list basic items by features
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of basic items
+  * Returns : the list of basic items
 */
 func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error) {
 	// TODO: Validate the params before sending
@@ -1856,8 +1832,7 @@ This API is used to get items.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items info
+  * Returns : the list of items info
 */
 func (a *Client) GetItems(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, *GetItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1913,8 +1888,7 @@ This API is used to get items.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items info
+  * Returns : the list of items info
 */
 func (a *Client) GetItemsShort(params *GetItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -1967,8 +1941,7 @@ This API is used to get the item by sku.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the item with sku
+  * Returns : the item with sku
 */
 func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, *GetItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2024,8 +1997,7 @@ This API is used to get the item by sku.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the item with sku
+  * Returns : the item with sku
 */
 func (a *Client) GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, error) {
 	// TODO: Validate the params before sending
@@ -2078,8 +2050,7 @@ This API is used to get an item by sku in specific locale. If item not exist in 
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, *GetLocaleItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2135,8 +2106,7 @@ This API is used to get an item by sku in specific locale. If item not exist in 
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error) {
 	// TODO: Validate the params before sending
@@ -2290,8 +2260,7 @@ GetItemIDBySku get itemid by sku
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the itemId with sku
+  * Returns : the itemId with sku
 */
 func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, *GetItemIDBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2347,8 +2316,7 @@ GetItemIDBySkuShort get itemid by sku
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the itemId with sku
+  * Returns : the itemId with sku
 */
 func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, error) {
 	// TODO: Validate the params before sending
@@ -2401,8 +2369,7 @@ This API is used to get an list of itemId by list of sku.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetBulkItemIDBySkus(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error) {
 	// TODO: Validate the params before sending
@@ -2455,8 +2422,7 @@ This API is used to get an list of itemId by list of sku.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetBulkItemIDBySkusShort(params *GetBulkItemIDBySkusParams, authInfo runtime.ClientAuthInfoWriter) (*GetBulkItemIDBySkusOK, error) {
 	// TODO: Validate the params before sending
@@ -2507,8 +2473,7 @@ This API is used to bulk get locale items. If item not exist in specific region,
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items info
+  * Returns : the list of items info
 */
 func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, *BulkGetLocaleItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2564,8 +2529,7 @@ This API is used to bulk get locale items. If item not exist in specific region,
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items info
+  * Returns : the list of items info
 */
 func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -2617,8 +2581,7 @@ GetAvailablePredicateTypes get available predicate types
 Get available predicate types.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:ITEM, action=2 (READ)
-  *  Returns : available predicate types
+  * Returns : available predicate types
 */
 func (a *Client) GetAvailablePredicateTypes(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, *GetAvailablePredicateTypesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2673,8 +2636,7 @@ GetAvailablePredicateTypesShort get available predicate types
 Get available predicate types.
 Other detail info:
 
-  * Required permission : resource=ADMIN:NAMESPACE:{namespace}:ITEM, action=2 (READ)
-  *  Returns : available predicate types
+  * Returns : available predicate types
 */
 func (a *Client) GetAvailablePredicateTypesShort(params *GetAvailablePredicateTypesParams, authInfo runtime.ClientAuthInfoWriter) (*GetAvailablePredicateTypesOK, error) {
 	// TODO: Validate the params before sending
@@ -2825,9 +2787,6 @@ Deprecated: 2022-08-10 - Use BulkUpdateRegionDataShort instead.
 
 BulkUpdateRegionData update item's region data in bulk
 This API is used to update region data of items in bulk
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
 */
 func (a *Client) BulkUpdateRegionData(params *BulkUpdateRegionDataParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateRegionDataNoContent, *BulkUpdateRegionDataBadRequest, *BulkUpdateRegionDataNotFound, *BulkUpdateRegionDataConflict, *BulkUpdateRegionDataUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2889,9 +2848,6 @@ func (a *Client) BulkUpdateRegionData(params *BulkUpdateRegionDataParams, authIn
 /*
 BulkUpdateRegionDataShort update item's region data in bulk
 This API is used to update region data of items in bulk
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
 */
 func (a *Client) BulkUpdateRegionDataShort(params *BulkUpdateRegionDataParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateRegionDataNoContent, error) {
 	// TODO: Validate the params before sending
@@ -2950,8 +2906,7 @@ This API is used to search items by keyword in title, description and long descr
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3007,8 +2962,7 @@ This API is used to search items by keyword in title, description and long descr
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) SearchItemsShort(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -3061,8 +3015,7 @@ This API is used to query uncategorized items within a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of uncategorized items
+  * Returns : the list of uncategorized items
 */
 func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, *QueryUncategorizedItemsNotFound, *QueryUncategorizedItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -3121,8 +3074,7 @@ This API is used to query uncategorized items within a store.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of uncategorized items
+  * Returns : the list of uncategorized items
 */
 func (a *Client) QueryUncategorizedItemsShort(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -3177,8 +3129,7 @@ This API is used to get an item.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, *GetItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3234,8 +3185,7 @@ This API is used to get an item.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetItemShort(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, error) {
 	// TODO: Validate the params before sending
@@ -3503,8 +3453,7 @@ An item update example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item data
+  * Returns : updated item data
 
 
 
@@ -3802,8 +3751,7 @@ An item update example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item data
+  * Returns : updated item data
 
 
 
@@ -3881,9 +3829,6 @@ This API is used to delete an item permanently.
 force: the default value should be: false. When the value is:
 * false: only the items in the draft store that have never been published yet can be removed.
 *  true: the item in the draft store(even been published before) can be removed.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=8 (DELETE)
 */
 func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3940,9 +3885,6 @@ This API is used to delete an item permanently.
 force: the default value should be: false. When the value is:
 * false: only the items in the draft store that have never been published yet can be removed.
 *  true: the item in the draft store(even been published before) can be removed.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=8 (DELETE)
 */
 func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error) {
 	// TODO: Validate the params before sending
@@ -3994,8 +3936,7 @@ AcquireItem acquire item
  [SERVICE COMMUNICATION ONLY] This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : acquire result
+  * Returns : acquire result
 */
 func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, *AcquireItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4050,8 +3991,7 @@ AcquireItemShort acquire item
  [SERVICE COMMUNICATION ONLY] This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : acquire result
+  * Returns : acquire result
 */
 func (a *Client) AcquireItemShort(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, error) {
 	// TODO: Validate the params before sending
@@ -4104,8 +4044,7 @@ This API is used to get an app info.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : app data
+  * Returns : app data
 */
 func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error) {
 	// TODO: Validate the params before sending
@@ -4158,8 +4097,7 @@ This API is used to get an app info.
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : app data
+  * Returns : app data
 */
 func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error) {
 	// TODO: Validate the params before sending
@@ -4297,8 +4235,7 @@ An app update example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated app data
+  * Returns : updated app data
 */
 func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, *UpdateAppNotFound, *UpdateAppConflict, *UpdateAppUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -4447,8 +4384,7 @@ An app update example:
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated app data
+  * Returns : updated app data
 */
 func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, error) {
 	// TODO: Validate the params before sending
@@ -4504,8 +4440,7 @@ DisableItem disable an item
 Disable an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, *DisableItemNotFound, *DisableItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -4563,8 +4498,7 @@ DisableItemShort disable an item
 Disable an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) DisableItemShort(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, error) {
 	// TODO: Validate the params before sending
@@ -4618,8 +4552,7 @@ GetItemDynamicData get item dynamic data
 Get item dynamic data for published item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item dynamic data
+  * Returns : item dynamic data
 */
 func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, *GetItemDynamicDataNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4674,8 +4607,7 @@ GetItemDynamicDataShort get item dynamic data
 Get item dynamic data for published item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item dynamic data
+  * Returns : item dynamic data
 */
 func (a *Client) GetItemDynamicDataShort(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, error) {
 	// TODO: Validate the params before sending
@@ -4727,8 +4659,7 @@ EnableItem enable an item
 Enable an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, *EnableItemNotFound, *EnableItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -4786,8 +4717,7 @@ EnableItemShort enable an item
 Enable an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) EnableItemShort(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, error) {
 	// TODO: Validate the params before sending
@@ -4841,8 +4771,7 @@ FeatureItem feature an item
 Add a feature to an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, *FeatureItemNotFound, *FeatureItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -4900,8 +4829,7 @@ FeatureItemShort feature an item
 Add a feature to an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) FeatureItemShort(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, error) {
 	// TODO: Validate the params before sending
@@ -4955,8 +4883,7 @@ DefeatureItem defeature an item
 Remove a feature from an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, *DefeatureItemNotFound, *DefeatureItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -5014,8 +4941,7 @@ DefeatureItemShort defeature an item
 Remove a feature from an item.
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
-  *  Returns : updated item
+  * Returns : updated item
 */
 func (a *Client) DefeatureItemShort(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, error) {
 	// TODO: Validate the params before sending
@@ -5070,8 +4996,7 @@ This API is used to get an item in specific locale. If item not exist in specifi
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, *GetLocaleItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5127,8 +5052,7 @@ This API is used to get an item in specific locale. If item not exist in specifi
 
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : item data
+  * Returns : item data
 */
 func (a *Client) GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, error) {
 	// TODO: Validate the params before sending
@@ -5294,9 +5218,6 @@ Deprecated: 2022-08-10 - Use ReturnItemShort instead.
 
 ReturnItem return item
  [SERVICE COMMUNICATION ONLY] This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
 */
 func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -5352,9 +5273,6 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 /*
 ReturnItemShort return item
  [SERVICE COMMUNICATION ONLY] This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.
-Other detail info:
-
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)
 */
 func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, error) {
 	// TODO: Validate the params before sending
@@ -6516,8 +6434,7 @@ The behaviour for itemStatus query parameter:
 * Not provided: show both ACTIVE and INACTIVE items
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, *QueryItems1NotFound, *QueryItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -6580,8 +6497,7 @@ The behaviour for itemStatus query parameter:
 * Not provided: show both ACTIVE and INACTIVE items
 Other detail info:
 
-  * Required permission : resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)
-  *  Returns : the list of items
+  * Returns : the list of items
 */
 func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, error) {
 	// TODO: Validate the params before sending

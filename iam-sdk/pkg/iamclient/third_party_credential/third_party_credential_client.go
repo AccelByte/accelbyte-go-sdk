@@ -1088,10 +1088,12 @@ Deprecated: 2022-08-10 - Use AdminCheckThirdPartyLoginPlatformAvailabilityV3Shor
 
 AdminCheckThirdPartyLoginPlatformAvailabilityV3 check 3rd party platform availability
 This is the API to check specific 3rd party platform availability.
-supported platform:
-- (psn) ps4web
-- (psn) ps4
-- (psn) ps5
+Passing platform group name or it's member will return same platform availability data
+Supported third party platform and platform group:
+- PSN group(psn)
+- ps4web
+- ps4
+- ps5
 */
 func (a *Client) AdminCheckThirdPartyLoginPlatformAvailabilityV3(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -1150,10 +1152,12 @@ func (a *Client) AdminCheckThirdPartyLoginPlatformAvailabilityV3(params *AdminCh
 /*
 AdminCheckThirdPartyLoginPlatformAvailabilityV3Short check 3rd party platform availability
 This is the API to check specific 3rd party platform availability.
-supported platform:
-- (psn) ps4web
-- (psn) ps4
-- (psn) ps5
+Passing platform group name or it's member will return same platform availability data
+Supported third party platform and platform group:
+- PSN group(psn)
+- ps4web
+- ps4
+- ps5
 */
 func (a *Client) AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, error) {
 	// TODO: Validate the params before sending

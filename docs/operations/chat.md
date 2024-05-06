@@ -7,6 +7,7 @@
 ### topic Wrapper:  [Topic](../../services-api/pkg/service/chat/topic.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/chat/admin/namespaces/{namespace}/chat/filter` | POST | AdminFilterChatMessageShort | [AdminFilterChatMessageShort](../../chat-sdk/pkg/chatclient/topic/topic_client.go) | [AdminFilterChatMessageShort](../../services-api/pkg/service/chat/topic.go) | [AdminFilterChatMessageShort](../../samples/cli/cmd/chat/topic/adminFilterChatMessage.go) |
 | `/chat/admin/namespaces/{namespace}/chats` | GET | AdminChatHistoryShort | [AdminChatHistoryShort](../../chat-sdk/pkg/chatclient/topic/topic_client.go) | [AdminChatHistoryShort](../../services-api/pkg/service/chat/topic.go) | [AdminChatHistoryShort](../../samples/cli/cmd/chat/topic/adminChatHistory.go) |
 | `/chat/admin/namespaces/{namespace}/namespace-topic` | POST | AdminCreateNamespaceTopicShort | [AdminCreateNamespaceTopicShort](../../chat-sdk/pkg/chatclient/topic/topic_client.go) | [AdminCreateNamespaceTopicShort](../../services-api/pkg/service/chat/topic.go) | [AdminCreateNamespaceTopicShort](../../samples/cli/cmd/chat/topic/adminCreateNamespaceTopic.go) |
 | `/chat/admin/namespaces/{namespace}/topic` | GET | AdminTopicListShort | [AdminTopicListShort](../../chat-sdk/pkg/chatclient/topic/topic_client.go) | [AdminTopicListShort](../../services-api/pkg/service/chat/topic.go) | [AdminTopicListShort](../../samples/cli/cmd/chat/topic/adminTopicList.go) |
@@ -45,6 +46,7 @@
 | `/chat/v1/admin/config/namespaces/{namespace}` | PUT | AdminUpdateConfigV1Short | [AdminUpdateConfigV1Short](../../chat-sdk/pkg/chatclient/config/config_client.go) | [AdminUpdateConfigV1Short](../../services-api/pkg/service/chat/config.go) | [AdminUpdateConfigV1Short](../../samples/cli/cmd/chat/config/adminUpdateConfigV1.go) |
 | `/chat/v1/admin/config/namespaces/{namespace}/export` | GET | ExportConfigShort | [ExportConfigShort](../../chat-sdk/pkg/chatclient/config/config_client.go) | [ExportConfigShort](../../services-api/pkg/service/chat/config.go) | [ExportConfigShort](../../samples/cli/cmd/chat/config/exportConfig.go) |
 | `/chat/v1/admin/config/namespaces/{namespace}/import` | POST | ImportConfigShort | [ImportConfigShort](../../chat-sdk/pkg/chatclient/config/config_client.go) | [ImportConfigShort](../../services-api/pkg/service/chat/config.go) | [ImportConfigShort](../../samples/cli/cmd/chat/config/importConfig.go) |
+| `/chat/v1/public/config/namespaces/{namespace}` | GET | PublicGetConfigV1Short | [PublicGetConfigV1Short](../../chat-sdk/pkg/chatclient/config/config_client.go) | [PublicGetConfigV1Short](../../services-api/pkg/service/chat/config.go) | [PublicGetConfigV1Short](../../samples/cli/cmd/chat/config/publicGetConfigV1.go) |
 
 ### inbox Wrapper:  [Inbox](../../services-api/pkg/service/chat/inbox.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -141,10 +143,13 @@
 | `models.GetInboxUsersResponse` | [ModelsGetInboxUsersResponse ](../../chat-sdk/pkg/chatclientmodels/models_get_inbox_users_response.go) |
 | `models.ImportConfigResponse` | [ModelsImportConfigResponse ](../../chat-sdk/pkg/chatclientmodels/models_import_config_response.go) |
 | `models.JSONSchemaType` | [ModelsJSONSchemaType ](../../chat-sdk/pkg/chatclientmodels/models_json_schema_type.go) |
+| `models.MessageRequest` | [ModelsMessageRequest ](../../chat-sdk/pkg/chatclientmodels/models_message_request.go) |
+| `models.MessageResultWithAttributes` | [ModelsMessageResultWithAttributes ](../../chat-sdk/pkg/chatclientmodels/models_message_result_with_attributes.go) |
 | `models.MessageStats` | [ModelsMessageStats ](../../chat-sdk/pkg/chatclientmodels/models_message_stats.go) |
 | `models.Pagination` | [ModelsPagination ](../../chat-sdk/pkg/chatclientmodels/models_pagination.go) |
 | `models.PublicBanTopicMembersRequest` | [ModelsPublicBanTopicMembersRequest ](../../chat-sdk/pkg/chatclientmodels/models_public_ban_topic_members_request.go) |
 | `models.PublicBanTopicMembersResponse` | [ModelsPublicBanTopicMembersResponse ](../../chat-sdk/pkg/chatclientmodels/models_public_ban_topic_members_response.go) |
+| `models.PublicConfigResponse` | [ModelsPublicConfigResponse ](../../chat-sdk/pkg/chatclientmodels/models_public_config_response.go) |
 | `models.PublicUnbanTopicMembersRequest` | [ModelsPublicUnbanTopicMembersRequest ](../../chat-sdk/pkg/chatclientmodels/models_public_unban_topic_members_request.go) |
 | `models.PublicUnbanTopicMembersResponse` | [ModelsPublicUnbanTopicMembersResponse ](../../chat-sdk/pkg/chatclientmodels/models_public_unban_topic_members_response.go) |
 | `models.SaveInboxMessageRequest` | [ModelsSaveInboxMessageRequest ](../../chat-sdk/pkg/chatclientmodels/models_save_inbox_message_request.go) |

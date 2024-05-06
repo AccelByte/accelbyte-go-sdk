@@ -60,7 +60,10 @@ func (aaa *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams)
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := aaa.Client.Campaign.CreateCampaign(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, conflict, unprocessableEntity, err := aaa.Client.Campaign.CreateCampaign(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -151,9 +154,12 @@ func (aaa *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*pla
 	if err != nil {
 		return nil, err
 	}
-	created, notFound, unprocessableEntity, err := aaa.Client.Campaign.CreateCodes(input, client.BearerToken(*token.AccessToken))
+	created, notFound, conflict, unprocessableEntity, err := aaa.Client.Campaign.CreateCodes(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity

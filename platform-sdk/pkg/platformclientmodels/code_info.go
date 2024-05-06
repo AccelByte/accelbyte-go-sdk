@@ -31,6 +31,9 @@ type CodeInfo struct {
 	// Format: int32
 	BatchNo *int32 `json:"batchNo"`
 
+	// Campaign short info
+	Campaign *CampaignIfc `json:"campaign,omitempty"`
+
 	// campaign id
 	// Required: true
 	CampaignID *string `json:"campaignId"`
@@ -39,6 +42,9 @@ type CodeInfo struct {
 	// Required: true
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"createdAt"`
+
+	// discount config
+	DiscountConfig *DiscountConfig `json:"discountConfig,omitempty"`
 
 	// code id
 	// Required: true
@@ -75,7 +81,7 @@ type CodeInfo struct {
 	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 
 	// redeem type
-	// Enum: ['ITEM']
+	// Enum: ['DISCOUNT', 'ITEM']
 	// Required: true
 	RedeemType *string `json:"redeemType"`
 
@@ -245,7 +251,7 @@ var codeInfoTypeRedeemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ITEM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DISCOUNT", "ITEM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -254,6 +260,9 @@ func init() {
 }
 
 const (
+
+	// CodeInfoRedeemTypeDISCOUNT captures enum value "DISCOUNT"
+	CodeInfoRedeemTypeDISCOUNT string = "DISCOUNT"
 
 	// CodeInfoRedeemTypeITEM captures enum value "ITEM"
 	CodeInfoRedeemTypeITEM string = "ITEM"

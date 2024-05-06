@@ -22,7 +22,7 @@ type InGameItemSync struct {
 	// Required: true
 	CategoryPath *string `json:"categoryPath"`
 
-	// item id in game namespace
+	// [Going to deprecate] Item id in game namespace
 	// Required: true
 	TargetItemID *string `json:"targetItemId"`
 

@@ -180,7 +180,7 @@ type PopulatedItemInfo struct {
 	// Target currency code of coin item
 	TargetCurrencyCode string `json:"targetCurrencyCode,omitempty"`
 
-	// Target item id if this item is mapping from game namespace
+	// [Going to deprecate]Target item id if this item is mapping from game namespace.
 	TargetItemID string `json:"targetItemId,omitempty"`
 
 	// The target namespace of a cross namespace item

@@ -5,6 +5,10 @@
 - **match2:** update ruleset data
 ### chore
 - **:** change comment
+- **ams:** property data type changes
+- **gametelemetry:** property rename
+- **legal:** required field addition
+- **platform:** required field addition
 ### ci
 - **:** do not use jenkins master
 

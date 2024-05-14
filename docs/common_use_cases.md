@@ -1394,11 +1394,6 @@ inputCreate := &session.CreateSessionParams{
 }
 
 created, errCreate := sessionService.CreateSessionShort(inputCreate)
-if errCreate != nil {
-	assert.FailNow(t, errCreate.Error())
-}
-sessionBrowserID := *created.SessionID
-t.Logf("SessionID: %v created", sessionBrowserID)
 ```
 
 ### Get a session
@@ -1410,9 +1405,6 @@ inputGet := &session.GetSessionParams{
 }
 
 get, errGet := sessionService.GetSessionShort(inputGet)
-if errGet != nil {
-	assert.FailNow(t, errGet.Error())
-}
 ```
 
 ### Update a session
@@ -1425,9 +1417,6 @@ inputUpdate := &session.UpdateSessionParams{
 }
 
 updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
-if errUpdate != nil {
-	assert.FailNow(t, errUpdate.Error())
-}
 ```
 
 ### Delete a session
@@ -1439,9 +1428,6 @@ inputDelete := &session.AdminDeleteSessionParams{
 }
 
 deleted, errDelete := sessionService.AdminDeleteSessionShort(inputDelete)
-if errDelete != nil {
-	assert.FailNow(t, errDelete.Error())
-}
 ```
 ## Social
 
@@ -1613,30 +1599,27 @@ if errDelete != nil {
 
 Source: [chat_test.go](../services-api/pkg/tests/integration/chat_test.go)
 
-### Admin Profanity Get
-
-```go
-get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
-	Namespace: integration.NamespaceTest,
-})
-if errGet != nil {
-	assert.FailNow(t, errGet.Error())
-}
-```
-
 ### Admin Profanity Create
 
 ```go
 create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
 	Body: &chatclientmodels.ModelsDictionaryInsertRequest{
-		Word:     &wordUpdate,
-		WordType: &wordType,
+		Word:     &profanityWord,
+		WordType: &profanityWordType,
 	},
 	Namespace: integration.NamespaceTest,
 })
-if errCreate != nil {
-	assert.FailNow(t, errCreate.Error())
-}
+```
+
+### Admin Profanity Get
+
+```go
+get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
+	Namespace:       integration.NamespaceTest,
+	IncludeChildren: &profanityQueryIncludeChildren,
+	WordType:        &profanityWordType,
+	StartWith:       &profanityWord,
+})
 ```
 
 ### Admin Profanity Update
@@ -1644,15 +1627,12 @@ if errCreate != nil {
 ```go
 update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
 	Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
-		Word:     &word,
-		WordType: &wordType,
+		Word:     &profanityWord,
+		WordType: &profanityWordType,
 	},
 	Namespace: integration.NamespaceTest,
 	ID:        *create.ID,
 })
-if errUpdate != nil {
-	assert.FailNow(t, errUpdate.Error())
-}
 ```
 
 ### Admin Profanity Delete
@@ -1662,20 +1642,11 @@ errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.Adm
 	Namespace: integration.NamespaceTest,
 	ID:        *create.ID,
 })
-if errDelete != nil {
-	assert.FailNow(t, errDelete.Error())
-}
 ```
 
 ### Save Inbox Message
 
 ```go
-expiredAt := time.Now().Add(time.Hour).Unix()
-scopeChat := chatclientmodels.ModelsSaveInboxMessageRequestScopeUSER
-statusChat := chatclientmodels.ModelsSaveInboxMessageRequestStatusDRAFT
-userIdChat := GetUserID()
-userIds := []string{userIdChat}
-
 save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminSaveInboxMessageParams{
 	Body: &chatclientmodels.ModelsSaveInboxMessageRequest{
 		ExpiredAt: &expiredAt,
@@ -1686,9 +1657,90 @@ save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminS
 	},
 	Namespace: integration.NamespaceTest,
 })
-if errSave != nil {
-	assert.FailNow(t, errSave.Error())
-}
+```
+
+### Send Inbox Message
+
+```go
+create, errCreate := inboxOperationsService.AdminSendInboxMessageShort(&inbox.AdminSendInboxMessageParams{
+	Body:      dataMessage,
+	MessageID: *save.ID,
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Get Inbox Messages
+
+```go
+get, errGet := inboxOperationsService.AdminGetInboxMessagesShort(&inbox.AdminGetInboxMessagesParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Update Inbox Message
+
+```go
+errUpdate := inboxOperationsService.AdminUpdateInboxMessageShort(&inbox.AdminUpdateInboxMessageParams{
+	Body: &chatclientmodels.ModelsUpdateInboxMessageRequest{
+		ExpiredAt: &expiredAt,
+		Message:   &dataMessage,
+		Scope:     &scopeChat,
+		UserIds:   userIds,
+	},
+	Namespace: integration.NamespaceTest,
+	MessageID: *save.ID,
+})
+```
+
+### Admin Delete Inbox Message
+
+```go
+errDelete := inboxOperationsService.AdminDeleteInboxMessageShort(&inbox.AdminDeleteInboxMessageParams{
+	Namespace: integration.NamespaceTest,
+	MessageID: *save.ID,
+	Force:     &force,
+})
+```
+
+### Add chat inbox category
+
+```go
+add, errAdd := inboxOperationsService.AdminAddInboxCategoryShort(&inbox.AdminAddInboxCategoryParams{
+	Body: &chatclientmodels.ModelsAddInboxCategoryRequest{
+		Name:      &categoryName,
+		ExpiresIn: &expiresIn,
+	},
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Get chat inbox category
+
+```go
+get, errGet := inboxOperationsService.AdminGetInboxCategoriesShort(&inbox.AdminGetInboxCategoriesParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Update chat inbox category
+
+```go
+errUpdate := inboxOperationsService.AdminUpdateInboxCategoryShort(&inbox.AdminUpdateInboxCategoryParams{
+	Body: &chatclientmodels.ModelsUpdateInboxCategoryRequest{
+		ExpiresIn: &expiresInUpdate,
+	},
+	Category:  categoryName,
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Delete chat inbox category
+
+```go
+errDelete := inboxOperationsService.AdminDeleteInboxCategoryShort(&inbox.AdminDeleteInboxCategoryParams{
+	Category:  categoryName,
+	Namespace: integration.NamespaceTest,
+})
 ```
 ## DsArtifact
 

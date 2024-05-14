@@ -5,11 +5,11 @@
 package integration_test
 
 import (
+	"strings"
 	"testing"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/chat-sdk/pkg/chatclient/inbox"
-	"github.com/AccelByte/accelbyte-go-sdk/chat-sdk/pkg/chatclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/chat-sdk/pkg/chatclient/profanity"
 	"github.com/AccelByte/accelbyte-go-sdk/chat-sdk/pkg/chatclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -20,10 +20,6 @@ import (
 )
 
 var (
-	chatOperationsService = &chat.OperationsService{
-		Client:          factory.NewChatClient(auth.DefaultConfigRepositoryImpl()),
-		TokenRepository: tokenRepository,
-	}
 	inboxOperationsService = &chat.InboxService{
 		Client:          factory.NewChatClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
@@ -32,116 +28,125 @@ var (
 		Client:          factory.NewChatClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
 	}
-	wordType          = "FALSEPOSITIVE"
-	word              = "anal-go"
-	wordUpdate        = "anal-update-go"
-	profanityId       = ""
-	dataMessage       = "testing golang"
-	dataMessageUpdate = "testing golang update"
 )
 
-func TestIntegrationGetMessages(t *testing.T) {
-	// Login User - Arrange
-	Init()
-
-	// Get Public Messages
-	get, err := chatOperationsService.PublicGetMessagesShort(&operations.PublicGetMessagesParams{})
-	if err != nil {
-		assert.FailNow(t, err.Error())
+func TestIntegrationAdminProfanity(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
 	}
 
-	// Assert
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, get, "should not be nil")
-}
+	profanityWord := "gosdktestprofanity"
+	profanityWordType := "PROFANITY"
+	profanityQueryIncludeChildren := false
 
-func TestIntegrationAdminProfanity(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	// CASE Admin Profanity Get
-	get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
+	t.Logf("Adding profanity word: %s", profanityWord)
+
+	// CASE Admin Profanity Create
+
+	create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
+		Body: &chatclientmodels.ModelsDictionaryInsertRequest{
+			Word:     &profanityWord,
+			WordType: &profanityWordType,
+		},
 		Namespace: integration.NamespaceTest,
 	})
-	if errGet != nil {
-		assert.FailNow(t, errGet.Error())
-	}
+
 	// ESAC
 
 	// Assert
-	assert.Nil(t, errGet, "err should be nil")
-	assert.NotNil(t, get, "should not be nil")
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	assert.NotNil(t, create, "should not be nil")
 
+	defer TearDownTestIntegrationAdminProfanity(t, *create)
+
+	t.Logf("Getting profanity word: %s", profanityWord)
+
+	// CASE Admin Profanity Get
+
+	get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
+		Namespace:       integration.NamespaceTest,
+		IncludeChildren: &profanityQueryIncludeChildren,
+		WordType:        &profanityWordType,
+		StartWith:       &profanityWord,
+	})
+
+	// ESAC
+
+	// Assert
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	assert.NotNil(t, get, "should not be nil")
+	profanityWordFound := false
 	for _, profanityData := range get.Data {
-		if *profanityData.Word == word {
-			profanityId = *profanityData.ID
-			t.Logf("Found existing profanity %s with id %s", *profanityData.Word, *profanityData.ID)
+		if *profanityData.Word == profanityWord {
+			profanityWordFound = true
 		}
 	}
+	assert.True(t, profanityWordFound)
 
-	if profanityId == "" {
-		// CASE Admin Profanity Create
-		create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
-			Body: &chatclientmodels.ModelsDictionaryInsertRequest{
-				Word:     &wordUpdate,
-				WordType: &wordType,
-			},
-			Namespace: integration.NamespaceTest,
-		})
-		if errCreate != nil {
-			assert.FailNow(t, errCreate.Error())
-		}
-		// ESAC
+	t.Logf("Updating profanity word: %s", profanityWord)
 
-		// Assert
-		assert.Nil(t, errCreate, "err should be nil")
-		assert.NotNil(t, create, "should not be nil")
+	// CASE Admin Profanity Update
 
-		// CASE Admin Profanity Update
-		update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
-			Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
-				Word:     &word,
-				WordType: &wordType,
-			},
-			Namespace: integration.NamespaceTest,
-			ID:        *create.ID,
-		})
-		if errUpdate != nil {
-			assert.FailNow(t, errUpdate.Error())
-		}
-		// ESAC
+	update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
+		Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
+			Word:     &profanityWord,
+			WordType: &profanityWordType,
+		},
+		Namespace: integration.NamespaceTest,
+		ID:        *create.ID,
+	})
 
-		// Assert
-		assert.Nil(t, errUpdate, "err should be nil")
-		assert.NotNil(t, update, "should not be nil")
-		t.Logf("Updated profanity with id: %s", *create.ID)
+	// ESAC
 
-		// CASE Admin Profanity Delete
-		errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.AdminProfanityDeleteParams{
-			Namespace: integration.NamespaceTest,
-			ID:        *create.ID,
-		})
-		if errDelete != nil {
-			assert.FailNow(t, errDelete.Error())
-		}
-		// ESAC
+	// Assert
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	assert.NotNil(t, update, "should not be nil")
+}
 
-		// Assert
-		assert.Nil(t, errDelete, "err should be nil")
-		t.Logf("Deleted profanity with id: %s", *create.ID)
+func TearDownTestIntegrationAdminProfanity(t *testing.T, create chatclientmodels.ModelsDictionary) {
+	t.Helper()
+
+	t.Logf("Deleting profanity word: %s", *create.Word)
+
+	// CASE Admin Profanity Delete
+
+	errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.AdminProfanityDeleteParams{
+		Namespace: integration.NamespaceTest,
+		ID:        *create.ID,
+	})
+
+	// ESAC
+
+	// Assert
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
 	}
 }
 
 func TestIntegrationInbox(t *testing.T) {
-	// Login User - Arrange
-	Init()
+	dataMessage := "GoSdkTestMessage"
 
-	// CASE Save Inbox Message
 	expiredAt := time.Now().Add(time.Hour).Unix()
 	scopeChat := chatclientmodels.ModelsSaveInboxMessageRequestScopeUSER
 	statusChat := chatclientmodels.ModelsSaveInboxMessageRequestStatusDRAFT
 	userIdChat := GetUserID()
 	userIds := []string{userIdChat}
+
+	// Login User - Arrange
+	Init()
+
+	t.Logf("Saving inbox message: %s", dataMessage)
+
+	// CASE Save Inbox Message
 
 	save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminSaveInboxMessageParams{
 		Body: &chatclientmodels.ModelsSaveInboxMessageRequest{
@@ -153,75 +158,183 @@ func TestIntegrationInbox(t *testing.T) {
 		},
 		Namespace: integration.NamespaceTest,
 	})
-	if errSave != nil {
-		assert.FailNow(t, errSave.Error())
-	}
+
 	// ESAC
 
 	// Assert
-	assert.Nil(t, errSave, "err should be nil")
+	if errSave != nil {
+		assert.FailNow(t, errSave.Error())
+	}
 	assert.NotNil(t, save, "should not be nil")
-	t.Logf("Saved inbox with message id: %s. message: %s", *save.ID, dataMessage)
 
-	// Send Inbox Message
+	defer TearDownTestIntegrationInbox(t, *save)
+
+	t.Logf("Sending inbox message: %s", dataMessage)
+
+	// CASE Send Inbox Message
+
 	create, errCreate := inboxOperationsService.AdminSendInboxMessageShort(&inbox.AdminSendInboxMessageParams{
 		Body:      dataMessage,
 		MessageID: *save.ID,
 		Namespace: integration.NamespaceTest,
 	})
+
+	// ESAC
+
+	// Assert
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-
-	// Assert
-	assert.Nil(t, errCreate, "err should be nil")
 	assert.NotNil(t, create, "should not be nil")
-	t.Logf("Created inbox with message id: %s", *save.ID)
 
-	// Admin Get Inbox Messages
+	t.Logf("Getting inbox message: %s", dataMessage)
+
+	// CASE Admin Get Inbox Messages
+
 	get, errGet := inboxOperationsService.AdminGetInboxMessagesShort(&inbox.AdminGetInboxMessagesParams{
 		Namespace: integration.NamespaceTest,
 	})
+
+	// ESAC
+
+	// Assert
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-
-	// Assert
-	assert.Nil(t, errGet, "err should be nil")
 	assert.NotNil(t, get, "should not be nil")
 
-	// Admin Update Inbox Message
+	t.Logf("Updating inbox message: %s", dataMessage)
+
+	// CASE Admin Update Inbox Message
+
 	errUpdate := inboxOperationsService.AdminUpdateInboxMessageShort(&inbox.AdminUpdateInboxMessageParams{
 		Body: &chatclientmodels.ModelsUpdateInboxMessageRequest{
 			ExpiredAt: &expiredAt,
-			Message:   &dataMessageUpdate,
+			Message:   &dataMessage,
 			Scope:     &scopeChat,
 			UserIds:   userIds,
 		},
 		Namespace: integration.NamespaceTest,
 		MessageID: *save.ID,
 	})
+
+	// ESAC
+
+	// Assert
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
+}
 
-	// Assert
-	assert.Nil(t, errUpdate, "err should be nil")
-	t.Logf("Updated inbox with message id: %s", *save.ID)
+func TearDownTestIntegrationInbox(t *testing.T, save chatclientmodels.ModelsSaveInboxMessageResponse) {
+	t.Helper()
 
-	// Admin Delete Inbox Message
 	force := true
+
+	t.Logf("Deleting inbox message: %s", save.Message)
+
+	// CASE Admin Delete Inbox Message
+
 	errDelete := inboxOperationsService.AdminDeleteInboxMessageShort(&inbox.AdminDeleteInboxMessageParams{
 		Namespace: integration.NamespaceTest,
 		MessageID: *save.ID,
 		Force:     &force,
 	})
-	if errDelete != nil {
-		t.Skip()
-		assert.FailNow(t, errDelete.Error())
-	}
+
+	// ESAC
 
 	// Assert
-	assert.Nil(t, errDelete, "err should be nil")
-	t.Logf("Deleted inbox with message id: %s", *save.ID)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+}
+
+func TestIntegrationInboxCategory(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
+	categoryName := "GoSdkTestCat"
+	expiresIn := int64(3600000000)
+	expiresInUpdate := int64(1800000000)
+
+	// Login User - Arrange
+	Init()
+
+	defer TearDownTestIntegrationInboxCategory(t, categoryName)
+
+	t.Logf("Adding chat inbox category: %s", categoryName)
+
+	// CASE Add chat inbox category
+
+	add, errAdd := inboxOperationsService.AdminAddInboxCategoryShort(&inbox.AdminAddInboxCategoryParams{
+		Body: &chatclientmodels.ModelsAddInboxCategoryRequest{
+			Name:      &categoryName,
+			ExpiresIn: &expiresIn,
+		},
+		Namespace: integration.NamespaceTest,
+	})
+
+	// ESAC
+
+	// Assert
+	if errAdd != nil {
+		assert.FailNow(t, errAdd.Error())
+	}
+	assert.NotNil(t, add, "should not be nil")
+
+	t.Logf("Getting chat inbox category: %s", categoryName)
+
+	// CASE Get chat inbox category
+
+	get, errGet := inboxOperationsService.AdminGetInboxCategoriesShort(&inbox.AdminGetInboxCategoriesParams{
+		Namespace: integration.NamespaceTest,
+	})
+
+	// ESAC
+
+	// Assert
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	assert.NotNil(t, get, "should not be nil")
+
+	t.Logf("Updating chat inbox category: %s", categoryName)
+
+	// CASE Update chat inbox category
+
+	errUpdate := inboxOperationsService.AdminUpdateInboxCategoryShort(&inbox.AdminUpdateInboxCategoryParams{
+		Body: &chatclientmodels.ModelsUpdateInboxCategoryRequest{
+			ExpiresIn: &expiresInUpdate,
+		},
+		Category:  categoryName,
+		Namespace: integration.NamespaceTest,
+	})
+
+	// ESAC
+
+	// Assert
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+}
+
+func TearDownTestIntegrationInboxCategory(t *testing.T, categoryName string) {
+	t.Helper()
+
+	t.Logf("Deleting chat inbox category: %s", categoryName)
+
+	// CASE Delete chat inbox category
+
+	errDelete := inboxOperationsService.AdminDeleteInboxCategoryShort(&inbox.AdminDeleteInboxCategoryParams{
+		Category:  categoryName,
+		Namespace: integration.NamespaceTest,
+	})
+
+	// ESAC
+
+	// Assert
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
 }

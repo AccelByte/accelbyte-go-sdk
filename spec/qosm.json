@@ -112,7 +112,8 @@
         "summary": "Update QoS Service configuration",
         "tags": [
           "Admin"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/qosm/admin/servers/{region}": {
@@ -159,7 +160,8 @@
         "summary": "Delete a QoS service record",
         "tags": [
           "Admin"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/qosm/admin/servers/{region}/alias": {
@@ -226,7 +228,8 @@
         "summary": "Modify a QoS service's region alias",
         "tags": [
           "Admin"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/qosm/public/namespaces/{namespace}/qos": {
@@ -276,7 +279,8 @@
         "summary": "Get list of QoS services per region",
         "tags": [
           "Public"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/qosm/public/qos": {
@@ -311,7 +315,8 @@
         "summary": "Get list of QoS services",
         "tags": [
           "Public"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/qosm/servers/heartbeat": {
@@ -363,7 +368,8 @@
         "summary": "Send heartbeat",
         "tags": [
           "Server"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     }
   },

@@ -36,7 +36,7 @@ type ClientService interface {
 	AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, error)
 	AdminGetGoal(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, *AdminGetGoalUnauthorized, *AdminGetGoalForbidden, *AdminGetGoalNotFound, *AdminGetGoalInternalServerError, error)
 	AdminGetGoalShort(params *AdminGetGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGoalOK, error)
-	AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error)
+	AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsBadRequest, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error)
 	AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, error)
 	AdminDeleteGoal(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, *AdminDeleteGoalBadRequest, *AdminDeleteGoalNotFound, *AdminDeleteGoalInternalServerError, error)
 	AdminDeleteGoalShort(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, error)
@@ -447,7 +447,7 @@ Request body:
       * isActive (optional): when goal is in a schedule, isActive determine whether goal is active to progress or not
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
 */
-func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error) {
+func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsBadRequest, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateGoalsParams()
@@ -479,22 +479,25 @@ func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateGoalsOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *AdminUpdateGoalsBadRequest:
+		return nil, v, nil, nil, nil
 
 	case *AdminUpdateGoalsNotFound:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AdminUpdateGoalsInternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -548,6 +551,8 @@ func (a *Client) AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo 
 
 	case *AdminUpdateGoalsOK:
 		return v, nil
+	case *AdminUpdateGoalsBadRequest:
+		return nil, v
 	case *AdminUpdateGoalsNotFound:
 		return nil, v
 	case *AdminUpdateGoalsInternalServerError:

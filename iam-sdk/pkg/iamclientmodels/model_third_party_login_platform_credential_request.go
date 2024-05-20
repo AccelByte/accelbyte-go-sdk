@@ -75,6 +75,9 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	KeyID *string `json:"KeyID"`
 
+	// login method logo url
+	LogoURL string `json:"LogoURL,omitempty"`
+
 	// A json containing credentials for netflix integration. Only for netflix platformId
 	// Required: true
 	NetflixCertificates *AccountcommonNetflixCertificates `json:"NetflixCertificates"`

@@ -69,15 +69,15 @@ eval_tap 0 7 'DeleteUserSlotConfig # SKIP deprecated' test.out
 #- 8 GetUserProfiles
 samples/cli/sample-apps Social getUserProfiles \
     --namespace $AB_NAMESPACE \
-    --userId 'z3irl2389XwmlQlN' \
+    --userId 'pWmxxxHjq0L7sWHZ' \
     > test.out 2>&1
 eval_tap $? 8 'GetUserProfiles' test.out
 
 #- 9 GetProfile
 samples/cli/sample-apps Social getProfile \
     --namespace $AB_NAMESPACE \
-    --profileId 'yLqIpBaWr87v9hEi' \
-    --userId 'rDbLJKidgV6kILtx' \
+    --profileId 'UkazqCG3Jjnmz381' \
+    --userId 'A7Qa2hINwuxMxqRB' \
     > test.out 2>&1
 eval_tap $? 9 'GetProfile' test.out
 
@@ -90,66 +90,66 @@ eval_tap 0 11 'GetSlotData # SKIP deprecated' test.out
 #- 12 PublicGetUserGameProfiles
 samples/cli/sample-apps Social publicGetUserGameProfiles \
     --namespace $AB_NAMESPACE \
-    --userIds '["zscJAwQnGCQH377h", "bnZZXnbSihkvB3Di", "OIIhiGb0rJqGK4WN"]' \
+    --userIds '["RppZ3lqNrlwIyKe0", "KAItMOmP5itWuFAf", "BpvHBPQJLleMTRcj"]' \
     > test.out 2>&1
 eval_tap $? 12 'PublicGetUserGameProfiles' test.out
 
 #- 13 PublicGetUserProfiles
 samples/cli/sample-apps Social publicGetUserProfiles \
     --namespace $AB_NAMESPACE \
-    --userId 'eMlQ3o0f7hXnyLrN' \
+    --userId 'nZzXfTXuG6TCcPBg' \
     > test.out 2>&1
 eval_tap $? 13 'PublicGetUserProfiles' test.out
 
 #- 14 PublicCreateProfile
 samples/cli/sample-apps Social publicCreateProfile \
     --namespace $AB_NAMESPACE \
-    --userId 'nWJ4TZf5G9W8bsZQ' \
-    --body '{"achievements": ["oHcxJPJMxGugB3Ua", "ooG1ORkZu07kaYSz", "NIF3egwqtpzGC86e"], "attributes": {"8xaVA5QdgzhQnLYj": "O0TG92IBWH2Lcsxm", "7QmZXHBNLdOOO6jx": "MQ9PGqPxKAEmCtVZ", "fo4vCTPTBc31Bu8X": "J1mTYrErSaM76teB"}, "avatarUrl": "u7SGeaXw9lyJcVSh", "inventories": ["ZyBzrhg6Q56Vv04m", "THn2iQYLrgMdgZJB", "bQTcFkBsESr7s4Re"], "label": "dAKMAeRmqH0HX5C9", "profileName": "bnf2MGUfD91Jolqp", "statistics": ["qGEfA5GpGQzy4kS8", "Kcxwj338ROeXIcmA", "7ejBhKwNowsNnZjY"], "tags": ["Y5yZtbBndkbFtFhj", "tCcOT4mSQvyPaGUA", "6H6lA9L9r0ZIpXJX"]}' \
+    --userId 'xc1pVaT95isecfor' \
+    --body '{"achievements": ["lENfWqI6ZQrB6jC3", "MYOmm6bVKe4dRBXT", "3y5cqO5U7F23s2ZY"], "attributes": {"LDANYLleWIyYHPD0": "Ln8ft5fY905yVFHn", "49lLrlVB2HyPWYwE": "tNJWyrYt6ZI8YeFT", "Ug8ppdEgTm4eN8h2": "Jgt3oUCwnxTBRk2T"}, "avatarUrl": "tySPg3u6gtKHR38k", "inventories": ["BbV1XnSc2Fcyii23", "jZ1I5iPhfnjt50A4", "OqkjVkV6p3Y1DGyJ"], "label": "hmv5WJbKZzX75AAY", "profileName": "L1fychWY1tNAuBYx", "statistics": ["a4nZzFrNqxEXhSfu", "DTLuwmOTt3Z4oDCu", "Y6kEWwanR9LTgRWq"], "tags": ["240G62Ly7T1C9rmL", "hwFhHfbXI5JLqEXI", "0T6Twcg7b24kyCpX"]}' \
     > test.out 2>&1
 eval_tap $? 14 'PublicCreateProfile' test.out
 
 #- 15 PublicGetProfile
 samples/cli/sample-apps Social publicGetProfile \
     --namespace $AB_NAMESPACE \
-    --profileId 'IoTwquz8YTV4foh8' \
-    --userId 'wSMdt0C394t9oBZx' \
+    --profileId 'nGzuFcjBjoeArhEK' \
+    --userId '1kcSVTYsOnICevIJ' \
     > test.out 2>&1
 eval_tap $? 15 'PublicGetProfile' test.out
 
 #- 16 PublicUpdateProfile
 samples/cli/sample-apps Social publicUpdateProfile \
     --namespace $AB_NAMESPACE \
-    --profileId 'Reqar199093v4RTR' \
-    --userId '2NaCrCoLYOEnBBMJ' \
-    --body '{"achievements": ["u92vGacoakzTOBng", "7cYTbkvJeQbMwqRA", "41bFozQe9td86092"], "attributes": {"67TUXBiscHiys3sI": "2Ls3HDpK6ooTxxPE", "0fv1G6ubGre1Qsoe": "8je98pAwxswPvKlh", "EMPYMjgUgpQUJD4P": "Skn8i13PnehR5fRf"}, "avatarUrl": "si13FjfEWjLColIY", "inventories": ["svIZydl5gcXLKmps", "50zTtzrth2CXFe4V", "ofzKK8H6uggvcsRj"], "label": "gHC15Upm9YsLn24G", "profileName": "80uST4zFLBVgDxHh", "statistics": ["mzkmFtrD66HxvhKz", "Lk7JiC9gGWfUx43S", "BNWIB9f3twDPVzyY"], "tags": ["97eJBJHtIWuIoMHk", "c1HgbYaUHiN1XQM7", "D68IwxM65Xg2loSW"]}' \
+    --profileId 'vFyQWuiiDrD99wdq' \
+    --userId 'p8gtBdr5s3A6O5se' \
+    --body '{"achievements": ["xxED5Fokbvwg9kGJ", "wAViLpWqFGWgiiWI", "vcUFKRW62Lhhu2jT"], "attributes": {"0vAOPpAOCTJix0r4": "ZQSN8gBRyKwzBL4F", "6MdQ9jfP6PxDWid3": "dGPiiGECZI4dfM9C", "z2l64i11FHq80tlK": "jzxA7rG4m8XzSEPe"}, "avatarUrl": "xjkh1qtnMsqmkApQ", "inventories": ["gmr5JKgCO5qh0TKp", "45FbxigxYH01Kw5U", "eTpJ9B1DbGvpWLEO"], "label": "GFLrQzEPoq7IgXU4", "profileName": "1ylwQ3DKctv36bPd", "statistics": ["jiPvjRpwwVKcSfTA", "QbKI2mv4M66AwoPa", "MX43MrQ1FJorL5en"], "tags": ["5jxWPKGUvKEgeoas", "ABOk9sCFzgD6JTEM", "f5Wsv1uKMhUIXYs4"]}' \
     > test.out 2>&1
 eval_tap $? 16 'PublicUpdateProfile' test.out
 
 #- 17 PublicDeleteProfile
 samples/cli/sample-apps Social publicDeleteProfile \
     --namespace $AB_NAMESPACE \
-    --profileId 'h6kS2yxkPlfVD0c7' \
-    --userId '8bLg44j0RNyHvwAs' \
+    --profileId 's1xo6RwND7WJV6rX' \
+    --userId 'oGV4W2umcfbpwWT3' \
     > test.out 2>&1
 eval_tap $? 17 'PublicDeleteProfile' test.out
 
 #- 18 PublicGetProfileAttribute
 samples/cli/sample-apps Social publicGetProfileAttribute \
-    --attributeName 'LmK31bz3bzHn1Djz' \
+    --attributeName 't2eut2vkItgDDRXN' \
     --namespace $AB_NAMESPACE \
-    --profileId 'E3UiBY7Ydu2DRnMq' \
-    --userId 'EfqIxMxF3VSHBk0c' \
+    --profileId 'phYXWKhrcNYt0qI3' \
+    --userId 'Wu1L0K6XslJHNhTj' \
     > test.out 2>&1
 eval_tap $? 18 'PublicGetProfileAttribute' test.out
 
 #- 19 PublicUpdateAttribute
 samples/cli/sample-apps Social publicUpdateAttribute \
-    --attributeName 'uGGqMbPiXgtdTXWu' \
+    --attributeName '8MtGCdUtOyeA6BxN' \
     --namespace $AB_NAMESPACE \
-    --profileId '0HwIz8QKGbV14A4W' \
-    --userId 'cJLB9cc0h1h6KIml' \
-    --body '{"name": "DYH3ygfRhp2vzEY1", "value": "4H7v32QyxxYkQBWE"}' \
+    --profileId 'SYU0PTpWipwZNpdH' \
+    --userId 'LQ78hjocM6IQ4MkQ' \
+    --body '{"name": "qbS6aPEIc4TWfCNC", "value": "89MSoguBa6kMIqOV"}' \
     > test.out 2>&1
 eval_tap $? 19 'PublicUpdateAttribute' test.out
 
@@ -174,27 +174,27 @@ eval_tap 0 25 'PublicUpdateUserNamespaceSlotMetadata # SKIP deprecated' test.out
 #- 26 GetGlobalStatItems
 samples/cli/sample-apps Social getGlobalStatItems \
     --namespace $AB_NAMESPACE \
-    --limit '3' \
-    --offset '71' \
-    --statCodes 'mf8DClKnN5iD6P9s' \
+    --limit '9' \
+    --offset '86' \
+    --statCodes 'XxiS2d4mulzEJ2xZ' \
     > test.out 2>&1
 eval_tap $? 26 'GetGlobalStatItems' test.out
 
 #- 27 GetGlobalStatItemByStatCode
 samples/cli/sample-apps Social getGlobalStatItemByStatCode \
     --namespace $AB_NAMESPACE \
-    --statCode 'kikBEMUXufl53Zay' \
+    --statCode 'Pj2EoVofWUPJcIL8' \
     > test.out 2>&1
 eval_tap $? 27 'GetGlobalStatItemByStatCode' test.out
 
 #- 28 GetStatCycles
 samples/cli/sample-apps Social getStatCycles \
     --namespace $AB_NAMESPACE \
-    --cycleType 'MONTHLY' \
-    --limit '45' \
-    --name 'aecrZKvW3l0Zpa8F' \
-    --offset '19' \
-    --sortBy '6pwf1NLZoxzZNKS0' \
+    --cycleType 'DAILY' \
+    --limit '63' \
+    --name 'pejnOqPJG4nj1H54' \
+    --offset '67' \
+    --sortBy 'MJI9qUpHA5ENgHnb' \
     --status 'STOPPED' \
     > test.out 2>&1
 eval_tap $? 28 'GetStatCycles' test.out
@@ -202,14 +202,14 @@ eval_tap $? 28 'GetStatCycles' test.out
 #- 29 CreateStatCycle
 samples/cli/sample-apps Social createStatCycle \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleType": "WEEKLY", "description": "Gtmt69B1iRT4xF2Y", "end": "1980-01-16T00:00:00Z", "name": "k4N87ccyYgeGdKnZ", "resetDate": 85, "resetDay": 78, "resetMonth": 35, "resetTime": "cuHvfLVfBrHmT9vu", "seasonPeriod": 24, "start": "1990-11-10T00:00:00Z"}' \
+    --body '{"cycleType": "SEASONAL", "description": "4uXl2WaJYmW23OfY", "end": "1987-05-05T00:00:00Z", "name": "jn1ZTsvv8XUhgGfC", "resetDate": 97, "resetDay": 66, "resetMonth": 55, "resetTime": "7cmmvcFx1pE5SNPk", "seasonPeriod": 20, "start": "1997-08-23T00:00:00Z"}' \
     > test.out 2>&1
 eval_tap $? 29 'CreateStatCycle' test.out
 
 #- 30 BulkGetStatCycle
 samples/cli/sample-apps Social bulkGetStatCycle \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleIds": ["IMd88AIr3ZyMVHZe", "V4kfxy530jeSFsj1", "no6ZcgkTeE6LRhfq"]}' \
+    --body '{"cycleIds": ["qdLCVRf7OhEAhGLJ", "nRmZku0psNDBbjbm", "VR5yA5LRQn678CMl"]}' \
     > test.out 2>&1
 eval_tap $? 30 'BulkGetStatCycle' test.out
 
@@ -222,44 +222,44 @@ eval_tap $? 31 'ExportStatCycle' test.out
 #- 32 ImportStatCycle
 samples/cli/sample-apps Social importStatCycle \
     --namespace $AB_NAMESPACE \
-    --replaceExisting 'false' \
+    --replaceExisting 'true' \
     --file 'tmp.dat' \
     > test.out 2>&1
 eval_tap $? 32 'ImportStatCycle' test.out
 
 #- 33 GetStatCycle
 samples/cli/sample-apps Social getStatCycle \
-    --cycleId 'tgo3Q1KUXmc0y5cq' \
+    --cycleId 'K7OF9HARykm8olwO' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 33 'GetStatCycle' test.out
 
 #- 34 UpdateStatCycle
 samples/cli/sample-apps Social updateStatCycle \
-    --cycleId 'YLLGxMxEmkAvxo0g' \
+    --cycleId 'l2xb6NzOCqLI1IAB' \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleType": "WEEKLY", "description": "HXF1k4OyfVAT0fkk", "end": "1995-09-27T00:00:00Z", "name": "TG9SOqOkihgeEJpX", "resetDate": 20, "resetDay": 59, "resetMonth": 23, "resetTime": "2YcrXapqiyvYKDCq", "seasonPeriod": 44, "start": "1995-04-02T00:00:00Z"}' \
+    --body '{"cycleType": "SEASONAL", "description": "WVXzpQ9lKILgl2P4", "end": "1984-05-24T00:00:00Z", "name": "8W59uDaPKvln711o", "resetDate": 80, "resetDay": 91, "resetMonth": 83, "resetTime": "CGT7uvPRFhBns6nK", "seasonPeriod": 73, "start": "1972-02-20T00:00:00Z"}' \
     > test.out 2>&1
 eval_tap $? 34 'UpdateStatCycle' test.out
 
 #- 35 DeleteStatCycle
 samples/cli/sample-apps Social deleteStatCycle \
-    --cycleId 'yC1RwllcEMsnuknM' \
+    --cycleId 'Uint91zJVGxxQAZR' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 35 'DeleteStatCycle' test.out
 
 #- 36 BulkAddStats
 samples/cli/sample-apps Social bulkAddStats \
-    --cycleId 'flOXxSjUW1n9zOUe' \
+    --cycleId 'yrYxkAxNZuIGreqV' \
     --namespace $AB_NAMESPACE \
-    --body '{"statCodes": ["kh0WfRUkMcZQoeFM", "jHOKHenoIpCwm284", "6PfVN98wNYWKdrBe"]}' \
+    --body '{"statCodes": ["GI7tpGE6PUjl31t1", "xKFE3XSxeFy26KxX", "Y1OKkTCyxfc4izql"]}' \
     > test.out 2>&1
 eval_tap $? 36 'BulkAddStats' test.out
 
 #- 37 StopStatCycle
 samples/cli/sample-apps Social stopStatCycle \
-    --cycleId 'FzcLB1QCYhUjoL5A' \
+    --cycleId 'Q70ZWoLLPSqD482e' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 37 'StopStatCycle' test.out
@@ -267,55 +267,55 @@ eval_tap $? 37 'StopStatCycle' test.out
 #- 38 BulkFetchStatItems
 samples/cli/sample-apps Social bulkFetchStatItems \
     --namespace $AB_NAMESPACE \
-    --statCode 'xa3HxGw4LAelvvyk' \
-    --userIds 'mDqvUPWFrcQP62ox' \
+    --statCode 'HbLVy9rDLH72OIw4' \
+    --userIds 'rxJVyiNOwHMsl29G' \
     > test.out 2>&1
 eval_tap $? 38 'BulkFetchStatItems' test.out
 
 #- 39 BulkIncUserStatItem
 samples/cli/sample-apps Social bulkIncUserStatItem \
     --namespace $AB_NAMESPACE \
-    --body '[{"inc": 0.008176133044052292, "statCode": "6PcUAZLyqLO02QnC", "userId": "mBV4BKVmUdbfhkXx"}, {"inc": 0.7640994703953332, "statCode": "0XrCnvvojT02pVdC", "userId": "rkv5Qg19wz1suDVy"}, {"inc": 0.3567225926394686, "statCode": "YIBvBIhUGeB2tdy7", "userId": "OH81XaNSkqHbSK1Q"}]' \
+    --body '[{"inc": 0.5050217902147596, "statCode": "cakLjqPmnuBNHTYe", "userId": "XppbYARuPbcym0Al"}, {"inc": 0.9727593039234931, "statCode": "Z3GQYP331hiSUj4l", "userId": "j5E474TNFVFQI3XZ"}, {"inc": 0.2842900756418659, "statCode": "vw24jbKALHotE5Yc", "userId": "7Nrdw4W7cfO0Vzj6"}]' \
     > test.out 2>&1
 eval_tap $? 39 'BulkIncUserStatItem' test.out
 
 #- 40 BulkIncUserStatItemValue
 samples/cli/sample-apps Social bulkIncUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --body '[{"inc": 0.6667736768875396, "statCode": "QYne4ZNYTq3nZVRD", "userId": "8lONRPShnwAo6EUF"}, {"inc": 0.8690648873185661, "statCode": "OYVFpdHAmVeGbNpb", "userId": "RNG3ONZTh5nxJLcp"}, {"inc": 0.6234065459697029, "statCode": "QM6J4a29sNeTry1A", "userId": "7Qrv3a7ghABDH3VI"}]' \
+    --body '[{"inc": 0.2095087181859595, "statCode": "TEwRL4Qt83swsK6T", "userId": "Eh1UKrbSwY8q5pUe"}, {"inc": 0.08204539002496714, "statCode": "b97XgzA9YDNXL9CD", "userId": "i3m00YjOccBA7hp7"}, {"inc": 0.39671479355727635, "statCode": "jhcBRNdfiD270UXv", "userId": "DRBR7hAB80CoyHEc"}]' \
     > test.out 2>&1
 eval_tap $? 40 'BulkIncUserStatItemValue' test.out
 
 #- 41 BulkFetchOrDefaultStatItems
 samples/cli/sample-apps Social bulkFetchOrDefaultStatItems \
     --namespace $AB_NAMESPACE \
-    --statCode 'Nolueu0C9AdPkKXG' \
-    --userIds '["N4eCpJctjyOViQtH", "Elg7FWeuZ5KWvMQI", "qRuCHF0N0I2kJFbD"]' \
+    --statCode '8n2N7gTKXiDj7zfE' \
+    --userIds '["FEXbzNOwJbzmUVqv", "zXpD2kGp1DcgMiVe", "XZajHXFGL2fLY4yD"]' \
     > test.out 2>&1
 eval_tap $? 41 'BulkFetchOrDefaultStatItems' test.out
 
 #- 42 BulkResetUserStatItem
 samples/cli/sample-apps Social bulkResetUserStatItem \
     --namespace $AB_NAMESPACE \
-    --body '[{"statCode": "M5SnZP05HsGjqfsr", "userId": "99CBbdR1cCXLrQ6F"}, {"statCode": "J1MEK9ecNDm6g4BK", "userId": "6Jfvp4MxLBUVQiRY"}, {"statCode": "CT7pFMREmGwElP6i", "userId": "7GIGk7EBasfFQmFW"}]' \
+    --body '[{"statCode": "d1pkmXCIpseFfBeW", "userId": "bAavyv0e44N42yKy"}, {"statCode": "AjHYy3Pao4pamtkC", "userId": "1jcHjZnWN91t5fqZ"}, {"statCode": "HVUUxLqSVFyb4FoI", "userId": "Xxi6BGEV1FR61SYv"}]' \
     > test.out 2>&1
 eval_tap $? 42 'BulkResetUserStatItem' test.out
 
 #- 43 GetStats
 samples/cli/sample-apps Social getStats \
     --namespace $AB_NAMESPACE \
-    --cycleIds 'seW4E2LurBR0Dwn6' \
-    --isGlobal 'false' \
+    --cycleIds '21RX4rqes5MIw3VZ' \
+    --isGlobal 'true' \
     --isPublic 'false' \
-    --limit '67' \
-    --offset '7' \
+    --limit '85' \
+    --offset '58' \
     > test.out 2>&1
 eval_tap $? 43 'GetStats' test.out
 
 #- 44 CreateStat
 samples/cli/sample-apps Social createStat \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleIds": ["oT7eW4OFKYePi8We", "0KUmlXEKWPwXHdTD", "kn1kC4rzC2UznAfF"], "defaultValue": 0.14435896381358737, "description": "Qwa3BuQsExg8Xhu5", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "incrementOnly": false, "isPublic": true, "maximum": 0.2962621097214114, "minimum": 0.2546757797787609, "name": "DcLnyI1vmVPBfhLV", "setAsGlobal": false, "setBy": "SERVER", "statCode": "3IU0Fx8EeRyz2m0k", "tags": ["yrH1wF3lo11EbxhD", "aIvhjYL8DJjaH9vg", "m2kNrJFTt4kX3nNT"]}' \
+    --body '{"cycleIds": ["YzlkEmv3LtFJ7x8Q", "a7QjNSS961EKRSpT", "O9EHUqbMCbQ5fnTD"], "defaultValue": 0.3040305562787966, "description": "U7vShIbC3RDybxLO", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "incrementOnly": true, "isPublic": true, "maximum": 0.7241124479019884, "minimum": 0.805011870673692, "name": "ko0huJ3aTJqONRFt", "setAsGlobal": false, "setBy": "SERVER", "statCode": "wdD2WuXqmb3NMvRK", "tags": ["YMUVRdW3WUElcKjH", "U47axzfiDb6tyZA5", "oclfjDMhDaVCv8FU"]}' \
     > test.out 2>&1
 eval_tap $? 44 'CreateStat' test.out
 
@@ -328,7 +328,7 @@ eval_tap $? 45 'ExportStats' test.out
 #- 46 ImportStats
 samples/cli/sample-apps Social importStats \
     --namespace $AB_NAMESPACE \
-    --replaceExisting 'true' \
+    --replaceExisting 'false' \
     --file 'tmp.dat' \
     > test.out 2>&1
 eval_tap $? 46 'ImportStats' test.out
@@ -336,170 +336,170 @@ eval_tap $? 46 'ImportStats' test.out
 #- 47 QueryStats
 samples/cli/sample-apps Social queryStats \
     --namespace $AB_NAMESPACE \
-    --isGlobal 'false' \
+    --isGlobal 'true' \
     --isPublic 'false' \
-    --limit '24' \
-    --offset '34' \
-    --keyword 'yjZ2vzHQFpvddgFU' \
+    --limit '6' \
+    --offset '9' \
+    --keyword 'J9L78wq8sajnYDOo' \
     > test.out 2>&1
 eval_tap $? 47 'QueryStats' test.out
 
 #- 48 GetStat
 samples/cli/sample-apps Social getStat \
     --namespace $AB_NAMESPACE \
-    --statCode 'TzHtnIK7C9BSaRaS' \
+    --statCode 'BCdm3dP1az6vKB0m' \
     > test.out 2>&1
 eval_tap $? 48 'GetStat' test.out
 
 #- 49 DeleteStat
 samples/cli/sample-apps Social deleteStat \
     --namespace $AB_NAMESPACE \
-    --statCode '6YCWbqZSXoeBWTJq' \
+    --statCode 'gnFnXP3lzEZIrIFX' \
     > test.out 2>&1
 eval_tap $? 49 'DeleteStat' test.out
 
 #- 50 UpdateStat
 samples/cli/sample-apps Social updateStat \
     --namespace $AB_NAMESPACE \
-    --statCode 'ctczNne37M24VjD6' \
-    --body '{"cycleIds": ["0yhZEf49XUuF9BEp", "PytVbP68nx9h3aNs", "DoC5vivmIiF43qSA"], "defaultValue": 0.49176785692415204, "description": "lpgwA2kpgCOFcIxA", "globalAggregationMethod": "MIN", "ignoreAdditionalDataOnValueRejected": true, "isPublic": true, "name": "rh1v0S7KWZvEhVHP", "tags": ["OzfUUD4iQ8VEkyZS", "7WZpshv3ktVe6VFP", "ocKuHw0LOTml96vd"]}' \
+    --statCode 'CExLPcXm4CPRTGlC' \
+    --body '{"cycleIds": ["y0A5GXViAlTnkPNW", "vTSJgk1qjNkSqveu", "gHitvMktSGXPZLIw"], "defaultValue": 0.8400200081262452, "description": "ojZZI3PkOWonLq11", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "isPublic": false, "name": "Zbw0QDt6ESFNosl2", "tags": ["hG525gBSzcOE5D59", "S7Ih9VwMMqUTsZA1", "2aiXsmvIIbyE8IAU"]}' \
     > test.out 2>&1
 eval_tap $? 50 'UpdateStat' test.out
 
 #- 51 GetStatItems
 samples/cli/sample-apps Social getStatItems \
     --namespace $AB_NAMESPACE \
-    --statCode 'JGns07zN6gmtz2Ut' \
-    --limit '22' \
-    --offset '58' \
-    --sortBy 'QVQODC0R2CnidpMu' \
+    --statCode 'hox7WdXIJOtJClLN' \
+    --limit '60' \
+    --offset '61' \
+    --sortBy 'K2ppZENH57QpKh6L' \
     > test.out 2>&1
 eval_tap $? 51 'GetStatItems' test.out
 
 #- 52 DeleteTiedStat
 samples/cli/sample-apps Social deleteTiedStat \
     --namespace $AB_NAMESPACE \
-    --statCode 'V2j5u3L1lyvMTK2r' \
+    --statCode '8HlcK8mHLT17DOl1' \
     > test.out 2>&1
 eval_tap $? 52 'DeleteTiedStat' test.out
 
 #- 53 GetUserStatCycleItems
 samples/cli/sample-apps Social getUserStatCycleItems \
-    --cycleId 'WYawHnjAWkh1yzQd' \
+    --cycleId 'ZzgLFdh9HHeT6eh0' \
     --namespace $AB_NAMESPACE \
-    --userId '8iZWLtBrRo8wE7fL' \
+    --userId 'yhRmyJ3MnZjRorLO' \
     --isPublic 'false' \
-    --limit '96' \
-    --offset '1' \
-    --sortBy '4hgnrBLNPcPUJtFP' \
-    --statCodes '99HlQpHRzpUDD0lz' \
+    --limit '76' \
+    --offset '52' \
+    --sortBy '7HaWaxW9RkuLumU0' \
+    --statCodes 'ImR6vl9HZ4PagYAl' \
     > test.out 2>&1
 eval_tap $? 53 'GetUserStatCycleItems' test.out
 
 #- 54 GetUserStatItems
 samples/cli/sample-apps Social getUserStatItems \
     --namespace $AB_NAMESPACE \
-    --userId 'PtJrWbWlP2ZsEOmg' \
+    --userId 'B5Fzzrh61ctiETTR' \
     --isPublic 'false' \
-    --limit '99' \
-    --offset '15' \
-    --sortBy 'DHKRRfyxKMhV1fIG' \
-    --statCodes '3iAP2Mosex57csOG' \
-    --tags 'shq0xf9adN0i0D4o' \
+    --limit '17' \
+    --offset '59' \
+    --sortBy 'ax9ZklO0lSGgGcpw' \
+    --statCodes 'BvP7v5uGcqkb4hHl' \
+    --tags 'Frv37EJqIIUyA3nF' \
     > test.out 2>&1
 eval_tap $? 54 'GetUserStatItems' test.out
 
 #- 55 BulkCreateUserStatItems
 samples/cli/sample-apps Social bulkCreateUserStatItems \
     --namespace $AB_NAMESPACE \
-    --userId 'Av4wEQMJizivieQ7' \
-    --body '[{"statCode": "yNbNuGAddKdspPlo"}, {"statCode": "v7eDNRNPJOQKrfqo"}, {"statCode": "kWYLW2TVTrHrkItk"}]' \
+    --userId 'SA26IYZn0eXQpwC8' \
+    --body '[{"statCode": "6gkllaeo7TysIdUg"}, {"statCode": "lh7AdLBq0RY8h8TY"}, {"statCode": "WKIS7e7yx32DH65Y"}]' \
     > test.out 2>&1
 eval_tap $? 55 'BulkCreateUserStatItems' test.out
 
 #- 56 BulkIncUserStatItem1
 samples/cli/sample-apps Social bulkIncUserStatItem1 \
     --namespace $AB_NAMESPACE \
-    --userId 'u8l9YSpPB2Kut4Ti' \
-    --body '[{"inc": 0.7064491838608427, "statCode": "SV1A7P7aXKqeckTn"}, {"inc": 0.9267236031633018, "statCode": "nxtxaMgYa2RbORs6"}, {"inc": 0.24939026288349286, "statCode": "L80CFu6jIylpsy1t"}]' \
+    --userId 'f8GN2SuvkwiMx1b7' \
+    --body '[{"inc": 0.36989513183865597, "statCode": "gGBDGK6jPukU2tNv"}, {"inc": 0.2214327144477748, "statCode": "twkpGWhRNCT6vIVE"}, {"inc": 0.709303026576198, "statCode": "EM6a4JbcVSPEgpub"}]' \
     > test.out 2>&1
 eval_tap $? 56 'BulkIncUserStatItem1' test.out
 
 #- 57 BulkIncUserStatItemValue1
 samples/cli/sample-apps Social bulkIncUserStatItemValue1 \
     --namespace $AB_NAMESPACE \
-    --userId 'p4HP7taGBwgvb6HN' \
-    --body '[{"inc": 0.9519044840284575, "statCode": "H3OyBEIFhFNIqNVb"}, {"inc": 0.4978443507745046, "statCode": "ElF3SMGkpzLM92Xg"}, {"inc": 0.05196903685018961, "statCode": "Fs7F55L9Sq48muGC"}]' \
+    --userId 'dCrhXMsTcSSKqpe1' \
+    --body '[{"inc": 0.8709596803380547, "statCode": "KeVOKVfIxAECl8ok"}, {"inc": 0.0926733824379744, "statCode": "3eE3nKx66rjyuQyX"}, {"inc": 0.5271607648101816, "statCode": "VHbzyIBcz5XmDQAY"}]' \
     > test.out 2>&1
 eval_tap $? 57 'BulkIncUserStatItemValue1' test.out
 
 #- 58 BulkResetUserStatItem1
 samples/cli/sample-apps Social bulkResetUserStatItem1 \
     --namespace $AB_NAMESPACE \
-    --userId 'uO8FrRRZvL5qWcp7' \
-    --body '[{"statCode": "3et8d8n8dHGvbOtD"}, {"statCode": "AQAwkcTvxAxgGX6j"}, {"statCode": "v3semajYZJGGHnaF"}]' \
+    --userId 'DrR01nAq0TWmaY87' \
+    --body '[{"statCode": "JLMrmXJE1hCGYaRf"}, {"statCode": "DLPB6YxGIPkbFrt7"}, {"statCode": "El8cS7k1QMs6u9JB"}]' \
     > test.out 2>&1
 eval_tap $? 58 'BulkResetUserStatItem1' test.out
 
 #- 59 CreateUserStatItem
 samples/cli/sample-apps Social createUserStatItem \
     --namespace $AB_NAMESPACE \
-    --statCode 'bDt1kTmz27FM8n3m' \
-    --userId '13cJ8kGLRNpIQS9s' \
+    --statCode '82nu8UkyMEtY4h0C' \
+    --userId '9j8prVGJpBXaEvoH' \
     > test.out 2>&1
 eval_tap $? 59 'CreateUserStatItem' test.out
 
 #- 60 DeleteUserStatItems
 samples/cli/sample-apps Social deleteUserStatItems \
     --namespace $AB_NAMESPACE \
-    --statCode 'wEcEc730wR9A0BSy' \
-    --userId 'v8mx87KJDuDADAWF' \
+    --statCode 'WwB1i8J99xAJkoer' \
+    --userId 'qcGHh3XwdgErlkDy' \
     > test.out 2>&1
 eval_tap $? 60 'DeleteUserStatItems' test.out
 
 #- 61 IncUserStatItemValue
 samples/cli/sample-apps Social incUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --statCode 'WtMw8xtXbWa025VR' \
-    --userId 'vSiwQzX5v8n7mINd' \
-    --body '{"inc": 0.5409450680295814}' \
+    --statCode 'VhjaVGVGn43r2pYh' \
+    --userId 'cq0N6TFqYat8v0Cu' \
+    --body '{"inc": 0.7403655768692216}' \
     > test.out 2>&1
 eval_tap $? 61 'IncUserStatItemValue' test.out
 
 #- 62 ResetUserStatItemValue
 samples/cli/sample-apps Social resetUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --statCode 'PxKKsMlAt9eTgsv8' \
-    --userId 'u7CoFP6L479fgrD2' \
-    --additionalKey 'HNWYVlqliUmWRMdL' \
-    --body '{"additionalData": {"dH1xvk0EbKfi9Z4b": {}, "U5FvagxiCljIrU4I": {}, "xsFqJCWOlMjuPsuF": {}}}' \
+    --statCode 'XwNKPDrknz2c8f1N' \
+    --userId 'SbHs85IH2KwFoxFJ' \
+    --additionalKey 'OvYlHnnsGyxZOiYC' \
+    --body '{"additionalData": {"OrcOuMCi9eXR1jlT": {}, "51WLsPXnVhbs9ktq": {}, "Xr2CVCAGLhfOQVXT": {}}}' \
     > test.out 2>&1
 eval_tap $? 62 'ResetUserStatItemValue' test.out
 
 #- 63 GetGlobalStatItems1
 samples/cli/sample-apps Social getGlobalStatItems1 \
     --namespace $AB_NAMESPACE \
-    --limit '21' \
-    --offset '53' \
-    --statCodes 'nPB7W1breS3oYI58' \
+    --limit '28' \
+    --offset '94' \
+    --statCodes 'S8V00qpDe7gbtiL2' \
     > test.out 2>&1
 eval_tap $? 63 'GetGlobalStatItems1' test.out
 
 #- 64 GetGlobalStatItemByStatCode1
 samples/cli/sample-apps Social getGlobalStatItemByStatCode1 \
     --namespace $AB_NAMESPACE \
-    --statCode 'fISqCNvE4CDr5EaY' \
+    --statCode '8BYJL1eakTzd3Uhf' \
     > test.out 2>&1
 eval_tap $? 64 'GetGlobalStatItemByStatCode1' test.out
 
 #- 65 GetStatCycles1
 samples/cli/sample-apps Social getStatCycles1 \
     --namespace $AB_NAMESPACE \
-    --cycleType 'ANNUALLY' \
-    --limit '38' \
-    --name 'dQPKI6WZs13KrypU' \
-    --offset '5' \
-    --sortBy 'Ndq3Khwlt08OAD1T' \
+    --cycleType 'MONTHLY' \
+    --limit '53' \
+    --name 'InRVcAx8HZm8i9QW' \
+    --offset '17' \
+    --sortBy 'GiysdwnP4BcTHJmc' \
     --status 'ACTIVE' \
     > test.out 2>&1
 eval_tap $? 65 'GetStatCycles1' test.out
@@ -507,13 +507,13 @@ eval_tap $? 65 'GetStatCycles1' test.out
 #- 66 BulkGetStatCycle1
 samples/cli/sample-apps Social bulkGetStatCycle1 \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleIds": ["2q273P9R7qtsgBg8", "0TjirSMGJPnmIfME", "tLnKRogEWLCFeY8v"]}' \
+    --body '{"cycleIds": ["FdY7dcNW4N1YsLXN", "OROIFc4XwrWlbR2b", "6tAbNDx2YLRaCZSm"]}' \
     > test.out 2>&1
 eval_tap $? 66 'BulkGetStatCycle1' test.out
 
 #- 67 GetStatCycle1
 samples/cli/sample-apps Social getStatCycle1 \
-    --cycleId 'yVdyBp1NQN69EZp4' \
+    --cycleId 'fpPM7AZ2HinljdoS' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 67 'GetStatCycle1' test.out
@@ -521,274 +521,274 @@ eval_tap $? 67 'GetStatCycle1' test.out
 #- 68 BulkFetchStatItems1
 samples/cli/sample-apps Social bulkFetchStatItems1 \
     --namespace $AB_NAMESPACE \
-    --statCode '259S4dMuqC78J4OR' \
-    --userIds 'KqVgFlJ4VEm3Lc5r' \
+    --statCode 'I8tgW3Ey5NXKXdx4' \
+    --userIds '0ideRy1Wi0zw3vVY' \
     > test.out 2>&1
 eval_tap $? 68 'BulkFetchStatItems1' test.out
 
 #- 69 PublicBulkIncUserStatItem
 samples/cli/sample-apps Social publicBulkIncUserStatItem \
     --namespace $AB_NAMESPACE \
-    --body '[{"inc": 0.5327747179523257, "statCode": "ocwdIvxVkDcomrcw", "userId": "eTt3jIXm8H9srV0C"}, {"inc": 0.25468980490852633, "statCode": "QfpYjVgDoaBNNda7", "userId": "VTpUg6ymlVbm6Jk3"}, {"inc": 0.943588688756212, "statCode": "kmt2Qm3FATcpJAHw", "userId": "D1w0SlcYX9VJlMoQ"}]' \
+    --body '[{"inc": 0.3615073802197609, "statCode": "bUDUcRk7PQi66rcl", "userId": "DwDjZF5WRy3s1TtU"}, {"inc": 0.9735358208638923, "statCode": "lFSY3tmHKCnCxsIU", "userId": "VVGYD9Je7IgM12uv"}, {"inc": 0.1988849222849277, "statCode": "U46R7AQfxIcKilvQ", "userId": "FI7zFXlo4MHc8T0C"}]' \
     > test.out 2>&1
 eval_tap $? 69 'PublicBulkIncUserStatItem' test.out
 
 #- 70 PublicBulkIncUserStatItemValue
 samples/cli/sample-apps Social publicBulkIncUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --body '[{"inc": 0.8643142267139169, "statCode": "UMD2gQjbti8gmCb6", "userId": "9JvAny3fMq3uyfGe"}, {"inc": 0.289982936790517, "statCode": "xhFk0nAmtrFFjGfv", "userId": "uGRpPMkENe1gnBkb"}, {"inc": 0.9374239242858527, "statCode": "l5hSa44qpSqkBqXh", "userId": "W0cBeff4tVUqQ8Hb"}]' \
+    --body '[{"inc": 0.9963148739121065, "statCode": "CnmfTm8zawpP1Sec", "userId": "GrNfRqKURsW5tfig"}, {"inc": 0.4796515095363615, "statCode": "j580zFNlooB2W1pU", "userId": "v2ibDn0sHP2A6VtN"}, {"inc": 0.11007638729284075, "statCode": "xrCQfrkifu24Rg0G", "userId": "GnNbXGWnCkhfFoPQ"}]' \
     > test.out 2>&1
 eval_tap $? 70 'PublicBulkIncUserStatItemValue' test.out
 
 #- 71 BulkResetUserStatItem2
 samples/cli/sample-apps Social bulkResetUserStatItem2 \
     --namespace $AB_NAMESPACE \
-    --body '[{"statCode": "GVPM3Ncfte8IIlB0", "userId": "DLhQUZLfC4HDG2Wd"}, {"statCode": "BBTWBAQmNzFkarVd", "userId": "Kjxtwrs6aaiySVkp"}, {"statCode": "NZ0rqeJPS6lfi9ya", "userId": "UGnC8Ji2tJ62fA94"}]' \
+    --body '[{"statCode": "637aE8Qa7DdZZ8zh", "userId": "ggFvDfNnbELNS44s"}, {"statCode": "7OvznmlZOPOF9zv4", "userId": "KYOQ9zq2rdHMxoh7"}, {"statCode": "kWHlbrMla9WqyZjN", "userId": "VghmddUkczsNtePy"}]' \
     > test.out 2>&1
 eval_tap $? 71 'BulkResetUserStatItem2' test.out
 
 #- 72 CreateStat1
 samples/cli/sample-apps Social createStat1 \
     --namespace $AB_NAMESPACE \
-    --body '{"cycleIds": ["1tXm8dTPHaUyZNzQ", "4xTyhXPE7mFOYVUz", "GbCLWHLRWp0jk5o7"], "defaultValue": 0.6510199001961847, "description": "x6ggRXqpHC5o8rAg", "globalAggregationMethod": "MAX", "ignoreAdditionalDataOnValueRejected": true, "incrementOnly": true, "isPublic": true, "maximum": 0.9958353988025727, "minimum": 0.8593265291458091, "name": "ZiwZHX9Ge5lqUJIk", "setAsGlobal": false, "setBy": "SERVER", "statCode": "3DLdcRhpetStDLBg", "tags": ["7kOE4hbB0fKNhfts", "b7u5mMQ01YXqKxHZ", "YIsOQp19MxJIAvgX"]}' \
+    --body '{"cycleIds": ["ZiQtnhZ1xwCXkfC9", "pTKilpPNnJFG6BOU", "zj9AzQGVs8sHk9Mn"], "defaultValue": 0.8040271838666917, "description": "LcDvbL82pvLz6uau", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "incrementOnly": true, "isPublic": false, "maximum": 0.08137415796721359, "minimum": 0.7471299488146707, "name": "z9OCqRPdAZGenPml", "setAsGlobal": true, "setBy": "SERVER", "statCode": "AU2TtK2dItJqFPo5", "tags": ["LD8AkzxOrADRYrKs", "UgWFge0X4Os1fTSr", "xyYrrp1f3Zdvp4Ua"]}' \
     > test.out 2>&1
 eval_tap $? 72 'CreateStat1' test.out
 
 #- 73 PublicListMyStatCycleItems
 samples/cli/sample-apps Social publicListMyStatCycleItems \
-    --cycleId 'VXoI4A48vxSMOIxm' \
+    --cycleId 'F0mkiYPd4Qcn3VOn' \
     --namespace $AB_NAMESPACE \
-    --limit '84' \
-    --offset '72' \
-    --sortBy 'qlbgvF4ywAKGqfwY' \
-    --statCodes '["k0gYLzpdWuoGUvON", "tdRqep6vwlmPf5if", "j8SkpqFPEgJmAFZv"]' \
+    --limit '60' \
+    --offset '12' \
+    --sortBy 'cwevVUxTT4J7sseb' \
+    --statCodes '["DDZjPylyRBRTn8BN", "aU6Xd19yqSyGRHma", "Ey0vYHebMSWn2OVP"]' \
     > test.out 2>&1
 eval_tap $? 73 'PublicListMyStatCycleItems' test.out
 
 #- 74 PublicListMyStatItems
 samples/cli/sample-apps Social publicListMyStatItems \
     --namespace $AB_NAMESPACE \
-    --limit '11' \
-    --offset '65' \
-    --sortBy 'HPrt0UuQFZ9vK6UN' \
-    --statCodes '["Uatq9Ypb2tfF4GZ9", "T3oeQ0OjYH72AjsG", "59jZAwGVchgO83eE"]' \
-    --tags '["fDRTK0XdSaBLhizL", "B7QJFP9piMYHgYWx", "x9SepuTqLzmIeoOo"]' \
+    --limit '49' \
+    --offset '95' \
+    --sortBy 'HNaDPONBuncN4zx3' \
+    --statCodes '["31UY2ItaskGlacws", "WfA1mzzjvL4dnwZl", "sYhUDXHdV7Lz2Fey"]' \
+    --tags '["6ouY9081p9QfAhOy", "cx2CN6TEw0xvB80F", "S46sqhExsHqzRrJ9"]' \
     > test.out 2>&1
 eval_tap $? 74 'PublicListMyStatItems' test.out
 
 #- 75 PublicListAllMyStatItems
 samples/cli/sample-apps Social publicListAllMyStatItems \
     --namespace $AB_NAMESPACE \
-    --additionalKey 'm6MG1XR2uS65cApA' \
-    --statCodes '["ovx4GBZmYqSfkgh1", "7ZNQCTMlOLBR97bR", "BCuPTz7QjQXJMIYE"]' \
-    --tags '["VYXZAKgIArvmOKmX", "BtOFTRSqjOXA1ivN", "5czPtyvmS7dtwTIK"]' \
+    --additionalKey '7bpP8KJAAU5VkyvY' \
+    --statCodes '["h0NWifiQB03gQ59f", "Vbl2aUI2ez56aLKW", "CJZdHBDaGiqaEGF8"]' \
+    --tags '["jcNCmIbNXf59PLxe", "1nSF93aVEePTuB2m", "CaLXlB1llYKtAyT7"]' \
     > test.out 2>&1
 eval_tap $? 75 'PublicListAllMyStatItems' test.out
 
 #- 76 GetUserStatCycleItems1
 samples/cli/sample-apps Social getUserStatCycleItems1 \
-    --cycleId 'AzCb7fXUGG9icT8a' \
+    --cycleId 's9r6aT31VEp3jeXO' \
     --namespace $AB_NAMESPACE \
-    --userId 'JY62TktbA0gjtYqM' \
-    --limit '34' \
-    --offset '82' \
-    --sortBy 'UUBXrBbDNEn1pbCd' \
-    --statCodes 'T57cgbCCeysHr73J' \
+    --userId '6vDkRGJlHxHxKpBd' \
+    --limit '39' \
+    --offset '0' \
+    --sortBy 'YlKYdyaq2ouCZmPR' \
+    --statCodes 'NbbHGgtSfHd5UR0R' \
     > test.out 2>&1
 eval_tap $? 76 'GetUserStatCycleItems1' test.out
 
 #- 77 PublicQueryUserStatItems
 samples/cli/sample-apps Social publicQueryUserStatItems \
     --namespace $AB_NAMESPACE \
-    --userId 'EOxuJ51UaeQ2iBfb' \
-    --limit '63' \
-    --offset '20' \
-    --sortBy 'W7FPCL8HOJTxrDkU' \
-    --statCodes 'OGGyQ33zlRH8NHgP' \
-    --tags 'n80hLf7UC0lQCOc4' \
+    --userId '3TbUnFSYs54Fihbx' \
+    --limit '53' \
+    --offset '30' \
+    --sortBy 'Xf1nK6S588Z4YiHy' \
+    --statCodes '7kikRUUnqw1OPUUS' \
+    --tags 'WhwrmonWeNmJVfzx' \
     > test.out 2>&1
 eval_tap $? 77 'PublicQueryUserStatItems' test.out
 
 #- 78 PublicBulkCreateUserStatItems
 samples/cli/sample-apps Social publicBulkCreateUserStatItems \
     --namespace $AB_NAMESPACE \
-    --userId 'egFOZVvnqTMYXUGO' \
-    --body '[{"statCode": "3kn8yWoQEpKPjtoL"}, {"statCode": "Xl3uOd6QdHjqyClS"}, {"statCode": "ntuuec78A7WSaDgj"}]' \
+    --userId 'wDVX4I6Xp0yMzXlv' \
+    --body '[{"statCode": "Mq0hvHPgoDrycNuF"}, {"statCode": "q2RTPJN7ftA3D5tq"}, {"statCode": "N0nf6CFtbp11aADJ"}]' \
     > test.out 2>&1
 eval_tap $? 78 'PublicBulkCreateUserStatItems' test.out
 
 #- 79 PublicQueryUserStatItems1
 samples/cli/sample-apps Social publicQueryUserStatItems1 \
     --namespace $AB_NAMESPACE \
-    --userId 'MEegrB2dn6rMvqyc' \
-    --additionalKey 'OWPTbnYnrI005GVY' \
-    --statCodes '["mkmPsKTRHeKD3dq6", "WULpJZa4fJHDt3de", "XtKJq5BXJYpCHbpr"]' \
-    --tags '["zLo3m34MEbS4yNjO", "S3NkGsOGiWElZ77N", "BcDfbNCwL1LCSsHb"]' \
+    --userId 'SexwesteYfMCcwth' \
+    --additionalKey 'DHC9y6OOHpVIVN7C' \
+    --statCodes '["X7GITkAHnOryj3On", "VqK0h6Jyyx75ou3f", "GMl8Jpmuy8MS6DZc"]' \
+    --tags '["XGQhFYmqglKZdnsO", "zqINNBqwteic3iLO", "oa8x4I09imHJyZWp"]' \
     > test.out 2>&1
 eval_tap $? 79 'PublicQueryUserStatItems1' test.out
 
 #- 80 PublicBulkIncUserStatItem1
 samples/cli/sample-apps Social publicBulkIncUserStatItem1 \
     --namespace $AB_NAMESPACE \
-    --userId 'XfrcDfo69AjNuzrK' \
-    --body '[{"inc": 0.880467004443891, "statCode": "tEnXi0WYHulaM6Il"}, {"inc": 0.16902509969311763, "statCode": "phq1yuXVJBuZJN0g"}, {"inc": 0.5202281633809813, "statCode": "cK28Ioznp2WIjSVe"}]' \
+    --userId '1noPOXFMFtRyqix2' \
+    --body '[{"inc": 0.8320106124200943, "statCode": "rC3MHWwQ4AJUgsoT"}, {"inc": 0.546075557528796, "statCode": "7U5Z4rX40pKAe3HI"}, {"inc": 0.9539024312743318, "statCode": "0jrtqO8EVeqMGWAD"}]' \
     > test.out 2>&1
 eval_tap $? 80 'PublicBulkIncUserStatItem1' test.out
 
 #- 81 BulkIncUserStatItemValue2
 samples/cli/sample-apps Social bulkIncUserStatItemValue2 \
     --namespace $AB_NAMESPACE \
-    --userId 'WXAm7I2N5yZMtLdj' \
-    --body '[{"inc": 0.7167190896941421, "statCode": "9T9d6NXwnC05EujX"}, {"inc": 0.5625807428071584, "statCode": "7QBKdN6pOa6dd3cl"}, {"inc": 0.07361137632577919, "statCode": "1addmFVZXbOSLQ74"}]' \
+    --userId 'KKeoHmHk2XlmN7EV' \
+    --body '[{"inc": 0.5645268456122792, "statCode": "DYDmJGMAvK6W4pAS"}, {"inc": 0.6077741218370997, "statCode": "LYCvceGMDkkbO5ZB"}, {"inc": 0.8527160506400432, "statCode": "wnzjQYoW52flBTND"}]' \
     > test.out 2>&1
 eval_tap $? 81 'BulkIncUserStatItemValue2' test.out
 
 #- 82 BulkResetUserStatItem3
 samples/cli/sample-apps Social bulkResetUserStatItem3 \
     --namespace $AB_NAMESPACE \
-    --userId '1WqG9zmbxA41TvRu' \
-    --body '[{"statCode": "rFUNzQmSCwvr9LoC"}, {"statCode": "b3d7o2UHmiHRlOBE"}, {"statCode": "njqvBpEa0qzgf5vJ"}]' \
+    --userId 'XzZisPpmNZC7tq1L' \
+    --body '[{"statCode": "2JdS2MtPPP7JXBku"}, {"statCode": "w9tI7EFmF5e3eASr"}, {"statCode": "t6VcbThO1tZsvXtH"}]' \
     > test.out 2>&1
 eval_tap $? 82 'BulkResetUserStatItem3' test.out
 
 #- 83 PublicCreateUserStatItem
 samples/cli/sample-apps Social publicCreateUserStatItem \
     --namespace $AB_NAMESPACE \
-    --statCode 'DZ7IS61GKfsuHxzy' \
-    --userId 'CSDl6kudFS4gJlZm' \
+    --statCode '67WEIUawnR1a0YUy' \
+    --userId '7hp8GePpgz7I1fmb' \
     > test.out 2>&1
 eval_tap $? 83 'PublicCreateUserStatItem' test.out
 
 #- 84 DeleteUserStatItems1
 samples/cli/sample-apps Social deleteUserStatItems1 \
     --namespace $AB_NAMESPACE \
-    --statCode '4MgBoclgNnoUbD8F' \
-    --userId 'VGN3O34VTC5oJOr7' \
+    --statCode 'Gj8Whgzisi3DzdzO' \
+    --userId 'kc78JixFFAfhUDlk' \
     > test.out 2>&1
 eval_tap $? 84 'DeleteUserStatItems1' test.out
 
 #- 85 PublicIncUserStatItem
 samples/cli/sample-apps Social publicIncUserStatItem \
     --namespace $AB_NAMESPACE \
-    --statCode 'VQpXgNcpMFe5hZTH' \
-    --userId '0gAQeZ0EGNwLnmh8' \
-    --body '{"inc": 0.7536450491404209}' \
+    --statCode '4jJwU3IwaHOrtMr3' \
+    --userId 'N5YYQPtl9RE4CSCD' \
+    --body '{"inc": 0.8376516858822225}' \
     > test.out 2>&1
 eval_tap $? 85 'PublicIncUserStatItem' test.out
 
 #- 86 PublicIncUserStatItemValue
 samples/cli/sample-apps Social publicIncUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --statCode 'wmsPrbPWzNWLjOEb' \
-    --userId '1Kh8rBYaydQpyL1p' \
-    --body '{"inc": 0.9955316886210303}' \
+    --statCode 'L2qqrLdsVObhDrKz' \
+    --userId 'N5CtqWmhQl08x6UC' \
+    --body '{"inc": 0.23412637538488013}' \
     > test.out 2>&1
 eval_tap $? 86 'PublicIncUserStatItemValue' test.out
 
 #- 87 ResetUserStatItemValue1
 samples/cli/sample-apps Social resetUserStatItemValue1 \
     --namespace $AB_NAMESPACE \
-    --statCode 'fX931Xdj3lVdihFL' \
-    --userId 'JGEMVzypFpkuFRqr' \
+    --statCode 'S9OcftQQ3k1mEhel' \
+    --userId 'CgqlxYQf88E54zuL' \
     > test.out 2>&1
 eval_tap $? 87 'ResetUserStatItemValue1' test.out
 
 #- 88 BulkUpdateUserStatItemV2
 samples/cli/sample-apps Social bulkUpdateUserStatItemV2 \
     --namespace $AB_NAMESPACE \
-    --body '[{"additionalData": {"o33wLeYUCQADsZEU": {}, "FFsx9HjMwBLvo7Vm": {}, "aYZ7HsVZnb6auuTN": {}}, "additionalKey": "pw4f28OeffSfVexF", "statCode": "xwCFhnhsemWblydw", "updateStrategy": "MAX", "userId": "H6bDXYIgP2Ukkt5p", "value": 0.9707386756054254}, {"additionalData": {"mwO0heKpaTQ59J6N": {}, "oAX9TbvTMFg12Yxe": {}, "4rYp9wft1ewHrr2r": {}}, "additionalKey": "Lb0HMt1bOAyxyh7U", "statCode": "CA1XagD5rlTYKaC0", "updateStrategy": "MAX", "userId": "AX4wwiJeZxcgvH46", "value": 0.04670482546822785}, {"additionalData": {"Sw42Y1iJv3YDn0td": {}, "n0SBJalr8qDZWn0M": {}, "qfItBaEfTnib5Z2V": {}}, "additionalKey": "Eu2NwZPKdvEdbHxl", "statCode": "dHB6WuUkY6ChNrit", "updateStrategy": "MIN", "userId": "QpJb6WeSisKT9WZb", "value": 0.4764741240272623}]' \
+    --body '[{"additionalData": {"BKJwge68NDpXWANN": {}, "b4Y4JyY3Ne0H1O48": {}, "WBvRoW9DWFUTWVlM": {}}, "additionalKey": "AdF7jhhktcqfKxmf", "statCode": "dkgfi9fQU3yEpMbW", "updateStrategy": "MAX", "userId": "SAogKEVJcpN3PaX5", "value": 0.48697896913302563}, {"additionalData": {"eYlBTBEYoWGaX0FQ": {}, "LknE7056xs17pvy2": {}, "kNIEQIY4whQ968MP": {}}, "additionalKey": "QyNwVwMicx0ByfNa", "statCode": "DQRiuQ8zasIBPT4G", "updateStrategy": "OVERRIDE", "userId": "VLcaGlrT71HIclE5", "value": 0.937799277233264}, {"additionalData": {"OXVlDThlRvazfASY": {}, "elLDN0hxlaVgbEND": {}, "jxZY45LzLfDbKY9J": {}}, "additionalKey": "cfiLmvPMpGOoURSZ", "statCode": "Kz2dFjQ08xZTIRG6", "updateStrategy": "INCREMENT", "userId": "x9Ke4CDtOqftJsoW", "value": 0.3346370861743748}]' \
     > test.out 2>&1
 eval_tap $? 88 'BulkUpdateUserStatItemV2' test.out
 
 #- 89 BulkFetchOrDefaultStatItems1
 samples/cli/sample-apps Social bulkFetchOrDefaultStatItems1 \
     --namespace $AB_NAMESPACE \
-    --additionalKey 'pCcnbvouogR2nP8o' \
-    --statCode 'Iay4EAVNHQAMTVxw' \
-    --userIds '["bkuPq4xLhCdQ7UCE", "FRgzdAadgYCb2Bk2", "JEaGR3xpEcGtBCVo"]' \
+    --additionalKey 'OAEVtgorzutKelfl' \
+    --statCode 'n9r8zN65rkBF5uEP' \
+    --userIds '["pYdtC14oXQuDsqer", "o3jhJgwe71kXM6DR", "DRo0i7zqNsgCMcRR"]' \
     > test.out 2>&1
 eval_tap $? 89 'BulkFetchOrDefaultStatItems1' test.out
 
 #- 90 AdminListUsersStatItems
 samples/cli/sample-apps Social adminListUsersStatItems \
     --namespace $AB_NAMESPACE \
-    --userId 'o7GOOMpmLKQfCJU5' \
-    --additionalKey 'Wu1JIATDUIjAbWm7' \
-    --statCodes '["bj8S6932mFfxRjhL", "Yf2fgR4EAlCYpo61", "enfAOKTrvp00k1FQ"]' \
-    --tags '["O7b6T3oiTkgqWPpd", "mvG9Qqafnc5sdIvF", "LOHRqssIeKohE9gH"]' \
+    --userId '8GPXZPEjzy8igQaz' \
+    --additionalKey 'X7a6khzYM1fJ7nG1' \
+    --statCodes '["73gV4CNN23I7TWZZ", "TqvVcVJjEpix1HVr", "WHSLBS0TNrFCSefH"]' \
+    --tags '["cd2Y8qpiPq54oyFn", "vzCdPIswAbOtXIOZ", "qxFVyqmHK75G7QHX"]' \
     > test.out 2>&1
 eval_tap $? 90 'AdminListUsersStatItems' test.out
 
 #- 91 BulkUpdateUserStatItem
 samples/cli/sample-apps Social bulkUpdateUserStatItem \
     --namespace $AB_NAMESPACE \
-    --userId 'c0qEItxSFTOJhKzq' \
-    --additionalKey 'kk0mVvB5m8sui6kc' \
-    --body '[{"additionalData": {"1cMojUaYPDQUgjX9": {}, "QN9t5lHPh4z3H00t": {}, "PtmDRlxxQNJg4itj": {}}, "statCode": "vNzWUvKfw8w26Cc4", "updateStrategy": "OVERRIDE", "value": 0.046388421691477943}, {"additionalData": {"reWOjHlWBUShimpu": {}, "u5UuRGI4UgvjFdTq": {}, "YyZxtTGP5nnDRUHt": {}}, "statCode": "rQg2IHNjdeBjfg1U", "updateStrategy": "OVERRIDE", "value": 0.9068517426780537}, {"additionalData": {"Pw6H7nZZkMwwwae4": {}, "Tbzb0QJ7aYbszPIA": {}, "lOD5tq00guXAQ6aU": {}}, "statCode": "MLwwMVvIwQsJ0LAm", "updateStrategy": "OVERRIDE", "value": 0.25248128765865374}]' \
+    --userId 'Rb19SmRcw34LcTOP' \
+    --additionalKey 'dENX5iCGkytOZouv' \
+    --body '[{"additionalData": {"AISwaxIabWg35CUF": {}, "aq4cnY0M18kCP3zj": {}, "Zwt4TliewV1p2sy2": {}}, "statCode": "qmXT9tbFRna7FYeB", "updateStrategy": "INCREMENT", "value": 0.0823359717169434}, {"additionalData": {"3pSaDVbdsKXD8TfB": {}, "ruhWw8irybHeB48p": {}, "QroG5K33y69IZEKW": {}}, "statCode": "cAxCBPs6sOoeP6r6", "updateStrategy": "OVERRIDE", "value": 0.2001260340540708}, {"additionalData": {"cWF5azop3YUmjY2Q": {}, "SI1tuH7Z5ZVziAX4": {}, "pf5acffmfhfb2AjK": {}}, "statCode": "Nh5axqV1Zb3Ktkmk", "updateStrategy": "MIN", "value": 0.8485118207203389}]' \
     > test.out 2>&1
 eval_tap $? 91 'BulkUpdateUserStatItem' test.out
 
 #- 92 BulkResetUserStatItemValues
 samples/cli/sample-apps Social bulkResetUserStatItemValues \
     --namespace $AB_NAMESPACE \
-    --userId 'BHBYG7vcdfjdU64g' \
-    --additionalKey 'mvkDajAKyBc0Upu4' \
-    --body '[{"additionalData": {"gNxffFDQZxEmezkJ": {}, "0MEKklXgz7M4rLZ9": {}, "WZMqrviIUPlUFM6W": {}}, "statCode": "voNP1JsKv13ZSP1c"}, {"additionalData": {"giSuiG4POUqm7MsV": {}, "Qs2caZbl8j1sp0ip": {}, "Jn0aYjXH10oG1SqI": {}}, "statCode": "8J81Mqge4J6V9L4m"}, {"additionalData": {"nWexqgMd2d1uC1KU": {}, "zqELHwLgtg1JGuu1": {}, "XuRBzzO24LaSvet0": {}}, "statCode": "dCkRzc2gaw3P31Cp"}]' \
+    --userId 'mgCxxb3GGYu8BCpp' \
+    --additionalKey '66YLp9HKlb0JoKQj' \
+    --body '[{"additionalData": {"xY55tgloGKVUbSzd": {}, "C5i2CFoa8Vq1MGr9": {}, "ADBInMc9IIzvAX1y": {}}, "statCode": "tHdvnbHJiPnz8jkV"}, {"additionalData": {"Ii26219zRcmiVHNX": {}, "EGVU4WEnag8YeLQJ": {}, "uRSSGV6X3qPMamP9": {}}, "statCode": "tY1EFZ4RKrvcYYPF"}, {"additionalData": {"Th8s6lbGaf2lg4Uf": {}, "nFl4QTdbdvkcGKHM": {}, "yObFH7tStNwLZI08": {}}, "statCode": "cCIVXtFNxnyPafzj"}]' \
     > test.out 2>&1
 eval_tap $? 92 'BulkResetUserStatItemValues' test.out
 
 #- 93 DeleteUserStatItems2
 samples/cli/sample-apps Social deleteUserStatItems2 \
     --namespace $AB_NAMESPACE \
-    --statCode 'LMIIQ0AIrsQnjaaA' \
-    --userId 'wJiOvfdmYFzbnOi3' \
-    --additionalKey 'NpO4coZ7Hd6FYJJS' \
+    --statCode 'bJGSWe3E2ZpNE8tP' \
+    --userId 'A4QpjH9pZIyOg3ks' \
+    --additionalKey 'vpYKQylpRO9yz1xK' \
     > test.out 2>&1
 eval_tap $? 93 'DeleteUserStatItems2' test.out
 
 #- 94 UpdateUserStatItemValue
 samples/cli/sample-apps Social updateUserStatItemValue \
     --namespace $AB_NAMESPACE \
-    --statCode '9Pa0HbTOmoPIDnAd' \
-    --userId 'el2nD0lcSsZGWC1z' \
-    --additionalKey 'cwFh67jm4cFMhHaS' \
-    --body '{"additionalData": {"NL74us2GaxbF1QCR": {}, "PBjgMkTSW1qdMifl": {}, "tMOKzlegtljgbjwv": {}}, "updateStrategy": "INCREMENT", "value": 0.8763778925157062}' \
+    --statCode 'nzPuhslb8xAm6lxh' \
+    --userId 'oWQ1MIlF1A7HWov5' \
+    --additionalKey 'dGcewNrEWx8l4zBz' \
+    --body '{"additionalData": {"M8faZkrCZPooHKsG": {}, "uCGrbsGLQZ3HhMp0": {}, "nxknQAq6kY1CAmEq": {}}, "updateStrategy": "OVERRIDE", "value": 0.11893312933652311}' \
     > test.out 2>&1
 eval_tap $? 94 'UpdateUserStatItemValue' test.out
 
 #- 95 BulkUpdateUserStatItem1
 samples/cli/sample-apps Social bulkUpdateUserStatItem1 \
     --namespace $AB_NAMESPACE \
-    --body '[{"additionalData": {"26eS1tyCpTY9xCeW": {}, "mhAbMGfQPMyMcp7R": {}, "DbI8I9S1WthG6iF4": {}}, "additionalKey": "ka72CMxcQJUBzI0N", "statCode": "u9zLiWlqpgaopGwW", "updateStrategy": "MAX", "userId": "9Z4jIOZGAZ3u11fb", "value": 0.217984008354701}, {"additionalData": {"TuTdi1SOmXwHx7ci": {}, "gmr0lPnSsM7Ktf4f": {}, "n7sZc3MFlufOcZ5X": {}}, "additionalKey": "DMumtWbMVH9TFoy7", "statCode": "xTB80qW2gxSAUCOB", "updateStrategy": "INCREMENT", "userId": "XQMnSMkhcs50fbis", "value": 0.9758617545369824}, {"additionalData": {"6TNpVdx3Ic793vm6": {}, "Tn4drm5aTIYvOqy6": {}, "Ma5wJV3aRoLyxHsE": {}}, "additionalKey": "L9m58zgISGlNeQZf", "statCode": "x5CDxcTKTSqVPMuG", "updateStrategy": "MAX", "userId": "U0yMv5mxrmoeJ8K2", "value": 0.7261270574784757}]' \
+    --body '[{"additionalData": {"h2FBH0wm2xEhDVhk": {}, "hhu3rm1qFxsPKZAb": {}, "o3ZFMoKZuyODMjOA": {}}, "additionalKey": "qb9ue9d1v81TC6NI", "statCode": "uLC3emRvJOSRQQMZ", "updateStrategy": "MIN", "userId": "emDWpIqwuliIyBIh", "value": 0.1989167287297634}, {"additionalData": {"PCu20xewDVKyBX69": {}, "wEedhIi3xKukNWrf": {}, "RZKcuRplnpXwLsFG": {}}, "additionalKey": "EB3DovfyWo6kza0r", "statCode": "Zn7xP49cvgmyTaI3", "updateStrategy": "INCREMENT", "userId": "SeuSKhyfMEbcDEX9", "value": 0.6578499012613445}, {"additionalData": {"cfJE7BE4TNtu5ZVn": {}, "8PqOlhNrNYJmb5dO": {}, "xrz7Rnbsu6eUfR6Z": {}}, "additionalKey": "mGhOVpqmyGO4EMUS", "statCode": "xr7kswtYrOfJ5pYh", "updateStrategy": "MAX", "userId": "vGJDU2z4lkEsiRQy", "value": 0.8547796664635536}]' \
     > test.out 2>&1
 eval_tap $? 95 'BulkUpdateUserStatItem1' test.out
 
 #- 96 PublicQueryUserStatItems2
 samples/cli/sample-apps Social publicQueryUserStatItems2 \
     --namespace $AB_NAMESPACE \
-    --userId 'BA0Bq7XFLQ3doWKY' \
-    --additionalKey 'yDZGoHAfqzaFUpLU' \
-    --statCodes '["YSwd1TVg15I4Dyh2", "SVzIkfW0RI3oPQpL", "kRd53mH2ql565woR"]' \
-    --tags '["hEd12L0GZnH6pbiG", "bm31OypFbSYSwjuD", "rIh1BCyIwy2NZdw8"]' \
+    --userId 'gtkzDJchdIA4likC' \
+    --additionalKey 'N0g7jPTee7M7QfoK' \
+    --statCodes '["mfYLXYf7ocIl1wPJ", "tYRZbvM6zAxRLXWS", "3g2ylPgETQ9jERIX"]' \
+    --tags '["UW2be43I5zc2vOBR", "kbGLNFefOnsBKAvE", "qcyT3PFcmlgWoek1"]' \
     > test.out 2>&1
 eval_tap $? 96 'PublicQueryUserStatItems2' test.out
 
 #- 97 BulkUpdateUserStatItem2
 samples/cli/sample-apps Social bulkUpdateUserStatItem2 \
     --namespace $AB_NAMESPACE \
-    --userId 'rl7l8TPg9w6wy3QQ' \
-    --additionalKey 'aAPye8vVbkI9QKo4' \
-    --body '[{"additionalData": {"tZ7P7jvJGnL0hKlp": {}, "FZx4LMd8yL3Dl0Zd": {}, "BCQbebq7VnnBL8nQ": {}}, "statCode": "m4uKmeyfHC3t8K4T", "updateStrategy": "MIN", "value": 0.8890661847711889}, {"additionalData": {"rUeWxkWvNOIcSB6R": {}, "k7wEufWNDlSAUde1": {}, "wsIGKxDhVLbEUM5x": {}}, "statCode": "UwBsvX7GiQpFl19u", "updateStrategy": "OVERRIDE", "value": 0.2681997792773546}, {"additionalData": {"t6Lt5smkwCS8RY5j": {}, "62xPSBSJgdbCuCxT": {}, "eT3ohakwL2f3hFl7": {}}, "statCode": "Ci8c5fZiMvKxS6uv", "updateStrategy": "MIN", "value": 0.1221840699479192}]' \
+    --userId 'H5Dr9t8pOCu7RxNU' \
+    --additionalKey '2OFXpLiPywyPNEBs' \
+    --body '[{"additionalData": {"7NrwPBFQyyz13l3o": {}, "wEIA2F6OUUGkoGMt": {}, "vdXDvwhdqKXWUh5E": {}}, "statCode": "TRJR8hJxSTiUiNtG", "updateStrategy": "MAX", "value": 0.94748855594285}, {"additionalData": {"QeLsBVNZVKswcc3W": {}, "Jo50WhTkgrLHyRKD": {}, "ogwNydepvDTRyAzN": {}}, "statCode": "kx38BgvYQfb7kTRb", "updateStrategy": "MAX", "value": 0.4525767277051026}, {"additionalData": {"CWeg1iByOmLjU8w4": {}, "Fa7QBRsaDD3pOF7M": {}, "PXrYqA3BTsSVrCpl": {}}, "statCode": "cp7hftIyoBBZxQEK", "updateStrategy": "INCREMENT", "value": 0.2985959137828702}]' \
     > test.out 2>&1
 eval_tap $? 97 'BulkUpdateUserStatItem2' test.out
 
 #- 98 UpdateUserStatItemValue1
 samples/cli/sample-apps Social updateUserStatItemValue1 \
     --namespace $AB_NAMESPACE \
-    --statCode 'DySOBp5Tqj6DqbSR' \
-    --userId 'E8pC9Y9XNTO6mMBc' \
-    --additionalKey 'A9o7XMFT6pKHihJb' \
-    --body '{"additionalData": {"M8tG70QDUvdDybsM": {}, "ghDxXbu2rIwz3Ioc": {}, "6y6ZOILTz2Fat6vL": {}}, "updateStrategy": "MAX", "value": 0.21518682280099144}' \
+    --statCode 'ViGMzB8ZRQzlpvD8' \
+    --userId 'sSgxUrkXLxnLcz5I' \
+    --additionalKey 'klmV6DL6kksCKIKK' \
+    --body '{"additionalData": {"yvKSrH8Y9zZpEHgh": {}, "s3qF0HsaTPCPFgaN": {}, "BjdUTCqhbvbTNC6b": {}}, "updateStrategy": "OVERRIDE", "value": 0.6787851537673082}' \
     > test.out 2>&1
 eval_tap $? 98 'UpdateUserStatItemValue1' test.out
 

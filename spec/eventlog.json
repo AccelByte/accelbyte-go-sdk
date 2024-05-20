@@ -67,7 +67,8 @@
         "summary": "Get list of agent type and the descriptions",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/agentType/listByAgentTypes": {
@@ -107,7 +108,8 @@
         "summary": "Get specific list of agent type and the descriptions by comma separated value of agent types",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventId": {
@@ -133,7 +135,8 @@
         "summary": "Get list of eventID and the descriptions",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventId/listByEventIds": {
@@ -173,7 +176,8 @@
         "summary": "Get specific list of eventID and the descriptions by comma separated value of eventIDs",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventLevel": {
@@ -199,7 +203,8 @@
         "summary": "Get list of event level and the descriptions",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventLevel/listByEventLevels": {
@@ -239,7 +244,8 @@
         "summary": "Get specific list of event level and the descriptions by comma separated value of event levels",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventType": {
@@ -265,7 +271,8 @@
         "summary": "Get list of event type and the descriptions",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/eventType/listByEventTypes": {
@@ -305,7 +312,8 @@
         "summary": "Get specific list of event type and the descriptions by comma separated value of event types",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/ux": {
@@ -331,7 +339,8 @@
         "summary": "Get list of ux name and the descriptions",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/descriptions/ux/listByUx": {
@@ -371,7 +380,8 @@
         "summary": "Get specific list of UX and the descriptions by comma separated value of UX",
         "tags": [
           "Event Descriptions"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}": {
@@ -455,7 +465,8 @@
         "summary": "Get events from all users in a namespace",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -515,7 +526,8 @@
         "summary": "Post an activity log",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/eventId/{eventId}": {
@@ -606,7 +618,8 @@
         "summary": "Get events from all users in a namespace with specific eventID",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/eventType/{eventType}": {
@@ -697,7 +710,8 @@
         "summary": "Get events from all users in a namespace with specific eventType",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/eventType/{eventType}/eventId/{eventId}": {
@@ -795,7 +809,8 @@
         "summary": "Get events from all users in a namespace with specific eventID and eventType",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}": {
@@ -886,7 +901,8 @@
         "summary": "Get events from specific user",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/activities": {
@@ -944,7 +960,8 @@
         "summary": "Delete all user's activities",
         "tags": [
           "User Information"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "deprecated": true,
@@ -1019,7 +1036,8 @@
         "summary": "Get all user's activities",
         "tags": [
           "User Information"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventId/{eventId}": {
@@ -1117,7 +1135,8 @@
         "summary": "Get events from specific user with specific eventID",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}": {
@@ -1215,7 +1234,8 @@
         "summary": "Get events from specific user with specific eventType",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}/eventId/{eventId}": {
@@ -1320,7 +1340,8 @@
         "summary": "Get events from specific user with specific eventID and eventType",
         "tags": [
           "Event"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/lastActivityTime": {
@@ -1381,7 +1402,8 @@
         "summary": "Get last activity time of a user in a namespace",
         "tags": [
           "User Information"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/registry/eventIds": {
@@ -1423,7 +1445,8 @@
         "summary": "Get registered events in the Event Registry",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -1479,7 +1502,8 @@
         "summary": "Register an eventID to the Event Registry",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/registry/eventIds/{eventId}": {
@@ -1530,7 +1554,8 @@
         "summary": "Unregister eventID from the Event Registry",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "deprecated": true,
@@ -1585,7 +1610,8 @@
         "summary": "Get registered eventID data from the Event Registry",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -1648,7 +1674,8 @@
         "summary": "Update an eventID data in the Event Registry",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/registry/eventTypes/{eventType}": {
@@ -1705,7 +1732,8 @@
         "summary": "Get registered eventID data from the Event Registry based on the event type",
         "tags": [
           "Event Registry"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/event/v2/admin/namespaces/{namespace}/query": {
@@ -1794,6 +1822,7 @@
         "tags": [
           "Event V2"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1891,6 +1920,7 @@
         "tags": [
           "Event V2"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1988,6 +2018,7 @@
         "tags": [
           "Event V2"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {}
         ]
@@ -2081,6 +2112,7 @@
         "tags": [
           "Event V2"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {}
         ]

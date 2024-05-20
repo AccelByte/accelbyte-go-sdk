@@ -67,7 +67,10 @@ func (aaa *ChallengeConfigurationService) AdminCreateChallenge(input *challenge_
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, forbidden, conflict, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminCreateChallenge(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminCreateChallenge(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -122,7 +125,10 @@ func (aaa *ChallengeConfigurationService) AdminUpdateChallenge(input *challenge_
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminUpdateChallenge(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminUpdateChallenge(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

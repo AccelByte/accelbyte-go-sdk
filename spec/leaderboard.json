@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.29.1"
+    "version": "2.29.2"
   },
   "schemes": [
     "https"
@@ -125,6 +125,12 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -211,6 +217,15 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71132": "leaderboard configuration already exist",
+          "71242": "stat code not found in namespace"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -304,6 +319,14 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71239": "leaderboard is not archived"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -381,6 +404,13 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -463,6 +493,12 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -544,6 +580,13 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -626,6 +669,13 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -725,6 +775,17 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found",
+          "71132": "leaderboard configuration already exist",
+          "71133": "leaderboard configuration deleted",
+          "71242": "stat code not found in namespace"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -821,6 +882,15 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -905,6 +975,13 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1007,6 +1084,15 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1082,6 +1168,13 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71241": "forbidden environment"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1184,6 +1277,15 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1286,6 +1388,15 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1371,6 +1482,13 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1460,6 +1578,14 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found",
+          "71237": "leaderboard ranking not created for inactive leaderboard"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1560,6 +1686,14 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1662,6 +1796,15 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1745,6 +1888,11 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1817,6 +1965,11 @@
         "tags": [
           "Anonymization"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -1907,6 +2060,11 @@
         "tags": [
           "UserData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2004,6 +2162,12 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2088,6 +2252,15 @@
         "tags": [
           "LeaderboardConfiguration"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71132": "leaderboard configuration already exist",
+          "71242": "stat code not found in namespace"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2171,7 +2344,14 @@
         "summary": "Get all time leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived": {
@@ -2260,6 +2440,14 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71239": "leaderboard is not archived"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2347,7 +2535,14 @@
         "summary": "Get current month leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season": {
@@ -2425,7 +2620,14 @@
         "summary": "Get current season leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/today": {
@@ -2503,7 +2705,14 @@
         "summary": "Get today leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}": {
@@ -2577,6 +2786,13 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2666,6 +2882,14 @@
         "tags": [
           "LeaderboardData"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found",
+          "71237": "leaderboard ranking not created for inactive leaderboard"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2753,7 +2977,14 @@
         "summary": "Get current week leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden": {
@@ -2832,6 +3063,13 @@
         "tags": [
           "UserVisibility"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -2917,6 +3155,12 @@
         "tags": [
           "UserVisibility"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3011,6 +3255,14 @@
         "tags": [
           "UserVisibility"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3100,6 +3352,13 @@
         "tags": [
           "UserVisibility"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3182,7 +3441,13 @@
         "summary": "list all leaderboards by given namespace",
         "tags": [
           "LeaderboardConfiguration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime": {
@@ -3266,7 +3531,14 @@
         "summary": "Get all time leaderboard ranking data",
         "tags": [
           "LeaderboardData"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        }
       }
     },
     "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards": {
@@ -3345,6 +3617,12 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3431,6 +3709,17 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71132": "leaderboard configuration already exist",
+          "71242": "stat code not found in namespace",
+          "71243": "cycle doesn't belong to the stat code",
+          "71244": "cycle is already stopped"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3513,6 +3802,12 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3594,6 +3889,13 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3676,6 +3978,13 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3775,6 +4084,19 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found",
+          "71132": "leaderboard configuration already exist",
+          "71133": "leaderboard configuration deleted",
+          "71242": "stat code not found in namespace",
+          "71243": "cycle doesn't belong to the stat code",
+          "71244": "cycle is already stopped"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3871,6 +4193,15 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -3974,6 +4305,15 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4058,6 +4398,13 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4133,6 +4480,13 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found",
+          "71241": "forbidden environment"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4223,6 +4577,12 @@
         "tags": [
           "UserVisibilityV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4308,6 +4668,13 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4391,6 +4758,13 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4476,6 +4850,12 @@
         "tags": [
           "UserVisibilityV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4570,6 +4950,14 @@
         "tags": [
           "UserVisibilityV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4653,6 +5041,11 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4737,6 +5130,11 @@
         "tags": [
           "UserDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4826,6 +5224,14 @@
         "tags": [
           "UserVisibilityV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4916,6 +5322,12 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -4998,6 +5410,13 @@
         "tags": [
           "LeaderboardConfigurationV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "71130": "leaderboard config not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -5079,7 +5498,14 @@
         "summary": "Get all time leaderboard ranking data",
         "tags": [
           "LeaderboardDataV3"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/cycles/{cycleId}": {
@@ -5158,7 +5584,14 @@
         "summary": "Get cycle leaderboard ranking data",
         "tags": [
           "LeaderboardDataV3"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "71230": "leaderboard configuration not found",
+          "71235": "leaderboard ranking not found",
+          "71236": "leaderboard ranking count failed"
+        }
       }
     },
     "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/bulk": {
@@ -5242,6 +5675,14 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "71230": "leaderboard configuration not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -5325,6 +5766,13 @@
         "tags": [
           "LeaderboardDataV3"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "71230": "leaderboard configuration not found",
+          "71233": "user ranking data not found"
+        },
         "x-security": [
           {
             "iamClientScopes": [
@@ -6323,7 +6771,7 @@
           "type": "array"
         },
         "paging": {
-          "$ref": "#/definitions/v2.Pagination"
+          "$ref": "#/definitions/v2.PaginationV2"
         }
       },
       "required": [
@@ -6362,7 +6810,7 @@
           "type": "array"
         },
         "paging": {
-          "$ref": "#/definitions/v2.Pagination"
+          "$ref": "#/definitions/v2.PaginationV2"
         }
       },
       "required": [
@@ -6370,7 +6818,7 @@
         "paging"
       ]
     },
-    "v2.Pagination": {
+    "v2.PaginationV2": {
       "properties": {
         "first": {
           "type": "string"
@@ -6399,11 +6847,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T07:38:19+00:00",
-    "gitHash": "7ba969c5706bcc3aba77bed191689945adc12680",
+    "buildDate": "2024-05-17T08:16:18+00:00",
+    "gitHash": "05ac0e2089a02ba41bef8fbae6250beb2bd35611",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.29.1",
+    "version": "2.29.2",
     "version-roles-seeding": "1.2.32"
   }
 }

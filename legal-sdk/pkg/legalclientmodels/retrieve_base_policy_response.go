@@ -37,6 +37,9 @@ type RetrieveBasePolicyResponse struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// ishidden
+	IsHidden bool `json:"isHidden"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

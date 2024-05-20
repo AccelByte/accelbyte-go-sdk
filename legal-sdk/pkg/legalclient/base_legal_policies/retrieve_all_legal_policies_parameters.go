@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRetrieveAllLegalPoliciesParams creates a new RetrieveAllLegalPoliciesParams object
 // with the default values initialized.
 func NewRetrieveAllLegalPoliciesParams() *RetrieveAllLegalPoliciesParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewRetrieveAllLegalPoliciesParams() *RetrieveAllLegalPoliciesParams {
 // NewRetrieveAllLegalPoliciesParamsWithTimeout creates a new RetrieveAllLegalPoliciesParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveAllLegalPoliciesParamsWithTimeout(timeout time.Duration) *RetrieveAllLegalPoliciesParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewRetrieveAllLegalPoliciesParamsWithTimeout(timeout time.Duration) *Retrie
 // NewRetrieveAllLegalPoliciesParamsWithContext creates a new RetrieveAllLegalPoliciesParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveAllLegalPoliciesParamsWithContext(ctx context.Context) *RetrieveAllLegalPoliciesParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewRetrieveAllLegalPoliciesParamsWithContext(ctx context.Context) *Retrieve
 // NewRetrieveAllLegalPoliciesParamsWithHTTPClient creates a new RetrieveAllLegalPoliciesParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveAllLegalPoliciesParamsWithHTTPClient(client *http.Client) *RetrieveAllLegalPoliciesParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesParams{
-		HTTPClient: client,
+		VisibleOnly: &visibleOnlyDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -64,6 +77,8 @@ type RetrieveAllLegalPoliciesParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*VisibleOnly*/
+	VisibleOnly *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -130,6 +145,17 @@ func (o *RetrieveAllLegalPoliciesParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithVisibleOnly adds the visibleOnly to the retrieve all legal policies params
+func (o *RetrieveAllLegalPoliciesParams) WithVisibleOnly(visibleOnly *bool) *RetrieveAllLegalPoliciesParams {
+	o.SetVisibleOnly(visibleOnly)
+	return o
+}
+
+// SetVisibleOnly adds the visibleOnly to the retrieve all legal policies params
+func (o *RetrieveAllLegalPoliciesParams) SetVisibleOnly(visibleOnly *bool) {
+	o.VisibleOnly = visibleOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RetrieveAllLegalPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +163,22 @@ func (o *RetrieveAllLegalPoliciesParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.VisibleOnly != nil {
+
+		// query param visibleOnly
+		var qrVisibleOnly bool
+		if o.VisibleOnly != nil {
+			qrVisibleOnly = *o.VisibleOnly
+		}
+		qVisibleOnly := swag.FormatBool(qrVisibleOnly)
+		if qVisibleOnly != "" {
+			if err := r.SetQueryParam("visibleOnly", qVisibleOnly); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// setting the default header value
 	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {

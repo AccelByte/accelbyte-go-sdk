@@ -10,6 +10,12 @@
 | `/healthz` | GET | GetHealthcheckInfoShort | [GetHealthcheckInfoShort](../../session-sdk/pkg/sessionclient/operations/operations_client.go) | [GetHealthcheckInfoShort](../../services-api/pkg/service/session/operations.go) | [GetHealthcheckInfoShort](../../samples/cli/cmd/session/operations/getHealthcheckInfo.go) |
 | `/session/healthz` | GET | GetHealthcheckInfoV1Short | [GetHealthcheckInfoV1Short](../../session-sdk/pkg/sessionclient/operations/operations_client.go) | [GetHealthcheckInfoV1Short](../../services-api/pkg/service/session/operations.go) | [GetHealthcheckInfoV1Short](../../samples/cli/cmd/session/operations/getHealthcheckInfoV1.go) |
 
+### Config Wrapper:  [Config](../../services-api/pkg/service/session/config.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/session/v1/admin/config/log` | GET | AdminGetLogConfigShort | [AdminGetLogConfigShort](../../session-sdk/pkg/sessionclient/config/config_client.go) | [AdminGetLogConfigShort](../../services-api/pkg/service/session/config.go) | [AdminGetLogConfigShort](../../samples/cli/cmd/session/config/adminGetLogConfig.go) |
+| `/session/v1/admin/config/log` | PATCH | AdminPatchUpdateLogConfigShort | [AdminPatchUpdateLogConfigShort](../../session-sdk/pkg/sessionclient/config/config_client.go) | [AdminPatchUpdateLogConfigShort](../../services-api/pkg/service/session/config.go) | [AdminPatchUpdateLogConfigShort](../../samples/cli/cmd/session/config/adminPatchUpdateLogConfig.go) |
+
 ### DSMC Default Configuration Wrapper:  [DSMCDefaultConfiguration](../../services-api/pkg/service/session/dsmcDefaultConfiguration.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -189,6 +195,7 @@
 | `apimodels.UpdateGameSessionRequest` | [ApimodelsUpdateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_request.go) |
 | `apimodels.UpdatePartyRequest` | [ApimodelsUpdatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_party_request.go) |
 | `apimodels.UserResponse` | [ApimodelsUserResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_user_response.go) |
+| `logconfig.Configuration` | [LogconfigConfiguration ](../../session-sdk/pkg/sessionclientmodels/logconfig_configuration.go) |
 | `model.NativeSession` | [ModelNativeSession ](../../session-sdk/pkg/sessionclientmodels/model_native_session.go) |
 | `model.NativeSessionMember` | [ModelNativeSessionMember ](../../session-sdk/pkg/sessionclientmodels/model_native_session_member.go) |
 | `models.DSMConfigRecord` | [ModelsDSMConfigRecord ](../../session-sdk/pkg/sessionclientmodels/models_d_s_m_config_record.go) |

@@ -131,7 +131,12 @@
         "summary": "List Challenges",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       },
       "post": {
         "consumes": [
@@ -164,6 +169,12 @@
             "description": "Created",
             "schema": {
               "$ref": "#/definitions/model.ChallengeResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
             }
           },
           "401": {
@@ -208,7 +219,15 @@
         "summary": "Create New Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "99002": "duplicate key error: {{message}}",
+          "99003": "challenge validation error: {{message}}"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}": {
@@ -280,7 +299,14 @@
         "summary": "Delete a Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
+        }
       },
       "get": {
         "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -347,7 +373,13 @@
         "summary": "Get a Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       },
       "put": {
         "consumes": [
@@ -387,6 +419,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/model.ChallengeResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
             }
           },
           "401": {
@@ -431,7 +469,10 @@
         "summary": "Update a Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20018": "bad request: {{message}}"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals": {
@@ -520,7 +561,13 @@
         "summary": "List Goals of a Challenge",
         "tags": [
           "Goal Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       },
       "post": {
         "consumes": [
@@ -610,7 +657,15 @@
         "summary": "Create New Goal",
         "tags": [
           "Goal Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found",
+          "99002": "duplicate key error: {{message}}"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}": {
@@ -677,7 +732,12 @@
         "summary": "Delete Goal",
         "tags": [
           "Goal Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
+        }
       },
       "get": {
         "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -751,7 +811,11 @@
         "summary": "Get Goal",
         "tags": [
           "Goal Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       },
       "put": {
         "consumes": [
@@ -800,6 +864,12 @@
               "$ref": "#/definitions/model.GoalResponse"
             }
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "404": {
             "description": "Not Found",
             "schema": {
@@ -824,7 +894,10 @@
         "summary": "Update Goal",
         "tags": [
           "Goal Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20018": "bad request: {{message}}"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/periods": {
@@ -907,7 +980,13 @@
         "summary": "Get Challenge's Periods",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/randomize": {
@@ -979,7 +1058,13 @@
         "summary": "Randomize Goals of a Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied": {
@@ -1051,7 +1136,14 @@
         "summary": "Delete Tied Challenge",
         "tags": [
           "Challenge Configuration"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/progress/evaluate": {
@@ -1121,7 +1213,13 @@
         "summary": "Evaluate User's Progressions",
         "tags": [
           "Challenge Progression"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/{userId}/rewards": {
@@ -1214,7 +1312,12 @@
         "summary": "List User's Rewards",
         "tags": [
           "Player Reward"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/challenges": {
@@ -1301,7 +1404,12 @@
         "summary": "List Challenges",
         "tags": [
           "Challenge List"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/goals": {
@@ -1370,6 +1478,12 @@
               "$ref": "#/definitions/iam.ErrorResponse"
             }
           },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -1388,7 +1502,13 @@
         "summary": "List Goals of a Challenge",
         "tags": [
           "Challenge List"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/evaluate": {
@@ -1441,7 +1561,12 @@
         "summary": "Evaluate User's Challenge Progressions",
         "tags": [
           "Challenge Progression"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}": {
@@ -1540,7 +1665,13 @@
         "summary": "List User's Progressions",
         "tags": [
           "Challenge Progression"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards": {
@@ -1626,7 +1757,12 @@
         "summary": "List User's Rewards",
         "tags": [
           "Player Reward"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        }
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards/claim": {
@@ -1702,7 +1838,13 @@
         "summary": "Claim User's Rewards",
         "tags": [
           "Player Reward"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20029": "not found"
+        }
       }
     }
   },
@@ -1947,12 +2089,16 @@
           },
           "type": "array"
         },
+        "meta": {
+          "$ref": "#/definitions/model.ChallengeResponse"
+        },
         "paging": {
           "$ref": "#/definitions/model.Pagination"
         }
       },
       "required": [
         "data",
+        "meta",
         "paging"
       ]
     },
@@ -2224,8 +2370,12 @@
           "enum": [
             "ACHIEVEMENT",
             "STATISTIC",
+            "STATISTIC_CYCLE",
             "USERACCOUNT"
           ],
+          "type": "string"
+        },
+        "statCycleId": {
           "type": "string"
         },
         "targetValue": {
@@ -2279,6 +2429,9 @@
           "type": "string"
         },
         "parameterType": {
+          "type": "string"
+        },
+        "statCycleId": {
           "type": "string"
         },
         "targetValue": {
@@ -2619,11 +2772,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T07:36:42+00:00",
-    "gitHash": "09bd3b9ad14e30f503d5fbcc90bd252ebb0d4dde",
+    "buildDate": "2024-05-17T08:14:13+00:00",
+    "gitHash": "37847b4f78cfd1d2ee6b18c4042169c2c7f89915",
     "name": "justice-challenge-service",
     "realm": "staging",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "version-roles-seeding": "1.2.16"
   }
 }

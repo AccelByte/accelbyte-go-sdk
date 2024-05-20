@@ -8,7 +8,7 @@
     },
     "description": "Justice Reporting Service",
     "title": "justice-reporting-service",
-    "version": "0.1.34"
+    "version": "0.1.36"
   },
   "schemes": [
     "https"
@@ -81,6 +81,7 @@
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -137,6 +138,7 @@
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -211,6 +213,7 @@
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -267,6 +270,7 @@
         "tags": [
           "Admin Extension Categories and Auto Moderation Actions"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -327,6 +331,7 @@
         "tags": [
           "Admin Configurations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -389,6 +394,7 @@
         "tags": [
           "Admin Configurations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -451,6 +457,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -519,6 +526,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -573,6 +581,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -633,6 +642,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -708,6 +718,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -788,6 +799,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -856,6 +868,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -906,6 +919,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -973,6 +987,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1026,6 +1041,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1086,6 +1102,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1160,6 +1177,7 @@
         "tags": [
           "Admin Reasons"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1244,6 +1262,7 @@
         "tags": [
           "Admin Reports"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1312,6 +1331,7 @@
         "tags": [
           "Admin Reports"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1379,6 +1399,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1438,6 +1459,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1518,6 +1540,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1591,6 +1614,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1677,6 +1701,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1739,6 +1764,7 @@
         "tags": [
           "Admin Moderation Rule"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1837,6 +1863,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1900,6 +1927,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1959,6 +1987,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2019,6 +2048,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2087,6 +2117,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2151,6 +2182,7 @@
         "tags": [
           "Admin Tickets"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2212,7 +2244,8 @@
         "summary": "List reason groups under a namespace",
         "tags": [
           "Public Reasons"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/reporting/v1/public/namespaces/{namespace}/reasons": {
@@ -2284,7 +2317,8 @@
         "summary": "Get list of reasons",
         "tags": [
           "Public Reasons"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/reporting/v1/public/namespaces/{namespace}/reports": {
@@ -2353,7 +2387,8 @@
         "summary": "Submit a report",
         "tags": [
           "Public Reports"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     }
   },
@@ -3350,11 +3385,11 @@
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-06T08:13:59+00:00",
-    "gitHash": "9732d02ad15d91e1c41f956707d43c5dde025e88",
+    "buildDate": "2024-05-17T10:01:13+00:00",
+    "gitHash": "c6201f96a0c5c35079a6aaa5ef8c523d9185ebc9",
     "name": "justice-reporting-service",
     "realm": "demo",
-    "version": "0.1.34",
+    "version": "0.1.36",
     "version-roles-seeding": "0.0.3"
   }
 }

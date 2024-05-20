@@ -139,7 +139,8 @@
         "summary": "Queries server logs",
         "tags": [
           "Admin"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/namespaces/{namespace}/servers/search": {
@@ -290,7 +291,8 @@
         "summary": "Retrieve All Terminated Servers",
         "tags": [
           "Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/namespaces/{namespace}/servers/{podName}/logs/download": {
@@ -354,7 +356,8 @@
         "summary": "Download dedicated server log files",
         "tags": [
           "Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/namespaces/{namespace}/servers/{podName}/logs/exists": {
@@ -418,7 +421,8 @@
         "summary": "Check dedicated server log files existence",
         "tags": [
           "Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/servers/logs/download": {
@@ -475,7 +479,8 @@
         "summary": "Batch Download dedicated server log files",
         "tags": [
           "All Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/servers/search": {
@@ -618,7 +623,8 @@
         "summary": "Retrieve All Terminated Servers",
         "tags": [
           "All Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dslogmanager/v1/messages": {
@@ -656,7 +662,8 @@
         "summary": "get service messages",
         "tags": [
           "Dslogmanager Operations"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     }
   },

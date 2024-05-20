@@ -17,6 +17,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/platform_account_closure_client"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/platform_account_closure_history"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -70,6 +72,8 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Configuration = configuration.New(transport, formats)
 	cli.DataDeletion = data_deletion.New(transport, formats)
 	cli.DataRetrieval = data_retrieval.New(transport, formats)
+	cli.PlatformAccountClosureClient = platform_account_closure_client.New(transport, formats)
+	cli.PlatformAccountClosureHistory = platform_account_closure_history.New(transport, formats)
 
 	return cli
 }
@@ -136,6 +140,10 @@ type JusticeGdprService struct {
 
 	DataRetrieval data_retrieval.ClientService
 
+	PlatformAccountClosureClient platform_account_closure_client.ClientService
+
+	PlatformAccountClosureHistory platform_account_closure_history.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -146,4 +154,6 @@ func (c *JusticeGdprService) SetTransport(transport runtime.ClientTransport) {
 	c.Configuration.SetTransport(transport)
 	c.DataDeletion.SetTransport(transport)
 	c.DataRetrieval.SetTransport(transport)
+	c.PlatformAccountClosureClient.SetTransport(transport)
+	c.PlatformAccountClosureHistory.SetTransport(transport)
 }

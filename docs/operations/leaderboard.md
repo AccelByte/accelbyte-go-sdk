@@ -153,4 +153,4 @@
 | `v2.GetAllLeaderboardConfigsPublicResp` | [V2GetAllLeaderboardConfigsPublicResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/v2_get_all_leaderboard_configs_public_resp.go) |
 | `v2.GetLeaderboardConfigPublicResp` | [V2GetLeaderboardConfigPublicResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/v2_get_leaderboard_config_public_resp.go) |
 | `v2.GetPublicLeaderboardRankingResponse` | [V2GetPublicLeaderboardRankingResponse ](../../leaderboard-sdk/pkg/leaderboardclientmodels/v2_get_public_leaderboard_ranking_response.go) |
-| `v2.Pagination` | [V2Pagination ](../../leaderboard-sdk/pkg/leaderboardclientmodels/v2_pagination.go) |
+| `v2.PaginationV2` | [V2PaginationV2 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/v2_pagination_v2.go) |

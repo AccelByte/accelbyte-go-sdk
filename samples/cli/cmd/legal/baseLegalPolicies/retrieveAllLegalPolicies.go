@@ -25,7 +25,10 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 			Client:          factory.NewLegalClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &base_legal_policies.RetrieveAllLegalPoliciesParams{}
+		visibleOnly, _ := cmd.Flags().GetBool("visibleOnly")
+		input := &base_legal_policies.RetrieveAllLegalPoliciesParams{
+			VisibleOnly: &visibleOnly,
+		}
 		ok, errOK := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
@@ -40,4 +43,5 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 }
 
 func init() {
+	RetrieveAllLegalPoliciesCmd.Flags().Bool("visibleOnly", false, "Visible only")
 }

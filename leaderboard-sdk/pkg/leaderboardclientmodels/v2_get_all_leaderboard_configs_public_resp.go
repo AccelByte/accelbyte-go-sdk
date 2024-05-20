@@ -26,7 +26,7 @@ type V2GetAllLeaderboardConfigsPublicResp struct {
 
 	// paging
 	// Required: true
-	Paging *V2Pagination `json:"paging"`
+	Paging *V2PaginationV2 `json:"paging"`
 }
 
 // Validate validates this V2 get all leaderboard configs public resp

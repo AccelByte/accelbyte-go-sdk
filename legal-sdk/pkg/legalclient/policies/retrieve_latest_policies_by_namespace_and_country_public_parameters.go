@@ -28,8 +28,11 @@ const (
 // NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams creates a new RetrieveLatestPoliciesByNamespaceAndCountryPublicParams object
 // with the default values initialized.
 func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams() *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesByNamespaceAndCountryPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -38,8 +41,11 @@ func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams() *RetrieveLates
 // NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithTimeout creates a new RetrieveLatestPoliciesByNamespaceAndCountryPublicParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithTimeout(timeout time.Duration) *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesByNamespaceAndCountryPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: timeout,
 	}
@@ -48,8 +54,11 @@ func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithTimeout(timeo
 // NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithContext creates a new RetrieveLatestPoliciesByNamespaceAndCountryPublicParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithContext(ctx context.Context) *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesByNamespaceAndCountryPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		Context: ctx,
 	}
@@ -58,9 +67,12 @@ func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithContext(ctx c
 // NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithHTTPClient creates a new RetrieveLatestPoliciesByNamespaceAndCountryPublicParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParamsWithHTTPClient(client *http.Client) *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesByNamespaceAndCountryPublicParams{
-		HTTPClient: client,
+		VisibleOnly: &visibleOnlyDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -101,6 +113,8 @@ type RetrieveLatestPoliciesByNamespaceAndCountryPublicParams struct {
 
 	*/
 	Tags *string
+	/*VisibleOnly*/
+	VisibleOnly *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -233,6 +247,17 @@ func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetTags(tags *
 	o.Tags = tags
 }
 
+// WithVisibleOnly adds the visibleOnly to the retrieve latest policies by namespace and country public params
+func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) WithVisibleOnly(visibleOnly *bool) *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams {
+	o.SetVisibleOnly(visibleOnly)
+	return o
+}
+
+// SetVisibleOnly adds the visibleOnly to the retrieve latest policies by namespace and country public params
+func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetVisibleOnly(visibleOnly *bool) {
+	o.VisibleOnly = visibleOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -309,6 +334,22 @@ func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) WriteToRequest
 		qTags := qrTags
 		if qTags != "" {
 			if err := r.SetQueryParam("tags", qTags); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.VisibleOnly != nil {
+
+		// query param visibleOnly
+		var qrVisibleOnly bool
+		if o.VisibleOnly != nil {
+			qrVisibleOnly = *o.VisibleOnly
+		}
+		qVisibleOnly := swag.FormatBool(qrVisibleOnly)
+		if qVisibleOnly != "" {
+			if err := r.SetQueryParam("visibleOnly", qVisibleOnly); err != nil {
 				return err
 			}
 		}

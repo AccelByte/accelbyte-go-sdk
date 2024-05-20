@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRetrieveAllLegalPoliciesByNamespaceParams creates a new RetrieveAllLegalPoliciesByNamespaceParams object
 // with the default values initialized.
 func NewRetrieveAllLegalPoliciesByNamespaceParams() *RetrieveAllLegalPoliciesByNamespaceParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewRetrieveAllLegalPoliciesByNamespaceParams() *RetrieveAllLegalPoliciesByN
 // NewRetrieveAllLegalPoliciesByNamespaceParamsWithTimeout creates a new RetrieveAllLegalPoliciesByNamespaceParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithTimeout(timeout time.Duration) *RetrieveAllLegalPoliciesByNamespaceParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewRetrieveAllLegalPoliciesByNamespaceParamsWithTimeout(timeout time.Durati
 // NewRetrieveAllLegalPoliciesByNamespaceParamsWithContext creates a new RetrieveAllLegalPoliciesByNamespaceParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithContext(ctx context.Context) *RetrieveAllLegalPoliciesByNamespaceParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewRetrieveAllLegalPoliciesByNamespaceParamsWithContext(ctx context.Context
 // NewRetrieveAllLegalPoliciesByNamespaceParamsWithHTTPClient creates a new RetrieveAllLegalPoliciesByNamespaceParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithHTTPClient(client *http.Client) *RetrieveAllLegalPoliciesByNamespaceParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
-		HTTPClient: client,
+		VisibleOnly: &visibleOnlyDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -69,6 +82,8 @@ type RetrieveAllLegalPoliciesByNamespaceParams struct {
 
 	*/
 	Namespace string
+	/*VisibleOnly*/
+	VisibleOnly *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -146,6 +161,17 @@ func (o *RetrieveAllLegalPoliciesByNamespaceParams) SetNamespace(namespace strin
 	o.Namespace = namespace
 }
 
+// WithVisibleOnly adds the visibleOnly to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) WithVisibleOnly(visibleOnly *bool) *RetrieveAllLegalPoliciesByNamespaceParams {
+	o.SetVisibleOnly(visibleOnly)
+	return o
+}
+
+// SetVisibleOnly adds the visibleOnly to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) SetVisibleOnly(visibleOnly *bool) {
+	o.VisibleOnly = visibleOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RetrieveAllLegalPoliciesByNamespaceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +183,22 @@ func (o *RetrieveAllLegalPoliciesByNamespaceParams) WriteToRequest(r runtime.Cli
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.VisibleOnly != nil {
+
+		// query param visibleOnly
+		var qrVisibleOnly bool
+		if o.VisibleOnly != nil {
+			qrVisibleOnly = *o.VisibleOnly
+		}
+		qVisibleOnly := swag.FormatBool(qrVisibleOnly)
+		if qVisibleOnly != "" {
+			if err := r.SetQueryParam("visibleOnly", qVisibleOnly); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

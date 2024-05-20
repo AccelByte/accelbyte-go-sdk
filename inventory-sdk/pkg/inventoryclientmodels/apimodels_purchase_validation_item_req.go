@@ -43,6 +43,10 @@ type ApimodelsPurchaseValidationItemReq struct {
 	// Required: true
 	Sku *string `json:"sku"`
 
+	// stackable
+	// Required: true
+	Stackable *bool `json:"stackable"`
+
 	// usecount
 	// Format: int32
 	UseCount int32 `json:"useCount,omitempty"`
@@ -68,6 +72,9 @@ func (m *ApimodelsPurchaseValidationItemReq) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 	if err := m.validateSku(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateStackable(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -134,6 +141,15 @@ func (m *ApimodelsPurchaseValidationItemReq) validateItemType(formats strfmt.Reg
 func (m *ApimodelsPurchaseValidationItemReq) validateSku(formats strfmt.Registry) error {
 
 	if err := validate.Required("sku", "body", m.Sku); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPurchaseValidationItemReq) validateStackable(formats strfmt.Registry) error {
+
+	if err := validate.Required("stackable", "body", m.Stackable); err != nil {
 		return err
 	}
 

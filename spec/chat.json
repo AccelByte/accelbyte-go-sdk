@@ -110,6 +110,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -247,6 +248,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -300,6 +302,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -390,6 +393,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -441,6 +445,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -528,6 +533,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -597,6 +603,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -718,6 +725,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -770,6 +778,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -828,6 +837,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -912,6 +922,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -994,6 +1005,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1119,6 +1131,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1204,6 +1217,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1284,6 +1298,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1392,6 +1407,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1471,6 +1487,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1555,6 +1572,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1614,6 +1632,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1679,6 +1698,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1823,6 +1843,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1941,6 +1962,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2013,6 +2035,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -2097,6 +2120,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -2175,6 +2199,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -2272,6 +2297,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -2346,6 +2372,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -2428,6 +2455,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -2512,6 +2540,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -2594,6 +2623,7 @@
         "tags": [
           "topic"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -2660,6 +2690,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2735,6 +2766,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2823,6 +2855,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2889,6 +2922,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2958,6 +2992,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3030,6 +3065,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3105,6 +3141,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3178,6 +3215,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3257,6 +3295,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3339,6 +3378,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3419,6 +3459,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3563,6 +3604,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3638,6 +3680,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3722,6 +3765,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3826,6 +3870,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3907,6 +3952,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3991,6 +4037,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4070,6 +4117,7 @@
         "tags": [
           "inbox"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4149,6 +4197,7 @@
         "tags": [
           "moderation"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4229,6 +4278,7 @@
         "tags": [
           "moderation"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4347,6 +4397,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4429,6 +4480,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4513,6 +4565,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4582,6 +4635,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4666,6 +4720,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4765,6 +4820,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4844,6 +4900,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4933,6 +4990,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4974,7 +5032,8 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "x-errorCodes": {}
       }
     },
     "/chat/v1/public/config/namespaces/{namespace}": {
@@ -5043,6 +5102,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -5126,6 +5186,7 @@
         "tags": [
           "moderation"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "groupPermissions": [
@@ -6676,7 +6737,6 @@
         }
       },
       "required": [
-        "category",
         "expiredAt",
         "message",
         "scope",
@@ -6722,7 +6782,6 @@
         }
       },
       "required": [
-        "category",
         "expiredAt",
         "id",
         "scope",
@@ -7082,11 +7141,11 @@
     "path": "/chat/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T06:57:19+00:00",
-    "gitHash": "0e0fa08e36e3fb2f290e712ffbdf9f5dad64ead0",
+    "buildDate": "2024-05-17T10:47:28+00:00",
+    "gitHash": "1d5d742683a2d28508da94f8d2ec6f941533bd73",
     "name": "justice-chat-service",
-    "revisionID": "0.4.28",
-    "version": "0.4.28",
+    "revisionID": "0.4.29",
+    "version": "0.4.29",
     "version-roles-seeding": "1.2.15"
   }
 }

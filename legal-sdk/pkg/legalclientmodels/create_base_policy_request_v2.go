@@ -31,6 +31,9 @@ type CreateBasePolicyRequestV2 struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// ishidden
+	IsHidden bool `json:"isHidden"`
+
 	// tags
 	// Unique: true
 	Tags []string `json:"tags"`

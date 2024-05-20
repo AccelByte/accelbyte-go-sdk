@@ -10,6 +10,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/gdpr/configuration"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletion"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrieval"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureClient"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureHistory"
 	"github.com/spf13/cobra"
 )
 
@@ -25,10 +27,17 @@ func init() {
 	GdprCmd.AddCommand(configuration.UpdateAdminEmailConfigurationCmd)
 	GdprCmd.AddCommand(configuration.SaveAdminEmailConfigurationCmd)
 	GdprCmd.AddCommand(configuration.DeleteAdminEmailConfigurationCmd)
+	GdprCmd.AddCommand(platformAccountClosureClient.AdminGetPlatformAccountClosureClientCmd)
+	GdprCmd.AddCommand(platformAccountClosureClient.AdminUpdatePlatformAccountClosureClientCmd)
+	GdprCmd.AddCommand(platformAccountClosureClient.AdminDeletePlatformAccountClosureClientCmd)
 	GdprCmd.AddCommand(dataRetrieval.AdminGetListPersonalDataRequestCmd)
 	GdprCmd.AddCommand(configuration.AdminGetServicesConfigurationCmd)
 	GdprCmd.AddCommand(configuration.AdminUpdateServicesConfigurationCmd)
 	GdprCmd.AddCommand(configuration.AdminResetServicesConfigurationCmd)
+	GdprCmd.AddCommand(configuration.AdminGetPlatformAccountClosureServicesConfigurationCmd)
+	GdprCmd.AddCommand(configuration.AdminUpdatePlatformAccountClosureServicesConfigurationCmd)
+	GdprCmd.AddCommand(configuration.AdminResetPlatformAccountClosureServicesConfigurationCmd)
+	GdprCmd.AddCommand(platformAccountClosureHistory.AdminGetUserPlatformAccountClosureHistoriesCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminGetUserAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminSubmitUserAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.AdminCancelUserAccountDeletionRequestCmd)

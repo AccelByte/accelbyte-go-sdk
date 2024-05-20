@@ -39,6 +39,9 @@ type UpdateBasePolicyResponse struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// ishidden
+	IsHidden bool `json:"isHidden"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

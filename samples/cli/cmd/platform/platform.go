@@ -30,6 +30,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentConfig"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentDedicated"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentStation"
+	"github.com/AccelByte/sample-apps/cmd/platform/platformAccountClosure"
 	"github.com/AccelByte/sample-apps/cmd/platform/revocation"
 	"github.com/AccelByte/sample-apps/cmd/platform/reward"
 	"github.com/AccelByte/sample-apps/cmd/platform/section"
@@ -330,6 +331,7 @@ func init() {
 	PlatformCmd.AddCommand(order.DownloadUserOrderReceiptCmd)
 	PlatformCmd.AddCommand(payment.CreateUserPaymentOrderCmd)
 	PlatformCmd.AddCommand(payment.RefundUserPaymentOrderCmd)
+	PlatformCmd.AddCommand(platformAccountClosure.GetUserPlatformAccountClosureHistoriesCmd)
 	PlatformCmd.AddCommand(campaign.ApplyUserRedemptionCmd)
 	PlatformCmd.AddCommand(revocation.DoRevocationCmd)
 	PlatformCmd.AddCommand(sessionPlatform.RegisterXblSessionsCmd)

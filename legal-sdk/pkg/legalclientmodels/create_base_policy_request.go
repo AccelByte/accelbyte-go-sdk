@@ -30,6 +30,9 @@ type CreateBasePolicyRequest struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// ishidden
+	IsHidden bool `json:"isHidden"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

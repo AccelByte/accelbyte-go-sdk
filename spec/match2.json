@@ -47,7 +47,8 @@
           {
             "authorization": []
           }
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/match2/healthz": {
@@ -62,7 +63,8 @@
           {
             "authorization": []
           }
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/match2/v1/config": {
@@ -111,6 +113,7 @@
           "Config",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -175,6 +178,7 @@
           "Config",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -245,6 +249,7 @@
           "Config",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -294,6 +299,7 @@
           "Environment-Variables",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -384,6 +390,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -467,6 +474,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -541,6 +549,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -622,6 +631,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -713,6 +723,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -801,6 +812,7 @@
           "Backfill",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -879,6 +891,7 @@
           "Match-Functions",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -958,6 +971,7 @@
           "Match-Functions",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1032,6 +1046,7 @@
           "Match-Functions",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1121,6 +1136,7 @@
           "Match-Functions",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1205,6 +1221,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1284,6 +1301,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1358,6 +1376,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1427,6 +1446,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1516,6 +1536,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1593,6 +1614,7 @@
           "Match-Pools",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1670,6 +1692,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1761,6 +1784,7 @@
           "Match-Pools",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1851,6 +1875,7 @@
           "Match-Tickets",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1933,6 +1958,7 @@
           "Match-Tickets",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2007,6 +2033,7 @@
           "Match-Tickets",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2082,6 +2109,7 @@
           "Match-Tickets",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2166,6 +2194,7 @@
           "Rule-Sets",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2245,6 +2274,7 @@
           "Rule-Sets",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2319,6 +2349,7 @@
           "Rule-Sets",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2388,6 +2419,7 @@
           "Rule-Sets",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2477,6 +2509,7 @@
           "Rule-Sets",
           "admin"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2498,7 +2531,8 @@
           {
             "authorization": []
           }
-        ]
+        ],
+        "x-errorCodes": {}
       }
     }
   },

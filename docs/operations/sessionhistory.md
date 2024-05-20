@@ -10,6 +10,12 @@
 | `/healthz` | GET | GetHealthcheckInfoShort | [GetHealthcheckInfoShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/operations/operations_client.go) | [GetHealthcheckInfoShort](../../services-api/pkg/service/sessionhistory/operations.go) | [GetHealthcheckInfoShort](../../samples/cli/cmd/sessionhistory/operations/getHealthcheckInfo.go) |
 | `/sessionhistory/healthz` | GET | GetHealthcheckInfoV1Short | [GetHealthcheckInfoV1Short](../../sessionhistory-sdk/pkg/sessionhistoryclient/operations/operations_client.go) | [GetHealthcheckInfoV1Short](../../services-api/pkg/service/sessionhistory/operations.go) | [GetHealthcheckInfoV1Short](../../samples/cli/cmd/sessionhistory/operations/getHealthcheckInfoV1.go) |
 
+### Config Wrapper:  [Config](../../services-api/pkg/service/sessionhistory/config.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/sessionhistory/v1/admin/config/log` | GET | AdminGetLogConfigShort | [AdminGetLogConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminGetLogConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminGetLogConfigShort](../../samples/cli/cmd/sessionhistory/config/adminGetLogConfig.go) |
+| `/sessionhistory/v1/admin/config/log` | PATCH | AdminPatchUpdateLogConfigShort | [AdminPatchUpdateLogConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminPatchUpdateLogConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminPatchUpdateLogConfigShort](../../samples/cli/cmd/sessionhistory/config/adminPatchUpdateLogConfig.go) |
+
 ### Game Session Detail Wrapper:  [GameSessionDetail](../../services-api/pkg/service/sessionhistory/gameSessionDetail.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -101,6 +107,7 @@
 | `apimodels.XRayTicketResult` | [ApimodelsXRayTicketResult ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_ticket_result.go) |
 | `apimodels.XRayTotalActiveSessionQueryResponse` | [ApimodelsXRayTotalActiveSessionQueryResponse ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_total_active_session_query_response.go) |
 | `apimodels.XRayTotalPlayerPersessionAVGQueryResponse` | [ApimodelsXRayTotalPlayerPersessionAVGQueryResponse ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_total_player_persession_a_v_g_query_response.go) |
+| `logconfig.Configuration` | [LogconfigConfiguration ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/logconfig_configuration.go) |
 | `models.AllianceRule` | [ModelsAllianceRule ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/models_alliance_rule.go) |
 | `models.BackfillProposal` | [ModelsBackfillProposal ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/models_backfill_proposal.go) |
 | `models.BackfillTicket` | [ModelsBackfillTicket ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/models_backfill_ticket.go) |

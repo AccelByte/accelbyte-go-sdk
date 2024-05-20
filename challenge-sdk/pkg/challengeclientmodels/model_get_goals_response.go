@@ -24,6 +24,10 @@ type ModelGetGoalsResponse struct {
 	// Required: true
 	Data []*ModelGoalResponse `json:"data"`
 
+	// meta
+	// Required: true
+	Meta *ModelChallengeResponse `json:"meta"`
+
 	// paging
 	// Required: true
 	Paging *ModelPagination `json:"paging"`
@@ -34,6 +38,9 @@ func (m *ModelGetGoalsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateMeta(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePaging(formats); err != nil {
@@ -66,6 +73,24 @@ func (m *ModelGetGoalsResponse) validateData(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelGetGoalsResponse) validateMeta(formats strfmt.Registry) error {
+
+	if err := validate.Required("meta", "body", m.Meta); err != nil {
+		return err
+	}
+
+	if m.Meta != nil {
+		if err := m.Meta.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("meta")
+			}
+			return err
+		}
 	}
 
 	return nil

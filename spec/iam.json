@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.15.0"
+    "version": "7.16.0"
   },
   "schemes": [
     "https"
@@ -89,6 +89,10 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -136,6 +140,10 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -189,6 +197,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -255,6 +267,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -313,6 +329,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -372,6 +392,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -445,6 +469,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -517,6 +545,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -595,6 +627,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -671,6 +707,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -743,6 +783,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -804,6 +848,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -877,6 +925,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -942,6 +994,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1014,6 +1070,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "1014001": "unable to parse request body",
+          "1014002": "user already exists",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1108,6 +1170,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10157": "specified role is not admin role",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20021": "invalid pagination parameter"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1169,6 +1239,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1250,6 +1325,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1327,7 +1406,11 @@
         "summary": "Request Password Reset Code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/iam/namespaces/{namespace}/users/listByLoginIds": {
@@ -1391,6 +1474,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1459,7 +1546,17 @@
         "summary": "Reset User Password",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "1014016": "unable to parse request body",
+          "1014017": "user not found",
+          "1014018": "verification code not found",
+          "1014019": "verification code already used",
+          "1014020": "verification code invalid",
+          "1014021": "verification code expired",
+          "1015073": "new password same as old password",
+          "20000": "internal server error"
+        }
       }
     },
     "/iam/namespaces/{namespace}/users/search": {
@@ -1523,6 +1620,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1588,6 +1689,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1645,6 +1750,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1723,6 +1833,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10131": "invalid date of birth",
+          "10132": "invalid email address",
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1805,6 +1928,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1876,6 +2009,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -1951,6 +2088,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10145": "disallow game access publisher user's ban",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2026,6 +2171,15 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10144": "user has no bans",
+          "10145": "disallow game access publisher user's ban",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2110,6 +2264,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2189,6 +2347,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2257,6 +2421,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2322,6 +2492,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2388,6 +2562,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2474,6 +2652,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2553,6 +2735,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10142": "new password cannot be same with original",
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2632,6 +2824,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2717,6 +2913,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2808,6 +3008,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2885,6 +3089,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -2966,6 +3174,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3042,6 +3254,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3130,6 +3346,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3215,6 +3439,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3289,6 +3520,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3374,6 +3609,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3447,6 +3686,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10159": "operator is not a role manager",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3521,6 +3767,15 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10159": "operator is not a role manager",
+          "10160": "user already has the role",
+          "10161": "user already the role member",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3597,6 +3852,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3679,6 +3938,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3755,6 +4018,20 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "10162": "invalid verification",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3837,6 +4114,18 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10140": "user verified",
+          "10146": "userID not match",
+          "10171": "email address not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20007": "too many requests",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -3929,6 +4218,7 @@
         "tags": [
           "OAuth"
         ],
+        "x-errorCodes": {},
         "x-location-query": "PLACEHOLDER"
       }
     },
@@ -3959,7 +4249,8 @@
         "summary": "JSON Web Key Set for verifying JWT",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/oauth/namespaces/{namespace}/platforms/{platformId}/token": {
@@ -4035,7 +4326,8 @@
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/oauth/namespaces/{namespace}/users/{userId}/revoke": {
@@ -4082,6 +4374,7 @@
         "tags": [
           "OAuth"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4116,7 +4409,8 @@
         "summary": "OAuth2 revocation list API",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/oauth/revoke/token": {
@@ -4158,7 +4452,8 @@
         "summary": "OAuth2 token revocation API",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/oauth/revoke/user": {
@@ -4201,6 +4496,7 @@
         "tags": [
           "OAuth"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4314,7 +4610,8 @@
         "summary": "OAuth2 access token generation endpoint",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/oauth/verify": {
@@ -4351,7 +4648,8 @@
         "summary": "OAuth2 token verification API",
         "tags": [
           "OAuth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/roles": {
@@ -4405,6 +4703,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4468,6 +4770,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4527,6 +4833,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4587,6 +4897,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4660,6 +4974,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4725,6 +5043,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4791,6 +5113,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4853,6 +5179,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4926,6 +5256,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -4992,6 +5326,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5062,6 +5400,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5135,6 +5477,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5201,6 +5547,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5271,6 +5621,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5344,6 +5698,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5423,6 +5781,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5508,6 +5870,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5567,6 +5933,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5640,6 +6010,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5701,6 +6075,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5783,6 +6161,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5899,6 +6281,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -5955,6 +6341,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20008": "user not found"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6032,6 +6423,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10131": "invalid date of birth",
+          "10132": "invalid email address",
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6114,6 +6518,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6189,6 +6603,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6268,6 +6686,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6336,6 +6761,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6415,6 +6846,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10142": "new password cannot be same with original",
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6500,6 +6941,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6585,6 +7033,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6665,6 +7117,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -6723,7 +7179,10 @@
         "summary": "Public get age restriction by country code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access"
+        }
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users": {
@@ -6791,7 +7250,11 @@
         "summary": "Create User",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users/forgotPassword": {
@@ -6847,7 +7310,13 @@
         "summary": "Request Password Reset Code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20007": "too many requests",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users/resetPassword": {
@@ -6903,7 +7372,17 @@
         "summary": "Reset User Password",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10142": "new password cannot be same with original",
+          "10152": "verification code not found",
+          "20000": "internal server error",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}": {
@@ -6952,7 +7431,12 @@
         "summary": "Get User By User ID",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20008": "user not found"
+        }
       },
       "patch": {
         "consumes": [
@@ -7026,6 +7510,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10131": "invalid date of birth",
+          "10132": "invalid email address",
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": {}
       }
     },
@@ -7094,7 +7591,11 @@
         "summary": "Get user's bans",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}/password": {
@@ -7167,6 +7668,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10142": "new password cannot be same with original",
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": {}
       }
     },
@@ -7222,7 +7733,8 @@
         "summary": "Get User Justice Platform Accounts",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link": {
@@ -7300,7 +7812,14 @@
         "summary": "Delete the link of user's account with platform",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        }
       },
       "post": {
         "consumes": [
@@ -7379,7 +7898,15 @@
         "summary": "Link user's account with platform",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/admin/bans": {
@@ -7424,6 +7951,11 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7475,6 +8007,11 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7537,6 +8074,10 @@
         "tags": [
           "Clients Config V3"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7590,6 +8131,10 @@
         "tags": [
           "Clients Config V3"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "put": {
@@ -7644,6 +8189,10 @@
         "tags": [
           "Clients Config V3"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7689,6 +8238,10 @@
         "tags": [
           "Clients Config V3"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -7731,6 +8284,10 @@
         "tags": [
           "InputValidations"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7793,6 +8350,11 @@
         "tags": [
           "InputValidations"
         ],
+        "x-errorCodes": {
+          "10188": "input validation field not found",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7853,6 +8415,11 @@
         "tags": [
           "InputValidations"
         ],
+        "x-errorCodes": {
+          "10188": "input validation field not found",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -7955,6 +8522,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8027,6 +8599,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10169": "age restriction not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8102,6 +8681,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8171,6 +8756,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8261,6 +8852,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10154": "country not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8346,6 +8945,11 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8427,6 +9031,16 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8510,6 +9124,16 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8570,6 +9194,11 @@
         "tags": [
           "Bans"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8667,6 +9296,11 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8742,6 +9376,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10364": "client exists",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8814,6 +9455,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8890,6 +9538,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20009": "request_conflict",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -8961,6 +9616,12 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9043,6 +9704,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9124,6 +9792,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9203,6 +9878,13 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9287,6 +9969,12 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9347,7 +10035,11 @@
         "summary": "Get Config Value",
         "tags": [
           "Config"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/admin/namespaces/{namespace}/countries": {
@@ -9411,7 +10103,12 @@
         "summary": "Get Country List",
         "tags": [
           "Country"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/iam/v3/admin/namespaces/{namespace}/countries/blacklist": {
@@ -9465,6 +10162,11 @@
         "tags": [
           "Country"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9537,6 +10239,12 @@
         "tags": [
           "Country"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9606,6 +10314,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9675,6 +10389,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9756,6 +10476,12 @@
         "tags": [
           "SSO Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9826,6 +10552,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9897,6 +10629,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -9985,6 +10723,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10067,6 +10811,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10154,6 +10904,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10242,6 +10998,12 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10318,6 +11080,12 @@
         "tags": [
           "SSO Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10395,6 +11163,11 @@
         "tags": [
           "SSO Credential"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10483,6 +11256,12 @@
         "tags": [
           "SSO Credential"
         ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10565,6 +11344,11 @@
         "tags": [
           "SSO Credential"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10657,6 +11441,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10737,6 +11527,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10834,6 +11631,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10157": "specified role is not admin role",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10912,6 +11717,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -10990,6 +11802,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11086,6 +11906,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11162,7 +11990,14 @@
         "summary": "List User By User ID",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        }
       }
     },
     "/iam/v3/admin/namespaces/{namespace}/users/bulk/platforms": {
@@ -11221,6 +12056,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10185": "publisher namespace not allowed",
+          "20000": "internal server error",
+          "20002": "validation error"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11316,6 +12156,15 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10154": "country not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11410,6 +12259,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11488,6 +12343,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11633,6 +12494,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11716,6 +12583,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11798,6 +12672,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11892,6 +12774,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10154": "country not found",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -11996,6 +12891,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12084,10 +12987,107 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/summary": {
+      "get": {
+        "description": "This endpoint get user\u0026#39;s bans summary\u0026#39;",
+        "operationId": "AdminGetUserBanSummaryV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.GetUserBanSummaryV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get user's bans summary",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]"
             ]
           }
         ]
@@ -12181,6 +13181,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10145": "disallow game access publisher user's ban",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12274,6 +13284,18 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10140": "user verified",
+          "10146": "userID not match",
+          "10171": "email address not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12361,6 +13383,20 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "10162": "invalid verification",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12431,6 +13467,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12504,6 +13545,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12589,6 +13636,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12668,6 +13723,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12764,6 +13826,28 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "10153": "user exist",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "10170": "account is already a full account",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12825,6 +13909,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12907,6 +13995,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -12988,6 +14080,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10142": "new password cannot be same with original",
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13069,6 +14171,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13145,6 +14251,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13221,6 +14331,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13302,6 +14416,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13408,6 +14526,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13490,6 +14615,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20025": "not a publisher user"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13567,6 +14700,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13651,6 +14788,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13746,6 +14891,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "10173": "platform is already linked with another user account",
+          "10200": "link to a different platform account is not allowed",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13840,6 +14995,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -13920,6 +15083,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14010,6 +15180,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14093,6 +15271,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14189,6 +15374,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10208": "platform token expired",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20003": "forbidden access"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14275,6 +15468,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14356,6 +15557,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14451,6 +15656,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "422": "request is unprocessable"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14534,6 +15749,15 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10159": "operator is not a role manager",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14621,6 +15845,17 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10159": "operator is not a role manager",
+          "10160": "user already has the role",
+          "10161": "user already the role member",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14708,6 +15943,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14801,6 +16044,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14883,6 +16136,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10140": "user verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -14961,6 +16222,10 @@
         "tags": [
           "Clients"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15021,6 +16286,11 @@
         "tags": [
           "Third Party Credential"
         ],
+        "x-errorCodes": {
+          "10226": "third party platform is not supported",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15105,6 +16375,12 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15173,6 +16449,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10466": "invalid role members",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15248,6 +16532,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20009": "request_conflict",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15318,6 +16610,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15399,6 +16698,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15468,6 +16775,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15538,6 +16852,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15605,6 +16926,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "10467": "role has no manager",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15685,6 +17014,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15773,6 +17110,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15851,6 +17195,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "10468": "role manager exist",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -15931,6 +17283,16 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "10457": "specified role is not admin role",
+          "10459": "operator is not a role manager",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16019,6 +17381,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16103,6 +17472,18 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "10457": "specified role is not admin role",
+          "10459": "operator is not a role manager",
+          "10469": "role member exist",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16170,6 +17551,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16248,6 +17633,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16326,6 +17719,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16412,6 +17813,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -16457,6 +17865,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -16527,6 +17940,7 @@
         "tags": [
           "OAuth2.0 - Extension"
         ],
+        "x-errorCodes": {},
         "x-location-query": "code"
       }
     },
@@ -16617,7 +18031,10 @@
         "summary": "Authentication with platform link",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {
+          "10213": "country is blocked"
+        }
       }
     },
     "/iam/v3/headless/token": {
@@ -16686,7 +18103,10 @@
         "summary": "Create headless account and response token",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {
+          "10213": "country is blocked"
+        }
       }
     },
     "/iam/v3/link/code/request": {
@@ -16725,6 +18145,7 @@
         "tags": [
           "OAuth2.0 - Extension"
         ],
+        "x-errorCodes": {},
         "x-security": {}
       }
     },
@@ -16759,7 +18180,8 @@
         "summary": "Validate one time linking code",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/link/token/exchange": {
@@ -16814,7 +18236,8 @@
         "summary": "Generate publisher token by headless account's one time link code",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/location/country": {
@@ -16843,7 +18266,8 @@
         "summary": "Get Country Location",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/logout": {
@@ -16851,7 +18275,7 @@
         "consumes": [
           "*/*"
         ],
-        "description": "This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.\nSupported methods:\n- VerifyToken to verify token from header\n- AddTokenToRevocationList to revoke token with TTL",
+        "description": "This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.",
         "operationId": "Logout",
         "produces": [
           "application/json"
@@ -16870,6 +18294,7 @@
         "tags": [
           "OAuth2.0 - Extension"
         ],
+        "x-errorCodes": {},
         "x-security": {}
       }
     },
@@ -16933,6 +18358,7 @@
         "tags": [
           "OAuth2.0 - Extension"
         ],
+        "x-errorCodes": {},
         "x-security": {}
       }
     },
@@ -17010,6 +18436,7 @@
         "tags": [
           "OAuth2.0"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -17085,6 +18512,7 @@
         "tags": [
           "OAuth2.0"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -17203,6 +18631,7 @@
         "tags": [
           "OAuth2.0"
         ],
+        "x-errorCodes": {},
         "x-location-query": "request_id"
       }
     },
@@ -17256,7 +18685,8 @@
         "summary": "OAuth2 token introspection API",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/jwks": {
@@ -17285,7 +18715,8 @@
         "summary": "JSON Web Key Set for verifying JWT",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/mfa/code": {
@@ -17364,7 +18795,15 @@
         "summary": "Send 2FA code",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {
+          "10189": "invalid factor",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20007": "too many requests",
+          "20008": "user not found"
+        }
       }
     },
     "/iam/v3/oauth/mfa/factor/change": {
@@ -17424,7 +18863,13 @@
         "summary": "Change 2FA method",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {
+          "10189": "invalid factor",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20007": "too many requests"
+        }
       }
     },
     "/iam/v3/oauth/mfa/verify": {
@@ -17490,7 +18935,8 @@
         "summary": "Verify 2FA code",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken": {
@@ -17561,6 +19007,7 @@
         "tags": [
           "OAuth2.0"
         ],
+        "x-errorCodes": {},
         "x-security": {}
       }
     },
@@ -17622,6 +19069,7 @@
         "tags": [
           "OAuth2.0"
         ],
+        "x-errorCodes": {},
         "x-location-query": "code"
       }
     },
@@ -17725,7 +19173,8 @@
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/revocationlist": {
@@ -17755,7 +19204,10 @@
         "summary": "OAuth2 revocation list API",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access"
+        }
       }
     },
     "/iam/v3/oauth/revoke": {
@@ -17797,7 +19249,8 @@
         "summary": "OAuth2 token revocation API",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/simultaneousLogin": {
@@ -17882,7 +19335,18 @@
         "summary": "Simultaneous login",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {
+          "10215": "Simultaneous ticket is required",
+          "10216": "Native ticket is required",
+          "10217": "Native ticket's account linked AGS account has different linking history with input simultaneous ticket's",
+          "10218": "Simultaneous ticket's account linked AGS account has different linking history with input native ticket's",
+          "10219": "Native ticket's account linked AGS is already linked simultaneous but different with the input simultaneous ticket's",
+          "10220": "Native ticket's account linked AGS account is different with the one which simultaneous ticket's linked to",
+          "10221": "Simultaneous ticket's account linked AGS is already linked native but different with the input native ticket's",
+          "20000": "internal server error",
+          "20001": "unauthorized access"
+        }
       }
     },
     "/iam/v3/oauth/token": {
@@ -18020,7 +19484,8 @@
         "summary": "OAuth2 access token generation endpoint",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/oauth/verify": {
@@ -18056,7 +19521,8 @@
         "summary": "OAuth2 token verification API",
         "tags": [
           "OAuth2.0"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/platforms/{platformId}/authenticate": {
@@ -18177,6 +19643,7 @@
         "tags": [
           "OAuth2.0 - Extension"
         ],
+        "x-errorCodes": {},
         "x-location-query": "PLACEHOLDER"
       }
     },
@@ -18246,7 +19713,8 @@
         "summary": "Platform Token Validation",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/public/inputValidations": {
@@ -18296,7 +19764,10 @@
         "summary": "Public Get Input Validations",
         "tags": [
           "InputValidations"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        }
       }
     },
     "/iam/v3/public/inputValidations/{field}": {
@@ -18343,7 +19814,10 @@
         "summary": "Public Get Input Validation by field",
         "tags": [
           "InputValidations"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/agerestrictions/countries/{countryCode}": {
@@ -18394,7 +19868,10 @@
         "summary": "Public get age restriction by country code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/config/{configKey}": {
@@ -18448,7 +19925,11 @@
         "summary": "Get Config Value",
         "tags": [
           "Config"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/countries": {
@@ -18492,7 +19973,10 @@
         "summary": "Get Country List",
         "tags": [
           "Country"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/platforms/clients/active": {
@@ -18554,7 +20038,13 @@
         "summary": "Get All Active Third Party Platform Active Credential for Public Usage",
         "tags": [
           "Third Party Credential"
-        ]
+        ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/platforms/clients/oidc": {
@@ -18611,7 +20101,11 @@
         "summary": "Get Active OIDC Platform Credential By Client ID",
         "tags": [
           "Third Party Credential"
-        ]
+        ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users": {
@@ -18697,6 +20191,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -18771,6 +20272,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -18832,6 +20340,12 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -18934,6 +20448,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20008": "user not found",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       },
       "post": {
@@ -19014,7 +20536,19 @@
         "summary": "Create User",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20007": "too many requests",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/availability": {
@@ -19075,7 +20609,10 @@
         "summary": "Check user's account availability",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/bulk/basic": {
@@ -19133,7 +20670,12 @@
         "summary": "Bulk get users' basic info by user Id",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10185": "publisher namespace not allowed",
+          "20000": "internal server error",
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/code/request": {
@@ -19194,7 +20736,13 @@
         "summary": "Send verification code to new unregistered account's email address",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/code/verify": {
@@ -19243,7 +20791,11 @@
         "summary": "Verify the registration code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10138": "code not match",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/forgot": {
@@ -19304,7 +20856,13 @@
         "summary": "Request Password Reset Code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}": {
@@ -19358,7 +20916,11 @@
         "summary": "Get User Invitation",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10180": "admin invitation not found or expired",
+          "20000": "internal server error"
+        }
       },
       "post": {
         "consumes": [
@@ -19439,7 +21001,17 @@
         "summary": "Create User From Invitation",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10154": "country not found",
+          "10180": "admin invitation not found or expired",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20003": "forbidden access"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/me": {
@@ -19516,6 +21088,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       },
       "put": {
@@ -19591,6 +21176,18 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -19637,6 +21234,12 @@
               "$ref": "#/definitions/rest.ErrorResponse"
             }
           },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10146\u003c/td\u003e\u003ctd\u003euserID not match\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -19665,6 +21268,18 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10140": "user verified",
+          "10146": "userID not match",
+          "10171": "email address not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -19733,6 +21348,19 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10141": "email verified",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -19816,6 +21444,27 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "10153": "user exist",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "10170": "account is already a full account",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -19901,6 +21550,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10153": "user exist",
+          "10170": "account is already a full account",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -19969,6 +21628,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10142": "new password cannot be same with original",
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20042,6 +21711,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20117,6 +21794,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       },
       "post": {
@@ -20201,6 +21886,18 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "10172": "platform user is already linked with the account",
+          "10173": "platform is already linked with another user account",
+          "10174": "platform client not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20268,6 +21965,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20348,6 +22053,16 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10163": "platform is already linked with the user account",
+          "10172": "platform user is already linked with the account",
+          "10174": "platform client not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20421,6 +22136,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20480,6 +22202,7 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {},
         "x-location-query": "PLACEHOLDER"
       }
     },
@@ -20544,7 +22267,11 @@
         "summary": "Process Link Progress ",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/platforms": {
@@ -20609,6 +22336,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20670,7 +22404,17 @@
         "summary": "Reset User Password",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10142": "new password cannot be same with original",
+          "10152": "verification code not found",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}": {
@@ -20731,7 +22475,13 @@
         "summary": "Get User By User ID",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20008": "user not found"
+        }
       }
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/bans": {
@@ -20829,6 +22579,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": {}
       }
     },
@@ -20902,6 +22660,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -20969,6 +22735,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21045,6 +22818,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -21142,6 +22919,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21218,6 +23003,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20025": "not a publisher user"
+        },
         "x-security": {}
       }
     },
@@ -21293,6 +23086,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21368,6 +23168,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21432,6 +23239,10 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -21518,6 +23329,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10143": "password not match",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -21580,7 +23399,10 @@
         "summary": "Get Roles",
         "tags": [
           "Roles"
-        ]
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/roles/{roleId}": {
@@ -21630,7 +23452,11 @@
         "summary": "Get Public Role",
         "tags": [
           "Roles"
-        ]
+        ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20002": "validation error"
+        }
       }
     },
     "/iam/v3/public/users/me": {
@@ -21679,6 +23505,11 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21739,6 +23570,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21800,6 +23638,13 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21861,6 +23706,14 @@
         "tags": [
           "Users"
         ],
+        "x-errorCodes": {
+          "10140": "user verified",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -21897,7 +23750,8 @@
         "summary": "Verify user email by the verification link code",
         "tags": [
           "Users"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/sso/saml/platforms/{platformId}/authenticate": {
@@ -21955,6 +23809,7 @@
         "tags": [
           "SSO SAML 2.0"
         ],
+        "x-errorCodes": {},
         "x-location-query": "PLACEHOLDER"
       }
     },
@@ -21992,7 +23847,8 @@
         "summary": "Login to SSO client with provided platformId",
         "tags": [
           "SSO"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v3/sso/{platformId}/logout": {
@@ -22043,6 +23899,9 @@
         "tags": [
           "SSO"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        },
         "x-security": {}
       }
     },
@@ -22087,7 +23946,8 @@
         "summary": "Generate target token by code",
         "tags": [
           "OAuth2.0 - Extension"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v4/admin/invitationHistories": {
@@ -22164,6 +24024,13 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20024": "not implemented"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22245,6 +24112,14 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20021": "invalid pagination parameter"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22338,6 +24213,11 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22414,6 +24294,12 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22492,6 +24378,15 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10202": "active device ban config already exists",
+          "10204": "device can not be banned",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22574,6 +24469,13 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22665,6 +24567,15 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10158": "ban not found",
+          "10202": "active device ban config already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22756,6 +24667,15 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10158": "ban not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22819,6 +24739,11 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22895,6 +24820,12 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -22971,6 +24902,12 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23041,6 +24978,13 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23117,6 +25061,12 @@
         "tags": [
           "Devices V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23189,6 +25139,12 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "20024": "not implemented"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23273,6 +25229,13 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20024": "not implemented"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23344,6 +25307,12 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20024": "not implemented"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23433,6 +25402,19 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10177": "username already used",
+          "10213": "country is blocked",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23513,6 +25495,14 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23591,6 +25581,12 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23687,6 +25683,20 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10154": "country not found",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23774,6 +25784,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23850,6 +25869,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10193": "mfa not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -23944,6 +25975,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10183": "unprocessable entity",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24015,6 +26055,12 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24110,6 +26156,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body",
+          "422": "request is unprocessable"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24205,6 +26261,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10156": "role not found",
+          "10183": "unprocessable entity",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24290,6 +26356,12 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24358,6 +26430,14 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10466": "invalid role members",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24427,6 +26507,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24497,6 +26584,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24572,6 +26666,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24639,6 +26740,10 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24714,6 +26819,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24789,6 +26901,13 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24863,6 +26982,15 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "10457": "specified role is not admin role",
+          "10459": "operator is not a role manager",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -24945,6 +27073,12 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -25032,6 +27166,19 @@
         "tags": [
           "Roles"
         ],
+        "x-errorCodes": {
+          "10182": "given namespace cannot be assigned to the role",
+          "10183": "unprocessable entity",
+          "10456": "role not found",
+          "10457": "specified role is not admin role",
+          "10459": "operator is not a role manager",
+          "10469": "role member exist",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -25120,6 +27267,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10154": "country not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -25190,6 +27346,17 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10154": "country not found",
+          "10177": "username already used",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -25244,6 +27411,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25315,6 +27491,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10190": "auth secret key expired",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25372,6 +27560,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25430,6 +27627,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -25486,6 +27693,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25540,6 +27757,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25598,6 +27824,17 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "10195": "no valid backup code found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25662,6 +27899,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25716,6 +27963,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -25768,6 +28025,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25828,6 +28095,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -25888,6 +28165,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20007": "too many requests",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -25942,6 +28229,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -26014,6 +28310,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -26071,6 +28379,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10193": "mfa not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -26135,6 +28453,17 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10189": "invalid factor",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -26218,6 +28547,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10154": "country not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
         "x-security": [
           {
             "userPermissions": [
@@ -26320,7 +28658,10 @@
         "summary": "Authentication with platform link",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10213": "country is blocked"
+        }
       }
     },
     "/iam/v4/oauth/headless/token": {
@@ -26395,7 +28736,10 @@
         "summary": "Create headless account and response token",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10213": "country is blocked"
+        }
       }
     },
     "/iam/v4/oauth/mfa/verify": {
@@ -26467,7 +28811,8 @@
         "summary": "Verify 2FA code",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v4/oauth/platforms/{platformId}/token": {
@@ -26598,7 +28943,8 @@
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v4/oauth/simultaneousLogin": {
@@ -26706,7 +29052,18 @@
         "summary": "Simultaneous login",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10215": "Simultaneous ticket is required",
+          "10216": "Native ticket is required",
+          "10217": "Native ticket's account linked AGS account has different linking history with input simultaneous ticket's",
+          "10218": "Simultaneous ticket's account linked AGS account has different linking history with input native ticket's",
+          "10219": "Native ticket's account linked AGS is already linked simultaneous but different with the input simultaneous ticket's",
+          "10220": "Native ticket's account linked AGS account is different with the one which simultaneous ticket's linked to",
+          "10221": "Simultaneous ticket's account linked AGS is already linked native but different with the input native ticket's",
+          "20000": "internal server error",
+          "20001": "unauthorized access"
+        }
       }
     },
     "/iam/v4/oauth/token": {
@@ -26883,7 +29240,8 @@
         "summary": "OAuth2 access token generation endpoint V4",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v4/oauth/token/exchange": {
@@ -26933,7 +29291,8 @@
         "summary": "Generate target token by code",
         "tags": [
           "OAuth2.0 V4"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/iam/v4/public/namespaces/{namespace}/test_users": {
@@ -27003,7 +29362,16 @@
         "summary": "[TEST FACILITY ONLY]Create test User",
         "tags": [
           "Users V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10177": "username already used",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v4/public/namespaces/{namespace}/users": {
@@ -27085,7 +29453,20 @@
         "summary": "Create User",
         "tags": [
           "Users V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10177": "username already used",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20007": "too many requests",
+          "20019": "unable to parse request body"
+        }
       }
     },
     "/iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}": {
@@ -27168,7 +29549,17 @@
         "summary": "Create User From Invitation",
         "tags": [
           "Users V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10154": "country not found",
+          "10180": "admin invitation not found or expired",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20003": "forbidden access"
+        }
       }
     },
     "/iam/v4/public/namespaces/{namespace}/users/me": {
@@ -27245,6 +29636,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10133": "email already used",
+          "10154": "country not found",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20003": "forbidden access",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -27319,6 +29722,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -27402,6 +29814,27 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10130": "user under age",
+          "10136": "code is either been used or not valid anymore",
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10148": "verification code context doesn't match the required context",
+          "10149": "verification contact type doesn't match",
+          "10152": "verification code not found",
+          "10153": "user exist",
+          "10154": "country not found",
+          "10155": "country is not defined",
+          "10170": "account is already a full account",
+          "10213": "country is blocked",
+          "10222": "unique display name already exists",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -27479,6 +29912,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10139": "platform account not found",
+          "10153": "user exist",
+          "10170": "account is already a full account",
+          "10177": "username already used",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
         "x-security": {}
       }
     },
@@ -27542,6 +29987,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -27620,6 +30074,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10190": "auth secret key expired",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -27686,6 +30152,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -27753,6 +30228,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -27818,6 +30303,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -27881,6 +30376,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -27948,6 +30452,17 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "10195": "no valid backup code found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28021,6 +30536,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28084,6 +30609,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -28145,6 +30680,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28214,6 +30759,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28289,6 +30844,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28358,6 +30922,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20007": "too many requests",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -28421,6 +30995,15 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -28500,6 +31083,18 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10137": "code is expired",
+          "10138": "code not match",
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10194": "factor already enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -28566,6 +31161,16 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10191": "email address not verified",
+          "10193": "mfa not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       },
       "post": {
@@ -28637,6 +31242,17 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "10171": "email address not found",
+          "10189": "invalid factor",
+          "10191": "email address not verified",
+          "10192": "factor not enabled",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
         "x-security": {}
       }
     },
@@ -28698,6 +31314,12 @@
         "tags": [
           "Users V4"
         ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20008": "user not found"
+        },
         "x-security": {}
       }
     },
@@ -28767,7 +31389,16 @@
         "summary": "Public invite admin user v4",
         "tags": [
           "Users V4"
-        ]
+        ],
+        "x-errorCodes": {
+          "10133": "email already used",
+          "10183": "unprocessable entity",
+          "10207": "user namespace is not available",
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20007": "too many requests",
+          "20019": "unable to parse request body"
+        }
       }
     }
   },
@@ -32103,6 +34734,34 @@
         "UserId"
       ]
     },
+    "model.GetUserBanSummaryV3": {
+      "properties": {
+        "activeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.UserBanWithStatus"
+          },
+          "type": "array"
+        },
+        "inactiveCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "activeCount",
+        "data",
+        "inactiveCount",
+        "totalCount"
+      ]
+    },
     "model.GetUserBanV3Response": {
       "properties": {
         "data": {
@@ -32967,6 +35626,9 @@
         "IsActive": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "LogoURL": {
+          "type": "string"
         },
         "PlatformId": {
           "type": "string"
@@ -34059,6 +36721,10 @@
           "description": "apple key id",
           "type": "string"
         },
+        "LogoURL": {
+          "description": "login method logo url",
+          "type": "string"
+        },
         "NetflixCertificates": {
           "$ref": "#/definitions/accountcommon.NetflixCertificates",
           "description": "A json containing credentials for netflix integration. Only for netflix platformId"
@@ -34202,6 +36868,10 @@
           "type": "string"
         },
         "KeyID": {
+          "type": "string"
+        },
+        "LogoURL": {
+          "description": "login method logo url",
           "type": "string"
         },
         "Namespace": {
@@ -34587,6 +37257,68 @@
         }
       },
       "required": [
+        "ban",
+        "banId",
+        "bannedBy",
+        "comment",
+        "createdAt",
+        "disabledDate",
+        "enabled",
+        "endDate",
+        "namespace",
+        "reason",
+        "userId"
+      ]
+    },
+    "model.UserBanWithStatus": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ban": {
+          "type": "string"
+        },
+        "banId": {
+          "type": "string"
+        },
+        "bannedBy": {
+          "$ref": "#/definitions/accountcommon.BannedByV3"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "disabledDate": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "active",
         "ban",
         "banId",
         "bannedBy",
@@ -36570,11 +39302,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T10:48:39+00:00",
-    "gitHash": "162434641fd1b6b1b3a962e4bd3b56e673594b95",
+    "buildDate": "2024-05-17T09:55:01+00:00",
+    "gitHash": "ab5d3e9329b54232952e230aeb51c18b42a0701f",
     "name": "justice-iam-service",
     "realm": "demo",
-    "version": "7.15.0",
+    "version": "7.16.0",
     "version-roles-seeding": "1.2.21"
   }
 }

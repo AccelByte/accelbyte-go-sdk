@@ -131,6 +131,7 @@
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}` | PATCH | AdminUpdateUserV3Short | [AdminUpdateUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminUpdateUserV3Short](../../services-api/pkg/service/iam/users.go) | [AdminUpdateUserV3Short](../../samples/cli/cmd/iam/users/adminUpdateUserV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans` | GET | AdminGetUserBanV3Short | [AdminGetUserBanV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminGetUserBanV3Short](../../services-api/pkg/service/iam/users.go) | [AdminGetUserBanV3Short](../../samples/cli/cmd/iam/users/adminGetUserBanV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans` | POST | AdminBanUserV3Short | [AdminBanUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminBanUserV3Short](../../services-api/pkg/service/iam/users.go) | [AdminBanUserV3Short](../../samples/cli/cmd/iam/users/adminBanUserV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/summary` | GET | AdminGetUserBanSummaryV3Short | [AdminGetUserBanSummaryV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminGetUserBanSummaryV3Short](../../services-api/pkg/service/iam/users.go) | [AdminGetUserBanSummaryV3Short](../../samples/cli/cmd/iam/users/adminGetUserBanSummaryV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}` | PATCH | AdminUpdateUserBanV3Short | [AdminUpdateUserBanV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminUpdateUserBanV3Short](../../services-api/pkg/service/iam/users.go) | [AdminUpdateUserBanV3Short](../../samples/cli/cmd/iam/users/adminUpdateUserBanV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request` | POST | AdminSendVerificationCodeV3Short | [AdminSendVerificationCodeV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminSendVerificationCodeV3Short](../../services-api/pkg/service/iam/users.go) | [AdminSendVerificationCodeV3Short](../../samples/cli/cmd/iam/users/adminSendVerificationCodeV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/verify` | POST | AdminVerifyAccountV3Short | [AdminVerifyAccountV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminVerifyAccountV3Short](../../services-api/pkg/service/iam/users.go) | [AdminVerifyAccountV3Short](../../samples/cli/cmd/iam/users/adminVerifyAccountV3.go) |
@@ -615,6 +616,7 @@
 | `model.GetBulkUserBansRequest` | [ModelGetBulkUserBansRequest ](../../iam-sdk/pkg/iamclientmodels/model_get_bulk_user_bans_request.go) |
 | `model.GetLinkHeadlessAccountConflictResponse` | [ModelGetLinkHeadlessAccountConflictResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_link_headless_account_conflict_response.go) |
 | `model.GetPublisherUserResponse` | [ModelGetPublisherUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_publisher_user_response.go) |
+| `model.GetUserBanSummaryV3` | [ModelGetUserBanSummaryV3 ](../../iam-sdk/pkg/iamclientmodels/model_get_user_ban_summary_v3.go) |
 | `model.GetUserBanV3Response` | [ModelGetUserBanV3Response ](../../iam-sdk/pkg/iamclientmodels/model_get_user_ban_v3_response.go) |
 | `model.GetUserJusticePlatformAccountResponse` | [ModelGetUserJusticePlatformAccountResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_user_justice_platform_account_response.go) |
 | `model.GetUserMapping` | [ModelGetUserMapping ](../../iam-sdk/pkg/iamclientmodels/model_get_user_mapping.go) |
@@ -713,6 +715,7 @@
 | `model.UserActiveBanResponseV3` | [ModelUserActiveBanResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_active_ban_response_v3.go) |
 | `model.UserBanResponse` | [ModelUserBanResponse ](../../iam-sdk/pkg/iamclientmodels/model_user_ban_response.go) |
 | `model.UserBanResponseV3` | [ModelUserBanResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_ban_response_v3.go) |
+| `model.UserBanWithStatus` | [ModelUserBanWithStatus ](../../iam-sdk/pkg/iamclientmodels/model_user_ban_with_status.go) |
 | `model.UserBaseInfo` | [ModelUserBaseInfo ](../../iam-sdk/pkg/iamclientmodels/model_user_base_info.go) |
 | `model.UserBulkUpdateRequestV3` | [ModelUserBulkUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_bulk_update_request_v3.go) |
 | `model.UserCreateRequest` | [ModelUserCreateRequest ](../../iam-sdk/pkg/iamclientmodels/model_user_create_request.go) |

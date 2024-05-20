@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.51.0"
+    "version": "4.52.0"
   },
   "schemes": [
     "https"
@@ -82,6 +82,9 @@
     },
     {
       "name": "PaymentStation"
+    },
+    {
+      "name": "Platform Account Closure"
     },
     {
       "name": "Revocation"
@@ -16214,7 +16217,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003einsufficient inventory capacity (max. slots)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37179\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per campaign per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003einsufficient inventory capacity (max. slots)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37179\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per campaign per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30771\u003c/td\u003e\u003ctd\u003eItem [{itemId}] not found in User Section [{sectionId}], UserId [{userId}], Namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30772\u003c/td\u003e\u003ctd\u003eSection [{sectionId}] is not available or expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -16875,6 +16878,52 @@
         ],
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/platform/closure/history": {
+      "get": {
+        "description": "Get user platform account closure history.\u0026lt;br\u0026gt;",
+        "operationId": "getUserPlatformAccountClosureHistories",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PlatformAccountClosureHistoryInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get user platform account closure history",
+        "tags": [
+          "Platform Account Closure"
+        ],
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION [READ]"
         }
       }
     },
@@ -26103,7 +26152,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003eecommerce item type not supported\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32125\u003c/td\u003e\u003ctd\u003eThe user does not meet the purchase conditions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32126\u003c/td\u003e\u003ctd\u003eSection ID is required for placing this order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32127\u003c/td\u003e\u003ctd\u003eDiscount code [{code}] can't be used on this item: {tips}\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32128\u003c/td\u003e\u003ctd\u003eDiscount code [{code}] can not be used with other code together\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32129\u003c/td\u003e\u003ctd\u003eCan't use discount code on free order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32130\u003c/td\u003e\u003ctd\u003eThe total discount amount cannot exceed the order price\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003eecommerce item type not supported\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32121\u003c/td\u003e\u003ctd\u003eOrder price mismatch\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32122\u003c/td\u003e\u003ctd\u003eItem type [{itemType}] does not support\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32123\u003c/td\u003e\u003ctd\u003eItem is not purchasable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32125\u003c/td\u003e\u003ctd\u003eThe user does not meet the purchase conditions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32126\u003c/td\u003e\u003ctd\u003eSection ID is required for placing this order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32124\u003c/td\u003e\u003ctd\u003eInvalid currency namespace\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32127\u003c/td\u003e\u003ctd\u003eDiscount code [{code}] can't be used on this item: {tips}\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32128\u003c/td\u003e\u003ctd\u003eDiscount code [{code}] can not be used with other code together\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32129\u003c/td\u003e\u003ctd\u003eCan't use discount code on free order\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32130\u003c/td\u003e\u003ctd\u003eThe total discount amount cannot exceed the order price\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -26121,7 +26170,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003einsufficient inventory capacity (max. slots)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37179\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per campaign per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20024\u003c/td\u003e\u003ctd\u003einsufficient inventory capacity (max. slots)\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32175\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}] per user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32176\u003c/td\u003e\u003ctd\u003eExceed item [{itemId}] max count [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e32178\u003c/td\u003e\u003ctd\u003eUser [{userId}] already owned all durable items in flexible bundle [{bundleId}], namespace: [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49183\u003c/td\u003e\u003ctd\u003ePass item does not match published season pass\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49184\u003c/td\u003e\u003ctd\u003eTier item does not match published season tier\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49185\u003c/td\u003e\u003ctd\u003eSeason has not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49186\u003c/td\u003e\u003ctd\u003ePass already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49187\u003c/td\u003e\u003ctd\u003eExceed max tier count\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37179\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per campaign per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30771\u003c/td\u003e\u003ctd\u003eItem [{itemId}] not found in User Section [{sectionId}], UserId [{userId}], Namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30772\u003c/td\u003e\u003ctd\u003eSection [{sectionId}] is not available or expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -40181,6 +40230,63 @@
       },
       "type": "object"
     },
+    "PlatformAccountClosureHistoryInfo": {
+      "properties": {
+        "entitlements": {
+          "description": "entitlements",
+          "items": {
+            "$ref": "#/definitions/SimpleEntitlement"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "history id",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "platform": {
+          "description": "3rd party platform",
+          "type": "string"
+        },
+        "progression": {
+          "description": "history progression",
+          "enum": [
+            "IN_PROGRESS",
+            "SUCCESS"
+          ],
+          "type": "string"
+        },
+        "userDlcS": {
+          "description": "user dlcs",
+          "items": {
+            "$ref": "#/definitions/SimpleUserDLC"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "description": "user id",
+          "type": "string"
+        },
+        "wallets": {
+          "description": "wallets",
+          "items": {
+            "$ref": "#/definitions/SimpleWallet"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "namespace",
+        "platform",
+        "progression",
+        "userId"
+      ],
+      "type": "object"
+    },
     "PlatformDLCConfigInfo": {
       "properties": {
         "data": {
@@ -42826,6 +42932,71 @@
       "properties": {
         "grpcServerAddress": {
           "description": "plugin grpc server address: \u003chost\u003e:\u003cport\u003e",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SimpleEntitlement": {
+      "properties": {
+        "entitlementId": {
+          "type": "string"
+        },
+        "grantedCode": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemNamespace": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "useCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SimpleUserDLC": {
+      "properties": {
+        "dlcId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SimpleWallet": {
+      "properties": {
+        "balance": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "balanceOrigin": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "timeLimitedBalances": {
+          "items": {
+            "$ref": "#/definitions/TimeLimitedBalance"
+          },
+          "type": "array"
+        },
+        "walletId": {
           "type": "string"
         }
       },
@@ -45606,16 +45777,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-05-06T01:42:45+00:00",
-    "buildID": "4.51.0",
+    "buildDate": "2024-05-17T09:53:12+00:00",
+    "buildID": "4.52.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.214-202.855.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.215-203.850.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "3c90bc9f6e",
-    "gitTag": "4.51.0",
+    "gitHash": "fcdc98f16b",
+    "gitTag": "4.52.0",
     "name": "justice-platform-service",
     "realm": "demo",
-    "version": "4.51.0",
+    "version": "4.52.0",
     "version-roles-seeding": "1.2.8"
   }
 }

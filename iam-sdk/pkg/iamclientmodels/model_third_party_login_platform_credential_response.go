@@ -72,6 +72,9 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	KeyID *string `json:"KeyID"`
 
+	// login method logo url
+	LogoURL string `json:"LogoURL,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"Namespace"`

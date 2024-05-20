@@ -350,7 +350,7 @@ func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInf
 Deprecated: 2022-08-10 - Use RetrieveCountryListWithPoliciesShort instead.
 
 RetrieveCountryListWithPolicies retrieve list of countries that have active legal policies
-Retrieve List of Countries that have Active Legal Policies.
+Retrieve List of Countries that have Active and Visible Legal Policies.
 */
 func (a *Client) RetrieveCountryListWithPolicies(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error) {
 	// TODO: Validate the params before sending
@@ -398,7 +398,7 @@ func (a *Client) RetrieveCountryListWithPolicies(params *RetrieveCountryListWith
 
 /*
 RetrieveCountryListWithPoliciesShort retrieve list of countries that have active legal policies
-Retrieve List of Countries that have Active Legal Policies.
+Retrieve List of Countries that have Active and Visible Legal Policies.
 */
 func (a *Client) RetrieveCountryListWithPoliciesShort(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error) {
 	// TODO: Validate the params before sending

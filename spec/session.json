@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.14.5"
+    "version": "3.15.0"
   },
   "schemes": [
     "https"
@@ -43,6 +43,9 @@
     "/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfo",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -52,12 +55,16 @@
           {
             "authorization": []
           }
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/session/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfoV1",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -66,6 +73,114 @@
         "security": [
           {
             "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/v1/admin/config/log": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetLogConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateLogConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [UPDATE]"
+            ]
           }
         ]
       }
@@ -127,6 +242,7 @@
         "tags": [
           "DSMC Default Configuration"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -175,6 +291,7 @@
         "tags": [
           "Environment Variable"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -223,6 +340,7 @@
         "tags": [
           "Global Configuration"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -269,6 +387,7 @@
         "tags": [
           "Global Configuration"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -326,6 +445,7 @@
         "tags": [
           "Global Configuration"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -392,6 +512,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -465,6 +586,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -553,6 +675,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -635,6 +758,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -737,6 +861,7 @@
         "tags": [
           "Certificate"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -821,6 +946,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -922,6 +1048,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -995,6 +1122,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1075,6 +1203,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1164,6 +1293,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1241,6 +1371,7 @@
         "tags": [
           "Max Active"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1317,6 +1448,7 @@
         "tags": [
           "Max Active"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1392,6 +1524,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1467,6 +1600,7 @@
         "tags": [
           "Configuration Template"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1640,6 +1774,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1717,6 +1852,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1795,6 +1931,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1876,6 +2013,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1972,6 +2110,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2049,6 +2188,7 @@
         "tags": [
           "Native Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2186,6 +2326,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2258,6 +2399,7 @@
         "tags": [
           "Platform Credential"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2335,6 +2477,7 @@
         "tags": [
           "Platform Credential"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2421,6 +2564,7 @@
         "tags": [
           "Platform Credential"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2503,6 +2647,7 @@
         "tags": [
           "Recent Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2585,6 +2730,7 @@
         "tags": [
           "Recent Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2658,6 +2804,7 @@
         "tags": [
           "Session Storage"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2733,6 +2880,7 @@
         "tags": [
           "Session Storage"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2817,6 +2965,7 @@
         "tags": [
           "Session Storage"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2895,6 +3044,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2971,6 +3121,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3049,6 +3200,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3128,6 +3280,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -3206,6 +3359,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3288,6 +3442,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3355,6 +3510,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3435,6 +3591,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3524,6 +3681,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3613,6 +3771,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3698,6 +3857,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3777,6 +3937,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3854,6 +4015,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3939,6 +4101,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4018,6 +4181,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4112,6 +4276,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4188,6 +4353,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4267,6 +4433,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4343,6 +4510,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4428,6 +4596,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4512,6 +4681,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4582,6 +4752,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4671,6 +4842,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4760,6 +4932,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4836,6 +5009,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4913,6 +5087,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5001,6 +5176,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5092,6 +5268,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5171,6 +5348,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5238,6 +5416,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5317,6 +5496,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5406,6 +5586,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5478,6 +5659,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5554,6 +5736,7 @@
         "tags": [
           "Recent Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5630,6 +5813,7 @@
         "tags": [
           "Recent Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5722,6 +5906,7 @@
         "tags": [
           "Session Storage"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5821,6 +6006,7 @@
         "tags": [
           "Session Storage"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5899,6 +6085,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5962,6 +6149,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6026,6 +6214,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6096,6 +6285,7 @@
         "tags": [
           "Player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6177,6 +6367,7 @@
         "tags": [
           "Game Session"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6252,6 +6443,7 @@
         "tags": [
           "Party"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     }
@@ -7865,6 +8057,22 @@
         "updatedAt"
       ]
     },
+    "logconfig.Configuration": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        }
+      }
+    },
     "model.NativeSession": {
       "properties": {
         "CreatedAt": {
@@ -8341,9 +8549,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-24T13:27:11+00:00",
-    "gitHash": "7e58da4f27defcdbe1bebef4e3f8d088b939a595",
-    "version": "3.14.5",
-    "version-roles-seeding": "1.2.33"
+    "buildDate": "2024-05-17T10:46:38+00:00",
+    "gitHash": "f9da41aff16aaaac8d535698dc4794ec3d5b5fa0",
+    "version": "3.15.0",
+    "version-roles-seeding": "1.2.37"
   }
 }

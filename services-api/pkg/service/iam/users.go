@@ -2303,6 +2303,35 @@ func (aaa *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iam
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetUserBanSummaryV3Short instead.
+func (aaa *UsersService) AdminGetUserBanSummaryV3(input *users.AdminGetUserBanSummaryV3Params) (*iamclientmodels.ModelGetUserBanSummaryV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminGetUserBanSummaryV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpdateUserBanV3Short instead.
 func (aaa *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3637,12 +3666,15 @@ func (aaa *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVer
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err := aaa.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, err := aaa.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
 	}
 	if notFound != nil {
 		return notFound
@@ -6999,6 +7031,36 @@ func (aaa *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) 
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UsersService) AdminGetUserBanSummaryV3Short(input *users.AdminGetUserBanSummaryV3Params) (*iamclientmodels.ModelGetUserBanSummaryV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.AdminGetUserBanSummaryV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {

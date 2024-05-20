@@ -202,6 +202,8 @@ type ClientService interface {
 	AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, error)
 	AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, *AdminBanUserV3InternalServerError, error)
 	AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, error)
+	AdminGetUserBanSummaryV3(params *AdminGetUserBanSummaryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanSummaryV3OK, *AdminGetUserBanSummaryV3BadRequest, *AdminGetUserBanSummaryV3Unauthorized, *AdminGetUserBanSummaryV3Forbidden, *AdminGetUserBanSummaryV3NotFound, *AdminGetUserBanSummaryV3InternalServerError, error)
+	AdminGetUserBanSummaryV3Short(params *AdminGetUserBanSummaryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanSummaryV3OK, error)
 	AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, *AdminUpdateUserBanV3BadRequest, *AdminUpdateUserBanV3Unauthorized, *AdminUpdateUserBanV3Forbidden, *AdminUpdateUserBanV3NotFound, *AdminUpdateUserBanV3InternalServerError, error)
 	AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, error)
 	AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, *AdminSendVerificationCodeV3BadRequest, *AdminSendVerificationCodeV3Unauthorized, *AdminSendVerificationCodeV3Forbidden, *AdminSendVerificationCodeV3NotFound, *AdminSendVerificationCodeV3Conflict, *AdminSendVerificationCodeV3TooManyRequests, error)
@@ -300,7 +302,7 @@ type ClientService interface {
 	UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error)
 	PublicPartialUpdateUserV3(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, *PublicPartialUpdateUserV3BadRequest, *PublicPartialUpdateUserV3Unauthorized, *PublicPartialUpdateUserV3Forbidden, *PublicPartialUpdateUserV3Conflict, *PublicPartialUpdateUserV3InternalServerError, error)
 	PublicPartialUpdateUserV3Short(params *PublicPartialUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPartialUpdateUserV3OK, error)
-	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
+	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3Forbidden, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
 	PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error)
 	PublicUserVerificationV3(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, *PublicUserVerificationV3BadRequest, *PublicUserVerificationV3Unauthorized, *PublicUserVerificationV3Forbidden, *PublicUserVerificationV3Conflict, error)
 	PublicUserVerificationV3Short(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, error)
@@ -11454,6 +11456,127 @@ func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runt
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetUserBanSummaryV3Short instead.
+
+AdminGetUserBanSummaryV3 get user's bans summary
+This endpoint get user's bans summary'
+*/
+func (a *Client) AdminGetUserBanSummaryV3(params *AdminGetUserBanSummaryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanSummaryV3OK, *AdminGetUserBanSummaryV3BadRequest, *AdminGetUserBanSummaryV3Unauthorized, *AdminGetUserBanSummaryV3Forbidden, *AdminGetUserBanSummaryV3NotFound, *AdminGetUserBanSummaryV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserBanSummaryV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserBanSummaryV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/summary",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserBanSummaryV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserBanSummaryV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetUserBanSummaryV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserBanSummaryV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserBanSummaryV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserBanSummaryV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserBanSummaryV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetUserBanSummaryV3Short get user's bans summary
+This endpoint get user's bans summary'
+*/
+func (a *Client) AdminGetUserBanSummaryV3Short(params *AdminGetUserBanSummaryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanSummaryV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserBanSummaryV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserBanSummaryV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/summary",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserBanSummaryV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserBanSummaryV3OK:
+		return v, nil
+	case *AdminGetUserBanSummaryV3BadRequest:
+		return nil, v
+	case *AdminGetUserBanSummaryV3Unauthorized:
+		return nil, v
+	case *AdminGetUserBanSummaryV3Forbidden:
+		return nil, v
+	case *AdminGetUserBanSummaryV3NotFound:
+		return nil, v
+	case *AdminGetUserBanSummaryV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpdateUserBanV3Short instead.
 
 AdminUpdateUserBanV3 enable or disable ban for a single user
@@ -18098,7 +18221,7 @@ If this context used, IAM rejects the request if the email address is already us
 
 action code: 10116
 */
-func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error) {
+func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3Forbidden, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSendVerificationCodeV3Params()
@@ -18130,31 +18253,34 @@ func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCode
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSendVerificationCodeV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicSendVerificationCodeV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicSendVerificationCodeV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicSendVerificationCodeV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicSendVerificationCodeV3NotFound:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
 
 	case *PublicSendVerificationCodeV3Conflict:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicSendVerificationCodeV3TooManyRequests:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -18211,6 +18337,8 @@ func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificatio
 	case *PublicSendVerificationCodeV3BadRequest:
 		return nil, v
 	case *PublicSendVerificationCodeV3Unauthorized:
+		return nil, v
+	case *PublicSendVerificationCodeV3Forbidden:
 		return nil, v
 	case *PublicSendVerificationCodeV3NotFound:
 		return nil, v

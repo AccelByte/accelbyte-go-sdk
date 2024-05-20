@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.41.0"
+    "version": "1.42.0"
   },
   "schemes": [
     "https"
@@ -265,7 +265,16 @@
       "get": {
         "description": "Retrieve all base policies.",
         "operationId": "retrieveAllLegalPolicies",
-        "parameters": [],
+        "parameters": [
+          {
+            "default": false,
+            "in": "query",
+            "name": "visibleOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1131,6 +1140,14 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "visibleOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -3360,7 +3377,7 @@
     },
     "/agreement/public/policies/countries/list": {
       "get": {
-        "description": "Retrieve List of Countries that have Active Legal Policies.",
+        "description": "Retrieve List of Countries that have Active and Visible Legal Policies.",
         "operationId": "retrieveCountryListWithPolicies",
         "parameters": [],
         "produces": [
@@ -3420,6 +3437,14 @@
             "name": "tags",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "visibleOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -3487,6 +3512,14 @@
             "name": "tags",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "visibleOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -3575,6 +3608,14 @@
             "name": "tags",
             "required": false,
             "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "visibleOnly",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -3697,6 +3738,10 @@
         "description": {
           "type": "string"
         },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -3734,6 +3779,10 @@
         },
         "description": {
           "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "tags": {
           "items": {
@@ -3776,6 +3825,10 @@
         },
         "id": {
           "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -4326,6 +4379,10 @@
         "id": {
           "type": "string"
         },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -4396,6 +4453,10 @@
         },
         "id": {
           "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localeCode": {
           "type": "string"
@@ -4894,6 +4955,10 @@
         "description": {
           "type": "string"
         },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -4928,6 +4993,10 @@
         },
         "description": {
           "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "tags": {
           "items": {
@@ -4967,6 +5036,10 @@
         },
         "id": {
           "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -5245,16 +5318,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-05-03T10:47:45+00:00",
-    "buildID": "1.41.0",
+    "buildDate": "2024-05-17T09:52:52+00:00",
+    "buildID": "1.42.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.214-202.855.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.215-203.850.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "a4bfb91d24",
-    "gitTag": "1.41.0",
+    "gitHash": "ac1ee7f5ba",
+    "gitTag": "1.42.0",
     "name": "justice-legal-service",
     "realm": "production",
-    "version": "1.41.0",
+    "version": "1.42.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.9.4"
+    "version": "1.10.1"
   },
   "schemes": [
     "https"
@@ -38,6 +38,9 @@
     "/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfo",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -47,12 +50,16 @@
           {
             "authorization": []
           }
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/sessionhistory/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfoV1",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -61,6 +68,114 @@
         "security": [
           {
             "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/sessionhistory/v1/admin/config/log": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetLogConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateLogConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [UPDATE]"
+            ]
           }
         ]
       }
@@ -163,6 +278,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -245,6 +361,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -358,6 +475,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -434,6 +552,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -510,6 +629,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -617,6 +737,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -699,6 +820,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -724,7 +846,7 @@
             "type": "string"
           },
           {
-            "description": "End Date 2024-05-06T03:48:23Z",
+            "description": "End Date 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -768,7 +890,7 @@
             "type": "string"
           },
           {
-            "description": "Start Date 2024-05-06T03:48:23Z",
+            "description": "Start Date 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -824,6 +946,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -900,6 +1023,7 @@
         "tags": [
           "Game Session Detail"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -932,14 +1056,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -996,6 +1120,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1035,14 +1160,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1121,6 +1246,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1217,6 +1343,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1313,6 +1440,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1409,6 +1537,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1491,6 +1620,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1573,6 +1703,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1598,14 +1729,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1662,6 +1793,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1687,14 +1819,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1751,6 +1883,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1776,14 +1909,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1840,6 +1973,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1865,14 +1999,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1929,6 +2063,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1954,14 +2089,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2024,6 +2159,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2049,14 +2185,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2119,6 +2255,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2144,14 +2281,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2208,6 +2345,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2233,14 +2371,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2303,6 +2441,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2328,14 +2467,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2398,6 +2537,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2423,14 +2563,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2493,6 +2633,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2518,14 +2659,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2588,6 +2729,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2620,14 +2762,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2698,6 +2840,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2730,14 +2873,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-05-06T03:48:23Z",
+            "description": "End date time: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-05-06T03:48:23Z",
+            "description": "Start date time. Format: 2024-05-20T04:09:26Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2808,6 +2951,7 @@
         "tags": [
           "XRay"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3879,6 +4023,22 @@
         "data"
       ]
     },
+    "logconfig.Configuration": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        }
+      }
+    },
     "models.AllianceRule": {
       "properties": {
         "max_number": {
@@ -4784,9 +4944,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-23T07:50:50+00:00",
-    "gitHash": "1c39039443e4db7c1dd166554505309757aa437a",
-    "version": "1.9.4",
-    "version-roles-seeding": "0.0.39"
+    "buildDate": "2024-05-17T09:44:02+00:00",
+    "gitHash": "db7863ec751b863b1a24dc6471f1bbc04e8a8bfa",
+    "version": "1.10.1",
+    "version-roles-seeding": "1.2.37"
   }
 }

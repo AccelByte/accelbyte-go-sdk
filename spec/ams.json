@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.17.0"
+    "version": "1.18.0"
   },
   "schemes": [
     "https"
@@ -95,7 +95,8 @@
         "summary": "checks if fleet commander can auth with AMS",
         "tags": [
           "Auth"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/healthz": {
@@ -117,7 +118,8 @@
         "summary": "Health check",
         "tags": [
           "Fleet Commander"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/account": {
@@ -182,7 +184,8 @@
         "summary": "get the account associated with the namespace",
         "tags": [
           "Account"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -247,7 +250,8 @@
         "summary": "create a new AMS account",
         "tags": [
           "Account"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/account/link": {
@@ -312,7 +316,8 @@
         "summary": "get a link to account token",
         "tags": [
           "Account"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -377,7 +382,8 @@
         "summary": "link an account to a namespace",
         "tags": [
           "Account"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts": {
@@ -517,7 +523,8 @@
         "summary": "get all artifacts matching the provided criteria",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/usage": {
@@ -576,7 +583,8 @@
         "summary": "retrieve artifact storage usage for the namespace",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}": {
@@ -651,7 +659,8 @@
         "summary": "delete a specified artifact",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url": {
@@ -729,7 +738,8 @@
         "summary": "get a signed URL for a specific artifact",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/development/server-configurations": {
@@ -804,7 +814,8 @@
         "summary": "lists development server configurations with pagination",
         "tags": [
           "Development"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -875,7 +886,8 @@
         "summary": "create a new development server configuration",
         "tags": [
           "Development"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}": {
@@ -944,7 +956,8 @@
         "summary": "delete a development server configuration",
         "tags": [
           "Development"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "consumes": [
@@ -1014,7 +1027,8 @@
         "summary": "get a development server configuration",
         "tags": [
           "Development"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets": {
@@ -1061,7 +1075,8 @@
         "summary": "list all fleets in a namespace",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "post": {
         "consumes": [
@@ -1132,7 +1147,8 @@
         "summary": "create a fleet",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}": {
@@ -1207,7 +1223,8 @@
         "summary": "delete a fleet",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "consumes": [
@@ -1283,7 +1300,8 @@
         "summary": "get a fleet",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "put": {
         "consumes": [
@@ -1364,7 +1382,8 @@
         "summary": "update a fleet -– overrides current data",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules": {
@@ -1442,7 +1461,8 @@
         "summary": "get the sampling rules for a fleet",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "put": {
         "consumes": [
@@ -1526,7 +1546,8 @@
         "summary": "set sampling rules for a fleet",
         "tags": [
           "Artifacts"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers": {
@@ -1604,7 +1625,8 @@
         "summary": "get server details \u0026 counts for a fleet",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers/history": {
@@ -1718,7 +1740,8 @@
         "summary": "get history records of a dedicated server in a fleet",
         "tags": [
           "Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images": {
@@ -1783,7 +1806,8 @@
         "summary": "get a list of existing images",
         "tags": [
           "Images"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images/{imageID}": {
@@ -1855,7 +1879,8 @@
         "summary": "get image details.",
         "tags": [
           "Images"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "patch": {
         "consumes": [
@@ -1933,7 +1958,8 @@
         "summary": "edit the image",
         "tags": [
           "Images"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/qos": {
@@ -2004,7 +2030,8 @@
         "summary": "get a list of available AMS QoS regions",
         "tags": [
           "AMS QoS"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/qos/{region}": {
@@ -2087,7 +2114,8 @@
         "summary": "update the status of a QoS region",
         "tags": [
           "AMS QoS"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/regions": {
@@ -2146,7 +2174,8 @@
         "summary": "get a list of the available AMS regions",
         "tags": [
           "AMS Info"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}": {
@@ -2218,7 +2247,8 @@
         "summary": "get information about a dedicated server",
         "tags": [
           "Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/connectioninfo": {
@@ -2290,7 +2320,8 @@
         "summary": "get connection info for a dedicated server",
         "tags": [
           "Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history": {
@@ -2362,7 +2393,8 @@
         "summary": "get history records of a dedicated server",
         "tags": [
           "Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/supported-instances": {
@@ -2421,7 +2453,8 @@
         "summary": "get a list of available VM configurations",
         "tags": [
           "AMS Info"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/namespaces/{namespace}/account": {
@@ -2486,7 +2519,8 @@
         "summary": "get the account associated with the namespace",
         "tags": [
           "Account"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/namespaces/{namespace}/fleets/{fleetID}/claim": {
@@ -2572,7 +2606,8 @@
         "summary": "claim a dedicated server from a fleet",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect": {
@@ -2614,7 +2649,8 @@
         "summary": "connect a local watchdog",
         "tags": [
           "Watchdogs"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/namespaces/{namespace}/servers/claim": {
@@ -2693,7 +2729,8 @@
         "summary": "claim a dedicated server",
         "tags": [
           "Fleets"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/namespaces/{namespace}/watchdogs/{watchdogID}/connect": {
@@ -2735,7 +2772,8 @@
         "summary": "connect a watchdog",
         "tags": [
           "Watchdogs"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/v1/upload-url": {
@@ -2757,7 +2795,8 @@
         "summary": "get an URL for uploading an image",
         "tags": [
           "AMS Info"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/ams/version": {
@@ -2779,7 +2818,8 @@
         "summary": "Version info",
         "tags": [
           "Fleet Commander"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/healthz": {
@@ -2801,7 +2841,8 @@
         "summary": "Health check",
         "tags": [
           "Fleet Commander"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     }
   },
@@ -4203,10 +4244,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-02T23:07:44+00:00",
-    "gitHash": "d78ff58a1c093757ea6c54dc6b26515a16b78ead",
+    "buildDate": "2024-05-17T09:38:03+00:00",
+    "gitHash": "034e07ff840fd40255036b458c49bea731cce346",
     "name": "fleet-commander",
-    "version": "1.17.0",
+    "version": "1.18.0",
     "version-roles-seeding": "1.2.31"
   }
 }

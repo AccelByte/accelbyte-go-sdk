@@ -112,6 +112,10 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE [READ]"
         }
@@ -176,6 +180,16 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11336": "Unable to {action}: Namespace already exists",
+          "11338": "Unable to {action}: Namespace contains invalid character(s)",
+          "11339": "Unable to {action}: Display name contains invalid character(s)",
+          "11340": "Unable to {action}: The maximum number of games namespace for studio:{studio} has been exceeded",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE [CREATE]"
         }
@@ -244,6 +258,13 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20006": "optimistic lock",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]"
         }
@@ -313,6 +334,12 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -392,6 +419,14 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20006": "optimistic lock",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
         }
@@ -453,6 +488,10 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -525,6 +564,13 @@
         "tags": [
           "Config"
         ],
+        "x-errorCodes": {
+          "11771": "Unable to {action}: Config already exists",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [CREATE]"
         }
@@ -592,6 +638,13 @@
         "tags": [
           "Config"
         ],
+        "x-errorCodes": {
+          "11741": "Unable to {action}: Config not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [DELETE]"
         }
@@ -658,6 +711,12 @@
         "tags": [
           "Config"
         ],
+        "x-errorCodes": {
+          "11741": "Unable to {action}: Config not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
         }
@@ -734,6 +793,13 @@
         "tags": [
           "Config"
         ],
+        "x-errorCodes": {
+          "11741": "Unable to {action}: Config not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [UPDATE]"
         }
@@ -783,6 +849,10 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -859,6 +929,13 @@
         "tags": [
           "FileUpload"
         ],
+        "x-errorCodes": {
+          "11131": "Unable to {action}: File type is not supported",
+          "20000": "internal server error",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
         }
@@ -920,6 +997,10 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -982,6 +1063,10 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20002": "validation error"
+        },
         "x-security": {
           "userPermissions": "-"
         }
@@ -1054,6 +1139,12 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "11233": "Unable to {action}: Country group with code [{countryGroupCode}] is not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
         }
@@ -1125,6 +1216,14 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "11234": "Unable to {action}: A country can't be assigned to more than one country group",
+          "11235": "Unable to {action}: Country group with specified code is already exist",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]"
         }
@@ -1191,6 +1290,12 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "11233": "Unable to {action}: Country group with code [{countryGroupCode}] is not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]"
         }
@@ -1269,6 +1374,14 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "11233": "Unable to {action}: Country group with code [{countryGroupCode}] is not found",
+          "11234": "Unable to {action}: A country can't be assigned to more than one country group",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
         }
@@ -1322,6 +1435,10 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20002": "validation error"
+        },
         "x-security": {
           "userPermissions": "-"
         }
@@ -1375,6 +1492,10 @@
         "tags": [
           "Misc"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20002": "validation error"
+        },
         "x-security": {
           "userPermissions": "-"
         }
@@ -1444,6 +1565,12 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11469": "User profile with publicId [{publicId}] not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PROFILE [READ]"
         }
@@ -1507,7 +1634,10 @@
         "summary": "Admin get user profile public info by ids",
         "tags": [
           "UserProfile"
-        ]
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        }
       }
     },
     "/basic/v1/admin/namespaces/{namespace}/publisher": {
@@ -1570,6 +1700,12 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -1638,6 +1774,12 @@
         "tags": [
           "Config"
         ],
+        "x-errorCodes": {
+          "11741": "Unable to {action}: Config not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:BASIC:CONFIG [READ]"
         }
@@ -1717,6 +1859,14 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20006": "optimistic lock",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
         }
@@ -1780,6 +1930,11 @@
         "tags": [
           "Anonymization"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -1870,6 +2025,15 @@
         "tags": [
           "FileUpload"
         ],
+        "x-errorCodes": {
+          "11121": "Unable to {action}: category {category} is not valid",
+          "11131": "Unable to {action}: File type is not supported",
+          "11132": "Unable to {action}: file storage exceed limitation, user ID: {userId}, namespace: {namespace}",
+          "20000": "internal server error",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
         }
@@ -1942,6 +2106,12 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]"
         }
@@ -2009,6 +2179,12 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
@@ -2087,6 +2263,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -2153,6 +2336,11 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
@@ -2237,6 +2425,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -2303,6 +2498,11 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
@@ -2387,6 +2587,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -2467,6 +2674,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -2491,7 +2705,8 @@
         "summary": "Get server time",
         "tags": [
           "Misc"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/basic/v1/public/namespaces": {
@@ -2538,6 +2753,9 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized"
+        },
         "x-security": {
           "userPermissions": "-"
         }
@@ -2576,7 +2794,10 @@
         "summary": "Get a namespace info",
         "tags": [
           "Namespace"
-        ]
+        ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found"
+        }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/folders/{folder}/files": {
@@ -2650,6 +2871,13 @@
         "tags": [
           "FileUpload"
         ],
+        "x-errorCodes": {
+          "11131": "Unable to {action}: File type is not supported",
+          "20000": "internal server error",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
         }
@@ -2703,6 +2931,9 @@
         ],
         "x-authorization": {
           "authenticated": "true"
+        },
+        "x-errorCodes": {
+          "20002": "validation error"
         }
       }
     },
@@ -2745,6 +2976,9 @@
         ],
         "x-authorization": {
           "authenticated": "true"
+        },
+        "x-errorCodes": {
+          "20002": "validation error"
         }
       }
     },
@@ -2787,6 +3021,9 @@
         ],
         "x-authorization": {
           "authenticated": "true"
+        },
+        "x-errorCodes": {
+          "20002": "validation error"
         }
       }
     },
@@ -2833,7 +3070,10 @@
         "summary": "Get user profile public info by ids",
         "tags": [
           "UserProfile"
-        ]
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId": {
@@ -2882,7 +3122,11 @@
         "summary": "Get user profile public info by public id",
         "tags": [
           "UserProfile"
-        ]
+        ],
+        "x-errorCodes": {
+          "11469": "User profile with publicId [{publicId}] not found in namespace [{namespace}]",
+          "20002": "validation error"
+        }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/publisher": {
@@ -2945,6 +3189,12 @@
         "tags": [
           "Namespace"
         ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:NAMESPACE [READ]"
         }
@@ -3007,6 +3257,14 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permission",
+          "20017": "user not linked"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
@@ -3084,6 +3342,15 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11441": "Unable to {action}: User profile already exists",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permission",
+          "20017": "user not linked",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [CREATE]"
         }
@@ -3155,6 +3422,15 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permission",
+          "20017": "user not linked",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
@@ -3214,6 +3490,11 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
@@ -3291,6 +3572,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
@@ -3344,6 +3632,10 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [READ]"
         }
@@ -3409,6 +3701,12 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:PROFILE [UPDATE]"
         }
@@ -3499,6 +3797,15 @@
         "tags": [
           "FileUpload"
         ],
+        "x-errorCodes": {
+          "11121": "Unable to {action}: category {category} is not valid",
+          "11131": "Unable to {action}: File type is not supported",
+          "11132": "Unable to {action}: file storage exceed limitation, user ID: {userId}, namespace: {namespace}",
+          "20000": "internal server error",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
         }
@@ -3568,6 +3875,12 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
         }
@@ -3646,6 +3959,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11441": "Unable to {action}: User profile already exists",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]"
         }
@@ -3724,6 +4044,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -3772,7 +4099,10 @@
         "summary": "Get custom attributes info",
         "tags": [
           "UserProfile"
-        ]
+        ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]"
+        }
       },
       "put": {
         "consumes": [
@@ -3854,6 +4184,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }
@@ -3905,7 +4242,11 @@
         "summary": "Get user profile public info",
         "tags": [
           "UserProfile"
-        ]
+        ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20002": "validation error"
+        }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status": {
@@ -3983,6 +4324,13 @@
         "tags": [
           "UserProfile"
         ],
+        "x-errorCodes": {
+          "11440": "Unable to {action}: User profile not found in namespace [{namespace}]",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
         }

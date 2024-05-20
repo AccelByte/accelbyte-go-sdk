@@ -128,7 +128,10 @@ func (aaa *GoalConfigurationService) AdminUpdateGoals(input *goal_configuration.
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := aaa.Client.GoalConfiguration.AdminUpdateGoals(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := aaa.Client.GoalConfiguration.AdminUpdateGoals(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if notFound != nil {
 		return nil, notFound
 	}

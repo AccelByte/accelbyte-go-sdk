@@ -44,6 +44,12 @@ type ClientService interface {
 	AdminUpdateServicesConfigurationShort(params *AdminUpdateServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateServicesConfigurationOK, error)
 	AdminResetServicesConfiguration(params *AdminResetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetServicesConfigurationNoContent, *AdminResetServicesConfigurationUnauthorized, *AdminResetServicesConfigurationInternalServerError, error)
 	AdminResetServicesConfigurationShort(params *AdminResetServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetServicesConfigurationNoContent, error)
+	AdminGetPlatformAccountClosureServicesConfiguration(params *AdminGetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformAccountClosureServicesConfigurationOK, *AdminGetPlatformAccountClosureServicesConfigurationUnauthorized, *AdminGetPlatformAccountClosureServicesConfigurationNotFound, *AdminGetPlatformAccountClosureServicesConfigurationInternalServerError, error)
+	AdminGetPlatformAccountClosureServicesConfigurationShort(params *AdminGetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformAccountClosureServicesConfigurationOK, error)
+	AdminUpdatePlatformAccountClosureServicesConfiguration(params *AdminUpdatePlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePlatformAccountClosureServicesConfigurationOK, *AdminUpdatePlatformAccountClosureServicesConfigurationBadRequest, *AdminUpdatePlatformAccountClosureServicesConfigurationUnauthorized, *AdminUpdatePlatformAccountClosureServicesConfigurationInternalServerError, error)
+	AdminUpdatePlatformAccountClosureServicesConfigurationShort(params *AdminUpdatePlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePlatformAccountClosureServicesConfigurationOK, error)
+	AdminResetPlatformAccountClosureServicesConfiguration(params *AdminResetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPlatformAccountClosureServicesConfigurationNoContent, *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized, *AdminResetPlatformAccountClosureServicesConfigurationInternalServerError, error)
+	AdminResetPlatformAccountClosureServicesConfigurationShort(params *AdminResetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPlatformAccountClosureServicesConfigurationNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -834,6 +840,342 @@ func (a *Client) AdminResetServicesConfigurationShort(params *AdminResetServices
 	case *AdminResetServicesConfigurationUnauthorized:
 		return nil, v
 	case *AdminResetServicesConfigurationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetPlatformAccountClosureServicesConfigurationShort instead.
+
+AdminGetPlatformAccountClosureServicesConfiguration get registered platform account closure services configuration
+Get registered platform account closure services configuration.
+Scope: account
+*/
+func (a *Client) AdminGetPlatformAccountClosureServicesConfiguration(params *AdminGetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformAccountClosureServicesConfigurationOK, *AdminGetPlatformAccountClosureServicesConfigurationUnauthorized, *AdminGetPlatformAccountClosureServicesConfigurationNotFound, *AdminGetPlatformAccountClosureServicesConfigurationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetPlatformAccountClosureServicesConfiguration",
+		Method:             "GET",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlatformAccountClosureServicesConfigurationOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminGetPlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminGetPlatformAccountClosureServicesConfigurationNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminGetPlatformAccountClosureServicesConfigurationInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetPlatformAccountClosureServicesConfigurationShort get registered platform account closure services configuration
+Get registered platform account closure services configuration.
+Scope: account
+*/
+func (a *Client) AdminGetPlatformAccountClosureServicesConfigurationShort(params *AdminGetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformAccountClosureServicesConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetPlatformAccountClosureServicesConfiguration",
+		Method:             "GET",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlatformAccountClosureServicesConfigurationOK:
+		return v, nil
+	case *AdminGetPlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, v
+	case *AdminGetPlatformAccountClosureServicesConfigurationNotFound:
+		return nil, v
+	case *AdminGetPlatformAccountClosureServicesConfigurationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminUpdatePlatformAccountClosureServicesConfigurationShort instead.
+
+AdminUpdatePlatformAccountClosureServicesConfiguration update registered platform account closure services configuration
+Update registered platform account closure services configuration.
+Scope: account
+*/
+func (a *Client) AdminUpdatePlatformAccountClosureServicesConfiguration(params *AdminUpdatePlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePlatformAccountClosureServicesConfigurationOK, *AdminUpdatePlatformAccountClosureServicesConfigurationBadRequest, *AdminUpdatePlatformAccountClosureServicesConfigurationUnauthorized, *AdminUpdatePlatformAccountClosureServicesConfigurationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdatePlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdatePlatformAccountClosureServicesConfiguration",
+		Method:             "PUT",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdatePlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdatePlatformAccountClosureServicesConfigurationShort update registered platform account closure services configuration
+Update registered platform account closure services configuration.
+Scope: account
+*/
+func (a *Client) AdminUpdatePlatformAccountClosureServicesConfigurationShort(params *AdminUpdatePlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePlatformAccountClosureServicesConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdatePlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdatePlatformAccountClosureServicesConfiguration",
+		Method:             "PUT",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdatePlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationOK:
+		return v, nil
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationBadRequest:
+		return nil, v
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, v
+	case *AdminUpdatePlatformAccountClosureServicesConfigurationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminResetPlatformAccountClosureServicesConfigurationShort instead.
+
+AdminResetPlatformAccountClosureServicesConfiguration reset registered platform account closure services configuration
+**[TEST FACILITY ONLY]**
+Reset registered platform account closure services configuration to use the default configuration.
+Scope: account
+*/
+func (a *Client) AdminResetPlatformAccountClosureServicesConfiguration(params *AdminResetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPlatformAccountClosureServicesConfigurationNoContent, *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized, *AdminResetPlatformAccountClosureServicesConfigurationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetPlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetPlatformAccountClosureServicesConfiguration",
+		Method:             "DELETE",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetPlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetPlatformAccountClosureServicesConfigurationNoContent:
+		return v, nil, nil, nil
+
+	case *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, v, nil, nil
+
+	case *AdminResetPlatformAccountClosureServicesConfigurationInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminResetPlatformAccountClosureServicesConfigurationShort reset registered platform account closure services configuration
+**[TEST FACILITY ONLY]**
+Reset registered platform account closure services configuration to use the default configuration.
+Scope: account
+*/
+func (a *Client) AdminResetPlatformAccountClosureServicesConfigurationShort(params *AdminResetPlatformAccountClosureServicesConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPlatformAccountClosureServicesConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetPlatformAccountClosureServicesConfigurationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetPlatformAccountClosureServicesConfiguration",
+		Method:             "DELETE",
+		PathPattern:        "/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetPlatformAccountClosureServicesConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetPlatformAccountClosureServicesConfigurationNoContent:
+		return v, nil
+	case *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized:
+		return nil, v
+	case *AdminResetPlatformAccountClosureServicesConfigurationInternalServerError:
 		return nil, v
 
 	default:

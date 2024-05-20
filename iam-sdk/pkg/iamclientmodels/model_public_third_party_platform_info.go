@@ -34,6 +34,9 @@ type ModelPublicThirdPartyPlatformInfo struct {
 	// Required: true
 	IsActive *bool `json:"IsActive"`
 
+	// logourl
+	LogoURL string `json:"LogoURL,omitempty"`
+
 	// platformid
 	// Required: true
 	PlatformID *string `json:"PlatformId"`

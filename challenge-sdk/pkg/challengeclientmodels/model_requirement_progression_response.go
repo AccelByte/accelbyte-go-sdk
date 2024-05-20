@@ -42,6 +42,9 @@ type ModelRequirementProgressionResponse struct {
 	// Required: true
 	ParameterType *string `json:"parameterType"`
 
+	// statcycleid
+	StatCycleID string `json:"statCycleId,omitempty"`
+
 	// targetvalue
 	// Required: true
 	// Format: double

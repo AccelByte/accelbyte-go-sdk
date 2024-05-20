@@ -509,6 +509,11 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions` | DELETE | AnonymizeSubscriptionShort | [AnonymizeSubscriptionShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeSubscriptionShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeSubscriptionShort](../../samples/cli/cmd/platform/anonymization/anonymizeSubscription.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets` | DELETE | AnonymizeWalletShort | [AnonymizeWalletShort](../../platform-sdk/pkg/platformclient/anonymization/anonymization_client.go) | [AnonymizeWalletShort](../../services-api/pkg/service/platform/anonymization.go) | [AnonymizeWalletShort](../../samples/cli/cmd/platform/anonymization/anonymizeWallet.go) |
 
+### Platform Account Closure Wrapper:  [PlatformAccountClosure](../../services-api/pkg/service/platform/platformAccountClosure.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/users/{userId}/platform/closure/history` | GET | GetUserPlatformAccountClosureHistoriesShort | [GetUserPlatformAccountClosureHistoriesShort](../../platform-sdk/pkg/platformclient/platform_account_closure/platform_account_closure_client.go) | [GetUserPlatformAccountClosureHistoriesShort](../../services-api/pkg/service/platform/platformAccountClosure.go) | [GetUserPlatformAccountClosureHistoriesShort](../../samples/cli/cmd/platform/platformAccountClosure/getUserPlatformAccountClosureHistories.go) |
+
 ### Session(Platform) Wrapper:  [SessionPlatform](../../services-api/pkg/service/platform/sessionPlatform.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -875,6 +880,7 @@
 | `PaymentUrl` | [PaymentUrl ](../../platform-sdk/pkg/platformclientmodels/payment_url.go) |
 | `PaymentUrlCreate` | [PaymentUrlCreate ](../../platform-sdk/pkg/platformclientmodels/payment_url_create.go) |
 | `Permission` | [Permission ](../../platform-sdk/pkg/platformclientmodels/permission.go) |
+| `PlatformAccountClosureHistoryInfo` | [PlatformAccountClosureHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/platform_account_closure_history_info.go) |
 | `PlatformDLCConfigInfo` | [PlatformDLCConfigInfo ](../../platform-sdk/pkg/platformclientmodels/platform_dlc_config_info.go) |
 | `PlatformDLCConfigUpdate` | [PlatformDLCConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/platform_dlc_config_update.go) |
 | `PlatformDlcEntry` | [PlatformDlcEntry ](../../platform-sdk/pkg/platformclientmodels/platform_dlc_entry.go) |
@@ -948,6 +954,9 @@
 | `SectionUpdate` | [SectionUpdate ](../../platform-sdk/pkg/platformclientmodels/section_update.go) |
 | `ServicePluginConfigInfo` | [ServicePluginConfigInfo ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_info.go) |
 | `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
+| `SimpleEntitlement` | [SimpleEntitlement ](../../platform-sdk/pkg/platformclientmodels/simple_entitlement.go) |
+| `SimpleUserDLC` | [SimpleUserDLC ](../../platform-sdk/pkg/platformclientmodels/simple_user_dlc.go) |
+| `SimpleWallet` | [SimpleWallet ](../../platform-sdk/pkg/platformclientmodels/simple_wallet.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |
 | `SteamAchievement` | [SteamAchievement ](../../platform-sdk/pkg/platformclientmodels/steam_achievement.go) |

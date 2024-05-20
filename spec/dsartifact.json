@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Artifact Service",
     "title": "justice-ds-artifact-manager",
-    "version": "1.11.3"
+    "version": "1.11.4"
   },
   "schemes": [
     "https"
@@ -110,7 +110,8 @@
         "summary": "Delete a node that previously held artifact queue by IP address",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "consumes": [
@@ -183,7 +184,8 @@
         "summary": "Get IP Address of all nodes that all artifact in queue resides. This IP Address is the IP Address of nomad client",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/artifacts/queues": {
@@ -268,7 +270,8 @@
         "summary": "Get list of queues on a node",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/artifacts/queues/active": {
@@ -325,7 +328,8 @@
         "summary": "Delete active queue process on a node",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "get": {
         "consumes": [
@@ -389,7 +393,8 @@
         "summary": "Get active queue process on a node",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       },
       "put": {
         "consumes": [
@@ -451,7 +456,8 @@
         "summary": "Set a queue as active queue",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/artifacts/queues/failed": {
@@ -515,7 +521,8 @@
         "summary": "Report failed artifact upload",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/artifacts/queues": {
@@ -583,7 +590,8 @@
         "summary": "Delete a queue entry",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/artifacts/queues/active/all": {
@@ -677,7 +685,8 @@
         "summary": "Get all currently uploading artifact queue",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/artifacts/queues/all": {
@@ -785,7 +794,8 @@
         "summary": "Get all artifact upload process queues",
         "tags": [
           "Artifact Upload Process Queue"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/servers/search": {
@@ -912,7 +922,8 @@
         "summary": "Retrieve All Terminated Servers in a Namespace",
         "tags": [
           "Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/servers/{podName}/artifacts/download": {
@@ -973,7 +984,8 @@
         "summary": "Download dedicated server artifact files",
         "tags": [
           "Download Server Artifact"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/namespaces/{namespace}/servers/{podName}/artifacts/exists": {
@@ -1037,7 +1049,8 @@
         "summary": "Check dedicated server artifacts files existence",
         "tags": [
           "Download Server Artifact"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/servers/search": {
@@ -1156,7 +1169,8 @@
         "summary": "Retrieve All Terminated Servers",
         "tags": [
           "All Terminated Servers"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/dsartifact/v1/messages": {
@@ -1191,7 +1205,8 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "x-errorCodes": {}
       }
     }
   },
@@ -1663,11 +1678,11 @@
     "path": "/dsartifact/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T07:35:06+00:00",
-    "gitHash": "e087c451e753e3ec959f47efc662e11e9aa9bf15",
+    "buildDate": "2024-05-16T03:41:48+00:00",
+    "gitHash": "bf4c0ccc7223229e69fec69afb3bacb5c90aa426",
     "name": "justice-ds-artifact-manager",
-    "revisionID": "1.11.3",
-    "version": "1.11.3",
+    "revisionID": "1.11.4",
+    "version": "1.11.4",
     "version-roles-seeding": "0.0.3"
   }
 }

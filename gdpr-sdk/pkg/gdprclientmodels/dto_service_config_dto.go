@@ -25,6 +25,9 @@ type DTOServiceConfigDTO struct {
 	// Required: true
 	Protocol *string `json:"protocol"`
 
+	// skipack
+	SkipAck bool `json:"skipAck"`
+
 	// url of the service with port number
 	// Required: true
 	URL *string `json:"url"`

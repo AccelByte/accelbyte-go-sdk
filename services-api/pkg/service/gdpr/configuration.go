@@ -199,6 +199,72 @@ func (aaa *ConfigurationService) AdminResetServicesConfiguration(input *configur
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetPlatformAccountClosureServicesConfigurationShort instead.
+func (aaa *ConfigurationService) AdminGetPlatformAccountClosureServicesConfiguration(input *configuration.AdminGetPlatformAccountClosureServicesConfigurationParams) (*gdprclientmodels.DTOServicesConfigurationResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.Configuration.AdminGetPlatformAccountClosureServicesConfiguration(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdatePlatformAccountClosureServicesConfigurationShort instead.
+func (aaa *ConfigurationService) AdminUpdatePlatformAccountClosureServicesConfiguration(input *configuration.AdminUpdatePlatformAccountClosureServicesConfigurationParams) (*gdprclientmodels.DTOServiceConfigurationUpdateRequest, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := aaa.Client.Configuration.AdminUpdatePlatformAccountClosureServicesConfiguration(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminResetPlatformAccountClosureServicesConfigurationShort instead.
+func (aaa *ConfigurationService) AdminResetPlatformAccountClosureServicesConfiguration(input *configuration.AdminResetPlatformAccountClosureServicesConfigurationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, internalServerError, err := aaa.Client.Configuration.AdminResetPlatformAccountClosureServicesConfiguration(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *ConfigurationService) GetAdminEmailConfigurationShort(input *configuration.GetAdminEmailConfigurationParams) ([]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -402,6 +468,96 @@ func (aaa *ConfigurationService) AdminResetServicesConfigurationShort(input *con
 	}
 
 	_, err := aaa.Client.Configuration.AdminResetServicesConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ConfigurationService) AdminGetPlatformAccountClosureServicesConfigurationShort(input *configuration.AdminGetPlatformAccountClosureServicesConfigurationParams) (*gdprclientmodels.DTOServicesConfigurationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Configuration.AdminGetPlatformAccountClosureServicesConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigurationService) AdminUpdatePlatformAccountClosureServicesConfigurationShort(input *configuration.AdminUpdatePlatformAccountClosureServicesConfigurationParams) (*gdprclientmodels.DTOServiceConfigurationUpdateRequest, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Configuration.AdminUpdatePlatformAccountClosureServicesConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigurationService) AdminResetPlatformAccountClosureServicesConfigurationShort(input *configuration.AdminResetPlatformAccountClosureServicesConfigurationParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfiguration != nil {
+		input.XFlightId = tempFlightIdConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Configuration.AdminResetPlatformAccountClosureServicesConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

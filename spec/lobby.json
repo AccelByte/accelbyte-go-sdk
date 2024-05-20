@@ -120,6 +120,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -204,6 +205,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -288,6 +290,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -372,6 +375,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -456,6 +460,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -537,6 +542,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -619,6 +625,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -695,6 +702,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -771,6 +779,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -847,6 +856,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -915,6 +925,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -991,6 +1002,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -1068,6 +1080,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1154,6 +1167,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1239,6 +1253,7 @@
           "friends",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -1317,6 +1332,7 @@
         "tags": [
           "blocks"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -1377,6 +1393,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1452,6 +1469,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1540,6 +1558,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1600,6 +1619,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1669,6 +1689,7 @@
         "tags": [
           "config"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1775,6 +1796,7 @@
         "tags": [
           "friends"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1871,6 +1893,7 @@
         "tags": [
           "friends"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1975,6 +1998,7 @@
         "tags": [
           "friends"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2065,6 +2089,7 @@
         "tags": [
           "friends"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2114,6 +2139,7 @@
           "admin",
           "global-configurations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2179,6 +2205,7 @@
           "admin",
           "global-configurations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2237,6 +2264,7 @@
           "admin",
           "global-configurations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2306,6 +2334,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2381,6 +2410,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2463,6 +2493,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2545,6 +2576,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2623,6 +2655,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2702,6 +2735,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2777,6 +2811,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2850,6 +2885,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -2942,6 +2978,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3022,6 +3059,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3103,6 +3141,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3195,6 +3234,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3275,6 +3315,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3362,6 +3403,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3429,6 +3471,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3502,6 +3545,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3576,6 +3620,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3662,6 +3707,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3744,6 +3790,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3826,6 +3873,7 @@
         "tags": [
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -3908,6 +3956,7 @@
         "tags": [
           "party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4005,6 +4054,7 @@
         "tags": [
           "Lobby Operations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4094,6 +4144,7 @@
         "tags": [
           "Lobby Operations"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4176,6 +4227,7 @@
         "tags": [
           "party"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4251,6 +4303,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4335,6 +4388,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4405,6 +4459,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4491,6 +4546,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4580,6 +4636,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4662,6 +4719,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4744,6 +4802,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4826,6 +4885,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4913,6 +4973,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -4995,6 +5056,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5081,6 +5143,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5169,6 +5232,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5260,6 +5324,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5354,6 +5419,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5432,6 +5498,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5511,6 +5578,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5590,6 +5658,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5676,6 +5745,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5751,6 +5821,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5830,6 +5901,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5914,6 +5986,7 @@
         "tags": [
           "profanity"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -5986,6 +6059,7 @@
         "tags": [
           "thirdParty"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6050,6 +6124,7 @@
         "tags": [
           "thirdParty"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6132,6 +6207,7 @@
         "tags": [
           "thirdParty"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6208,6 +6284,7 @@
         "tags": [
           "thirdParty"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -6252,7 +6329,8 @@
         "summary": "get service messages",
         "tags": [
           "Lobby Operations"
-        ]
+        ],
+        "x-errorCodes": {}
       }
     },
     "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}": {
@@ -6328,6 +6406,7 @@
         "tags": [
           "party"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6419,6 +6498,7 @@
         "tags": [
           "party"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6501,6 +6581,7 @@
         "tags": [
           "party"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6576,6 +6657,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6645,6 +6727,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6714,6 +6797,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6789,6 +6873,7 @@
         "tags": [
           "player"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6860,6 +6945,7 @@
         "tags": [
           "presence"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -6930,6 +7016,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7032,6 +7119,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7108,6 +7196,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7181,6 +7270,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7255,6 +7345,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7329,6 +7420,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7422,6 +7514,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7503,6 +7596,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7585,6 +7679,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7672,6 +7767,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7753,6 +7849,7 @@
           "admin",
           "notification"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7841,6 +7938,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7915,6 +8013,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -7989,6 +8088,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -8064,6 +8164,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -8145,6 +8246,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -8228,6 +8330,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -8311,6 +8414,7 @@
           "notification",
           "public"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [

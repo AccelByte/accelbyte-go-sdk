@@ -1,3 +1,12 @@
+<a name="v0.70.0"></a>
+## [v0.70.0]
+### test
+- **integration:** temporarily disable session browser
+- **integration:** chat - update test
+### docs
+- **common-use-case:** update
+
+
 <a name="v0.69.0"></a>
 ## [v0.69.0]
 ### test

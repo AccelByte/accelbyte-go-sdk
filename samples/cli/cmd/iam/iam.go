@@ -200,6 +200,7 @@ func init() {
 	IamCmd.AddCommand(users.AdminUpdateUserV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserBanV3Cmd)
 	IamCmd.AddCommand(users.AdminBanUserV3Cmd)
+	IamCmd.AddCommand(users.AdminGetUserBanSummaryV3Cmd)
 	IamCmd.AddCommand(users.AdminUpdateUserBanV3Cmd)
 	IamCmd.AddCommand(users.AdminSendVerificationCodeV3Cmd)
 	IamCmd.AddCommand(users.AdminVerifyAccountV3Cmd)

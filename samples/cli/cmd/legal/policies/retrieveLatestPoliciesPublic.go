@@ -30,12 +30,14 @@ var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
 		defaultOnEmpty, _ := cmd.Flags().GetBool("defaultOnEmpty")
 		policyType, _ := cmd.Flags().GetString("policyType")
 		tags, _ := cmd.Flags().GetString("tags")
+		visibleOnly, _ := cmd.Flags().GetBool("visibleOnly")
 		input := &policies.RetrieveLatestPoliciesPublicParams{
 			Namespace:            namespace,
 			AlwaysIncludeDefault: &alwaysIncludeDefault,
 			DefaultOnEmpty:       &defaultOnEmpty,
 			PolicyType:           &policyType,
 			Tags:                 &tags,
+			VisibleOnly:          &visibleOnly,
 		}
 		ok, errOK := policiesService.RetrieveLatestPoliciesPublicShort(input)
 		if errOK != nil {
@@ -57,4 +59,5 @@ func init() {
 	RetrieveLatestPoliciesPublicCmd.Flags().Bool("defaultOnEmpty", false, "Default on empty")
 	RetrieveLatestPoliciesPublicCmd.Flags().String("policyType", "", "Policy type")
 	RetrieveLatestPoliciesPublicCmd.Flags().String("tags", "", "Tags")
+	RetrieveLatestPoliciesPublicCmd.Flags().Bool("visibleOnly", false, "Visible only")
 }

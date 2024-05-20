@@ -3,7 +3,7 @@
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
-    "version": "1.24.2"
+    "version": "1.25.1"
   },
   "schemes": [
     "https"
@@ -77,6 +77,7 @@
         "tags": [
           "telemetry"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -198,6 +199,7 @@
         "tags": [
           "telemetry"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -277,6 +279,7 @@
         "tags": [
           "Gametelemetry Operations"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -345,6 +348,7 @@
         "tags": [
           "Gametelemetry Operations"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     },
@@ -419,6 +423,7 @@
         "tags": [
           "Gametelemetry Operations"
         ],
+        "x-errorCodes": {},
         "x-security": []
       }
     }
@@ -637,11 +642,11 @@
     "path": "/game-telemetry/openapi.json"
   },
   "x-version": {
-    "buildDate": "2024-05-06T02:31:11+00:00",
-    "gitHash": "4b5681193696f2a83d474adf2b0e10b1d66274c1",
+    "buildDate": "2024-05-20T10:57:31+00:00",
+    "gitHash": "af9c3db31bf54d07f3d604e94b5c9af7bac55a68",
     "name": "analytics-game-telemetry",
     "realm": "demo",
-    "version": "1.24.2",
+    "version": "1.25.1",
     "version-roles-seeding": "1.0.18"
   }
 }

@@ -32,7 +32,7 @@ type Client struct {
 type ClientService interface {
 	GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error)
 	GetChallengesShort(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, error)
-	PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsInternalServerError, error)
+	PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsNotFound, *PublicGetScheduledGoalsInternalServerError, error)
 	PublicGetScheduledGoalsShort(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -158,7 +158,7 @@ PublicGetScheduledGoals list goals of a challenge
 
       * Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
-func (a *Client) PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsInternalServerError, error) {
+func (a *Client) PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsNotFound, *PublicGetScheduledGoalsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetScheduledGoalsParams()
@@ -190,25 +190,28 @@ func (a *Client) PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetScheduledGoalsOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicGetScheduledGoalsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicGetScheduledGoalsForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetScheduledGoalsNotFound:
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicGetScheduledGoalsInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -255,6 +258,8 @@ func (a *Client) PublicGetScheduledGoalsShort(params *PublicGetScheduledGoalsPar
 	case *PublicGetScheduledGoalsUnauthorized:
 		return nil, v
 	case *PublicGetScheduledGoalsForbidden:
+		return nil, v
+	case *PublicGetScheduledGoalsNotFound:
 		return nil, v
 	case *PublicGetScheduledGoalsInternalServerError:
 		return nil, v

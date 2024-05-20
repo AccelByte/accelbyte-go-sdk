@@ -28,8 +28,11 @@ const (
 // NewRetrieveLatestPoliciesPublicParams creates a new RetrieveLatestPoliciesPublicParams object
 // with the default values initialized.
 func NewRetrieveLatestPoliciesPublicParams() *RetrieveLatestPoliciesPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -38,8 +41,11 @@ func NewRetrieveLatestPoliciesPublicParams() *RetrieveLatestPoliciesPublicParams
 // NewRetrieveLatestPoliciesPublicParamsWithTimeout creates a new RetrieveLatestPoliciesPublicParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveLatestPoliciesPublicParamsWithTimeout(timeout time.Duration) *RetrieveLatestPoliciesPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: timeout,
 	}
@@ -48,8 +54,11 @@ func NewRetrieveLatestPoliciesPublicParamsWithTimeout(timeout time.Duration) *Re
 // NewRetrieveLatestPoliciesPublicParamsWithContext creates a new RetrieveLatestPoliciesPublicParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveLatestPoliciesPublicParamsWithContext(ctx context.Context) *RetrieveLatestPoliciesPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesPublicParams{
+		VisibleOnly: &visibleOnlyDefault,
 
 		Context: ctx,
 	}
@@ -58,9 +67,12 @@ func NewRetrieveLatestPoliciesPublicParamsWithContext(ctx context.Context) *Retr
 // NewRetrieveLatestPoliciesPublicParamsWithHTTPClient creates a new RetrieveLatestPoliciesPublicParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveLatestPoliciesPublicParamsWithHTTPClient(client *http.Client) *RetrieveLatestPoliciesPublicParams {
-	var ()
+	var (
+		visibleOnlyDefault = bool(false)
+	)
 	return &RetrieveLatestPoliciesPublicParams{
-		HTTPClient: client,
+		VisibleOnly: &visibleOnlyDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -96,6 +108,8 @@ type RetrieveLatestPoliciesPublicParams struct {
 
 	*/
 	Tags *string
+	/*VisibleOnly*/
+	VisibleOnly *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -217,6 +231,17 @@ func (o *RetrieveLatestPoliciesPublicParams) SetTags(tags *string) {
 	o.Tags = tags
 }
 
+// WithVisibleOnly adds the visibleOnly to the retrieve latest policies public params
+func (o *RetrieveLatestPoliciesPublicParams) WithVisibleOnly(visibleOnly *bool) *RetrieveLatestPoliciesPublicParams {
+	o.SetVisibleOnly(visibleOnly)
+	return o
+}
+
+// SetVisibleOnly adds the visibleOnly to the retrieve latest policies public params
+func (o *RetrieveLatestPoliciesPublicParams) SetVisibleOnly(visibleOnly *bool) {
+	o.VisibleOnly = visibleOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RetrieveLatestPoliciesPublicParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -288,6 +313,22 @@ func (o *RetrieveLatestPoliciesPublicParams) WriteToRequest(r runtime.ClientRequ
 		qTags := qrTags
 		if qTags != "" {
 			if err := r.SetQueryParam("tags", qTags); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.VisibleOnly != nil {
+
+		// query param visibleOnly
+		var qrVisibleOnly bool
+		if o.VisibleOnly != nil {
+			qrVisibleOnly = *o.VisibleOnly
+		}
+		qVisibleOnly := swag.FormatBool(qrVisibleOnly)
+		if qVisibleOnly != "" {
+			if err := r.SetQueryParam("visibleOnly", qVisibleOnly); err != nil {
 				return err
 			}
 		}

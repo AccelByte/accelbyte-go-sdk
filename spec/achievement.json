@@ -170,6 +170,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -256,6 +257,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -340,6 +342,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -432,6 +435,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -516,6 +520,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -601,6 +606,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -691,6 +697,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -784,6 +791,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -900,6 +908,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1002,6 +1011,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1080,6 +1090,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1156,6 +1167,7 @@
         "tags": [
           "Platform Achievement"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1263,6 +1275,7 @@
         "tags": [
           "Tags"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1388,6 +1401,7 @@
         "tags": [
           "User Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1479,6 +1493,7 @@
         "tags": [
           "User Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1570,6 +1585,7 @@
         "tags": [
           "User Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1639,6 +1655,7 @@
         "tags": [
           "Anonymization"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "userPermissions": [
@@ -1752,6 +1769,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1888,6 +1906,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -1982,6 +2001,7 @@
         "tags": [
           "Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2098,6 +2118,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2200,6 +2221,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2307,6 +2329,7 @@
         "tags": [
           "Tags"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2432,6 +2455,7 @@
         "tags": [
           "User Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2523,6 +2547,7 @@
         "tags": [
           "User Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2641,6 +2666,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [
@@ -2726,6 +2752,7 @@
         "tags": [
           "Global Achievements"
         ],
+        "x-errorCodes": {},
         "x-security": [
           {
             "iamClientScopes": [

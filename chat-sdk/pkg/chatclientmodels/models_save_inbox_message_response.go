@@ -21,8 +21,7 @@ import (
 type ModelsSaveInboxMessageResponse struct {
 
 	// category
-	// Required: true
-	Category *string `json:"category"`
+	Category string `json:"category,omitempty"`
 
 	// expiredat
 	// Required: true
@@ -54,9 +53,6 @@ type ModelsSaveInboxMessageResponse struct {
 func (m *ModelsSaveInboxMessageResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCategory(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateExpiredAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -73,15 +69,6 @@ func (m *ModelsSaveInboxMessageResponse) Validate(formats strfmt.Registry) error
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsSaveInboxMessageResponse) validateCategory(formats strfmt.Registry) error {
-
-	if err := validate.Required("category", "body", m.Category); err != nil {
-		return err
-	}
-
 	return nil
 }
 

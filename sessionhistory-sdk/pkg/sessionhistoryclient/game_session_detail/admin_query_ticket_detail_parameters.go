@@ -91,7 +91,7 @@ type AdminQueryTicketDetailParams struct {
 	*/
 	Namespace string
 	/*EndDate
-	  End Date 2024-05-06T03:48:23Z
+	  End Date 2024-05-20T04:09:26Z
 
 	*/
 	EndDate *string
@@ -126,7 +126,7 @@ type AdminQueryTicketDetailParams struct {
 	*/
 	Region *string
 	/*StartDate
-	  Start Date 2024-05-06T03:48:23Z
+	  Start Date 2024-05-20T04:09:26Z
 
 	*/
 	StartDate *string

@@ -28,6 +28,16 @@
 | `/gdpr/admin/namespaces/{namespace}/services/configurations` | GET | AdminGetServicesConfigurationShort | [AdminGetServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminGetServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminGetServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminGetServicesConfiguration.go) |
 | `/gdpr/admin/namespaces/{namespace}/services/configurations` | PUT | AdminUpdateServicesConfigurationShort | [AdminUpdateServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminUpdateServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminUpdateServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminUpdateServicesConfiguration.go) |
 | `/gdpr/admin/namespaces/{namespace}/services/configurations/reset` | DELETE | AdminResetServicesConfigurationShort | [AdminResetServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminResetServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminResetServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminResetServicesConfiguration.go) |
+| `/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config` | GET | AdminGetPlatformAccountClosureServicesConfigurationShort | [AdminGetPlatformAccountClosureServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminGetPlatformAccountClosureServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminGetPlatformAccountClosureServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminGetPlatformAccountClosureServicesConfiguration.go) |
+| `/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config` | PUT | AdminUpdatePlatformAccountClosureServicesConfigurationShort | [AdminUpdatePlatformAccountClosureServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminUpdatePlatformAccountClosureServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminUpdatePlatformAccountClosureServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminUpdatePlatformAccountClosureServicesConfiguration.go) |
+| `/gdpr/admin/namespaces/{namespace}/services/platforms/closure/config` | DELETE | AdminResetPlatformAccountClosureServicesConfigurationShort | [AdminResetPlatformAccountClosureServicesConfigurationShort](../../gdpr-sdk/pkg/gdprclient/configuration/configuration_client.go) | [AdminResetPlatformAccountClosureServicesConfigurationShort](../../services-api/pkg/service/gdpr/configuration.go) | [AdminResetPlatformAccountClosureServicesConfigurationShort](../../samples/cli/cmd/gdpr/configuration/adminResetPlatformAccountClosureServicesConfiguration.go) |
+
+### Platform Account Closure Client Wrapper:  [PlatformAccountClosureClient](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | GET | AdminGetPlatformAccountClosureClientShort | [AdminGetPlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminGetPlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminGetPlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminGetPlatformAccountClosureClient.go) |
+| `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | POST | AdminUpdatePlatformAccountClosureClientShort | [AdminUpdatePlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminUpdatePlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminUpdatePlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminUpdatePlatformAccountClosureClient.go) |
+| `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | DELETE | AdminDeletePlatformAccountClosureClientShort | [AdminDeletePlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminDeletePlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminDeletePlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminDeletePlatformAccountClosureClient.go) |
 
 ### Data Retrieval Wrapper:  [DataRetrieval](../../services-api/pkg/service/gdpr/dataRetrieval.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -42,6 +52,11 @@
 | `/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}` | DELETE | PublicCancelUserPersonalDataRequestShort | [PublicCancelUserPersonalDataRequestShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval/data_retrieval_client.go) | [PublicCancelUserPersonalDataRequestShort](../../services-api/pkg/service/gdpr/dataRetrieval.go) | [PublicCancelUserPersonalDataRequestShort](../../samples/cli/cmd/gdpr/dataRetrieval/publicCancelUserPersonalDataRequest.go) |
 | `/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate` | POST | PublicGeneratePersonalDataURLShort | [PublicGeneratePersonalDataURLShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval/data_retrieval_client.go) | [PublicGeneratePersonalDataURLShort](../../services-api/pkg/service/gdpr/dataRetrieval.go) | [PublicGeneratePersonalDataURLShort](../../samples/cli/cmd/gdpr/dataRetrieval/publicGeneratePersonalDataURL.go) |
 
+### Platform Account Closure History Wrapper:  [PlatformAccountClosureHistory](../../services-api/pkg/service/gdpr/platformAccountClosureHistory.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/gdpr/admin/namespaces/{namespace}/users/platforms/closure/histories` | GET | AdminGetUserPlatformAccountClosureHistoriesShort | [AdminGetUserPlatformAccountClosureHistoriesShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_history/platform_account_closure_history_client.go) | [AdminGetUserPlatformAccountClosureHistoriesShort](../../services-api/pkg/service/gdpr/platformAccountClosureHistory.go) | [AdminGetUserPlatformAccountClosureHistoriesShort](../../samples/cli/cmd/gdpr/platformAccountClosureHistory/adminGetUserPlatformAccountClosureHistories.go) |
+
 
 &nbsp;  
 
@@ -50,10 +65,14 @@
 | Model Struct | Class |
 |---|---|
 | `dto.ExtendConfigDTO` | [DtoExtendConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_extend_config_dto.go) |
+| `dto.PlatformAccountClosureClientRequest` | [DtoPlatformAccountClosureClientRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_request.go) |
+| `dto.PlatformAccountClosureClientResponse` | [DtoPlatformAccountClosureClientResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_response.go) |
 | `dto.ServiceConfigDTO` | [DtoServiceConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_config_dto.go) |
 | `dto.ServiceConfigurationDTO` | [DtoServiceConfigurationDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_configuration_dto.go) |
 | `dto.ServiceConfigurationUpdateRequest` | [DtoServiceConfigurationUpdateRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_configuration_update_request.go) |
 | `dto.ServicesConfigurationResponse` | [DtoServicesConfigurationResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_services_configuration_response.go) |
+| `dto.UserPlatformAccountClosureHistoriesResponse` | [DtoUserPlatformAccountClosureHistoriesResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_user_platform_account_closure_histories_response.go) |
+| `dto.UserPlatformAccountClosureHistory` | [DtoUserPlatformAccountClosureHistory ](../../gdpr-sdk/pkg/gdprclientmodels/dto_user_platform_account_closure_history.go) |
 | `models.DataRetrievalResponse` | [ModelsDataRetrievalResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_data_retrieval_response.go) |
 | `models.DeletionData` | [ModelsDeletionData ](../../gdpr-sdk/pkg/gdprclientmodels/models_deletion_data.go) |
 | `models.DeletionStatus` | [ModelsDeletionStatus ](../../gdpr-sdk/pkg/gdprclientmodels/models_deletion_status.go) |

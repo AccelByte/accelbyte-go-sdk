@@ -864,9 +864,6 @@ Deprecated: 2022-08-10 - Use LogoutShort instead.
 
 Logout logout
 This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.
-Supported methods:
-- VerifyToken to verify token from header
-- AddTokenToRevocationList to revoke token with TTL
 */
 func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
@@ -916,9 +913,6 @@ func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWri
 /*
 LogoutShort logout
 This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.
-Supported methods:
-- VerifyToken to verify token from header
-- AddTokenToRevocationList to revoke token with TTL
 */
 func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending

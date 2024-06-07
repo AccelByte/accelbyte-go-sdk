@@ -176,6 +176,55 @@ func (rt *MyRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // endregion http.RoundTripper
 
+func TestRetryRequest_withDefaultPolicy(t *testing.T) {
+	// Arrange
+	prepareToken(iamBansService)
+	err := configureMockServerOverwriteResponse(map[string]interface{}{
+		"enabled":   true,
+		"overwrite": true,
+		"status":    404,
+	})
+	if err != nil {
+		t.Skip("unable to configure mock server")
+	}
+
+	time.Sleep(1 * time.Second)
+
+	// Act
+	roundTripper := MyRoundTripper{
+		Counter:      0,
+		RoundTripper: iamBansService.Client.Runtime.Transport,
+	}
+	// note: can't really set the default retry policy found inside AdminGetBansTypeV3Short
+	// since we need to set the MyRoundTripper to track the number of outgoing calls
+	// the best we can do is copy the values of the default retry policy found inside AdminGetBansTypeV3Short
+	// except for RetryCodes.
+	retryPolicy := utils.Retry{
+		MaxTries:  utils.MaxTries,
+		Backoff:   utils.NewConstantBackoff(0),
+		Transport: &roundTripper,
+		RetryCodes: map[int]bool{
+			404: true,
+		},
+	}
+	paramsRetry := bans.AdminGetBansTypeV3Params{
+		RetryPolicy: &retryPolicy,
+	}
+	_, err = iamBansService.AdminGetBansTypeV3Short(&paramsRetry)
+	assert.NotNil(t, err)
+
+	// note: roundTripper.Counter includes the first attempt
+	// and this statement accounts for that
+	numberOfRetries := roundTripper.Counter - 1
+
+	// Assert
+	assert.Equal(t, uint(utils.MaxTries), uint(numberOfRetries))
+
+	// Clean up
+	err = resetMockServerOverwriteResponse()
+	assert.Nil(t, err)
+}
+
 func TestRetryRequest_withMaxTries(t *testing.T) {
 	// Arrange
 	prepareToken(iamBansService)

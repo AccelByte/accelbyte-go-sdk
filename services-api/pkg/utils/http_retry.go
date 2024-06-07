@@ -93,7 +93,7 @@ func (m Retry) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 
-	for attempt := uint(0); attempt < m.MaxTries+1; attempt++ {
+	for attempt := uint(0); attempt < m.MaxTries; attempt++ {
 		//if req.Body != nil {
 		//	req.Body = ioutil.NopCloser(bytes.NewReader(body)) // Reset body for reading
 		//}

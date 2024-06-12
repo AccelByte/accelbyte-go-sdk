@@ -119,7 +119,8 @@ func getResponseIdentifier(reader *bufio.Reader) (messageType string, err error)
 		model.TypeJoinViaPartyCodeResponse,
 		model.TypeUnfriendNotif,
 		model.TypeUserBannedNotification,
-		model.TypeUserUnbannedNotification:
+		model.TypeUserUnbannedNotification,
+		model.TypeMessageSessionNotif:
 	default:
 		return model.TypeUnknown, ErrUnknownType
 	}
@@ -264,6 +265,8 @@ func unmarshalResponseContent(messageType string, reader *bufio.Reader) (model.M
 		return unmarshalSendPartyNotifResponse(reader)
 	case model.TypePartyNotif:
 		return unmarshalPartyNotif(reader)
+	case model.TypeMessageSessionNotif:
+		return unmarshalSessionNotificationMessage(reader)
 	}
 
 	logrus.Debug("type not handled : ", messageType)
@@ -1676,6 +1679,26 @@ func unmarshalPartyNotif(reader *bufio.Reader) (*model.PartyNotif, error) {
 	}
 
 	return response, nil
+}
+
+func unmarshalSessionNotificationMessage(reader *bufio.Reader) (*model.MessageSessionNotif, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	sentAt, err := time.Parse(time.RFC3339, content["sentAt"])
+	if err != nil {
+		return nil, err
+	}
+
+	notif := &model.MessageSessionNotif{
+		Topic:   content["topic"],
+		Payload: content["payload"],
+		SentAt:  strconv.FormatInt(sentAt.Unix(), 10),
+	}
+
+	return notif, nil
 }
 
 func readAll(reader *bufio.Reader) (map[string]string, error) {

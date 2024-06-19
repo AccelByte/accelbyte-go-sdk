@@ -115,6 +115,11 @@ type PlatformTokenGrantV3Params struct {
 
 	*/
 	PlatformToken *string
+	/*ServiceLabel
+	  Service label, it's used to validate PSN app when set AppId on ps5/ps4
+
+	*/
+	ServiceLabel *float64
 	/*SkipSetCookie
 	  If need skip set cookie. Default is false
 
@@ -257,6 +262,17 @@ func (o *PlatformTokenGrantV3Params) SetPlatformToken(platformToken *string) {
 	o.PlatformToken = platformToken
 }
 
+// WithServiceLabel adds the serviceLabel to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) WithServiceLabel(serviceLabel *float64) *PlatformTokenGrantV3Params {
+	o.SetServiceLabel(serviceLabel)
+	return o
+}
+
+// SetServiceLabel adds the serviceLabel to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetServiceLabel(serviceLabel *float64) {
+	o.ServiceLabel = serviceLabel
+}
+
 // WithSkipSetCookie adds the skipSetCookie to the platform token grant v3 params
 func (o *PlatformTokenGrantV3Params) WithSkipSetCookie(skipSetCookie *bool) *PlatformTokenGrantV3Params {
 	o.SetSkipSetCookie(skipSetCookie)
@@ -377,6 +393,22 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		fPlatformToken := frPlatformToken
 		if fPlatformToken != "" {
 			if err := r.SetFormParam("platform_token", fPlatformToken); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ServiceLabel != nil {
+
+		// form param serviceLabel
+		var frServiceLabel float64
+		if o.ServiceLabel != nil {
+			frServiceLabel = *o.ServiceLabel
+		}
+		fServiceLabel := frServiceLabel
+		if fServiceLabel != "" {
+			if err := r.SetFormParam("serviceLabel", fServiceLabel); err != nil {
 				return err
 			}
 		}

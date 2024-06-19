@@ -90,6 +90,35 @@ func (aaa *ImagesService) ImageGet(input *images.ImageGetParams) (*amsclientmode
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use ImageMarkForDeletionShort instead.
+func (aaa *ImagesService) ImageMarkForDeletion(input *images.ImageMarkForDeletionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.Images.ImageMarkForDeletion(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use ImagePatchShort instead.
 func (aaa *ImagesService) ImagePatch(input *images.ImagePatchParams) (*amsclientmodels.APIImageDetails, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -114,6 +143,35 @@ func (aaa *ImagesService) ImagePatch(input *images.ImagePatchParams) (*amsclient
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use ImageUnmarkForDeletionShort instead.
+func (aaa *ImagesService) ImageUnmarkForDeletion(input *images.ImageUnmarkForDeletionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := aaa.Client.Images.ImageUnmarkForDeletion(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ImagesService) ImageListShort(input *images.ImageListParams) (*amsclientmodels.APIImageList, error) {
@@ -176,6 +234,36 @@ func (aaa *ImagesService) ImageGetShort(input *images.ImageGetParams) (*amsclien
 	return ok.GetPayload(), nil
 }
 
+func (aaa *ImagesService) ImageMarkForDeletionShort(input *images.ImageMarkForDeletionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdImages != nil {
+		input.XFlightId = tempFlightIdImages
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Images.ImageMarkForDeletionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *ImagesService) ImagePatchShort(input *images.ImagePatchParams) (*amsclientmodels.APIImageDetails, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -204,4 +292,34 @@ func (aaa *ImagesService) ImagePatchShort(input *images.ImagePatchParams) (*amsc
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ImagesService) ImageUnmarkForDeletionShort(input *images.ImageUnmarkForDeletionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdImages != nil {
+		input.XFlightId = tempFlightIdImages
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Images.ImageUnmarkForDeletionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

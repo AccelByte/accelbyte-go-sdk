@@ -23,6 +23,7 @@ const (
 	PublicNormalizePaymentReturnURLADYENConstant    = "ADYEN"
 	PublicNormalizePaymentReturnURLALIPAYConstant   = "ALIPAY"
 	PublicNormalizePaymentReturnURLCHECKOUTConstant = "CHECKOUT"
+	PublicNormalizePaymentReturnURLNEONPAYConstant  = "NEONPAY"
 	PublicNormalizePaymentReturnURLPAYPALConstant   = "PAYPAL"
 	PublicNormalizePaymentReturnURLSTRIPEConstant   = "STRIPE"
 	PublicNormalizePaymentReturnURLWALLETConstant   = "WALLET"

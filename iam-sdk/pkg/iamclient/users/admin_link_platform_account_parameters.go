@@ -93,7 +93,7 @@ type AdminLinkPlatformAccountParams struct {
 	UserID string
 	/*SkipConflict
 	    this query is for this case: if target platform account current is linked with another account
-	- true: will unlink from other account and force link to current target ASG account.
+	- true: will unlink from other account and force link to current target AGS account.
 	- false: will link failed and response conflict details
 	- empty: default is true
 

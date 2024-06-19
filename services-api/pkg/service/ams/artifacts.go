@@ -64,6 +64,32 @@ func (aaa *ArtifactsService) ArtifactGet(input *artifacts.ArtifactGetParams) (*a
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use ArtifactBulkDeleteShort instead.
+func (aaa *ArtifactsService) ArtifactBulkDelete(input *artifacts.ArtifactBulkDeleteParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Artifacts.ArtifactBulkDelete(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use ArtifactUsageGetShort instead.
 func (aaa *ArtifactsService) ArtifactUsageGet(input *artifacts.ArtifactUsageGetParams) (*amsclientmodels.APIArtifactUsageResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -231,6 +257,36 @@ func (aaa *ArtifactsService) ArtifactGetShort(input *artifacts.ArtifactGetParams
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ArtifactsService) ArtifactBulkDeleteShort(input *artifacts.ArtifactBulkDeleteParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdArtifacts != nil {
+		input.XFlightId = tempFlightIdArtifacts
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Artifacts.ArtifactBulkDeleteShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ArtifactsService) ArtifactUsageGetShort(input *artifacts.ArtifactUsageGetParams) (*amsclientmodels.APIArtifactUsageResponse, error) {

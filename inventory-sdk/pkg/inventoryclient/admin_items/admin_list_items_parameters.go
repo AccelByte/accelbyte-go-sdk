@@ -24,9 +24,6 @@ const (
 	AdminListItemsCreatedAtConstant     = "createdAt"
 	AdminListItemsCreatedAtAscConstant  = "createdAt:asc"
 	AdminListItemsCreatedAtDescConstant = "createdAt:desc"
-	AdminListItemsQtyConstant           = "qty"
-	AdminListItemsQtyAscConstant        = "qty:asc"
-	AdminListItemsQtyDescConstant       = "qty:desc"
 	AdminListItemsUpdatedAtConstant     = "updatedAt"
 	AdminListItemsUpdatedAtAscConstant  = "updatedAt:asc"
 	AdminListItemsUpdatedAtDescConstant = "updatedAt:desc"
@@ -37,12 +34,10 @@ const (
 func NewAdminListItemsParams() *AdminListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &AdminListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -54,12 +49,10 @@ func NewAdminListItemsParams() *AdminListItemsParams {
 func NewAdminListItemsParamsWithTimeout(timeout time.Duration) *AdminListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &AdminListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		timeout: timeout,
@@ -71,12 +64,10 @@ func NewAdminListItemsParamsWithTimeout(timeout time.Duration) *AdminListItemsPa
 func NewAdminListItemsParamsWithContext(ctx context.Context) *AdminListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &AdminListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		Context: ctx,
@@ -88,12 +79,10 @@ func NewAdminListItemsParamsWithContext(ctx context.Context) *AdminListItemsPara
 func NewAdminListItemsParamsWithHTTPClient(client *http.Client) *AdminListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &AdminListItemsParams{
 		Limit:      &limitDefault,
-		QtyGte:     &qtyGteDefault,
 		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
@@ -123,11 +112,6 @@ type AdminListItemsParams struct {
 	Limit *int64
 	/*Offset*/
 	Offset *int64
-	/*QtyGte
-	  Qty
-
-	*/
-	QtyGte *int64
 	/*SortBy
 	  Only support one level of sortBy; default createdAt
 
@@ -253,17 +237,6 @@ func (o *AdminListItemsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
-// WithQtyGte adds the qtyGte to the admin list items params
-func (o *AdminListItemsParams) WithQtyGte(qtyGte *int64) *AdminListItemsParams {
-	o.SetQtyGte(qtyGte)
-	return o
-}
-
-// SetQtyGte adds the qtyGte to the admin list items params
-func (o *AdminListItemsParams) SetQtyGte(qtyGte *int64) {
-	o.QtyGte = qtyGte
-}
-
 // WithSortBy adds the sortBy to the admin list items params
 func (o *AdminListItemsParams) WithSortBy(sortBy *string) *AdminListItemsParams {
 	o.SetSortBy(sortBy)
@@ -341,22 +314,6 @@ func (o *AdminListItemsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.QtyGte != nil {
-
-		// query param qtyGte
-		var qrQtyGte int64
-		if o.QtyGte != nil {
-			qrQtyGte = *o.QtyGte
-		}
-		qQtyGte := swag.FormatInt64(qrQtyGte)
-		if qQtyGte != "" {
-			if err := r.SetQueryParam("qtyGte", qQtyGte); err != nil {
 				return err
 			}
 		}

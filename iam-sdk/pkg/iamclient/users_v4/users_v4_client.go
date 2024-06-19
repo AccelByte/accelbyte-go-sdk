@@ -85,6 +85,8 @@ type ClientService interface {
 	AdminGenerateBackupCodesV4Short(params *AdminGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateBackupCodesV4OK, error)
 	AdminEnableBackupCodesV4(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, *AdminEnableBackupCodesV4BadRequest, *AdminEnableBackupCodesV4Unauthorized, *AdminEnableBackupCodesV4Forbidden, *AdminEnableBackupCodesV4NotFound, *AdminEnableBackupCodesV4Conflict, *AdminEnableBackupCodesV4InternalServerError, error)
 	AdminEnableBackupCodesV4Short(params *AdminEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableBackupCodesV4OK, error)
+	AdminChallengeMyMFAV4(params *AdminChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChallengeMyMFAV4OK, *AdminChallengeMyMFAV4NoContent, *AdminChallengeMyMFAV4BadRequest, *AdminChallengeMyMFAV4Unauthorized, *AdminChallengeMyMFAV4Forbidden, *AdminChallengeMyMFAV4NotFound, *AdminChallengeMyMFAV4InternalServerError, error)
+	AdminChallengeMyMFAV4Short(params *AdminChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChallengeMyMFAV4OK, error)
 	AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, *AdminSendMyMFAEmailCodeV4BadRequest, *AdminSendMyMFAEmailCodeV4Unauthorized, *AdminSendMyMFAEmailCodeV4Forbidden, *AdminSendMyMFAEmailCodeV4NotFound, *AdminSendMyMFAEmailCodeV4TooManyRequests, *AdminSendMyMFAEmailCodeV4InternalServerError, error)
 	AdminSendMyMFAEmailCodeV4Short(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, error)
 	AdminDisableMyEmailV4(params *AdminDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyEmailV4NoContent, *AdminDisableMyEmailV4BadRequest, *AdminDisableMyEmailV4Unauthorized, *AdminDisableMyEmailV4Forbidden, *AdminDisableMyEmailV4NotFound, *AdminDisableMyEmailV4InternalServerError, error)
@@ -95,8 +97,12 @@ type ClientService interface {
 	AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, error)
 	AdminMakeFactorMyDefaultV4(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, *AdminMakeFactorMyDefaultV4BadRequest, *AdminMakeFactorMyDefaultV4Unauthorized, *AdminMakeFactorMyDefaultV4Forbidden, *AdminMakeFactorMyDefaultV4NotFound, *AdminMakeFactorMyDefaultV4InternalServerError, error)
 	AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, error)
+	AdminGetMyMFAStatusV4(params *AdminGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyMFAStatusV4OK, *AdminGetMyMFAStatusV4Unauthorized, *AdminGetMyMFAStatusV4Forbidden, *AdminGetMyMFAStatusV4NotFound, *AdminGetMyMFAStatusV4InternalServerError, error)
+	AdminGetMyMFAStatusV4Short(params *AdminGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyMFAStatusV4OK, error)
 	AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4Unauthorized, *AdminInviteUserV4Forbidden, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error)
 	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
+	PublicListUserIDByPlatformUserIDsV4(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, *PublicListUserIDByPlatformUserIDsV4BadRequest, *PublicListUserIDByPlatformUserIDsV4Unauthorized, *PublicListUserIDByPlatformUserIDsV4Forbidden, *PublicListUserIDByPlatformUserIDsV4InternalServerError, error)
+	PublicListUserIDByPlatformUserIDsV4Short(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, error)
 	PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, *PublicCreateTestUserV4BadRequest, *PublicCreateTestUserV4NotFound, *PublicCreateTestUserV4Conflict, *PublicCreateTestUserV4InternalServerError, error)
 	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
 	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4TooManyRequests, *PublicCreateUserV4InternalServerError, error)
@@ -133,6 +139,8 @@ type ClientService interface {
 	PublicGenerateBackupCodesV4Short(params *PublicGenerateBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateBackupCodesV4NoContent, error)
 	PublicEnableBackupCodesV4(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, *PublicEnableBackupCodesV4BadRequest, *PublicEnableBackupCodesV4Unauthorized, *PublicEnableBackupCodesV4Forbidden, *PublicEnableBackupCodesV4NotFound, *PublicEnableBackupCodesV4Conflict, *PublicEnableBackupCodesV4InternalServerError, error)
 	PublicEnableBackupCodesV4Short(params *PublicEnableBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableBackupCodesV4NoContent, error)
+	PublicChallengeMyMFAV4(params *PublicChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicChallengeMyMFAV4OK, *PublicChallengeMyMFAV4NoContent, *PublicChallengeMyMFAV4BadRequest, *PublicChallengeMyMFAV4Unauthorized, *PublicChallengeMyMFAV4Forbidden, *PublicChallengeMyMFAV4NotFound, *PublicChallengeMyMFAV4InternalServerError, error)
+	PublicChallengeMyMFAV4Short(params *PublicChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicChallengeMyMFAV4OK, error)
 	PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, *PublicRemoveTrustedDeviceV4BadRequest, *PublicRemoveTrustedDeviceV4Unauthorized, *PublicRemoveTrustedDeviceV4Forbidden, *PublicRemoveTrustedDeviceV4NotFound, *PublicRemoveTrustedDeviceV4InternalServerError, error)
 	PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, error)
 	PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendMyMFAEmailCodeV4NoContent, *PublicSendMyMFAEmailCodeV4BadRequest, *PublicSendMyMFAEmailCodeV4Unauthorized, *PublicSendMyMFAEmailCodeV4Forbidden, *PublicSendMyMFAEmailCodeV4NotFound, *PublicSendMyMFAEmailCodeV4TooManyRequests, *PublicSendMyMFAEmailCodeV4InternalServerError, error)
@@ -145,6 +153,8 @@ type ClientService interface {
 	PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, error)
 	PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, *PublicMakeFactorMyDefaultV4BadRequest, *PublicMakeFactorMyDefaultV4Unauthorized, *PublicMakeFactorMyDefaultV4Forbidden, *PublicMakeFactorMyDefaultV4NotFound, *PublicMakeFactorMyDefaultV4InternalServerError, error)
 	PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error)
+	PublicGetMyMFAStatusV4(params *PublicGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyMFAStatusV4OK, *PublicGetMyMFAStatusV4Unauthorized, *PublicGetMyMFAStatusV4Forbidden, *PublicGetMyMFAStatusV4NotFound, *PublicGetMyMFAStatusV4InternalServerError, error)
+	PublicGetMyMFAStatusV4Short(params *PublicGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyMFAStatusV4OK, error)
 	PublicGetUserPublicInfoByUserIDV4(params *PublicGetUserPublicInfoByUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPublicInfoByUserIDV4OK, *PublicGetUserPublicInfoByUserIDV4BadRequest, *PublicGetUserPublicInfoByUserIDV4NotFound, *PublicGetUserPublicInfoByUserIDV4InternalServerError, error)
 	PublicGetUserPublicInfoByUserIDV4Short(params *PublicGetUserPublicInfoByUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPublicInfoByUserIDV4OK, error)
 	PublicInviteUserV4(params *PublicInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicInviteUserV4Created, *PublicInviteUserV4BadRequest, *PublicInviteUserV4Conflict, *PublicInviteUserV4UnprocessableEntity, *PublicInviteUserV4TooManyRequests, *PublicInviteUserV4InternalServerError, error)
@@ -2214,6 +2224,11 @@ Deprecated: 2022-08-10 - Use AdminDisableMyAuthenticatorV4Short instead.
 
 AdminDisableMyAuthenticatorV4 disable 2fa authenticator
 This endpoint is used to disable 2FA authenticator.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, *AdminDisableMyAuthenticatorV4BadRequest, *AdminDisableMyAuthenticatorV4Unauthorized, *AdminDisableMyAuthenticatorV4Forbidden, *AdminDisableMyAuthenticatorV4NotFound, *AdminDisableMyAuthenticatorV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2278,6 +2293,11 @@ func (a *Client) AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticat
 /*
 AdminDisableMyAuthenticatorV4Short disable 2fa authenticator
 This endpoint is used to disable 2FA authenticator.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -2829,7 +2849,12 @@ func (a *Client) AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackup
 Deprecated: 2022-08-10 - Use AdminDisableMyBackupCodesV4Short instead.
 
 AdminDisableMyBackupCodesV4 disable 2fa backup codes
-This endpoint is used to enable 2FA backup codes.
+This endpoint is used to disable 2FA backup codes.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, *AdminDisableMyBackupCodesV4BadRequest, *AdminDisableMyBackupCodesV4Unauthorized, *AdminDisableMyBackupCodesV4Forbidden, *AdminDisableMyBackupCodesV4NotFound, *AdminDisableMyBackupCodesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2893,7 +2918,12 @@ func (a *Client) AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4
 
 /*
 AdminDisableMyBackupCodesV4Short disable 2fa backup codes
-This endpoint is used to enable 2FA backup codes.
+This endpoint is used to disable 2FA backup codes.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -3566,10 +3596,140 @@ func (a *Client) AdminEnableBackupCodesV4Short(params *AdminEnableBackupCodesV4P
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminChallengeMyMFAV4Short instead.
+
+AdminChallengeMyMFAV4 challenge user mfa
+This endpoint will verify user's' MFA code and generate a MFA token.
+*/
+func (a *Client) AdminChallengeMyMFAV4(params *AdminChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChallengeMyMFAV4OK, *AdminChallengeMyMFAV4NoContent, *AdminChallengeMyMFAV4BadRequest, *AdminChallengeMyMFAV4Unauthorized, *AdminChallengeMyMFAV4Forbidden, *AdminChallengeMyMFAV4NotFound, *AdminChallengeMyMFAV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminChallengeMyMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminChallengeMyMFAV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/challenge/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminChallengeMyMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminChallengeMyMFAV4OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminChallengeMyMFAV4NoContent:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminChallengeMyMFAV4BadRequest:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminChallengeMyMFAV4Unauthorized:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminChallengeMyMFAV4Forbidden:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminChallengeMyMFAV4NotFound:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminChallengeMyMFAV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminChallengeMyMFAV4Short challenge user mfa
+This endpoint will verify user's' MFA code and generate a MFA token.
+*/
+func (a *Client) AdminChallengeMyMFAV4Short(params *AdminChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChallengeMyMFAV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminChallengeMyMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminChallengeMyMFAV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/challenge/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminChallengeMyMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminChallengeMyMFAV4OK:
+		return v, nil
+	case *AdminChallengeMyMFAV4NoContent:
+		return nil, v
+	case *AdminChallengeMyMFAV4BadRequest:
+		return nil, v
+	case *AdminChallengeMyMFAV4Unauthorized:
+		return nil, v
+	case *AdminChallengeMyMFAV4Forbidden:
+		return nil, v
+	case *AdminChallengeMyMFAV4NotFound:
+		return nil, v
+	case *AdminChallengeMyMFAV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminSendMyMFAEmailCodeV4Short instead.
 
-AdminSendMyMFAEmailCodeV4 send code for enabling email
+AdminSendMyMFAEmailCodeV4 send code for mfa email
 This endpoint is used to send email code.
+--------------
+Supported actions:
+* ChangePassword
+* DisableMFAEmail
 */
 func (a *Client) AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, *AdminSendMyMFAEmailCodeV4BadRequest, *AdminSendMyMFAEmailCodeV4Unauthorized, *AdminSendMyMFAEmailCodeV4Forbidden, *AdminSendMyMFAEmailCodeV4NotFound, *AdminSendMyMFAEmailCodeV4TooManyRequests, *AdminSendMyMFAEmailCodeV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3594,7 +3754,7 @@ func (a *Client) AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Para
 		Method:             "POST",
 		PathPattern:        "/iam/v4/admin/users/me/mfa/email/code",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSendMyMFAEmailCodeV4Reader{formats: a.formats},
@@ -3635,8 +3795,12 @@ func (a *Client) AdminSendMyMFAEmailCodeV4(params *AdminSendMyMFAEmailCodeV4Para
 }
 
 /*
-AdminSendMyMFAEmailCodeV4Short send code for enabling email
+AdminSendMyMFAEmailCodeV4Short send code for mfa email
 This endpoint is used to send email code.
+--------------
+Supported actions:
+* ChangePassword
+* DisableMFAEmail
 */
 func (a *Client) AdminSendMyMFAEmailCodeV4Short(params *AdminSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendMyMFAEmailCodeV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -3657,7 +3821,7 @@ func (a *Client) AdminSendMyMFAEmailCodeV4Short(params *AdminSendMyMFAEmailCodeV
 		Method:             "POST",
 		PathPattern:        "/iam/v4/admin/users/me/mfa/email/code",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSendMyMFAEmailCodeV4Reader{formats: a.formats},
@@ -3696,6 +3860,11 @@ Deprecated: 2022-08-10 - Use AdminDisableMyEmailV4Short instead.
 
 AdminDisableMyEmailV4 disable 2fa email
 This endpoint is used to disable 2FA email.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyEmailV4(params *AdminDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyEmailV4NoContent, *AdminDisableMyEmailV4BadRequest, *AdminDisableMyEmailV4Unauthorized, *AdminDisableMyEmailV4Forbidden, *AdminDisableMyEmailV4NotFound, *AdminDisableMyEmailV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3760,6 +3929,11 @@ func (a *Client) AdminDisableMyEmailV4(params *AdminDisableMyEmailV4Params, auth
 /*
 AdminDisableMyEmailV4Short disable 2fa email
 This endpoint is used to disable 2FA email.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) AdminDisableMyEmailV4Short(params *AdminDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyEmailV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -4181,6 +4355,122 @@ func (a *Client) AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaul
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetMyMFAStatusV4Short instead.
+
+AdminGetMyMFAStatusV4 get user mfa status
+This endpoint will get user's' MFA status.
+*/
+func (a *Client) AdminGetMyMFAStatusV4(params *AdminGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyMFAStatusV4OK, *AdminGetMyMFAStatusV4Unauthorized, *AdminGetMyMFAStatusV4Forbidden, *AdminGetMyMFAStatusV4NotFound, *AdminGetMyMFAStatusV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyMFAStatusV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyMFAStatusV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyMFAStatusV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyMFAStatusV4OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetMyMFAStatusV4Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetMyMFAStatusV4Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetMyMFAStatusV4NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetMyMFAStatusV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetMyMFAStatusV4Short get user mfa status
+This endpoint will get user's' MFA status.
+*/
+func (a *Client) AdminGetMyMFAStatusV4Short(params *AdminGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyMFAStatusV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyMFAStatusV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyMFAStatusV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyMFAStatusV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyMFAStatusV4OK:
+		return v, nil
+	case *AdminGetMyMFAStatusV4Unauthorized:
+		return nil, v
+	case *AdminGetMyMFAStatusV4Forbidden:
+		return nil, v
+	case *AdminGetMyMFAStatusV4NotFound:
+		return nil, v
+	case *AdminGetMyMFAStatusV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminInviteUserV4Short instead.
 
 AdminInviteUserV4 admin invite user v4
@@ -4332,6 +4622,182 @@ func (a *Client) AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInf
 	case *AdminInviteUserV4UnprocessableEntity:
 		return nil, v
 	case *AdminInviteUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicListUserIDByPlatformUserIDsV4Short instead.
+
+PublicListUserIDByPlatformUserIDsV4 list user id by platform user id
+List User ID By Platform User ID
+This endpoint intended to list game user ID from the given namespace
+This endpoint return list of user ID by given platform ID and list of platform user ID, the max count is 100.
+
+Supported platform:
+- steam
+- steamopenid
+- ps4web
+- ps4
+- ps5
+- live
+- xblweb
+- oculus
+- oculusweb
+- facebook
+- google
+- googleplaygames
+- twitch
+- discord
+- apple
+- device
+- justice
+- epicgames
+- nintendo
+- awscognito
+- netflix
+- snapchat
+- oidc platform id
+
+Note:
+**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+*/
+func (a *Client) PublicListUserIDByPlatformUserIDsV4(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, *PublicListUserIDByPlatformUserIDsV4BadRequest, *PublicListUserIDByPlatformUserIDsV4Unauthorized, *PublicListUserIDByPlatformUserIDsV4Forbidden, *PublicListUserIDByPlatformUserIDsV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserIDByPlatformUserIDsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserIDByPlatformUserIDsV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserIDByPlatformUserIDsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserIDByPlatformUserIDsV4OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicListUserIDByPlatformUserIDsV4BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicListUserIDByPlatformUserIDsV4Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicListUserIDByPlatformUserIDsV4Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicListUserIDByPlatformUserIDsV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicListUserIDByPlatformUserIDsV4Short list user id by platform user id
+List User ID By Platform User ID
+This endpoint intended to list game user ID from the given namespace
+This endpoint return list of user ID by given platform ID and list of platform user ID, the max count is 100.
+
+Supported platform:
+- steam
+- steamopenid
+- ps4web
+- ps4
+- ps5
+- live
+- xblweb
+- oculus
+- oculusweb
+- facebook
+- google
+- googleplaygames
+- twitch
+- discord
+- apple
+- device
+- justice
+- epicgames
+- nintendo
+- awscognito
+- netflix
+- snapchat
+- oidc platform id
+
+Note:
+**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+*/
+func (a *Client) PublicListUserIDByPlatformUserIDsV4Short(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserIDByPlatformUserIDsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserIDByPlatformUserIDsV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserIDByPlatformUserIDsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserIDByPlatformUserIDsV4OK:
+		return v, nil
+	case *PublicListUserIDByPlatformUserIDsV4BadRequest:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV4Unauthorized:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV4Forbidden:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV4InternalServerError:
 		return nil, v
 
 	default:
@@ -5332,6 +5798,11 @@ Deprecated: 2022-08-10 - Use PublicDisableMyAuthenticatorV4Short instead.
 
 PublicDisableMyAuthenticatorV4 disable 2fa authenticator
 This endpoint is used to disable 2FA authenticator.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, *PublicDisableMyAuthenticatorV4BadRequest, *PublicDisableMyAuthenticatorV4Unauthorized, *PublicDisableMyAuthenticatorV4Forbidden, *PublicDisableMyAuthenticatorV4NotFound, *PublicDisableMyAuthenticatorV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5396,6 +5867,11 @@ func (a *Client) PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthentic
 /*
 PublicDisableMyAuthenticatorV4Short disable 2fa authenticator
 This endpoint is used to disable 2FA authenticator.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5948,6 +6424,11 @@ Deprecated: 2022-08-10 - Use PublicDisableMyBackupCodesV4Short instead.
 
 PublicDisableMyBackupCodesV4 disable 2fa backup codes
 This endpoint is used to disable 2FA backup codes.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, *PublicDisableMyBackupCodesV4BadRequest, *PublicDisableMyBackupCodesV4Unauthorized, *PublicDisableMyBackupCodesV4Forbidden, *PublicDisableMyBackupCodesV4NotFound, *PublicDisableMyBackupCodesV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6012,6 +6493,11 @@ func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodes
 /*
 PublicDisableMyBackupCodesV4Short disable 2fa backup codes
 This endpoint is used to disable 2FA backup codes.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -6688,6 +7174,132 @@ func (a *Client) PublicEnableBackupCodesV4Short(params *PublicEnableBackupCodesV
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicChallengeMyMFAV4Short instead.
+
+PublicChallengeMyMFAV4 challenge user mfa
+This endpoint will verify user's' MFA code and generate a MFA token for the action.
+*/
+func (a *Client) PublicChallengeMyMFAV4(params *PublicChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicChallengeMyMFAV4OK, *PublicChallengeMyMFAV4NoContent, *PublicChallengeMyMFAV4BadRequest, *PublicChallengeMyMFAV4Unauthorized, *PublicChallengeMyMFAV4Forbidden, *PublicChallengeMyMFAV4NotFound, *PublicChallengeMyMFAV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicChallengeMyMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicChallengeMyMFAV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/challenge/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicChallengeMyMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicChallengeMyMFAV4OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *PublicChallengeMyMFAV4NoContent:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicChallengeMyMFAV4BadRequest:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicChallengeMyMFAV4Unauthorized:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *PublicChallengeMyMFAV4Forbidden:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicChallengeMyMFAV4NotFound:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicChallengeMyMFAV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicChallengeMyMFAV4Short challenge user mfa
+This endpoint will verify user's' MFA code and generate a MFA token for the action.
+*/
+func (a *Client) PublicChallengeMyMFAV4Short(params *PublicChallengeMyMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicChallengeMyMFAV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicChallengeMyMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicChallengeMyMFAV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/challenge/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicChallengeMyMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicChallengeMyMFAV4OK:
+		return v, nil
+	case *PublicChallengeMyMFAV4NoContent:
+		return nil, v
+	case *PublicChallengeMyMFAV4BadRequest:
+		return nil, v
+	case *PublicChallengeMyMFAV4Unauthorized:
+		return nil, v
+	case *PublicChallengeMyMFAV4Forbidden:
+		return nil, v
+	case *PublicChallengeMyMFAV4NotFound:
+		return nil, v
+	case *PublicChallengeMyMFAV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicRemoveTrustedDeviceV4Short instead.
 
 PublicRemoveTrustedDeviceV4 remove trusted device
@@ -6813,8 +7425,12 @@ func (a *Client) PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDev
 /*
 Deprecated: 2022-08-10 - Use PublicSendMyMFAEmailCodeV4Short instead.
 
-PublicSendMyMFAEmailCodeV4 send code for enabling email
+PublicSendMyMFAEmailCodeV4 send code for mfa email
 This endpoint is used to send email code.
+----------------
+Supported values of action:
+* ChangePassword
+* DisableMFAEmail
 */
 func (a *Client) PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendMyMFAEmailCodeV4NoContent, *PublicSendMyMFAEmailCodeV4BadRequest, *PublicSendMyMFAEmailCodeV4Unauthorized, *PublicSendMyMFAEmailCodeV4Forbidden, *PublicSendMyMFAEmailCodeV4NotFound, *PublicSendMyMFAEmailCodeV4TooManyRequests, *PublicSendMyMFAEmailCodeV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6839,7 +7455,7 @@ func (a *Client) PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Pa
 		Method:             "POST",
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/code",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSendMyMFAEmailCodeV4Reader{formats: a.formats},
@@ -6880,8 +7496,12 @@ func (a *Client) PublicSendMyMFAEmailCodeV4(params *PublicSendMyMFAEmailCodeV4Pa
 }
 
 /*
-PublicSendMyMFAEmailCodeV4Short send code for enabling email
+PublicSendMyMFAEmailCodeV4Short send code for mfa email
 This endpoint is used to send email code.
+----------------
+Supported values of action:
+* ChangePassword
+* DisableMFAEmail
 */
 func (a *Client) PublicSendMyMFAEmailCodeV4Short(params *PublicSendMyMFAEmailCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendMyMFAEmailCodeV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -6902,7 +7522,7 @@ func (a *Client) PublicSendMyMFAEmailCodeV4Short(params *PublicSendMyMFAEmailCod
 		Method:             "POST",
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/email/code",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSendMyMFAEmailCodeV4Reader{formats: a.formats},
@@ -6941,6 +7561,11 @@ Deprecated: 2022-08-10 - Use PublicDisableMyEmailV4Short instead.
 
 PublicDisableMyEmailV4 disable 2fa email
 This endpoint is used to disable 2FA email.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyEmailV4(params *PublicDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyEmailV4NoContent, *PublicDisableMyEmailV4BadRequest, *PublicDisableMyEmailV4Unauthorized, *PublicDisableMyEmailV4Forbidden, *PublicDisableMyEmailV4NotFound, *PublicDisableMyEmailV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -7005,6 +7630,11 @@ func (a *Client) PublicDisableMyEmailV4(params *PublicDisableMyEmailV4Params, au
 /*
 PublicDisableMyEmailV4Short disable 2fa email
 This endpoint is used to disable 2FA email.
+------
+**Note**: **mfaToken** is required when all the following are enabled:
+- The environment variable **SENSITIVE_MFA_AUTH_ENABLED** is true
+- The **Two-Factor Authentication** is enabled in the IAM client where user logs in
+- Users already enabled the MFA
 */
 func (a *Client) PublicDisableMyEmailV4Short(params *PublicDisableMyEmailV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyEmailV4NoContent, error) {
 	// TODO: Validate the params before sending
@@ -7418,6 +8048,122 @@ func (a *Client) PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefa
 	case *PublicMakeFactorMyDefaultV4NotFound:
 		return nil, v
 	case *PublicMakeFactorMyDefaultV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetMyMFAStatusV4Short instead.
+
+PublicGetMyMFAStatusV4 get user mfa status
+This endpoint will get user's' MFA status.
+*/
+func (a *Client) PublicGetMyMFAStatusV4(params *PublicGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyMFAStatusV4OK, *PublicGetMyMFAStatusV4Unauthorized, *PublicGetMyMFAStatusV4Forbidden, *PublicGetMyMFAStatusV4NotFound, *PublicGetMyMFAStatusV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyMFAStatusV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyMFAStatusV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyMFAStatusV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyMFAStatusV4OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetMyMFAStatusV4Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetMyMFAStatusV4Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetMyMFAStatusV4NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetMyMFAStatusV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetMyMFAStatusV4Short get user mfa status
+This endpoint will get user's' MFA status.
+*/
+func (a *Client) PublicGetMyMFAStatusV4Short(params *PublicGetMyMFAStatusV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyMFAStatusV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyMFAStatusV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyMFAStatusV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyMFAStatusV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyMFAStatusV4OK:
+		return v, nil
+	case *PublicGetMyMFAStatusV4Unauthorized:
+		return nil, v
+	case *PublicGetMyMFAStatusV4Forbidden:
+		return nil, v
+	case *PublicGetMyMFAStatusV4NotFound:
+		return nil, v
+	case *PublicGetMyMFAStatusV4InternalServerError:
 		return nil, v
 
 	default:

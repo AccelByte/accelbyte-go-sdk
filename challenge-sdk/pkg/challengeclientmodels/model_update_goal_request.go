@@ -7,8 +7,6 @@
 package challengeclientmodels
 
 import (
-	"strconv"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,8 +19,7 @@ import (
 type ModelUpdateGoalRequest struct {
 
 	// description
-	// Required: true
-	Description *string `json:"description"`
+	Description string `json:"description,omitempty"`
 
 	// isactive
 	IsActive bool `json:"isActive"`
@@ -32,38 +29,23 @@ type ModelUpdateGoalRequest struct {
 	Name *string `json:"name"`
 
 	// requirementgroups
-	// Required: true
-	RequirementGroups []*ModelRequirement `json:"requirementGroups"`
+	RequirementGroups []*ModelRequirement `json:"requirementGroups,omitempty"`
 
 	// rewards
-	// Required: true
-	Rewards []*ModelReward `json:"rewards"`
+	Rewards []*ModelReward `json:"rewards,omitempty"`
 
 	// schedule
 	Schedule *ModelGoalSchedule `json:"schedule,omitempty"`
 
 	// tags
-	// Required: true
-	Tags []string `json:"tags"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 // Validate validates this Model update goal request
 func (m *ModelUpdateGoalRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRequirementGroups(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateRewards(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,77 +55,9 @@ func (m *ModelUpdateGoalRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelUpdateGoalRequest) validateDescription(formats strfmt.Registry) error {
-
-	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelUpdateGoalRequest) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelUpdateGoalRequest) validateRequirementGroups(formats strfmt.Registry) error {
-
-	if err := validate.Required("requirementGroups", "body", m.RequirementGroups); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.RequirementGroups); i++ {
-		if swag.IsZero(m.RequirementGroups[i]) { // not required
-			continue
-		}
-
-		if m.RequirementGroups[i] != nil {
-			if err := m.RequirementGroups[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("requirementGroups" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ModelUpdateGoalRequest) validateRewards(formats strfmt.Registry) error {
-
-	if err := validate.Required("rewards", "body", m.Rewards); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Rewards); i++ {
-		if swag.IsZero(m.Rewards[i]) { // not required
-			continue
-		}
-
-		if m.Rewards[i] != nil {
-			if err := m.Rewards[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("rewards" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ModelUpdateGoalRequest) validateTags(formats strfmt.Registry) error {
-
-	if err := validate.Required("tags", "body", m.Tags); err != nil {
 		return err
 	}
 

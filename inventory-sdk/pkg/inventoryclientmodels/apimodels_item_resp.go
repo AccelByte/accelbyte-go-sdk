@@ -35,6 +35,10 @@ type ApimodelsItemResp struct {
 	// Required: true
 	InventoryID *string `json:"inventoryId"`
 
+	// iteminfo
+	// Required: true
+	ItemInfo interface{} `json:"itemInfo"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

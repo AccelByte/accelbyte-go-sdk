@@ -38,6 +38,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// Required: true
 	CreatedAt *string `json:"createdAt"`
 
+	// customurlgrpc
+	CustomURLGRPC string `json:"customURLGRPC,omitempty"`
+
 	// deployment
 	// Required: true
 	Deployment *string `json:"deployment"`

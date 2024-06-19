@@ -25,9 +25,9 @@ var GetPaymentMerchantConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &payment_config.GetPaymentMerchantConfigParams{
-			ID: id_,
+			Namespace: namespace,
 		}
 		ok, errOK := paymentConfigService.GetPaymentMerchantConfigShort(input)
 		if errOK != nil {
@@ -43,6 +43,6 @@ var GetPaymentMerchantConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentMerchantConfigCmd.Flags().String("id", "", "Id")
-	_ = GetPaymentMerchantConfigCmd.MarkFlagRequired("id")
+	GetPaymentMerchantConfigCmd.Flags().String("namespace", "", "Namespace")
+	_ = GetPaymentMerchantConfigCmd.MarkFlagRequired("namespace")
 }

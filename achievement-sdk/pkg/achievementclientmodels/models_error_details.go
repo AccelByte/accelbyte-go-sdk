@@ -26,6 +26,9 @@ type ModelsErrorDetails struct {
 	// errormessage
 	// Required: true
 	ErrorMessage *string `json:"errorMessage"`
+
+	// thirdpartyreferenceid
+	ThirdPartyReferenceID string `json:"thirdPartyReferenceId,omitempty"`
 }
 
 // Validate validates this Models error details

@@ -49,6 +49,9 @@ type ModelsConfig struct {
 	// disableinvitationonjoinparty
 	DisableInvitationOnJoinParty bool `json:"disableInvitationOnJoinParty"`
 
+	// disableremovesocketoldconnection
+	DisableRemoveSocketOldConnection bool `json:"disableRemoveSocketOldConnection"`
+
 	// enablechat
 	EnableChat bool `json:"enableChat"`
 

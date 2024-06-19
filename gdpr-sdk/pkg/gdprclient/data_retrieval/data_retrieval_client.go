@@ -34,7 +34,7 @@ type ClientService interface {
 	AdminGetListPersonalDataRequestShort(params *AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListPersonalDataRequestOK, error)
 	AdminGetUserPersonalDataRequests(params *AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPersonalDataRequestsOK, *AdminGetUserPersonalDataRequestsBadRequest, *AdminGetUserPersonalDataRequestsUnauthorized, *AdminGetUserPersonalDataRequestsInternalServerError, error)
 	AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPersonalDataRequestsOK, error)
-	AdminRequestDataRetrieval(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, *AdminRequestDataRetrievalBadRequest, *AdminRequestDataRetrievalUnauthorized, *AdminRequestDataRetrievalInternalServerError, error)
+	AdminRequestDataRetrieval(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, *AdminRequestDataRetrievalBadRequest, *AdminRequestDataRetrievalUnauthorized, *AdminRequestDataRetrievalNotFound, *AdminRequestDataRetrievalTooManyRequests, *AdminRequestDataRetrievalInternalServerError, error)
 	AdminRequestDataRetrievalShort(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, error)
 	AdminCancelUserPersonalDataRequest(params *AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserPersonalDataRequestNoContent, *AdminCancelUserPersonalDataRequestUnauthorized, *AdminCancelUserPersonalDataRequestNotFound, *AdminCancelUserPersonalDataRequestConflict, *AdminCancelUserPersonalDataRequestInternalServerError, error)
 	AdminCancelUserPersonalDataRequestShort(params *AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserPersonalDataRequestNoContent, error)
@@ -42,7 +42,7 @@ type ClientService interface {
 	AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, error)
 	PublicGetUserPersonalDataRequests(params *PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPersonalDataRequestsOK, *PublicGetUserPersonalDataRequestsBadRequest, *PublicGetUserPersonalDataRequestsUnauthorized, *PublicGetUserPersonalDataRequestsInternalServerError, error)
 	PublicGetUserPersonalDataRequestsShort(params *PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPersonalDataRequestsOK, error)
-	PublicRequestDataRetrieval(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, *PublicRequestDataRetrievalBadRequest, *PublicRequestDataRetrievalUnauthorized, *PublicRequestDataRetrievalInternalServerError, error)
+	PublicRequestDataRetrieval(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, *PublicRequestDataRetrievalBadRequest, *PublicRequestDataRetrievalUnauthorized, *PublicRequestDataRetrievalTooManyRequests, *PublicRequestDataRetrievalInternalServerError, error)
 	PublicRequestDataRetrievalShort(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, error)
 	PublicCancelUserPersonalDataRequest(params *PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserPersonalDataRequestNoContent, *PublicCancelUserPersonalDataRequestUnauthorized, *PublicCancelUserPersonalDataRequestNotFound, *PublicCancelUserPersonalDataRequestConflict, *PublicCancelUserPersonalDataRequestInternalServerError, error)
 	PublicCancelUserPersonalDataRequestShort(params *PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserPersonalDataRequestNoContent, error)
@@ -292,11 +292,13 @@ func (a *Client) AdminGetUserPersonalDataRequestsShort(params *AdminGetUserPerso
 Deprecated: 2022-08-10 - Use AdminRequestDataRetrievalShort instead.
 
 AdminRequestDataRetrieval submit user personal data retrieval request
-Submit user personal data retrieval request
-If admin request data for themselves, password is need to be set
+Submit user personal data retrieval request.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
-func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, *AdminRequestDataRetrievalBadRequest, *AdminRequestDataRetrievalUnauthorized, *AdminRequestDataRetrievalInternalServerError, error) {
+func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, *AdminRequestDataRetrievalBadRequest, *AdminRequestDataRetrievalUnauthorized, *AdminRequestDataRetrievalNotFound, *AdminRequestDataRetrievalTooManyRequests, *AdminRequestDataRetrievalInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminRequestDataRetrievalParams()
@@ -328,33 +330,41 @@ func (a *Client) AdminRequestDataRetrieval(params *AdminRequestDataRetrievalPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminRequestDataRetrievalCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminRequestDataRetrievalBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminRequestDataRetrievalUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminRequestDataRetrievalNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminRequestDataRetrievalTooManyRequests:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminRequestDataRetrievalInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
 AdminRequestDataRetrievalShort submit user personal data retrieval request
-Submit user personal data retrieval request
-If admin request data for themselves, password is need to be set
+Submit user personal data retrieval request.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
@@ -394,6 +404,10 @@ func (a *Client) AdminRequestDataRetrievalShort(params *AdminRequestDataRetrieva
 	case *AdminRequestDataRetrievalBadRequest:
 		return nil, v
 	case *AdminRequestDataRetrievalUnauthorized:
+		return nil, v
+	case *AdminRequestDataRetrievalNotFound:
+		return nil, v
+	case *AdminRequestDataRetrievalTooManyRequests:
 		return nil, v
 	case *AdminRequestDataRetrievalInternalServerError:
 		return nil, v
@@ -525,8 +539,11 @@ func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUser
 Deprecated: 2022-08-10 - Use AdminGeneratePersonalDataURLShort instead.
 
 AdminGeneratePersonalDataURL generate personal data download url
-Generate personal data download url
+Generate personal data download url.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, *AdminGeneratePersonalDataURLBadRequest, *AdminGeneratePersonalDataURLUnauthorized, *AdminGeneratePersonalDataURLNotFound, *AdminGeneratePersonalDataURLInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -587,8 +604,11 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 
 /*
 AdminGeneratePersonalDataURLShort generate personal data download url
-Generate personal data download url
+Generate personal data download url.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending
@@ -760,8 +780,11 @@ Deprecated: 2022-08-10 - Use PublicRequestDataRetrievalShort instead.
 PublicRequestDataRetrieval submit personal data retrieval request
 Submit personal data retrieval request.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
-func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, *PublicRequestDataRetrievalBadRequest, *PublicRequestDataRetrievalUnauthorized, *PublicRequestDataRetrievalInternalServerError, error) {
+func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, *PublicRequestDataRetrievalBadRequest, *PublicRequestDataRetrievalUnauthorized, *PublicRequestDataRetrievalTooManyRequests, *PublicRequestDataRetrievalInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicRequestDataRetrievalParams()
@@ -793,25 +816,28 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicRequestDataRetrievalCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicRequestDataRetrievalBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicRequestDataRetrievalUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicRequestDataRetrievalTooManyRequests:
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicRequestDataRetrievalInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -819,6 +845,9 @@ func (a *Client) PublicRequestDataRetrieval(params *PublicRequestDataRetrievalPa
 PublicRequestDataRetrievalShort submit personal data retrieval request
 Submit personal data retrieval request.
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRequestDataRetrievalCreated, error) {
 	// TODO: Validate the params before sending
@@ -858,6 +887,8 @@ func (a *Client) PublicRequestDataRetrievalShort(params *PublicRequestDataRetrie
 	case *PublicRequestDataRetrievalBadRequest:
 		return nil, v
 	case *PublicRequestDataRetrievalUnauthorized:
+		return nil, v
+	case *PublicRequestDataRetrievalTooManyRequests:
 		return nil, v
 	case *PublicRequestDataRetrievalInternalServerError:
 		return nil, v
@@ -994,6 +1025,9 @@ PublicGeneratePersonalDataURL generate personal data download url
 Generate personal data download url
 Requires valid user access token
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) PublicGeneratePersonalDataURL(params *PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePersonalDataURLOK, *PublicGeneratePersonalDataURLBadRequest, *PublicGeneratePersonalDataURLUnauthorized, *PublicGeneratePersonalDataURLNotFound, *PublicGeneratePersonalDataURLInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1057,6 +1091,9 @@ PublicGeneratePersonalDataURLShort generate personal data download url
 Generate personal data download url
 Requires valid user access token
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) PublicGeneratePersonalDataURLShort(params *PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending

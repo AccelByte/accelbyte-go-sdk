@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.15.0"
+    "version": "3.15.5"
   },
   "schemes": [
     "https"
@@ -3126,6 +3126,80 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:SESSION:PLAYER:{userId} [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/users/{userId}/native-sync": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Trigger user\u0026#39;s active party session to native platform.\n",
+        "operationId": "adminSyncNativeSession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Trigger user's active party session to native platform.",
+        "tags": [
+          "Party"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:NATIVE:SYNC [CREATE]"
             ]
           }
         ]
@@ -6534,6 +6608,9 @@
         "createdAt": {
           "type": "string"
         },
+        "customURLGRPC": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -6693,6 +6770,9 @@
         "clientVersion": {
           "type": "string"
         },
+        "customURLGRPC": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -6814,6 +6894,9 @@
           "type": "string"
         },
         "configurationName": {
+          "type": "string"
+        },
+        "customURLGRPC": {
           "type": "string"
         },
         "deployment": {
@@ -7498,6 +7581,9 @@
         "clientVersion": {
           "type": "string"
         },
+        "customURLGRPC": {
+          "type": "string"
+        },
         "deployment": {
           "type": "string"
         },
@@ -7754,6 +7840,9 @@
           "x-omitempty": false
         },
         "clientVersion": {
+          "type": "string"
+        },
+        "customURLGRPC": {
           "type": "string"
         },
         "deployment": {
@@ -8213,6 +8302,9 @@
         "deployment": {
           "type": "string"
         },
+        "extend_region": {
+          "type": "string"
+        },
         "game_version": {
           "type": "string"
         },
@@ -8549,9 +8641,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-17T10:46:38+00:00",
-    "gitHash": "f9da41aff16aaaac8d535698dc4794ec3d5b5fa0",
-    "version": "3.15.0",
+    "buildDate": "2024-06-03T05:19:58+00:00",
+    "gitHash": "b3859d074c0c5bc0f801114e557a4b60e2ff42f6",
+    "version": "3.15.5",
     "version-roles-seeding": "1.2.37"
   }
 }

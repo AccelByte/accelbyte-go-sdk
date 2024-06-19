@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	ArtifactGet(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, *ArtifactGetBadRequest, *ArtifactGetUnauthorized, *ArtifactGetForbidden, *ArtifactGetInternalServerError, error)
 	ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactGetOK, error)
+	ArtifactBulkDelete(params *ArtifactBulkDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactBulkDeleteAccepted, *ArtifactBulkDeleteBadRequest, *ArtifactBulkDeleteUnauthorized, *ArtifactBulkDeleteForbidden, *ArtifactBulkDeleteInternalServerError, error)
+	ArtifactBulkDeleteShort(params *ArtifactBulkDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactBulkDeleteAccepted, error)
 	ArtifactUsageGet(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, *ArtifactUsageGetUnauthorized, *ArtifactUsageGetForbidden, *ArtifactUsageGetInternalServerError, error)
 	ArtifactUsageGetShort(params *ArtifactUsageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactUsageGetOK, error)
 	ArtifactDelete(params *ArtifactDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactDeleteAccepted, *ArtifactDeleteBadRequest, *ArtifactDeleteUnauthorized, *ArtifactDeleteForbidden, *ArtifactDeleteNotFound, *ArtifactDeleteInternalServerError, error)
@@ -159,6 +161,122 @@ func (a *Client) ArtifactGetShort(params *ArtifactGetParams, authInfo runtime.Cl
 	case *ArtifactGetForbidden:
 		return nil, v
 	case *ArtifactGetInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ArtifactBulkDeleteShort instead.
+
+ArtifactBulkDelete delete artifacts that match criteria in bulk. all artifacts matching any one criteria will be deleted. at least 1 parameter is required.
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]
+*/
+func (a *Client) ArtifactBulkDelete(params *ArtifactBulkDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactBulkDeleteAccepted, *ArtifactBulkDeleteBadRequest, *ArtifactBulkDeleteUnauthorized, *ArtifactBulkDeleteForbidden, *ArtifactBulkDeleteInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewArtifactBulkDeleteParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ArtifactBulkDelete",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/artifacts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ArtifactBulkDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ArtifactBulkDeleteAccepted:
+		return v, nil, nil, nil, nil, nil
+
+	case *ArtifactBulkDeleteBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *ArtifactBulkDeleteUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *ArtifactBulkDeleteForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *ArtifactBulkDeleteInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ArtifactBulkDeleteShort delete artifacts that match criteria in bulk. all artifacts matching any one criteria will be deleted. at least 1 parameter is required.
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]
+*/
+func (a *Client) ArtifactBulkDeleteShort(params *ArtifactBulkDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*ArtifactBulkDeleteAccepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewArtifactBulkDeleteParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ArtifactBulkDelete",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/artifacts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ArtifactBulkDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ArtifactBulkDeleteAccepted:
+		return v, nil
+	case *ArtifactBulkDeleteBadRequest:
+		return nil, v
+	case *ArtifactBulkDeleteUnauthorized:
+		return nil, v
+	case *ArtifactBulkDeleteForbidden:
+		return nil, v
+	case *ArtifactBulkDeleteInternalServerError:
 		return nil, v
 
 	default:

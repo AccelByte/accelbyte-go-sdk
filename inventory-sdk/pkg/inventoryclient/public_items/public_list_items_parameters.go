@@ -24,9 +24,6 @@ const (
 	PublicListItemsCreatedAtConstant     = "createdAt"
 	PublicListItemsCreatedAtAscConstant  = "createdAt:asc"
 	PublicListItemsCreatedAtDescConstant = "createdAt:desc"
-	PublicListItemsQtyConstant           = "qty"
-	PublicListItemsQtyAscConstant        = "qty:asc"
-	PublicListItemsQtyDescConstant       = "qty:desc"
 	PublicListItemsUpdatedAtConstant     = "updatedAt"
 	PublicListItemsUpdatedAtAscConstant  = "updatedAt:asc"
 	PublicListItemsUpdatedAtDescConstant = "updatedAt:desc"
@@ -37,12 +34,10 @@ const (
 func NewPublicListItemsParams() *PublicListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &PublicListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -54,12 +49,10 @@ func NewPublicListItemsParams() *PublicListItemsParams {
 func NewPublicListItemsParamsWithTimeout(timeout time.Duration) *PublicListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &PublicListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		timeout: timeout,
@@ -71,12 +64,10 @@ func NewPublicListItemsParamsWithTimeout(timeout time.Duration) *PublicListItems
 func NewPublicListItemsParamsWithContext(ctx context.Context) *PublicListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &PublicListItemsParams{
 		Limit:  &limitDefault,
-		QtyGte: &qtyGteDefault,
 		SortBy: &sortByDefault,
 
 		Context: ctx,
@@ -88,12 +79,10 @@ func NewPublicListItemsParamsWithContext(ctx context.Context) *PublicListItemsPa
 func NewPublicListItemsParamsWithHTTPClient(client *http.Client) *PublicListItemsParams {
 	var (
 		limitDefault  = int64(25)
-		qtyGteDefault = int64(1)
 		sortByDefault = string("createdAt")
 	)
 	return &PublicListItemsParams{
 		Limit:      &limitDefault,
-		QtyGte:     &qtyGteDefault,
 		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
@@ -123,11 +112,6 @@ type PublicListItemsParams struct {
 	Limit *int64
 	/*Offset*/
 	Offset *int64
-	/*QtyGte
-	  Qty
-
-	*/
-	QtyGte *int64
 	/*SortBy
 	  Only support one level of sortBy; default createdAt
 
@@ -253,17 +237,6 @@ func (o *PublicListItemsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
-// WithQtyGte adds the qtyGte to the public list items params
-func (o *PublicListItemsParams) WithQtyGte(qtyGte *int64) *PublicListItemsParams {
-	o.SetQtyGte(qtyGte)
-	return o
-}
-
-// SetQtyGte adds the qtyGte to the public list items params
-func (o *PublicListItemsParams) SetQtyGte(qtyGte *int64) {
-	o.QtyGte = qtyGte
-}
-
 // WithSortBy adds the sortBy to the public list items params
 func (o *PublicListItemsParams) WithSortBy(sortBy *string) *PublicListItemsParams {
 	o.SetSortBy(sortBy)
@@ -341,22 +314,6 @@ func (o *PublicListItemsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.QtyGte != nil {
-
-		// query param qtyGte
-		var qrQtyGte int64
-		if o.QtyGte != nil {
-			qrQtyGte = *o.QtyGte
-		}
-		qQtyGte := swag.FormatInt64(qrQtyGte)
-		if qQtyGte != "" {
-			if err := r.SetQueryParam("qtyGte", qQtyGte); err != nil {
 				return err
 			}
 		}

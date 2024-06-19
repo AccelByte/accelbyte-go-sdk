@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.35.5"
+    "version": "3.35.9"
   },
   "schemes": [
     "https"
@@ -1398,6 +1398,86 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/lobby/v1/admin/config/log": {
+      "get": {
+        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetLogConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Log Configuration",
+        "tags": [
+          "config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateLogConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Log Configuration",
+        "tags": [
+          "config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [UPDATE]"
             ]
           }
         ]
@@ -8527,6 +8607,26 @@
         "Text"
       ]
     },
+    "logconfig.Configuration": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "socketLogEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
     "model.BulkFriendsRequest": {
       "properties": {
         "friendIds": {
@@ -9762,6 +9862,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "disableRemoveSocketOldConnection": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "enableChat": {
           "type": "boolean",
           "x-omitempty": false
@@ -10308,12 +10412,12 @@
     "path": "/lobby/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-24T13:28:50+00:00",
-    "gitHash": "6c2fe2ef70e6013f52a66a454d34f489dc99f804",
+    "buildDate": "2024-06-12T07:54:36+00:00",
+    "gitHash": "6a03c7a69be8cede0d1029c7c67b6e4effdf26b5",
     "name": "justice-lobby-server",
-    "revisionID": "3.35.5",
-    "version": "3.35.5",
+    "revisionID": "3.35.9",
+    "version": "3.35.9",
     "version-justice": "3.45.0",
-    "version-roles-seeding": "1.0.1"
+    "version-roles-seeding": "1.2.36"
   }
 }

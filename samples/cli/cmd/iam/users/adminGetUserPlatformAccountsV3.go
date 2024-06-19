@@ -31,13 +31,15 @@ var AdminGetUserPlatformAccountsV3Cmd = &cobra.Command{
 		before, _ := cmd.Flags().GetString("before")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		platformId, _ := cmd.Flags().GetString("platformId")
+		targetNamespace, _ := cmd.Flags().GetString("targetNamespace")
 		input := &users.AdminGetUserPlatformAccountsV3Params{
-			Namespace:  namespace,
-			UserID:     userId,
-			After:      &after,
-			Before:     &before,
-			Limit:      &limit,
-			PlatformID: &platformId,
+			Namespace:       namespace,
+			UserID:          userId,
+			After:           &after,
+			Before:          &before,
+			Limit:           &limit,
+			PlatformID:      &platformId,
+			TargetNamespace: &targetNamespace,
 		}
 		ok, errOK := usersService.AdminGetUserPlatformAccountsV3Short(input)
 		if errOK != nil {
@@ -61,4 +63,5 @@ func init() {
 	AdminGetUserPlatformAccountsV3Cmd.Flags().String("before", "0", "Before")
 	AdminGetUserPlatformAccountsV3Cmd.Flags().Int64("limit", 20, "Limit")
 	AdminGetUserPlatformAccountsV3Cmd.Flags().String("platformId", "", "Platform id")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().String("targetNamespace", "", "Target namespace")
 }

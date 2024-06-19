@@ -43,6 +43,16 @@ type PaymentOrder struct {
 	// charging
 	Charging bool `json:"charging"`
 
+	// checkouturl
+	CheckoutURL string `json:"checkoutUrl,omitempty"`
+
+	// checkouturlexpiredat
+	// Format: date-time
+	CheckoutURLExpiredAt *strfmt.DateTime `json:"checkoutUrlExpiredAt,omitempty"`
+
+	// checkouturlvalid
+	CheckoutURLValid bool `json:"checkoutUrlValid"`
+
 	// createdat
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
@@ -79,11 +89,17 @@ type PaymentOrder struct {
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 
+	// neonpayconfig
+	NeonPayConfig *PaymentOrderNeonPayConfig `json:"neonPayConfig,omitempty"`
+
 	// notifyurl
 	NotifyURL string `json:"notifyUrl,omitempty"`
 
 	// omitnotification
 	OmitNotification bool `json:"omitNotification"`
+
+	// paymentdata
+	PaymentData *PaymentData `json:"paymentData,omitempty"`
 
 	// paymentmethod
 	PaymentMethod string `json:"paymentMethod,omitempty"`
@@ -96,7 +112,7 @@ type PaymentOrder struct {
 	PaymentOrderNo string `json:"paymentOrderNo,omitempty"`
 
 	// paymentprovider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	PaymentProvider string `json:"paymentProvider,omitempty"`
 
 	// paymentproviderfee
@@ -295,7 +311,7 @@ var paymentOrderTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -313,6 +329,9 @@ const (
 
 	// PaymentOrderPaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	PaymentOrderPaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// PaymentOrderPaymentProviderNEONPAY captures enum value "NEONPAY"
+	PaymentOrderPaymentProviderNEONPAY string = "NEONPAY"
 
 	// PaymentOrderPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentOrderPaymentProviderPAYPAL string = "PAYPAL"

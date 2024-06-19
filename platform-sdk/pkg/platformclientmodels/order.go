@@ -105,6 +105,9 @@ type Order struct {
 	// orderno
 	OrderNo string `json:"orderNo,omitempty"`
 
+	// paymentdata
+	PaymentData *PaymentData `json:"paymentData,omitempty"`
+
 	// paymentmethod
 	PaymentMethod string `json:"paymentMethod,omitempty"`
 
@@ -116,7 +119,7 @@ type Order struct {
 	PaymentOrderNo string `json:"paymentOrderNo,omitempty"`
 
 	// paymentprovider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	PaymentProvider string `json:"paymentProvider,omitempty"`
 
 	// paymentproviderfee
@@ -208,7 +211,7 @@ var orderTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -226,6 +229,9 @@ const (
 
 	// OrderPaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	OrderPaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// OrderPaymentProviderNEONPAY captures enum value "NEONPAY"
+	OrderPaymentProviderNEONPAY string = "NEONPAY"
 
 	// OrderPaymentProviderPAYPAL captures enum value "PAYPAL"
 	OrderPaymentProviderPAYPAL string = "PAYPAL"

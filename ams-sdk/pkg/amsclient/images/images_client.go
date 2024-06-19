@@ -34,8 +34,12 @@ type ClientService interface {
 	ImageListShort(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, error)
 	ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, *ImageGetUnauthorized, *ImageGetForbidden, *ImageGetNotFound, *ImageGetInternalServerError, error)
 	ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, error)
+	ImageMarkForDeletion(params *ImageMarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageMarkForDeletionAccepted, *ImageMarkForDeletionUnauthorized, *ImageMarkForDeletionForbidden, *ImageMarkForDeletionNotFound, *ImageMarkForDeletionPreconditionFailed, *ImageMarkForDeletionInternalServerError, error)
+	ImageMarkForDeletionShort(params *ImageMarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageMarkForDeletionAccepted, error)
 	ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, *ImagePatchUnauthorized, *ImagePatchForbidden, *ImagePatchNotFound, *ImagePatchInternalServerError, error)
 	ImagePatchShort(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, error)
+	ImageUnmarkForDeletion(params *ImageUnmarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageUnmarkForDeletionAccepted, *ImageUnmarkForDeletionUnauthorized, *ImageUnmarkForDeletionForbidden, *ImageUnmarkForDeletionNotFound, *ImageUnmarkForDeletionPreconditionFailed, *ImageUnmarkForDeletionInternalServerError, error)
+	ImageUnmarkForDeletionShort(params *ImageUnmarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageUnmarkForDeletionAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,7 +50,7 @@ Deprecated: 2022-08-10 - Use ImageListShort instead.
 ImageList get a list of existing images
 Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
 */
 func (a *Client) ImageList(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, *ImageListUnauthorized, *ImageListForbidden, *ImageListNotFound, *ImageListInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -109,7 +113,7 @@ func (a *Client) ImageList(params *ImageListParams, authInfo runtime.ClientAuthI
 ImageListShort get a list of existing images
 Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
 */
 func (a *Client) ImageListShort(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, error) {
 	// TODO: Validate the params before sending
@@ -164,7 +168,7 @@ func (a *Client) ImageListShort(params *ImageListParams, authInfo runtime.Client
 Deprecated: 2022-08-10 - Use ImageGetShort instead.
 
 ImageGet get image details.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
 */
 func (a *Client) ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, *ImageGetUnauthorized, *ImageGetForbidden, *ImageGetNotFound, *ImageGetInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -225,7 +229,7 @@ func (a *Client) ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInf
 
 /*
 ImageGetShort get image details.
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
 */
 func (a *Client) ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, error) {
 	// TODO: Validate the params before sending
@@ -277,12 +281,137 @@ func (a *Client) ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAu
 }
 
 /*
+Deprecated: 2022-08-10 - Use ImageMarkForDeletionShort instead.
+
+ImageMarkForDeletion mark the image for deletion
+Marks an image for deletion. The image will stop being available for fleets and will eventually be deleted.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]
+*/
+func (a *Client) ImageMarkForDeletion(params *ImageMarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageMarkForDeletionAccepted, *ImageMarkForDeletionUnauthorized, *ImageMarkForDeletionForbidden, *ImageMarkForDeletionNotFound, *ImageMarkForDeletionPreconditionFailed, *ImageMarkForDeletionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageMarkForDeletionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageMarkForDeletion",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images/{imageID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageMarkForDeletionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageMarkForDeletionAccepted:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *ImageMarkForDeletionUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *ImageMarkForDeletionForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *ImageMarkForDeletionNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *ImageMarkForDeletionPreconditionFailed:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *ImageMarkForDeletionInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImageMarkForDeletionShort mark the image for deletion
+Marks an image for deletion. The image will stop being available for fleets and will eventually be deleted.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]
+*/
+func (a *Client) ImageMarkForDeletionShort(params *ImageMarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageMarkForDeletionAccepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageMarkForDeletionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageMarkForDeletion",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images/{imageID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageMarkForDeletionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageMarkForDeletionAccepted:
+		return v, nil
+	case *ImageMarkForDeletionUnauthorized:
+		return nil, v
+	case *ImageMarkForDeletionForbidden:
+		return nil, v
+	case *ImageMarkForDeletionNotFound:
+		return nil, v
+	case *ImageMarkForDeletionPreconditionFailed:
+		return nil, v
+	case *ImageMarkForDeletionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use ImagePatchShort instead.
 
 ImagePatch edit the image
 This allows editing of the image name, toggling `IsProtected`, or adding & removal of tags
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]
 */
 func (a *Client) ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, *ImagePatchUnauthorized, *ImagePatchForbidden, *ImagePatchNotFound, *ImagePatchInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -345,7 +474,7 @@ func (a *Client) ImagePatch(params *ImagePatchParams, authInfo runtime.ClientAut
 ImagePatchShort edit the image
 This allows editing of the image name, toggling `IsProtected`, or adding & removal of tags
 
-Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]
 */
 func (a *Client) ImagePatchShort(params *ImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*ImagePatchOK, error) {
 	// TODO: Validate the params before sending
@@ -389,6 +518,131 @@ func (a *Client) ImagePatchShort(params *ImagePatchParams, authInfo runtime.Clie
 	case *ImagePatchNotFound:
 		return nil, v
 	case *ImagePatchInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ImageUnmarkForDeletionShort instead.
+
+ImageUnmarkForDeletion unmarks the image for deletion
+Unmarks an image for deletion. The image will be available for fleets.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]
+*/
+func (a *Client) ImageUnmarkForDeletion(params *ImageUnmarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageUnmarkForDeletionAccepted, *ImageUnmarkForDeletionUnauthorized, *ImageUnmarkForDeletionForbidden, *ImageUnmarkForDeletionNotFound, *ImageUnmarkForDeletionPreconditionFailed, *ImageUnmarkForDeletionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageUnmarkForDeletionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageUnmarkForDeletion",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images/{imageID}/restore",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageUnmarkForDeletionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageUnmarkForDeletionAccepted:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *ImageUnmarkForDeletionUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *ImageUnmarkForDeletionForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *ImageUnmarkForDeletionNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *ImageUnmarkForDeletionPreconditionFailed:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *ImageUnmarkForDeletionInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImageUnmarkForDeletionShort unmarks the image for deletion
+Unmarks an image for deletion. The image will be available for fleets.
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]
+*/
+func (a *Client) ImageUnmarkForDeletionShort(params *ImageUnmarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageUnmarkForDeletionAccepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageUnmarkForDeletionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageUnmarkForDeletion",
+		Method:             "POST",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images/{imageID}/restore",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageUnmarkForDeletionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageUnmarkForDeletionAccepted:
+		return v, nil
+	case *ImageUnmarkForDeletionUnauthorized:
+		return nil, v
+	case *ImageUnmarkForDeletionForbidden:
+		return nil, v
+	case *ImageUnmarkForDeletionNotFound:
+		return nil, v
+	case *ImageUnmarkForDeletionPreconditionFailed:
+		return nil, v
+	case *ImageUnmarkForDeletionInternalServerError:
 		return nil, v
 
 	default:

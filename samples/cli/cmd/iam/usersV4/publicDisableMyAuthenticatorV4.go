@@ -7,7 +7,10 @@
 package usersV4
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -25,8 +28,15 @@ var PublicDisableMyAuthenticatorV4Cmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		bodyString := cmd.Flag("body").Value.String()
+		var body *iamclientmodels.ModelDisableMFARequest
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &users_v4.PublicDisableMyAuthenticatorV4Params{
+			Body:      body,
 			Namespace: namespace,
 		}
 		errNoContent := usersV4Service.PublicDisableMyAuthenticatorV4Short(input)
@@ -43,6 +53,8 @@ var PublicDisableMyAuthenticatorV4Cmd = &cobra.Command{
 }
 
 func init() {
+	PublicDisableMyAuthenticatorV4Cmd.Flags().String("body", "", "Body")
+	_ = PublicDisableMyAuthenticatorV4Cmd.MarkFlagRequired("body")
 	PublicDisableMyAuthenticatorV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicDisableMyAuthenticatorV4Cmd.MarkFlagRequired("namespace")
 }

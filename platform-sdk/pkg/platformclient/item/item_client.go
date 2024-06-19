@@ -124,8 +124,8 @@ type ClientService interface {
 	PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemDynamicDataOK, error)
 	PublicGetItem(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, *PublicGetItemNotFound, error)
 	PublicGetItemShort(params *PublicGetItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemOK, error)
-	QueryItems1(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, *QueryItems1NotFound, *QueryItems1UnprocessableEntity, error)
-	QueryItems1Short(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, error)
+	QueryItemsV2(params *QueryItemsV2Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsV2OK, *QueryItemsV2NotFound, *QueryItemsV2UnprocessableEntity, error)
+	QueryItemsV2Short(params *QueryItemsV2Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -6423,9 +6423,9 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams, authInfo runtim
 }
 
 /*
-Deprecated: 2022-08-10 - Use QueryItems1Short instead.
+Deprecated: 2022-08-10 - Use QueryItemsV2Short instead.
 
-QueryItems1 query items by criteria
+QueryItemsV2 query items by criteria
 This API is used to query items by criteria within a store.
 
 The behaviour for itemStatus query parameter:
@@ -6436,10 +6436,10 @@ Other detail info:
 
   * Returns : the list of items
 */
-func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, *QueryItems1NotFound, *QueryItems1UnprocessableEntity, error) {
+func (a *Client) QueryItemsV2(params *QueryItemsV2Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsV2OK, *QueryItemsV2NotFound, *QueryItemsV2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewQueryItems1Params()
+		params = NewQueryItemsV2Params()
 	}
 
 	if params.Context == nil {
@@ -6455,14 +6455,14 @@ func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientA
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "queryItems_1",
+		ID:                 "queryItemsV2",
 		Method:             "GET",
 		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &QueryItems1Reader{formats: a.formats},
+		Reader:             &QueryItemsV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -6473,13 +6473,13 @@ func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientA
 
 	switch v := result.(type) {
 
-	case *QueryItems1OK:
+	case *QueryItemsV2OK:
 		return v, nil, nil, nil
 
-	case *QueryItems1NotFound:
+	case *QueryItemsV2NotFound:
 		return nil, v, nil, nil
 
-	case *QueryItems1UnprocessableEntity:
+	case *QueryItemsV2UnprocessableEntity:
 		return nil, nil, v, nil
 
 	default:
@@ -6488,7 +6488,7 @@ func (a *Client) QueryItems1(params *QueryItems1Params, authInfo runtime.ClientA
 }
 
 /*
-QueryItems1Short query items by criteria
+QueryItemsV2Short query items by criteria
 This API is used to query items by criteria within a store.
 
 The behaviour for itemStatus query parameter:
@@ -6499,10 +6499,10 @@ Other detail info:
 
   * Returns : the list of items
 */
-func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItems1OK, error) {
+func (a *Client) QueryItemsV2Short(params *QueryItemsV2Params, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsV2OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewQueryItems1Params()
+		params = NewQueryItemsV2Params()
 	}
 
 	if params.Context == nil {
@@ -6514,14 +6514,14 @@ func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.Cl
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "queryItems_1",
+		ID:                 "queryItemsV2",
 		Method:             "GET",
 		PathPattern:        "/platform/v2/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &QueryItems1Reader{formats: a.formats},
+		Reader:             &QueryItemsV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -6532,11 +6532,11 @@ func (a *Client) QueryItems1Short(params *QueryItems1Params, authInfo runtime.Cl
 
 	switch v := result.(type) {
 
-	case *QueryItems1OK:
+	case *QueryItemsV2OK:
 		return v, nil
-	case *QueryItems1NotFound:
+	case *QueryItemsV2NotFound:
 		return nil, v
-	case *QueryItems1UnprocessableEntity:
+	case *QueryItemsV2UnprocessableEntity:
 		return nil, v
 
 	default:

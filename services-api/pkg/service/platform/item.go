@@ -908,13 +908,13 @@ func (aaa *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use QueryItems1Short instead.
-func (aaa *ItemService) QueryItems1(input *item.QueryItems1Params) (*platformclientmodels.FullItemPagingResult, error) {
+// Deprecated: 2022-01-10 - please use QueryItemsV2Short instead.
+func (aaa *ItemService) QueryItemsV2(input *item.QueryItemsV2Params) (*platformclientmodels.FullItemPagingResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := aaa.Client.Item.QueryItems1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, unprocessableEntity, err := aaa.Client.Item.QueryItemsV2(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -2331,7 +2331,7 @@ func (aaa *ItemService) PublicGetItemShort(input *item.PublicGetItemParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ItemService) QueryItems1Short(input *item.QueryItems1Params) (*platformclientmodels.FullItemPagingResult, error) {
+func (aaa *ItemService) QueryItemsV2Short(input *item.QueryItemsV2Params) (*platformclientmodels.FullItemPagingResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -2353,7 +2353,7 @@ func (aaa *ItemService) QueryItems1Short(input *item.QueryItems1Params) (*platfo
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Item.QueryItems1Short(input, authInfoWriter)
+	ok, err := aaa.Client.Item.QueryItemsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

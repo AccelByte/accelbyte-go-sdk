@@ -27,7 +27,7 @@ type BillingAccount struct {
 	PaymentMethod string `json:"paymentMethod,omitempty"`
 
 	// payment provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	PaymentProvider string `json:"paymentProvider,omitempty"`
 }
 
@@ -45,7 +45,7 @@ var billingAccountTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -63,6 +63,9 @@ const (
 
 	// BillingAccountPaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	BillingAccountPaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// BillingAccountPaymentProviderNEONPAY captures enum value "NEONPAY"
+	BillingAccountPaymentProviderNEONPAY string = "NEONPAY"
 
 	// BillingAccountPaymentProviderPAYPAL captures enum value "PAYPAL"
 	BillingAccountPaymentProviderPAYPAL string = "PAYPAL"

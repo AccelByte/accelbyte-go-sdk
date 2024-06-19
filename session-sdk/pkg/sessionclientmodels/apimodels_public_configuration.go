@@ -32,6 +32,9 @@ type ApimodelsPublicConfiguration struct {
 	// Required: true
 	ClientVersion *string `json:"clientVersion"`
 
+	// customurlgrpc
+	CustomURLGRPC string `json:"customURLGRPC,omitempty"`
+
 	// deployment
 	// Required: true
 	Deployment *string `json:"deployment"`

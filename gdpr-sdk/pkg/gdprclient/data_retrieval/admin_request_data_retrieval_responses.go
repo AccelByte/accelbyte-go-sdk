@@ -45,6 +45,18 @@ func (o *AdminRequestDataRetrievalReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminRequestDataRetrievalNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 429:
+		result := NewAdminRequestDataRetrievalTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminRequestDataRetrievalInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -205,6 +217,112 @@ func (o *AdminRequestDataRetrievalUnauthorized) GetPayload() *gdprclientmodels.R
 }
 
 func (o *AdminRequestDataRetrievalUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gdprclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminRequestDataRetrievalNotFound creates a AdminRequestDataRetrievalNotFound with default headers values
+func NewAdminRequestDataRetrievalNotFound() *AdminRequestDataRetrievalNotFound {
+	return &AdminRequestDataRetrievalNotFound{}
+}
+
+/*AdminRequestDataRetrievalNotFound handles this case with default header values.
+
+  Not Found
+*/
+type AdminRequestDataRetrievalNotFound struct {
+	Payload *gdprclientmodels.ResponseError
+}
+
+func (o *AdminRequestDataRetrievalNotFound) Error() string {
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminRequestDataRetrievalNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminRequestDataRetrievalNotFound) GetPayload() *gdprclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminRequestDataRetrievalNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gdprclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminRequestDataRetrievalTooManyRequests creates a AdminRequestDataRetrievalTooManyRequests with default headers values
+func NewAdminRequestDataRetrievalTooManyRequests() *AdminRequestDataRetrievalTooManyRequests {
+	return &AdminRequestDataRetrievalTooManyRequests{}
+}
+
+/*AdminRequestDataRetrievalTooManyRequests handles this case with default header values.
+
+  Too Many Requests
+*/
+type AdminRequestDataRetrievalTooManyRequests struct {
+	Payload *gdprclientmodels.ResponseError
+}
+
+func (o *AdminRequestDataRetrievalTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminRequestDataRetrievalTooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *AdminRequestDataRetrievalTooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminRequestDataRetrievalTooManyRequests) GetPayload() *gdprclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminRequestDataRetrievalTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

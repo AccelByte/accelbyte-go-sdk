@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.14.0"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -47,43 +47,7 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]": "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:STAT [READ]": "ADMIN:NAMESPACE:{namespace}:STAT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]",
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]": "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]",
-        "NAMESPACE:{namespace}:GAMEPROFILE [READ]": "NAMESPACE:{namespace}:GAMEPROFILE [READ]",
-        "NAMESPACE:{namespace}:STAT [CREATE]": "NAMESPACE:{namespace}:STAT [CREATE]",
-        "NAMESPACE:{namespace}:STAT [READ]": "NAMESPACE:{namespace}:STAT [READ]",
-        "NAMESPACE:{namespace}:STATITEM [READ]": "NAMESPACE:{namespace}:STATITEM [READ]",
-        "NAMESPACE:{namespace}:STATITEM [UPDATE]": "NAMESPACE:{namespace}:STATITEM [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -105,7 +69,7 @@
     "/social/admin/namespaces/{namespace}/config": {
       "delete": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a namespace slot configuration, the configuration will be default after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a namespace slot configuration, the configuration will be default after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteNamespaceSlotConfig",
         "parameters": [
           {
@@ -124,32 +88,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes a namespace slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]"
         }
       },
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace slot config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: namespace slot config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespaceSlotConfig",
         "parameters": [
           {
@@ -174,27 +126,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns a namespace slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]"
         }
       },
       "put": {
@@ -202,7 +142,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a slot namespace configuration.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace slot config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a slot namespace configuration.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace slot config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateNamespaceSlotConfig",
         "parameters": [
           {
@@ -235,34 +175,22 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a namespace slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]"
         }
       }
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/config": {
       "delete": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserSlotConfig",
         "parameters": [
           {
@@ -288,32 +216,20 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes a user slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]"
         }
       },
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Returns\u0026lt;/i\u0026gt;: slot config info\u0026lt;/li\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Returns\u0026lt;/i\u0026gt;: slot config info\u0026lt;/li\u0026gt;",
         "operationId": "getUserSlotConfig",
         "parameters": [
           {
@@ -345,27 +261,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns a user slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]"
         }
       },
       "put": {
@@ -373,7 +277,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a user slot configuration in given namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot config\u0026lt;/li\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Update a user slot configuration in given namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot config\u0026lt;/li\u0026gt;",
         "operationId": "updateUserSlotConfig",
         "parameters": [
           {
@@ -413,33 +317,21 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a user slot configuration",
         "tags": [
           "SlotConfig"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]"
         }
       }
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
-        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserProfiles",
         "parameters": [
           {
@@ -492,37 +384,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns all profiles' header for a user",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
         }
       }
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "get": {
-        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getProfile",
         "parameters": [
           {
@@ -585,22 +465,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns profile for a user",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12041": "Game profile with id [{profileId}] is not found",
           "20000": "Internal server error",
@@ -608,16 +478,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
         }
       }
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slots for a given user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slots for a given user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserNamespaceSlots",
         "parameters": [
           {
@@ -652,34 +520,22 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns list of slots for given user",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
         }
       }
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getSlotData",
         "parameters": [
           {
@@ -725,35 +581,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns slot data",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12141": "Slot [{slotId}] not found in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/profiles": {
       "get": {
-        "description": "Returns all profiles for specified users.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:GAMEPROFILE\u0026#34;, action=2 (READ)\n\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/ul\u0026gt;",
+        "description": "Returns all profiles for specified users.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserGameProfiles",
         "parameters": [
           {
@@ -816,22 +660,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns all profiles for specified users",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12021": "{totalUser} users is requested. Cannot retrieve more than {limitUser} users at once",
           "20000": "Internal server error",
@@ -839,15 +673,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:GAMEPROFILE [READ]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
-        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfiles",
         "parameters": [
           {
@@ -900,38 +732,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns all profiles' header for a user",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create new profile for user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/li\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/li\u0026gt;: created game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create new profile for user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/li\u0026gt;: created game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateProfile",
         "parameters": [
           {
@@ -998,22 +818,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a new profile for user",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -1021,15 +831,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "delete": {
-        "description": "Deletes game profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Deletes game profile.\u0026lt;br\u0026gt;",
         "operationId": "publicDeleteProfile",
         "parameters": [
           {
@@ -1086,22 +894,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes game profile",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12041": "Game profile with id [{profileId}] is not found",
           "20000": "Internal server error",
@@ -1109,13 +907,12 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
-          ]
+          "action": "8",
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
         }
       },
       "get": {
-        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetProfile",
         "parameters": [
           {
@@ -1178,22 +975,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns profile for a user",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12041": "Game profile with id [{profileId}] is not found",
           "20000": "Internal server error",
@@ -1201,16 +988,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Updates user game profile, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Updates user game profile, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateProfile",
         "parameters": [
           {
@@ -1293,22 +1078,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Updates user game profile",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12041": "Game profile with id [{profileId}] is not found",
           "20000": "Internal server error",
@@ -1317,15 +1092,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}": {
       "get": {
-        "description": "Returns game profile attribute.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: attribute info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Returns game profile attribute.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: attribute info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetProfileAttribute",
         "parameters": [
           {
@@ -1395,22 +1168,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns game profile attribute",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12041": "Game profile with id [{profileId}] is not found",
           "20000": "Internal server error",
@@ -1418,16 +1181,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Updates game profile attribute, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated attribute\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Updates game profile attribute, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated attribute\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateAttribute",
         "parameters": [
           {
@@ -1517,22 +1278,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Updates game profile attribute",
         "tags": [
           "GameProfile"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE"
-        },
         "x-errorCodes": {
           "12022": "Game profile attribute name [{attrName1}] passed in request url mismatch the name [{attrName2}] in body",
           "12041": "Game profile with id [{profileId}] is not found",
@@ -1542,16 +1293,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get list of slots for a given user in namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get list of slots for a given user in namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserNamespaceSlots",
         "parameters": [
           {
@@ -1586,27 +1335,15 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns slots for given user",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {},
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
         }
       },
       "post": {
@@ -1614,7 +1351,7 @@
           "multipart/form-data"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Creates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created slot info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Creates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created slot info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateUserNamespaceSlot",
         "parameters": [
           {
@@ -1693,38 +1430,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Creates a slot",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12121": "Checksum mismatch for [{filename}]",
           "12122": "[{filename}] exceeds the upload limit size of [{sizeLimit}] bytes",
           "12171": "User [{userId}] exceed max slot count [{maxCount}] in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]"
         }
       }
     },
     "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "delete": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes the slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes the slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicDeleteUserNamespaceSlot",
         "parameters": [
           {
@@ -1766,34 +1491,22 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes the slot",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12141": "Slot [{slotId}] not found in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]"
         }
       },
       "get": {
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetSlotData",
         "parameters": [
           {
@@ -1839,29 +1552,17 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Returns slot data",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12141": "Slot [{slotId}] not found in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
         }
       },
       "put": {
@@ -1869,7 +1570,7 @@
           "multipart/form-data"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates a slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserNamespaceSlot",
         "parameters": [
           {
@@ -1958,31 +1659,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Updates a slot",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12121": "Checksum mismatch for [{filename}]",
           "12122": "[{filename}] exceeds the upload limit size of [{sizeLimit}] bytes",
           "12141": "Slot [{slotId}] not found in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
         }
       }
     },
@@ -1992,7 +1681,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates the slot metadata.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates the slot metadata.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated slot\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateUserNamespaceSlotMetadata",
         "parameters": [
           {
@@ -2045,35 +1734,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Updates the slot metadata",
         "tags": [
           "Slot"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA"
-        },
         "x-errorCodes": {
           "12141": "Slot [{slotId}] not found in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/globalstatitems": {
       "get": {
-        "description": "List global statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List global statItems by pagination.\u0026lt;br\u0026gt;",
         "operationId": "getGlobalStatItems",
         "parameters": [
           {
@@ -2139,37 +1816,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List global statItems",
         "tags": [
           "GlobalStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/globalstatitems/{statCode}": {
       "get": {
-        "description": "Get global statItem by stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: global stat item\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get global statItem by stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: global stat item\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getGlobalStatItemByStatCode",
         "parameters": [
           {
@@ -2225,22 +1890,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get global statItem by stat code",
         "tags": [
           "GlobalStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "12244": "Global stat item of [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -2248,15 +1903,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/statCycles": {
       "get": {
-        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getStatCycles",
         "parameters": [
           {
@@ -2353,38 +2006,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List stat cycles",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat cycle.\u0026lt;br\u0026gt;Fields:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: Cycle name, maximum length is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetTime: Reset time must follow \u0026lt;b\u0026gt;hours:minutes\u0026lt;/b\u0026gt; in 24 hours format e.g. 01:30, 23:15. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Required when cycleType is WEEKLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDate: Reset Date must be a number 1 - 31. Required when cycleType is MONTHLY or ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetMonth: Reset Month must be a number 1 - 12. Required when cycleType is ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;seasonPeriod: Season period must be a number greater than or equal to 1 (days). Required when cycleType is SEASONAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;start: Start time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;end: End time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat cycle.\u0026lt;br\u0026gt;Fields:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: Cycle name, maximum length is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetTime: Reset time must follow \u0026lt;b\u0026gt;hours:minutes\u0026lt;/b\u0026gt; in 24 hours format e.g. 01:30, 23:15. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Required when cycleType is WEEKLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDate: Reset Date must be a number 1 - 31. Required when cycleType is MONTHLY or ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetMonth: Reset Month must be a number 1 - 12. Required when cycleType is ANNUALLY.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;seasonPeriod: Season period must be a number greater than or equal to 1 (days). Required when cycleType is SEASONAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;start: Start time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;end: End time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStatCycle",
         "parameters": [
           {
@@ -2447,22 +2088,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12225": "Invalid time range",
           "12226": "Invalid date [{date}] of month [{month}]",
@@ -2472,9 +2103,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
@@ -2483,7 +2112,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkGetStatCycle",
         "parameters": [
           {
@@ -2546,22 +2175,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk get stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -2569,15 +2188,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/statCycles/export": {
       "get": {
-        "description": "Export all stat cycle configurations for a given namespace into file  At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Export all stat cycle configurations for a given namespace into file  At current, only JSON file is supported.\u0026lt;p\u0026gt;",
         "operationId": "exportStatCycle",
         "parameters": [
           {
@@ -2620,31 +2237,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Export all stat cycle configurations",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
@@ -2653,7 +2258,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.\u0026lt;p\u0026gt;",
         "operationId": "importStatCycle",
         "parameters": [
           {
@@ -2716,22 +2321,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Import stat cycle configurations",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12222": "Stats data for namespace [{namespace}] is invalid",
           "20000": "Internal server error",
@@ -2739,15 +2334,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}": {
       "delete": {
-        "description": "Deletes stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Deletes stat cycle.\u0026lt;br\u0026gt;",
         "operationId": "deleteStatCycle",
         "parameters": [
           {
@@ -2797,22 +2390,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -2820,13 +2403,11 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
         }
       },
       "get": {
-        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
+        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
         "operationId": "getStatCycle",
         "parameters": [
           {
@@ -2882,22 +2463,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -2905,16 +2476,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateStatCycle",
         "parameters": [
           {
@@ -2996,22 +2565,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12225": "Invalid time range",
           "12226": "Invalid date [{date}] of month [{month}]",
@@ -3023,9 +2582,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
         }
       }
     },
@@ -3034,7 +2591,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk add stat cycle to stats.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk add stat cycle to stats.\u0026lt;br\u0026gt;",
         "operationId": "bulkAddStats",
         "parameters": [
           {
@@ -3113,22 +2670,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk add stat cycle to stats",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -3137,9 +2684,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
@@ -3148,7 +2693,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Stop stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Stop stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "stopStatCycle",
         "parameters": [
           {
@@ -3210,22 +2755,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Stop stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "12279": "Invalid stat cycle status: Stat cycle [{id}], namespace [{namespace}], status [{status}]",
@@ -3234,15 +2769,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/statitems/bulk": {
       "get": {
-        "description": "Bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
+        "description": "Bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Returns*: list of user\u0026#39;s statItem",
         "operationId": "bulkFetchStatItems",
         "parameters": [
           {
@@ -3308,22 +2841,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk fetch statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -3331,9 +2854,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
@@ -3342,7 +2863,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;",
         "operationId": "bulkIncUserStatItemValue",
         "parameters": [
           {
@@ -3411,22 +2932,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -3434,16 +2945,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkIncUserStatItem",
         "parameters": [
           {
@@ -3512,22 +3021,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -3535,15 +3034,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault": {
       "get": {
-        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s stat item values",
+        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Returns*: list of user\u0026#39;s stat item values",
         "operationId": "bulkFetchOrDefaultStatItems",
         "parameters": [
           {
@@ -3625,10 +3122,6 @@
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -3637,9 +3130,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
@@ -3648,7 +3139,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk reset multiple user\u0026#39;s statitems value.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk reset multiple user\u0026#39;s statitems value.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkResetUserStatItem",
         "parameters": [
           {
@@ -3717,22 +3208,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk reset multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -3740,15 +3221,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats": {
       "get": {
-        "description": "List stats by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List stats by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getStats",
         "parameters": [
           {
@@ -3830,38 +3309,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List stats",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Field globalAggregationMethod will be ignored when setAsGlobal field is false\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Field globalAggregationMethod will be ignored when setAsGlobal field is false\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStat",
         "parameters": [
           {
@@ -3936,22 +3403,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create stat",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "12271": "Stat template with code [{statCode}] already exists in namespace [{namespace}]",
@@ -3961,15 +3418,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats/export": {
       "get": {
-        "description": "Export all stat configurations for a given namespace into file  At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Export all stat configurations for a given namespace into file  At current, only JSON file is supported.",
         "operationId": "exportStats",
         "parameters": [
           {
@@ -4012,31 +3467,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Export all stat configurations",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
@@ -4045,7 +3488,7 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Import stat configurations for a given namespace from file. At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Import stat configurations for a given namespace from file. At current, only JSON file is supported.",
         "operationId": "importStats",
         "parameters": [
           {
@@ -4108,22 +3551,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Import stat configurations",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12222": "Stats data for namespace [{namespace}] is invalid",
           "20000": "Internal server error",
@@ -4131,15 +3564,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats/search": {
       "get": {
-        "description": "Query stats by keyword.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Query stats by keyword.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryStats",
         "parameters": [
           {
@@ -4221,37 +3652,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query stats by keyword",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats/{statCode}": {
       "delete": {
-        "description": "Deletes stat template.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Deletes stat template.\u0026lt;br\u0026gt;",
         "operationId": "deleteStat",
         "parameters": [
           {
@@ -4301,22 +3720,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes stat",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -4324,13 +3733,11 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
         }
       },
       "get": {
-        "description": "Get stat by statCode.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat info\u0026lt;/ul\u0026gt;",
+        "description": "Get stat by statCode.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat info\u0026lt;/ul\u0026gt;",
         "operationId": "getStat",
         "parameters": [
           {
@@ -4386,22 +3793,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get stat by statCode",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -4409,16 +3806,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod will be ignored when the stat is not set as global\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod will be ignored when the stat is not set as global\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateStat",
         "parameters": [
           {
@@ -4488,22 +3883,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update stat",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
@@ -4512,15 +3897,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats/{statCode}/statitems": {
       "get": {
-        "description": "Get users\u0026#39; stat item values for a given namespace and statCode.\nOther info:\n+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n+ *Returns*: list of users\u0026#39; stat item values",
+        "description": "Get users\u0026#39; stat item values for a given namespace and statCode.\nOther info:\n+ *Returns*: list of users\u0026#39; stat item values",
         "operationId": "getStatItems",
         "parameters": [
           {
@@ -4600,25 +3983,19 @@
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/stats/{statCode}/tied": {
       "delete": {
-        "description": "Deletes stat template.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Deletes stat template.",
         "operationId": "deleteTiedStat",
         "parameters": [
           {
@@ -4674,22 +4051,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Deletes tied stat",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "12276": " Stat template with code [{statCode}] in namespace [{namespace}] not deletable due it is in an INIT status ",
@@ -4698,15 +4065,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems": {
       "get": {
-        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserStatCycleItems",
         "parameters": [
           {
@@ -4813,22 +4178,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List user's statCycleItems by statCycle",
         "tags": [
           "UserStatisticCycle"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -4837,15 +4192,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems": {
       "get": {
-        "description": "List user\u0026#39;s statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List user\u0026#39;s statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserStatItems",
         "parameters": [
           {
@@ -4947,22 +4300,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -4970,9 +4313,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
@@ -4981,7 +4322,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk create user\u0026#39;s statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk created result\u0026lt;/li\u0026gt;",
+        "description": "Bulk create user\u0026#39;s statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk created result\u0026lt;/li\u0026gt;",
         "operationId": "bulkCreateUserStatItems",
         "parameters": [
           {
@@ -5057,22 +4398,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk create user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -5080,9 +4411,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
         }
       }
     },
@@ -5091,7 +4420,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkIncUserStatItemValue_1",
         "parameters": [
           {
@@ -5167,22 +4496,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -5190,16 +4509,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkIncUserStatItem_1",
         "parameters": [
           {
@@ -5275,22 +4592,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -5298,9 +4605,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -5309,7 +4614,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk reset user\u0026#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk reset user\u0026#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkResetUserStatItem_1",
         "parameters": [
           {
@@ -5385,22 +4690,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk reset user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -5408,15 +4703,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
-        "description": "This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
+        "description": "This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems",
         "parameters": [
           {
@@ -5482,22 +4775,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete User's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12242": "Stat item of [{statCode}] of user [{profileId}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -5506,16 +4789,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create statItem for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create statItem for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createUserStatItem",
         "parameters": [
           {
@@ -5587,22 +4868,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create user's statItem",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "12274": "Stat item with code [{statCode}] of user [{profileId}] already exists in namespace [{namespace}]",
@@ -5612,9 +4883,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
         }
       }
     },
@@ -5623,7 +4892,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "incUserStatItemValue",
         "parameters": [
           {
@@ -5712,22 +4981,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -5740,9 +4999,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -5751,7 +5008,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Reset user\u0026#39;s statitem value for a given namespace and user.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: updated user\u0026#39;s statItem",
+        "description": "Reset user\u0026#39;s statitem value for a given namespace and user.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Returns*: updated user\u0026#39;s statItem",
         "operationId": "resetUserStatItemValue",
         "parameters": [
           {
@@ -5841,22 +5098,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Reset user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -5866,15 +5113,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/globalstatitems": {
       "get": {
-        "description": "List global statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List global statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getGlobalStatItems_1",
         "parameters": [
           {
@@ -5940,37 +5185,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List global statItems",
         "tags": [
           "GlobalStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/globalstatitems/{statCode}": {
       "get": {
-        "description": "Get global statItem by stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: global stat item\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Get global statItem by stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: global stat item\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getGlobalStatItemByStatCode_1",
         "parameters": [
           {
@@ -6026,22 +5259,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get global statItem by stat code",
         "tags": [
           "GlobalStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "12244": "Global stat item of [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -6049,15 +5272,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/statCycles": {
       "get": {
-        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List stat cycles by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getStatCycles_1",
         "parameters": [
           {
@@ -6154,31 +5375,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List stat cycles",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
@@ -6187,7 +5396,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of stat cycles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkGetStatCycle_1",
         "parameters": [
           {
@@ -6250,22 +5459,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk get stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -6273,15 +5472,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/statCycles/{cycleId}": {
       "get": {
-        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
+        "description": "Get stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle info\u0026lt;/ul\u0026gt;",
         "operationId": "getStatCycle_1",
         "parameters": [
           {
@@ -6337,22 +5534,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STAT [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get stat cycle",
         "tags": [
           "StatCycleConfiguration"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -6360,15 +5547,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STAT [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STAT [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/statitems/bulk": {
       "get": {
-        "description": "Public bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
+        "description": "Public bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Returns*: list of user\u0026#39;s statItem",
         "operationId": "bulkFetchStatItems_1",
         "parameters": [
           {
@@ -6434,22 +5619,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk fetch statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -6457,9 +5632,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
@@ -6468,7 +5641,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkIncUserStatItemValue",
         "parameters": [
           {
@@ -6537,22 +5710,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -6560,16 +5723,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public bulk update multiple user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkIncUserStatItem",
         "parameters": [
           {
@@ -6638,22 +5799,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -6661,9 +5812,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
@@ -6672,7 +5821,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk reset multiple user\u0026#39;s statitems value. \nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk reset multiple user\u0026#39;s statitems value. \nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkResetUserStatItem_2",
         "parameters": [
           {
@@ -6741,22 +5890,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk reset multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -6764,9 +5903,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
@@ -6775,7 +5912,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Field globalAggregationMethod will be ignored when setAsGlobal field is false\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Field globalAggregationMethod will be ignored when setAsGlobal field is false\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStat_1",
         "parameters": [
           {
@@ -6850,22 +5987,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STAT [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create stat",
         "tags": [
           "StatConfiguration"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:STAT"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "12271": "Stat template with code [{statCode}] already exists in namespace [{namespace}]",
@@ -6875,15 +6002,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STAT [CREATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STAT [CREATE]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/me/statCycles/{cycleId}/statCycleitems": {
       "get": {
-        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicListMyStatCycleItems",
         "parameters": [
           {
@@ -6979,22 +6104,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List user's statCycleItems by statCycle",
         "tags": [
           "UserStatisticCycle"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -7003,15 +6118,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/me/statitems": {
       "get": {
-        "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicListMyStatItems",
         "parameters": [
           {
@@ -7105,22 +6218,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public list user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -7128,15 +6231,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/me/statitems/value/bulk": {
       "get": {
-        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicListAllMyStatItems",
         "parameters": [
           {
@@ -7217,22 +6318,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public list user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12223": "Invalid stat codes in namespace [{namespace}]: [{statCodes}]",
           "12243": "Stats cannot be found in namespace [{namespace}]",
@@ -7240,15 +6331,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statCycles/{cycleId}/statCycleitems": {
       "get": {
-        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "List user\u0026#39;s statCycleItems by statCycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat cycle items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserStatCycleItems_1",
         "parameters": [
           {
@@ -7347,22 +6436,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "List user's statCycleItems by statCycle",
         "tags": [
           "UserStatisticCycle"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -7371,15 +6450,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems": {
       "get": {
-        "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserStatItems",
         "parameters": [
           {
@@ -7472,22 +6549,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public list user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -7495,9 +6562,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       }
     },
@@ -7506,7 +6571,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk create statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk created result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Bulk create statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk created result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkCreateUserStatItems",
         "parameters": [
           {
@@ -7582,22 +6647,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk create user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -7605,15 +6660,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "get": {
-        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserStatItems_1",
         "parameters": [
           {
@@ -7713,22 +6766,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public list user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12223": "Invalid stat codes in namespace [{namespace}]: [{statCodes}]",
           "12243": "Stats cannot be found in namespace [{namespace}]",
@@ -7738,16 +6781,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;",
+        "description": "Public bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;",
         "operationId": "bulkIncUserStatItemValue_2",
         "parameters": [
           {
@@ -7823,22 +6864,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -7846,16 +6877,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public bulk update user\u0026#39;s statitems value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: bulk updated result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkIncUserStatItem_1",
         "parameters": [
           {
@@ -7931,22 +6960,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -7954,9 +6973,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -7965,7 +6982,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk reset user\u0026#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Public bulk reset user\u0026#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkResetUserStatItem_3",
         "parameters": [
           {
@@ -8041,22 +7058,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk reset user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "Unauthorized",
@@ -8064,15 +7071,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
-        "description": "Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
+        "description": "Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems_1",
         "parameters": [
           {
@@ -8138,22 +7143,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete User's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12242": "Stat item of [{statCode}] of user [{profileId}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -8162,16 +7157,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "Create user\u0026#39;s statItem.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create user\u0026#39;s statItem.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateUserStatItem",
         "parameters": [
           {
@@ -8243,22 +7236,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create user's statItem",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "12274": "Stat item with code [{statCode}] of user [{profileId}] already exists in namespace [{namespace}]",
@@ -8268,9 +7251,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
         }
       }
     },
@@ -8279,7 +7260,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Public update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicIncUserStatItemValue",
         "parameters": [
           {
@@ -8368,22 +7349,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public update user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -8396,16 +7367,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Public update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public update user\u0026#39;s statitem value.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated user\u0026#39;s statItem\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicIncUserStatItem",
         "parameters": [
           {
@@ -8494,22 +7463,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public update user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -8522,9 +7481,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -8533,7 +7490,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Reset user\u0026#39;s statitem value for a given namespace and user.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: updated user\u0026#39;s statItem",
+        "description": "Reset user\u0026#39;s statitem value for a given namespace and user.\nUser\u0026#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Returns*: updated user\u0026#39;s statItem",
         "operationId": "resetUserStatItemValue_1",
         "parameters": [
           {
@@ -8608,22 +7565,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public reset user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -8633,9 +7580,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -8644,7 +7589,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update multiple user\u0026#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk update multiple user\u0026#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkUpdateUserStatItemV2",
         "parameters": [
           {
@@ -8713,22 +7658,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "unauthorized access",
@@ -8736,15 +7671,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault": {
       "get": {
-        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s stat item values",
+        "description": "Bulk fetch multiple user\u0026#39;s stat item values for a given namespace and statCode.\nNOTE: If stat item does not exist, will return default value. Other detail info:\n+ *Returns*: list of user\u0026#39;s stat item values",
         "operationId": "bulkFetchOrDefaultStatItems_1",
         "parameters": [
           {
@@ -8833,10 +7766,6 @@
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -8845,15 +7774,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       }
     },
     "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "get": {
-        "description": "Admin list all statItems of user\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)\n\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Admin list all statItems of user\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "AdminListUsersStatItems",
         "parameters": [
           {
@@ -8959,10 +7886,6 @@
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "12223": "Invalid stat codes in namespace [{namespace}]: [{statCodes}]",
           "12243": "Stats cannot be found in namespace [{namespace}]",
@@ -8972,16 +7895,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk update user\u0026#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk update user\u0026#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkUpdateUserStatItem",
         "parameters": [
           {
@@ -9064,22 +7985,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "unauthorized access",
@@ -9087,9 +7998,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -9098,7 +8007,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Bulk reset user\u0026#39;s statitem values for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Bulk reset user\u0026#39;s statitem values for given namespace and user.  \nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkResetUserStatItemValues",
         "parameters": [
           {
@@ -9181,22 +8090,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk reset user's statitem values",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "unauthorized access",
@@ -9204,15 +8103,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
-        "description": "Delete user\u0026#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
+        "description": "Delete user\u0026#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems_2",
         "parameters": [
           {
@@ -9285,22 +8182,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete User's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12242": "Stat item of [{statCode}] of user [{profileId}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
@@ -9309,9 +8196,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
         }
       }
     },
@@ -9320,7 +8205,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update user\u0026#39;s statitem value for a given namespace and user with a certain update strategy.\nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: updated user\u0026#39;s statItem",
+        "description": "Update user\u0026#39;s statitem value for a given namespace and user with a certain update strategy.\nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Returns*: updated user\u0026#39;s statItem",
         "operationId": "updateUserStatItemValue",
         "parameters": [
           {
@@ -9416,22 +8301,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -9443,9 +8318,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -9454,7 +8327,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update multiple user\u0026#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Public bulk update multiple user\u0026#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkUpdateUserStatItem_1",
         "parameters": [
           {
@@ -9523,22 +8396,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update multiple user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "unauthorized access",
@@ -9546,15 +8409,13 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:STATITEM [UPDATE]"
         }
       }
     },
     "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "get": {
-        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserStatItems_2",
         "parameters": [
           {
@@ -9654,22 +8515,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public list user's statItems",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12223": "Invalid stat codes in namespace [{namespace}]: [{statCodes}]",
           "12243": "Stats cannot be found in namespace [{namespace}]",
@@ -9679,16 +8530,14 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "Public bulk update user\u0026#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "description": "Public bulk update user\u0026#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Returns*: bulk updated result",
         "operationId": "bulkUpdateUserStatItem_2",
         "parameters": [
           {
@@ -9771,22 +8620,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public bulk update user's statitems value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "20000": "Internal server error",
           "20001": "unauthorized access",
@@ -9794,9 +8633,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     },
@@ -9805,7 +8642,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Public update user\u0026#39;s statitem value for a given namespace and user with a certain update strategy. \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: updated user\u0026#39;s statItem",
+        "description": "Public update user\u0026#39;s statitem value for a given namespace and user with a certain update strategy. \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it\u0026#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it\u0026#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user\u0026#39;s statitems, such as character\u0026#39;s statitems. \nIf provided, user\u0026#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Returns*: updated user\u0026#39;s statItem",
         "operationId": "updateUserStatItemValue_1",
         "parameters": [
           {
@@ -9901,22 +8738,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Public update user's statitem value",
         "tags": [
           "UserStatistic"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:STATITEM"
-        },
         "x-errorCodes": {
           "12221": "Invalid stat operator, expect [{expected}] but actual [{actual}]",
           "12241": "Stat [{statCode}] cannot be found in namespace [{namespace}]",
@@ -9928,9 +8755,7 @@
           "20013": "insufficient permission"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
         }
       }
     }
@@ -11433,16 +10258,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-05-17T08:18:09+00:00",
-    "buildID": "2.14.0",
+    "buildDate": "2024-06-14T10:03:22+00:00",
+    "buildID": "2.15.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.215-203.850.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.217-205.860.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "932a7f0172",
-    "gitTag": "2.14.0",
+    "gitHash": "f5c1c61241",
+    "gitTag": "2.15.0",
     "name": "justice-social-service",
     "realm": "demo",
-    "version": "2.14.0",
+    "version": "2.15.0",
     "version-roles-seeding": "0.0.12"
   }
 }

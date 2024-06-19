@@ -17,11 +17,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// QueryItems1Cmd represents the QueryItems1 command
-var QueryItems1Cmd = &cobra.Command{
-	Use:   "queryItems1",
-	Short: "Query items 1",
-	Long:  `Query items 1`,
+// QueryItemsV2Cmd represents the QueryItemsV2 command
+var QueryItemsV2Cmd = &cobra.Command{
+	Use:   "queryItemsV2",
+	Short: "Query items V2",
+	Long:  `Query items V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		itemService := &platform.ItemService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
@@ -36,7 +36,12 @@ var QueryItems1Cmd = &cobra.Command{
 		includeSubCategoryItem, _ := cmd.Flags().GetBool("includeSubCategoryItem")
 		itemName, _ := cmd.Flags().GetString("itemName")
 		itemStatus, _ := cmd.Flags().GetString("itemStatus")
-		itemType, _ := cmd.Flags().GetString("itemType")
+		itemTypeString := cmd.Flag("itemType").Value.String()
+		var itemType []string
+		errItemType := json.Unmarshal([]byte(itemTypeString), &itemType)
+		if errItemType != nil {
+			return errItemType
+		}
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		region, _ := cmd.Flags().GetString("region")
@@ -51,7 +56,7 @@ var QueryItems1Cmd = &cobra.Command{
 		tags, _ := cmd.Flags().GetString("tags")
 		targetNamespace, _ := cmd.Flags().GetString("targetNamespace")
 		withTotal, _ := cmd.Flags().GetBool("withTotal")
-		input := &item.QueryItems1Params{
+		input := &item.QueryItemsV2Params{
 			Namespace:              namespace,
 			AppType:                &appType,
 			AvailableDate:          &availableDate,
@@ -61,7 +66,7 @@ var QueryItems1Cmd = &cobra.Command{
 			IncludeSubCategoryItem: &includeSubCategoryItem,
 			ItemName:               &itemName,
 			ItemStatus:             &itemStatus,
-			ItemType:               &itemType,
+			ItemType:               itemType,
 			Limit:                  &limit,
 			Offset:                 &offset,
 			Region:                 &region,
@@ -72,7 +77,7 @@ var QueryItems1Cmd = &cobra.Command{
 			TargetNamespace:        &targetNamespace,
 			WithTotal:              &withTotal,
 		}
-		ok, errOK := itemService.QueryItems1Short(input)
+		ok, errOK := itemService.QueryItemsV2Short(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -86,24 +91,24 @@ var QueryItems1Cmd = &cobra.Command{
 }
 
 func init() {
-	QueryItems1Cmd.Flags().String("namespace", "", "Namespace")
-	_ = QueryItems1Cmd.MarkFlagRequired("namespace")
-	QueryItems1Cmd.Flags().String("appType", "", "App type")
-	QueryItems1Cmd.Flags().String("availableDate", "", "Available date")
-	QueryItems1Cmd.Flags().String("baseAppId", "", "Base app id")
-	QueryItems1Cmd.Flags().String("categoryPath", "", "Category path")
-	QueryItems1Cmd.Flags().String("features", "", "Features")
-	QueryItems1Cmd.Flags().Bool("includeSubCategoryItem", false, "Include sub category item")
-	QueryItems1Cmd.Flags().String("itemName", "", "Item name")
-	QueryItems1Cmd.Flags().String("itemStatus", "", "Item status")
-	QueryItems1Cmd.Flags().String("itemType", "", "Item type")
-	QueryItems1Cmd.Flags().Int32("limit", 20, "Limit")
-	QueryItems1Cmd.Flags().Int32("offset", 0, "Offset")
-	QueryItems1Cmd.Flags().String("region", "", "Region")
-	QueryItems1Cmd.Flags().Bool("sectionExclusive", false, "Section exclusive")
-	QueryItems1Cmd.Flags().String("sortBy", "", "Sort by")
-	QueryItems1Cmd.Flags().String("storeId", "", "Store id")
-	QueryItems1Cmd.Flags().String("tags", "", "Tags")
-	QueryItems1Cmd.Flags().String("targetNamespace", "", "Target namespace")
-	QueryItems1Cmd.Flags().Bool("withTotal", false, "With total")
+	QueryItemsV2Cmd.Flags().String("namespace", "", "Namespace")
+	_ = QueryItemsV2Cmd.MarkFlagRequired("namespace")
+	QueryItemsV2Cmd.Flags().String("appType", "", "App type")
+	QueryItemsV2Cmd.Flags().String("availableDate", "", "Available date")
+	QueryItemsV2Cmd.Flags().String("baseAppId", "", "Base app id")
+	QueryItemsV2Cmd.Flags().String("categoryPath", "", "Category path")
+	QueryItemsV2Cmd.Flags().String("features", "", "Features")
+	QueryItemsV2Cmd.Flags().Bool("includeSubCategoryItem", false, "Include sub category item")
+	QueryItemsV2Cmd.Flags().String("itemName", "", "Item name")
+	QueryItemsV2Cmd.Flags().String("itemStatus", "", "Item status")
+	QueryItemsV2Cmd.Flags().String("itemType", "", "Item type")
+	QueryItemsV2Cmd.Flags().Int32("limit", 20, "Limit")
+	QueryItemsV2Cmd.Flags().Int32("offset", 0, "Offset")
+	QueryItemsV2Cmd.Flags().String("region", "", "Region")
+	QueryItemsV2Cmd.Flags().Bool("sectionExclusive", false, "Section exclusive")
+	QueryItemsV2Cmd.Flags().String("sortBy", "", "Sort by")
+	QueryItemsV2Cmd.Flags().String("storeId", "", "Store id")
+	QueryItemsV2Cmd.Flags().String("tags", "", "Tags")
+	QueryItemsV2Cmd.Flags().String("targetNamespace", "", "Target namespace")
+	QueryItemsV2Cmd.Flags().Bool("withTotal", false, "With total")
 }

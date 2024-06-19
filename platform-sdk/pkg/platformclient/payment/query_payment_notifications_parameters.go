@@ -24,6 +24,7 @@ const (
 	QueryPaymentNotificationsADYENConstant    = "ADYEN"
 	QueryPaymentNotificationsALIPAYConstant   = "ALIPAY"
 	QueryPaymentNotificationsCHECKOUTConstant = "CHECKOUT"
+	QueryPaymentNotificationsNEONPAYConstant  = "NEONPAY"
 	QueryPaymentNotificationsPAYPALConstant   = "PAYPAL"
 	QueryPaymentNotificationsSTRIPEConstant   = "STRIPE"
 	QueryPaymentNotificationsWALLETConstant   = "WALLET"

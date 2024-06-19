@@ -64,6 +64,11 @@ type PublicSendMyMFAEmailCodeV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Action
+	  Sensitive Action
+
+	*/
+	Action *string
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -135,6 +140,17 @@ func (o *PublicSendMyMFAEmailCodeV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithAction adds the action to the public send my mfa email code v4 params
+func (o *PublicSendMyMFAEmailCodeV4Params) WithAction(action *string) *PublicSendMyMFAEmailCodeV4Params {
+	o.SetAction(action)
+	return o
+}
+
+// SetAction adds the action to the public send my mfa email code v4 params
+func (o *PublicSendMyMFAEmailCodeV4Params) SetAction(action *string) {
+	o.Action = action
+}
+
 // WithNamespace adds the namespace to the public send my mfa email code v4 params
 func (o *PublicSendMyMFAEmailCodeV4Params) WithNamespace(namespace string) *PublicSendMyMFAEmailCodeV4Params {
 	o.SetNamespace(namespace)
@@ -153,6 +169,22 @@ func (o *PublicSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.Action != nil {
+
+		// form param action
+		var frAction string
+		if o.Action != nil {
+			frAction = *o.Action
+		}
+		fAction := frAction
+		if fAction != "" {
+			if err := r.SetFormParam("action", fAction); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

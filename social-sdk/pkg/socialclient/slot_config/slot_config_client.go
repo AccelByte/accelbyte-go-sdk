@@ -56,7 +56,6 @@ GetNamespaceSlotConfig returns a namespace slot configuration
 Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.
 Other detail info:
 
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=2 (READ)
   *  Returns : namespace slot config info
 */
 func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error) {
@@ -114,7 +113,6 @@ GetNamespaceSlotConfigShort returns a namespace slot configuration
 Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.
 Other detail info:
 
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=2 (READ)
   *  Returns : namespace slot config info
 */
 func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error) {
@@ -170,7 +168,6 @@ UpdateNamespaceSlotConfig update a namespace slot configuration
 Update a slot namespace configuration.
 Other detail info:
 
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=4 (UPDATE)
   *  Returns : updated namespace slot config
 */
 func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error) {
@@ -228,7 +225,6 @@ UpdateNamespaceSlotConfigShort update a namespace slot configuration
 Update a slot namespace configuration.
 Other detail info:
 
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=4 (UPDATE)
   *  Returns : updated namespace slot config
 */
 func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error) {
@@ -283,8 +279,6 @@ DeleteNamespaceSlotConfig deletes a namespace slot configuration
 
 Deletes a namespace slot configuration, the configuration will be default after delete.
 Other detail info:
-
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -340,8 +334,6 @@ DeleteNamespaceSlotConfigShort deletes a namespace slot configuration
 
 Deletes a namespace slot configuration, the configuration will be default after delete.
 Other detail info:
-
-  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -396,7 +388,6 @@ GetUserSlotConfig returns a user slot configuration
 Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
 Other detail info:
 
-  * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)
   * Returns: slot config info
 */
 func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error) {
@@ -453,7 +444,6 @@ GetUserSlotConfigShort returns a user slot configuration
 
 Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.
 Other detail info:
-    * Required permission: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)
     * Returns: slot config info
 */
 func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error) {
@@ -508,7 +498,6 @@ UpdateUserSlotConfig update a user slot configuration
 
 Update a user slot configuration in given namespace.
 Other detail info:
-      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=4 (UPDATE)
       *  Returns : updated slot config
 */
 func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error) {
@@ -565,7 +554,6 @@ UpdateUserSlotConfigShort update a user slot configuration
 
 Update a user slot configuration in given namespace.
 Other detail info:
-        *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=4 (UPDATE)
         *  Returns : updated slot config
 */
 func (a *Client) UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error) {
@@ -620,7 +608,6 @@ DeleteUserSlotConfig deletes a user slot configuration
 
 Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.
 Other detail info:
-          *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -676,7 +663,6 @@ DeleteUserSlotConfigShort deletes a user slot configuration
 
 Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.
 Other detail info:
-            *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=8 (DELETE)
 */
 func (a *Client) DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending

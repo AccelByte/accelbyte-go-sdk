@@ -64,8 +64,8 @@ type GetPaymentMerchantConfigParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
-	/*ID*/
-	ID string
+	/*Namespace*/
+	Namespace string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -132,15 +132,15 @@ func (o *GetPaymentMerchantConfigParams) SetFlightId(flightId string) {
 	}
 }
 
-// WithID adds the idVar to the get payment merchant config params
-func (o *GetPaymentMerchantConfigParams) WithID(idVar string) *GetPaymentMerchantConfigParams {
-	o.SetID(idVar)
+// WithNamespace adds the namespace to the get payment merchant config params
+func (o *GetPaymentMerchantConfigParams) WithNamespace(namespace string) *GetPaymentMerchantConfigParams {
+	o.SetNamespace(namespace)
 	return o
 }
 
-// SetID adds the id to the get payment merchant config params
-func (o *GetPaymentMerchantConfigParams) SetID(idVar string) {
-	o.ID = idVar
+// SetNamespace adds the namespace to the get payment merchant config params
+func (o *GetPaymentMerchantConfigParams) SetNamespace(namespace string) {
+	o.Namespace = namespace
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -151,8 +151,8 @@ func (o *GetPaymentMerchantConfigParams) WriteToRequest(r runtime.ClientRequest,
 	}
 	var res []error
 
-	// path param id
-	if err := r.SetPathParam("id", o.ID); err != nil {
+	// path param namespace
+	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
 	}
 

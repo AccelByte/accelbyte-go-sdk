@@ -18,6 +18,9 @@ import (
 // swagger:model Configmodels namespace config.
 type ConfigmodelsNamespaceConfig struct {
 
+	// extraplatforms
+	ExtraPlatforms []string `json:"extraPlatforms,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

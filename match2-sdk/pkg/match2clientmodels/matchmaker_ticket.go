@@ -25,6 +25,10 @@ type MatchmakerTicket struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
+	// isactive
+	// Required: true
+	IsActive *bool `json:"IsActive"`
+
 	// latencies
 	// Required: true
 	Latencies map[string]int64 `json:"Latencies"`
@@ -56,6 +60,10 @@ type MatchmakerTicket struct {
 	// ticketid
 	// Required: true
 	TicketID *string `json:"TicketID"`
+
+	// ticketinformation
+	// Required: true
+	TicketInformation interface{} `json:"TicketInformation"`
 }
 
 // Validate validates this Matchmaker ticket
@@ -63,6 +71,9 @@ func (m *MatchmakerTicket) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsActive(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateMatchPool(formats); err != nil {
@@ -97,6 +108,15 @@ func (m *MatchmakerTicket) validateCreatedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("CreatedAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MatchmakerTicket) validateIsActive(formats strfmt.Registry) error {
+
+	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
 		return err
 	}
 

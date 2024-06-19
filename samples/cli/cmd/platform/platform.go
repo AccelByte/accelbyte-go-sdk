@@ -30,6 +30,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentConfig"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentDedicated"
 	"github.com/AccelByte/sample-apps/cmd/platform/paymentStation"
+	"github.com/AccelByte/sample-apps/cmd/platform/platform"
 	"github.com/AccelByte/sample-apps/cmd/platform/platformAccountClosure"
 	"github.com/AccelByte/sample-apps/cmd/platform/revocation"
 	"github.com/AccelByte/sample-apps/cmd/platform/reward"
@@ -199,6 +200,8 @@ func init() {
 	PlatformCmd.AddCommand(order.RefundOrderCmd)
 	PlatformCmd.AddCommand(paymentCallbackConfig.GetPaymentCallbackConfigCmd)
 	PlatformCmd.AddCommand(paymentCallbackConfig.UpdatePaymentCallbackConfigCmd)
+	PlatformCmd.AddCommand(paymentConfig.GetPaymentMerchantConfigCmd)
+	PlatformCmd.AddCommand(paymentConfig.UpdatePaymentDomainWhitelistConfigCmd)
 	PlatformCmd.AddCommand(payment.QueryPaymentNotificationsCmd)
 	PlatformCmd.AddCommand(payment.QueryPaymentOrdersCmd)
 	PlatformCmd.AddCommand(paymentDedicated.CreatePaymentOrderByDedicatedCmd)
@@ -208,6 +211,8 @@ func init() {
 	PlatformCmd.AddCommand(paymentDedicated.RefundPaymentOrderByDedicatedCmd)
 	PlatformCmd.AddCommand(payment.SimulatePaymentOrderNotificationCmd)
 	PlatformCmd.AddCommand(payment.GetPaymentOrderChargeStatusCmd)
+	PlatformCmd.AddCommand(platform.GetPsnEntitlementOwnershipCmd)
+	PlatformCmd.AddCommand(platform.GetXboxEntitlementOwnershipCmd)
 	PlatformCmd.AddCommand(entitlement.GetPlatformEntitlementConfigCmd)
 	PlatformCmd.AddCommand(entitlement.UpdatePlatformEntitlementConfigCmd)
 	PlatformCmd.AddCommand(wallet.GetPlatformWalletConfigCmd)
@@ -373,17 +378,20 @@ func init() {
 	PlatformCmd.AddCommand(paymentConfig.TestAliPayConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestCheckoutConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.DebugMatchedPaymentMerchantConfigCmd)
+	PlatformCmd.AddCommand(paymentConfig.TestNeonPayConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestPayPalConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestStripeConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestWxPayConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestXsollaConfigCmd)
-	PlatformCmd.AddCommand(paymentConfig.GetPaymentMerchantConfigCmd)
+	PlatformCmd.AddCommand(paymentConfig.GetPaymentMerchantConfig1Cmd)
 	PlatformCmd.AddCommand(paymentConfig.UpdateAdyenConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestAdyenConfigByIdCmd)
 	PlatformCmd.AddCommand(paymentConfig.UpdateAliPayConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestAliPayConfigByIdCmd)
 	PlatformCmd.AddCommand(paymentConfig.UpdateCheckoutConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestCheckoutConfigByIdCmd)
+	PlatformCmd.AddCommand(paymentConfig.UpdateNeonPayConfigCmd)
+	PlatformCmd.AddCommand(paymentConfig.TestNeonPayConfigByIdCmd)
 	PlatformCmd.AddCommand(paymentConfig.UpdatePayPalConfigCmd)
 	PlatformCmd.AddCommand(paymentConfig.TestPayPalConfigByIdCmd)
 	PlatformCmd.AddCommand(paymentConfig.UpdateStripeConfigCmd)
@@ -496,7 +504,7 @@ func init() {
 	PlatformCmd.AddCommand(view.PublicListViewsCmd)
 	PlatformCmd.AddCommand(wallet.PublicGetWalletCmd)
 	PlatformCmd.AddCommand(wallet.PublicListUserWalletTransactionsCmd)
-	PlatformCmd.AddCommand(item.QueryItems1Cmd)
+	PlatformCmd.AddCommand(item.QueryItemsV2Cmd)
 	PlatformCmd.AddCommand(store.ImportStore1Cmd)
 	PlatformCmd.AddCommand(store.ExportStore1Cmd)
 	PlatformCmd.AddCommand(fulfillment.FulfillRewardsV2Cmd)

@@ -107,7 +107,7 @@ func NewPublicDisableMyEmailV4BadRequest() *PublicDisableMyEmailV4BadRequest {
 
 /*PublicDisableMyEmailV4BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10171</td><td>email address not found</td></tr><tr><td>10228</td><td>invalid mfa token</td></tr></table>
 */
 type PublicDisableMyEmailV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

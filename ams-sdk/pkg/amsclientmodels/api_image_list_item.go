@@ -22,6 +22,10 @@ type APIImageListItem struct {
 	// Required: true
 	CreatedAt *string `json:"createdAt"`
 
+	// deleteat
+	// Required: true
+	DeleteAt *APITime `json:"deleteAt"`
+
 	// executable
 	// Required: true
 	Executable *string `json:"executable"`
@@ -72,6 +76,9 @@ func (m *APIImageListItem) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateDeleteAt(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateExecutable(formats); err != nil {
 		res = append(res, err)
 	}
@@ -113,6 +120,24 @@ func (m *APIImageListItem) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *APIImageListItem) validateDeleteAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("deleteAt", "body", m.DeleteAt); err != nil {
+		return err
+	}
+
+	if m.DeleteAt != nil {
+		if err := m.DeleteAt.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("deleteAt")
+			}
+			return err
+		}
 	}
 
 	return nil

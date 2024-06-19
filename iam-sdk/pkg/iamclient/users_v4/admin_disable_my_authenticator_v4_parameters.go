@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // NewAdminDisableMyAuthenticatorV4Params creates a new AdminDisableMyAuthenticatorV4Params object
@@ -64,6 +66,8 @@ type AdminDisableMyAuthenticatorV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *iamclientmodels.ModelDisableMFARequest
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -130,6 +134,17 @@ func (o *AdminDisableMyAuthenticatorV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the admin disable my authenticator v4 params
+func (o *AdminDisableMyAuthenticatorV4Params) WithBody(body *iamclientmodels.ModelDisableMFARequest) *AdminDisableMyAuthenticatorV4Params {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the admin disable my authenticator v4 params
+func (o *AdminDisableMyAuthenticatorV4Params) SetBody(body *iamclientmodels.ModelDisableMFARequest) {
+	o.Body = body
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminDisableMyAuthenticatorV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +152,12 @@ func (o *AdminDisableMyAuthenticatorV4Params) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// setting the default header value
 	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {

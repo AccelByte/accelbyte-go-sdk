@@ -25,7 +25,10 @@ var AdminSendMyMFAEmailCodeV4Cmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &users_v4.AdminSendMyMFAEmailCodeV4Params{}
+		action, _ := cmd.Flags().GetString("action")
+		input := &users_v4.AdminSendMyMFAEmailCodeV4Params{
+			Action: &action,
+		}
 		errNoContent := usersV4Service.AdminSendMyMFAEmailCodeV4Short(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
@@ -40,4 +43,5 @@ var AdminSendMyMFAEmailCodeV4Cmd = &cobra.Command{
 }
 
 func init() {
+	AdminSendMyMFAEmailCodeV4Cmd.Flags().String("action", "-1", "Action")
 }

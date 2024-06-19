@@ -39,6 +39,9 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Required: true
 	ConfigurationName *string `json:"configurationName"`
 
+	// customurlgrpc
+	CustomURLGRPC string `json:"customURLGRPC,omitempty"`
+
 	// deployment
 	// Required: true
 	Deployment *string `json:"deployment"`

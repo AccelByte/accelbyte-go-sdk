@@ -1600,8 +1600,6 @@ func (a *Client) DeleteUserRankingsAdminV1Short(params *DeleteUserRankingsAdminV
 Deprecated: 2022-08-10 - Use GetAllTimeLeaderboardRankingPublicV1Short instead.
 
 GetAllTimeLeaderboardRankingPublicV1 get all time leaderboard ranking data
-
-
 Get rankings in an all time leaderboard.
 */
 func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error) {
@@ -1660,8 +1658,6 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderbo
 
 /*
 GetAllTimeLeaderboardRankingPublicV1Short get all time leaderboard ranking data
-
-
 Get rankings in an all time leaderboard.
 */
 func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, error) {
@@ -1715,8 +1711,6 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLea
 Deprecated: 2022-08-10 - Use GetArchivedLeaderboardRankingDataV1HandlerShort instead.
 
 GetArchivedLeaderboardRankingDataV1Handler get signed url for archive all time leaderboard ranking data
-
-
 Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url
 */
 func (a *Client) GetArchivedLeaderboardRankingDataV1Handler(params *GetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetArchivedLeaderboardRankingDataV1HandlerOK, *GetArchivedLeaderboardRankingDataV1HandlerBadRequest, *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized, *GetArchivedLeaderboardRankingDataV1HandlerForbidden, *GetArchivedLeaderboardRankingDataV1HandlerNotFound, *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError, error) {
@@ -1781,8 +1775,6 @@ func (a *Client) GetArchivedLeaderboardRankingDataV1Handler(params *GetArchivedL
 
 /*
 GetArchivedLeaderboardRankingDataV1HandlerShort get signed url for archive all time leaderboard ranking data
-
-
 Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url
 */
 func (a *Client) GetArchivedLeaderboardRankingDataV1HandlerShort(params *GetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetArchivedLeaderboardRankingDataV1HandlerOK, error) {

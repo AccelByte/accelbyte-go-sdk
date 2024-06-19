@@ -105,7 +105,9 @@ type AdminQueryThirdPlatformLinkHistoryV3Params struct {
 	- nintendo
 	- aws cognito
 	- facebook
-	- google
+	- google group
+		- google
+		- googleplaygames
 	- discord
 	- twitch
 	- snapchat

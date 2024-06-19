@@ -31,6 +31,9 @@ type ModelsGameServer struct {
 	// deployment
 	Deployment string `json:"deployment,omitempty"`
 
+	// extend_region
+	ExtendRegion string `json:"extend_region,omitempty"`
+
 	// game_version
 	GameVersion string `json:"game_version,omitempty"`
 

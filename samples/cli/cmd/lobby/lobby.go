@@ -45,6 +45,8 @@ func init() {
 	LobbyCmd.AddCommand(friends.SyncNativeFriendsCmd)
 	LobbyCmd.AddCommand(blocks.SyncNativeBlockedUserCmd)
 	LobbyCmd.AddCommand(config.AdminGetAllConfigV1Cmd)
+	LobbyCmd.AddCommand(config.AdminGetLogConfigCmd)
+	LobbyCmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)
 	LobbyCmd.AddCommand(config.AdminGetConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminUpdateConfigV1Cmd)
 	LobbyCmd.AddCommand(config.AdminExportConfigV1Cmd)

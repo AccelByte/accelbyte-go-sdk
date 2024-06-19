@@ -76,6 +76,9 @@ type TradeNotification struct {
 	// Required: true
 	NonceStr *string `json:"nonceStr"`
 
+	// payment data
+	PaymentData *PaymentData `json:"paymentData,omitempty"`
+
 	// Payment method
 	PaymentMethod string `json:"paymentMethod,omitempty"`
 
@@ -88,7 +91,7 @@ type TradeNotification struct {
 	PaymentOrderNo *string `json:"paymentOrderNo"`
 
 	// Payment provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	// Required: true
 	PaymentProvider *string `json:"paymentProvider"`
 
@@ -283,7 +286,7 @@ var tradeNotificationTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -301,6 +304,9 @@ const (
 
 	// TradeNotificationPaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	TradeNotificationPaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// TradeNotificationPaymentProviderNEONPAY captures enum value "NEONPAY"
+	TradeNotificationPaymentProviderNEONPAY string = "NEONPAY"
 
 	// TradeNotificationPaymentProviderPAYPAL captures enum value "PAYPAL"
 	TradeNotificationPaymentProviderPAYPAL string = "PAYPAL"

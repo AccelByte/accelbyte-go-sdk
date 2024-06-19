@@ -162,7 +162,8 @@ PublicGetPaymentURL get payment url
  [Not Supported Yet In Starter] Get payment url.
 Other detail info:
 
-  * Returns : Get payment link
+  * For Neon Pay payment provider, the 'neonPayConfig' field can be used to provide success and cancel URL. If 'neonPayConfig' field is not present, the 'returnUrl' will be used for both success and cancel URL.
+  *  Returns : Get payment link
 */
 func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*PublicGetPaymentURLOK, *PublicGetPaymentURLBadRequest, *PublicGetPaymentURLForbidden, *PublicGetPaymentURLNotFound, error) {
 	// TODO: Validate the params before sending
@@ -222,7 +223,8 @@ PublicGetPaymentURLShort get payment url
  [Not Supported Yet In Starter] Get payment url.
 Other detail info:
 
-  * Returns : Get payment link
+  * For Neon Pay payment provider, the 'neonPayConfig' field can be used to provide success and cancel URL. If 'neonPayConfig' field is not present, the 'returnUrl' will be used for both success and cancel URL.
+  *  Returns : Get payment link
 */
 func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*PublicGetPaymentURLOK, error) {
 	// TODO: Validate the params before sending

@@ -26,6 +26,9 @@ type ModelInviteUserRequestV3 struct {
 	// Required: true
 	IsAdmin *bool `json:"isAdmin"`
 
+	// languagetag
+	LanguageTag string `json:"languageTag,omitempty"`
+
 	// DEPRECATED. multi tenant studio namespace
 	Namespace string `json:"namespace,omitempty"`
 

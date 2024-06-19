@@ -28,6 +28,9 @@ type AccountcommonDistinctLinkedPlatformV3 struct {
 	// Required: true
 	LinkedAt *string `json:"linkedAt"`
 
+	// logourl
+	LogoURL string `json:"logoURL,omitempty"`
+
 	// platformgroup
 	// Required: true
 	PlatformGroup *string `json:"platformGroup"`

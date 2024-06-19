@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.19.2"
+    "version": "2.21.1"
   },
   "schemes": [
     "https"
@@ -38,6 +38,9 @@
     "/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfo",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -54,6 +57,9 @@
     "/match2/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfoV1",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -65,6 +71,86 @@
           }
         ],
         "x-errorCodes": {}
+      }
+    },
+    "/match2/v1/admin/config/log": {
+      "get": {
+        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetLogConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateLogConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Log Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/match2/v1/config": {
@@ -2940,6 +3026,10 @@
         },
         "sessionID": {
           "type": "string"
+        },
+        "storage": {
+          "description": "leader session storage",
+          "type": "object"
         }
       },
       "required": [
@@ -3031,6 +3121,13 @@
     },
     "api.PatchNamespaceConfigRequest": {
       "properties": {
+        "extraPlatforms": {
+          "description": "additional platforms that will be included in the cross_platform attribute alongside the login method",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "platformGroup": {
           "additionalProperties": {
             "items": {
@@ -3197,6 +3294,12 @@
     },
     "configmodels.NamespaceConfig": {
       "properties": {
+        "extraPlatforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "namespace": {
           "type": "string"
         },
@@ -3213,6 +3316,22 @@
       "required": [
         "namespace"
       ]
+    },
+    "logconfig.Configuration": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        }
+      }
     },
     "matchmaker.MatchTicketRecord": {
       "properties": {
@@ -3309,6 +3428,10 @@
           "type": "string",
           "x-nullable": false
         },
+        "IsActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "Latencies": {
           "additionalProperties": {
             "type": "integer"
@@ -3338,10 +3461,14 @@
         },
         "TicketID": {
           "type": "string"
+        },
+        "TicketInformation": {
+          "type": "object"
         }
       },
       "required": [
         "CreatedAt",
+        "IsActive",
         "Latencies",
         "MatchPool",
         "Namespace",
@@ -3349,7 +3476,8 @@
         "Players",
         "ProposedProposal",
         "TicketAttributes",
-        "TicketID"
+        "TicketID",
+        "TicketInformation"
       ]
     },
     "models.Configuration": {
@@ -3697,9 +3825,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-04-24T13:27:15+00:00",
-    "gitHash": "4ccfec3f6a087acdd285c09b02b42d50f04503ca",
-    "version": "2.19.2",
-    "version-roles-seeding": "1.2.17"
+    "buildDate": "2024-06-13T06:36:45+00:00",
+    "gitHash": "1cba48105aae897aa8b81caa78e58c38ce85652d",
+    "version": "2.21.1",
+    "version-roles-seeding": "1.2.36"
   }
 }

@@ -101,7 +101,7 @@ func NewPublicUpdatePasswordV3BadRequest() *PublicUpdatePasswordV3BadRequest {
 
 /*PublicUpdatePasswordV3BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10142</td><td>new password cannot be same with original</td></tr><tr><td>10143</td><td>password not match</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10142</td><td>new password cannot be same with original</td></tr><tr><td>10143</td><td>password not match</td></tr><tr><td>10228</td><td>invalid mfa token</td></tr></table>
 */
 type PublicUpdatePasswordV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

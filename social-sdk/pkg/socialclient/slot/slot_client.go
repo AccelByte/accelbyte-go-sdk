@@ -62,7 +62,6 @@ GetUserNamespaceSlots returns list of slots for given user
 
 Get slots for a given user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
 */
 func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserNamespaceSlotsOK, error) {
@@ -119,7 +118,6 @@ GetUserNamespaceSlotsShort returns list of slots for given user
 
 Get slots for a given user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
 */
 func (a *Client) GetUserNamespaceSlotsShort(params *GetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserNamespaceSlotsOK, error) {
@@ -174,7 +172,6 @@ GetSlotData returns slot data
 
 Get slot data.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : slot data
 */
 func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*GetSlotDataOK, *GetSlotDataNotFound, error) {
@@ -234,7 +231,6 @@ GetSlotDataShort returns slot data
 
 Get slot data.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : slot data
 */
 func (a *Client) GetSlotDataShort(params *GetSlotDataParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*GetSlotDataOK, error) {
@@ -291,7 +287,6 @@ PublicGetUserNamespaceSlots returns slots for given user
 
 Get list of slots for a given user in namespace.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
 */
 func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserNamespaceSlotsOK, error) {
@@ -348,7 +343,6 @@ PublicGetUserNamespaceSlotsShort returns slots for given user
 
 Get list of slots for a given user in namespace.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : list of slots
 */
 func (a *Client) PublicGetUserNamespaceSlotsShort(params *PublicGetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserNamespaceSlotsOK, error) {
@@ -403,7 +397,6 @@ PublicCreateUserNamespaceSlot creates a slot
 
 Creates a slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=1 (CREATE)
               *  Returns : created slot info
 */
 func (a *Client) PublicCreateUserNamespaceSlot(params *PublicCreateUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserNamespaceSlotCreated, *PublicCreateUserNamespaceSlotBadRequest, *PublicCreateUserNamespaceSlotConflict, error) {
@@ -466,7 +459,6 @@ PublicCreateUserNamespaceSlotShort creates a slot
 
 Creates a slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=1 (CREATE)
               *  Returns : created slot info
 */
 func (a *Client) PublicCreateUserNamespaceSlotShort(params *PublicCreateUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserNamespaceSlotCreated, error) {
@@ -525,7 +517,6 @@ PublicGetSlotData returns slot data
 
 Get slot data.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : slot data
 */
 func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicGetSlotDataOK, *PublicGetSlotDataNotFound, error) {
@@ -585,7 +576,6 @@ PublicGetSlotDataShort returns slot data
 
 Get slot data.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)
               *  Returns : slot data
 */
 func (a *Client) PublicGetSlotDataShort(params *PublicGetSlotDataParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicGetSlotDataOK, error) {
@@ -642,7 +632,6 @@ PublicUpdateUserNamespaceSlot updates a slot
 
 Updates a slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
               *  Returns : updated slot
 */
 func (a *Client) PublicUpdateUserNamespaceSlot(params *PublicUpdateUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserNamespaceSlotOK, *PublicUpdateUserNamespaceSlotBadRequest, *PublicUpdateUserNamespaceSlotNotFound, error) {
@@ -705,7 +694,6 @@ PublicUpdateUserNamespaceSlotShort updates a slot
 
 Updates a slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
               *  Returns : updated slot
 */
 func (a *Client) PublicUpdateUserNamespaceSlotShort(params *PublicUpdateUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserNamespaceSlotOK, error) {
@@ -764,7 +752,6 @@ PublicDeleteUserNamespaceSlot deletes the slot
 
 Deletes the slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=8 (DELETE)
 */
 func (a *Client) PublicDeleteUserNamespaceSlot(params *PublicDeleteUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserNamespaceSlotNoContent, *PublicDeleteUserNamespaceSlotNotFound, error) {
 	// TODO: Validate the params before sending
@@ -823,7 +810,6 @@ PublicDeleteUserNamespaceSlotShort deletes the slot
 
 Deletes the slot.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=8 (DELETE)
 */
 func (a *Client) PublicDeleteUserNamespaceSlotShort(params *PublicDeleteUserNamespaceSlotParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserNamespaceSlotNoContent, error) {
 	// TODO: Validate the params before sending
@@ -879,7 +865,6 @@ PublicUpdateUserNamespaceSlotMetadata updates the slot metadata
 
 Updates the slot metadata.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
               *  Returns : updated slot
 */
 func (a *Client) PublicUpdateUserNamespaceSlotMetadata(params *PublicUpdateUserNamespaceSlotMetadataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserNamespaceSlotMetadataOK, *PublicUpdateUserNamespaceSlotMetadataNotFound, error) {
@@ -939,7 +924,6 @@ PublicUpdateUserNamespaceSlotMetadataShort updates the slot metadata
 
 Updates the slot metadata.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=4 (UPDATE)
               *  Returns : updated slot
 */
 func (a *Client) PublicUpdateUserNamespaceSlotMetadataShort(params *PublicUpdateUserNamespaceSlotMetadataParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserNamespaceSlotMetadataOK, error) {

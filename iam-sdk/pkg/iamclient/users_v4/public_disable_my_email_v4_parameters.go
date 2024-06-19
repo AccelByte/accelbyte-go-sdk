@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // NewPublicDisableMyEmailV4Params creates a new PublicDisableMyEmailV4Params object
@@ -64,6 +66,8 @@ type PublicDisableMyEmailV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *iamclientmodels.ModelDisableMFARequest
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -135,6 +139,17 @@ func (o *PublicDisableMyEmailV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the public disable my email v4 params
+func (o *PublicDisableMyEmailV4Params) WithBody(body *iamclientmodels.ModelDisableMFARequest) *PublicDisableMyEmailV4Params {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the public disable my email v4 params
+func (o *PublicDisableMyEmailV4Params) SetBody(body *iamclientmodels.ModelDisableMFARequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the public disable my email v4 params
 func (o *PublicDisableMyEmailV4Params) WithNamespace(namespace string) *PublicDisableMyEmailV4Params {
 	o.SetNamespace(namespace)
@@ -153,6 +168,12 @@ func (o *PublicDisableMyEmailV4Params) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

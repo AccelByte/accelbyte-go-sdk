@@ -431,6 +431,7 @@ Current user should be a headless account.
 - **steamopenid**
 - **facebook**
 - **google**
+- **googleplaygames**
 - **oculus**
 - **twitch**
 - **discord**
@@ -504,6 +505,7 @@ Current user should be a headless account.
 - **steamopenid**
 - **facebook**
 - **google**
+- **googleplaygames**
 - **oculus**
 - **twitch**
 - **discord**
@@ -863,7 +865,7 @@ func (a *Client) GetCountryLocationV3Short(params *GetCountryLocationV3Params, a
 Deprecated: 2022-08-10 - Use LogoutShort instead.
 
 Logout logout
-This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.
+This endpoint is used to remove **access_token**, **refresh_token** from cookie.
 */
 func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending
@@ -912,7 +914,7 @@ func (a *Client) Logout(params *LogoutParams, authInfo runtime.ClientAuthInfoWri
 
 /*
 LogoutShort logout
-This endpoint is used to remove **access_token**, **refresh_token** from cookie and revoke token from usage.
+This endpoint is used to remove **access_token**, **refresh_token** from cookie.
 */
 func (a *Client) LogoutShort(params *LogoutParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutNoContent, error) {
 	// TODO: Validate the params before sending

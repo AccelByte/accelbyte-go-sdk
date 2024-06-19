@@ -22,8 +22,9 @@ var PlatformTokenGrantV4Cmd = &cobra.Command{
 	Long:  `Platform token grant V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20V4Service := &iam.OAuth20v4Service{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
 		additionalData, _ := cmd.Flags().GetString("additionalData")
@@ -32,6 +33,7 @@ var PlatformTokenGrantV4Cmd = &cobra.Command{
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		macAddress, _ := cmd.Flags().GetString("macAddress")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
+		serviceLabel, _ := cmd.Flags().GetFloat64("serviceLabel")
 		skipSetCookie, _ := cmd.Flags().GetBool("skipSetCookie")
 		codeChallenge, _ := cmd.Flags().GetString("codeChallenge")
 		codeChallengeMethod, _ := cmd.Flags().GetString("codeChallengeMethod")
@@ -42,6 +44,7 @@ var PlatformTokenGrantV4Cmd = &cobra.Command{
 			DeviceID:            &deviceId,
 			MacAddress:          &macAddress,
 			PlatformToken:       &platformToken,
+			ServiceLabel:        &serviceLabel,
 			SkipSetCookie:       &skipSetCookie,
 			PlatformID:          platformId,
 			CodeChallenge:       &codeChallenge,
@@ -67,6 +70,7 @@ func init() {
 	PlatformTokenGrantV4Cmd.Flags().String("deviceId", "", "Device id")
 	PlatformTokenGrantV4Cmd.Flags().String("macAddress", "", "Mac address")
 	PlatformTokenGrantV4Cmd.Flags().String("platformToken", "", "Platform token")
+	PlatformTokenGrantV4Cmd.Flags().Float64("serviceLabel", 0, "Service label")
 	PlatformTokenGrantV4Cmd.Flags().Bool("skipSetCookie", false, "Skip set cookie")
 	PlatformTokenGrantV4Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PlatformTokenGrantV4Cmd.MarkFlagRequired("platformId")

@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.18.0"
+    "version": "1.20.0"
   },
   "schemes": [
     "https"
@@ -21,10 +21,13 @@
         "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
         "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]",
+        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
@@ -387,6 +390,88 @@
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]",
+        "operationId": "ArtifactBulkDelete",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "artifact type (can be repeated)",
+            "in": "query",
+            "name": "artifactType",
+            "type": "string"
+          },
+          {
+            "description": "fleet ID (can be repeated)",
+            "in": "query",
+            "name": "fleetId",
+            "type": "string"
+          },
+          {
+            "description": "uploaded before date",
+            "format": "date",
+            "in": "query",
+            "name": "uploadedBefore",
+            "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "type": "string",
+            "x-nullable": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "delete received"
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "delete artifacts that match criteria in bulk. all artifacts matching any one criteria will be deleted. at least 1 parameter is required.",
+        "tags": [
+          "Artifacts"
+        ],
+        "x-errorCodes": {}
+      },
       "get": {
         "consumes": [
           "application/json"
@@ -1749,7 +1834,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "description": "Returns images which exist (uploaded, uploading, or building) in the linked account. This route fails if no account is linked\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]",
         "operationId": "ImageList",
         "parameters": [
           {
@@ -1798,7 +1883,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]"
             ],
             "authorization": []
           }
@@ -1811,11 +1896,85 @@
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images/{imageID}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Marks an image for deletion. The image will stop being available for fleets and will eventually be deleted.\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]",
+        "operationId": "ImageMarkForDeletion",
+        "parameters": [
+          {
+            "description": "the id of the image",
+            "in": "path",
+            "name": "imageID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "success"
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "image doesn't exist",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "412": {
+            "description": "image is being used by 1 or more fleets",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "mark the image for deletion",
+        "tags": [
+          "Images"
+        ],
+        "x-errorCodes": {}
+      },
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]",
         "operationId": "ImageGet",
         "parameters": [
           {
@@ -1871,7 +2030,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
+              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]"
             ],
             "authorization": []
           }
@@ -1886,7 +2045,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This allows editing of the image name, toggling `IsProtected`, or adding \u0026amp; removal of tags\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]",
+        "description": "This allows editing of the image name, toggling `IsProtected`, or adding \u0026amp; removal of tags\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]",
         "operationId": "ImagePatch",
         "parameters": [
           {
@@ -1950,12 +2109,85 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [UPDATE]"
+              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]"
             ],
             "authorization": []
           }
         ],
         "summary": "edit the image",
+        "tags": [
+          "Images"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/ams/v1/admin/namespaces/{namespace}/images/{imageID}/restore": {
+      "post": {
+        "description": "Unmarks an image for deletion. The image will be available for fleets.\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]",
+        "operationId": "ImageUnmarkForDeletion",
+        "parameters": [
+          {
+            "description": "the id of the image",
+            "in": "path",
+            "name": "imageID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "success"
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "image doesn't exist",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "412": {
+            "description": "image wasn't marked for deletion",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "unmarks the image for deletion",
         "tags": [
           "Images"
         ],
@@ -3396,6 +3628,9 @@
             "$ref": "#/definitions/api.RegionConfig"
           },
           "type": "array"
+        },
+        "samplingRules": {
+          "$ref": "#/definitions/api.FleetArtifactsSampleRules"
         }
       },
       "required": [
@@ -3407,7 +3642,8 @@
         "isLocal",
         "name",
         "onDemand",
-        "regions"
+        "regions",
+        "samplingRules"
       ]
     },
     "api.FleetListItemResponse": {
@@ -3740,6 +3976,9 @@
         "createdAt": {
           "$ref": "#/definitions/time.Time"
         },
+        "deleteAt": {
+          "$ref": "#/definitions/api.Time"
+        },
         "executable": {
           "type": "string"
         },
@@ -3781,6 +4020,7 @@
       },
       "required": [
         "createdAt",
+        "deleteAt",
         "executable",
         "id",
         "isProtected",
@@ -3810,6 +4050,9 @@
       "properties": {
         "createdAt": {
           "$ref": "#/definitions/time.Time"
+        },
+        "deleteAt": {
+          "$ref": "#/definitions/api.Time"
         },
         "executable": {
           "type": "string"
@@ -3850,6 +4093,7 @@
       },
       "required": [
         "createdAt",
+        "deleteAt",
         "executable",
         "id",
         "isProtected",
@@ -4244,10 +4488,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-17T09:38:03+00:00",
-    "gitHash": "034e07ff840fd40255036b458c49bea731cce346",
+    "buildDate": "2024-06-18T01:58:23+00:00",
+    "gitHash": "97d7d887ecc67f071d6107a26e5768597b2f29cd",
     "name": "fleet-commander",
-    "version": "1.18.0",
-    "version-roles-seeding": "1.2.31"
+    "version": "1.20.0",
+    "version-roles-seeding": "1.2.40"
   }
 }

@@ -47,6 +47,9 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	ClientID *string `json:"ClientId"`
 
+	// specify which string fields need set empty value.
+	EmptyStrFieldList []string `json:"EmptyStrFieldList,omitempty"`
+
 	// environment
 	// Required: true
 	Environment *string `json:"Environment"`

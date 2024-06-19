@@ -21,7 +21,7 @@ import (
 type PaymentURL struct {
 
 	// payment provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	// Required: true
 	PaymentProvider *string `json:"paymentProvider"`
 
@@ -64,7 +64,7 @@ var paymentUrlTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -82,6 +82,9 @@ const (
 
 	// PaymentURLPaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	PaymentURLPaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// PaymentURLPaymentProviderNEONPAY captures enum value "NEONPAY"
+	PaymentURLPaymentProviderNEONPAY string = "NEONPAY"
 
 	// PaymentURLPaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentURLPaymentProviderPAYPAL string = "PAYPAL"

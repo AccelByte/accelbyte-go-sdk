@@ -16,7 +16,9 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion_s2_s"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/platform_account_closure_client"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/platform_account_closure_history"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -71,7 +73,9 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.Configuration = configuration.New(transport, formats)
 	cli.DataDeletion = data_deletion.New(transport, formats)
+	cli.DataDeletionS2s = data_deletion_s2_s.New(transport, formats)
 	cli.DataRetrieval = data_retrieval.New(transport, formats)
+	cli.DataRetrievalS2s = data_retrieval_s2_s.New(transport, formats)
 	cli.PlatformAccountClosureClient = platform_account_closure_client.New(transport, formats)
 	cli.PlatformAccountClosureHistory = platform_account_closure_history.New(transport, formats)
 
@@ -138,7 +142,11 @@ type JusticeGdprService struct {
 
 	DataDeletion data_deletion.ClientService
 
+	DataDeletionS2s data_deletion_s2_s.ClientService
+
 	DataRetrieval data_retrieval.ClientService
+
+	DataRetrievalS2s data_retrieval_s2_s.ClientService
 
 	PlatformAccountClosureClient platform_account_closure_client.ClientService
 
@@ -153,7 +161,9 @@ func (c *JusticeGdprService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Configuration.SetTransport(transport)
 	c.DataDeletion.SetTransport(transport)
+	c.DataDeletionS2s.SetTransport(transport)
 	c.DataRetrieval.SetTransport(transport)
+	c.DataRetrievalS2s.SetTransport(transport)
 	c.PlatformAccountClosureClient.SetTransport(transport)
 	c.PlatformAccountClosureHistory.SetTransport(transport)
 }

@@ -38,13 +38,13 @@ type ClientService interface {
 	AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitUserAccountDeletionRequestCreated, error)
 	AdminCancelUserAccountDeletionRequest(params *AdminCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserAccountDeletionRequestNoContent, *AdminCancelUserAccountDeletionRequestBadRequest, *AdminCancelUserAccountDeletionRequestUnauthorized, *AdminCancelUserAccountDeletionRequestForbidden, *AdminCancelUserAccountDeletionRequestNotFound, *AdminCancelUserAccountDeletionRequestInternalServerError, error)
 	AdminCancelUserAccountDeletionRequestShort(params *AdminCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCancelUserAccountDeletionRequestNoContent, error)
-	PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, *PublicSubmitUserAccountDeletionRequestBadRequest, *PublicSubmitUserAccountDeletionRequestUnauthorized, *PublicSubmitUserAccountDeletionRequestForbidden, *PublicSubmitUserAccountDeletionRequestNotFound, *PublicSubmitUserAccountDeletionRequestInternalServerError, error)
+	PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, *PublicSubmitUserAccountDeletionRequestBadRequest, *PublicSubmitUserAccountDeletionRequestUnauthorized, *PublicSubmitUserAccountDeletionRequestForbidden, *PublicSubmitUserAccountDeletionRequestNotFound, *PublicSubmitUserAccountDeletionRequestConflict, *PublicSubmitUserAccountDeletionRequestInternalServerError, error)
 	PublicSubmitUserAccountDeletionRequestShort(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, error)
 	PublicCancelUserAccountDeletionRequest(params *PublicCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserAccountDeletionRequestNoContent, *PublicCancelUserAccountDeletionRequestUnauthorized, *PublicCancelUserAccountDeletionRequestForbidden, *PublicCancelUserAccountDeletionRequestNotFound, *PublicCancelUserAccountDeletionRequestInternalServerError, error)
 	PublicCancelUserAccountDeletionRequestShort(params *PublicCancelUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserAccountDeletionRequestNoContent, error)
 	PublicGetUserAccountDeletionStatus(params *PublicGetUserAccountDeletionStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAccountDeletionStatusOK, *PublicGetUserAccountDeletionStatusUnauthorized, *PublicGetUserAccountDeletionStatusForbidden, *PublicGetUserAccountDeletionStatusInternalServerError, error)
 	PublicGetUserAccountDeletionStatusShort(params *PublicGetUserAccountDeletionStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAccountDeletionStatusOK, error)
-	PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, *PublicSubmitMyAccountDeletionRequestBadRequest, *PublicSubmitMyAccountDeletionRequestUnauthorized, *PublicSubmitMyAccountDeletionRequestForbidden, *PublicSubmitMyAccountDeletionRequestNotFound, *PublicSubmitMyAccountDeletionRequestInternalServerError, error)
+	PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, *PublicSubmitMyAccountDeletionRequestBadRequest, *PublicSubmitMyAccountDeletionRequestUnauthorized, *PublicSubmitMyAccountDeletionRequestForbidden, *PublicSubmitMyAccountDeletionRequestNotFound, *PublicSubmitMyAccountDeletionRequestConflict, *PublicSubmitMyAccountDeletionRequestInternalServerError, error)
 	PublicSubmitMyAccountDeletionRequestShort(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, error)
 	PublicCancelMyAccountDeletionRequest(params *PublicCancelMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelMyAccountDeletionRequestNoContent, *PublicCancelMyAccountDeletionRequestUnauthorized, *PublicCancelMyAccountDeletionRequestForbidden, *PublicCancelMyAccountDeletionRequestNotFound, *PublicCancelMyAccountDeletionRequestInternalServerError, error)
 	PublicCancelMyAccountDeletionRequestShort(params *PublicCancelMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelMyAccountDeletionRequestNoContent, error)
@@ -298,8 +298,8 @@ func (a *Client) AdminGetUserAccountDeletionRequestShort(params *AdminGetUserAcc
 /*
 Deprecated: 2022-08-10 - Use AdminSubmitUserAccountDeletionRequestShort instead.
 
-AdminSubmitUserAccountDeletionRequest submit user's account deletion requests
-Submit user's account deletion requests
+AdminSubmitUserAccountDeletionRequest submit user's account deletion request
+Submit user's account deletion request.
 Scope: account
 */
 func (a *Client) AdminSubmitUserAccountDeletionRequest(params *AdminSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitUserAccountDeletionRequestCreated, *AdminSubmitUserAccountDeletionRequestUnauthorized, *AdminSubmitUserAccountDeletionRequestForbidden, *AdminSubmitUserAccountDeletionRequestNotFound, *AdminSubmitUserAccountDeletionRequestConflict, *AdminSubmitUserAccountDeletionRequestInternalServerError, error) {
@@ -363,8 +363,8 @@ func (a *Client) AdminSubmitUserAccountDeletionRequest(params *AdminSubmitUserAc
 }
 
 /*
-AdminSubmitUserAccountDeletionRequestShort submit user's account deletion requests
-Submit user's account deletion requests
+AdminSubmitUserAccountDeletionRequestShort submit user's account deletion request
+Submit user's account deletion request.
 Scope: account
 */
 func (a *Client) AdminSubmitUserAccountDeletionRequestShort(params *AdminSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSubmitUserAccountDeletionRequestCreated, error) {
@@ -544,12 +544,15 @@ func (a *Client) AdminCancelUserAccountDeletionRequestShort(params *AdminCancelU
 /*
 Deprecated: 2022-08-10 - Use PublicSubmitUserAccountDeletionRequestShort instead.
 
-PublicSubmitUserAccountDeletionRequest submit user's account deletion requests
-Submit user's account deletion requests
+PublicSubmitUserAccountDeletionRequest submit user's account deletion request
+Submit user's account deletion request.
 Requires valid user access token and password
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
-func (a *Client) PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, *PublicSubmitUserAccountDeletionRequestBadRequest, *PublicSubmitUserAccountDeletionRequestUnauthorized, *PublicSubmitUserAccountDeletionRequestForbidden, *PublicSubmitUserAccountDeletionRequestNotFound, *PublicSubmitUserAccountDeletionRequestInternalServerError, error) {
+func (a *Client) PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, *PublicSubmitUserAccountDeletionRequestBadRequest, *PublicSubmitUserAccountDeletionRequestUnauthorized, *PublicSubmitUserAccountDeletionRequestForbidden, *PublicSubmitUserAccountDeletionRequestNotFound, *PublicSubmitUserAccountDeletionRequestConflict, *PublicSubmitUserAccountDeletionRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSubmitUserAccountDeletionRequestParams()
@@ -581,39 +584,45 @@ func (a *Client) PublicSubmitUserAccountDeletionRequest(params *PublicSubmitUser
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSubmitUserAccountDeletionRequestCreated:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicSubmitUserAccountDeletionRequestBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicSubmitUserAccountDeletionRequestUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PublicSubmitUserAccountDeletionRequestForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicSubmitUserAccountDeletionRequestNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicSubmitUserAccountDeletionRequestConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicSubmitUserAccountDeletionRequestInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-PublicSubmitUserAccountDeletionRequestShort submit user's account deletion requests
-Submit user's account deletion requests
+PublicSubmitUserAccountDeletionRequestShort submit user's account deletion request
+Submit user's account deletion request.
 Requires valid user access token and password
 Scope: account
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) PublicSubmitUserAccountDeletionRequestShort(params *PublicSubmitUserAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitUserAccountDeletionRequestCreated, error) {
 	// TODO: Validate the params before sending
@@ -657,6 +666,8 @@ func (a *Client) PublicSubmitUserAccountDeletionRequestShort(params *PublicSubmi
 	case *PublicSubmitUserAccountDeletionRequestForbidden:
 		return nil, v
 	case *PublicSubmitUserAccountDeletionRequestNotFound:
+		return nil, v
+	case *PublicSubmitUserAccountDeletionRequestConflict:
 		return nil, v
 	case *PublicSubmitUserAccountDeletionRequestInternalServerError:
 		return nil, v
@@ -908,8 +919,11 @@ PublicSubmitMyAccountDeletionRequest submit my account deletion requests.
 Submit my account deletion requests.
 Requires valid user access token
 This is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use [/gdpr/public/namespaces/{namespace}/users/{userId}/deletions](#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest)
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
-func (a *Client) PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, *PublicSubmitMyAccountDeletionRequestBadRequest, *PublicSubmitMyAccountDeletionRequestUnauthorized, *PublicSubmitMyAccountDeletionRequestForbidden, *PublicSubmitMyAccountDeletionRequestNotFound, *PublicSubmitMyAccountDeletionRequestInternalServerError, error) {
+func (a *Client) PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, *PublicSubmitMyAccountDeletionRequestBadRequest, *PublicSubmitMyAccountDeletionRequestUnauthorized, *PublicSubmitMyAccountDeletionRequestForbidden, *PublicSubmitMyAccountDeletionRequestNotFound, *PublicSubmitMyAccountDeletionRequestConflict, *PublicSubmitMyAccountDeletionRequestInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSubmitMyAccountDeletionRequestParams()
@@ -941,31 +955,34 @@ func (a *Client) PublicSubmitMyAccountDeletionRequest(params *PublicSubmitMyAcco
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSubmitMyAccountDeletionRequestCreated:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicSubmitMyAccountDeletionRequestBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicSubmitMyAccountDeletionRequestUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PublicSubmitMyAccountDeletionRequestForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicSubmitMyAccountDeletionRequestNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicSubmitMyAccountDeletionRequestConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicSubmitMyAccountDeletionRequestInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -974,6 +991,9 @@ PublicSubmitMyAccountDeletionRequestShort submit my account deletion requests.
 Submit my account deletion requests.
 Requires valid user access token
 This is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use [/gdpr/public/namespaces/{namespace}/users/{userId}/deletions](#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest)
+
+### Request Header:
+- **Content-Type: application/x-www-form-urlencoded**
 */
 func (a *Client) PublicSubmitMyAccountDeletionRequestShort(params *PublicSubmitMyAccountDeletionRequestParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubmitMyAccountDeletionRequestCreated, error) {
 	// TODO: Validate the params before sending
@@ -1017,6 +1037,8 @@ func (a *Client) PublicSubmitMyAccountDeletionRequestShort(params *PublicSubmitM
 	case *PublicSubmitMyAccountDeletionRequestForbidden:
 		return nil, v
 	case *PublicSubmitMyAccountDeletionRequestNotFound:
+		return nil, v
+	case *PublicSubmitMyAccountDeletionRequestConflict:
 		return nil, v
 	case *PublicSubmitMyAccountDeletionRequestInternalServerError:
 		return nil, v

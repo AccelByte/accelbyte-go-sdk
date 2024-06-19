@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // NewPublicDisableMyBackupCodesV4Params creates a new PublicDisableMyBackupCodesV4Params object
@@ -64,6 +66,8 @@ type PublicDisableMyBackupCodesV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *iamclientmodels.ModelDisableMFARequest
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -135,6 +139,17 @@ func (o *PublicDisableMyBackupCodesV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the public disable my backup codes v4 params
+func (o *PublicDisableMyBackupCodesV4Params) WithBody(body *iamclientmodels.ModelDisableMFARequest) *PublicDisableMyBackupCodesV4Params {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the public disable my backup codes v4 params
+func (o *PublicDisableMyBackupCodesV4Params) SetBody(body *iamclientmodels.ModelDisableMFARequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the public disable my backup codes v4 params
 func (o *PublicDisableMyBackupCodesV4Params) WithNamespace(namespace string) *PublicDisableMyBackupCodesV4Params {
 	o.SetNamespace(namespace)
@@ -153,6 +168,12 @@ func (o *PublicDisableMyBackupCodesV4Params) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

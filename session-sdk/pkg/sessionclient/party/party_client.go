@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminQueryParties(params *AdminQueryPartiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPartiesOK, *AdminQueryPartiesBadRequest, *AdminQueryPartiesUnauthorized, *AdminQueryPartiesInternalServerError, error)
 	AdminQueryPartiesShort(params *AdminQueryPartiesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryPartiesOK, error)
+	AdminSyncNativeSession(params *AdminSyncNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncNativeSessionOK, *AdminSyncNativeSessionBadRequest, *AdminSyncNativeSessionUnauthorized, *AdminSyncNativeSessionForbidden, *AdminSyncNativeSessionInternalServerError, error)
+	AdminSyncNativeSessionShort(params *AdminSyncNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncNativeSessionOK, error)
 	PublicPartyJoinCode(params *PublicPartyJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinCodeOK, *PublicPartyJoinCodeBadRequest, *PublicPartyJoinCodeUnauthorized, *PublicPartyJoinCodeForbidden, *PublicPartyJoinCodeNotFound, *PublicPartyJoinCodeInternalServerError, error)
 	PublicPartyJoinCodeShort(params *PublicPartyJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinCodeOK, error)
 	PublicGetParty(params *PublicGetPartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyOK, *PublicGetPartyUnauthorized, *PublicGetPartyNotFound, *PublicGetPartyInternalServerError, error)
@@ -168,6 +170,122 @@ func (a *Client) AdminQueryPartiesShort(params *AdminQueryPartiesParams, authInf
 	case *AdminQueryPartiesUnauthorized:
 		return nil, v
 	case *AdminQueryPartiesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSyncNativeSessionShort instead.
+
+AdminSyncNativeSession trigger user's active party session to native platform.
+Trigger user's active party session to native platform.
+*/
+func (a *Client) AdminSyncNativeSession(params *AdminSyncNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncNativeSessionOK, *AdminSyncNativeSessionBadRequest, *AdminSyncNativeSessionUnauthorized, *AdminSyncNativeSessionForbidden, *AdminSyncNativeSessionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncNativeSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncNativeSession",
+		Method:             "POST",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/users/{userId}/native-sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncNativeSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncNativeSessionOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminSyncNativeSessionBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminSyncNativeSessionUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminSyncNativeSessionForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminSyncNativeSessionInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncNativeSessionShort trigger user's active party session to native platform.
+Trigger user's active party session to native platform.
+*/
+func (a *Client) AdminSyncNativeSessionShort(params *AdminSyncNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncNativeSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncNativeSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncNativeSession",
+		Method:             "POST",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/users/{userId}/native-sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncNativeSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncNativeSessionOK:
+		return v, nil
+	case *AdminSyncNativeSessionBadRequest:
+		return nil, v
+	case *AdminSyncNativeSessionUnauthorized:
+		return nil, v
+	case *AdminSyncNativeSessionForbidden:
+		return nil, v
+	case *AdminSyncNativeSessionInternalServerError:
 		return nil, v
 
 	default:

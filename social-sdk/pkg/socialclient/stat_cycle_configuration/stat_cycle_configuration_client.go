@@ -67,7 +67,6 @@ Deprecated: 2022-08-10 - Use GetStatCyclesShort instead.
 GetStatCycles list stat cycles
 List stat cycles by pagination.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycles
 */
 func (a *Client) GetStatCycles(params *GetStatCyclesParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCyclesOK, *GetStatCyclesUnauthorized, *GetStatCyclesForbidden, *GetStatCyclesInternalServerError, error) {
@@ -128,7 +127,6 @@ func (a *Client) GetStatCycles(params *GetStatCyclesParams, authInfo runtime.Cli
 GetStatCyclesShort list stat cycles
 List stat cycles by pagination.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycles
 */
 func (a *Client) GetStatCyclesShort(params *GetStatCyclesParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCyclesOK, error) {
@@ -193,7 +191,6 @@ Fields:
               * start: Start time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z. (required)
               * end: End time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
               *  Returns : created stat cycle
 */
 func (a *Client) CreateStatCycle(params *CreateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCycleCreated, *CreateStatCycleBadRequest, *CreateStatCycleUnauthorized, *CreateStatCycleForbidden, *CreateStatCycleUnprocessableEntity, *CreateStatCycleInternalServerError, error) {
@@ -269,7 +266,6 @@ Fields:
               * start: Start time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z. (required)
               * end: End time must follow RFC3339 standard. e.g. 2023-02-24T05:10:24.865Z.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
               *  Returns : created stat cycle
 */
 func (a *Client) CreateStatCycleShort(params *CreateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCycleCreated, error) {
@@ -329,7 +325,6 @@ Deprecated: 2022-08-10 - Use BulkGetStatCycleShort instead.
 BulkGetStatCycle bulk get stat cycle
 Bulk get stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : list of stat cycles
 */
 func (a *Client) BulkGetStatCycle(params *BulkGetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycleOK, *BulkGetStatCycleBadRequest, *BulkGetStatCycleUnauthorized, *BulkGetStatCycleForbidden, *BulkGetStatCycleUnprocessableEntity, *BulkGetStatCycleInternalServerError, error) {
@@ -396,7 +391,6 @@ func (a *Client) BulkGetStatCycle(params *BulkGetStatCycleParams, authInfo runti
 BulkGetStatCycleShort bulk get stat cycle
 Bulk get stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : list of stat cycles
 */
 func (a *Client) BulkGetStatCycleShort(params *BulkGetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycleOK, error) {
@@ -455,9 +449,6 @@ Deprecated: 2022-08-10 - Use ExportStatCycleShort instead.
 
 ExportStatCycle export all stat cycle configurations
 Export all stat cycle configurations for a given namespace into file At current, only JSON file is supported.
-
-Other detail info:
-              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
 */
 func (a *Client) ExportStatCycle(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, *ExportStatCycleUnauthorized, *ExportStatCycleForbidden, *ExportStatCycleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -516,9 +507,6 @@ func (a *Client) ExportStatCycle(params *ExportStatCycleParams, authInfo runtime
 /*
 ExportStatCycleShort export all stat cycle configurations
 Export all stat cycle configurations for a given namespace into file At current, only JSON file is supported.
-
-Other detail info:
-              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
 */
 func (a *Client) ExportStatCycleShort(params *ExportStatCycleParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportStatCycleOK, error) {
 	// TODO: Validate the params before sending
@@ -572,9 +560,6 @@ Deprecated: 2022-08-10 - Use ImportStatCycleShort instead.
 
 ImportStatCycle import stat cycle configurations
 Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
-
-Other detail info:
-              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) ImportStatCycle(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, *ImportStatCycleBadRequest, *ImportStatCycleUnauthorized, *ImportStatCycleForbidden, *ImportStatCycleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -636,9 +621,6 @@ func (a *Client) ImportStatCycle(params *ImportStatCycleParams, authInfo runtime
 /*
 ImportStatCycleShort import stat cycle configurations
 Import stat cycle configurations for a given namespace from file. At current, only JSON file is supported.
-
-Other detail info:
-              *  *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) ImportStatCycleShort(params *ImportStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStatCycleCreated, error) {
 	// TODO: Validate the params before sending
@@ -695,7 +677,6 @@ Deprecated: 2022-08-10 - Use GetStatCycleShort instead.
 GetStatCycle get stat cycle
 Get stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycle info
 */
 func (a *Client) GetStatCycle(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, *GetStatCycleUnauthorized, *GetStatCycleForbidden, *GetStatCycleNotFound, *GetStatCycleInternalServerError, error) {
@@ -759,7 +740,6 @@ func (a *Client) GetStatCycle(params *GetStatCycleParams, authInfo runtime.Clien
 GetStatCycleShort get stat cycle
 Get stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycle info
 */
 func (a *Client) GetStatCycleShort(params *GetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycleOK, error) {
@@ -817,7 +797,6 @@ Deprecated: 2022-08-10 - Use UpdateStatCycleShort instead.
 UpdateStatCycle update stat cycle
 Update stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
               *  Returns : updated stat cycle
 */
 func (a *Client) UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, *UpdateStatCycleBadRequest, *UpdateStatCycleUnauthorized, *UpdateStatCycleForbidden, *UpdateStatCycleNotFound, *UpdateStatCycleConflict, *UpdateStatCycleUnprocessableEntity, *UpdateStatCycleInternalServerError, error) {
@@ -890,7 +869,6 @@ func (a *Client) UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime
 UpdateStatCycleShort update stat cycle
 Update stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
               *  Returns : updated stat cycle
 */
 func (a *Client) UpdateStatCycleShort(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, error) {
@@ -953,8 +931,6 @@ Deprecated: 2022-08-10 - Use DeleteStatCycleShort instead.
 
 DeleteStatCycle deletes stat cycle
 Deletes stat cycle.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteStatCycle(params *DeleteStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatCycleNoContent, *DeleteStatCycleUnauthorized, *DeleteStatCycleForbidden, *DeleteStatCycleNotFound, *DeleteStatCycleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1016,8 +992,6 @@ func (a *Client) DeleteStatCycle(params *DeleteStatCycleParams, authInfo runtime
 /*
 DeleteStatCycleShort deletes stat cycle
 Deletes stat cycle.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=8 (DELETE)
 */
 func (a *Client) DeleteStatCycleShort(params *DeleteStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatCycleNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1073,8 +1047,6 @@ Deprecated: 2022-08-10 - Use BulkAddStatsShort instead.
 
 BulkAddStats bulk add stat cycle to stats
 Bulk add stat cycle to stats.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) BulkAddStats(params *BulkAddStatsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAddStatsOK, *BulkAddStatsBadRequest, *BulkAddStatsUnauthorized, *BulkAddStatsForbidden, *BulkAddStatsNotFound, *BulkAddStatsUnprocessableEntity, *BulkAddStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1142,8 +1114,6 @@ func (a *Client) BulkAddStats(params *BulkAddStatsParams, authInfo runtime.Clien
 /*
 BulkAddStatsShort bulk add stat cycle to stats
 Bulk add stat cycle to stats.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=1 (CREATE)
 */
 func (a *Client) BulkAddStatsShort(params *BulkAddStatsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAddStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -1204,7 +1174,6 @@ Deprecated: 2022-08-10 - Use StopStatCycleShort instead.
 StopStatCycle stop stat cycle
 Stop stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
               *  Returns : updated stat cycle
 */
 func (a *Client) StopStatCycle(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, *StopStatCycleUnauthorized, *StopStatCycleForbidden, *StopStatCycleNotFound, *StopStatCycleConflict, *StopStatCycleInternalServerError, error) {
@@ -1271,7 +1240,6 @@ func (a *Client) StopStatCycle(params *StopStatCycleParams, authInfo runtime.Cli
 StopStatCycleShort stop stat cycle
 Stop stat cycle.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STAT", action=4 (UPDATE)
               *  Returns : updated stat cycle
 */
 func (a *Client) StopStatCycleShort(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, error) {
@@ -1331,7 +1299,6 @@ Deprecated: 2022-08-10 - Use GetStatCycles1Short instead.
 GetStatCycles1 list stat cycles
 List stat cycles by pagination.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycles
 */
 func (a *Client) GetStatCycles1(params *GetStatCycles1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycles1OK, *GetStatCycles1Unauthorized, *GetStatCycles1Forbidden, *GetStatCycles1InternalServerError, error) {
@@ -1392,7 +1359,6 @@ func (a *Client) GetStatCycles1(params *GetStatCycles1Params, authInfo runtime.C
 GetStatCycles1Short list stat cycles
 List stat cycles by pagination.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycles
 */
 func (a *Client) GetStatCycles1Short(params *GetStatCycles1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycles1OK, error) {
@@ -1448,7 +1414,6 @@ Deprecated: 2022-08-10 - Use BulkGetStatCycle1Short instead.
 BulkGetStatCycle1 bulk get stat cycle
 Bulk get stat cycle.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : list of stat cycles
 */
 func (a *Client) BulkGetStatCycle1(params *BulkGetStatCycle1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycle1OK, *BulkGetStatCycle1BadRequest, *BulkGetStatCycle1Unauthorized, *BulkGetStatCycle1Forbidden, *BulkGetStatCycle1UnprocessableEntity, *BulkGetStatCycle1InternalServerError, error) {
@@ -1515,7 +1480,6 @@ func (a *Client) BulkGetStatCycle1(params *BulkGetStatCycle1Params, authInfo run
 BulkGetStatCycle1Short bulk get stat cycle
 Bulk get stat cycle.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : list of stat cycles
 */
 func (a *Client) BulkGetStatCycle1Short(params *BulkGetStatCycle1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetStatCycle1OK, error) {
@@ -1575,7 +1539,6 @@ Deprecated: 2022-08-10 - Use GetStatCycle1Short instead.
 GetStatCycle1 get stat cycle
 Get stat cycle.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycle info
 */
 func (a *Client) GetStatCycle1(params *GetStatCycle1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycle1OK, *GetStatCycle1Unauthorized, *GetStatCycle1Forbidden, *GetStatCycle1NotFound, *GetStatCycle1InternalServerError, error) {
@@ -1639,7 +1602,6 @@ func (a *Client) GetStatCycle1(params *GetStatCycle1Params, authInfo runtime.Cli
 GetStatCycle1Short get stat cycle
 Get stat cycle.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:STAT", action=2 (READ)
               *  Returns : stat cycle info
 */
 func (a *Client) GetStatCycle1Short(params *GetStatCycle1Params, authInfo runtime.ClientAuthInfoWriter) (*GetStatCycle1OK, error) {

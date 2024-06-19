@@ -41,11 +41,11 @@ Deprecated: 2022-08-10 - Use AdminGetUserPlatformAccountClosureHistoriesShort in
 
 AdminGetUserPlatformAccountClosureHistories get user's platform account closure histories
 Get user's platform account closure histories.
+Scope: account
+
 ------
 Supported platforms:
 * psn
-
-Scope: account
 */
 func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -107,11 +107,11 @@ func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUse
 /*
 AdminGetUserPlatformAccountClosureHistoriesShort get user's platform account closure histories
 Get user's platform account closure histories.
+Scope: account
+
 ------
 Supported platforms:
 * psn
-
-Scope: account
 */
 func (a *Client) AdminGetUserPlatformAccountClosureHistoriesShort(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, error) {
 	// TODO: Validate the params before sending

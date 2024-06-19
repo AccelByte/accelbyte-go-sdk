@@ -156,7 +156,7 @@ definitions:
     x-type: request
   connectNotif:
     properties:
-      lobbySessionId:
+      lobbySessionID:
         type: string
     type: object
     x-tag: Server Messages

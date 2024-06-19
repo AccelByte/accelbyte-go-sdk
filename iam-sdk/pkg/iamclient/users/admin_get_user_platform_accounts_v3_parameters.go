@@ -95,6 +95,11 @@ type AdminGetUserPlatformAccountsV3Params struct {
 
 	*/
 	PlatformID *string
+	/*TargetNamespace
+	  Target Namespace, query platform account on specific namespace
+
+	*/
+	TargetNamespace *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -227,6 +232,17 @@ func (o *AdminGetUserPlatformAccountsV3Params) SetPlatformID(platformID *string)
 	o.PlatformID = platformID
 }
 
+// WithTargetNamespace adds the targetNamespace to the admin get user platform accounts v3 params
+func (o *AdminGetUserPlatformAccountsV3Params) WithTargetNamespace(targetNamespace *string) *AdminGetUserPlatformAccountsV3Params {
+	o.SetTargetNamespace(targetNamespace)
+	return o
+}
+
+// SetTargetNamespace adds the targetNamespace to the admin get user platform accounts v3 params
+func (o *AdminGetUserPlatformAccountsV3Params) SetTargetNamespace(targetNamespace *string) {
+	o.TargetNamespace = targetNamespace
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetUserPlatformAccountsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -303,6 +319,22 @@ func (o *AdminGetUserPlatformAccountsV3Params) WriteToRequest(r runtime.ClientRe
 		qPlatformID := qrPlatformID
 		if qPlatformID != "" {
 			if err := r.SetQueryParam("platformId", qPlatformID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TargetNamespace != nil {
+
+		// query param targetNamespace
+		var qrTargetNamespace string
+		if o.TargetNamespace != nil {
+			qrTargetNamespace = *o.TargetNamespace
+		}
+		qTargetNamespace := qrTargetNamespace
+		if qTargetNamespace != "" {
+			if err := r.SetQueryParam("targetNamespace", qTargetNamespace); err != nil {
 				return err
 			}
 		}

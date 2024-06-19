@@ -57,6 +57,19 @@
 |---|---|---|---|---|---|
 | `/gdpr/admin/namespaces/{namespace}/users/platforms/closure/histories` | GET | AdminGetUserPlatformAccountClosureHistoriesShort | [AdminGetUserPlatformAccountClosureHistoriesShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_history/platform_account_closure_history_client.go) | [AdminGetUserPlatformAccountClosureHistoriesShort](../../services-api/pkg/service/gdpr/platformAccountClosureHistory.go) | [AdminGetUserPlatformAccountClosureHistoriesShort](../../samples/cli/cmd/gdpr/platformAccountClosureHistory/adminGetUserPlatformAccountClosureHistories.go) |
 
+### Data Deletion (S2S) Wrapper:  [DataDeletionS2S](../../services-api/pkg/service/gdpr/dataDeletionS2S.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/gdpr/s2s/namespaces/{namespace}/deletions/finished` | GET | S2SGetListFinishedAccountDeletionRequestShort | [S2SGetListFinishedAccountDeletionRequestShort](../../gdpr-sdk/pkg/gdprclient/data_deletion_s2_s/data_deletion_s2s_client.go) | [S2SGetListFinishedAccountDeletionRequestShort](../../services-api/pkg/service/gdpr/dataDeletionS2S.go) | [S2SGetListFinishedAccountDeletionRequestShort](../../samples/cli/cmd/gdpr/dataDeletionS2S/s2sGetListFinishedAccountDeletionRequest.go) |
+| `/gdpr/s2s/namespaces/{namespace}/users/{userId}/deletions` | POST | S2SSubmitUserAccountDeletionRequestShort | [S2SSubmitUserAccountDeletionRequestShort](../../gdpr-sdk/pkg/gdprclient/data_deletion_s2_s/data_deletion_s2s_client.go) | [S2SSubmitUserAccountDeletionRequestShort](../../services-api/pkg/service/gdpr/dataDeletionS2S.go) | [S2SSubmitUserAccountDeletionRequestShort](../../samples/cli/cmd/gdpr/dataDeletionS2S/s2sSubmitUserAccountDeletionRequest.go) |
+
+### Data Retrieval (S2S) Wrapper:  [DataRetrievalS2S](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/gdpr/s2s/namespaces/{namespace}/requests/finished` | GET | S2SGetListFinishedPersonalDataRequestShort | [S2SGetListFinishedPersonalDataRequestShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SGetListFinishedPersonalDataRequestShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SGetListFinishedPersonalDataRequestShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sGetListFinishedPersonalDataRequest.go) |
+| `/gdpr/s2s/namespaces/{namespace}/users/{userId}/requests` | POST | S2SRequestDataRetrievalShort | [S2SRequestDataRetrievalShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SRequestDataRetrievalShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SRequestDataRetrievalShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sRequestDataRetrieval.go) |
+| `/gdpr/s2s/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate` | POST | S2SGeneratePersonalDataURLShort | [S2SGeneratePersonalDataURLShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SGeneratePersonalDataURLShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SGeneratePersonalDataURLShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sGeneratePersonalDataURL.go) |
+
 
 &nbsp;  
 
@@ -65,6 +78,10 @@
 | Model Struct | Class |
 |---|---|
 | `dto.ExtendConfigDTO` | [DtoExtendConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_extend_config_dto.go) |
+| `dto.FinishedDataDeletion` | [DtoFinishedDataDeletion ](../../gdpr-sdk/pkg/gdprclientmodels/dto_finished_data_deletion.go) |
+| `dto.FinishedDataRequest` | [DtoFinishedDataRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_finished_data_request.go) |
+| `dto.ListFinishedDataDeletion` | [DtoListFinishedDataDeletion ](../../gdpr-sdk/pkg/gdprclientmodels/dto_list_finished_data_deletion.go) |
+| `dto.ListFinishedDataRequests` | [DtoListFinishedDataRequests ](../../gdpr-sdk/pkg/gdprclientmodels/dto_list_finished_data_requests.go) |
 | `dto.PlatformAccountClosureClientRequest` | [DtoPlatformAccountClosureClientRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_request.go) |
 | `dto.PlatformAccountClosureClientResponse` | [DtoPlatformAccountClosureClientResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_response.go) |
 | `dto.ServiceConfigDTO` | [DtoServiceConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_config_dto.go) |
@@ -81,6 +98,9 @@
 | `models.Pagination` | [ModelsPagination ](../../gdpr-sdk/pkg/gdprclientmodels/models_pagination.go) |
 | `models.PersonalData` | [ModelsPersonalData ](../../gdpr-sdk/pkg/gdprclientmodels/models_personal_data.go) |
 | `models.RequestDeleteResponse` | [ModelsRequestDeleteResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_request_delete_response.go) |
+| `models.S2SDataRetrievalResponse` | [ModelsS2SDataRetrievalResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_s2_s_data_retrieval_response.go) |
+| `models.S2SRequestDeleteResponse` | [ModelsS2SRequestDeleteResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_s2_s_request_delete_response.go) |
+| `models.S2SUserDataURL` | [ModelsS2SUserDataURL ](../../gdpr-sdk/pkg/gdprclientmodels/models_s2_s_user_data_url.go) |
 | `models.UserDataURL` | [ModelsUserDataURL ](../../gdpr-sdk/pkg/gdprclientmodels/models_user_data_url.go) |
 | `models.UserPersonalData` | [ModelsUserPersonalData ](../../gdpr-sdk/pkg/gdprclientmodels/models_user_personal_data.go) |
 | `models.UserPersonalDataResponse` | [ModelsUserPersonalDataResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_user_personal_data_response.go) |

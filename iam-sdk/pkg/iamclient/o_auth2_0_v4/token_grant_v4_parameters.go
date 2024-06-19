@@ -117,10 +117,15 @@ type TokenGrantV4Params struct {
 	*/
 	AdditionalData *string
 	/*ClientID
-	  client_id (used with grant type 'authorization_code')
+	  Client Id (used with grant type 'authorization_code')
 
 	*/
 	ClientID *string
+	/*ClientSecret
+	  Confidential Client Secret (used with grant type 'authorization_code' when using confidential client with client_secret_post authentication method, i.e. not using HTTP Basic authentication)
+
+	*/
+	ClientSecret *string
 	/*Code
 	  The authorization code received from the authorization server (used with grant type 'authorization_code')
 
@@ -147,7 +152,7 @@ type TokenGrantV4Params struct {
 	*/
 	LoginQueueTicket *string
 	/*Password
-	  Password (used with grant type 'password'
+	  Password (used with grant type 'password')
 
 	*/
 	Password *string
@@ -162,7 +167,7 @@ type TokenGrantV4Params struct {
 	*/
 	RefreshToken *string
 	/*Username
-	  User Name (used with grant type 'password'
+	  User Name (used with grant type 'password')
 
 	*/
 	Username *string
@@ -289,6 +294,17 @@ func (o *TokenGrantV4Params) WithClientID(clientID *string) *TokenGrantV4Params 
 // SetClientID adds the clientId to the token grant v4 params
 func (o *TokenGrantV4Params) SetClientID(clientID *string) {
 	o.ClientID = clientID
+}
+
+// WithClientSecret adds the clientSecret to the token grant v4 params
+func (o *TokenGrantV4Params) WithClientSecret(clientSecret *string) *TokenGrantV4Params {
+	o.SetClientSecret(clientSecret)
+	return o
+}
+
+// SetClientSecret adds the clientSecret to the token grant v4 params
+func (o *TokenGrantV4Params) SetClientSecret(clientSecret *string) {
+	o.ClientSecret = clientSecret
 }
 
 // WithCode adds the code to the token grant v4 params
@@ -474,6 +490,22 @@ func (o *TokenGrantV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		fClientID := frClientID
 		if fClientID != "" {
 			if err := r.SetFormParam("client_id", fClientID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ClientSecret != nil {
+
+		// form param client_secret
+		var frClientSecret string
+		if o.ClientSecret != nil {
+			frClientSecret = *o.ClientSecret
+		}
+		fClientSecret := frClientSecret
+		if fClientSecret != "" {
+			if err := r.SetFormParam("client_secret", fClientSecret); err != nil {
 				return err
 			}
 		}

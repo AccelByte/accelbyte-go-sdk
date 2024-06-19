@@ -84,6 +84,10 @@ type Validation struct {
 	// Format: int32
 	MinLength *int32 `json:"minLength"`
 
+	// profanityfilter
+	// Required: true
+	ProfanityFilter *string `json:"profanityFilter"`
+
 	// regex
 	// Required: true
 	Regex *string `json:"regex"`
@@ -141,6 +145,9 @@ func (m *Validation) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateMinLength(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateProfanityFilter(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegex(formats); err != nil {
@@ -295,6 +302,15 @@ func (m *Validation) validateMinCharType(formats strfmt.Registry) error {
 func (m *Validation) validateMinLength(formats strfmt.Registry) error {
 
 	if err := validate.Required("minLength", "body", m.MinLength); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Validation) validateProfanityFilter(formats strfmt.Registry) error {
+
+	if err := validate.Required("profanityFilter", "body", m.ProfanityFilter); err != nil {
 		return err
 	}
 

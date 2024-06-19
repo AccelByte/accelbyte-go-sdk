@@ -60,7 +60,6 @@ Deprecated: 2022-08-10 - Use GetUserProfilesShort instead.
 GetUserProfiles returns all profiles' header for a user
 Returns all profiles' header for a user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
 func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, *GetUserProfilesUnauthorized, *GetUserProfilesForbidden, *GetUserProfilesInternalServerError, error) {
@@ -121,7 +120,6 @@ func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime
 GetUserProfilesShort returns all profiles' header for a user
 Returns all profiles' header for a user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
 func (a *Client) GetUserProfilesShort(params *GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfilesOK, error) {
@@ -177,7 +175,6 @@ Deprecated: 2022-08-10 - Use GetProfileShort instead.
 GetProfile returns profile for a user
 Returns profile for a user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
 func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, *GetProfileUnauthorized, *GetProfileForbidden, *GetProfileNotFound, *GetProfileInternalServerError, error) {
@@ -241,7 +238,6 @@ func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAut
 GetProfileShort returns profile for a user
 Returns profile for a user.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
 func (a *Client) GetProfileShort(params *GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*GetProfileOK, error) {
@@ -299,8 +295,6 @@ Deprecated: 2022-08-10 - Use PublicGetUserGameProfilesShort instead.
 PublicGetUserGameProfiles returns all profiles for specified users
 Returns all profiles for specified users.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:GAMEPROFILE", action=2 (READ)
-
               *  Returns : list of profiles
 */
 func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, *PublicGetUserGameProfilesBadRequest, *PublicGetUserGameProfilesUnauthorized, *PublicGetUserGameProfilesForbidden, *PublicGetUserGameProfilesInternalServerError, error) {
@@ -364,8 +358,6 @@ func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesPara
 PublicGetUserGameProfilesShort returns all profiles for specified users
 Returns all profiles for specified users.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:GAMEPROFILE", action=2 (READ)
-
               *  Returns : list of profiles
 */
 func (a *Client) PublicGetUserGameProfilesShort(params *PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserGameProfilesOK, error) {
@@ -423,7 +415,6 @@ Deprecated: 2022-08-10 - Use PublicGetUserProfilesShort instead.
 PublicGetUserProfiles returns all profiles' header for a user
 Returns all profiles' header for a user.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
 func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, *PublicGetUserProfilesUnauthorized, *PublicGetUserProfilesForbidden, *PublicGetUserProfilesInternalServerError, error) {
@@ -484,7 +475,6 @@ func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, auth
 PublicGetUserProfilesShort returns all profiles' header for a user
 Returns all profiles' header for a user.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : list of profiles
 */
 func (a *Client) PublicGetUserProfilesShort(params *PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfilesOK, error) {
@@ -540,8 +530,6 @@ Deprecated: 2022-08-10 - Use PublicCreateProfileShort instead.
 PublicCreateProfile create a new profile for user
 Create new profile for user.
 Other detail info:
-              *  Required permission
-: resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=1 (CREATE)
               *  Returns
 : created game profile
 */
@@ -609,8 +597,6 @@ func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo
 PublicCreateProfileShort create a new profile for user
 Create new profile for user.
 Other detail info:
-              *  Required permission
-: resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=1 (CREATE)
               *  Returns
 : created game profile
 */
@@ -671,7 +657,6 @@ Deprecated: 2022-08-10 - Use PublicGetProfileShort instead.
 PublicGetProfile returns profile for a user
 Returns profile for a user.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
 func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, *PublicGetProfileUnauthorized, *PublicGetProfileForbidden, *PublicGetProfileNotFound, *PublicGetProfileInternalServerError, error) {
@@ -735,7 +720,6 @@ func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runti
 PublicGetProfileShort returns profile for a user
 Returns profile for a user.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : game profile info
 */
 func (a *Client) PublicGetProfileShort(params *PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileOK, error) {
@@ -793,7 +777,6 @@ Deprecated: 2022-08-10 - Use PublicUpdateProfileShort instead.
 PublicUpdateProfile updates user game profile
 Updates user game profile, returns updated profile.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated game profile
 */
 func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, *PublicUpdateProfileBadRequest, *PublicUpdateProfileUnauthorized, *PublicUpdateProfileForbidden, *PublicUpdateProfileNotFound, *PublicUpdateProfileUnprocessableEntity, *PublicUpdateProfileInternalServerError, error) {
@@ -863,7 +846,6 @@ func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo
 PublicUpdateProfileShort updates user game profile
 Updates user game profile, returns updated profile.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated game profile
 */
 func (a *Client) PublicUpdateProfileShort(params *PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateProfileOK, error) {
@@ -924,8 +906,6 @@ Deprecated: 2022-08-10 - Use PublicDeleteProfileShort instead.
 
 PublicDeleteProfile deletes game profile
 Deletes game profile.
-Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=8 (DELETE)
 */
 func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileUnauthorized, *PublicDeleteProfileForbidden, *PublicDeleteProfileNotFound, *PublicDeleteProfileInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -987,8 +967,6 @@ func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo
 /*
 PublicDeleteProfileShort deletes game profile
 Deletes game profile.
-Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=8 (DELETE)
 */
 func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1045,7 +1023,6 @@ Deprecated: 2022-08-10 - Use PublicGetProfileAttributeShort instead.
 PublicGetProfileAttribute returns game profile attribute
 Returns game profile attribute.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : attribute info
 */
 func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, *PublicGetProfileAttributeUnauthorized, *PublicGetProfileAttributeForbidden, *PublicGetProfileAttributeNotFound, *PublicGetProfileAttributeInternalServerError, error) {
@@ -1109,7 +1086,6 @@ func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributePara
 PublicGetProfileAttributeShort returns game profile attribute
 Returns game profile attribute.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=2 (READ)
               *  Returns : attribute info
 */
 func (a *Client) PublicGetProfileAttributeShort(params *PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetProfileAttributeOK, error) {
@@ -1167,7 +1143,6 @@ Deprecated: 2022-08-10 - Use PublicUpdateAttributeShort instead.
 PublicUpdateAttribute updates game profile attribute
 Updates game profile attribute, returns updated profile.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated attribute
 */
 func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, *PublicUpdateAttributeBadRequest, *PublicUpdateAttributeUnauthorized, *PublicUpdateAttributeForbidden, *PublicUpdateAttributeNotFound, *PublicUpdateAttributeUnprocessableEntity, *PublicUpdateAttributeInternalServerError, error) {
@@ -1237,7 +1212,6 @@ func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, auth
 PublicUpdateAttributeShort updates game profile attribute
 Updates game profile attribute, returns updated profile.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE", action=4 (UPDATE)
               *  Returns : updated attribute
 */
 func (a *Client) PublicUpdateAttributeShort(params *PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateAttributeOK, error) {

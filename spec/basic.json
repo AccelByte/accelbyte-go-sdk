@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.20.0"
+    "version": "2.20.1"
   },
   "schemes": [
     "https"
@@ -5183,16 +5183,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-05-03T10:46:10+00:00",
-    "buildID": "2.20.0",
+    "buildDate": "2024-06-14T10:43:12+00:00",
+    "buildID": "2.20.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.214-202.855.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.217-205.860.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "508ab3e7b2",
-    "gitTag": "2.20.0",
+    "gitHash": "d8c6f57e98",
+    "gitTag": "2.20.1",
     "name": "justice-basic-service",
     "realm": "demo",
-    "version": "2.20.0",
+    "version": "2.20.1",
     "version-roles-seeding": "0.0.10"
   }
 }

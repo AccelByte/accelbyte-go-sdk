@@ -23,6 +23,7 @@ const (
 	GetPaymentTaxValueADYENConstant    = "ADYEN"
 	GetPaymentTaxValueALIPAYConstant   = "ALIPAY"
 	GetPaymentTaxValueCHECKOUTConstant = "CHECKOUT"
+	GetPaymentTaxValueNEONPAYConstant  = "NEONPAY"
 	GetPaymentTaxValuePAYPALConstant   = "PAYPAL"
 	GetPaymentTaxValueSTRIPEConstant   = "STRIPE"
 	GetPaymentTaxValueWALLETConstant   = "WALLET"

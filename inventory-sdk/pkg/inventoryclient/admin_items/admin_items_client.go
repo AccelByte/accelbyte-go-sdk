@@ -531,6 +531,14 @@ so no new item with same sourceItemId will be created
 Tags will be auto-created.
 ItemType will be auto-created.
 
+For Ecommerce item, this fields will be override by ecommerce configuration
+(slotUsed, serverCustomAttributes, customAttributes, type)
+
+For Ecommerce items, the quantity saved is dynamically adjusted based on an item's useCount configured in Store.
+When saving items, the quantity specified for each item will be multiplied by the useCount.
+i.e. If the store item is configured with a useCount of 5
+and the quantity of a particular item is set to 2 during saving, it will be stored as 10.
+
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
 func (a *Client) AdminSaveItemToInventory(params *AdminSaveItemToInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemToInventoryOK, *AdminSaveItemToInventoryBadRequest, *AdminSaveItemToInventoryInternalServerError, error) {
@@ -595,6 +603,14 @@ so no new item with same sourceItemId will be created
 
 Tags will be auto-created.
 ItemType will be auto-created.
+
+For Ecommerce item, this fields will be override by ecommerce configuration
+(slotUsed, serverCustomAttributes, customAttributes, type)
+
+For Ecommerce items, the quantity saved is dynamically adjusted based on an item's useCount configured in Store.
+When saving items, the quantity specified for each item will be multiplied by the useCount.
+i.e. If the store item is configured with a useCount of 5
+and the quantity of a particular item is set to 2 during saving, it will be stored as 10.
 
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
@@ -778,6 +794,11 @@ ItemType will be auto-created.
 For Ecommerce item, this fields will be override by ecommerce configuration
 (slotUsed, serverCustomAttributes, customAttributes, type)
 
+For Ecommerce items, the quantity saved is dynamically adjusted based on an item's useCount configured in Store.
+When saving items, the quantity specified for each item will be multiplied by the useCount.
+i.e. If the store item is configured with a useCount of 5
+and the quantity of a particular item is set to 2 during saving, it will be stored as 10.
+
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
 func (a *Client) AdminSaveItem(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, *AdminSaveItemBadRequest, *AdminSaveItemInternalServerError, error) {
@@ -847,6 +868,11 @@ ItemType will be auto-created.
 For Ecommerce item, this fields will be override by ecommerce configuration
 (slotUsed, serverCustomAttributes, customAttributes, type)
 
+For Ecommerce items, the quantity saved is dynamically adjusted based on an item's useCount configured in Store.
+When saving items, the quantity specified for each item will be multiplied by the useCount.
+i.e. If the store item is configured with a useCount of 5
+and the quantity of a particular item is set to 2 during saving, it will be stored as 10.
+
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]
 */
 func (a *Client) AdminSaveItemShort(params *AdminSaveItemParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveItemOK, error) {
@@ -899,6 +925,8 @@ Deprecated: 2022-08-10 - Use AdminSyncUserEntitlementsShort instead.
 
 AdminSyncUserEntitlements to sync user's entitlements to e-commerce
 
+Sync user's entitlement from e-commerce service to inventory for non exist item at user inventory.
+will skip the item if already exist at user inventory.
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
 */
 func (a *Client) AdminSyncUserEntitlements(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, *AdminSyncUserEntitlementsBadRequest, *AdminSyncUserEntitlementsUnauthorized, *AdminSyncUserEntitlementsForbidden, *AdminSyncUserEntitlementsNotFound, *AdminSyncUserEntitlementsInternalServerError, error) {
@@ -964,6 +992,8 @@ func (a *Client) AdminSyncUserEntitlements(params *AdminSyncUserEntitlementsPara
 /*
 AdminSyncUserEntitlementsShort to sync user's entitlements to e-commerce
 
+Sync user's entitlement from e-commerce service to inventory for non exist item at user inventory.
+will skip the item if already exist at user inventory.
 Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]
 */
 func (a *Client) AdminSyncUserEntitlementsShort(params *AdminSyncUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncUserEntitlementsNoContent, error) {

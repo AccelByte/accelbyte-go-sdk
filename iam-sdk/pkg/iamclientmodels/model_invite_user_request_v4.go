@@ -33,6 +33,9 @@ type ModelInviteUserRequestV4 struct {
 	// isnewstudio
 	IsNewStudio bool `json:"isNewStudio"`
 
+	// languagetag
+	LanguageTag string `json:"languageTag,omitempty"`
+
 	// multi tenant studio namespace
 	Namespace string `json:"namespace,omitempty"`
 

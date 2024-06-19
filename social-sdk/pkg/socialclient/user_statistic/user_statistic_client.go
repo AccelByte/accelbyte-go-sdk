@@ -126,7 +126,6 @@ Deprecated: 2022-08-10 - Use BulkFetchStatItemsShort instead.
 BulkFetchStatItems bulk fetch statitems value
 Bulk fetch multiple user's statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)
 + *Returns*: list of user's statItem
 */
 func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, *BulkFetchStatItemsUnauthorized, *BulkFetchStatItemsForbidden, *BulkFetchStatItemsUnprocessableEntity, *BulkFetchStatItemsInternalServerError, error) {
@@ -190,7 +189,6 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 BulkFetchStatItemsShort bulk fetch statitems value
 Bulk fetch multiple user's statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)
 + *Returns*: list of user's statItem
 */
 func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, error) {
@@ -248,7 +246,6 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItemShort instead.
 BulkIncUserStatItem bulk update multiple user's statitems value
 Bulk update multiple user's statitems value.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
               *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, *BulkIncUserStatItemBadRequest, *BulkIncUserStatItemUnauthorized, *BulkIncUserStatItemForbidden, *BulkIncUserStatItemUnprocessableEntity, *BulkIncUserStatItemInternalServerError, error) {
@@ -315,7 +312,6 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 BulkIncUserStatItemShort bulk update multiple user's statitems value
 Bulk update multiple user's statitems value.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
               *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, error) {
@@ -374,9 +370,6 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItemValueShort instead.
 
 BulkIncUserStatItemValue bulk update multiple user's statitems value
 Bulk update multiple user's statitems value.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
-              *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, *BulkIncUserStatItemValueBadRequest, *BulkIncUserStatItemValueUnauthorized, *BulkIncUserStatItemValueForbidden, *BulkIncUserStatItemValueUnprocessableEntity, *BulkIncUserStatItemValueInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -441,9 +434,6 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 /*
 BulkIncUserStatItemValueShort bulk update multiple user's statitems value
 Bulk update multiple user's statitems value.
-Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
-              *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, error) {
 	// TODO: Validate the params before sending
@@ -502,7 +492,6 @@ Deprecated: 2022-08-10 - Use BulkFetchOrDefaultStatItemsShort instead.
 BulkFetchOrDefaultStatItems bulk fetch user stat item values
 Bulk fetch multiple user's stat item values for a given namespace and statCode.
 NOTE: If stat item does not exist, will return default value. Other detail info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of user's stat item values
 */
 func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, *BulkFetchOrDefaultStatItemsUnauthorized, *BulkFetchOrDefaultStatItemsForbidden, *BulkFetchOrDefaultStatItemsNotFound, *BulkFetchOrDefaultStatItemsUnprocessableEntity, *BulkFetchOrDefaultStatItemsInternalServerError, error) {
@@ -569,7 +558,6 @@ func (a *Client) BulkFetchOrDefaultStatItems(params *BulkFetchOrDefaultStatItems
 BulkFetchOrDefaultStatItemsShort bulk fetch user stat item values
 Bulk fetch multiple user's stat item values for a given namespace and statCode.
 NOTE: If stat item does not exist, will return default value. Other detail info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of user's stat item values
 */
 func (a *Client) BulkFetchOrDefaultStatItemsShort(params *BulkFetchOrDefaultStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItemsOK, error) {
@@ -631,7 +619,6 @@ Bulk reset multiple user's statitems value.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, *BulkResetUserStatItemBadRequest, *BulkResetUserStatItemUnauthorized, *BulkResetUserStatItemForbidden, *BulkResetUserStatItemUnprocessableEntity, *BulkResetUserStatItemInternalServerError, error) {
@@ -700,7 +687,6 @@ Bulk reset multiple user's statitems value.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error) {
@@ -760,7 +746,6 @@ Deprecated: 2022-08-10 - Use GetStatItemsShort instead.
 GetStatItems get users' stat item values by stat code
 Get users' stat item values for a given namespace and statCode.
 Other info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of users' stat item values
 */
 func (a *Client) GetStatItems(params *GetStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatItemsOK, *GetStatItemsUnauthorized, *GetStatItemsForbidden, *GetStatItemsInternalServerError, error) {
@@ -821,7 +806,6 @@ func (a *Client) GetStatItems(params *GetStatItemsParams, authInfo runtime.Clien
 GetStatItemsShort get users' stat item values by stat code
 Get users' stat item values for a given namespace and statCode.
 Other info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of users' stat item values
 */
 func (a *Client) GetStatItemsShort(params *GetStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatItemsOK, error) {
@@ -877,7 +861,6 @@ Deprecated: 2022-08-10 - Use GetUserStatItemsShort instead.
 GetUserStatItems list user's statitems
 List user's statItems.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
 func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, *GetUserStatItemsUnauthorized, *GetUserStatItemsForbidden, *GetUserStatItemsUnprocessableEntity, *GetUserStatItemsInternalServerError, error) {
@@ -941,7 +924,6 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 GetUserStatItemsShort list user's statitems
 List user's statItems.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
 func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error) {
@@ -999,7 +981,6 @@ Deprecated: 2022-08-10 - Use BulkCreateUserStatItemsShort instead.
 BulkCreateUserStatItems bulk create user's statitems
 Bulk create user's statItems.
 Other detail info:
-              *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
               *  Returns : bulk created result
 */
 func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, *BulkCreateUserStatItemsBadRequest, *BulkCreateUserStatItemsUnauthorized, *BulkCreateUserStatItemsForbidden, *BulkCreateUserStatItemsUnprocessableEntity, *BulkCreateUserStatItemsInternalServerError, error) {
@@ -1066,7 +1047,6 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 BulkCreateUserStatItemsShort bulk create user's statitems
 Bulk create user's statItems.
 Other detail info:
-                *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                 *  Returns : bulk created result
 */
 func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error) {
@@ -1126,7 +1106,6 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItem1Short instead.
 BulkIncUserStatItem1 bulk update user's statitems value
 Bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                   *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, *BulkIncUserStatItem1BadRequest, *BulkIncUserStatItem1Unauthorized, *BulkIncUserStatItem1Forbidden, *BulkIncUserStatItem1UnprocessableEntity, *BulkIncUserStatItem1InternalServerError, error) {
@@ -1193,7 +1172,6 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 BulkIncUserStatItem1Short bulk update user's statitems value
 Bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                   *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, error) {
@@ -1253,7 +1231,6 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItemValue1Short instead.
 BulkIncUserStatItemValue1 bulk update user's statitems value
 Bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                   *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, *BulkIncUserStatItemValue1BadRequest, *BulkIncUserStatItemValue1Unauthorized, *BulkIncUserStatItemValue1Forbidden, *BulkIncUserStatItemValue1UnprocessableEntity, *BulkIncUserStatItemValue1InternalServerError, error) {
@@ -1320,7 +1297,6 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 BulkIncUserStatItemValue1Short bulk update user's statitems value
 Bulk update user's statitems value.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                   *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, error) {
@@ -1380,7 +1356,6 @@ Deprecated: 2022-08-10 - Use BulkResetUserStatItem1Short instead.
 BulkResetUserStatItem1 bulk reset user's statitems value
 Bulk reset user's statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, *BulkResetUserStatItem1BadRequest, *BulkResetUserStatItem1Unauthorized, *BulkResetUserStatItem1Forbidden, *BulkResetUserStatItem1UnprocessableEntity, *BulkResetUserStatItem1InternalServerError, error) {
@@ -1447,7 +1422,6 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 BulkResetUserStatItem1Short bulk reset user's statitems value
 Bulk reset user's statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error) {
@@ -1507,7 +1481,6 @@ Deprecated: 2022-08-10 - Use CreateUserStatItemShort instead.
 CreateUserStatItem create user's statitem
 Create statItem for a user.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : created user's statItem
 */
 func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemUnauthorized, *CreateUserStatItemForbidden, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, *CreateUserStatItemUnprocessableEntity, *CreateUserStatItemInternalServerError, error) {
@@ -1577,7 +1550,6 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 CreateUserStatItemShort create user's statitem
 Create statItem for a user.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : created user's statItem
 */
 func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, error) {
@@ -1640,7 +1612,6 @@ DeleteUserStatItems delete user's statitems
 This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.
 Delete user's statItems given stat code.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                   *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, *DeleteUserStatItemsUnprocessableEntity, *DeleteUserStatItemsInternalServerError, error) {
@@ -1708,7 +1679,6 @@ DeleteUserStatItemsShort delete user's statitems
 This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.
 Delete user's statItems given stat code.
 Other detail info:
-                    *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                     *  Returns : no content
 */
 func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, error) {
@@ -1768,7 +1738,6 @@ Deprecated: 2022-08-10 - Use IncUserStatItemValueShort instead.
 IncUserStatItemValue update user's statitem value
 Update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueUnauthorized, *IncUserStatItemValueForbidden, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, *IncUserStatItemValueUnprocessableEntity, *IncUserStatItemValueInternalServerError, error) {
@@ -1841,7 +1810,6 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 IncUserStatItemValueShort update user's statitem value
 Update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, error) {
@@ -1907,7 +1875,6 @@ Reset user's statitem value for a given namespace and user.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueUnauthorized, *ResetUserStatItemValueForbidden, *ResetUserStatItemValueNotFound, *ResetUserStatItemValueUnprocessableEntity, *ResetUserStatItemValueInternalServerError, error) {
@@ -1979,7 +1946,6 @@ Reset user's statitem value for a given namespace and user.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error) {
@@ -2041,7 +2007,6 @@ Deprecated: 2022-08-10 - Use BulkFetchStatItems1Short instead.
 BulkFetchStatItems1 public bulk fetch statitems value
 Public bulk fetch multiple user's statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=2 (READ)
 + *Returns*: list of user's statItem
 */
 func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, *BulkFetchStatItems1Unauthorized, *BulkFetchStatItems1Forbidden, *BulkFetchStatItems1UnprocessableEntity, *BulkFetchStatItems1InternalServerError, error) {
@@ -2105,7 +2070,6 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 BulkFetchStatItems1Short public bulk fetch statitems value
 Public bulk fetch multiple user's statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=2 (READ)
 + *Returns*: list of user's statItem
 */
 func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, error) {
@@ -2163,7 +2127,6 @@ Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItemShort instead.
 PublicBulkIncUserStatItem public bulk update multiple user's statitems value
 Public bulk update multiple user's statitems value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
                       *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, *PublicBulkIncUserStatItemBadRequest, *PublicBulkIncUserStatItemUnauthorized, *PublicBulkIncUserStatItemForbidden, *PublicBulkIncUserStatItemUnprocessableEntity, *PublicBulkIncUserStatItemInternalServerError, error) {
@@ -2230,7 +2193,6 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 PublicBulkIncUserStatItemShort public bulk update multiple user's statitems value
 Public bulk update multiple user's statitems value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
                       *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, error) {
@@ -2290,7 +2252,6 @@ Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItemValueShort instead.
 PublicBulkIncUserStatItemValue public bulk update multiple user's statitems value
 Public bulk update multiple user's statitems value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
                       *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, *PublicBulkIncUserStatItemValueBadRequest, *PublicBulkIncUserStatItemValueUnauthorized, *PublicBulkIncUserStatItemValueForbidden, *PublicBulkIncUserStatItemValueUnprocessableEntity, *PublicBulkIncUserStatItemValueInternalServerError, error) {
@@ -2357,7 +2318,6 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 PublicBulkIncUserStatItemValueShort public bulk update multiple user's statitems value
 Public bulk update multiple user's statitems value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
                       *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error) {
@@ -2419,7 +2379,6 @@ Bulk reset multiple user's statitems value.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2BadRequest, *BulkResetUserStatItem2Unauthorized, *BulkResetUserStatItem2Forbidden, *BulkResetUserStatItem2UnprocessableEntity, *BulkResetUserStatItem2InternalServerError, error) {
@@ -2488,7 +2447,6 @@ Bulk reset multiple user's statitems value.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error) {
@@ -2548,7 +2506,6 @@ Deprecated: 2022-08-10 - Use PublicListMyStatItemsShort instead.
 PublicListMyStatItems public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                       *  Returns : stat items
 */
 func (a *Client) PublicListMyStatItems(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, *PublicListMyStatItemsUnauthorized, *PublicListMyStatItemsForbidden, *PublicListMyStatItemsUnprocessableEntity, *PublicListMyStatItemsInternalServerError, error) {
@@ -2612,7 +2569,6 @@ func (a *Client) PublicListMyStatItems(params *PublicListMyStatItemsParams, auth
 PublicListMyStatItemsShort public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                       *  Returns : stat items
 */
 func (a *Client) PublicListMyStatItemsShort(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, error) {
@@ -2673,7 +2629,6 @@ NOTE:
                     * If stat code does not exist, will ignore this stat code.
                     * If stat item does not exist, will return default value
 Other detail info:
-                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                     *  Returns : stat items
 */
 func (a *Client) PublicListAllMyStatItems(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, *PublicListAllMyStatItemsBadRequest, *PublicListAllMyStatItemsForbidden, *PublicListAllMyStatItemsNotFound, *PublicListAllMyStatItemsUnprocessableEntity, error) {
@@ -2740,7 +2695,6 @@ NOTE:
                   * If stat code does not exist, will ignore this stat code.
                   * If stat item does not exist, will return default value
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat items
 */
 func (a *Client) PublicListAllMyStatItemsShort(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, error) {
@@ -2798,7 +2752,6 @@ Deprecated: 2022-08-10 - Use PublicQueryUserStatItemsShort instead.
 PublicQueryUserStatItems public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnauthorized, *PublicQueryUserStatItemsForbidden, *PublicQueryUserStatItemsUnprocessableEntity, *PublicQueryUserStatItemsInternalServerError, error) {
@@ -2862,7 +2815,6 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 PublicQueryUserStatItemsShort public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
@@ -2920,7 +2872,6 @@ Deprecated: 2022-08-10 - Use PublicBulkCreateUserStatItemsShort instead.
 PublicBulkCreateUserStatItems bulk create user's statitems
 Bulk create statItems.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : bulk created result
 */
 func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsBadRequest, *PublicBulkCreateUserStatItemsUnauthorized, *PublicBulkCreateUserStatItemsForbidden, *PublicBulkCreateUserStatItemsUnprocessableEntity, *PublicBulkCreateUserStatItemsInternalServerError, error) {
@@ -2987,7 +2938,6 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 PublicBulkCreateUserStatItemsShort bulk create user's statitems
 Bulk create statItems.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : bulk created result
 */
 func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error) {
@@ -3050,7 +3000,6 @@ NOTE:
                 * If stat code does not exist, will ignore this stat code.
                 * If stat item does not exist, will return default value
 Other detail info:
-                *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                 *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1Unauthorized, *PublicQueryUserStatItems1Forbidden, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, *PublicQueryUserStatItems1InternalServerError, error) {
@@ -3123,7 +3072,6 @@ NOTE:
               * If stat code does not exist, will ignore this stat code.
               * If stat item does not exist, will return default value
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
               *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
@@ -3185,7 +3133,6 @@ Deprecated: 2022-08-10 - Use PublicBulkIncUserStatItem1Short instead.
 PublicBulkIncUserStatItem1 public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
               *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, *PublicBulkIncUserStatItem1BadRequest, *PublicBulkIncUserStatItem1Unauthorized, *PublicBulkIncUserStatItem1Forbidden, *PublicBulkIncUserStatItem1UnprocessableEntity, *PublicBulkIncUserStatItem1InternalServerError, error) {
@@ -3252,7 +3199,6 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 PublicBulkIncUserStatItem1Short public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
               *  Returns : bulk updated result
 */
 func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error) {
@@ -3312,7 +3258,6 @@ Deprecated: 2022-08-10 - Use BulkIncUserStatItemValue2Short instead.
 BulkIncUserStatItemValue2 public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-              *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
               *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, *BulkIncUserStatItemValue2BadRequest, *BulkIncUserStatItemValue2Unauthorized, *BulkIncUserStatItemValue2Forbidden, *BulkIncUserStatItemValue2UnprocessableEntity, *BulkIncUserStatItemValue2InternalServerError, error) {
@@ -3379,7 +3324,6 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 BulkIncUserStatItemValue2Short public bulk update user's statitems value
 Public bulk update user's statitems value.
 Other detail info:
-                *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                 *  Returns : bulk updated result
 */
 func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error) {
@@ -3439,7 +3383,6 @@ Deprecated: 2022-08-10 - Use BulkResetUserStatItem3Short instead.
 BulkResetUserStatItem3 public bulk reset user's statitems value
 Public bulk reset user's statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, *BulkResetUserStatItem3BadRequest, *BulkResetUserStatItem3Unauthorized, *BulkResetUserStatItem3Forbidden, *BulkResetUserStatItem3UnprocessableEntity, *BulkResetUserStatItem3InternalServerError, error) {
@@ -3506,7 +3449,6 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 BulkResetUserStatItem3Short public bulk reset user's statitems value
 Public bulk reset user's statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, error) {
@@ -3566,7 +3508,6 @@ Deprecated: 2022-08-10 - Use PublicCreateUserStatItemShort instead.
 PublicCreateUserStatItem create user's statitem
 Create user's statItem.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : created user's statItem
 */
 func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemUnauthorized, *PublicCreateUserStatItemForbidden, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, *PublicCreateUserStatItemUnprocessableEntity, *PublicCreateUserStatItemInternalServerError, error) {
@@ -3636,7 +3577,6 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 PublicCreateUserStatItemShort create user's statitem
 Create user's statItem.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)
                   *  Returns : created user's statItem
 */
 func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error) {
@@ -3698,7 +3638,6 @@ Deprecated: 2022-08-10 - Use DeleteUserStatItems1Short instead.
 DeleteUserStatItems1 delete user's statitems
 Delete user's statItems given stat code.
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                   *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, *DeleteUserStatItems1UnprocessableEntity, *DeleteUserStatItems1InternalServerError, error) {
@@ -3765,7 +3704,6 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 DeleteUserStatItems1Short delete user's statitems
 Delete user's statItems given stat code.
 Other detail info:
-                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                     *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error) {
@@ -3825,7 +3763,6 @@ Deprecated: 2022-08-10 - Use PublicIncUserStatItemShort instead.
 PublicIncUserStatItem public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemUnauthorized, *PublicIncUserStatItemForbidden, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, *PublicIncUserStatItemUnprocessableEntity, *PublicIncUserStatItemInternalServerError, error) {
@@ -3898,7 +3835,6 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 PublicIncUserStatItemShort public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error) {
@@ -3962,7 +3898,6 @@ Deprecated: 2022-08-10 - Use PublicIncUserStatItemValueShort instead.
 PublicIncUserStatItemValue public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueUnauthorized, *PublicIncUserStatItemValueForbidden, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, *PublicIncUserStatItemValueUnprocessableEntity, *PublicIncUserStatItemValueInternalServerError, error) {
@@ -4035,7 +3970,6 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 PublicIncUserStatItemValueShort public update user's statitem value
 Public update user's statitem value.
 Other detail info:
-                      *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
                       *  Returns : updated user's statItem
 */
 func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error) {
@@ -4101,7 +4035,6 @@ Reset user's statitem value for a given namespace and user.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1Unauthorized, *ResetUserStatItemValue1Forbidden, *ResetUserStatItemValue1NotFound, *ResetUserStatItemValue1UnprocessableEntity, *ResetUserStatItemValue1InternalServerError, error) {
@@ -4173,7 +4106,6 @@ Reset user's statitem value for a given namespace and user.
 User's statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, error) {
@@ -4241,7 +4173,6 @@ There are four supported update strategies:
 + *MIN*: update user statitem with the specified value if it's lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, *BulkUpdateUserStatItemV2BadRequest, *BulkUpdateUserStatItemV2Unauthorized, *BulkUpdateUserStatItemV2Forbidden, *BulkUpdateUserStatItemV2UnprocessableEntity, *BulkUpdateUserStatItemV2InternalServerError, error) {
@@ -4314,7 +4245,6 @@ There are four supported update strategies:
 + *MIN*: update user statitem with the specified value if it's lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error) {
@@ -4374,7 +4304,6 @@ Deprecated: 2022-08-10 - Use BulkFetchOrDefaultStatItems1Short instead.
 BulkFetchOrDefaultStatItems1 bulk fetch user stat item values
 Bulk fetch multiple user's stat item values for a given namespace and statCode.
 NOTE: If stat item does not exist, will return default value. Other detail info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of user's stat item values
 */
 func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, *BulkFetchOrDefaultStatItems1Unauthorized, *BulkFetchOrDefaultStatItems1Forbidden, *BulkFetchOrDefaultStatItems1NotFound, *BulkFetchOrDefaultStatItems1UnprocessableEntity, *BulkFetchOrDefaultStatItems1InternalServerError, error) {
@@ -4441,7 +4370,6 @@ func (a *Client) BulkFetchOrDefaultStatItems1(params *BulkFetchOrDefaultStatItem
 BulkFetchOrDefaultStatItems1Short bulk fetch user stat item values
 Bulk fetch multiple user's stat item values for a given namespace and statCode.
 NOTE: If stat item does not exist, will return default value. Other detail info:
-+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
 + *Returns*: list of user's stat item values
 */
 func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchOrDefaultStatItems1OK, error) {
@@ -4503,8 +4431,7 @@ Admin list all statItems of user
 NOTE:
                     * If stat code does not exist, will ignore this stat code.
                     * If stat item does not exist, will return default value
-Other detail info:+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
-
+Other detail info:
                     *  Returns : stat items
 */
 func (a *Client) AdminListUsersStatItems(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, *AdminListUsersStatItemsBadRequest, *AdminListUsersStatItemsUnauthorized, *AdminListUsersStatItemsForbidden, *AdminListUsersStatItemsNotFound, *AdminListUsersStatItemsUnprocessableEntity, *AdminListUsersStatItemsInternalServerError, error) {
@@ -4576,8 +4503,7 @@ Admin list all statItems of user
 NOTE:
                   * If stat code does not exist, will ignore this stat code.
                   * If stat item does not exist, will return default value
-Other detail info:+ *Required permission*: resource=ADMIN:NAMESPACE:{namespace}:STATITEM, action=2 (READ)
-
+Other detail info:
                   *  Returns : stat items
 */
 func (a *Client) AdminListUsersStatItemsShort(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, error) {
@@ -4648,7 +4574,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, *BulkUpdateUserStatItemBadRequest, *BulkUpdateUserStatItemUnauthorized, *BulkUpdateUserStatItemForbidden, *BulkUpdateUserStatItemUnprocessableEntity, *BulkUpdateUserStatItemInternalServerError, error) {
@@ -4724,7 +4649,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error) {
@@ -4784,7 +4708,6 @@ Deprecated: 2022-08-10 - Use BulkResetUserStatItemValuesShort instead.
 BulkResetUserStatItemValues bulk reset user's statitem values
 Bulk reset user's statitem values for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesBadRequest, *BulkResetUserStatItemValuesUnauthorized, *BulkResetUserStatItemValuesForbidden, *BulkResetUserStatItemValuesUnprocessableEntity, *BulkResetUserStatItemValuesInternalServerError, error) {
@@ -4851,7 +4774,6 @@ func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValues
 BulkResetUserStatItemValuesShort bulk reset user's statitem values
 Bulk reset user's statitem values for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error) {
@@ -4915,7 +4837,6 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                  *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                   *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, *DeleteUserStatItems2InternalServerError, error) {
@@ -4986,7 +4907,6 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                    *  Required permission : resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)
                     *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
@@ -5055,7 +4975,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, *UpdateUserStatItemValueBadRequest, *UpdateUserStatItemValueUnauthorized, *UpdateUserStatItemValueForbidden, *UpdateUserStatItemValueNotFound, *UpdateUserStatItemValueConflict, *UpdateUserStatItemValueUnprocessableEntity, *UpdateUserStatItemValueInternalServerError, error) {
@@ -5137,7 +5056,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, error) {
@@ -5207,7 +5125,6 @@ There are four supported update strategies:
 + *MIN*: update user statitem with the specified value if it's lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, *BulkUpdateUserStatItem1BadRequest, *BulkUpdateUserStatItem1Unauthorized, *BulkUpdateUserStatItem1Forbidden, *BulkUpdateUserStatItem1UnprocessableEntity, *BulkUpdateUserStatItem1InternalServerError, error) {
@@ -5280,7 +5197,6 @@ There are four supported update strategies:
 + *MIN*: update user statitem with the specified value if it's lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, error) {
@@ -5343,7 +5259,6 @@ NOTE:
                     * If stat code does not exist, will ignore this stat code.
                     * If stat item does not exist, will return default value
 Other detail info:
-                    *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                     *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2Unauthorized, *PublicQueryUserStatItems2Forbidden, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, *PublicQueryUserStatItems2InternalServerError, error) {
@@ -5416,7 +5331,6 @@ NOTE:
                   * If stat code does not exist, will ignore this stat code.
                   * If stat item does not exist, will return default value
 Other detail info:
-                  *  Required permission : resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
                   *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
@@ -5487,7 +5401,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, *BulkUpdateUserStatItem2BadRequest, *BulkUpdateUserStatItem2Unauthorized, *BulkUpdateUserStatItem2Forbidden, *BulkUpdateUserStatItem2UnprocessableEntity, *BulkUpdateUserStatItem2InternalServerError, error) {
@@ -5563,7 +5476,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, error) {
@@ -5632,7 +5544,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, *UpdateUserStatItemValue1BadRequest, *UpdateUserStatItemValue1Unauthorized, *UpdateUserStatItemValue1Forbidden, *UpdateUserStatItemValue1NotFound, *UpdateUserStatItemValue1Conflict, *UpdateUserStatItemValue1UnprocessableEntity, *UpdateUserStatItemValue1InternalServerError, error) {
@@ -5714,7 +5625,6 @@ The *additionalKey* parameter will be suffixed to *userId* and is used to suppor
 If provided, user's statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
 + *Returns*: updated user's statItem
 */
 func (a *Client) UpdateUserStatItemValue1Short(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, error) {

@@ -72,6 +72,7 @@ func init() {
 	SessionCmd.AddCommand(sessionStorage.AdminReadUserSessionStorageCmd)
 	SessionCmd.AddCommand(player.AdminQueryPlayerAttributesCmd)
 	SessionCmd.AddCommand(player.AdminGetPlayerAttributesCmd)
+	SessionCmd.AddCommand(party.AdminSyncNativeSessionCmd)
 	SessionCmd.AddCommand(gameSession.CreateGameSessionCmd)
 	SessionCmd.AddCommand(gameSession.PublicQueryGameSessionsByAttributesCmd)
 	SessionCmd.AddCommand(gameSession.PublicSessionJoinCodeCmd)

@@ -32,6 +32,9 @@ type APIMatchTicketRequest struct {
 
 	// sessionid
 	SessionID string `json:"sessionID,omitempty"`
+
+	// leader session storage
+	Storage interface{} `json:"storage,omitempty"`
 }
 
 // Validate validates this Api match ticket request

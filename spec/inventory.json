@@ -3,7 +3,7 @@
   "info": {
     "description": "justice-inventory-service",
     "title": "justice-inventory-service",
-    "version": "0.1.4"
+    "version": "0.2.0"
   },
   "schemes": [
     "https"
@@ -139,9 +139,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tListing all integration configurations in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]\n\t\t",
         "operationId": "AdminListIntegrationConfigurations",
         "parameters": [
@@ -445,9 +442,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tListing all inventories in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]\n\t\t",
         "operationId": "AdminListInventories",
         "parameters": [
@@ -671,9 +665,6 @@
         "x-errorCodes": {}
       },
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tGetting an inventory info.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]\n\t\t",
         "operationId": "AdminGetInventory",
         "parameters": [
@@ -811,9 +802,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tListing all items in an inventory.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]\n\t\t",
         "operationId": "AdminListItems",
         "parameters": [
@@ -844,22 +832,12 @@
             "type": "integer"
           },
           {
-            "default": 1,
-            "description": "Qty",
-            "in": "query",
-            "name": "qtyGte",
-            "type": "integer"
-          },
-          {
             "default": "createdAt",
             "description": "Only support one level of sortBy; default createdAt",
             "enum": [
               "createdAt",
               "createdAt:asc",
               "createdAt:desc",
-              "qty",
-              "qty:asc",
-              "qty:desc",
               "updatedAt",
               "updatedAt:asc",
               "updatedAt:desc"
@@ -921,9 +899,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\t\t\tGetting an item info.\n\n\t\t\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]\n\t\t\t\t",
         "operationId": "AdminGetInventoryItem",
         "parameters": [
@@ -1002,9 +977,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventoryConfigurations": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tListing all inventory configurations in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]\n\t\t",
         "operationId": "AdminListInventoryConfigurations",
         "parameters": [
@@ -1158,9 +1130,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventoryConfigurations/{inventoryConfigurationId}": {
       "delete": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tDeleting an inventory configuration.\n\t\t\tIf an inventory already reference this type (i.e. STATUS is \u0026#34;TIED\u0026#34;), then the type cannot be deleted anymore.\n\t\t\t\n\t\t\tADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]\n\t\t",
         "operationId": "AdminDeleteInventoryConfiguration",
         "parameters": [
@@ -1220,9 +1189,6 @@
         "x-errorCodes": {}
       },
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tGetting an inventory configuration info.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]\n\t\t",
         "operationId": "AdminGetInventoryConfiguration",
         "parameters": [
@@ -1366,9 +1332,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/itemtypes": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tThis endpoint will list all item types in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]\n\t\t",
         "operationId": "AdminListItemTypes",
         "parameters": [
@@ -1513,9 +1476,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/itemtypes/{itemTypeName}": {
       "delete": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tThis endpoint will delete a item type by itemtypeName in a specified namespace.\n\t\t\tIf the itemtypeName doesn\u0026#39;t exist in a namespace, it\u0026#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]\n\t\t",
         "operationId": "AdminDeleteItemType",
         "parameters": [
@@ -1571,9 +1531,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/tags": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tThis endpoint will list all tags in a namespace.\n\t\t\tThe response body will be in the form of standard pagination.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]\n\t\t",
         "operationId": "AdminListTags",
         "parameters": [
@@ -1724,9 +1681,6 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/tags/{tagName}": {
       "delete": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "\n\t\t\tThis endpoint will delete a tag by tagName in a specified namespace.\n\t\t\tIf the tagName doesn\u0026#39;t exist in a namespace, it\u0026#39;ll return not found.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]\n\t\t",
         "operationId": "AdminDeleteTag",
         "parameters": [
@@ -1953,7 +1907,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item to specific inventory.\n\t\t\tThe item will be saved in specific user\u0026#39;s inventory,\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tSaving an item to specific inventory.\n\t\t\tThe item will be saved in specific user\u0026#39;s inventory,\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tFor Ecommerce items, the quantity saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount.\n\t\t\ti.e. If the store item is configured with a useCount of 5 \n\t\t\tand the quantity of a particular item is set to 2 during saving, it will be stored as 10.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminSaveItemToInventory",
         "parameters": [
           {
@@ -2115,7 +2069,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tFor Ecommerce items, the quantity saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount.\n\t\t\ti.e. If the store item is configured with a useCount of 5 \n\t\t\tand the quantity of a particular item is set to 2 during saving, it will be stored as 10.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminSaveItem",
         "parameters": [
           {
@@ -2181,10 +2135,7 @@
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/entitlements/sync": {
       "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
+        "description": "\n\t\t\tSync user\u0026#39;s entitlement from e-commerce service to inventory for non exist item at user inventory.\n\t\t\twill skip the item if already exist at user inventory.\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
         "operationId": "AdminSyncUserEntitlements",
         "parameters": [
           {
@@ -2843,22 +2794,12 @@
             "type": "integer"
           },
           {
-            "default": 1,
-            "description": "Qty",
-            "in": "query",
-            "name": "qtyGte",
-            "type": "integer"
-          },
-          {
             "default": "createdAt",
             "description": "Only support one level of sortBy; default createdAt",
             "enum": [
               "createdAt",
               "createdAt:asc",
               "createdAt:desc",
-              "qty",
-              "qty:asc",
-              "qty:desc",
               "updatedAt",
               "updatedAt:asc",
               "updatedAt:desc"
@@ -3686,6 +3627,9 @@
         "inventoryId": {
           "type": "string"
         },
+        "itemInfo": {
+          "type": "object"
+        },
         "namespace": {
           "type": "string"
         },
@@ -3736,6 +3680,7 @@
         "customAttributes",
         "id",
         "inventoryId",
+        "itemInfo",
         "namespace",
         "qty",
         "serverCustomAttributes",
@@ -4039,8 +3984,7 @@
         "itemId",
         "itemType",
         "quantity",
-        "sku",
-        "stackable"
+        "sku"
       ]
     },
     "apimodels.RemoveInventoryItemReq": {
@@ -4355,11 +4299,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-17T08:18:07+00:00",
-    "gitHash": "1a773bd911970240ff0bae7b3deec39df4efbaa6",
+    "buildDate": "2024-06-14T09:11:21+00:00",
+    "gitHash": "e430ddea04da45581c2769efd3d09af5ca574069",
     "name": "justice-inventory-service",
     "realm": "staging",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "version-roles-seeding": "1.2.34"
   }
 }

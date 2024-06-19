@@ -57,6 +57,12 @@ func (o *PublicSubmitUserAccountDeletionRequestReader) ReadResponse(response run
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewPublicSubmitUserAccountDeletionRequestConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicSubmitUserAccountDeletionRequestInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -323,6 +329,59 @@ func (o *PublicSubmitUserAccountDeletionRequestNotFound) GetPayload() *gdprclien
 }
 
 func (o *PublicSubmitUserAccountDeletionRequestNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gdprclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicSubmitUserAccountDeletionRequestConflict creates a PublicSubmitUserAccountDeletionRequestConflict with default headers values
+func NewPublicSubmitUserAccountDeletionRequestConflict() *PublicSubmitUserAccountDeletionRequestConflict {
+	return &PublicSubmitUserAccountDeletionRequestConflict{}
+}
+
+/*PublicSubmitUserAccountDeletionRequestConflict handles this case with default header values.
+
+  Conflict
+*/
+type PublicSubmitUserAccountDeletionRequestConflict struct {
+	Payload *gdprclientmodels.ResponseError
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestConflict) Error() string {
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions][%d] publicSubmitUserAccountDeletionRequestConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestConflict) GetPayload() *gdprclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicSubmitUserAccountDeletionRequestConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

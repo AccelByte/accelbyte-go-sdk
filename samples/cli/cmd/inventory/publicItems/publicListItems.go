@@ -29,7 +29,6 @@ var PublicListItemsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
-		qtyGte, _ := cmd.Flags().GetInt64("qtyGte")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		sourceItemId, _ := cmd.Flags().GetString("sourceItemId")
 		tags, _ := cmd.Flags().GetString("tags")
@@ -38,7 +37,6 @@ var PublicListItemsCmd = &cobra.Command{
 			Namespace:    namespace,
 			Limit:        &limit,
 			Offset:       &offset,
-			QtyGte:       &qtyGte,
 			SortBy:       &sortBy,
 			SourceItemID: &sourceItemId,
 			Tags:         &tags,
@@ -63,7 +61,6 @@ func init() {
 	_ = PublicListItemsCmd.MarkFlagRequired("namespace")
 	PublicListItemsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicListItemsCmd.Flags().Int64("offset", 0, "Offset")
-	PublicListItemsCmd.Flags().Int64("qtyGte", 1, "Qty gte")
 	PublicListItemsCmd.Flags().String("sortBy", "", "Sort by")
 	PublicListItemsCmd.Flags().String("sourceItemId", "", "Source item id")
 	PublicListItemsCmd.Flags().String("tags", "", "Tags")

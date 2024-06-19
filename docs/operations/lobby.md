@@ -36,6 +36,8 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/lobby/v1/admin/config` | GET | AdminGetAllConfigV1Short | [AdminGetAllConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminGetAllConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminGetAllConfigV1Short](../../samples/cli/cmd/lobby/config/adminGetAllConfigV1.go) |
+| `/lobby/v1/admin/config/log` | GET | AdminGetLogConfigShort | [AdminGetLogConfigShort](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminGetLogConfigShort](../../services-api/pkg/service/lobby/config.go) | [AdminGetLogConfigShort](../../samples/cli/cmd/lobby/config/adminGetLogConfig.go) |
+| `/lobby/v1/admin/config/log` | PATCH | AdminPatchUpdateLogConfigShort | [AdminPatchUpdateLogConfigShort](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminPatchUpdateLogConfigShort](../../services-api/pkg/service/lobby/config.go) | [AdminPatchUpdateLogConfigShort](../../samples/cli/cmd/lobby/config/adminPatchUpdateLogConfig.go) |
 | `/lobby/v1/admin/config/namespaces/{namespace}` | GET | AdminGetConfigV1Short | [AdminGetConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminGetConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminGetConfigV1Short](../../samples/cli/cmd/lobby/config/adminGetConfigV1.go) |
 | `/lobby/v1/admin/config/namespaces/{namespace}` | PUT | AdminUpdateConfigV1Short | [AdminUpdateConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminUpdateConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminUpdateConfigV1Short](../../samples/cli/cmd/lobby/config/adminUpdateConfigV1.go) |
 | `/lobby/v1/admin/config/namespaces/{namespace}/export` | GET | AdminExportConfigV1Short | [AdminExportConfigV1Short](../../lobby-sdk/pkg/lobbyclient/config/config_client.go) | [AdminExportConfigV1Short](../../services-api/pkg/service/lobby/config.go) | [AdminExportConfigV1Short](../../samples/cli/cmd/lobby/config/adminExportConfigV1.go) |
@@ -162,6 +164,7 @@
 | `handlers.GetUsersPresenceResponse` | [HandlersGetUsersPresenceResponse ](../../lobby-sdk/pkg/lobbyclientmodels/handlers_get_users_presence_response.go) |
 | `handlers.UserPresence` | [HandlersUserPresence ](../../lobby-sdk/pkg/lobbyclientmodels/handlers_user_presence.go) |
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../lobby-sdk/pkg/lobbyclientmodels/log_app_message_declaration.go) |
+| `logconfig.Configuration` | [LogconfigConfiguration ](../../lobby-sdk/pkg/lobbyclientmodels/logconfig_configuration.go) |
 | `model.BulkFriendsRequest` | [ModelBulkFriendsRequest ](../../lobby-sdk/pkg/lobbyclientmodels/model_bulk_friends_request.go) |
 | `model.BulkFriendsResponse` | [ModelBulkFriendsResponse ](../../lobby-sdk/pkg/lobbyclientmodels/model_bulk_friends_response.go) |
 | `model.BulkUsersFreeFormNotificationRequestV1` | [ModelBulkUsersFreeFormNotificationRequestV1 ](../../lobby-sdk/pkg/lobbyclientmodels/model_bulk_users_free_form_notification_request_v1.go) |

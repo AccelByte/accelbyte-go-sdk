@@ -45,6 +45,12 @@ func (o *PublicRequestDataRetrievalReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewPublicRequestDataRetrievalTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicRequestDataRetrievalInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -205,6 +211,59 @@ func (o *PublicRequestDataRetrievalUnauthorized) GetPayload() *gdprclientmodels.
 }
 
 func (o *PublicRequestDataRetrievalUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gdprclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicRequestDataRetrievalTooManyRequests creates a PublicRequestDataRetrievalTooManyRequests with default headers values
+func NewPublicRequestDataRetrievalTooManyRequests() *PublicRequestDataRetrievalTooManyRequests {
+	return &PublicRequestDataRetrievalTooManyRequests{}
+}
+
+/*PublicRequestDataRetrievalTooManyRequests handles this case with default header values.
+
+  Too Many Requests
+*/
+type PublicRequestDataRetrievalTooManyRequests struct {
+	Payload *gdprclientmodels.ResponseError
+}
+
+func (o *PublicRequestDataRetrievalTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /gdpr/public/namespaces/{namespace}/users/{userId}/requests][%d] publicRequestDataRetrievalTooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *PublicRequestDataRetrievalTooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicRequestDataRetrievalTooManyRequests) GetPayload() *gdprclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicRequestDataRetrievalTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

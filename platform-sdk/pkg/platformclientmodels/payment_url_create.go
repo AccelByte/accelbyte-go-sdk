@@ -20,12 +20,15 @@ import (
 // swagger:model Payment url create.
 type PaymentURLCreate struct {
 
+	// neonPayConfig
+	NeonPayConfig *PaymentOrderNeonPayConfig `json:"neonPayConfig,omitempty"`
+
 	// payment order number
 	// Required: true
 	PaymentOrderNo *string `json:"paymentOrderNo"`
 
 	// payment provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	// Required: true
 	PaymentProvider *string `json:"paymentProvider"`
 
@@ -69,7 +72,7 @@ var paymentUrlCreateTypePaymentProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -87,6 +90,9 @@ const (
 
 	// PaymentURLCreatePaymentProviderCHECKOUT captures enum value "CHECKOUT"
 	PaymentURLCreatePaymentProviderCHECKOUT string = "CHECKOUT"
+
+	// PaymentURLCreatePaymentProviderNEONPAY captures enum value "NEONPAY"
+	PaymentURLCreatePaymentProviderNEONPAY string = "NEONPAY"
 
 	// PaymentURLCreatePaymentProviderPAYPAL captures enum value "PAYPAL"
 	PaymentURLCreatePaymentProviderPAYPAL string = "PAYPAL"

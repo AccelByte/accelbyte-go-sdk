@@ -1,3 +1,16 @@
+<a name="v0.71.0"></a>
+## [v0.71.0]
+### test
+- **http-retry:** add test for default retry policy
+- **http-retry:** fix test for default retry policy
+- **http-retry:** add test for with 1 retry policy
+- **http-retry:** fix tests relating to retry policy
+### fix
+- **http-retry:** remove extra retry
+### chore
+- **:** add session notif parser
+
+
 <a name="v0.70.0"></a>
 ## [v0.70.0]
 ### test

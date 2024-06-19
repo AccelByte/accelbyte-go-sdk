@@ -25,6 +25,9 @@ type ModelPublicInviteUserRequestV4 struct {
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
 
+	// languagetag
+	LanguageTag string `json:"languageTag,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

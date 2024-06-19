@@ -41,7 +41,7 @@ type PaymentNotificationInfo struct {
 	Notification interface{} `json:"notification"`
 
 	// payment provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	// Required: true
 	NotificationSource *string `json:"notificationSource"`
 
@@ -137,7 +137,7 @@ var paymentNotificationInfoTypeNotificationSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -155,6 +155,9 @@ const (
 
 	// PaymentNotificationInfoNotificationSourceCHECKOUT captures enum value "CHECKOUT"
 	PaymentNotificationInfoNotificationSourceCHECKOUT string = "CHECKOUT"
+
+	// PaymentNotificationInfoNotificationSourceNEONPAY captures enum value "NEONPAY"
+	PaymentNotificationInfoNotificationSourceNEONPAY string = "NEONPAY"
 
 	// PaymentNotificationInfoNotificationSourcePAYPAL captures enum value "PAYPAL"
 	PaymentNotificationInfoNotificationSourcePAYPAL string = "PAYPAL"

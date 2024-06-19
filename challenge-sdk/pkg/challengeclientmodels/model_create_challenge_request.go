@@ -57,6 +57,9 @@ type ModelCreateChallengeRequest struct {
 	// Format: int32
 	RepeatAfter int32 `json:"repeatAfter,omitempty"`
 
+	// default is {'resetTime': '00:00'}
+	ResetConfig *ModelResetConfig `json:"resetConfig,omitempty"`
+
 	// rotation
 	// Enum: ['DAILY', 'MONTHLY', 'NONE', 'WEEKLY']
 	// Required: true

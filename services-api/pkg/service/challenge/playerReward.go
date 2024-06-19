@@ -38,6 +38,35 @@ func (aaa *PlayerRewardService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminClaimUsersRewardsShort instead.
+func (aaa *PlayerRewardService) AdminClaimUsersRewards(input *player_reward.AdminClaimUsersRewardsParams) ([]*challengeclientmodels.ModelClaimUsersRewardsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PlayerReward.AdminClaimUsersRewards(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetUserRewardsShort instead.
 func (aaa *PlayerRewardService) AdminGetUserRewards(input *player_reward.AdminGetUserRewardsParams) (*challengeclientmodels.ModelListUserRewardsResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -50,6 +79,35 @@ func (aaa *PlayerRewardService) AdminGetUserRewards(input *player_reward.AdminGe
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminClaimUserRewardsShort instead.
+func (aaa *PlayerRewardService) AdminClaimUserRewards(input *player_reward.AdminClaimUserRewardsParams) ([]*challengeclientmodels.ModelUserReward, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.PlayerReward.AdminClaimUserRewards(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -90,7 +148,7 @@ func (aaa *PlayerRewardService) PublicClaimUserRewards(input *player_reward.Publ
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PlayerReward.PublicClaimUserRewards(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.PlayerReward.PublicClaimUserRewards(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -100,9 +158,42 @@ func (aaa *PlayerRewardService) PublicClaimUserRewards(input *player_reward.Publ
 	if notFound != nil {
 		return nil, notFound
 	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PlayerRewardService) AdminClaimUsersRewardsShort(input *player_reward.AdminClaimUsersRewardsParams) ([]*challengeclientmodels.ModelClaimUsersRewardsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPlayerReward != nil {
+		input.XFlightId = tempFlightIdPlayerReward
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PlayerReward.AdminClaimUsersRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -133,6 +224,36 @@ func (aaa *PlayerRewardService) AdminGetUserRewardsShort(input *player_reward.Ad
 	}
 
 	ok, err := aaa.Client.PlayerReward.AdminGetUserRewardsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PlayerRewardService) AdminClaimUserRewardsShort(input *player_reward.AdminClaimUserRewardsParams) ([]*challengeclientmodels.ModelUserReward, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPlayerReward != nil {
+		input.XFlightId = tempFlightIdPlayerReward
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PlayerReward.AdminClaimUserRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

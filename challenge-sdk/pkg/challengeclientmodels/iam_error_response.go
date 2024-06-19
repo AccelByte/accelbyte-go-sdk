@@ -26,6 +26,9 @@ type IamErrorResponse struct {
 	// errormessage
 	// Required: true
 	ErrorMessage *string `json:"errorMessage"`
+
+	// requiredpermission
+	RequiredPermission *IamPermission `json:"requiredPermission,omitempty"`
 }
 
 // Validate validates this Iam error response

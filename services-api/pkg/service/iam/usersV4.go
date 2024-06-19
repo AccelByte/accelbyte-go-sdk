@@ -838,6 +838,38 @@ func (aaa *UsersV4Service) AdminEnableBackupCodesV4(input *users_v4.AdminEnableB
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminChallengeMyMFAV4Short instead.
+func (aaa *UsersV4Service) AdminChallengeMyMFAV4(input *users_v4.AdminChallengeMyMFAV4Params) (*iamclientmodels.ModelUserMFATokenResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminChallengeMyMFAV4(input, client.BearerToken(*token.AccessToken))
+	if noContent != nil {
+		return nil, noContent
+	}
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminSendMyMFAEmailCodeV4Short instead.
 func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4(input *users_v4.AdminSendMyMFAEmailCodeV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -989,6 +1021,32 @@ func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4(input *users_v4.AdminMakeF
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetMyMFAStatusV4Short instead.
+func (aaa *UsersV4Service) AdminGetMyMFAStatusV4(input *users_v4.AdminGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminGetMyMFAStatusV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminInviteUserV4Short instead.
 func (aaa *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1022,6 +1080,32 @@ func (aaa *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Pa
 	}
 
 	return created.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicListUserIDByPlatformUserIDsV4Short instead.
+func (aaa *UsersV4Service) PublicListUserIDByPlatformUserIDsV4(input *users_v4.PublicListUserIDByPlatformUserIDsV4Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.UsersV4.PublicListUserIDByPlatformUserIDsV4(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicCreateTestUserV4Short instead.
@@ -1558,6 +1642,38 @@ func (aaa *UsersV4Service) PublicEnableBackupCodesV4(input *users_v4.PublicEnabl
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicChallengeMyMFAV4Short instead.
+func (aaa *UsersV4Service) PublicChallengeMyMFAV4(input *users_v4.PublicChallengeMyMFAV4Params) (*iamclientmodels.ModelUserMFATokenResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicChallengeMyMFAV4(input, client.BearerToken(*token.AccessToken))
+	if noContent != nil {
+		return nil, noContent
+	}
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicRemoveTrustedDeviceV4Short instead.
 func (aaa *UsersV4Service) PublicRemoveTrustedDeviceV4(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1736,6 +1852,32 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMak
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetMyMFAStatusV4Short instead.
+func (aaa *UsersV4Service) PublicGetMyMFAStatusV4(input *users_v4.PublicGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicGetMyMFAStatusV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetUserPublicInfoByUserIDV4Short instead.
@@ -2600,6 +2742,36 @@ func (aaa *UsersV4Service) AdminEnableBackupCodesV4Short(input *users_v4.AdminEn
 	return nil
 }
 
+func (aaa *UsersV4Service) AdminChallengeMyMFAV4Short(input *users_v4.AdminChallengeMyMFAV4Params) (*iamclientmodels.ModelUserMFATokenResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.AdminChallengeMyMFAV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersV4Service) AdminSendMyMFAEmailCodeV4Short(input *users_v4.AdminSendMyMFAEmailCodeV4Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2750,6 +2922,36 @@ func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.Admin
 	return nil
 }
 
+func (aaa *UsersV4Service) AdminGetMyMFAStatusV4Short(input *users_v4.AdminGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.AdminGetMyMFAStatusV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2778,6 +2980,36 @@ func (aaa *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUse
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) PublicListUserIDByPlatformUserIDsV4Short(input *users_v4.PublicListUserIDByPlatformUserIDsV4Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.PublicListUserIDByPlatformUserIDsV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
@@ -3320,6 +3552,36 @@ func (aaa *UsersV4Service) PublicEnableBackupCodesV4Short(input *users_v4.Public
 	return nil
 }
 
+func (aaa *UsersV4Service) PublicChallengeMyMFAV4Short(input *users_v4.PublicChallengeMyMFAV4Params) (*iamclientmodels.ModelUserMFATokenResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.PublicChallengeMyMFAV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -3498,6 +3760,36 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Publ
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) PublicGetMyMFAStatusV4Short(input *users_v4.PublicGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.PublicGetMyMFAStatusV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) PublicGetUserPublicInfoByUserIDV4Short(input *users_v4.PublicGetUserPublicInfoByUserIDV4Params) (*iamclientmodels.ModelUserPublicInfoResponseV4, error) {

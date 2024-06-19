@@ -3553,6 +3553,23 @@ func (aaa *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswor
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicValidateUserInputShort instead.
+func (aaa *UsersService) PublicValidateUserInput(input *users.PublicValidateUserInputParams) (*iamclientmodels.ModelUserInputValidationResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, internalServerError, err := aaa.Client.Users.PublicValidateUserInput(input, client.BearerToken(*token.AccessToken))
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetAdminInvitationV3Short instead.
 func (aaa *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -8411,6 +8428,36 @@ func (aaa *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPa
 	}
 
 	return nil
+}
+
+func (aaa *UsersService) PublicValidateUserInputShort(input *users.PublicValidateUserInputParams) (*iamclientmodels.ModelUserInputValidationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicValidateUserInputShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {

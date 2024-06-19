@@ -27,6 +27,8 @@ var Match2Cmd = &cobra.Command{
 func init() {
 	Match2Cmd.AddCommand(operations.GetHealthcheckInfoCmd)
 	Match2Cmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
+	Match2Cmd.AddCommand(config.AdminGetLogConfigCmd)
+	Match2Cmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)
 	Match2Cmd.AddCommand(config.AdminGetAllConfigV1Cmd)
 	Match2Cmd.AddCommand(config.AdminGetConfigV1Cmd)
 	Match2Cmd.AddCommand(config.AdminPatchConfigV1Cmd)

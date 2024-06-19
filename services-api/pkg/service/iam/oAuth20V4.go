@@ -115,11 +115,9 @@ func (aaa *OAuth20v4Service) Verify2FACodeV4(input *o_auth2_0_v4.Verify2FACodeV4
 
 // Deprecated: 2022-01-10 - please use PlatformTokenGrantV4Short instead.
 func (aaa *OAuth20v4Service) PlatformTokenGrantV4(input *o_auth2_0_v4.PlatformTokenGrantV4Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, accepted, badRequest, unauthorized, forbidden, serviceUnavailable, err := aaa.Client.OAuth20V4.PlatformTokenGrantV4(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, accepted, badRequest, unauthorized, forbidden, serviceUnavailable, err := aaa.Client.OAuth20V4.PlatformTokenGrantV4(input, client.BasicAuth(clientID, clientSecret))
 	if accepted != nil {
 		return nil, accepted
 	}
@@ -173,11 +171,9 @@ func (aaa *OAuth20v4Service) SimultaneousLoginV4(input *o_auth2_0_v4.Simultaneou
 
 // Deprecated: 2022-01-10 - please use TokenGrantV4Short instead.
 func (aaa *OAuth20v4Service) TokenGrantV4(input *o_auth2_0_v4.TokenGrantV4Params) (*iamclientmodels.OauthmodelTokenWithDeviceCookieResponseV3, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, accepted, badRequest, unauthorized, forbidden, tooManyRequests, err := aaa.Client.OAuth20V4.TokenGrantV4(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, accepted, badRequest, unauthorized, forbidden, tooManyRequests, err := aaa.Client.OAuth20V4.TokenGrantV4(input, client.BasicAuth(clientID, clientSecret))
 	if accepted != nil {
 		return nil, accepted
 	}
@@ -311,7 +307,7 @@ func (aaa *OAuth20v4Service) PlatformTokenGrantV4Short(input *o_auth2_0_v4.Platf
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
@@ -371,7 +367,7 @@ func (aaa *OAuth20v4Service) TokenGrantV4Short(input *o_auth2_0_v4.TokenGrantV4P
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}

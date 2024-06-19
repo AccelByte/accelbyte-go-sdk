@@ -67,7 +67,7 @@ type AdminUpdateChallengeParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *challengeclientmodels.ModelsUpdateChallengeRequest
+	Body *challengeclientmodels.ModelUpdateChallengeRequest
 	/*ChallengeCode
 	  the code of the challenge data to update
 
@@ -145,13 +145,13 @@ func (o *AdminUpdateChallengeParams) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the admin update challenge params
-func (o *AdminUpdateChallengeParams) WithBody(body *challengeclientmodels.ModelsUpdateChallengeRequest) *AdminUpdateChallengeParams {
+func (o *AdminUpdateChallengeParams) WithBody(body *challengeclientmodels.ModelUpdateChallengeRequest) *AdminUpdateChallengeParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin update challenge params
-func (o *AdminUpdateChallengeParams) SetBody(body *challengeclientmodels.ModelsUpdateChallengeRequest) {
+func (o *AdminUpdateChallengeParams) SetBody(body *challengeclientmodels.ModelUpdateChallengeRequest) {
 	o.Body = body
 }
 

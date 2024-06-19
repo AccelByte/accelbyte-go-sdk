@@ -22,8 +22,9 @@ var GenerateTokenByNewHeadlessAccountV3Cmd = &cobra.Command{
 	Long:  `Generate token by new headless account V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20ExtensionService := &iam.OAuth20ExtensionService{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		linkingToken, _ := cmd.Flags().GetString("linkingToken")
 		additionalData, _ := cmd.Flags().GetString("additionalData")

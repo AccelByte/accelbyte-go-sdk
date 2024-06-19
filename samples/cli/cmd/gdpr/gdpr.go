@@ -9,7 +9,9 @@ package gdpr
 import (
 	"github.com/AccelByte/sample-apps/cmd/gdpr/configuration"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletion"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletionS2S"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrieval"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrievalS2S"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureClient"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureHistory"
 	"github.com/spf13/cobra"
@@ -55,4 +57,9 @@ func init() {
 	GdprCmd.AddCommand(dataDeletion.PublicSubmitMyAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.PublicCancelMyAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataDeletion.PublicGetMyAccountDeletionStatusCmd)
+	GdprCmd.AddCommand(dataDeletionS2S.S2SGetListFinishedAccountDeletionRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalS2S.S2SGetListFinishedPersonalDataRequestCmd)
+	GdprCmd.AddCommand(dataDeletionS2S.S2SSubmitUserAccountDeletionRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalS2S.S2SRequestDataRetrievalCmd)
+	GdprCmd.AddCommand(dataRetrievalS2S.S2SGeneratePersonalDataURLCmd)
 }

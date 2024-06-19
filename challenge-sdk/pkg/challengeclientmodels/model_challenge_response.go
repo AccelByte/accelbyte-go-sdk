@@ -62,6 +62,10 @@ type ModelChallengeResponse struct {
 	// Format: int32
 	RepeatAfter int32 `json:"repeatAfter,omitempty"`
 
+	// resetconfig
+	// Required: true
+	ResetConfig *ModelResetConfig `json:"resetConfig"`
+
 	// rotation
 	// Enum: ['DAILY', 'MONTHLY', 'NONE', 'WEEKLY']
 	// Required: true
@@ -104,6 +108,9 @@ func (m *ModelChallengeResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateResetConfig(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRotation(formats); err != nil {
@@ -254,6 +261,24 @@ func (m *ModelChallengeResponse) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelChallengeResponse) validateResetConfig(formats strfmt.Registry) error {
+
+	if err := validate.Required("resetConfig", "body", m.ResetConfig); err != nil {
+		return err
+	}
+
+	if m.ResetConfig != nil {
+		if err := m.ResetConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resetConfig")
+			}
+			return err
+		}
 	}
 
 	return nil

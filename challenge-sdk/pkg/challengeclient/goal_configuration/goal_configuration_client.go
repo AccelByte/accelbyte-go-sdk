@@ -175,10 +175,25 @@ Request body:
     * description: text describing the goal (optional)
     * schedule: a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule
     * requirementGroups: list of conditions that conform with the goal progressions.
+      * operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.
+      * predicates: list of progression parameters to be tracked
+        * parameterType: the type of parameter for challenge to be progressed with. the available options are:
+          * STATISTIC: progress by user statistic item value
+          * STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.
+          * ACHIVEMENT: progress by user achievement
+          * USERACCOUNT: progress by user account event
+        * parameterName: the name of the parameter for challenge to be progressed with.
+          * STATISTIC: refers to stat code
+          * STATISTIC_CYCLE: refers to stat code with statCycleId must be included
+          * ACHIVEMENT: refers to achievement code
+          * USERACCOUNT: one of the user account event. current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated)
+        * matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate
+        * targetValue: the target number to be reached by the parameter
+        * statCycleId: used to track statistic type parameter value in a cycle (optional)
     * rewards: list of rewards that will be claimable once a goal is complete
     * tag: goal's labels
     * isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
 */
 func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalBadRequest, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -254,10 +269,25 @@ Request body:
       * description: text describing the goal (optional)
       * schedule: a time range that indicated the availability of a goal within a timeframe. used in fixed assignment rule
       * requirementGroups: list of conditions that conform with the goal progressions.
+        * operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.
+        * predicates: list of progression parameters to be tracked
+          * parameterType: the type of parameter for challenge to be progressed with. the available options are:
+            * STATISTIC: progress by user statistic item value
+            * STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.
+            * ACHIVEMENT: progress by user achievement
+            * USERACCOUNT: progress by user account event
+          * parameterName: the name of the parameter for challenge to be progressed with.
+            * STATISTIC: refers to stat code
+            * STATISTIC_CYCLE: refers to stat code with statCycleId must be included
+            * ACHIVEMENT: refers to achievement code
+            * USERACCOUNT: one of the user account event. current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated)
+          * matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate
+          * targetValue: the target number to be reached by the parameter
+          * statCycleId: used to track statistic type parameter value in a cycle (optional)
       * rewards: list of rewards that will be claimable once a goal is complete
       * tag: goal's labels
       * isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
 */
 func (a *Client) AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, error) {
 	// TODO: Validate the params before sending
@@ -445,7 +475,7 @@ Request body:
       * rewards: list of rewards that will be claimable once a goal is complete
       * tag: goal's labels
       * isActive (optional): when goal is in a schedule, isActive determine whether goal is active to progress or not
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
 */
 func (a *Client) AdminUpdateGoals(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, *AdminUpdateGoalsBadRequest, *AdminUpdateGoalsNotFound, *AdminUpdateGoalsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -514,7 +544,7 @@ Request body:
       * rewards: list of rewards that will be claimable once a goal is complete
       * tag: goal's labels
       * isActive (optional): when goal is in a schedule, isActive determine whether goal is active to progress or not
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
 */
 func (a *Client) AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, error) {
 	// TODO: Validate the params before sending

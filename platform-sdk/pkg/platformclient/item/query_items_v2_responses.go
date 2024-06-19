@@ -19,28 +19,28 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
-// QueryItems1Reader is a Reader for the QueryItems1 structure.
-type QueryItems1Reader struct {
+// QueryItemsV2Reader is a Reader for the QueryItemsV2 structure.
+type QueryItemsV2Reader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *QueryItems1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *QueryItemsV2Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewQueryItems1OK()
+		result := NewQueryItemsV2OK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 404:
-		result := NewQueryItems1NotFound()
+		result := NewQueryItemsV2NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 422:
-		result := NewQueryItems1UnprocessableEntity()
+		result := NewQueryItemsV2UnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -56,24 +56,24 @@ func (o *QueryItems1Reader) ReadResponse(response runtime.ClientResponse, consum
 	}
 }
 
-// NewQueryItems1OK creates a QueryItems1OK with default headers values
-func NewQueryItems1OK() *QueryItems1OK {
-	return &QueryItems1OK{}
+// NewQueryItemsV2OK creates a QueryItemsV2OK with default headers values
+func NewQueryItemsV2OK() *QueryItemsV2OK {
+	return &QueryItemsV2OK{}
 }
 
-/*QueryItems1OK handles this case with default header values.
+/*QueryItemsV2OK handles this case with default header values.
 
   successful operation
 */
-type QueryItems1OK struct {
+type QueryItemsV2OK struct {
 	Payload *platformclientmodels.FullItemPagingResult
 }
 
-func (o *QueryItems1OK) Error() string {
-	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItems1OK  %+v", 200, o.ToJSONString())
+func (o *QueryItemsV2OK) Error() string {
+	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsV2OK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryItems1OK) ToJSONString() string {
+func (o *QueryItemsV2OK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -88,11 +88,11 @@ func (o *QueryItems1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryItems1OK) GetPayload() *platformclientmodels.FullItemPagingResult {
+func (o *QueryItemsV2OK) GetPayload() *platformclientmodels.FullItemPagingResult {
 	return o.Payload
 }
 
-func (o *QueryItems1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryItemsV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -109,24 +109,24 @@ func (o *QueryItems1OK) readResponse(response runtime.ClientResponse, consumer r
 	return nil
 }
 
-// NewQueryItems1NotFound creates a QueryItems1NotFound with default headers values
-func NewQueryItems1NotFound() *QueryItems1NotFound {
-	return &QueryItems1NotFound{}
+// NewQueryItemsV2NotFound creates a QueryItemsV2NotFound with default headers values
+func NewQueryItemsV2NotFound() *QueryItemsV2NotFound {
+	return &QueryItemsV2NotFound{}
 }
 
-/*QueryItems1NotFound handles this case with default header values.
+/*QueryItemsV2NotFound handles this case with default header values.
 
   <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr></table>
 */
-type QueryItems1NotFound struct {
+type QueryItemsV2NotFound struct {
 	Payload *platformclientmodels.ErrorEntity
 }
 
-func (o *QueryItems1NotFound) Error() string {
-	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItems1NotFound  %+v", 404, o.ToJSONString())
+func (o *QueryItemsV2NotFound) Error() string {
+	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsV2NotFound  %+v", 404, o.ToJSONString())
 }
 
-func (o *QueryItems1NotFound) ToJSONString() string {
+func (o *QueryItemsV2NotFound) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -141,11 +141,11 @@ func (o *QueryItems1NotFound) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryItems1NotFound) GetPayload() *platformclientmodels.ErrorEntity {
+func (o *QueryItemsV2NotFound) GetPayload() *platformclientmodels.ErrorEntity {
 	return o.Payload
 }
 
-func (o *QueryItems1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryItemsV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,24 +162,24 @@ func (o *QueryItems1NotFound) readResponse(response runtime.ClientResponse, cons
 	return nil
 }
 
-// NewQueryItems1UnprocessableEntity creates a QueryItems1UnprocessableEntity with default headers values
-func NewQueryItems1UnprocessableEntity() *QueryItems1UnprocessableEntity {
-	return &QueryItems1UnprocessableEntity{}
+// NewQueryItemsV2UnprocessableEntity creates a QueryItemsV2UnprocessableEntity with default headers values
+func NewQueryItemsV2UnprocessableEntity() *QueryItemsV2UnprocessableEntity {
+	return &QueryItemsV2UnprocessableEntity{}
 }
 
-/*QueryItems1UnprocessableEntity handles this case with default header values.
+/*QueryItemsV2UnprocessableEntity handles this case with default header values.
 
   <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
-type QueryItems1UnprocessableEntity struct {
+type QueryItemsV2UnprocessableEntity struct {
 	Payload *platformclientmodels.ValidationErrorEntity
 }
 
-func (o *QueryItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItems1UnprocessableEntity  %+v", 422, o.ToJSONString())
+func (o *QueryItemsV2UnprocessableEntity) Error() string {
+	return fmt.Sprintf("[GET /platform/v2/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsV2UnprocessableEntity  %+v", 422, o.ToJSONString())
 }
 
-func (o *QueryItems1UnprocessableEntity) ToJSONString() string {
+func (o *QueryItemsV2UnprocessableEntity) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -194,11 +194,11 @@ func (o *QueryItems1UnprocessableEntity) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryItems1UnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {
+func (o *QueryItemsV2UnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {
 	return o.Payload
 }
 
-func (o *QueryItems1UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryItemsV2UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

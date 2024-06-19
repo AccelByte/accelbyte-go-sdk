@@ -45,6 +45,12 @@ type PaymentMerchantConfigInfo struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// neonPayConfig
+	NeonPayConfig *NeonPayConfig `json:"neonPayConfig,omitempty"`
+
+	// neonPaySandboxConfig
+	NeonPaySandboxConfig *NeonPayConfig `json:"neonPaySandboxConfig,omitempty"`
+
 	// payPalConfig
 	PayPalConfig *PayPalConfig `json:"payPalConfig,omitempty"`
 

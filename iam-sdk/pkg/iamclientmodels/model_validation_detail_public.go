@@ -82,6 +82,9 @@ type ModelValidationDetailPublic struct {
 	// Format: int32
 	MinLength *int32 `json:"minLength"`
 
+	// profanityfilter
+	ProfanityFilter string `json:"profanityFilter,omitempty"`
+
 	// regex
 	// Required: true
 	Regex *string `json:"regex"`

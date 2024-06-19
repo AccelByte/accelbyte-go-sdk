@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.22.3"
+    "version": "1.22.4"
   },
   "schemes": [
     "https"
@@ -38,17 +38,7 @@
     "HasPermission": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]",
-        "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -106,23 +96,17 @@
         "tags": [
           "Export"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons": {
       "get": {
-        "description": "This API is used to query seasons, seasons only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of season basic info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to query seasons, seasons only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of season basic info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "querySeasons",
         "parameters": [
           {
@@ -185,36 +169,24 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query seasons",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create a season, season only allowed in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to create a season, season only allowed in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createSeason",
         "parameters": [
           {
@@ -265,22 +237,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -291,9 +253,7 @@
           "49141": "Tier item does not exist in the store of namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
         }
       }
     },
@@ -342,18 +302,12 @@
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       }
     },
@@ -362,7 +316,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to bulk get user current season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to bulk get user current season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkGetUserSeasonProgression",
         "parameters": [
           {
@@ -410,36 +364,24 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk get user current season progression",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}": {
       "delete": {
-        "description": "This API is used to delete a season permanently, only draft season can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to delete a season permanently, only draft season can be deleted. \u0026lt;p\u0026gt;",
         "operationId": "deleteSeason",
         "parameters": [
           {
@@ -485,35 +427,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
         }
       },
       "get": {
-        "description": "This API is used to get a season, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get a season, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getSeason",
         "parameters": [
           {
@@ -556,37 +486,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to update a season. Only draft season can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to update a season. Only draft season can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateSeason",
         "parameters": [
           {
@@ -648,22 +566,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -676,9 +584,7 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -687,7 +593,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to clone a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: cloned season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to clone a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: cloned season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "cloneSeason",
         "parameters": [
           {
@@ -743,22 +649,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Clone a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -766,15 +662,13 @@
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/full": {
       "get": {
-        "description": "This API is used to get a season full content, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get a season full content, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getFullSeason",
         "parameters": [
           {
@@ -817,36 +711,24 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a season full content",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes": {
       "get": {
-        "description": "This API is used to query all passes for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to query all passes for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryPasses",
         "parameters": [
           {
@@ -891,37 +773,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query all passes for a season",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create a pass for a draft season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created pass\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to create a pass for a draft season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created pass\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createPass",
         "parameters": [
           {
@@ -984,22 +854,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a pass",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -1011,15 +871,13 @@
           "49174": "Pass [{code}] already exists in the season"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}": {
       "delete": {
-        "description": "This API is used to delete a pass permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to delete a pass permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;",
         "operationId": "deletePass",
         "parameters": [
           {
@@ -1071,22 +929,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a pass",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
@@ -1094,13 +942,11 @@
           "49171": "Season is not updatable in status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
         }
       },
       "get": {
-        "description": "This API is used to get a pass for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: pass data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get a pass for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: pass data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPass",
         "parameters": [
           {
@@ -1149,38 +995,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a pass",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
           "49145": "Pass [{code}] does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to update a pass. Only draft season pass can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated pass\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to update a pass. Only draft season pass can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated pass\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePass",
         "parameters": [
           {
@@ -1248,22 +1082,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a pass",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -1275,9 +1099,7 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -1286,7 +1108,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to publish a draft season, only one published season allowed at same time in a namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: published season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to publish a draft season, only one published season allowed at same time in a namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: published season\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publishSeason",
         "parameters": [
           {
@@ -1334,22 +1156,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Publish a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "30142": "Published store does not exist in namespace [{namespace}]",
@@ -1369,9 +1181,7 @@
           "49189": "Duplicate season name [{name}] for publishing in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -1380,7 +1190,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to retire a published season, if the season has not ended it will report error except with force.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to retire a published season, if the season has not ended it will report error except with force.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retireSeason",
         "parameters": [
           {
@@ -1436,22 +1246,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Retire a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
@@ -1459,15 +1259,13 @@
           "49181": "Season has not ended"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards": {
       "get": {
-        "description": "This API is used to query rewards for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of rewards\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to query rewards for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of rewards\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryRewards",
         "parameters": [
           {
@@ -1518,37 +1316,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query all rewards for a season",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create a reward for a draft season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created reward\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to create a reward for a draft season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created reward\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createReward",
         "parameters": [
           {
@@ -1611,22 +1397,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create a reward",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -1638,15 +1414,13 @@
           "49173": "Reward [{code}] already exists in the season"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}": {
       "delete": {
-        "description": "This API is used to delete a reward permanently, only draft season reward can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to delete a reward permanently, only draft season reward can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteReward",
         "parameters": [
           {
@@ -1698,22 +1472,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a reward",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
@@ -1722,13 +1486,11 @@
           "49179": "Reward [{code}] is in use"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
         }
       },
       "get": {
-        "description": "This API is used to get a reward for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: reward data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get a reward for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: reward data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getReward",
         "parameters": [
           {
@@ -1777,38 +1539,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get a reward",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
           "49144": "Reward [{code}] does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to update a reward. Only draft season reward can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated reward\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to update a reward. Only draft season reward can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated reward\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateReward",
         "parameters": [
           {
@@ -1876,22 +1626,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a reward",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -1903,15 +1643,13 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers": {
       "get": {
-        "description": "This API is used to query paginated tiers for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to query paginated tiers for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryTiers",
         "parameters": [
           {
@@ -1971,37 +1709,25 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query paginated tiers for a season",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
         }
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to create tier for a draft season, can create multiple tiers at same time.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to create tier for a draft season, can create multiple tiers at same time.\u0026lt;p\u0026gt;",
         "operationId": "createTier",
         "parameters": [
           {
@@ -2067,22 +1793,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Create tier",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -2092,15 +1808,13 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}": {
       "delete": {
-        "description": "This API is used to delete a tier permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to delete a tier permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;",
         "operationId": "deleteTier",
         "parameters": [
           {
@@ -2152,38 +1866,26 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Delete a tier",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]"
         }
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to update a tier. Only draft season pass can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to update a tier. Only draft season pass can be updated.\u0026lt;p\u0026gt;",
         "operationId": "updateTier",
         "parameters": [
           {
@@ -2251,22 +1953,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Update a tier",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -2277,9 +1969,7 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -2288,7 +1978,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to reorder a tier. Only draft season pass can be updated.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to reorder a tier. Only draft season pass can be updated.\u0026lt;p\u0026gt;",
         "operationId": "reorderTier",
         "parameters": [
           {
@@ -2356,22 +2046,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Reorder a tier",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20002": "validation error",
           "20026": "publisher namespace not allowed",
@@ -2380,9 +2060,7 @@
           "49171": "Invalid season status [{status}]"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -2391,7 +2069,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to unpublish a published season, if the season already started it will report error except with force.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to unpublish a published season, if the season already started it will report error except with force.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "unpublishSeason",
         "parameters": [
           {
@@ -2447,22 +2125,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Unpublish a season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49143": "Season [{seasonId}] does not exist in namespace [{namespace}]",
@@ -2470,15 +2138,13 @@
           "49180": "Season is already started"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons": {
       "get": {
-        "description": "This API is used to get user participated season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user participated season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get user participated season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user participated season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserParticipatedSeasons",
         "parameters": [
           {
@@ -2533,29 +2199,17 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user participated season data",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
@@ -2564,7 +2218,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to grant exp to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to grant exp to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserExp",
         "parameters": [
           {
@@ -2609,29 +2263,17 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Grant exp to user",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
         }
       }
     },
@@ -2640,7 +2282,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to grant pass to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to grant pass to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserPass",
         "parameters": [
           {
@@ -2685,35 +2327,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Grant pass to user",
         "tags": [
           "Pass"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any": {
       "get": {
-        "description": "[SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: ownership\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "[SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: ownership\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "existsAnyPassByPassCodes",
         "parameters": [
           {
@@ -2760,35 +2390,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get ownership for any pass codes",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression": {
       "get": {
-        "description": "This API is used to get current user season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get current user season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCurrentUserSeasonProgression",
         "parameters": [
           {
@@ -2831,31 +2449,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get current user season progression",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist",
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
@@ -2864,7 +2470,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to check pass or tier purchasable, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to check pass or tier purchasable, season only located in non-publisher namespace.\u0026lt;p\u0026gt;",
         "operationId": "checkSeasonPurchasable",
         "parameters": [
           {
@@ -2918,22 +2524,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Check pass or tier purchasable",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist",
@@ -2944,15 +2540,13 @@
           "49187": "Exceed max tier count"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset": {
       "delete": {
-        "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.\u0026lt;p\u0026gt;",
         "operationId": "resetUserSeason",
         "parameters": [
           {
@@ -2986,29 +2580,17 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Reset user data in current season",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]"
         }
       }
     },
@@ -3017,7 +2599,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to grant tier to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to grant tier to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserTier",
         "parameters": [
           {
@@ -3068,36 +2650,24 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Grant tier to user",
         "tags": [
           "Tier"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history": {
       "get": {
-        "description": "This API is used to get user exp acquisition history, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated grant history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get user exp acquisition history, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated grant history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUserExpGrantHistory",
         "parameters": [
           {
@@ -3195,35 +2765,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query user season exp acquisition history",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/exp/history/tags": {
       "get": {
-        "description": "This API is used to get user exp acquisition history\u0026#39;s tag list.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: exp grant history tags list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get user exp acquisition history\u0026#39;s tag list.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;default will query from current active season\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: exp grant history tags list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUserExpGrantHistoryTag",
         "parameters": [
           {
@@ -3267,35 +2825,23 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Query user season exp acquisition history's reason tag list",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
       "get": {
-        "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserSeason",
         "parameters": [
           {
@@ -3344,30 +2890,18 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user season data",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
@@ -3425,7 +2959,7 @@
     },
     "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data": {
       "get": {
-        "description": "This API is used to get current user season data, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get current user season data, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCurrentUserSeason",
         "parameters": [
           {
@@ -3468,31 +3002,19 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get current user season data",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist",
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     },
@@ -3501,7 +3023,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to claim reward, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to claim reward, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicClaimUserReward",
         "parameters": [
           {
@@ -3558,22 +3080,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Claim tier reward",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49124": "Manual claim not supported",
@@ -3584,15 +3096,13 @@
           "49188": "Reward is claiming"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk": {
       "post": {
-        "description": "This API is used to bulk claim all remained rewards, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to bulk claim all remained rewards, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkClaimUserRewards",
         "parameters": [
           {
@@ -3635,22 +3145,12 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Bulk claim all remained rewards",
         "tags": [
           "Reward"
         ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49124": "Manual claim not supported",
@@ -3658,15 +3158,13 @@
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]"
         }
       }
     },
     "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
       "get": {
-        "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserSeason",
         "parameters": [
           {
@@ -3715,30 +3213,18 @@
         "security": [
           {
             "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-            ],
-            "authorization": []
           }
         ],
         "summary": "Get user season data",
         "tags": [
           "Season"
         ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS"
-        },
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49148": "User season does not exist"
         },
         "x-security": {
-          "userPermissions": [
-            "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
-          ]
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]"
         }
       }
     }
@@ -5610,16 +5096,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-05-17T08:16:50+00:00",
-    "buildID": "1.22.3",
+    "buildDate": "2024-06-14T09:13:20+00:00",
+    "buildID": "1.22.4",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.215-203.850.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.217-205.860.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "02198b0940",
-    "gitTag": "1.22.3",
+    "gitHash": "2a95bb53e0",
+    "gitTag": "1.22.4",
     "name": "justice-seasonpass-service",
     "realm": "demo",
-    "version": "1.22.3",
+    "version": "1.22.4",
     "version-roles-seeding": "1.2.37"
   }
 }

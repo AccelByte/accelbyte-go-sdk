@@ -22,6 +22,9 @@ type ModelUserPasswordUpdateV3Request struct {
 	// Required: true
 	LanguageTag *string `json:"languageTag"`
 
+	// mfatoken
+	MFAToken string `json:"mfaToken,omitempty"`
+
 	// newpassword
 	// Required: true
 	NewPassword *string `json:"newPassword"`

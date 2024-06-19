@@ -64,6 +64,11 @@ type AdminSendMyMFAEmailCodeV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Action
+	  Sensitive Action
+
+	*/
+	Action *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -130,6 +135,17 @@ func (o *AdminSendMyMFAEmailCodeV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithAction adds the action to the admin send my mfa email code v4 params
+func (o *AdminSendMyMFAEmailCodeV4Params) WithAction(action *string) *AdminSendMyMFAEmailCodeV4Params {
+	o.SetAction(action)
+	return o
+}
+
+// SetAction adds the action to the admin send my mfa email code v4 params
+func (o *AdminSendMyMFAEmailCodeV4Params) SetAction(action *string) {
+	o.Action = action
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +153,22 @@ func (o *AdminSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.Action != nil {
+
+		// form param action
+		var frAction string
+		if o.Action != nil {
+			frAction = *o.Action
+		}
+		fAction := frAction
+		if fAction != "" {
+			if err := r.SetFormParam("action", fAction); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// setting the default header value
 	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {

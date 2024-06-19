@@ -666,8 +666,8 @@ func serveStandalone() {
 		if len(getArgs) >= 1 {
 			m = getParam(getArgs)
 		}
-		lobbySessionId := m["lobbySessionId"]
-		err := lobbyService.ConnectNotif(lobbySessionId)
+		lobbySessionID := m["lobbySessionID"]
+		err := lobbyService.ConnectNotif(lobbySessionID)
 		if err != nil {
 			logrus.Error(err)
 

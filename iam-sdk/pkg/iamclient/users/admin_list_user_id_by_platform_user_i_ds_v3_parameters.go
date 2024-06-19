@@ -25,10 +25,12 @@ import (
 // with the default values initialized.
 func NewAdminListUserIDByPlatformUserIDsV3Params() *AdminListUserIDByPlatformUserIDsV3Params {
 	var (
-		rawPIdDefault = bool(false)
+		rawPIdDefault  = bool(false)
+		rawPUidDefault = bool(false)
 	)
 	return &AdminListUserIDByPlatformUserIDsV3Params{
-		RawPID: &rawPIdDefault,
+		RawPID:  &rawPIdDefault,
+		RawPUID: &rawPUidDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -38,10 +40,12 @@ func NewAdminListUserIDByPlatformUserIDsV3Params() *AdminListUserIDByPlatformUse
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminListUserIDByPlatformUserIDsV3ParamsWithTimeout(timeout time.Duration) *AdminListUserIDByPlatformUserIDsV3Params {
 	var (
-		rawPIdDefault = bool(false)
+		rawPIdDefault  = bool(false)
+		rawPUidDefault = bool(false)
 	)
 	return &AdminListUserIDByPlatformUserIDsV3Params{
-		RawPID: &rawPIdDefault,
+		RawPID:  &rawPIdDefault,
+		RawPUID: &rawPUidDefault,
 
 		timeout: timeout,
 	}
@@ -51,10 +55,12 @@ func NewAdminListUserIDByPlatformUserIDsV3ParamsWithTimeout(timeout time.Duratio
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminListUserIDByPlatformUserIDsV3ParamsWithContext(ctx context.Context) *AdminListUserIDByPlatformUserIDsV3Params {
 	var (
-		rawPIdDefault = bool(false)
+		rawPIdDefault  = bool(false)
+		rawPUidDefault = bool(false)
 	)
 	return &AdminListUserIDByPlatformUserIDsV3Params{
-		RawPID: &rawPIdDefault,
+		RawPID:  &rawPIdDefault,
+		RawPUID: &rawPUidDefault,
 
 		Context: ctx,
 	}
@@ -64,10 +70,12 @@ func NewAdminListUserIDByPlatformUserIDsV3ParamsWithContext(ctx context.Context)
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminListUserIDByPlatformUserIDsV3ParamsWithHTTPClient(client *http.Client) *AdminListUserIDByPlatformUserIDsV3Params {
 	var (
-		rawPIdDefault = bool(false)
+		rawPIdDefault  = bool(false)
+		rawPUidDefault = bool(false)
 	)
 	return &AdminListUserIDByPlatformUserIDsV3Params{
 		RawPID:     &rawPIdDefault,
+		RawPUID:    &rawPUidDefault,
 		HTTPClient: client,
 	}
 }
@@ -92,10 +100,15 @@ type AdminListUserIDByPlatformUserIDsV3Params struct {
 	*/
 	PlatformID string
 	/*RawPID
-	  if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox
+	  if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox; Note: this field is deprecated, please use: rawPUID
 
 	*/
 	RawPID *bool
+	/*RawPUID
+	  if this is true, the platform user id in response will be raw id, if it is false, some platform user id will be encrypted, eg: xbox
+
+	*/
+	RawPUID *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -206,6 +219,17 @@ func (o *AdminListUserIDByPlatformUserIDsV3Params) SetRawPID(rawPID *bool) {
 	o.RawPID = rawPID
 }
 
+// WithRawPUID adds the rawPUID to the admin list user id by platform user i ds v3 params
+func (o *AdminListUserIDByPlatformUserIDsV3Params) WithRawPUID(rawPUID *bool) *AdminListUserIDByPlatformUserIDsV3Params {
+	o.SetRawPUID(rawPUID)
+	return o
+}
+
+// SetRawPUID adds the rawPUid to the admin list user id by platform user i ds v3 params
+func (o *AdminListUserIDByPlatformUserIDsV3Params) SetRawPUID(rawPUID *bool) {
+	o.RawPUID = rawPUID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminListUserIDByPlatformUserIDsV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -240,6 +264,22 @@ func (o *AdminListUserIDByPlatformUserIDsV3Params) WriteToRequest(r runtime.Clie
 		qRawPID := swag.FormatBool(qrRawPID)
 		if qRawPID != "" {
 			if err := r.SetQueryParam("rawPID", qRawPID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RawPUID != nil {
+
+		// query param rawPUID
+		var qrRawPUID bool
+		if o.RawPUID != nil {
+			qrRawPUID = *o.RawPUID
+		}
+		qRawPUID := swag.FormatBool(qrRawPUID)
+		if qRawPUID != "" {
+			if err := r.SetQueryParam("rawPUID", qRawPUID); err != nil {
 				return err
 			}
 		}

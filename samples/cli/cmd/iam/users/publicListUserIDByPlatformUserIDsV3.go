@@ -37,11 +37,13 @@ var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		rawPID, _ := cmd.Flags().GetBool("rawPID")
+		rawPUID, _ := cmd.Flags().GetBool("rawPUID")
 		input := &users.PublicListUserIDByPlatformUserIDsV3Params{
 			Body:       body,
 			Namespace:  namespace,
 			PlatformID: platformId,
 			RawPID:     &rawPID,
+			RawPUID:    &rawPUID,
 		}
 		ok, errOK := usersService.PublicListUserIDByPlatformUserIDsV3Short(input)
 		if errOK != nil {
@@ -64,4 +66,5 @@ func init() {
 	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("platformId")
 	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().Bool("rawPID", false, "Raw PID")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().Bool("rawPUID", false, "Raw PUID")
 }

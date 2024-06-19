@@ -64,6 +64,11 @@ type AdminGetBackupCodesV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*LanguageTag
+	  Language tag for email notification
+
+	*/
+	LanguageTag *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -130,6 +135,17 @@ func (o *AdminGetBackupCodesV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithLanguageTag adds the languageTag to the admin get backup codes v4 params
+func (o *AdminGetBackupCodesV4Params) WithLanguageTag(languageTag *string) *AdminGetBackupCodesV4Params {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the admin get backup codes v4 params
+func (o *AdminGetBackupCodesV4Params) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetBackupCodesV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +153,22 @@ func (o *AdminGetBackupCodesV4Params) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.LanguageTag != nil {
+
+		// query param languageTag
+		var qrLanguageTag string
+		if o.LanguageTag != nil {
+			qrLanguageTag = *o.LanguageTag
+		}
+		qLanguageTag := qrLanguageTag
+		if qLanguageTag != "" {
+			if err := r.SetQueryParam("languageTag", qLanguageTag); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// setting the default header value
 	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {

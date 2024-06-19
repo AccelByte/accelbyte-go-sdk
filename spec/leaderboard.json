@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.29.2"
+    "version": "2.30.0"
   },
   "schemes": [
     "https"
@@ -2277,7 +2277,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime": {
       "get": {
-        "description": "\t\u0026lt;p\u0026gt;Get rankings in an all time leaderboard.\u0026lt;/p\u0026gt;\n\t\t\t",
+        "description": "Get rankings in an all time leaderboard.",
         "operationId": "GetAllTimeLeaderboardRankingPublicV1",
         "parameters": [
           {
@@ -2356,7 +2356,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived": {
       "get": {
-        "description": "\t\u0026lt;p\u0026gt;Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url\u0026lt;/p\u0026gt;\n\t\t\t",
+        "description": "Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url",
         "operationId": "GetArchivedLeaderboardRankingDataV1Handler",
         "parameters": [
           {
@@ -6847,11 +6847,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-17T08:16:18+00:00",
-    "gitHash": "05ac0e2089a02ba41bef8fbae6250beb2bd35611",
+    "buildDate": "2024-06-14T09:12:07+00:00",
+    "gitHash": "5c9f4533b5226dd0ac388fff8ff1e284dd3d9702",
     "name": "justice-leaderboard-service",
     "realm": "demo",
-    "version": "2.29.2",
+    "version": "2.30.0",
     "version-roles-seeding": "1.2.32"
   }
 }

@@ -24,6 +24,7 @@ const (
 	GetPaymentPublicConfigADYENConstant    = "ADYEN"
 	GetPaymentPublicConfigALIPAYConstant   = "ALIPAY"
 	GetPaymentPublicConfigCHECKOUTConstant = "CHECKOUT"
+	GetPaymentPublicConfigNEONPAYConstant  = "NEONPAY"
 	GetPaymentPublicConfigPAYPALConstant   = "PAYPAL"
 	GetPaymentPublicConfigSTRIPEConstant   = "STRIPE"
 	GetPaymentPublicConfigWALLETConstant   = "WALLET"

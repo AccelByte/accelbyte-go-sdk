@@ -24,6 +24,7 @@ const (
 	GetPaymentCustomizationADYENConstant    = "ADYEN"
 	GetPaymentCustomizationALIPAYConstant   = "ALIPAY"
 	GetPaymentCustomizationCHECKOUTConstant = "CHECKOUT"
+	GetPaymentCustomizationNEONPAYConstant  = "NEONPAY"
 	GetPaymentCustomizationPAYPALConstant   = "PAYPAL"
 	GetPaymentCustomizationSTRIPEConstant   = "STRIPE"
 	GetPaymentCustomizationWALLETConstant   = "WALLET"

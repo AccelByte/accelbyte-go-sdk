@@ -45,6 +45,9 @@ type Transaction struct {
 	// notified
 	Notified bool `json:"notified"`
 
+	// paymentdata
+	PaymentData *PaymentData `json:"paymentData,omitempty"`
+
 	// paymentmethod
 	PaymentMethod string `json:"paymentMethod,omitempty"`
 
@@ -57,7 +60,7 @@ type Transaction struct {
 	PaymentProviderFee int32 `json:"paymentProviderFee,omitempty"`
 
 	// provider
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	Provider string `json:"provider,omitempty"`
 
 	// salestax
@@ -102,7 +105,7 @@ var transactionTypeProviderPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -120,6 +123,9 @@ const (
 
 	// TransactionProviderCHECKOUT captures enum value "CHECKOUT"
 	TransactionProviderCHECKOUT string = "CHECKOUT"
+
+	// TransactionProviderNEONPAY captures enum value "NEONPAY"
+	TransactionProviderNEONPAY string = "NEONPAY"
 
 	// TransactionProviderPAYPAL captures enum value "PAYPAL"
 	TransactionProviderPAYPAL string = "PAYPAL"

@@ -69,6 +69,11 @@ type PublicGetBackupCodesV4Params struct {
 
 	*/
 	Namespace string
+	/*LanguageTag
+	  Language tag for email notification
+
+	*/
+	LanguageTag *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -146,6 +151,17 @@ func (o *PublicGetBackupCodesV4Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithLanguageTag adds the languageTag to the public get backup codes v4 params
+func (o *PublicGetBackupCodesV4Params) WithLanguageTag(languageTag *string) *PublicGetBackupCodesV4Params {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the public get backup codes v4 params
+func (o *PublicGetBackupCodesV4Params) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PublicGetBackupCodesV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +173,22 @@ func (o *PublicGetBackupCodesV4Params) WriteToRequest(r runtime.ClientRequest, r
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.LanguageTag != nil {
+
+		// query param languageTag
+		var qrLanguageTag string
+		if o.LanguageTag != nil {
+			qrLanguageTag = *o.LanguageTag
+		}
+		qLanguageTag := qrLanguageTag
+		if qLanguageTag != "" {
+			if err := r.SetQueryParam("languageTag", qLanguageTag); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

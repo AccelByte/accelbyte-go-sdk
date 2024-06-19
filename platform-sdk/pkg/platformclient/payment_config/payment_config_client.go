@@ -30,6 +30,10 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error)
+	GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error)
+	UpdatePaymentDomainWhitelistConfig(params *UpdatePaymentDomainWhitelistConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentDomainWhitelistConfigOK, *UpdatePaymentDomainWhitelistConfigUnprocessableEntity, error)
+	UpdatePaymentDomainWhitelistConfigShort(params *UpdatePaymentDomainWhitelistConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentDomainWhitelistConfigOK, error)
 	TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error)
 	TestAdyenConfigShort(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error)
 	TestAliPayConfig(params *TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigOK, error)
@@ -38,6 +42,8 @@ type ClientService interface {
 	TestCheckoutConfigShort(params *TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigOK, error)
 	DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, *DebugMatchedPaymentMerchantConfigNotFound, error)
 	DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, error)
+	TestNeonPayConfig(params *TestNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigOK, error)
+	TestNeonPayConfigShort(params *TestNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigOK, error)
 	TestPayPalConfig(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error)
 	TestPayPalConfigShort(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error)
 	TestStripeConfig(params *TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigOK, error)
@@ -46,8 +52,8 @@ type ClientService interface {
 	TestWxPayConfigShort(params *TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigOK, error)
 	TestXsollaConfig(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error)
 	TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error)
-	GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, *GetPaymentMerchantConfigNotFound, error)
-	GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error)
+	GetPaymentMerchantConfig1(params *GetPaymentMerchantConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfig1OK, *GetPaymentMerchantConfig1NotFound, error)
+	GetPaymentMerchantConfig1Short(params *GetPaymentMerchantConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfig1OK, error)
 	UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, *UpdateAdyenConfigNotFound, error)
 	UpdateAdyenConfigShort(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, error)
 	TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigByIDOK, *TestAdyenConfigByIDNotFound, error)
@@ -60,6 +66,10 @@ type ClientService interface {
 	UpdateCheckoutConfigShort(params *UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCheckoutConfigOK, error)
 	TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, *TestCheckoutConfigByIDNotFound, error)
 	TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, error)
+	UpdateNeonPayConfig(params *UpdateNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNeonPayConfigOK, *UpdateNeonPayConfigNotFound, error)
+	UpdateNeonPayConfigShort(params *UpdateNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNeonPayConfigOK, error)
+	TestNeonPayConfigByID(params *TestNeonPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigByIDOK, *TestNeonPayConfigByIDNotFound, error)
+	TestNeonPayConfigByIDShort(params *TestNeonPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigByIDOK, error)
 	UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, *UpdatePayPalConfigNotFound, error)
 	UpdatePayPalConfigShort(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, error)
 	TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigByIDOK, *TestPayPalConfigByIDNotFound, error)
@@ -100,6 +110,241 @@ type ClientService interface {
 	UpdatePaymentTaxConfigShort(params *UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentTaxConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetPaymentMerchantConfigShort instead.
+
+GetPaymentMerchantConfig get payment domain whitelist config
+ [Not Supported Yet In Starter] Get payment domain whitelist config by namespace.
+Other detail info:
+
+  * Returns : payment domain whitelist config info
+*/
+func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentMerchantConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentMerchantConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentMerchantConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetPaymentMerchantConfigShort get payment domain whitelist config
+ [Not Supported Yet In Starter] Get payment domain whitelist config by namespace.
+Other detail info:
+
+  * Returns : payment domain whitelist config info
+*/
+func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentMerchantConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentMerchantConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentMerchantConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdatePaymentDomainWhitelistConfigShort instead.
+
+UpdatePaymentDomainWhitelistConfig update payment domain whitelist config
+ [Not Supported Yet In Starter] Update payment provider config by namespace.
+
+
+
+     Request Body Parameters:
+
+
+     Parameter | Type   | Required | Description
+    -----------|--------|----------|--------------------------------------------------
+    domains    | String | Yes      | list of domains to whitelist for the return URL.
+
+
+
+Other detail info:
+
+  * Validation : the domain should include the protocol (http/https), but the whitelist check will only compare the host part (www.example.com)
+  *  Returns : payment domain whitelist config
+*/
+func (a *Client) UpdatePaymentDomainWhitelistConfig(params *UpdatePaymentDomainWhitelistConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentDomainWhitelistConfigOK, *UpdatePaymentDomainWhitelistConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePaymentDomainWhitelistConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePaymentDomainWhitelistConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePaymentDomainWhitelistConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePaymentDomainWhitelistConfigOK:
+		return v, nil, nil
+
+	case *UpdatePaymentDomainWhitelistConfigUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdatePaymentDomainWhitelistConfigShort update payment domain whitelist config
+ [Not Supported Yet In Starter] Update payment provider config by namespace.
+
+
+
+     Request Body Parameters:
+
+
+     Parameter | Type   | Required | Description
+    -----------|--------|----------|--------------------------------------------------
+    domains    | String | Yes      | list of domains to whitelist for the return URL.
+
+
+
+Other detail info:
+
+  * Validation : the domain should include the protocol (http/https), but the whitelist check will only compare the host part (www.example.com)
+  *  Returns : payment domain whitelist config
+*/
+func (a *Client) UpdatePaymentDomainWhitelistConfigShort(params *UpdatePaymentDomainWhitelistConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentDomainWhitelistConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePaymentDomainWhitelistConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePaymentDomainWhitelistConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/domains",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePaymentDomainWhitelistConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePaymentDomainWhitelistConfigOK:
+		return v, nil
+	case *UpdatePaymentDomainWhitelistConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -553,6 +798,118 @@ func (a *Client) DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaym
 		return v, nil
 	case *DebugMatchedPaymentMerchantConfigNotFound:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use TestNeonPayConfigShort instead.
+
+TestNeonPayConfig test neon pay configuration
+ [Not Supported Yet In Starter] Check Neon Pay configuration, Reference: [Neon Pay Document](https://docs.neonpay.com/docs/checkout).
+
+#### Check List:
+
+  * apiKey
+  * webhookSecretKey
+
+Other detail info:
+  * Returns : test result
+*/
+func (a *Client) TestNeonPayConfig(params *TestNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestNeonPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testNeonPayConfig",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/payment/config/merchant/neonpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestNeonPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestNeonPayConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+TestNeonPayConfigShort test neon pay configuration
+ [Not Supported Yet In Starter] Check Neon Pay configuration, Reference: [Neon Pay Document](https://docs.neonpay.com/docs/checkout).
+
+#### Check List:
+
+  * apiKey
+  * webhookSecretKey
+
+Other detail info:
+  * Returns : test result
+*/
+func (a *Client) TestNeonPayConfigShort(params *TestNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestNeonPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testNeonPayConfig",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/payment/config/merchant/neonpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestNeonPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestNeonPayConfigOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1038,18 +1395,18 @@ func (a *Client) TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo 
 }
 
 /*
-Deprecated: 2022-08-10 - Use GetPaymentMerchantConfigShort instead.
+Deprecated: 2022-08-10 - Use GetPaymentMerchantConfig1Short instead.
 
-GetPaymentMerchantConfig get payment merchant config
+GetPaymentMerchantConfig1 get payment merchant config
  [Not Supported Yet In Starter] Get payment merchant config by id.
 Other detail info:
 
   * Returns : payment merchant config info
 */
-func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, *GetPaymentMerchantConfigNotFound, error) {
+func (a *Client) GetPaymentMerchantConfig1(params *GetPaymentMerchantConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfig1OK, *GetPaymentMerchantConfig1NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetPaymentMerchantConfigParams()
+		params = NewGetPaymentMerchantConfig1Params()
 	}
 
 	if params.Context == nil {
@@ -1065,14 +1422,14 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getPaymentMerchantConfig",
+		ID:                 "getPaymentMerchantConfig_1",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/payment/config/merchant/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
+		Reader:             &GetPaymentMerchantConfig1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1083,10 +1440,10 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 
 	switch v := result.(type) {
 
-	case *GetPaymentMerchantConfigOK:
+	case *GetPaymentMerchantConfig1OK:
 		return v, nil, nil
 
-	case *GetPaymentMerchantConfigNotFound:
+	case *GetPaymentMerchantConfig1NotFound:
 		return nil, v, nil
 
 	default:
@@ -1095,16 +1452,16 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 }
 
 /*
-GetPaymentMerchantConfigShort get payment merchant config
+GetPaymentMerchantConfig1Short get payment merchant config
  [Not Supported Yet In Starter] Get payment merchant config by id.
 Other detail info:
 
   * Returns : payment merchant config info
 */
-func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error) {
+func (a *Client) GetPaymentMerchantConfig1Short(params *GetPaymentMerchantConfig1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfig1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetPaymentMerchantConfigParams()
+		params = NewGetPaymentMerchantConfig1Params()
 	}
 
 	if params.Context == nil {
@@ -1116,14 +1473,14 @@ func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigP
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getPaymentMerchantConfig",
+		ID:                 "getPaymentMerchantConfig_1",
 		Method:             "GET",
 		PathPattern:        "/platform/admin/payment/config/merchant/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
+		Reader:             &GetPaymentMerchantConfig1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1134,9 +1491,9 @@ func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigP
 
 	switch v := result.(type) {
 
-	case *GetPaymentMerchantConfigOK:
+	case *GetPaymentMerchantConfig1OK:
 		return v, nil
-	case *GetPaymentMerchantConfigNotFound:
+	case *GetPaymentMerchantConfig1NotFound:
 		return nil, v
 
 	default:
@@ -1775,6 +2132,218 @@ func (a *Client) TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParam
 	case *TestCheckoutConfigByIDOK:
 		return v, nil
 	case *TestCheckoutConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateNeonPayConfigShort instead.
+
+UpdateNeonPayConfig update neon pay config
+ [Not Supported Yet In Starter] Update Neon Pay config.
+Other detail info:
+
+  * Returns : updated payment merchant config
+*/
+func (a *Client) UpdateNeonPayConfig(params *UpdateNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNeonPayConfigOK, *UpdateNeonPayConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNeonPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateNeonPayConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/neonpayconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateNeonPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateNeonPayConfigOK:
+		return v, nil, nil
+
+	case *UpdateNeonPayConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateNeonPayConfigShort update neon pay config
+ [Not Supported Yet In Starter] Update Neon Pay config.
+Other detail info:
+
+  * Returns : updated payment merchant config
+*/
+func (a *Client) UpdateNeonPayConfigShort(params *UpdateNeonPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNeonPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNeonPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateNeonPayConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/neonpayconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateNeonPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateNeonPayConfigOK:
+		return v, nil
+	case *UpdateNeonPayConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use TestNeonPayConfigByIDShort instead.
+
+TestNeonPayConfigByID test neon pay configuration by id
+ [Not Supported Yet In Starter] Test Neon Pay configuration in payment merchant config. Other detail info:
+
+  * Returns : test result
+*/
+func (a *Client) TestNeonPayConfigByID(params *TestNeonPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigByIDOK, *TestNeonPayConfigByIDNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestNeonPayConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testNeonPayConfigById",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/neonpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestNeonPayConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestNeonPayConfigByIDOK:
+		return v, nil, nil
+
+	case *TestNeonPayConfigByIDNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+TestNeonPayConfigByIDShort test neon pay configuration by id
+ [Not Supported Yet In Starter] Test Neon Pay configuration in payment merchant config. Other detail info:
+
+  * Returns : test result
+*/
+func (a *Client) TestNeonPayConfigByIDShort(params *TestNeonPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestNeonPayConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestNeonPayConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testNeonPayConfigById",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/neonpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestNeonPayConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestNeonPayConfigByIDOK:
+		return v, nil
+	case *TestNeonPayConfigByIDNotFound:
 		return nil, v
 
 	default:

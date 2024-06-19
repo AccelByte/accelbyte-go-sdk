@@ -19,54 +19,54 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Get the enum in QueryItems1Params
+// Get the enum in QueryItemsV2Params
 const (
-	QueryItems1DEMOConstant     = "DEMO"
-	QueryItems1DLCConstant      = "DLC"
-	QueryItems1GAMEConstant     = "GAME"
-	QueryItems1SOFTWAREConstant = "SOFTWARE"
+	QueryItemsV2DEMOConstant     = "DEMO"
+	QueryItemsV2DLCConstant      = "DLC"
+	QueryItemsV2GAMEConstant     = "GAME"
+	QueryItemsV2SOFTWAREConstant = "SOFTWARE"
 )
 
-// Get the enum in QueryItems1Params
+// Get the enum in QueryItemsV2Params
 const (
-	QueryItems1ACTIVEConstant   = "ACTIVE"
-	QueryItems1INACTIVEConstant = "INACTIVE"
+	QueryItemsV2ACTIVEConstant   = "ACTIVE"
+	QueryItemsV2INACTIVEConstant = "INACTIVE"
 )
 
-// Get the enum in QueryItems1Params
+// Get the enum in QueryItemsV2Params
 const (
-	QueryItems1APPConstant          = "APP"
-	QueryItems1BUNDLEConstant       = "BUNDLE"
-	QueryItems1CODEConstant         = "CODE"
-	QueryItems1COINSConstant        = "COINS"
-	QueryItems1EXTENSIONConstant    = "EXTENSION"
-	QueryItems1INGAMEITEMConstant   = "INGAMEITEM"
-	QueryItems1LOOTBOXConstant      = "LOOTBOX"
-	QueryItems1MEDIAConstant        = "MEDIA"
-	QueryItems1OPTIONBOXConstant    = "OPTIONBOX"
-	QueryItems1SEASONConstant       = "SEASON"
-	QueryItems1SUBSCRIPTIONConstant = "SUBSCRIPTION"
+	QueryItemsV2APPConstant          = "APP"
+	QueryItemsV2BUNDLEConstant       = "BUNDLE"
+	QueryItemsV2CODEConstant         = "CODE"
+	QueryItemsV2COINSConstant        = "COINS"
+	QueryItemsV2EXTENSIONConstant    = "EXTENSION"
+	QueryItemsV2INGAMEITEMConstant   = "INGAMEITEM"
+	QueryItemsV2LOOTBOXConstant      = "LOOTBOX"
+	QueryItemsV2MEDIAConstant        = "MEDIA"
+	QueryItemsV2OPTIONBOXConstant    = "OPTIONBOX"
+	QueryItemsV2SEASONConstant       = "SEASON"
+	QueryItemsV2SUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
-// Get the enum in QueryItems1Params
+// Get the enum in QueryItemsV2Params
 const (
-	QueryItems1NameConstant             = "name"
-	QueryItems1NameAscConstant          = "name:asc"
-	QueryItems1NameDescConstant         = "name:desc"
-	QueryItems1CreatedAtConstant        = "createdAt"
-	QueryItems1CreatedAtAscConstant     = "createdAt:asc"
-	QueryItems1CreatedAtDescConstant    = "createdAt:desc"
-	QueryItems1UpdatedAtConstant        = "updatedAt"
-	QueryItems1UpdatedAtAscConstant     = "updatedAt:asc"
-	QueryItems1UpdatedAtDescConstant    = "updatedAt:desc"
-	QueryItems1DisplayOrderConstant     = "displayOrder"
-	QueryItems1DisplayOrderAscConstant  = "displayOrder:asc"
-	QueryItems1DisplayOrderDescConstant = "displayOrder:desc"
+	QueryItemsV2NameConstant             = "name"
+	QueryItemsV2NameAscConstant          = "name:asc"
+	QueryItemsV2NameDescConstant         = "name:desc"
+	QueryItemsV2CreatedAtConstant        = "createdAt"
+	QueryItemsV2CreatedAtAscConstant     = "createdAt:asc"
+	QueryItemsV2CreatedAtDescConstant    = "createdAt:desc"
+	QueryItemsV2UpdatedAtConstant        = "updatedAt"
+	QueryItemsV2UpdatedAtAscConstant     = "updatedAt:asc"
+	QueryItemsV2UpdatedAtDescConstant    = "updatedAt:desc"
+	QueryItemsV2DisplayOrderConstant     = "displayOrder"
+	QueryItemsV2DisplayOrderAscConstant  = "displayOrder:asc"
+	QueryItemsV2DisplayOrderDescConstant = "displayOrder:desc"
 )
 
-// NewQueryItems1Params creates a new QueryItems1Params object
+// NewQueryItemsV2Params creates a new QueryItemsV2Params object
 // with the default values initialized.
-func NewQueryItems1Params() *QueryItems1Params {
+func NewQueryItemsV2Params() *QueryItemsV2Params {
 	var (
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
@@ -74,7 +74,7 @@ func NewQueryItems1Params() *QueryItems1Params {
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 		withTotalDefault              = bool(false)
 	)
-	return &QueryItems1Params{
+	return &QueryItemsV2Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -85,9 +85,9 @@ func NewQueryItems1Params() *QueryItems1Params {
 	}
 }
 
-// NewQueryItems1ParamsWithTimeout creates a new QueryItems1Params object
+// NewQueryItemsV2ParamsWithTimeout creates a new QueryItemsV2Params object
 // with the default values initialized, and the ability to set a timeout on a request
-func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
+func NewQueryItemsV2ParamsWithTimeout(timeout time.Duration) *QueryItemsV2Params {
 	var (
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
@@ -95,7 +95,7 @@ func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 		withTotalDefault              = bool(false)
 	)
-	return &QueryItems1Params{
+	return &QueryItemsV2Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -106,9 +106,9 @@ func NewQueryItems1ParamsWithTimeout(timeout time.Duration) *QueryItems1Params {
 	}
 }
 
-// NewQueryItems1ParamsWithContext creates a new QueryItems1Params object
+// NewQueryItemsV2ParamsWithContext creates a new QueryItemsV2Params object
 // with the default values initialized, and the ability to set a context for a request
-func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
+func NewQueryItemsV2ParamsWithContext(ctx context.Context) *QueryItemsV2Params {
 	var (
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
@@ -116,7 +116,7 @@ func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 		withTotalDefault              = bool(false)
 	)
-	return &QueryItems1Params{
+	return &QueryItemsV2Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -127,9 +127,9 @@ func NewQueryItems1ParamsWithContext(ctx context.Context) *QueryItems1Params {
 	}
 }
 
-// NewQueryItems1ParamsWithHTTPClient creates a new QueryItems1Params object
+// NewQueryItemsV2ParamsWithHTTPClient creates a new QueryItemsV2Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
-func NewQueryItems1ParamsWithHTTPClient(client *http.Client) *QueryItems1Params {
+func NewQueryItemsV2ParamsWithHTTPClient(client *http.Client) *QueryItemsV2Params {
 	var (
 		includeSubCategoryItemDefault = bool(false)
 		limitDefault                  = int32(20)
@@ -137,7 +137,7 @@ func NewQueryItems1ParamsWithHTTPClient(client *http.Client) *QueryItems1Params 
 		sortByDefault                 = []string{"nameAsc", "displayOrderAsc"}
 		withTotalDefault              = bool(false)
 	)
-	return &QueryItems1Params{
+	return &QueryItemsV2Params{
 		IncludeSubCategoryItem: &includeSubCategoryItemDefault,
 		Limit:                  &limitDefault,
 		Offset:                 &offsetDefault,
@@ -147,10 +147,10 @@ func NewQueryItems1ParamsWithHTTPClient(client *http.Client) *QueryItems1Params 
 	}
 }
 
-/*QueryItems1Params contains all the parameters to send to the API endpoint
-for the query items 1 operation typically these are written to a http.Request
+/*QueryItemsV2Params contains all the parameters to send to the API endpoint
+for the query items v2 operation typically these are written to a http.Request
 */
-type QueryItems1Params struct {
+type QueryItemsV2Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
@@ -188,7 +188,7 @@ type QueryItems1Params struct {
 	/*ItemStatus*/
 	ItemStatus *string
 	/*ItemType*/
-	ItemType *string
+	ItemType []string
 	/*Limit
 	  limit
 
@@ -241,46 +241,46 @@ type QueryItems1Params struct {
 	XFlightId *string
 }
 
-// WithTimeout adds the timeout to the query items 1 params
-func (o *QueryItems1Params) WithTimeout(timeout time.Duration) *QueryItems1Params {
+// WithTimeout adds the timeout to the query items v2 params
+func (o *QueryItemsV2Params) WithTimeout(timeout time.Duration) *QueryItemsV2Params {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the query items 1 params
-func (o *QueryItems1Params) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the query items v2 params
+func (o *QueryItemsV2Params) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the query items 1 params
-func (o *QueryItems1Params) WithContext(ctx context.Context) *QueryItems1Params {
+// WithContext adds the context to the query items v2 params
+func (o *QueryItemsV2Params) WithContext(ctx context.Context) *QueryItemsV2Params {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the query items 1 params
-func (o *QueryItems1Params) SetContext(ctx context.Context) {
+// SetContext adds the context to the query items v2 params
+func (o *QueryItemsV2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// SetAuthInfoWriter adds the authInfoWriter to the query items 1 params
-func (o *QueryItems1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+// SetAuthInfoWriter adds the authInfoWriter to the query items v2 params
+func (o *QueryItemsV2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
 	o.AuthInfoWriter = authInfoWriter
 }
 
-// WithHTTPClient adds the HTTPClient to the query items 1 params
-func (o *QueryItems1Params) WithHTTPClient(client *http.Client) *QueryItems1Params {
+// WithHTTPClient adds the HTTPClient to the query items v2 params
+func (o *QueryItemsV2Params) WithHTTPClient(client *http.Client) *QueryItemsV2Params {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the query items 1 params
-func (o *QueryItems1Params) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the query items v2 params
+func (o *QueryItemsV2Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// SetHTTPClient adds the HTTPClient Transport to the query items 1 params
-func (o *QueryItems1Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+// SetHTTPClient adds the HTTPClient Transport to the query items v2 params
+func (o *QueryItemsV2Params) SetHTTPClientTransport(roundTripper http.RoundTripper) {
 	if o.HTTPClient != nil {
 		o.HTTPClient.Transport = roundTripper
 	} else {
@@ -289,7 +289,7 @@ func (o *QueryItems1Params) SetHTTPClientTransport(roundTripper http.RoundTrippe
 }
 
 // SetFlightId adds the flightId as the header value for this specific endpoint
-func (o *QueryItems1Params) SetFlightId(flightId string) {
+func (o *QueryItemsV2Params) SetFlightId(flightId string) {
 	if o.XFlightId != nil {
 		o.XFlightId = &flightId
 	} else {
@@ -297,217 +297,217 @@ func (o *QueryItems1Params) SetFlightId(flightId string) {
 	}
 }
 
-// WithNamespace adds the namespace to the query items 1 params
-func (o *QueryItems1Params) WithNamespace(namespace string) *QueryItems1Params {
+// WithNamespace adds the namespace to the query items v2 params
+func (o *QueryItemsV2Params) WithNamespace(namespace string) *QueryItemsV2Params {
 	o.SetNamespace(namespace)
 	return o
 }
 
-// SetNamespace adds the namespace to the query items 1 params
-func (o *QueryItems1Params) SetNamespace(namespace string) {
+// SetNamespace adds the namespace to the query items v2 params
+func (o *QueryItemsV2Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithAppType adds the appType to the query items 1 params
-func (o *QueryItems1Params) WithAppType(appType *string) *QueryItems1Params {
+// WithAppType adds the appType to the query items v2 params
+func (o *QueryItemsV2Params) WithAppType(appType *string) *QueryItemsV2Params {
 	o.SetAppType(appType)
 	return o
 }
 
-// SetAppType adds the appType to the query items 1 params
-func (o *QueryItems1Params) SetAppType(appType *string) {
+// SetAppType adds the appType to the query items v2 params
+func (o *QueryItemsV2Params) SetAppType(appType *string) {
 	o.AppType = appType
 }
 
-// WithAvailableDate adds the availableDate to the query items 1 params
-func (o *QueryItems1Params) WithAvailableDate(availableDate *string) *QueryItems1Params {
+// WithAvailableDate adds the availableDate to the query items v2 params
+func (o *QueryItemsV2Params) WithAvailableDate(availableDate *string) *QueryItemsV2Params {
 	o.SetAvailableDate(availableDate)
 	return o
 }
 
-// SetAvailableDate adds the availableDate to the query items 1 params
-func (o *QueryItems1Params) SetAvailableDate(availableDate *string) {
+// SetAvailableDate adds the availableDate to the query items v2 params
+func (o *QueryItemsV2Params) SetAvailableDate(availableDate *string) {
 	o.AvailableDate = availableDate
 }
 
-// WithBaseAppID adds the baseAppID to the query items 1 params
-func (o *QueryItems1Params) WithBaseAppID(baseAppID *string) *QueryItems1Params {
+// WithBaseAppID adds the baseAppID to the query items v2 params
+func (o *QueryItemsV2Params) WithBaseAppID(baseAppID *string) *QueryItemsV2Params {
 	o.SetBaseAppID(baseAppID)
 	return o
 }
 
-// SetBaseAppID adds the baseAppId to the query items 1 params
-func (o *QueryItems1Params) SetBaseAppID(baseAppID *string) {
+// SetBaseAppID adds the baseAppId to the query items v2 params
+func (o *QueryItemsV2Params) SetBaseAppID(baseAppID *string) {
 	o.BaseAppID = baseAppID
 }
 
-// WithCategoryPath adds the categoryPath to the query items 1 params
-func (o *QueryItems1Params) WithCategoryPath(categoryPath *string) *QueryItems1Params {
+// WithCategoryPath adds the categoryPath to the query items v2 params
+func (o *QueryItemsV2Params) WithCategoryPath(categoryPath *string) *QueryItemsV2Params {
 	o.SetCategoryPath(categoryPath)
 	return o
 }
 
-// SetCategoryPath adds the categoryPath to the query items 1 params
-func (o *QueryItems1Params) SetCategoryPath(categoryPath *string) {
+// SetCategoryPath adds the categoryPath to the query items v2 params
+func (o *QueryItemsV2Params) SetCategoryPath(categoryPath *string) {
 	o.CategoryPath = categoryPath
 }
 
-// WithFeatures adds the features to the query items 1 params
-func (o *QueryItems1Params) WithFeatures(features *string) *QueryItems1Params {
+// WithFeatures adds the features to the query items v2 params
+func (o *QueryItemsV2Params) WithFeatures(features *string) *QueryItemsV2Params {
 	o.SetFeatures(features)
 	return o
 }
 
-// SetFeatures adds the features to the query items 1 params
-func (o *QueryItems1Params) SetFeatures(features *string) {
+// SetFeatures adds the features to the query items v2 params
+func (o *QueryItemsV2Params) SetFeatures(features *string) {
 	o.Features = features
 }
 
-// WithIncludeSubCategoryItem adds the includeSubCategoryItem to the query items 1 params
-func (o *QueryItems1Params) WithIncludeSubCategoryItem(includeSubCategoryItem *bool) *QueryItems1Params {
+// WithIncludeSubCategoryItem adds the includeSubCategoryItem to the query items v2 params
+func (o *QueryItemsV2Params) WithIncludeSubCategoryItem(includeSubCategoryItem *bool) *QueryItemsV2Params {
 	o.SetIncludeSubCategoryItem(includeSubCategoryItem)
 	return o
 }
 
-// SetIncludeSubCategoryItem adds the includeSubCategoryItem to the query items 1 params
-func (o *QueryItems1Params) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
+// SetIncludeSubCategoryItem adds the includeSubCategoryItem to the query items v2 params
+func (o *QueryItemsV2Params) SetIncludeSubCategoryItem(includeSubCategoryItem *bool) {
 	o.IncludeSubCategoryItem = includeSubCategoryItem
 }
 
-// WithItemName adds the itemName to the query items 1 params
-func (o *QueryItems1Params) WithItemName(itemName *string) *QueryItems1Params {
+// WithItemName adds the itemName to the query items v2 params
+func (o *QueryItemsV2Params) WithItemName(itemName *string) *QueryItemsV2Params {
 	o.SetItemName(itemName)
 	return o
 }
 
-// SetItemName adds the itemName to the query items 1 params
-func (o *QueryItems1Params) SetItemName(itemName *string) {
+// SetItemName adds the itemName to the query items v2 params
+func (o *QueryItemsV2Params) SetItemName(itemName *string) {
 	o.ItemName = itemName
 }
 
-// WithItemStatus adds the itemStatus to the query items 1 params
-func (o *QueryItems1Params) WithItemStatus(itemStatus *string) *QueryItems1Params {
+// WithItemStatus adds the itemStatus to the query items v2 params
+func (o *QueryItemsV2Params) WithItemStatus(itemStatus *string) *QueryItemsV2Params {
 	o.SetItemStatus(itemStatus)
 	return o
 }
 
-// SetItemStatus adds the itemStatus to the query items 1 params
-func (o *QueryItems1Params) SetItemStatus(itemStatus *string) {
+// SetItemStatus adds the itemStatus to the query items v2 params
+func (o *QueryItemsV2Params) SetItemStatus(itemStatus *string) {
 	o.ItemStatus = itemStatus
 }
 
-// WithItemType adds the itemType to the query items 1 params
-func (o *QueryItems1Params) WithItemType(itemType *string) *QueryItems1Params {
+// WithItemType adds the itemType to the query items v2 params
+func (o *QueryItemsV2Params) WithItemType(itemType []string) *QueryItemsV2Params {
 	o.SetItemType(itemType)
 	return o
 }
 
-// SetItemType adds the itemType to the query items 1 params
-func (o *QueryItems1Params) SetItemType(itemType *string) {
+// SetItemType adds the itemType to the query items v2 params
+func (o *QueryItemsV2Params) SetItemType(itemType []string) {
 	o.ItemType = itemType
 }
 
-// WithLimit adds the limit to the query items 1 params
-func (o *QueryItems1Params) WithLimit(limit *int32) *QueryItems1Params {
+// WithLimit adds the limit to the query items v2 params
+func (o *QueryItemsV2Params) WithLimit(limit *int32) *QueryItemsV2Params {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the query items 1 params
-func (o *QueryItems1Params) SetLimit(limit *int32) {
+// SetLimit adds the limit to the query items v2 params
+func (o *QueryItemsV2Params) SetLimit(limit *int32) {
 	o.Limit = limit
 }
 
-// WithOffset adds the offset to the query items 1 params
-func (o *QueryItems1Params) WithOffset(offset *int32) *QueryItems1Params {
+// WithOffset adds the offset to the query items v2 params
+func (o *QueryItemsV2Params) WithOffset(offset *int32) *QueryItemsV2Params {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the query items 1 params
-func (o *QueryItems1Params) SetOffset(offset *int32) {
+// SetOffset adds the offset to the query items v2 params
+func (o *QueryItemsV2Params) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
-// WithRegion adds the region to the query items 1 params
-func (o *QueryItems1Params) WithRegion(region *string) *QueryItems1Params {
+// WithRegion adds the region to the query items v2 params
+func (o *QueryItemsV2Params) WithRegion(region *string) *QueryItemsV2Params {
 	o.SetRegion(region)
 	return o
 }
 
-// SetRegion adds the region to the query items 1 params
-func (o *QueryItems1Params) SetRegion(region *string) {
+// SetRegion adds the region to the query items v2 params
+func (o *QueryItemsV2Params) SetRegion(region *string) {
 	o.Region = region
 }
 
-// WithSectionExclusive adds the sectionExclusive to the query items 1 params
-func (o *QueryItems1Params) WithSectionExclusive(sectionExclusive *bool) *QueryItems1Params {
+// WithSectionExclusive adds the sectionExclusive to the query items v2 params
+func (o *QueryItemsV2Params) WithSectionExclusive(sectionExclusive *bool) *QueryItemsV2Params {
 	o.SetSectionExclusive(sectionExclusive)
 	return o
 }
 
-// SetSectionExclusive adds the sectionExclusive to the query items 1 params
-func (o *QueryItems1Params) SetSectionExclusive(sectionExclusive *bool) {
+// SetSectionExclusive adds the sectionExclusive to the query items v2 params
+func (o *QueryItemsV2Params) SetSectionExclusive(sectionExclusive *bool) {
 	o.SectionExclusive = sectionExclusive
 }
 
-// WithSortBy adds the sortBy to the query items 1 params
-func (o *QueryItems1Params) WithSortBy(sortBy []string) *QueryItems1Params {
+// WithSortBy adds the sortBy to the query items v2 params
+func (o *QueryItemsV2Params) WithSortBy(sortBy []string) *QueryItemsV2Params {
 	o.SetSortBy(sortBy)
 	return o
 }
 
-// SetSortBy adds the sortBy to the query items 1 params
-func (o *QueryItems1Params) SetSortBy(sortBy []string) {
+// SetSortBy adds the sortBy to the query items v2 params
+func (o *QueryItemsV2Params) SetSortBy(sortBy []string) {
 	o.SortBy = sortBy
 }
 
-// WithStoreID adds the storeID to the query items 1 params
-func (o *QueryItems1Params) WithStoreID(storeID *string) *QueryItems1Params {
+// WithStoreID adds the storeID to the query items v2 params
+func (o *QueryItemsV2Params) WithStoreID(storeID *string) *QueryItemsV2Params {
 	o.SetStoreID(storeID)
 	return o
 }
 
-// SetStoreID adds the storeId to the query items 1 params
-func (o *QueryItems1Params) SetStoreID(storeID *string) {
+// SetStoreID adds the storeId to the query items v2 params
+func (o *QueryItemsV2Params) SetStoreID(storeID *string) {
 	o.StoreID = storeID
 }
 
-// WithTags adds the tags to the query items 1 params
-func (o *QueryItems1Params) WithTags(tags *string) *QueryItems1Params {
+// WithTags adds the tags to the query items v2 params
+func (o *QueryItemsV2Params) WithTags(tags *string) *QueryItemsV2Params {
 	o.SetTags(tags)
 	return o
 }
 
-// SetTags adds the tags to the query items 1 params
-func (o *QueryItems1Params) SetTags(tags *string) {
+// SetTags adds the tags to the query items v2 params
+func (o *QueryItemsV2Params) SetTags(tags *string) {
 	o.Tags = tags
 }
 
-// WithTargetNamespace adds the targetNamespace to the query items 1 params
-func (o *QueryItems1Params) WithTargetNamespace(targetNamespace *string) *QueryItems1Params {
+// WithTargetNamespace adds the targetNamespace to the query items v2 params
+func (o *QueryItemsV2Params) WithTargetNamespace(targetNamespace *string) *QueryItemsV2Params {
 	o.SetTargetNamespace(targetNamespace)
 	return o
 }
 
-// SetTargetNamespace adds the targetNamespace to the query items 1 params
-func (o *QueryItems1Params) SetTargetNamespace(targetNamespace *string) {
+// SetTargetNamespace adds the targetNamespace to the query items v2 params
+func (o *QueryItemsV2Params) SetTargetNamespace(targetNamespace *string) {
 	o.TargetNamespace = targetNamespace
 }
 
-// WithWithTotal adds the withTotal to the query items 1 params
-func (o *QueryItems1Params) WithWithTotal(withTotal *bool) *QueryItems1Params {
+// WithWithTotal adds the withTotal to the query items v2 params
+func (o *QueryItemsV2Params) WithWithTotal(withTotal *bool) *QueryItemsV2Params {
 	o.SetWithTotal(withTotal)
 	return o
 }
 
-// SetWithTotal adds the withTotal to the query items 1 params
-func (o *QueryItems1Params) SetWithTotal(withTotal *bool) {
+// SetWithTotal adds the withTotal to the query items v2 params
+func (o *QueryItemsV2Params) SetWithTotal(withTotal *bool) {
 	o.WithTotal = withTotal
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *QueryItemsV2Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -647,20 +647,12 @@ func (o *QueryItems1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 	}
 
-	if o.ItemType != nil {
+	valuesItemType := o.ItemType
 
-		// query param itemType
-		var qrItemType string
-		if o.ItemType != nil {
-			qrItemType = *o.ItemType
-		}
-		qItemType := qrItemType
-		if qItemType != "" {
-			if err := r.SetQueryParam("itemType", qItemType); err != nil {
-				return err
-			}
-		}
-
+	joinedItemType := swag.JoinByFormat(valuesItemType, "multi")
+	// query array param itemType
+	if err := r.SetQueryParam("itemType", joinedItemType...); err != nil {
+		return err
 	}
 
 	if o.Limit != nil {

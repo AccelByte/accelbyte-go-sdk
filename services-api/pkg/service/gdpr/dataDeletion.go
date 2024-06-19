@@ -157,7 +157,7 @@ func (aaa *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *da
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.PublicSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.DataDeletion.PublicSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -169,6 +169,9 @@ func (aaa *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *da
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -235,7 +238,7 @@ func (aaa *DataDeletionService) PublicSubmitMyAccountDeletionRequest(input *data
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.DataDeletion.PublicSubmitMyAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.DataDeletion.PublicSubmitMyAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -247,6 +250,9 @@ func (aaa *DataDeletionService) PublicSubmitMyAccountDeletionRequest(input *data
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

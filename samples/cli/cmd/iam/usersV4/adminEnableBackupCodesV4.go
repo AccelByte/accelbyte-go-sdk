@@ -25,7 +25,10 @@ var AdminEnableBackupCodesV4Cmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &users_v4.AdminEnableBackupCodesV4Params{}
+		languageTag, _ := cmd.Flags().GetString("languageTag")
+		input := &users_v4.AdminEnableBackupCodesV4Params{
+			LanguageTag: &languageTag,
+		}
 		errOK := usersV4Service.AdminEnableBackupCodesV4Short(input)
 		if errOK != nil {
 			logrus.Error(errOK)
@@ -40,4 +43,5 @@ var AdminEnableBackupCodesV4Cmd = &cobra.Command{
 }
 
 func init() {
+	AdminEnableBackupCodesV4Cmd.Flags().String("languageTag", "", "Language tag")
 }

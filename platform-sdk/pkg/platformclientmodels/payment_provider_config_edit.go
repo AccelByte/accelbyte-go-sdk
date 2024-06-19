@@ -21,7 +21,7 @@ import (
 type PaymentProviderConfigEdit struct {
 
 	// aggregate payment provider, allow empty value
-	// Enum: ['ADYEN', 'XSOLLA']
+	// Enum: ['ADYEN', 'CHECKOUT', 'NEONPAY', 'STRIPE', 'XSOLLA']
 	Aggregate string `json:"aggregate,omitempty"`
 
 	// namespace, * indicates all namespace
@@ -36,7 +36,7 @@ type PaymentProviderConfigEdit struct {
 	SandboxTaxJarAPIToken string `json:"sandboxTaxJarApiToken,omitempty"`
 
 	// special payment providers = ['ALIPAY', 'WXPAY'], allow empty value
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	Specials []string `json:"specials,omitempty"`
 
 	// taxjar api token, required when taxJarEnabled=true and useGlobalTaxJarApiToken=false
@@ -70,7 +70,7 @@ var paymentProviderConfigEditTypeAggregatePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "CHECKOUT", "NEONPAY", "STRIPE", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -82,6 +82,15 @@ const (
 
 	// PaymentProviderConfigEditAggregateADYEN captures enum value "ADYEN"
 	PaymentProviderConfigEditAggregateADYEN string = "ADYEN"
+
+	// PaymentProviderConfigEditAggregateCHECKOUT captures enum value "CHECKOUT"
+	PaymentProviderConfigEditAggregateCHECKOUT string = "CHECKOUT"
+
+	// PaymentProviderConfigEditAggregateNEONPAY captures enum value "NEONPAY"
+	PaymentProviderConfigEditAggregateNEONPAY string = "NEONPAY"
+
+	// PaymentProviderConfigEditAggregateSTRIPE captures enum value "STRIPE"
+	PaymentProviderConfigEditAggregateSTRIPE string = "STRIPE"
 
 	// PaymentProviderConfigEditAggregateXSOLLA captures enum value "XSOLLA"
 	PaymentProviderConfigEditAggregateXSOLLA string = "XSOLLA"
@@ -117,7 +126,7 @@ var paymentProviderConfigEditTypeSpecialsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -135,6 +144,9 @@ const (
 
 	// PaymentProviderConfigEditSpecialsCHECKOUT captures enum value "CHECKOUT"
 	PaymentProviderConfigEditSpecialsCHECKOUT string = "CHECKOUT"
+
+	// PaymentProviderConfigEditSpecialsNEONPAY captures enum value "NEONPAY"
+	PaymentProviderConfigEditSpecialsNEONPAY string = "NEONPAY"
 
 	// PaymentProviderConfigEditSpecialsPAYPAL captures enum value "PAYPAL"
 	PaymentProviderConfigEditSpecialsPAYPAL string = "PAYPAL"

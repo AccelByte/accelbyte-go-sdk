@@ -14,6 +14,8 @@
 ### Config Wrapper:  [Config](../../services-api/pkg/service/match2/config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/match2/v1/admin/config/log` | GET | AdminGetLogConfigShort | [AdminGetLogConfigShort](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetLogConfigShort](../../services-api/pkg/service/match2/config.go) | [AdminGetLogConfigShort](../../samples/cli/cmd/match2/config/adminGetLogConfig.go) |
+| `/match2/v1/admin/config/log` | PATCH | AdminPatchUpdateLogConfigShort | [AdminPatchUpdateLogConfigShort](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminPatchUpdateLogConfigShort](../../services-api/pkg/service/match2/config.go) | [AdminPatchUpdateLogConfigShort](../../samples/cli/cmd/match2/config/adminPatchUpdateLogConfig.go) |
 | `/match2/v1/config` | GET | AdminGetAllConfigV1Short | [AdminGetAllConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetAllConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminGetAllConfigV1Short](../../samples/cli/cmd/match2/config/adminGetAllConfigV1.go) |
 | `/match2/v1/config/namespaces/{namespace}` | GET | AdminGetConfigV1Short | [AdminGetConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminGetConfigV1Short](../../samples/cli/cmd/match2/config/adminGetConfigV1.go) |
 | `/match2/v1/config/namespaces/{namespace}` | PATCH | AdminPatchConfigV1Short | [AdminPatchConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminPatchConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminPatchConfigV1Short](../../samples/cli/cmd/match2/config/adminPatchConfigV1.go) |
@@ -111,6 +113,7 @@
 | `api.backFillRejectRequest` | [ApiBackFillRejectRequest ](../../match2-sdk/pkg/match2clientmodels/api_back_fill_reject_request.go) |
 | `config.EnvironmentVariable` | [ConfigEnvironmentVariable ](../../match2-sdk/pkg/match2clientmodels/config_environment_variable.go) |
 | `configmodels.NamespaceConfig` | [ConfigmodelsNamespaceConfig ](../../match2-sdk/pkg/match2clientmodels/configmodels_namespace_config.go) |
+| `logconfig.Configuration` | [LogconfigConfiguration ](../../match2-sdk/pkg/match2clientmodels/logconfig_configuration.go) |
 | `matchmaker.MatchTicketRecord` | [MatchmakerMatchTicketRecord ](../../match2-sdk/pkg/match2clientmodels/matchmaker_match_ticket_record.go) |
 | `matchmaker.Party` | [MatchmakerParty ](../../match2-sdk/pkg/match2clientmodels/matchmaker_party.go) |
 | `matchmaker.ProposedProposal` | [MatchmakerProposedProposal ](../../match2-sdk/pkg/match2clientmodels/matchmaker_proposed_proposal.go) |

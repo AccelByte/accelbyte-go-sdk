@@ -29,6 +29,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/ams/v1/admin/namespaces/{namespace}/artifacts` | GET | ArtifactGetShort | [ArtifactGetShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [ArtifactGetShort](../../services-api/pkg/service/ams/artifacts.go) | [ArtifactGetShort](../../samples/cli/cmd/ams/artifacts/artifactGet.go) |
+| `/ams/v1/admin/namespaces/{namespace}/artifacts` | DELETE | ArtifactBulkDeleteShort | [ArtifactBulkDeleteShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [ArtifactBulkDeleteShort](../../services-api/pkg/service/ams/artifacts.go) | [ArtifactBulkDeleteShort](../../samples/cli/cmd/ams/artifacts/artifactBulkDelete.go) |
 | `/ams/v1/admin/namespaces/{namespace}/artifacts/usage` | GET | ArtifactUsageGetShort | [ArtifactUsageGetShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [ArtifactUsageGetShort](../../services-api/pkg/service/ams/artifacts.go) | [ArtifactUsageGetShort](../../samples/cli/cmd/ams/artifacts/artifactUsageGet.go) |
 | `/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}` | DELETE | ArtifactDeleteShort | [ArtifactDeleteShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [ArtifactDeleteShort](../../services-api/pkg/service/ams/artifacts.go) | [ArtifactDeleteShort](../../samples/cli/cmd/ams/artifacts/artifactDelete.go) |
 | `/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url` | GET | ArtifactGetURLShort | [ArtifactGetURLShort](../../ams-sdk/pkg/amsclient/artifacts/artifacts_client.go) | [ArtifactGetURLShort](../../services-api/pkg/service/ams/artifacts.go) | [ArtifactGetURLShort](../../samples/cli/cmd/ams/artifacts/artifactGetURL.go) |
@@ -68,7 +69,9 @@
 |---|---|---|---|---|---|
 | `/ams/v1/admin/namespaces/{namespace}/images` | GET | ImageListShort | [ImageListShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageListShort](../../services-api/pkg/service/ams/images.go) | [ImageListShort](../../samples/cli/cmd/ams/images/imageList.go) |
 | `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | GET | ImageGetShort | [ImageGetShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageGetShort](../../services-api/pkg/service/ams/images.go) | [ImageGetShort](../../samples/cli/cmd/ams/images/imageGet.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | DELETE | ImageMarkForDeletionShort | [ImageMarkForDeletionShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageMarkForDeletionShort](../../services-api/pkg/service/ams/images.go) | [ImageMarkForDeletionShort](../../samples/cli/cmd/ams/images/imageMarkForDeletion.go) |
 | `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | PATCH | ImagePatchShort | [ImagePatchShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImagePatchShort](../../services-api/pkg/service/ams/images.go) | [ImagePatchShort](../../samples/cli/cmd/ams/images/imagePatch.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images/{imageID}/restore` | POST | ImageUnmarkForDeletionShort | [ImageUnmarkForDeletionShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageUnmarkForDeletionShort](../../services-api/pkg/service/ams/images.go) | [ImageUnmarkForDeletionShort](../../samples/cli/cmd/ams/images/imageUnmarkForDeletion.go) |
 
 ### AMS QoS Wrapper:  [AMSQoS](../../services-api/pkg/service/ams/amsQoS.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |

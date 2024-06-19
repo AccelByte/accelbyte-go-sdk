@@ -173,9 +173,9 @@ func (lobbyService *LobbyServiceWebsocket) ClientResetRequest(namespace *string,
 	return nil
 }
 
-func (lobbyService *LobbyServiceWebsocket) ConnectNotif(lobbySessionId string) error {
+func (lobbyService *LobbyServiceWebsocket) ConnectNotif(lobbySessionID string) error {
 	logrus.Debug("ConnectNotif")
-	text := fmt.Sprintf("type: %s\n%s\nlobbySessionId: %v", model.TypeConnectNotif, utils.GenerateMessageID(), lobbySessionId)
+	text := fmt.Sprintf("type: %s\n%s\nlobbySessionID: %v", model.TypeConnectNotif, utils.GenerateMessageID(), lobbySessionID)
 	err := lobbyService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err

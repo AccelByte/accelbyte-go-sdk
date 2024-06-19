@@ -21,7 +21,7 @@ import (
 type PaymentProviderConfigInfo struct {
 
 	// aggregate payment provider, allow empty value
-	// Enum: ['ADYEN', 'CHECKOUT', 'STRIPE', 'XSOLLA']
+	// Enum: ['ADYEN', 'CHECKOUT', 'NEONPAY', 'STRIPE', 'XSOLLA']
 	Aggregate string `json:"aggregate,omitempty"`
 
 	// id
@@ -43,7 +43,7 @@ type PaymentProviderConfigInfo struct {
 	SandboxTaxJarAPIToken string `json:"sandboxTaxJarApiToken,omitempty"`
 
 	// special payment providers = ['ALIPAY', 'WXPAY'], allow empty value
-	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
+	// Enum: ['ADYEN', 'ALIPAY', 'CHECKOUT', 'NEONPAY', 'PAYPAL', 'STRIPE', 'WALLET', 'WXPAY', 'XSOLLA']
 	Specials []string `json:"specials,omitempty"`
 
 	// taxjar api token, required when taxJarEnabled=true and useGlobalTaxJarApiToken=false
@@ -80,7 +80,7 @@ var paymentProviderConfigInfoTypeAggregatePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "CHECKOUT", "STRIPE", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "CHECKOUT", "NEONPAY", "STRIPE", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -95,6 +95,9 @@ const (
 
 	// PaymentProviderConfigInfoAggregateCHECKOUT captures enum value "CHECKOUT"
 	PaymentProviderConfigInfoAggregateCHECKOUT string = "CHECKOUT"
+
+	// PaymentProviderConfigInfoAggregateNEONPAY captures enum value "NEONPAY"
+	PaymentProviderConfigInfoAggregateNEONPAY string = "NEONPAY"
 
 	// PaymentProviderConfigInfoAggregateSTRIPE captures enum value "STRIPE"
 	PaymentProviderConfigInfoAggregateSTRIPE string = "STRIPE"
@@ -142,7 +145,7 @@ var paymentProviderConfigInfoTypeSpecialsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ADYEN", "ALIPAY", "CHECKOUT", "NEONPAY", "PAYPAL", "STRIPE", "WALLET", "WXPAY", "XSOLLA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -160,6 +163,9 @@ const (
 
 	// PaymentProviderConfigInfoSpecialsCHECKOUT captures enum value "CHECKOUT"
 	PaymentProviderConfigInfoSpecialsCHECKOUT string = "CHECKOUT"
+
+	// PaymentProviderConfigInfoSpecialsNEONPAY captures enum value "NEONPAY"
+	PaymentProviderConfigInfoSpecialsNEONPAY string = "NEONPAY"
 
 	// PaymentProviderConfigInfoSpecialsPAYPAL captures enum value "PAYPAL"
 	PaymentProviderConfigInfoSpecialsPAYPAL string = "PAYPAL"

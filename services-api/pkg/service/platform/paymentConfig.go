@@ -38,6 +38,37 @@ func (aaa *PaymentConfigService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetPaymentMerchantConfigShort instead.
+func (aaa *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentDomainWhitelistConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdatePaymentDomainWhitelistConfigShort instead.
+func (aaa *PaymentConfigService) UpdatePaymentDomainWhitelistConfig(input *payment_config.UpdatePaymentDomainWhitelistConfigParams) (*platformclientmodels.PaymentDomainWhitelistConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := aaa.Client.PaymentConfig.UpdatePaymentDomainWhitelistConfig(input, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use TestAdyenConfigShort instead.
 func (aaa *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -90,6 +121,20 @@ func (aaa *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *paymen
 	if notFound != nil {
 		return nil, notFound
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use TestNeonPayConfigShort instead.
+func (aaa *PaymentConfigService) TestNeonPayConfig(input *payment_config.TestNeonPayConfigParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.PaymentConfig.TestNeonPayConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -153,13 +198,13 @@ func (aaa *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsol
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use GetPaymentMerchantConfigShort instead.
-func (aaa *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+// Deprecated: 2022-01-10 - please use GetPaymentMerchantConfig1Short instead.
+func (aaa *PaymentConfigService) GetPaymentMerchantConfig1(input *payment_config.GetPaymentMerchantConfig1Params) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfig(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfig1(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -262,6 +307,40 @@ func (aaa *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.Te
 		return nil, err
 	}
 	ok, notFound, err := aaa.Client.PaymentConfig.TestCheckoutConfigByID(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateNeonPayConfigShort instead.
+func (aaa *PaymentConfigService) UpdateNeonPayConfig(input *payment_config.UpdateNeonPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.PaymentConfig.UpdateNeonPayConfig(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use TestNeonPayConfigByIDShort instead.
+func (aaa *PaymentConfigService) TestNeonPayConfigByID(input *payment_config.TestNeonPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.PaymentConfig.TestNeonPayConfigByID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -601,6 +680,66 @@ func (aaa *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.Up
 	return ok.GetPayload(), nil
 }
 
+func (aaa *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentDomainWhitelistConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPaymentConfig != nil {
+		input.XFlightId = tempFlightIdPaymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PaymentConfigService) UpdatePaymentDomainWhitelistConfigShort(input *payment_config.UpdatePaymentDomainWhitelistConfigParams) (*platformclientmodels.PaymentDomainWhitelistConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPaymentConfig != nil {
+		input.XFlightId = tempFlightIdPaymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PaymentConfig.UpdatePaymentDomainWhitelistConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -714,6 +853,36 @@ func (aaa *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *p
 	}
 
 	ok, err := aaa.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PaymentConfigService) TestNeonPayConfigShort(input *payment_config.TestNeonPayConfigParams) (*platformclientmodels.TestResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPaymentConfig != nil {
+		input.XFlightId = tempFlightIdPaymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PaymentConfig.TestNeonPayConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -841,7 +1010,7 @@ func (aaa *PaymentConfigService) TestXsollaConfigShort(input *payment_config.Tes
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+func (aaa *PaymentConfigService) GetPaymentMerchantConfig1Short(input *payment_config.GetPaymentMerchantConfig1Params) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -863,7 +1032,7 @@ func (aaa *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_co
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfoWriter)
+	ok, err := aaa.Client.PaymentConfig.GetPaymentMerchantConfig1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1044,6 +1213,66 @@ func (aaa *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_conf
 	}
 
 	ok, err := aaa.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PaymentConfigService) UpdateNeonPayConfigShort(input *payment_config.UpdateNeonPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPaymentConfig != nil {
+		input.XFlightId = tempFlightIdPaymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PaymentConfig.UpdateNeonPayConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PaymentConfigService) TestNeonPayConfigByIDShort(input *payment_config.TestNeonPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPaymentConfig != nil {
+		input.XFlightId = tempFlightIdPaymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PaymentConfig.TestNeonPayConfigByIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

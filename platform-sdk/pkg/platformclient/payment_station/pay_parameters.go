@@ -25,6 +25,7 @@ const (
 	PayADYENConstant    = "ADYEN"
 	PayALIPAYConstant   = "ALIPAY"
 	PayCHECKOUTConstant = "CHECKOUT"
+	PayNEONPAYConstant  = "NEONPAY"
 	PayPAYPALConstant   = "PAYPAL"
 	PaySTRIPEConstant   = "STRIPE"
 	PayWALLETConstant   = "WALLET"

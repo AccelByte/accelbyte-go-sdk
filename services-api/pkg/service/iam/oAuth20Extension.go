@@ -90,11 +90,9 @@ func (aaa *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3(input *o_au
 
 // Deprecated: 2022-01-10 - please use GenerateTokenByNewHeadlessAccountV3Short instead.
 func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3(input *o_auth2_0_extension.GenerateTokenByNewHeadlessAccountV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, notFound, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, notFound, err := aaa.Client.OAuth20Extension.GenerateTokenByNewHeadlessAccountV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -229,11 +227,9 @@ func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3(input *o_auth2_0_exte
 
 // Deprecated: 2022-01-10 - please use RequestTargetTokenResponseV3Short instead.
 func (aaa *OAuth20ExtensionService) RequestTargetTokenResponseV3(input *o_auth2_0_extension.RequestTargetTokenResponseV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := aaa.Client.OAuth20Extension.RequestTargetTokenResponseV3(input, client.BearerToken(*token.AccessToken))
+	clientID := aaa.ConfigRepository.GetClientId()
+	clientSecret := aaa.ConfigRepository.GetClientSecret()
+	ok, err := aaa.Client.OAuth20Extension.RequestTargetTokenResponseV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return nil, err
 	}
@@ -315,7 +311,7 @@ func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(inp
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}
@@ -571,7 +567,7 @@ func (aaa *OAuth20ExtensionService) RequestTargetTokenResponseV3Short(input *o_a
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
-			{"bearer"},
+			{"basic"},
 		}
 		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
 	}

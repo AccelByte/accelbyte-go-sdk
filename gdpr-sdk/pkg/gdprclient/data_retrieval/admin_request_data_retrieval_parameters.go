@@ -65,7 +65,7 @@ type AdminRequestDataRetrievalParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Password
-	  IAM password of the user
+	  IAM password of the user, required if admin requests their own data
 
 	*/
 	Password *string

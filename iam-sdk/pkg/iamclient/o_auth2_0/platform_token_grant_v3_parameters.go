@@ -406,7 +406,7 @@ func (o *PlatformTokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg
 		if o.ServiceLabel != nil {
 			frServiceLabel = *o.ServiceLabel
 		}
-		fServiceLabel := frServiceLabel
+		fServiceLabel := swag.FormatFloat64(frServiceLabel)
 		if fServiceLabel != "" {
 			if err := r.SetFormParam("serviceLabel", fServiceLabel); err != nil {
 				return err

@@ -1,5 +1,7 @@
 <a name="v0.71.0"></a>
 ## [v0.71.0]
+### docs
+- **migrations:** add migration-guide-v0.70-to-v0.71.md
 ### test
 - **http-retry:** add test for default retry policy
 - **http-retry:** fix test for default retry policy
@@ -9,6 +11,8 @@
 - **http-retry:** remove extra retry
 ### chore
 - **:** add session notif parser
+- **:** generate iam service
+- **:** update CHANGELOG.md and go sum getting started
 
 
 <a name="v0.70.0"></a>

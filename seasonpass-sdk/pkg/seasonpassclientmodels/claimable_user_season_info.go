@@ -210,6 +210,7 @@ func (m *ClaimableUserSeasonInfo) validateEnrolledPasses(formats strfmt.Registry
 	if err := validate.Required("enrolledPasses", "body", m.EnrolledPasses); err != nil {
 		return err
 	}
+
 	if err := validate.UniqueItems("enrolledPasses", "body", m.EnrolledPasses); err != nil {
 		return err
 	}

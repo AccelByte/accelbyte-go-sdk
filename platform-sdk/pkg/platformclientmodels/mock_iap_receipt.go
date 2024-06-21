@@ -47,6 +47,9 @@ type MockIAPReceipt struct {
 func (m *MockIAPReceipt) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateProductID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,6 +89,19 @@ func (m *MockIAPReceipt) validateItemIdentityTypeEnum(path, location string, val
 	if err := validate.EnumCase(path, location, value, mockIapReceiptTypeItemIdentityTypePropEnum, true); err != nil {
 		return err
 	}
+	return nil
+}
+
+func (m *MockIAPReceipt) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
+		return err
+	}
+
 	return nil
 }
 

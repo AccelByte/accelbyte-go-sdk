@@ -46,6 +46,7 @@ func (m *UsersAgreementsRequest) validateUserIds(formats strfmt.Registry) error 
 	if err := validate.Required("userIds", "body", m.UserIds); err != nil {
 		return err
 	}
+
 	if err := validate.UniqueItems("userIds", "body", m.UserIds); err != nil {
 		return err
 	}

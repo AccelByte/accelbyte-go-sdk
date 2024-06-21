@@ -72,10 +72,39 @@ type UserProfilePrivateInfo struct {
 func (m *UserProfilePrivateInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDateOfBirth(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+func (m *UserProfilePrivateInfo) validateDateOfBirth(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DateOfBirth) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("dateOfBirth", "body", "date", *m.DateOfBirth, formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// WithDateOfBirth adds the dateOfBirth to the user profile private info
+func (m *UserProfilePrivateInfo) WithDateOfBirth(dateOfBirth *strfmt.Date) *UserProfilePrivateInfo {
+	m.SetDateOfBirth(dateOfBirth)
+	return m
+}
+
+// SetDateOfBirth adds the dateOfBirth to the user profile private info
+func (m *UserProfilePrivateInfo) SetDateOfBirth(dateOfBirth *strfmt.Date) {
+	date := dateOfBirth.String()
+	m.DateOfBirth = &date
 }
 
 var userProfilePrivateInfoTypeStatusPropEnum []interface{}

@@ -63,9 +63,54 @@ type UserProfileAdmin struct {
 func (m *UserProfileAdmin) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDateOfBirth(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UserProfileAdmin) validateDateOfBirth(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DateOfBirth) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("dateOfBirth", "body", "date", *m.DateOfBirth, formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// WithDateOfBirth adds the dateOfBirth to the user profile admin
+func (m *UserProfileAdmin) WithDateOfBirth(dateOfBirth *strfmt.Date) *UserProfileAdmin {
+	m.SetDateOfBirth(dateOfBirth)
+	return m
+}
+
+// SetDateOfBirth adds the dateOfBirth to the user profile admin
+func (m *UserProfileAdmin) SetDateOfBirth(dateOfBirth *strfmt.Date) {
+	date := dateOfBirth.String()
+	m.DateOfBirth = &date
+}
+
+func (m *UserProfileAdmin) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
+		return err
+	}
+
 	return nil
 }
 

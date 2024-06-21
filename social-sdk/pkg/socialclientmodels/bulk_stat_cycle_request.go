@@ -43,6 +43,7 @@ func (m *BulkStatCycleRequest) validateCycleIds(formats strfmt.Registry) error {
 	if err := validate.Required("cycleIds", "body", m.CycleIds); err != nil {
 		return err
 	}
+
 	if err := validate.UniqueItems("cycleIds", "body", m.CycleIds); err != nil {
 		return err
 	}

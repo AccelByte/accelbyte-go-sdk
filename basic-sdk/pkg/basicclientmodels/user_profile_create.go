@@ -10,6 +10,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // UserProfileCreate User profile create
@@ -50,9 +51,54 @@ type UserProfileCreate struct {
 func (m *UserProfileCreate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDateOfBirth(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UserProfileCreate) validateDateOfBirth(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DateOfBirth) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("dateOfBirth", "body", "date", *m.DateOfBirth, formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// WithDateOfBirth adds the dateOfBirth to the user profile create
+func (m *UserProfileCreate) WithDateOfBirth(dateOfBirth *strfmt.Date) *UserProfileCreate {
+	m.SetDateOfBirth(dateOfBirth)
+	return m
+}
+
+// SetDateOfBirth adds the dateOfBirth to the user profile create
+func (m *UserProfileCreate) SetDateOfBirth(dateOfBirth *strfmt.Date) {
+	date := dateOfBirth.String()
+	m.DateOfBirth = &date
+}
+
+func (m *UserProfileCreate) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
+		return err
+	}
+
 	return nil
 }
 

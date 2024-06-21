@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/validate"
 )
 
 // NewArtifactBulkDeleteParams creates a new ArtifactBulkDeleteParams object
@@ -249,6 +250,9 @@ func (o *ArtifactBulkDeleteParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qUploadedBefore := qrUploadedBefore
 		if qUploadedBefore != "" {
 			if err := r.SetQueryParam("uploadedBefore", qUploadedBefore); err != nil {
+				return err
+			}
+			if err := validate.FormatOf("uploadedBefore", "query", "date", *o.UploadedBefore, reg); err != nil {
 				return err
 			}
 		}

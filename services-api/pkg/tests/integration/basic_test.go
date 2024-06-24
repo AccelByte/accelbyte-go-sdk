@@ -6,7 +6,9 @@ package integration_test
 
 import (
 	"testing"
+	"time"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
@@ -135,4 +137,56 @@ func checkProfileExist() {
 		}
 		logrus.Infof("Existing Profile: %v deleted", deleted.UserID)
 	}
+}
+
+func TestIntegrationPatternValidation(t *testing.T) {
+	// Login User - Arrange
+	Init()
+
+	checkProfileExist()
+
+	// Validate the body value with false value
+	d := time.Date(2020, 10, 11, 12, 13, 14, 15, time.UTC).String()
+	bodyBasic.DateOfBirth = &d
+	bodyBasic.Language = "----"
+	errValidate := bodyBasic.Validate(strfmt.Default) // act
+	assert.NotNil(t, errValidate)
+	assert.Contains(t, errValidate.Error(), "validation failure list")
+
+	// Validate the body value with correct value
+	dd := "2020-10-11"
+	bodyBasic.DateOfBirth = &dd // 2020-10-11
+	bodyBasic.Language = "en"
+	errValidate = bodyBasic.Validate(strfmt.Default) // act
+	if errValidate != nil {
+		assert.Nil(t, errValidate)
+	}
+
+	// Create a profile
+	created, errCreate := userProfileService.CreateMyProfileShort(&user_profile.CreateMyProfileParams{
+		Body:      bodyBasic,
+		Namespace: integration.NamespaceTest,
+	})
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	t.Logf("Profile: %v created with DoB: %v", created.UserID, *created.DateOfBirth)
+
+	// Assert
+	assert.NotNil(t, created, "response should not be nil")
+
+	// Cleanup
+	inputDelete := &user_profile.DeleteUserProfileParams{
+		Namespace: integration.NamespaceTest,
+		UserID:    created.UserID,
+	}
+
+	deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+
+	// Assert
+	assert.Nil(t, errDelete, "err should be nil")
+	assert.NotNil(t, deleted, "response should not be nil")
 }

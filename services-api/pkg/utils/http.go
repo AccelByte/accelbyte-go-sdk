@@ -27,7 +27,38 @@ import (
 	oarLogger "github.com/go-openapi/runtime/logger"
 	oarYaml "github.com/go-openapi/runtime/yamlpc"
 	oaStrFmt "github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
 )
+
+func GetClient() http.Client {
+	return http.Client{
+		Timeout: time.Second * 10,
+	}
+}
+
+func SimpleHTTPCall(client http.Client, endpoint, httpMethod, authorizationValue, contentType string, requestBody io.Reader) (*http.Response, error) {
+	req, err := http.NewRequest(httpMethod, endpoint, requestBody)
+	if err != nil {
+		logrus.Error("invalid request")
+
+		return nil, err
+	}
+
+	if contentType != "" {
+		req.Header.Set("Content-Type", contentType)
+	} else {
+		req.Header.Set("Content-Type", "application/json")
+	}
+	req.Header.Set("Authorization", authorizationValue)
+	resp, err := client.Do(req)
+	if err != nil {
+		logrus.Error("http call error")
+
+		return nil, err
+	}
+
+	return resp, nil
+}
 
 //#region Constants
 

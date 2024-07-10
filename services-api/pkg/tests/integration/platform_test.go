@@ -58,6 +58,8 @@ func TestIntegrationStore(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
+	checkStore()
+
 	// CASE Create a store
 	inputCreate := &store.CreateStoreParams{
 		Body:      bodyStore,

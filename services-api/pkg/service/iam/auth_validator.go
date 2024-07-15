@@ -340,7 +340,7 @@ func (v *TokenValidator) getRolePermissions3(namespaceRole NamespaceRole, userId
 }
 
 func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permission, namespace *string, userId *string) bool {
-	if permission == nil {
+	if permission == nil || permission.Resource == "" {
 		return true
 	}
 

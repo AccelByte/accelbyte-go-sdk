@@ -16,6 +16,8 @@ bitbucketSsh = 'bitbucket-build-extend-ssh'
 
 githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
 
+jobChannel = env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK ? env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK : "#activity-justice-codegen-sdk"
+
 pipeline {
   agent {
     label "extend-builder-batch"
@@ -106,7 +108,7 @@ pipeline {
             |${params.ACTION}
             
             |""".stripMargin()
-        slackSend(channel: "#activity-justice-codegen-sdk", color: '#FF0000', message: message)
+        slackSend(channel: jobChannel, color: '#FF0000', message: message)
       }
     }
   }

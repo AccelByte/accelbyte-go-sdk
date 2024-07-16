@@ -6,11 +6,11 @@ A sample app to showcase OIDC login using AccelByte Go Extend SDK and PhantAuth.
 
 * Go 1.18
 
-* AccelByte Gaming Services Demo Enviroment
+* AccelByte Gaming Services Enviroment
 
    * `Base URL`
 
-     https://demo.accelbyte.io
+     For example https://test.accelbyte.io
 
    * [Create an OAuth Client](https://docs.accelbyte.io/gaming-services/services/access/authorization/manage-access-control-for-applications/#manage-iam-clients) with confidential client type
 
@@ -25,7 +25,7 @@ A sample app to showcase OIDC login using AccelByte Go Extend SDK and PhantAuth.
 These environment variables are required by this sample app.
 
 ```bash
-$ export AB_BASE_URL='https://demo.accelbyte.io'    # Base URL
+$ export AB_BASE_URL='https://test.accelbyte.io'    # Base URL
 $ export AB_CLIENT_ID='xxxxxxxxxx'                  # Cliend ID
 $ export AB_CLIENT_SECRET='xxxxxxxxxx'              # Client Secret
 ```

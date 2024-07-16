@@ -10,7 +10,7 @@ Globals:
     Timeout: 15
     Environment:
       Variables:
-        AB_BASE_URL: 'https://demo.accelbyte.io'
+        AB_BASE_URL: 'https://test.accelbyte.io'
         AB_CLIENT_ID: 'xxxxxxxxxxxxxxxxxx'
         AB_CLIENT_SECRET: 'xxxxxxxxxxxxxxxxxx'
 

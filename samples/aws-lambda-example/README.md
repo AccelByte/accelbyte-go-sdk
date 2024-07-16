@@ -1,7 +1,6 @@
 # aws-lambda-example
 
-This is an example of a Lambda service which interacts with AccelByte services 
-in [DEMO environment](https://demo.accelbyte.io) using AccelByte Go SDK.
+This is an example of a Lambda service which interacts with AccelByte services using AccelByte Go SDK.
 This app is using lambda function url, token validation, and a token refresh inside the code.
 
 ## Prerequisites
@@ -14,8 +13,7 @@ This app is using lambda function url, token validation, and a token refresh ins
 
 4. [Postman](https://www.postman.com/downloads/)
 
-5. AccelByte `CLIENT_ID` and `CLIENT_SECRET` for accessing services in 
-   [DEMO environment](https://demo.accelbyte.io).
+5. AccelByte `CLIENT_ID` and `CLIENT_SECRET` for accessing services in AccelByte environment.
 
     See https://docs.accelbyte.io/gaming-services/services/access/authorization/manage-access-control-for-applications/#manage-iam-clients
 
@@ -114,9 +112,7 @@ Start the lambda, in this case, locally for testing purpose.
 
 ## References
 
-- https://docs.accelbyte.io/
-- https://demo.accelbyte.io/iam/apidocs/
-- https://demo.accelbyte.io/social/apidocs/
+- https://docs.accelbyte.io/api-explorer
 - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-build.html
 - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-api.html
 - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html

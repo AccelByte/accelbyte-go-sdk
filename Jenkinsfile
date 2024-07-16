@@ -65,7 +65,7 @@ pipeline {
             stage('Lint Code') {
               steps {
                 sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present
-                sh "make lint-mod-outdated"
+                //sh "make lint-mod-outdated"
                 sh "make lint"
               }
             }

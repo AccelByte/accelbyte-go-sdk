@@ -21,11 +21,14 @@ import (
 type DeductionDetail struct {
 
 	// Deduction type, currently only support discount code
-	// Enum: ['DISCOUNT_CODE']
+	// Enum: ['DISCOUNT_CODE', 'PAYMENT_DISCOUNT_CODE']
 	DeductionType string `json:"deductionType,omitempty"`
 
 	// Discount code deduction details
 	DiscountCodeDeductionDetail *DiscountCodeDeductionDetail `json:"discountCodeDeductionDetail,omitempty"`
+
+	// Discount provider name
+	DiscountProviderName string `json:"discountProviderName,omitempty"`
 }
 
 // Validate validates this Deduction detail
@@ -42,7 +45,7 @@ var deductionDetailTypeDeductionTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DISCOUNT_CODE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DISCOUNT_CODE", "PAYMENT_DISCOUNT_CODE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -54,6 +57,9 @@ const (
 
 	// DeductionDetailDeductionTypeDISCOUNTCODE captures enum value "DISCOUNT_CODE"
 	DeductionDetailDeductionTypeDISCOUNTCODE string = "DISCOUNT_CODE"
+
+	// DeductionDetailDeductionTypePAYMENTDISCOUNTCODE captures enum value "PAYMENT_DISCOUNT_CODE"
+	DeductionDetailDeductionTypePAYMENTDISCOUNTCODE string = "PAYMENT_DISCOUNT_CODE"
 )
 
 // prop value enum

@@ -34,8 +34,10 @@ type ClientService interface {
 	AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error)
 	EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error)
 	EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error)
-	PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionInternalServerError, error)
+	PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionBadRequest, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionInternalServerError, error)
 	PublicGetUserProgressionShort(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, error)
+	PublicGetPastUserProgression(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, *PublicGetPastUserProgressionBadRequest, *PublicGetPastUserProgressionUnauthorized, *PublicGetPastUserProgressionForbidden, *PublicGetPastUserProgressionNotFound, *PublicGetPastUserProgressionInternalServerError, error)
+	PublicGetPastUserProgressionShort(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -278,7 +280,7 @@ PublicGetUserProgression list user's progressions
 
       * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
-func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionInternalServerError, error) {
+func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionBadRequest, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetUserProgressionParams()
@@ -310,28 +312,31 @@ func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetUserProgressionOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetUserProgressionBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicGetUserProgressionUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicGetUserProgressionForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicGetUserProgressionNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicGetUserProgressionInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -375,6 +380,8 @@ func (a *Client) PublicGetUserProgressionShort(params *PublicGetUserProgressionP
 
 	case *PublicGetUserProgressionOK:
 		return v, nil
+	case *PublicGetUserProgressionBadRequest:
+		return nil, v
 	case *PublicGetUserProgressionUnauthorized:
 		return nil, v
 	case *PublicGetUserProgressionForbidden:
@@ -382,6 +389,129 @@ func (a *Client) PublicGetUserProgressionShort(params *PublicGetUserProgressionP
 	case *PublicGetUserProgressionNotFound:
 		return nil, v
 	case *PublicGetUserProgressionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetPastUserProgressionShort instead.
+
+PublicGetPastUserProgression list user's progressions in the previous rotation.
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+*/
+func (a *Client) PublicGetPastUserProgression(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, *PublicGetPastUserProgressionBadRequest, *PublicGetPastUserProgressionUnauthorized, *PublicGetPastUserProgressionForbidden, *PublicGetPastUserProgressionNotFound, *PublicGetPastUserProgressionInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPastUserProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetPastUserProgression",
+		Method:             "GET",
+		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}/index/{index}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPastUserProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPastUserProgressionOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetPastUserProgressionBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGetPastUserProgressionUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGetPastUserProgressionForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGetPastUserProgressionNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetPastUserProgressionInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetPastUserProgressionShort list user's progressions in the previous rotation.
+
+      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+*/
+func (a *Client) PublicGetPastUserProgressionShort(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPastUserProgressionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetPastUserProgression",
+		Method:             "GET",
+		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}/index/{index}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPastUserProgressionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPastUserProgressionOK:
+		return v, nil
+	case *PublicGetPastUserProgressionBadRequest:
+		return nil, v
+	case *PublicGetPastUserProgressionUnauthorized:
+		return nil, v
+	case *PublicGetPastUserProgressionForbidden:
+		return nil, v
+	case *PublicGetPastUserProgressionNotFound:
+		return nil, v
+	case *PublicGetPastUserProgressionInternalServerError:
 		return nil, v
 
 	default:

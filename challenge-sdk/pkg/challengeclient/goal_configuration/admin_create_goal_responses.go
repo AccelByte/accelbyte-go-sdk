@@ -63,6 +63,12 @@ func (o *AdminCreateGoalReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewAdminCreateGoalUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminCreateGoalInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -389,6 +395,59 @@ func (o *AdminCreateGoalConflict) readResponse(response runtime.ClientResponse, 
 	}
 
 	o.Payload = new(challengeclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminCreateGoalUnprocessableEntity creates a AdminCreateGoalUnprocessableEntity with default headers values
+func NewAdminCreateGoalUnprocessableEntity() *AdminCreateGoalUnprocessableEntity {
+	return &AdminCreateGoalUnprocessableEntity{}
+}
+
+/*AdminCreateGoalUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>99004</td><td>unprocessable entity: {{message}}</td></tr></table>
+*/
+type AdminCreateGoalUnprocessableEntity struct {
+	Payload *challengeclientmodels.IamErrorResponse
+}
+
+func (o *AdminCreateGoalUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[POST /challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals][%d] adminCreateGoalUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *AdminCreateGoalUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminCreateGoalUnprocessableEntity) GetPayload() *challengeclientmodels.IamErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminCreateGoalUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(challengeclientmodels.IamErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

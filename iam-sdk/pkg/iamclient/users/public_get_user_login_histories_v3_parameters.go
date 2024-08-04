@@ -71,7 +71,7 @@ type PublicGetUserLoginHistoriesV3Params struct {
 	*/
 	Namespace string
 	/*UserID
-	  User ID, should follow UUID version 4 without hyphen
+	  User ID, should follow UUID version 4 without hyphen. Should match the one in the access token
 
 	*/
 	UserID string

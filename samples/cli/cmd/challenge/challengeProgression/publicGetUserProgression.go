@@ -29,6 +29,7 @@ var PublicGetUserProgressionCmd = &cobra.Command{
 		}
 		challengeCode, _ := cmd.Flags().GetString("challengeCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		dateTime, _ := cmd.Flags().GetString("dateTime")
 		goalCode, _ := cmd.Flags().GetString("goalCode")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
@@ -41,6 +42,7 @@ var PublicGetUserProgressionCmd = &cobra.Command{
 		input := &challenge_progression.PublicGetUserProgressionParams{
 			ChallengeCode: challengeCode,
 			Namespace:     namespace,
+			DateTime:      &dateTime,
 			GoalCode:      &goalCode,
 			Limit:         &limit,
 			Offset:        &offset,
@@ -64,6 +66,7 @@ func init() {
 	_ = PublicGetUserProgressionCmd.MarkFlagRequired("challengeCode")
 	PublicGetUserProgressionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserProgressionCmd.MarkFlagRequired("namespace")
+	PublicGetUserProgressionCmd.Flags().String("dateTime", "", "Date time")
 	PublicGetUserProgressionCmd.Flags().String("goalCode", "", "Goal code")
 	PublicGetUserProgressionCmd.Flags().Int64("limit", 20, "Limit")
 	PublicGetUserProgressionCmd.Flags().Int64("offset", 0, "Offset")

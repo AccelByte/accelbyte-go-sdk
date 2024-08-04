@@ -7,6 +7,8 @@
 package challengeclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -48,10 +50,12 @@ type ModelUserReward struct {
 	Qty *float32 `json:"qty"`
 
 	// status
+	// Enum: ['CLAIM', 'UNCLAIMED']
 	// Required: true
 	Status *string `json:"status"`
 
 	// type
+	// Enum: ['ENTITLEMENT', 'STATISTIC']
 	// Required: true
 	Type *string `json:"type"`
 
@@ -171,18 +175,86 @@ func (m *ModelUserReward) validateQty(formats strfmt.Registry) error {
 	return nil
 }
 
+var modelUserRewardTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLAIM", "UNCLAIMED"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelUserRewardTypeStatusPropEnum = append(modelUserRewardTypeStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelUserRewardStatusCLAIM captures enum value "CLAIM"
+	ModelUserRewardStatusCLAIM string = "CLAIM"
+
+	// ModelUserRewardStatusUNCLAIMED captures enum value "UNCLAIMED"
+	ModelUserRewardStatusUNCLAIMED string = "UNCLAIMED"
+)
+
+// prop value enum
+func (m *ModelUserReward) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelUserRewardTypeStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelUserReward) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
 	}
 
+	// value enum
+	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var modelUserRewardTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ENTITLEMENT", "STATISTIC"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelUserRewardTypeTypePropEnum = append(modelUserRewardTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ModelUserRewardTypeENTITLEMENT captures enum value "ENTITLEMENT"
+	ModelUserRewardTypeENTITLEMENT string = "ENTITLEMENT"
+
+	// ModelUserRewardTypeSTATISTIC captures enum value "STATISTIC"
+	ModelUserRewardTypeSTATISTIC string = "STATISTIC"
+)
+
+// prop value enum
+func (m *ModelUserReward) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelUserRewardTypeTypePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 
 func (m *ModelUserReward) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

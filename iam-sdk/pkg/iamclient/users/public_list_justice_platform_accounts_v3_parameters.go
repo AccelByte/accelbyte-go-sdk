@@ -70,7 +70,7 @@ type PublicListJusticePlatformAccountsV3Params struct {
 	*/
 	Namespace string
 	/*UserID
-	  Publisher User ID
+	  Publisher User ID. Should match the one in the access token
 
 	*/
 	UserID string

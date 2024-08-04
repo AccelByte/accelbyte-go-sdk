@@ -60,6 +60,8 @@ type ClientService interface {
 	SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
 	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error)
 	SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
+	PublicGetMyDLCContent(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error)
+	PublicGetMyDLCContentShort(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -818,6 +820,7 @@ Deprecated: 2022-08-10 - Use GetUserDLCShort instead.
 
 GetUserDLC get user dlc records
 Get user dlc records.
+Note: includeAllNamespaces means this endpoint will return user dlcs from all namespace, example scenario isadmin may need to check the user dlcs before unlink a 3rd party account, so the user dlcs should be from all namespaces because unlinking is a platform level action
 Other detail info:
 
   * Returns : user dlc
@@ -870,6 +873,7 @@ func (a *Client) GetUserDLC(params *GetUserDLCParams, authInfo runtime.ClientAut
 /*
 GetUserDLCShort get user dlc records
 Get user dlc records.
+Note: includeAllNamespaces means this endpoint will return user dlcs from all namespace, example scenario isadmin may need to check the user dlcs before unlink a 3rd party account, so the user dlcs should be from all namespaces because unlinking is a platform level action
 Other detail info:
 
   * Returns : user dlc
@@ -1620,6 +1624,108 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 		return v, nil
 	case *SyncXboxDLCBadRequest:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetMyDLCContentShort instead.
+
+PublicGetMyDLCContent get user dlc reward contents
+Get user dlc reward contents. If includeAllNamespaces is false, will only return the dlc synced from the current namespace
+Other detail info:
+
+  * Returns : user dlc
+*/
+func (a *Client) PublicGetMyDLCContent(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyDLCContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMyDLCContent",
+		Method:             "GET",
+		PathPattern:        "/platform/public/users/me/dlc/content",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyDLCContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyDLCContentOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetMyDLCContentShort get user dlc reward contents
+Get user dlc reward contents. If includeAllNamespaces is false, will only return the dlc synced from the current namespace
+Other detail info:
+
+  * Returns : user dlc
+*/
+func (a *Client) PublicGetMyDLCContentShort(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyDLCContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMyDLCContent",
+		Method:             "GET",
+		PathPattern:        "/platform/public/users/me/dlc/content",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyDLCContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyDLCContentOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -17,6 +17,13 @@ import (
 // swagger:model Payment data.
 type PaymentData struct {
 
+	// discountamount
+	// Format: int32
+	DiscountAmount int32 `json:"discountAmount,omitempty"`
+
+	// discountcode
+	DiscountCode string `json:"discountCode,omitempty"`
+
 	// subtotalprice
 	// Format: int32
 	SubtotalPrice int32 `json:"subtotalPrice,omitempty"`

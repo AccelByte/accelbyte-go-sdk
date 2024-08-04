@@ -64,6 +64,11 @@ type PublicSubmitUserAccountDeletionRequestParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*LanguageTag
+	  Language tag
+
+	*/
+	LanguageTag *string
 	/*Password
 	  IAM password of the user
 
@@ -145,6 +150,17 @@ func (o *PublicSubmitUserAccountDeletionRequestParams) SetFlightId(flightId stri
 	}
 }
 
+// WithLanguageTag adds the languageTag to the public submit user account deletion request params
+func (o *PublicSubmitUserAccountDeletionRequestParams) WithLanguageTag(languageTag *string) *PublicSubmitUserAccountDeletionRequestParams {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the public submit user account deletion request params
+func (o *PublicSubmitUserAccountDeletionRequestParams) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WithPassword adds the password to the public submit user account deletion request params
 func (o *PublicSubmitUserAccountDeletionRequestParams) WithPassword(password string) *PublicSubmitUserAccountDeletionRequestParams {
 	o.SetPassword(password)
@@ -185,6 +201,22 @@ func (o *PublicSubmitUserAccountDeletionRequestParams) WriteToRequest(r runtime.
 		return err
 	}
 	var res []error
+
+	if o.LanguageTag != nil {
+
+		// form param languageTag
+		var frLanguageTag string
+		if o.LanguageTag != nil {
+			frLanguageTag = *o.LanguageTag
+		}
+		fLanguageTag := frLanguageTag
+		if fLanguageTag != "" {
+			if err := r.SetFormParam("languageTag", fLanguageTag); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// form param password
 	frPassword := o.Password

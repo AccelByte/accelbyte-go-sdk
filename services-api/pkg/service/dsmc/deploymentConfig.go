@@ -411,6 +411,32 @@ func (aaa *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployme
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use DeleteCreatingServerCountQueueShort instead.
+func (aaa *DeploymentConfigService) DeleteCreatingServerCountQueue(input *deployment_config.DeleteCreatingServerCountQueueParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.DeploymentConfig.DeleteCreatingServerCountQueue(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetAllDeploymentClientShort instead.
 func (aaa *DeploymentConfigService) GetAllDeploymentClient(input *deployment_config.GetAllDeploymentClientParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -423,6 +449,32 @@ func (aaa *DeploymentConfigService) GetAllDeploymentClient(input *deployment_con
 	}
 	if unauthorized != nil {
 		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use GetDeploymentClientShort instead.
+func (aaa *DeploymentConfigService) GetDeploymentClient(input *deployment_config.GetDeploymentClientParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.DeploymentConfig.GetDeploymentClient(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -906,6 +958,36 @@ func (aaa *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *dep
 	return ok.GetPayload(), nil
 }
 
+func (aaa *DeploymentConfigService) DeleteCreatingServerCountQueueShort(input *deployment_config.DeleteCreatingServerCountQueueParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.DeploymentConfig.DeleteCreatingServerCountQueueShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *DeploymentConfigService) GetAllDeploymentClientShort(input *deployment_config.GetAllDeploymentClientParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -929,6 +1011,36 @@ func (aaa *DeploymentConfigService) GetAllDeploymentClientShort(input *deploymen
 	}
 
 	ok, err := aaa.Client.DeploymentConfig.GetAllDeploymentClientShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *DeploymentConfigService) GetDeploymentClientShort(input *deployment_config.GetDeploymentClientParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDeploymentConfig != nil {
+		input.XFlightId = tempFlightIdDeploymentConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.DeploymentConfig.GetDeploymentClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

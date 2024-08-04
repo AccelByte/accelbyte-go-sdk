@@ -120,6 +120,11 @@ type AdminChatHistoryParams struct {
 
 	*/
 	Topic []string
+	/*Unfiltered
+	  unfiltered chat messages
+
+	*/
+	Unfiltered *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -307,6 +312,17 @@ func (o *AdminChatHistoryParams) SetTopic(topic []string) {
 	o.Topic = topic
 }
 
+// WithUnfiltered adds the unfiltered to the admin chat history params
+func (o *AdminChatHistoryParams) WithUnfiltered(unfiltered *bool) *AdminChatHistoryParams {
+	o.SetUnfiltered(unfiltered)
+	return o
+}
+
+// SetUnfiltered adds the unfiltered to the admin chat history params
+func (o *AdminChatHistoryParams) SetUnfiltered(unfiltered *bool) {
+	o.Unfiltered = unfiltered
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminChatHistoryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -462,6 +478,22 @@ func (o *AdminChatHistoryParams) WriteToRequest(r runtime.ClientRequest, reg str
 	// query array param topic
 	if err := r.SetQueryParam("topic", joinedTopic...); err != nil {
 		return err
+	}
+
+	if o.Unfiltered != nil {
+
+		// query param unfiltered
+		var qrUnfiltered bool
+		if o.Unfiltered != nil {
+			qrUnfiltered = *o.Unfiltered
+		}
+		qUnfiltered := swag.FormatBool(qrUnfiltered)
+		if qUnfiltered != "" {
+			if err := r.SetQueryParam("unfiltered", qUnfiltered); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

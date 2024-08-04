@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.20.1"
+    "version": "2.21.0"
   },
   "schemes": [
     "https"
@@ -35,7 +35,7 @@
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/basic"
+    "url": "https://stage.accelbyte.io/basic"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -3074,6 +3074,57 @@
         "x-errorCodes": {
           "20002": "validation error"
         }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Bulk get user public profile by ids.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user public profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publicBulkGetUserProfilePublicInfo",
+        "parameters": [
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileBulkRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/UserProfilePublicInfo"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "summary": "Bulk get user profile public info by ids",
+        "tags": [
+          "UserProfile"
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        }
       }
     },
     "/basic/v1/public/namespaces/{namespace}/profiles/public/byPublicId": {
@@ -5178,21 +5229,21 @@
   },
   "x-docs": {
     "alias": "basic",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/basic/swagger.json"
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-06-14T10:43:12+00:00",
-    "buildID": "2.20.1",
+    "buildDate": "2024-07-23T09:17:54+00:00",
+    "buildID": "2.21.0",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.217-205.860.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.219-208.866.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "d8c6f57e98",
-    "gitTag": "2.20.1",
+    "gitHash": "2bee84b64b",
+    "gitTag": "2.21.0",
     "name": "justice-basic-service",
-    "realm": "demo",
-    "version": "2.20.1",
+    "realm": "staging",
+    "version": "2.21.0",
     "version-roles-seeding": "0.0.10"
   }
 }

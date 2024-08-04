@@ -34,6 +34,7 @@ func init() {
 	SessionhistoryCmd.AddCommand(gameSessionDetail.GetPartyDetailCmd)
 	SessionhistoryCmd.AddCommand(gameSessionDetail.AdminQueryTicketDetailCmd)
 	SessionhistoryCmd.AddCommand(gameSessionDetail.AdminTicketDetailGetByTicketIDCmd)
+	SessionhistoryCmd.AddCommand(gameSessionDetail.PublicQueryGameSessionMeCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryXrayMatchPoolCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryDetailTickMatchPoolCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryDetailTickMatchPoolMatchesCmd)
@@ -52,6 +53,7 @@ func init() {
 	SessionhistoryCmd.AddCommand(xRay.QueryTotalMatchmakingCreatedCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryTotalMatchmakingExpiredCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryTotalMatchmakingMatchTicketCmd)
+	SessionhistoryCmd.AddCommand(xRay.CreateXrayTicketObservabilityCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryXrayTimelineByTicketIDCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryXrayTimelineByUserIDCmd)
 }

@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	ImageList(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, *ImageListUnauthorized, *ImageListForbidden, *ImageListNotFound, *ImageListInternalServerError, error)
 	ImageListShort(params *ImageListParams, authInfo runtime.ClientAuthInfoWriter) (*ImageListOK, error)
+	ImagesStorage(params *ImagesStorageParams, authInfo runtime.ClientAuthInfoWriter) (*ImagesStorageOK, *ImagesStorageUnauthorized, *ImagesStorageForbidden, *ImagesStorageNotFound, *ImagesStorageInternalServerError, error)
+	ImagesStorageShort(params *ImagesStorageParams, authInfo runtime.ClientAuthInfoWriter) (*ImagesStorageOK, error)
 	ImageGet(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, *ImageGetUnauthorized, *ImageGetForbidden, *ImageGetNotFound, *ImageGetInternalServerError, error)
 	ImageGetShort(params *ImageGetParams, authInfo runtime.ClientAuthInfoWriter) (*ImageGetOK, error)
 	ImageMarkForDeletion(params *ImageMarkForDeletionParams, authInfo runtime.ClientAuthInfoWriter) (*ImageMarkForDeletionAccepted, *ImageMarkForDeletionUnauthorized, *ImageMarkForDeletionForbidden, *ImageMarkForDeletionNotFound, *ImageMarkForDeletionPreconditionFailed, *ImageMarkForDeletionInternalServerError, error)
@@ -157,6 +159,126 @@ func (a *Client) ImageListShort(params *ImageListParams, authInfo runtime.Client
 	case *ImageListNotFound:
 		return nil, v
 	case *ImageListInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ImagesStorageShort instead.
+
+ImagesStorage get current usage for images storage
+Returns information regarding the account's usage for images storage including the free tier quota
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
+*/
+func (a *Client) ImagesStorage(params *ImagesStorageParams, authInfo runtime.ClientAuthInfoWriter) (*ImagesStorageOK, *ImagesStorageUnauthorized, *ImagesStorageForbidden, *ImagesStorageNotFound, *ImagesStorageInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImagesStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImagesStorage",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images-storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImagesStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImagesStorageOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *ImagesStorageUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *ImagesStorageForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *ImagesStorageNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *ImagesStorageInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ImagesStorageShort get current usage for images storage
+Returns information regarding the account's usage for images storage including the free tier quota
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]
+*/
+func (a *Client) ImagesStorageShort(params *ImagesStorageParams, authInfo runtime.ClientAuthInfoWriter) (*ImagesStorageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImagesStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImagesStorage",
+		Method:             "GET",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/images-storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImagesStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImagesStorageOK:
+		return v, nil
+	case *ImagesStorageUnauthorized:
+		return nil, v
+	case *ImagesStorageForbidden:
+		return nil, v
+	case *ImagesStorageNotFound:
+		return nil, v
+	case *ImagesStorageInternalServerError:
 		return nil, v
 
 	default:

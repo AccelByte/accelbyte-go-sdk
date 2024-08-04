@@ -296,6 +296,19 @@ func (aaa *UserProfileService) PublicGetUserProfilePublicInfoByIds(input *user_p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicBulkGetUserProfilePublicInfoShort instead.
+func (aaa *UserProfileService) PublicBulkGetUserProfilePublicInfo(input *user_profile.PublicBulkGetUserProfilePublicInfoParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	ok, badRequest, err := aaa.Client.UserProfile.PublicBulkGetUserProfilePublicInfo(input)
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetUserProfileInfoByPublicIDShort instead.
 func (aaa *UserProfileService) PublicGetUserProfileInfoByPublicID(input *user_profile.PublicGetUserProfileInfoByPublicIDParams) (*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, badRequest, notFound, err := aaa.Client.UserProfile.PublicGetUserProfileInfoByPublicID(input)
@@ -960,6 +973,29 @@ func (aaa *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *u
 	}
 
 	ok, err := aaa.Client.UserProfile.PublicGetUserProfilePublicInfoByIdsShort(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserProfileService) PublicBulkGetUserProfilePublicInfoShort(input *user_profile.PublicBulkGetUserProfilePublicInfoParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUserProfile != nil {
+		input.XFlightId = tempFlightIdUserProfile
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UserProfile.PublicBulkGetUserProfilePublicInfoShort(input)
 	if err != nil {
 		return nil, err
 	}

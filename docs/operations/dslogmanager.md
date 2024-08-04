@@ -20,6 +20,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/dslogmanager/servers/logs/download` | POST | BatchDownloadServerLogsShort | [BatchDownloadServerLogsShort](../../dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers/all_terminated_servers_client.go) | [BatchDownloadServerLogsShort](../../services-api/pkg/service/dslogmanager/allTerminatedServers.go) | [BatchDownloadServerLogsShort](../../samples/cli/cmd/dslogmanager/allTerminatedServers/batchDownloadServerLogs.go) |
+| `/dslogmanager/servers/metadata` | POST | ListMetadataServersShort | [ListMetadataServersShort](../../dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers/all_terminated_servers_client.go) | [ListMetadataServersShort](../../services-api/pkg/service/dslogmanager/allTerminatedServers.go) | [ListMetadataServersShort](../../samples/cli/cmd/dslogmanager/allTerminatedServers/listMetadataServers.go) |
 | `/dslogmanager/servers/search` | GET | ListAllTerminatedServersShort | [ListAllTerminatedServersShort](../../dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers/all_terminated_servers_client.go) | [ListAllTerminatedServersShort](../../services-api/pkg/service/dslogmanager/allTerminatedServers.go) | [ListAllTerminatedServersShort](../../samples/cli/cmd/dslogmanager/allTerminatedServers/listAllTerminatedServers.go) |
 
 ### Dslogmanager Operations Wrapper:  [DslogmanagerOperations](../../services-api/pkg/service/dslogmanager/dslogmanagerOperations.go)
@@ -41,12 +42,13 @@
 | `models.ListTerminatedServersResponse` | [ModelsListTerminatedServersResponse ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_list_terminated_servers_response.go) |
 | `models.LogFileStatus` | [ModelsLogFileStatus ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_log_file_status.go) |
 | `models.MatchResult` | [ModelsMatchResult ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_match_result.go) |
-| `models.NotifPayloadServerStatusChange` | [ModelsNotifPayloadServerStatusChange ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_notif_payload_server_status_change.go) |
+| `models.MetadataServersRequest` | [ModelsMetadataServersRequest ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_metadata_servers_request.go) |
+| `models.NotifPayloadServerStatusChangeResponse` | [ModelsNotifPayloadServerStatusChangeResponse ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_notif_payload_server_status_change_response.go) |
 | `models.PagingCursor` | [ModelsPagingCursor ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_paging_cursor.go) |
 | `models.RequestMatchMember` | [ModelsRequestMatchMember ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_request_match_member.go) |
 | `models.RequestMatchParty` | [ModelsRequestMatchParty ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_request_match_party.go) |
 | `models.RequestMatchingAlly` | [ModelsRequestMatchingAlly ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_request_matching_ally.go) |
-| `models.Server` | [ModelsServer ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_server.go) |
 | `models.ServerLogs` | [ModelsServerLogs ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_server_logs.go) |
+| `models.ServerResponse` | [ModelsServerResponse ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_server_response.go) |
 | `models.StatusHistory` | [ModelsStatusHistory ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/models_status_history.go) |
 | `response.Error` | [ResponseError ](../../dslogmanager-sdk/pkg/dslogmanagerclientmodels/response_error.go) |

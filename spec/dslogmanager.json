@@ -8,14 +8,14 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "3.4.1"
+    "version": "3.7.4"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/dslogmanager/apidocs"
+    "url": "https://stage.accelbyte.io/dslogmanager/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -483,6 +483,67 @@
         "x-errorCodes": {}
       }
     },
+    "/dslogmanager/servers/metadata": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]\n\nThis endpoint used to retrieve metadata servers in a namespace\n\nThe namespace filter is will give result exact namespace response\n```",
+        "operationId": "listMetadataServers",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.MetadataServersRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ListTerminatedServersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve Metadata Servers",
+        "tags": [
+          "All Terminated Servers"
+        ],
+        "x-errorCodes": {}
+      }
+    },
     "/dslogmanager/servers/search": {
       "get": {
         "consumes": [
@@ -756,7 +817,7 @@
       "properties": {
         "data": {
           "items": {
-            "$ref": "#/definitions/models.NotifPayloadServerStatusChange"
+            "$ref": "#/definitions/models.NotifPayloadServerStatusChangeResponse"
           },
           "type": "array"
         },
@@ -804,13 +865,26 @@
         "session_id"
       ]
     },
-    "models.NotifPayloadServerStatusChange": {
+    "models.MetadataServersRequest": {
+      "properties": {
+        "pod_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "pod_names"
+      ]
+    },
+    "models.NotifPayloadServerStatusChangeResponse": {
       "properties": {
         "match": {
           "$ref": "#/definitions/models.MatchResult"
         },
         "server": {
-          "$ref": "#/definitions/models.Server"
+          "$ref": "#/definitions/models.ServerResponse"
         }
       },
       "required": [
@@ -884,7 +958,21 @@
         "matching_parties"
       ]
     },
-    "models.Server": {
+    "models.ServerLogs": {
+      "properties": {
+        "std_err_logs": {
+          "type": "string"
+        },
+        "std_out_logs": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "std_err_logs",
+        "std_out_logs"
+      ]
+    },
+    "models.ServerResponse": {
       "properties": {
         "allocation_events": {
           "items": {
@@ -900,6 +988,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "artifact_path": {
+          "type": "string"
         },
         "cpu_limit": {
           "format": "int32",
@@ -919,6 +1010,10 @@
         },
         "ip": {
           "type": "string"
+        },
+        "is_core_dump_enabled": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "is_override_game_version": {
           "type": "boolean",
@@ -981,6 +1076,10 @@
         },
         "termination_reason": {
           "type": "string"
+        },
+        "ulimit_file_size": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
@@ -1006,20 +1105,6 @@
         "session_id",
         "status",
         "termination_reason"
-      ]
-    },
-    "models.ServerLogs": {
-      "properties": {
-        "std_err_logs": {
-          "type": "string"
-        },
-        "std_out_logs": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "std_err_logs",
-        "std_out_logs"
       ]
     },
     "models.StatusHistory": {
@@ -1056,15 +1141,246 @@
   },
   "x-docs": {
     "alias": "dslogmanager",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/dslogmanager/apidocs/api.json"
   },
+  "x-messages": [
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20001",
+      "CodeName": "UnauthorizedAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unauthorized access"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20003",
+      "CodeName": "ForbiddenAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20007",
+      "CodeName": "TooManyRequests",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20008",
+      "CodeName": "UserNotFound",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20013",
+      "CodeName": "InsufficientPermissions",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20019",
+      "CodeName": "UnableToParseRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20021",
+      "CodeName": "InvalidPaginationParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20022",
+      "CodeName": "TokenIsNotUserToken",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "780101",
+      "CodeName": "ListTerminatedServerSuccess",
+      "Section": "list terminated server",
+      "Service": "dslm",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780102",
+      "CodeName": "ListTerminatedServerInvalidQueryParameter",
+      "Section": "list terminated server",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "780201",
+      "CodeName": "DownloadLogSuccess",
+      "Section": "download server log",
+      "Service": "dslm",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780202",
+      "CodeName": "DownloadLogInvalidParameter",
+      "Section": "download server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error",
+        "pod_name"
+      ],
+      "Code": "780203",
+      "CodeName": "DownloadLogNotFound",
+      "Section": "download server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} {{ pod_name }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "780301",
+      "CodeName": "CheckLogSuccess",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780302",
+      "CodeName": "CheckLogInvalidParameter",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780303",
+      "CodeName": "CheckLogNotFound",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "780304",
+      "CodeName": "BatchDownloadLogSuccess",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780305",
+      "CodeName": "BatchDownloadLogBadRequest",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "780306",
+      "CodeName": "BatchDownloadLogInternalServerError",
+      "Section": "check server log",
+      "Service": "dslm",
+      "Text": "unable to {{ action }} : {{ error }}"
+    }
+  ],
   "x-version": {
-    "buildDate": "2023-09-16T05:43:29+00:00",
-    "gitHash": "c45a779d57a6c1000fc0782d40c2ffd29f08b3fb",
+    "buildDate": "2024-05-16T03:40:28+00:00",
+    "gitHash": "bb7b86fc04c596f317ed7e6e0c574ae89c339a5a",
     "name": "justice-ds-log-manager-service",
-    "revisionID": "3.4.1",
-    "version": "3.4.1",
+    "revisionID": "3.7.4",
+    "version": "3.7.4",
     "version-roles-seeding": "0.0.3"
   }
 }

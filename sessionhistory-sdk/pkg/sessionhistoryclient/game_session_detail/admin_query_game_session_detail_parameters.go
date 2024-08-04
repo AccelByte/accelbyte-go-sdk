@@ -90,6 +90,11 @@ type AdminQueryGameSessionDetailParams struct {
 
 	*/
 	Namespace string
+	/*EndDate
+	  End date time in RFC 3339 format: 2024-08-01T15:05:19Z
+
+	*/
+	EndDate *string
 	/*GameSessionID
 	  gamesession ID
 
@@ -111,10 +116,15 @@ type AdminQueryGameSessionDetailParams struct {
 	*/
 	Order *string
 	/*OrderBy
-	  Order result by specific attribute. Supported: expiredAt (default)
+	  Order result by specific attribute. Supported: createdAt (default)
 
 	*/
 	OrderBy *string
+	/*StartDate
+	  Start date time in RFC 3339 format: 2024-08-01T15:05:19Z
+
+	*/
+	StartDate *string
 	/*UserID
 	  user ID
 
@@ -197,6 +207,17 @@ func (o *AdminQueryGameSessionDetailParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithEndDate adds the endDate to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithEndDate(endDate *string) *AdminQueryGameSessionDetailParams {
+	o.SetEndDate(endDate)
+	return o
+}
+
+// SetEndDate adds the endDate to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetEndDate(endDate *string) {
+	o.EndDate = endDate
+}
+
 // WithGameSessionID adds the gameSessionID to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) WithGameSessionID(gameSessionID *string) *AdminQueryGameSessionDetailParams {
 	o.SetGameSessionID(gameSessionID)
@@ -252,6 +273,17 @@ func (o *AdminQueryGameSessionDetailParams) SetOrderBy(orderBy *string) {
 	o.OrderBy = orderBy
 }
 
+// WithStartDate adds the startDate to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithStartDate(startDate *string) *AdminQueryGameSessionDetailParams {
+	o.SetStartDate(startDate)
+	return o
+}
+
+// SetStartDate adds the startDate to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetStartDate(startDate *string) {
+	o.StartDate = startDate
+}
+
 // WithUserID adds the userID to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) WithUserID(userID *string) *AdminQueryGameSessionDetailParams {
 	o.SetUserID(userID)
@@ -274,6 +306,22 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.EndDate != nil {
+
+		// query param endDate
+		var qrEndDate string
+		if o.EndDate != nil {
+			qrEndDate = *o.EndDate
+		}
+		qEndDate := qrEndDate
+		if qEndDate != "" {
+			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.GameSessionID != nil {
@@ -350,6 +398,22 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 		qOrderBy := qrOrderBy
 		if qOrderBy != "" {
 			if err := r.SetQueryParam("orderBy", qOrderBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StartDate != nil {
+
+		// query param startDate
+		var qrStartDate string
+		if o.StartDate != nil {
+			qrStartDate = *o.StartDate
+		}
+		qStartDate := qrStartDate
+		if qStartDate != "" {
+			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err
 			}
 		}

@@ -21,6 +21,9 @@ type ApimodelsXRayTicketMatchesResult struct {
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"CreatedAt,omitempty"`
 
+	// ispivot
+	IsPivot bool `json:"IsPivot"`
+
 	// latencies
 	Latencies map[string]int64 `json:"Latencies,omitempty"`
 
@@ -39,11 +42,18 @@ type ApimodelsXRayTicketMatchesResult struct {
 	// proposedproposal
 	ProposedProposal *ModelsProposedProposal `json:"ProposedProposal,omitempty"`
 
+	// regionpreference
+	RegionPreference []string `json:"RegionPreference,omitempty"`
+
 	// ticketattributes
 	TicketAttributes interface{} `json:"TicketAttributes,omitempty"`
 
 	// ticketid
 	TicketID string `json:"TicketID,omitempty"`
+
+	// timetomatch
+	// Format: double
+	TimeToMatch float64 `json:"TimeToMatch,omitempty"`
 }
 
 // Validate validates this Apimodels X ray ticket matches result

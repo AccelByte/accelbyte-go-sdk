@@ -28,10 +28,12 @@ var PublicRequestDataRetrievalCmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		languageTag, _ := cmd.Flags().GetString("languageTag")
 		input := &data_retrieval.PublicRequestDataRetrievalParams{
-			Password:  password,
-			Namespace: namespace,
-			UserID:    userId,
+			LanguageTag: &languageTag,
+			Password:    password,
+			Namespace:   namespace,
+			UserID:      userId,
 		}
 		created, errCreated := dataRetrievalService.PublicRequestDataRetrievalShort(input)
 		if errCreated != nil {
@@ -47,6 +49,7 @@ var PublicRequestDataRetrievalCmd = &cobra.Command{
 }
 
 func init() {
+	PublicRequestDataRetrievalCmd.Flags().String("languageTag", "", "Language tag")
 	PublicRequestDataRetrievalCmd.Flags().String("password", "", "Password")
 	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("password")
 	PublicRequestDataRetrievalCmd.Flags().String("namespace", "", "Namespace")

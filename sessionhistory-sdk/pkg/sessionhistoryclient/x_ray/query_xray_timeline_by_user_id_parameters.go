@@ -106,12 +106,12 @@ type QueryXrayTimelineByUserIDParams struct {
 	*/
 	Offset *int64
 	/*EndDate
-	  End date time: 2024-05-20T04:09:26Z
+	  End date time: 2024-08-01T15:05:19Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-05-20T04:09:26Z
+	  Start date time. Format: 2024-08-01T15:05:19Z
 
 	*/
 	StartDate string

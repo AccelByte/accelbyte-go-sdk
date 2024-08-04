@@ -95,6 +95,11 @@ type PublicGetUserProgressionParams struct {
 
 	*/
 	Namespace string
+	/*DateTime
+	  specific schedule date time. use RFC3339 format(2006-01-02T15:04:05Z).
+
+	*/
+	DateTime *string
 	/*GoalCode
 	  goal code
 
@@ -203,6 +208,17 @@ func (o *PublicGetUserProgressionParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithDateTime adds the dateTime to the public get user progression params
+func (o *PublicGetUserProgressionParams) WithDateTime(dateTime *string) *PublicGetUserProgressionParams {
+	o.SetDateTime(dateTime)
+	return o
+}
+
+// SetDateTime adds the dateTime to the public get user progression params
+func (o *PublicGetUserProgressionParams) SetDateTime(dateTime *string) {
+	o.DateTime = dateTime
+}
+
 // WithGoalCode adds the goalCode to the public get user progression params
 func (o *PublicGetUserProgressionParams) WithGoalCode(goalCode *string) *PublicGetUserProgressionParams {
 	o.SetGoalCode(goalCode)
@@ -263,6 +279,22 @@ func (o *PublicGetUserProgressionParams) WriteToRequest(r runtime.ClientRequest,
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.DateTime != nil {
+
+		// query param dateTime
+		var qrDateTime string
+		if o.DateTime != nil {
+			qrDateTime = *o.DateTime
+		}
+		qDateTime := qrDateTime
+		if qDateTime != "" {
+			if err := r.SetQueryParam("dateTime", qDateTime); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.GoalCode != nil {

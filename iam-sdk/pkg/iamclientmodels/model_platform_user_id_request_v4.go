@@ -18,7 +18,7 @@ import (
 // swagger:model Model platform user ID request V4.
 type ModelPlatformUserIDRequestV4 struct {
 
-	// max length is 100
+	// max length is 100, min length is 1
 	// Required: true
 	PlatformUserIds []string `json:"platformUserIds"`
 }

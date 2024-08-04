@@ -559,7 +559,13 @@ AdminCreateConfigurationTemplateV1 create configuration template.
 Create template configuration to be applied across party and session.
 Session configuration mandatory :
 - name
-- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- joinability. supported values:
+- OPEN: user can join or rejoin the session without an invite
+- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.
+- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.
+- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.
+- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.
+- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.
 - autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)
 - Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
 - MinPlayers (must greater or equal 0)
@@ -596,6 +602,7 @@ example payload :
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 - LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value > 0 if leader disconnect will be wait until value reach and leader will be change after reach
 - ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.
+- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites'
 */
 func (a *Client) AdminCreateConfigurationTemplateV1(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, *AdminCreateConfigurationTemplateV1BadRequest, *AdminCreateConfigurationTemplateV1Unauthorized, *AdminCreateConfigurationTemplateV1Forbidden, *AdminCreateConfigurationTemplateV1Conflict, *AdminCreateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -662,7 +669,13 @@ AdminCreateConfigurationTemplateV1Short create configuration template.
 Create template configuration to be applied across party and session.
 Session configuration mandatory :
 - name
-- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- joinability. supported values:
+- OPEN: user can join or rejoin the session without an invite
+- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.
+- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.
+- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.
+- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.
+- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.
 - autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)
 - Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
 - MinPlayers (must greater or equal 0)
@@ -699,6 +712,7 @@ example payload :
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created
 - LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value > 0 if leader disconnect will be wait until value reach and leader will be change after reach
 - ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.
+- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites'
 */
 func (a *Client) AdminCreateConfigurationTemplateV1Short(params *AdminCreateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateConfigurationTemplateV1Created, error) {
 	// TODO: Validate the params before sending
@@ -995,7 +1009,13 @@ AdminUpdateConfigurationTemplateV1 update configuration template.
 Modify template configuration
 Session configuration mandatory :
 - name
-- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- joinability. supported values:
+- OPEN: user can join or rejoin the session without an invite
+- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.
+- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.
+- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.
+- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.
+- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.
 - autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)
 - Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
 - MinPlayers (must greater or equal 0)
@@ -1031,6 +1051,7 @@ example payload :
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created.
 - ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.
+- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites'
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, *AdminUpdateConfigurationTemplateV1BadRequest, *AdminUpdateConfigurationTemplateV1Unauthorized, *AdminUpdateConfigurationTemplateV1Forbidden, *AdminUpdateConfigurationTemplateV1NotFound, *AdminUpdateConfigurationTemplateV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1097,7 +1118,13 @@ AdminUpdateConfigurationTemplateV1Short update configuration template.
 Modify template configuration
 Session configuration mandatory :
 - name
-- joinability (example value : OPEN, CLOSED, INVITE_ONLY)
+- joinability. supported values:
+- OPEN: user can join or rejoin the session without an invite
+- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.
+- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.
+- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.
+- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.
+- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.
 - autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)
 - Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE
 - MinPlayers (must greater or equal 0)
@@ -1133,6 +1160,7 @@ example payload :
 - DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection.
 - EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created.
 - ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.
+- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites'
 */
 func (a *Client) AdminUpdateConfigurationTemplateV1Short(params *AdminUpdateConfigurationTemplateV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigurationTemplateV1OK, error) {
 	// TODO: Validate the params before sending

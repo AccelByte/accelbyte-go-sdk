@@ -28,6 +28,10 @@ type ModelsTicketData struct {
 	// activematchingrule
 	ActiveMatchingRule []*ModelsMatchingRule `json:"activeMatchingRule,omitempty"`
 
+	// elapsedtime
+	// Format: double
+	ElapsedTime float64 `json:"elapsedTime,omitempty"`
+
 	// function
 	Function string `json:"function,omitempty"`
 
@@ -39,6 +43,10 @@ type ModelsTicketData struct {
 	// Required: true
 	IsBackfillMatch *bool `json:"isBackfillMatch"`
 
+	// ispivot
+	// Required: true
+	IsPivot *bool `json:"isPivot"`
+
 	// isrulesetflexed
 	// Required: true
 	IsRuleSetFlexed *bool `json:"isRuleSetFlexed"`
@@ -49,6 +57,14 @@ type ModelsTicketData struct {
 
 	// matchid
 	MatchID string `json:"matchID,omitempty"`
+
+	// matchedregion
+	// Required: true
+	MatchedRegion *string `json:"matchedRegion"`
+
+	// memberattributes
+	// Required: true
+	MemberAttributes interface{} `json:"memberAttributes"`
 
 	// namespace
 	// Required: true
@@ -91,6 +107,11 @@ type ModelsTicketData struct {
 	// Format: date-time
 	Timestamp strfmt.DateTime `json:"timestamp"`
 
+	// totalplayers
+	// Required: true
+	// Format: int32
+	TotalPlayers *int32 `json:"totalPlayers"`
+
 	// unbackfillreason
 	UnbackfillReason string `json:"unbackfillReason,omitempty"`
 
@@ -111,7 +132,13 @@ func (m *ModelsTicketData) Validate(formats strfmt.Registry) error {
 	if err := m.validateIsBackfillMatch(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateIsPivot(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateIsRuleSetFlexed(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateMatchedRegion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
@@ -130,6 +157,9 @@ func (m *ModelsTicketData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateTimestamp(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTotalPlayers(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,9 +196,27 @@ func (m *ModelsTicketData) validateIsBackfillMatch(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *ModelsTicketData) validateIsPivot(formats strfmt.Registry) error {
+
+	if err := validate.Required("isPivot", "body", m.IsPivot); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsTicketData) validateIsRuleSetFlexed(formats strfmt.Registry) error {
 
 	if err := validate.Required("isRuleSetFlexed", "body", m.IsRuleSetFlexed); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsTicketData) validateMatchedRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("matchedRegion", "body", m.MatchedRegion); err != nil {
 		return err
 	}
 
@@ -227,6 +275,15 @@ func (m *ModelsTicketData) validateTimestamp(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("timestamp", "body", "date-time", m.Timestamp.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsTicketData) validateTotalPlayers(formats strfmt.Registry) error {
+
+	if err := validate.Required("totalPlayers", "body", m.TotalPlayers); err != nil {
 		return err
 	}
 

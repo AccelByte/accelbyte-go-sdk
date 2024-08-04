@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels global configuration response.
 type ApimodelsGlobalConfigurationResponse struct {
 
+	// metricexcludednamespaces
+	MetricExcludedNamespaces []string `json:"metricExcludedNamespaces,omitempty"`
+
 	// regionretrymapping
 	// Required: true
 	RegionRetryMapping map[string][]string `json:"regionRetryMapping"`

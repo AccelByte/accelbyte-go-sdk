@@ -72,7 +72,7 @@ func NewGetServerOK() *GetServerOK {
   server queried
 */
 type GetServerOK struct {
-	Payload *dsmcclientmodels.ModelsServer
+	Payload *dsmcclientmodels.ModelsServerDetailsResponse
 }
 
 func (o *GetServerOK) Error() string {
@@ -94,7 +94,7 @@ func (o *GetServerOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetServerOK) GetPayload() *dsmcclientmodels.ModelsServer {
+func (o *GetServerOK) GetPayload() *dsmcclientmodels.ModelsServerDetailsResponse {
 	return o.Payload
 }
 
@@ -105,7 +105,7 @@ func (o *GetServerOK) readResponse(response runtime.ClientResponse, consumer run
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(dsmcclientmodels.ModelsServer)
+	o.Payload = new(dsmcclientmodels.ModelsServerDetailsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

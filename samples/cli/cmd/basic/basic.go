@@ -66,6 +66,7 @@ func init() {
 	BasicCmd.AddCommand(misc.PublicGetLanguagesCmd)
 	BasicCmd.AddCommand(misc.PublicGetTimeZonesCmd)
 	BasicCmd.AddCommand(userProfile.PublicGetUserProfilePublicInfoByIdsCmd)
+	BasicCmd.AddCommand(userProfile.PublicBulkGetUserProfilePublicInfoCmd)
 	BasicCmd.AddCommand(userProfile.PublicGetUserProfileInfoByPublicIdCmd)
 	BasicCmd.AddCommand(namespace.PublicGetNamespacePublisherCmd)
 	BasicCmd.AddCommand(userProfile.GetMyProfileInfoCmd)

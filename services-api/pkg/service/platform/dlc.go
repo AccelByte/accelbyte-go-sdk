@@ -287,6 +287,20 @@ func (aaa *DLCService) SyncXboxDLC(input *dlc.SyncXboxDLCParams) error {
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetMyDLCContentShort instead.
+func (aaa *DLCService) PublicGetMyDLCContent(input *dlc.PublicGetMyDLCContentParams) (*platformclientmodels.SimpleUserDLCRewardContentsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.DLC.PublicGetMyDLCContent(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *DLCService) GetDLCItemConfigShort(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -735,4 +749,34 @@ func (aaa *DLCService) SyncXboxDLCShort(input *dlc.SyncXboxDLCParams) error {
 	}
 
 	return nil
+}
+
+func (aaa *DLCService) PublicGetMyDLCContentShort(input *dlc.PublicGetMyDLCContentParams) (*platformclientmodels.SimpleUserDLCRewardContentsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDLC != nil {
+		input.XFlightId = tempFlightIdDLC
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.DLC.PublicGetMyDLCContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }

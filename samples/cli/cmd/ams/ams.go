@@ -53,6 +53,7 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetServersCmd)
 	AmsCmd.AddCommand(servers.FleetServerHistoryCmd)
 	AmsCmd.AddCommand(images.ImageListCmd)
+	AmsCmd.AddCommand(images.ImagesStorageCmd)
 	AmsCmd.AddCommand(images.ImageGetCmd)
 	AmsCmd.AddCommand(images.ImageMarkForDeletionCmd)
 	AmsCmd.AddCommand(images.ImagePatchCmd)

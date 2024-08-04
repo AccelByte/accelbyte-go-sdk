@@ -69,7 +69,7 @@ type OauthmodelTokenWithDeviceCookieResponseV3 struct {
 	// present if it is user token
 	RefreshToken string `json:"refresh_token,omitempty"`
 
-	// present if it is user token
+	// roles is deprecated, only NamespaceRoles would work
 	Roles []string `json:"roles,omitempty"`
 
 	// scope

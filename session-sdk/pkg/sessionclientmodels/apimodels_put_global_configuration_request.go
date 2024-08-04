@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodels put global configuration request.
 type ApimodelsPutGlobalConfigurationRequest struct {
 
+	// metricexcludednamespaces
+	// Required: true
+	MetricExcludedNamespaces []string `json:"metricExcludedNamespaces"`
+
 	// regionretrymapping
 	// Required: true
 	RegionRetryMapping map[string][]string `json:"regionRetryMapping"`
@@ -43,6 +47,9 @@ type ApimodelsPutGlobalConfigurationRequest struct {
 func (m *ApimodelsPutGlobalConfigurationRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateMetricExcludedNamespaces(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateRegionURLMapping(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +66,15 @@ func (m *ApimodelsPutGlobalConfigurationRequest) Validate(formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsPutGlobalConfigurationRequest) validateMetricExcludedNamespaces(formats strfmt.Registry) error {
+
+	if err := validate.Required("metricExcludedNamespaces", "body", m.MetricExcludedNamespaces); err != nil {
+		return err
+	}
+
 	return nil
 }
 

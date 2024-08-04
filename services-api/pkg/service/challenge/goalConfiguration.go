@@ -70,7 +70,7 @@ func (aaa *GoalConfigurationService) AdminCreateGoal(input *goal_configuration.A
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.GoalConfiguration.AdminCreateGoal(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, internalServerError, err := aaa.Client.GoalConfiguration.AdminCreateGoal(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -85,6 +85,9 @@ func (aaa *GoalConfigurationService) AdminCreateGoal(input *goal_configuration.A
 	}
 	if conflict != nil {
 		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

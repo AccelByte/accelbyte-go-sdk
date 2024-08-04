@@ -20,6 +20,9 @@ type PlatformRewardItem struct {
 	// itemid
 	ItemID string `json:"itemId,omitempty"`
 
+	// itemname
+	ItemName string `json:"itemName,omitempty"`
+
 	// itemsku
 	ItemSku string `json:"itemSku,omitempty"`
 

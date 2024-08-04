@@ -278,6 +278,35 @@ func (aaa *GameSessionDetailService) AdminTicketDetailGetByTicketID(input *game_
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicQueryGameSessionMeShort instead.
+func (aaa *GameSessionDetailService) PublicQueryGameSessionMe(input *game_session_detail.PublicQueryGameSessionMeParams) (*sessionhistoryclientmodels.ApimodelsGameSessionDetailQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, tooManyRequests, internalServerError, err := aaa.Client.GameSessionDetail.PublicQueryGameSessionMe(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *GameSessionDetailService) AdminQueryGameSessionDetailShort(input *game_session_detail.AdminQueryGameSessionDetailParams) (*sessionhistoryclientmodels.ApimodelsGameSessionDetailQueryResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -541,6 +570,36 @@ func (aaa *GameSessionDetailService) AdminTicketDetailGetByTicketIDShort(input *
 	}
 
 	ok, err := aaa.Client.GameSessionDetail.AdminTicketDetailGetByTicketIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionDetailService) PublicQueryGameSessionMeShort(input *game_session_detail.PublicQueryGameSessionMeParams) (*sessionhistoryclientmodels.ApimodelsGameSessionDetailQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdGameSessionDetail != nil {
+		input.XFlightId = tempFlightIdGameSessionDetail
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.GameSessionDetail.PublicQueryGameSessionMeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -26,8 +26,10 @@ var PublicEnableBackupCodesV4Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		languageTag, _ := cmd.Flags().GetString("languageTag")
 		input := &users_v4.PublicEnableBackupCodesV4Params{
-			Namespace: namespace,
+			Namespace:   namespace,
+			LanguageTag: &languageTag,
 		}
 		errNoContent := usersV4Service.PublicEnableBackupCodesV4Short(input)
 		if errNoContent != nil {
@@ -45,4 +47,5 @@ var PublicEnableBackupCodesV4Cmd = &cobra.Command{
 func init() {
 	PublicEnableBackupCodesV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicEnableBackupCodesV4Cmd.MarkFlagRequired("namespace")
+	PublicEnableBackupCodesV4Cmd.Flags().String("languageTag", "", "Language tag")
 }

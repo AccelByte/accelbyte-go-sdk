@@ -23,6 +23,10 @@ type APIRegionConfig struct {
 	// Format: int32
 	BufferSize *int32 `json:"bufferSize"`
 
+	// dynamicbuffer
+	// Required: true
+	DynamicBuffer *bool `json:"dynamicBuffer"`
+
 	// maxservercount
 	// Required: true
 	// Format: int32
@@ -45,6 +49,9 @@ func (m *APIRegionConfig) Validate(formats strfmt.Registry) error {
 	if err := m.validateBufferSize(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateDynamicBuffer(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateMaxServerCount(formats); err != nil {
 		res = append(res, err)
 	}
@@ -64,6 +71,15 @@ func (m *APIRegionConfig) Validate(formats strfmt.Registry) error {
 func (m *APIRegionConfig) validateBufferSize(formats strfmt.Registry) error {
 
 	if err := validate.Required("bufferSize", "body", m.BufferSize); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIRegionConfig) validateDynamicBuffer(formats strfmt.Registry) error {
+
+	if err := validate.Required("dynamicBuffer", "body", m.DynamicBuffer); err != nil {
 		return err
 	}
 

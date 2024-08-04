@@ -27,11 +27,15 @@ var GetUserDLCCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		includeAllNamespaces, _ := cmd.Flags().GetBool("includeAllNamespaces")
+		status, _ := cmd.Flags().GetString("status")
 		type_, _ := cmd.Flags().GetString("type")
 		input := &dlc.GetUserDLCParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Type:      &type_,
+			Namespace:            namespace,
+			UserID:               userId,
+			IncludeAllNamespaces: &includeAllNamespaces,
+			Status:               &status,
+			Type:                 &type_,
 		}
 		ok, errOK := dlcService.GetUserDLCShort(input)
 		if errOK != nil {
@@ -51,5 +55,7 @@ func init() {
 	_ = GetUserDLCCmd.MarkFlagRequired("namespace")
 	GetUserDLCCmd.Flags().String("userId", "", "User id")
 	_ = GetUserDLCCmd.MarkFlagRequired("userId")
+	GetUserDLCCmd.Flags().Bool("includeAllNamespaces", false, "Include all namespaces")
+	GetUserDLCCmd.Flags().String("status", "", "Status")
 	GetUserDLCCmd.Flags().String("type", "", "Type")
 }

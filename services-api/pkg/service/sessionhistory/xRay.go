@@ -560,6 +560,32 @@ func (aaa *XRayService) QueryTotalMatchmakingMatchTicket(input *x_ray.QueryTotal
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use CreateXrayTicketObservabilityShort instead.
+func (aaa *XRayService) CreateXrayTicketObservability(input *x_ray.CreateXrayTicketObservabilityParams) (*sessionhistoryclientmodels.ApimodelsXRayTicketObservabilityResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.XRay.CreateXrayTicketObservability(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use QueryXrayTimelineByTicketIDShort instead.
 func (aaa *XRayService) QueryXrayTimelineByTicketID(input *x_ray.QueryXrayTimelineByTicketIDParams) (*sessionhistoryclientmodels.ApimodelsXRayTicketQueryResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1151,6 +1177,36 @@ func (aaa *XRayService) QueryTotalMatchmakingMatchTicketShort(input *x_ray.Query
 	}
 
 	ok, err := aaa.Client.XRay.QueryTotalMatchmakingMatchTicketShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *XRayService) CreateXrayTicketObservabilityShort(input *x_ray.CreateXrayTicketObservabilityParams) (*sessionhistoryclientmodels.ApimodelsXRayTicketObservabilityResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdXRay != nil {
+		input.XFlightId = tempFlightIdXRay
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.XRay.CreateXrayTicketObservabilityShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

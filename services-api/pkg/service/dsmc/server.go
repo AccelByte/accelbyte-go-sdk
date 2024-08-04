@@ -58,6 +58,26 @@ func (aaa *ServerService) ListServerClient(input *server.ListServerClientParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use CountServerDetailedClientShort instead.
+func (aaa *ServerService) CountServerDetailedClient(input *server.CountServerDetailedClientParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, internalServerError, err := aaa.Client.Server.CountServerDetailedClient(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use ServerHeartbeatShort instead.
 func (aaa *ServerService) ServerHeartbeat(input *server.ServerHeartbeatParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -263,6 +283,36 @@ func (aaa *ServerService) ListServerClientShort(input *server.ListServerClientPa
 	}
 
 	ok, err := aaa.Client.Server.ListServerClientShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ServerService) CountServerDetailedClientShort(input *server.CountServerDetailedClientParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdServer != nil {
+		input.XFlightId = tempFlightIdServer
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Server.CountServerDetailedClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -21,6 +21,9 @@ type ApimodelsPublicConfiguration struct {
 	// psnbaseurl
 	PSNBaseURL string `json:"PSNBaseURL,omitempty"`
 
+	// appname
+	AppName string `json:"appName,omitempty"`
+
 	// attributes
 	Attributes interface{} `json:"attributes,omitempty"`
 
@@ -41,6 +44,9 @@ type ApimodelsPublicConfiguration struct {
 
 	// disablecodegeneration
 	DisableCodeGeneration bool `json:"disableCodeGeneration"`
+
+	// disableresendinvite
+	DisableResendInvite bool `json:"disableResendInvite"`
 
 	// dsmanualsetready
 	DsManualSetReady bool `json:"dsManualSetReady"`

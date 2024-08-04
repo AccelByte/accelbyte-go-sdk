@@ -114,33 +114,42 @@ type AdminSearchUserV3Params struct {
 	PlatformBy *string
 	/*PlatformID
 	    Platform Id that want to be searched.
-	Supported Platform:
-	- Steam group(steamnetwork):
+
+	**Supported Platforms:**
+	- Steam group (steamnetwork):
 		- steam
 		- steamopenid
-	- PSN group(psn)
+	- PSN group (psn):
 		- ps4web
 		- ps4
 		- ps5
-	- XBOX group(xbox)
+	- XBOX group(xbox):
 		- live
 		- xblweb
-	- Oculus group(oculusgroup)
+	- Oculus group (oculusgroup):
 		- oculus
 		- oculusweb
-	- epicgames
-	- nintendo
-	- aws cognito
-	- facebook
-	- google group
+	- Google group (google):
 		- google
-		- googleplaygames
-	- discord
+		- googleplaygames:
+	- epicgames
+	- facebook
 	- twitch
-	- snapchat
+	- discord
+	- android
+	- ios
+	- apple
+	- device
+	- nintendo
+	- awscognito
 	- amazon
+	- netflix
+	- snapchat
+	- _oidc platform id_
 
-	Note: you can use either platform ID or platform group as platformId query parameter
+	Note:
+	- You can use either platform id or platform group as **platformId** parameter.
+	- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
 
 	*/
 	PlatformID *string

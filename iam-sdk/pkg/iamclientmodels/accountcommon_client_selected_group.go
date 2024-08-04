@@ -24,7 +24,8 @@ type AccountcommonClientSelectedGroup struct {
 
 	// selectedactions
 	// Required: true
-	SelectedActions []int64 `json:"selectedActions"`
+	// Format: int32
+	SelectedActions []int32 `json:"selectedActions"`
 }
 
 // Validate validates this Accountcommon client selected group

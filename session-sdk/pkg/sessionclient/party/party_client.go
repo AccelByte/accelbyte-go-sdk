@@ -38,9 +38,9 @@ type ClientService interface {
 	PublicPartyJoinCodeShort(params *PublicPartyJoinCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyJoinCodeOK, error)
 	PublicGetParty(params *PublicGetPartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyOK, *PublicGetPartyUnauthorized, *PublicGetPartyNotFound, *PublicGetPartyInternalServerError, error)
 	PublicGetPartyShort(params *PublicGetPartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyOK, error)
-	PublicUpdateParty(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, *PublicUpdatePartyBadRequest, *PublicUpdatePartyUnauthorized, *PublicUpdatePartyForbidden, *PublicUpdatePartyNotFound, *PublicUpdatePartyInternalServerError, error)
+	PublicUpdateParty(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, *PublicUpdatePartyBadRequest, *PublicUpdatePartyUnauthorized, *PublicUpdatePartyForbidden, *PublicUpdatePartyNotFound, *PublicUpdatePartyConflict, *PublicUpdatePartyInternalServerError, error)
 	PublicUpdatePartyShort(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, error)
-	PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, *PublicPatchUpdatePartyBadRequest, *PublicPatchUpdatePartyUnauthorized, *PublicPatchUpdatePartyForbidden, *PublicPatchUpdatePartyNotFound, *PublicPatchUpdatePartyInternalServerError, error)
+	PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, *PublicPatchUpdatePartyBadRequest, *PublicPatchUpdatePartyUnauthorized, *PublicPatchUpdatePartyForbidden, *PublicPatchUpdatePartyNotFound, *PublicPatchUpdatePartyConflict, *PublicPatchUpdatePartyInternalServerError, error)
 	PublicPatchUpdatePartyShort(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, error)
 	PublicGeneratePartyCode(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, *PublicGeneratePartyCodeBadRequest, *PublicGeneratePartyCodeUnauthorized, *PublicGeneratePartyCodeForbidden, *PublicGeneratePartyCodeNotFound, *PublicGeneratePartyCodeInternalServerError, error)
 	PublicGeneratePartyCodeShort(params *PublicGeneratePartyCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratePartyCodeOK, error)
@@ -56,6 +56,8 @@ type ClientService interface {
 	PublicPartyLeaveShort(params *PublicPartyLeaveParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyLeaveNoContent, error)
 	PublicPartyReject(params *PublicPartyRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyRejectNoContent, *PublicPartyRejectBadRequest, *PublicPartyRejectUnauthorized, *PublicPartyRejectForbidden, *PublicPartyRejectNotFound, *PublicPartyRejectInternalServerError, error)
 	PublicPartyRejectShort(params *PublicPartyRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyRejectNoContent, error)
+	PublicPartyCancel(params *PublicPartyCancelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyCancelNoContent, *PublicPartyCancelBadRequest, *PublicPartyCancelUnauthorized, *PublicPartyCancelForbidden, *PublicPartyCancelNotFound, *PublicPartyCancelInternalServerError, error)
+	PublicPartyCancelShort(params *PublicPartyCancelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyCancelNoContent, error)
 	PublicPartyKick(params *PublicPartyKickParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyKickOK, *PublicPartyKickBadRequest, *PublicPartyKickUnauthorized, *PublicPartyKickForbidden, *PublicPartyKickNotFound, *PublicPartyKickInternalServerError, error)
 	PublicPartyKickShort(params *PublicPartyKickParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyKickOK, error)
 	PublicCreateParty(params *PublicCreatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreatePartyOK, *PublicCreatePartyBadRequest, *PublicCreatePartyUnauthorized, *PublicCreatePartyInternalServerError, error)
@@ -541,7 +543,7 @@ Reserved attributes key:
 the session regardless the leader changes.
 2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
 */
-func (a *Client) PublicUpdateParty(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, *PublicUpdatePartyBadRequest, *PublicUpdatePartyUnauthorized, *PublicUpdatePartyForbidden, *PublicUpdatePartyNotFound, *PublicUpdatePartyInternalServerError, error) {
+func (a *Client) PublicUpdateParty(params *PublicUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyOK, *PublicUpdatePartyBadRequest, *PublicUpdatePartyUnauthorized, *PublicUpdatePartyForbidden, *PublicUpdatePartyNotFound, *PublicUpdatePartyConflict, *PublicUpdatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUpdatePartyParams()
@@ -573,31 +575,34 @@ func (a *Client) PublicUpdateParty(params *PublicUpdatePartyParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUpdatePartyOK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdatePartyBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUpdatePartyUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PublicUpdatePartyForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUpdatePartyNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdatePartyConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUpdatePartyInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -658,6 +663,8 @@ func (a *Client) PublicUpdatePartyShort(params *PublicUpdatePartyParams, authInf
 		return nil, v
 	case *PublicUpdatePartyNotFound:
 		return nil, v
+	case *PublicUpdatePartyConflict:
+		return nil, v
 	case *PublicUpdatePartyInternalServerError:
 		return nil, v
 
@@ -677,7 +684,7 @@ Reserved attributes key:
 the session regardless the leader changes.
 2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
 */
-func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, *PublicPatchUpdatePartyBadRequest, *PublicPatchUpdatePartyUnauthorized, *PublicPatchUpdatePartyForbidden, *PublicPatchUpdatePartyNotFound, *PublicPatchUpdatePartyInternalServerError, error) {
+func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPatchUpdatePartyOK, *PublicPatchUpdatePartyBadRequest, *PublicPatchUpdatePartyUnauthorized, *PublicPatchUpdatePartyForbidden, *PublicPatchUpdatePartyNotFound, *PublicPatchUpdatePartyConflict, *PublicPatchUpdatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicPatchUpdatePartyParams()
@@ -709,31 +716,34 @@ func (a *Client) PublicPatchUpdateParty(params *PublicPatchUpdatePartyParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicPatchUpdatePartyOK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *PublicPatchUpdatePartyBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *PublicPatchUpdatePartyUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *PublicPatchUpdatePartyForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *PublicPatchUpdatePartyNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicPatchUpdatePartyConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *PublicPatchUpdatePartyInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -788,6 +798,8 @@ func (a *Client) PublicPatchUpdatePartyShort(params *PublicPatchUpdatePartyParam
 	case *PublicPatchUpdatePartyForbidden:
 		return nil, v
 	case *PublicPatchUpdatePartyNotFound:
+		return nil, v
+	case *PublicPatchUpdatePartyConflict:
 		return nil, v
 	case *PublicPatchUpdatePartyInternalServerError:
 		return nil, v
@@ -1645,6 +1657,127 @@ func (a *Client) PublicPartyRejectShort(params *PublicPartyRejectParams, authInf
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicPartyCancelShort instead.
+
+PublicPartyCancel cancel a party invitation.
+Cancel a party invitation.
+*/
+func (a *Client) PublicPartyCancel(params *PublicPartyCancelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyCancelNoContent, *PublicPartyCancelBadRequest, *PublicPartyCancelUnauthorized, *PublicPartyCancelForbidden, *PublicPartyCancelNotFound, *PublicPartyCancelInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPartyCancelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicPartyCancel",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/users/{userId}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPartyCancelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPartyCancelNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicPartyCancelBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicPartyCancelUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicPartyCancelForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicPartyCancelNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicPartyCancelInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicPartyCancelShort cancel a party invitation.
+Cancel a party invitation.
+*/
+func (a *Client) PublicPartyCancelShort(params *PublicPartyCancelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPartyCancelNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPartyCancelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicPartyCancel",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/users/{userId}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPartyCancelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPartyCancelNoContent:
+		return v, nil
+	case *PublicPartyCancelBadRequest:
+		return nil, v
+	case *PublicPartyCancelUnauthorized:
+		return nil, v
+	case *PublicPartyCancelForbidden:
+		return nil, v
+	case *PublicPartyCancelNotFound:
+		return nil, v
+	case *PublicPartyCancelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicPartyKickShort instead.
 
 PublicPartyKick kick a player from a party.
@@ -1770,8 +1903,9 @@ Deprecated: 2022-08-10 - Use PublicCreatePartyShort instead.
 
 PublicCreateParty create a party.
 A join code will be autogenerated if the party is joinable.
-Creator will be removed from previous party (if any) and automatically join into the created party as a leader.
-Party members will be sent invitation to join the party.
+
+A user can be in 1 party at a time, therefore the requester will be removed from their previous party (if any) and automatically added/joined into this newly created party as a leader.
+
 Session configuration name is optional.
 Default configuration name if empty:
 {
@@ -1784,6 +1918,16 @@ Default configuration name if empty:
 "inactiveTimeout": 60,
 "textChat": false
 }
+When session configuration "name" is provided, we will refer to the template if these fields are empty:
+- textChat
+- minPlayers
+- maxPlayers
+- inviteTimeout
+- inactiveTimeout
+- type
+- joinability
+- configurationName
+- attributes
 
 Supported platforms:
 1. STEAM
@@ -1794,6 +1938,32 @@ Reserved attributes key:
 1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
 the session regardless the leader changes.
 2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
+Session has 2 fields for user status: "status" and "statusV2". The "status" is there for backward-compatibility, therefore we encourage to just rely on "statusV2" for the more updated statuses.
+
+User statuses:
+1. INVITED: by default, to join a session (except session with OPEN joinability or if session configuration has "autoJoin" sets to True) a user will receive an invite. The invitee will have the chance to respond within "inviteTimeout" which you can configure through session configuration.
+2. TIMEOUT: when a user is invited to a session, they will receive an invite. Unless "disableResendInvite" sets to True in the session configuration, the user will also receive invite reminder every 30s until they respond to the invite.
+3. REJECTED: when a user rejects an invite. To rejoin an INVITE_ONLY session, they will need to be re-invited and accept the invite.
+4. JOINED: there are few ways of a user to join a session, by invite, direct join (depends on session joinability) or join by code. upon invite, once a user accepts an invite, their status will be changed to JOINED.
+5. LEFT: user can leave a session. in case of party, a user can only be in 1 party at a time. therefore when they decide to create or join another party, they will be automatically removed from their initial party and their status will be changed to LEFT.
+6. KICKED: only party leader can kick a member.
+7. DISCONNECTED: if user still have reserved seat in the session and they disconnect lobby websocket, their status in the session will be changed to DISCONNECTED and field "members.previousStatus" of that user will contains the initial status before they disconnect lobby websocket. the user will be given chance to reconnect within "inactiveTimeout" which you can configure through session configuration.
+8. CONNECTED: when a user reconnect their lobby websocket, their status will change from DISCONNECTED to CONNECTED, only if they previously JOINED session. if they were on INVITED state before the disconnect happened, the user's status will return back to INVITED after they reconnect.
+9. DROPPED: when "inactiveTimeout" is due and user never re-establish their websocket connection, we will drop them from the session.
+10. TERMINATED: only applies to game session. If a game session (match) is ended, DS will end/delete the session and we will mark all remaining users' status to be TERMINATED.
+11. CANCELLED: when a session joinability changes to CLOSED, any remaining invites will be canceled.
+
+User is considered as active if they're present in the session, which their status either CONNECTED or JOINED.
+User has a reserved seat in the session if their status either INVITED, JOINED, CONNECTED, DISCONNECTED. When user's' status change to other than these mentioned statuses, we will release the seat for other players to occupy.
+
+Managing the relation between session and lobby websocket connection:
+- Session relies on lobby to consider player's connection health to our backend. therefore a disruption to lobby websocket will be reflected in the user's status in all of their session(s).
+- If user still have a reserved seat in the session and they disconnect lobby websocket, their status in session(s) will be changed to DISCONNECTED and field "members.previousStatus" of that user will contains the initial status before they disconnect lobby websocket. This "members.previousStatus" used to track user's previous status before they disconnect websocket, since we still reserve a seat for them, therefore this field will be empty again after they websocket.
+- If the disconnected user is the leader of the session they're disconnected from, we will wait until "leaderElectionGracePeriod" is due, to promote the next oldest member as the new leader of the session. You can configure "leaderElectionGracePeriod" through session configuration.
+- The user will be given chance to reconnect within "inactiveTimeout" which you can configure through session configuration. If until "inactiveTimeout" is due and the user doesn't reconnect their websocket, they will be removed from session and their status will change to DROPPED. If the dropped user was the leader of the session, we will promote the next oldest member as leader.
+- By default, we will update user's status to what it was before disconnect, when the user reconnects lobby websocket, unless "manualRejoin" sets to True in the session configuration. When "manualRejoin" is enabled, after lobby websocket reconnect, the game client will need to manually invoke join session again to rejoin the session.
+- If the user was on INVITED state before the disconnect happened, the user's status will return back to INVITED after they reconnect.
 */
 func (a *Client) PublicCreateParty(params *PublicCreatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreatePartyOK, *PublicCreatePartyBadRequest, *PublicCreatePartyUnauthorized, *PublicCreatePartyInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1852,8 +2022,9 @@ func (a *Client) PublicCreateParty(params *PublicCreatePartyParams, authInfo run
 /*
 PublicCreatePartyShort create a party.
 A join code will be autogenerated if the party is joinable.
-Creator will be removed from previous party (if any) and automatically join into the created party as a leader.
-Party members will be sent invitation to join the party.
+
+A user can be in 1 party at a time, therefore the requester will be removed from their previous party (if any) and automatically added/joined into this newly created party as a leader.
+
 Session configuration name is optional.
 Default configuration name if empty:
 {
@@ -1866,6 +2037,16 @@ Default configuration name if empty:
 "inactiveTimeout": 60,
 "textChat": false
 }
+When session configuration "name" is provided, we will refer to the template if these fields are empty:
+- textChat
+- minPlayers
+- maxPlayers
+- inviteTimeout
+- inactiveTimeout
+- type
+- joinability
+- configurationName
+- attributes
 
 Supported platforms:
 1. STEAM
@@ -1876,6 +2057,32 @@ Reserved attributes key:
 1. preference: used to store preference of the leader and it is non-replaceable to keep the initial behavior of
 the session regardless the leader changes.
 2. NATIVESESSIONTITLE: used for session sync, to define name of session displayed on PlayStation system UI.
+
+Session has 2 fields for user status: "status" and "statusV2". The "status" is there for backward-compatibility, therefore we encourage to just rely on "statusV2" for the more updated statuses.
+
+User statuses:
+1. INVITED: by default, to join a session (except session with OPEN joinability or if session configuration has "autoJoin" sets to True) a user will receive an invite. The invitee will have the chance to respond within "inviteTimeout" which you can configure through session configuration.
+2. TIMEOUT: when a user is invited to a session, they will receive an invite. Unless "disableResendInvite" sets to True in the session configuration, the user will also receive invite reminder every 30s until they respond to the invite.
+3. REJECTED: when a user rejects an invite. To rejoin an INVITE_ONLY session, they will need to be re-invited and accept the invite.
+4. JOINED: there are few ways of a user to join a session, by invite, direct join (depends on session joinability) or join by code. upon invite, once a user accepts an invite, their status will be changed to JOINED.
+5. LEFT: user can leave a session. in case of party, a user can only be in 1 party at a time. therefore when they decide to create or join another party, they will be automatically removed from their initial party and their status will be changed to LEFT.
+6. KICKED: only party leader can kick a member.
+7. DISCONNECTED: if user still have reserved seat in the session and they disconnect lobby websocket, their status in the session will be changed to DISCONNECTED and field "members.previousStatus" of that user will contains the initial status before they disconnect lobby websocket. the user will be given chance to reconnect within "inactiveTimeout" which you can configure through session configuration.
+8. CONNECTED: when a user reconnect their lobby websocket, their status will change from DISCONNECTED to CONNECTED, only if they previously JOINED session. if they were on INVITED state before the disconnect happened, the user's status will return back to INVITED after they reconnect.
+9. DROPPED: when "inactiveTimeout" is due and user never re-establish their websocket connection, we will drop them from the session.
+10. TERMINATED: only applies to game session. If a game session (match) is ended, DS will end/delete the session and we will mark all remaining users' status to be TERMINATED.
+11. CANCELLED: when a session joinability changes to CLOSED, any remaining invites will be canceled.
+
+User is considered as active if they're present in the session, which their status either CONNECTED or JOINED.
+User has a reserved seat in the session if their status either INVITED, JOINED, CONNECTED, DISCONNECTED. When user's' status change to other than these mentioned statuses, we will release the seat for other players to occupy.
+
+Managing the relation between session and lobby websocket connection:
+- Session relies on lobby to consider player's connection health to our backend. therefore a disruption to lobby websocket will be reflected in the user's status in all of their session(s).
+- If user still have a reserved seat in the session and they disconnect lobby websocket, their status in session(s) will be changed to DISCONNECTED and field "members.previousStatus" of that user will contains the initial status before they disconnect lobby websocket. This "members.previousStatus" used to track user's previous status before they disconnect websocket, since we still reserve a seat for them, therefore this field will be empty again after they websocket.
+- If the disconnected user is the leader of the session they're disconnected from, we will wait until "leaderElectionGracePeriod" is due, to promote the next oldest member as the new leader of the session. You can configure "leaderElectionGracePeriod" through session configuration.
+- The user will be given chance to reconnect within "inactiveTimeout" which you can configure through session configuration. If until "inactiveTimeout" is due and the user doesn't reconnect their websocket, they will be removed from session and their status will change to DROPPED. If the dropped user was the leader of the session, we will promote the next oldest member as leader.
+- By default, we will update user's status to what it was before disconnect, when the user reconnects lobby websocket, unless "manualRejoin" sets to True in the session configuration. When "manualRejoin" is enabled, after lobby websocket reconnect, the game client will need to manually invoke join session again to rejoin the session.
+- If the user was on INVITED state before the disconnect happened, the user's status will return back to INVITED after they reconnect.
 */
 func (a *Client) PublicCreatePartyShort(params *PublicCreatePartyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreatePartyOK, error) {
 	// TODO: Validate the params before sending

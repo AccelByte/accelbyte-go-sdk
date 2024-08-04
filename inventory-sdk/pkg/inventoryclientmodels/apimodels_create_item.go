@@ -46,6 +46,9 @@ type ApimodelsCreateItem struct {
 	// Format: int32
 	SlotUsed *int32 `json:"slotUsed"`
 
+	// source
+	Source string `json:"source,omitempty"`
+
 	// sourceitemid
 	// Required: true
 	SourceItemID *string `json:"sourceItemId"`

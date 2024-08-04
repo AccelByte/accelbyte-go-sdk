@@ -64,6 +64,11 @@ type PublicRequestDataRetrievalParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*LanguageTag
+	  Language tag
+
+	*/
+	LanguageTag *string
 	/*Password
 	  IAM password of the user
 
@@ -145,6 +150,17 @@ func (o *PublicRequestDataRetrievalParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithLanguageTag adds the languageTag to the public request data retrieval params
+func (o *PublicRequestDataRetrievalParams) WithLanguageTag(languageTag *string) *PublicRequestDataRetrievalParams {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the public request data retrieval params
+func (o *PublicRequestDataRetrievalParams) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WithPassword adds the password to the public request data retrieval params
 func (o *PublicRequestDataRetrievalParams) WithPassword(password string) *PublicRequestDataRetrievalParams {
 	o.SetPassword(password)
@@ -185,6 +201,22 @@ func (o *PublicRequestDataRetrievalParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.LanguageTag != nil {
+
+		// form param languageTag
+		var frLanguageTag string
+		if o.LanguageTag != nil {
+			frLanguageTag = *o.LanguageTag
+		}
+		fLanguageTag := frLanguageTag
+		if fLanguageTag != "" {
+			if err := r.SetFormParam("languageTag", fLanguageTag); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// form param password
 	frPassword := o.Password

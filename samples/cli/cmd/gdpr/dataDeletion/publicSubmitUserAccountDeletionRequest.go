@@ -28,10 +28,12 @@ var PublicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		languageTag, _ := cmd.Flags().GetString("languageTag")
 		input := &data_deletion.PublicSubmitUserAccountDeletionRequestParams{
-			Password:  password,
-			Namespace: namespace,
-			UserID:    userId,
+			LanguageTag: &languageTag,
+			Password:    password,
+			Namespace:   namespace,
+			UserID:      userId,
 		}
 		created, errCreated := dataDeletionService.PublicSubmitUserAccountDeletionRequestShort(input)
 		if errCreated != nil {
@@ -47,6 +49,7 @@ var PublicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
+	PublicSubmitUserAccountDeletionRequestCmd.Flags().String("languageTag", "", "Language tag")
 	PublicSubmitUserAccountDeletionRequestCmd.Flags().String("password", "", "Password")
 	_ = PublicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("password")
 	PublicSubmitUserAccountDeletionRequestCmd.Flags().String("namespace", "", "Namespace")

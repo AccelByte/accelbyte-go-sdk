@@ -44,6 +44,9 @@ type PlatformWallet struct {
 	// Enum: ['ACTIVE', 'INACTIVE']
 	Status string `json:"status,omitempty"`
 
+	// transaction id
+	TransactionID string `json:"transactionId,omitempty"`
+
 	// user id
 	// Required: true
 	UserID *string `json:"userId"`

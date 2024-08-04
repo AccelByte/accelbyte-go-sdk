@@ -57,6 +57,12 @@ func (o *UpdateGameSessionReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewUpdateGameSessionConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewUpdateGameSessionInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -323,6 +329,59 @@ func (o *UpdateGameSessionNotFound) GetPayload() *sessionclientmodels.ResponseEr
 }
 
 func (o *UpdateGameSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(sessionclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateGameSessionConflict creates a UpdateGameSessionConflict with default headers values
+func NewUpdateGameSessionConflict() *UpdateGameSessionConflict {
+	return &UpdateGameSessionConflict{}
+}
+
+/*UpdateGameSessionConflict handles this case with default header values.
+
+  Conflict
+*/
+type UpdateGameSessionConflict struct {
+	Payload *sessionclientmodels.ResponseError
+}
+
+func (o *UpdateGameSessionConflict) Error() string {
+	return fmt.Sprintf("[PUT /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}][%d] updateGameSessionConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *UpdateGameSessionConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateGameSessionConflict) GetPayload() *sessionclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *UpdateGameSessionConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

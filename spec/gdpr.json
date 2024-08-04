@@ -8,14 +8,14 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.11.0"
+    "version": "2.12.0"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/gdpr/apidocs"
+    "url": "https://stage.accelbyte.io/gdpr/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -2000,6 +2000,12 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Language tag",
+            "in": "formData",
+            "name": "languageTag",
+            "type": "string"
           }
         ],
         "produces": [
@@ -2241,6 +2247,12 @@
             "in": "path",
             "name": "userId",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Language tag",
+            "in": "formData",
+            "name": "languageTag",
             "type": "string"
           }
         ],
@@ -3675,15 +3687,15 @@
   },
   "x-docs": {
     "alias": "gdpr",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-06-14T10:43:15+00:00",
-    "gitHash": "3c797ee2fc36b6fcca115748937c3dfd86234b98",
+    "buildDate": "2024-07-23T09:18:09+00:00",
+    "gitHash": "5e2d6a15eedcf81bf87db5fcfe213d1cdd073475",
     "name": "justice-gdpr-service",
-    "realm": "demo",
-    "version": "2.11.0",
+    "realm": "staging",
+    "version": "2.12.0",
     "version-roles-seeding": "1.2.39"
   }
 }

@@ -20,7 +20,7 @@ type ModelsGetImageDetailResponse struct {
 
 	// data
 	// Required: true
-	Data *ModelsImageRecord `json:"data"`
+	Data *ModelsImageRecordResponse `json:"data"`
 }
 
 // Validate validates this Models get image detail response

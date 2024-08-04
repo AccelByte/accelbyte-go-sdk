@@ -26,6 +26,7 @@ func init() {
 	DslogmanagerCmd.AddCommand(terminatedServers.DownloadServerLogsCmd)
 	DslogmanagerCmd.AddCommand(terminatedServers.CheckServerLogsCmd)
 	DslogmanagerCmd.AddCommand(allTerminatedServers.BatchDownloadServerLogsCmd)
+	DslogmanagerCmd.AddCommand(allTerminatedServers.ListMetadataServersCmd)
 	DslogmanagerCmd.AddCommand(allTerminatedServers.ListAllTerminatedServersCmd)
 	DslogmanagerCmd.AddCommand(dslogmanagerOperations.PublicGetMessagesCmd)
 }

@@ -33,6 +33,12 @@ func (o *AdminRandomizeChallengeReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminRandomizeChallengeBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminRandomizeChallengeUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -113,6 +119,59 @@ func (o *AdminRandomizeChallengeOK) readResponse(response runtime.ClientResponse
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminRandomizeChallengeBadRequest creates a AdminRandomizeChallengeBadRequest with default headers values
+func NewAdminRandomizeChallengeBadRequest() *AdminRandomizeChallengeBadRequest {
+	return &AdminRandomizeChallengeBadRequest{}
+}
+
+/*AdminRandomizeChallengeBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20018</td><td>bad request: {{message}}</td></tr></table>
+*/
+type AdminRandomizeChallengeBadRequest struct {
+	Payload *challengeclientmodels.IamErrorResponse
+}
+
+func (o *AdminRandomizeChallengeBadRequest) Error() string {
+	return fmt.Sprintf("[POST /challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/randomize][%d] adminRandomizeChallengeBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminRandomizeChallengeBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminRandomizeChallengeBadRequest) GetPayload() *challengeclientmodels.IamErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminRandomizeChallengeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(challengeclientmodels.IamErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

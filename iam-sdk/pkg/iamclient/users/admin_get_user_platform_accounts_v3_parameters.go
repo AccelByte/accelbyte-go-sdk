@@ -76,17 +76,17 @@ type AdminGetUserPlatformAccountsV3Params struct {
 	*/
 	UserID string
 	/*After
-	  The cursor that points to query data for the next page
+	  DEPRECATED. The cursor that points to query data for the next page
 
 	*/
 	After *string
 	/*Before
-	  The cursor that points to query data for the previous page
+	  DEPRECATED. The cursor that points to query data for the previous page
 
 	*/
 	Before *string
 	/*Limit
-	  the maximum number of data that may be returned (1...100)
+	  DEPRECATED. the maximum number of data that may be returned (1...100)
 
 	*/
 	Limit *int64

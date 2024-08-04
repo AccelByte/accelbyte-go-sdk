@@ -128,7 +128,7 @@ func NewPublicListUserIDByPlatformUserIDsV4BadRequest() *PublicListUserIDByPlatf
 
 /*PublicListUserIDByPlatformUserIDsV4BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10229</td><td>request body exceed max limitation</td></tr></table>
 */
 type PublicListUserIDByPlatformUserIDsV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

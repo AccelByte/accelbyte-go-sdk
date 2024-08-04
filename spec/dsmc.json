@@ -3,14 +3,14 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "6.4.7"
+    "version": "6.8.2"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/dsmcontroller/apidocs"
+    "url": "https://stage.accelbyte.io/dsmcontroller/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -26,6 +26,9 @@
         "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]",
         "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]",
+        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]",
         "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]": "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]",
         "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]": "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]",
         "NAMESPACE:{namespace}:DSM:CONFIG [READ]": "NAMESPACE:{namespace}:DSM:CONFIG [READ]",
@@ -200,6 +203,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "404": {
+            "description": "the image is not exist in the container registry",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "409": {
             "description": "conflict. duplicate image version record",
             "schema": {
@@ -284,75 +293,6 @@
           }
         ],
         "summary": "Update image",
-        "tags": [
-          "Image Config"
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/dsmcontroller/admin/images/import": {
-      "post": {
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint import a dedicated servers images in a namespace.\n\nThe image will be upsert. Existing version will be replaced with imported image, will create new one if not found.\n\nExample data inside imported file\n[\n  {\n\t\u0026#34;namespace\u0026#34;: \u0026#34;dewa\u0026#34;,\n\t\u0026#34;image\u0026#34;: \u0026#34;123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha\u0026#34;,\n\t\u0026#34;version\u0026#34;: \u0026#34;0.0.1\u0026#34;,\n\t\u0026#34;persistent\u0026#34;: true\n  }\n]\n",
-        "operationId": "ImportImages",
-        "parameters": [
-          {
-            "description": "imported file",
-            "in": "formData",
-            "name": "file",
-            "required": true,
-            "type": "file"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "images imported",
-            "schema": {
-              "$ref": "#/definitions/models.ImportResponse"
-            }
-          },
-          "400": {
-            "description": "malformed request",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "401": {
-            "description": "unauthorized access",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "403": {
-            "description": "forbidden access",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "import images for a namespace",
         "tags": [
           "Image Config"
         ],
@@ -470,6 +410,216 @@
         "summary": "Get lowest instance spec.",
         "tags": [
           "Pod Config"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/dsmcontroller/admin/namespace/{namespace}/workers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint retrieves a worker configuration to control the worker in the DSMC.",
+        "operationId": "getWorkerConfig",
+        "parameters": [
+          {
+            "description": "the namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The worker configuration has been successfully retrieved.",
+            "schema": {
+              "$ref": "#/definitions/models.WorkerConfig"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get worker configuration",
+        "tags": [
+          "Admin"
+        ],
+        "x-errorCodes": {}
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint creates a worker configuration to control the worker in the DSMC.",
+        "operationId": "createWorkerConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.WorkerConfigRequest"
+            }
+          },
+          {
+            "description": "the namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "The worker configuration has been successfully created.",
+            "schema": {
+              "$ref": "#/definitions/models.WorkerConfig"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create worker configuration",
+        "tags": [
+          "Admin"
+        ],
+        "x-errorCodes": {}
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint updates a worker configuration to control the worker in the DSMC.",
+        "operationId": "updateWorkerConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.WorkerConfigRequest"
+            }
+          },
+          {
+            "description": "the namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "The worker configuration has been successfully updated."
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update worker configuration",
+        "tags": [
+          "Admin"
         ],
         "x-errorCodes": {}
       }
@@ -2029,6 +2179,86 @@
         "x-errorCodes": {}
       }
     },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/versions/{version}/queues": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint deletes the deployment creating server count queue in a namespace in all registered region for the selected version",
+        "operationId": "DeleteCreatingServerCountQueue",
+        "parameters": [
+          {
+            "description": "deployment name",
+            "in": "path",
+            "name": "deployment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "version",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment creating server count queue deleted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete creating server count deployment queue",
+        "tags": [
+          "Deployment Config"
+        ],
+        "x-errorCodes": {}
+      }
+    },
     "/dsmcontroller/admin/namespaces/{namespace}/configs/pods": {
       "get": {
         "consumes": [
@@ -2865,78 +3095,6 @@
         "x-errorCodes": {}
       }
     },
-    "/dsmcontroller/admin/namespaces/{namespace}/images/export": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint export a dedicated servers images in a namespace.\n",
-        "operationId": "ExportImages",
-        "parameters": [
-          {
-            "description": "namespace of the game",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "images exported",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/models.ImageRecord"
-              },
-              "type": "array"
-            }
-          },
-          "401": {
-            "description": "unauthorized access",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "403": {
-            "description": "forbidden access",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "404": {
-            "description": "images not found",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "export DSM Controller images for a namespace",
-        "tags": [
-          "Image Config"
-        ],
-        "x-errorCodes": {}
-      }
-    },
     "/dsmcontroller/admin/namespaces/{namespace}/images/limit": {
       "get": {
         "consumes": [
@@ -3300,6 +3458,83 @@
         "summary": "DS Image patch Detail",
         "tags": [
           "Image Config"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/manual/buffer/add": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\nRequired scope: social\n\nThis endpoint manually adds buffer for selected namespace and deployment\nx Job will contain y num of allocs.\n\nRegion can be filled with comma-separated values.\nuse * as region name to deploy to all region specified in the deployment\u0026#39;s region list\n\nif JobPriority set to 0, we will use 80 as default value for job priority\n\nOverrideVersion will be used as override version for the new allocations.\nIf OverrideVersion is empty, will use version in the deployment.\n```",
+        "operationId": "AddBuffer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AddBufferRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "buffer requested",
+            "schema": {
+              "$ref": "#/definitions/models.AddBufferResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Manual Add Buffer",
+        "tags": [
+          "Admin"
         ],
         "x-errorCodes": {}
       }
@@ -3777,7 +4012,7 @@
           "200": {
             "description": "server queried",
             "schema": {
-              "$ref": "#/definitions/models.Server"
+              "$ref": "#/definitions/models.ServerDetailsResponse"
             }
           },
           "401": {
@@ -4019,6 +4254,110 @@
           }
         ],
         "summary": "Delete a session in a region",
+        "tags": [
+          "Admin"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/workers/ghost": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]\n\nRequired scope: social\n\nThis endpoint run ghost cleaner once.",
+        "operationId": "RunGhostCleanerRequestHandler",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "worker ran"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Run Ghost Cleaner",
+        "tags": [
+          "Admin"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/workers/zombie": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]\nRequired scope: social\n\nThis endpoint run zombie cleaner once\n\nuse * as region name to target all regions\n```",
+        "operationId": "RunZombieCleanerRequestHandler",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DeleteZombieRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "worker ran"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Run Zombie Cleaner",
         "tags": [
           "Admin"
         ],
@@ -4386,6 +4725,80 @@
           }
         ],
         "summary": "Delete Deployment for client",
+        "tags": [
+          "Deployment Config"
+        ],
+        "x-errorCodes": {}
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a dedicated server deployment in a namespace",
+        "operationId": "GetDeploymentClient",
+        "parameters": [
+          {
+            "description": "deployment name",
+            "in": "path",
+            "name": "deployment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get Deployment for Client",
         "tags": [
           "Deployment Config"
         ],
@@ -5022,6 +5435,69 @@
           }
         ],
         "summary": "List all managed servers in a region for client",
+        "tags": [
+          "Server"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/dsmcontroller/namespaces/{namespace}/servers/count/detailed": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]\n\nRequired scope: social\n\nThis endpoint counts all of dedicated servers in a region managed by this service.",
+        "operationId": "CountServerDetailedClient",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "region where DS server is located.",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "servers listed",
+            "schema": {
+              "$ref": "#/definitions/models.DetailedCountServerResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get detailed count of managed servers in a region",
         "tags": [
           "Server"
         ],
@@ -6053,6 +6529,49 @@
         "Text"
       ]
     },
+    "models.AddBufferRequest": {
+      "properties": {
+        "AllocCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "DeploymentName": {
+          "type": "string"
+        },
+        "JobCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "JobPriority": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OverrideVersion": {
+          "type": "string"
+        },
+        "Region": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "AllocCount",
+        "DeploymentName",
+        "JobCount",
+        "JobPriority",
+        "OverrideVersion",
+        "Region"
+      ]
+    },
+    "models.AddBufferResponse": {
+      "properties": {
+        "Message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Message"
+      ]
+    },
     "models.AllocationEvent": {
       "properties": {
         "description": {
@@ -6075,11 +6594,29 @@
     },
     "models.ClaimSessionRequest": {
       "properties": {
+        "game_mode": {
+          "type": "string"
+        },
+        "matching_allies": {
+          "items": {
+            "$ref": "#/definitions/models.RequestMatchingAlly"
+          },
+          "type": "array"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "notification_payload": {
+          "$ref": "#/definitions/models.MatchResult.notification_payload"
+        },
         "session_id": {
           "type": "string"
         }
       },
       "required": [
+        "game_mode",
+        "matching_allies",
+        "namespace",
         "session_id"
       ]
     },
@@ -6641,6 +7178,31 @@
         "provider_name"
       ]
     },
+    "models.DeleteZombieRequest": {
+      "properties": {
+        "JobCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Region": {
+          "type": "string"
+        },
+        "TimeoutSecond": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ZombieCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "JobCount",
+        "Region",
+        "TimeoutSecond",
+        "ZombieCount"
+      ]
+    },
     "models.DeploymentConfigOverride": {
       "properties": {
         "buffer_count": {
@@ -6857,7 +7419,7 @@
     "models.GetImageDetailResponse": {
       "properties": {
         "data": {
-          "$ref": "#/definitions/models.ImageRecord"
+          "$ref": "#/definitions/models.ImageRecordResponse"
         }
       },
       "required": [
@@ -6910,7 +7472,7 @@
         "data"
       ]
     },
-    "models.ImageRecord": {
+    "models.ImageRecordResponse": {
       "properties": {
         "artifactPath": {
           "type": "string"
@@ -6923,6 +7485,12 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "deployments": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "dockerPath": {
           "type": "string"
@@ -7009,6 +7577,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "ulimitFileSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "version": {
           "type": "string"
         }
@@ -7018,6 +7590,7 @@
         "namespace",
         "patchVersion",
         "persistent",
+        "ulimitFileSize",
         "version"
       ]
     },
@@ -7112,7 +7685,7 @@
       "properties": {
         "images": {
           "items": {
-            "$ref": "#/definitions/models.PatchImageRecord"
+            "$ref": "#/definitions/models.PatchImageRecordResponse"
           },
           "type": "array"
         }
@@ -7125,7 +7698,7 @@
       "properties": {
         "images": {
           "items": {
-            "$ref": "#/definitions/models.ImageRecord"
+            "$ref": "#/definitions/models.ImageRecordResponse"
           },
           "type": "array"
         },
@@ -7162,7 +7735,7 @@
         },
         "servers": {
           "items": {
-            "$ref": "#/definitions/models.Server"
+            "$ref": "#/definitions/models.ServerDetailsResponse"
           },
           "type": "array"
         }
@@ -7204,6 +7777,85 @@
       ]
     },
     "models.PatchImageRecord": {
+      "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
+        "coreDumpEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "dockerPath": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "imageReplications": {
+          "items": {
+            "$ref": "#/definitions/models.ImageReplication"
+          },
+          "type": "array"
+        },
+        "imageReplicationsMap": {
+          "additionalProperties": {
+            "$ref": "#/definitions/models.ImageReplication"
+          },
+          "type": "object"
+        },
+        "imageSize": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "patchVersion": {
+          "type": "string"
+        },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ulimitFileSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "uploaderFlag": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "dockerPath",
+        "image",
+        "imageSize",
+        "modifiedBy",
+        "namespace",
+        "patchVersion",
+        "persistent",
+        "updatedAt",
+        "uploaderFlag",
+        "version"
+      ]
+    },
+    "models.PatchImageRecordResponse": {
       "properties": {
         "artifactPath": {
           "type": "string"
@@ -7532,6 +8184,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "is_override_region": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "job_id": {
           "type": "string"
         },
@@ -7586,6 +8242,167 @@
         },
         "termination_reason": {
           "type": "string"
+        },
+        "ulimit_file_size": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "allocation_id",
+        "artifact_path",
+        "cpu_limit",
+        "created_at",
+        "deployment",
+        "game_version",
+        "image_version",
+        "ip",
+        "is_override_game_version",
+        "is_override_region",
+        "job_id",
+        "last_update",
+        "mem_limit",
+        "namespace",
+        "params",
+        "pod_name",
+        "port",
+        "protocol",
+        "provider",
+        "region",
+        "session_id",
+        "status",
+        "termination_reason",
+        "ulimit_file_size"
+      ]
+    },
+    "models.ServerDeploymentConfigSessionTimeoutResponse": {
+      "properties": {
+        "session_timeout": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "session_timeout"
+      ]
+    },
+    "models.ServerDetailsResponse": {
+      "properties": {
+        "allocation_events": {
+          "items": {
+            "$ref": "#/definitions/models.AllocationEvent"
+          },
+          "type": "array"
+        },
+        "allocation_id": {
+          "type": "string"
+        },
+        "alternate_ips": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_path": {
+          "type": "string"
+        },
+        "cpu_limit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "custom_attribute": {
+          "type": "string"
+        },
+        "deployment": {
+          "type": "string"
+        },
+        "deployment_override": {
+          "type": "string"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "image_version": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "is_core_dump_enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "is_override_game_version": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "is_override_region": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "job_id": {
+          "type": "string"
+        },
+        "last_update": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "mem_limit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        },
+        "pod_name": {
+          "type": "string"
+        },
+        "port": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ports": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "status_history": {
+          "items": {
+            "$ref": "#/definitions/models.StatusHistory"
+          },
+          "type": "array"
+        },
+        "termination_reason": {
+          "type": "string"
+        },
+        "ulimit_file_size": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
@@ -7597,6 +8414,7 @@
         "image_version",
         "ip",
         "is_override_game_version",
+        "is_override_region",
         "job_id",
         "last_update",
         "mem_limit",
@@ -7610,17 +8428,6 @@
         "session_id",
         "status",
         "termination_reason"
-      ]
-    },
-    "models.ServerDeploymentConfigSessionTimeoutResponse": {
-      "properties": {
-        "session_timeout": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "session_timeout"
       ]
     },
     "models.ServerSessionResponse": {
@@ -7952,6 +8759,82 @@
         "use_buffer_percent"
       ]
     },
+    "models.WorkerConfig": {
+      "properties": {
+        "AutoDeletion": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "CreatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "GhostWorker": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ManualBufferOverride": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ModifiedBy": {
+          "type": "string"
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "ZombieWorker": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "AutoDeletion",
+        "CreatedAt",
+        "CreatedBy",
+        "GhostWorker",
+        "ManualBufferOverride",
+        "ModifiedBy",
+        "Namespace",
+        "UpdatedAt",
+        "ZombieWorker"
+      ]
+    },
+    "models.WorkerConfigRequest": {
+      "properties": {
+        "auto_deletion": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ghost_worker": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "manual_buffer_override": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "zombie_worker": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "auto_deletion",
+        "ghost_worker",
+        "manual_buffer_override",
+        "zombie_worker"
+      ]
+    },
     "response.Error": {
       "properties": {
         "errorCode": {
@@ -7970,15 +8853,3245 @@
   },
   "x-docs": {
     "alias": "dsmcontroller",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/dsmcontroller/apidocs/api.json"
   },
+  "x-messages": [
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20001",
+      "CodeName": "UnauthorizedAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unauthorized access"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20003",
+      "CodeName": "ForbiddenAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20007",
+      "CodeName": "TooManyRequests",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20008",
+      "CodeName": "UserNotFound",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20013",
+      "CodeName": "InsufficientPermissions",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20019",
+      "CodeName": "UnableToParseRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20021",
+      "CodeName": "InvalidPaginationParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20022",
+      "CodeName": "TokenIsNotUserToken",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720101",
+      "CodeName": "ListConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config listed"
+    },
+    {
+      "Attributes": [],
+      "Code": "720113",
+      "CodeName": "GetConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config retrieved"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720114",
+      "CodeName": "GetConfigNotFound",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to get config for namespace {{namespace}}: not found"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720115",
+      "CodeName": "SaveConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720116",
+      "CodeName": "SaveConfigMalformedRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to save/update config {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720117",
+      "CodeName": "ImportConfigUnableToParseForm",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to import config for {{namespace}}: unable to parse form"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720118",
+      "CodeName": "ImportConfigUnableToReadFile",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to import config for {{namespace}}: unable to read file"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720119",
+      "CodeName": "ImportConfigUnableToUnmarshalConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to import config for {{namespace}}: unable to unmarshal request"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720120",
+      "CodeName": "ImportConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720126",
+      "CodeName": "UpdateConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720127",
+      "CodeName": "UpdateConfigMalformedRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720128",
+      "CodeName": "UpdateConfigUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config for {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720129",
+      "CodeName": "UpdateConfigNoExistingConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config for {{namespace}}: config does not exist"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720130",
+      "CodeName": "UpdateConfigInvalidConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config for {{namespace}}: invalid config"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720131",
+      "CodeName": "UpdateConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720133",
+      "CodeName": "CreateConfigConflict",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config for namespace {{namespace}}: a config has already been created."
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720134",
+      "CodeName": "CreateConfigMalformedRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config for namespace {{namespace}}: malformed request."
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720135",
+      "CodeName": "CreateConfigInvalidRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config for namespace {{namespace}}: invalid request."
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720136",
+      "CodeName": "CreateConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config for namespace {{namespace}}: unable to save config."
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720137",
+      "CodeName": "CreateConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720138",
+      "CodeName": "ListConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to list config: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720139",
+      "CodeName": "GetConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to get config for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720140",
+      "CodeName": "DeleteConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720141",
+      "CodeName": "DeleteConfigNotFound",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config for namespace {{namespace}}: config not found"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720142",
+      "CodeName": "DeleteConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720143",
+      "CodeName": "CreateConfigPortSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config port {{name}} for {{namespace}} created"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720144",
+      "CodeName": "CreateConfigPortMalformedRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720145",
+      "CodeName": "CreateConfigPortUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720146",
+      "CodeName": "CreateConfigPortNoExistingConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: config does not exist"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720147",
+      "CodeName": "CreateConfigPortInvalidConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: invalid config"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720148",
+      "CodeName": "CreateConfigPortConflict",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: port is already used"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720149",
+      "CodeName": "CreateConfigPortInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to create config port {{name}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720150",
+      "CodeName": "UpdateConfigPortSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config port {{name}} for {{namespace}} updated"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720151",
+      "CodeName": "UpdateConfigPortMalformedRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720152",
+      "CodeName": "UpdateConfigPortUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720153",
+      "CodeName": "UpdateConfigPortNoExistingConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: config does not exist"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720154",
+      "CodeName": "UpdateConfigPortInvalidConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: invalid config"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720155",
+      "CodeName": "UpdateConfigPortConflict",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: port is already used"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720156",
+      "CodeName": "UpdateConfigPortNotFound",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: port not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720157",
+      "CodeName": "UpdateConfigPortInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to update config port {{name}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720158",
+      "CodeName": "DeleteConfigPortSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config port {{name}} for {{namespace}} deleted"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720159",
+      "CodeName": "DeleteConfigPortUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config port {{name}} for {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720160",
+      "CodeName": "DeleteConfigPortNoExistingConfig",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config port {{name}} for {{namespace}}: config does not exist"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720161",
+      "CodeName": "DeleteConfigPortNotFound",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config port {{name}} for {{namespace}}: port not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720162",
+      "CodeName": "DeleteConfigPortInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config port {{name}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720163",
+      "CodeName": "DeleteConfigUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to delete config for namespace {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720164",
+      "CodeName": "ExportConfigSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720165",
+      "CodeName": "ExportConfigUnableToQueryExisting",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: unable to query existing config to DB"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720166",
+      "CodeName": "ExportConfigNotFound",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: config does not exist"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720167",
+      "CodeName": "ExportConfigInternalError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: write error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720168",
+      "CodeName": "ExportConfigQueryPodConfigError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: unable to query pod configs"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720169",
+      "CodeName": "ExportConfigQueryImageError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: unable to query images"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720170",
+      "CodeName": "ExportConfigQueryDeploymentError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to export config for {{namespace}}: unable to query deployments"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720171",
+      "CodeName": "ImportConfigInvalidRequest",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to import config for {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720172",
+      "CodeName": "ImportConfigCreateConfigError",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "unable to import config for {{namespace}}: unable to write config to DB"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720173",
+      "CodeName": "ClearCacheSuccess",
+      "Section": "config",
+      "Service": "dsmc",
+      "Text": "config cache for {{namespace}} cleared"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720201",
+      "CodeName": "RegisterServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720202",
+      "CodeName": "RegisterServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "error"
+      ],
+      "Code": "720203",
+      "CodeName": "RegisterServerNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register server: {{error}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720204",
+      "CodeName": "RegisterServerNomadError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720205",
+      "CodeName": "ShutdownServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720206",
+      "CodeName": "ShutdownServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to shutdown server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720207",
+      "CodeName": "ShutdownServerNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to shutdown server: Not Found"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720208",
+      "CodeName": "ShutdownServerK8sError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to shutdown server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720209",
+      "CodeName": "RegisterLocalServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "error"
+      ],
+      "Code": "720210",
+      "CodeName": "RegisterLocalServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register local server: {{error}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720211",
+      "CodeName": "RegisterLocalServerInternalError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register local server: DB error"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720212",
+      "CodeName": "DeregisterLocalServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "error"
+      ],
+      "Code": "720213",
+      "CodeName": "DeregisterLocalServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to deregister local server: {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720214",
+      "CodeName": "HeartbeatServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720215",
+      "CodeName": "HeartbeatServerNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to receive server heartbeat: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720216",
+      "CodeName": "ClaimServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720217",
+      "CodeName": "ClaimServerNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for sessionID: {{sessionID}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details"
+      ],
+      "Code": "720218",
+      "CodeName": "ClaimServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720219",
+      "CodeName": "ClaimServerNotReady",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for sessionID: {{sessionID}}: {{details}} "
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720220",
+      "CodeName": "ClaimServerConsumeError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for sessionID: {{sessionID}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720221",
+      "CodeName": "ClaimServerUnreachable",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for sessionID: {{sessionID}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720222",
+      "CodeName": "ClaimServerAlreadyClaimed",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for sessionID: {{sessionID}}: {{details}} "
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720223",
+      "CodeName": "ListServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720224",
+      "CodeName": "ListServerMalformedRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to list server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720225",
+      "CodeName": "ListLocalServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720226",
+      "CodeName": "GetServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720227",
+      "CodeName": "GetServerNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to query server: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720228",
+      "CodeName": "DeleteServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720229",
+      "CodeName": "DeleteLocalServerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720234",
+      "CodeName": "RegisterLocalServerConfigNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register local server: config not found"
+    },
+    {
+      "Attributes": [
+        "details"
+      ],
+      "Code": "720235",
+      "CodeName": "RegisterServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to register server: DB error {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720236",
+      "CodeName": "ShutdownServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to shutdown server:  "
+    },
+    {
+      "Attributes": [],
+      "Code": "720237",
+      "CodeName": "DeregisterLocalServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to deregister local server: DB error "
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720238",
+      "CodeName": "ClaimServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to claim server for session sessionID: {{sessionID}}: {{details}} "
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720239",
+      "CodeName": "ListServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to list server for {{namespace}} {{region}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720240",
+      "CodeName": "CountServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to count server for {{namespace}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720241",
+      "CodeName": "CountServerDetailedInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to count server detail for {{namespace}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720242",
+      "CodeName": "ListLocalServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to list local server for {{namespace}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "pod"
+      ],
+      "Code": "720243",
+      "CodeName": "GetServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to get server for {{pod}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "server"
+      ],
+      "Code": "720244",
+      "CodeName": "DeleteLocalServerInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to delete local server {{server}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720245",
+      "CodeName": "ServerHeartbeatSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details"
+      ],
+      "Code": "720246",
+      "CodeName": "ServerHeartbeatBadRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to process server heartbeat : {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "podName"
+      ],
+      "Code": "720247",
+      "CodeName": "ServerHeartbeatInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to process server heartbeat for namespace {{namespace}} with podName {{podName}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "podName"
+      ],
+      "Code": "720248",
+      "CodeName": "ServerHeartbeatNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to process server heartbeat for namespace {{namespace}} with podName {{podName}}: server not found in DB"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720249",
+      "CodeName": "GetServerSessionTimeoutSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details"
+      ],
+      "Code": "720250",
+      "CodeName": "GetServerSessionTimeoutBadRequest",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to query server\u0026#39;s session timeout : {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "podName"
+      ],
+      "Code": "720251",
+      "CodeName": "GetServerSessionTimeoutInternalServerError",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to query server\u0026#39;s session timeout for podName {{podName}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "podName"
+      ],
+      "Code": "720252",
+      "CodeName": "GetServerSessionTimeoutNotFound",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "unable to query server\u0026#39;s session timeout for podName {{podName}}: server not found in DB"
+    },
+    {
+      "Attributes": [],
+      "Code": "720253",
+      "CodeName": "ZombieCleanerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "zombie cleaner successfully triggered"
+    },
+    {
+      "Attributes": [],
+      "Code": "720254",
+      "CodeName": "GhostCleanerSuccess",
+      "Section": "server",
+      "Service": "dsmc",
+      "Text": "ghost cleaner successfully triggered"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720301",
+      "CodeName": "GetSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720302",
+      "CodeName": "GetSessionNotFound",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to query session sessionID {{sessionID}}: not found {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720303",
+      "CodeName": "CreateSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720304",
+      "CodeName": "CreateSessionMalformedRequest",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720305",
+      "CodeName": "CreateSessionConsumeError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720306",
+      "CodeName": "CreateSessionConfigNotFoundError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}} "
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "sessionID"
+      ],
+      "Code": "720307",
+      "CodeName": "CreateSessionSessionExists",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}} sessionID {{sessionID}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720308",
+      "CodeName": "CreateSessionLocalServerNotFound",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720309",
+      "CodeName": "ListSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720310",
+      "CodeName": "DeleteSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details"
+      ],
+      "Code": "720311",
+      "CodeName": "GetServerSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to get server session: DB error {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720312",
+      "CodeName": "GetServerSessionNotFound",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to get server session: not found"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720313",
+      "CodeName": "CreateSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "sessionID"
+      ],
+      "Code": "720314",
+      "CodeName": "GetSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to query session sessionID {{sessionID}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720315",
+      "CodeName": "ListSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to list session in {{namespace}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720316",
+      "CodeName": "CountSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to count session in {{namespace}}: DB error {{details}}"
+    },
+    {
+      "Attributes": [
+        "sessionID"
+      ],
+      "Code": "720317",
+      "CodeName": "DeleteSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to delete session sessionID {{sessionID}}: DB error "
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720318",
+      "CodeName": "GetServerSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720319",
+      "CodeName": "CancelSessionSuccess",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "sessionID"
+      ],
+      "Code": "720320",
+      "CodeName": "CancelSessionInternalServerError",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to cancel session sessionID {{sessionID}}: DB error "
+    },
+    {
+      "Attributes": [
+        "sessionID",
+        "status"
+      ],
+      "Code": "720321",
+      "CodeName": "CancelSessionUnprocessableEntity",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to cancel session session {{sessionID}}: server status is {{status}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720322",
+      "CodeName": "CreateSessionBadRequest",
+      "Section": "session",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720401",
+      "CodeName": "ListProviderSuccess",
+      "Section": "provider",
+      "Service": "dsmc",
+      "Text": "successfully retrieves list of providers"
+    },
+    {
+      "Attributes": [],
+      "Code": "720402",
+      "CodeName": "GetDefaultProviderSuccess",
+      "Section": "provider",
+      "Service": "dsmc",
+      "Text": "successfully get default provider"
+    },
+    {
+      "Attributes": [],
+      "Code": "720403",
+      "CodeName": "ListProviderInternalServerError",
+      "Section": "provider",
+      "Service": "dsmc",
+      "Text": "unable to get list of supported providers from storage: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720501",
+      "CodeName": "CreateDeploymentSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{name}} for namespace {{namespace}} created"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720502",
+      "CodeName": "CreateDeploymentMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{name}} for namespace {{namespace}}: malformed request: {{details}}"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720503",
+      "CodeName": "CreateDeploymentInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720504",
+      "CodeName": "GetDeploymentSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{name}} for namespace {{namespace}} queried"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720505",
+      "CodeName": "GetDeploymentNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to get config deployment {{name}} for namespace {{namespace}}: Not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720506",
+      "CodeName": "GetDeploymentInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to get config deployment {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720507",
+      "CodeName": "DeleteDeploymentSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{name}} for namespace {{namespace}} deleted"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720508",
+      "CodeName": "DeleteDeploymentNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{name}} for namespace {{namespace}}: Not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720509",
+      "CodeName": "DeleteDeploymentInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace"
+      ],
+      "Code": "720510",
+      "CodeName": "UpdateDeploymentMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment: {{deployment}} for {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace"
+      ],
+      "Code": "720511",
+      "CodeName": "UpdateDeploymentInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment: {{deployment}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace"
+      ],
+      "Code": "720512",
+      "CodeName": "UpdateDeploymentNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment: {{deployment}} for {{namespace}}: Deployment not Found"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720513",
+      "CodeName": "CreateDeploymentOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} override {{version}} for namespace {{namespace}} created"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720514",
+      "CodeName": "CreateDeploymentOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{deployment}} override {{version}} for namespace {{namespace}}: malformed request: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720515",
+      "CodeName": "CreateDeploymentOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{deployment}} override {{version}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720516",
+      "CodeName": "UpdateDeploymentOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment {{deployment}} override {{version}} for {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720517",
+      "CodeName": "UpdateDeploymentOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} override {{version}} for namespace {{namespace}} updated"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720518",
+      "CodeName": "UpdateDeploymentOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment {{deployment}} override {{version}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720519",
+      "CodeName": "UpdateDeploymentOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment {{deployment}} override {{version}} for {{namespace}}: not found: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720520",
+      "CodeName": "DeleteDeploymentOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} override {{version}} for {{namespace}} deleted"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720521",
+      "CodeName": "DeleteDeploymentOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{deployment}} override {{version}} for {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720522",
+      "CodeName": "DeleteDeploymentOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{deployment}} override {{version}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720523",
+      "CodeName": "DeleteDeploymentOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{deployment}} override {{version}} for {{namespace}}: not found: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720524",
+      "CodeName": "CreateRegionOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} region {{region}} override for {{namespace}} created"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720525",
+      "CodeName": "CreateRegionOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: malformed request: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720526",
+      "CodeName": "CreateRegionOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720527",
+      "CodeName": "UpdateRegionOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} region {{region}} override for {{namespace}} updated"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720528",
+      "CodeName": "UpdateRegionOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update deployment {{deployment}} region {{region}} override for {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720529",
+      "CodeName": "UpdateRegionOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update deployment {{deployment}} region {{region}} override for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720530",
+      "CodeName": "UpdateRegionOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update deployment {{deployment}} region {{region}} override for {{namespace}}: Not Found {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720531",
+      "CodeName": "DeleteRegionOverrideSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} region {{region}} override for {{namespace}} deleted"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720532",
+      "CodeName": "DeleteRegionOverrideMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete deployment {{deployment}} region {{region}} override for {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720533",
+      "CodeName": "DeleteRegionOverrideInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete deployment {{deployment}} region {{region}} override for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720534",
+      "CodeName": "DeleteRegionOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete deployment {{deployment}} region {{region}} override for {{namespace}}: Not Found {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace"
+      ],
+      "Code": "720535",
+      "CodeName": "UpdateDeploymentQueryExistingError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment: {{deployment}} for {{namespace}}: unable tp query existing deployment"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace"
+      ],
+      "Code": "720536",
+      "CodeName": "UpdateDeploymentSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} for {{namespace}} updated"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720537",
+      "CodeName": "CreateDeploymentOverrideQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{deployment}} override {{version}} for namespace {{namespace}}: unable to query {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720538",
+      "CodeName": "CreateDeploymentOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{deployment}} override {{version}} for namespace {{namespace}}: deployment not found"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720539",
+      "CodeName": "UpdateDeploymentOverrideQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment {{deployment}} override {{version}} for {{namespace}}: unable to query deployment"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720540",
+      "CodeName": "CreateDeploymentOverrideConflict",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{deployment}} override {{version}} for namespace {{namespace}}: deployment override already exists: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720541",
+      "CodeName": "CreateRegionOverrideNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: not found: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "region"
+      ],
+      "Code": "720542",
+      "CodeName": "CreateRegionOverrideConflict",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: already exists: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720543",
+      "CodeName": "CreateRegionOverrideQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: unable to query deployment"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720544",
+      "CodeName": "UpdateRegionOverrideQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update deployment {{deployment}} region {{region}} override for {{namespace}}: unable to query deployment"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720545",
+      "CodeName": "DeleteRegionOverrideQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete deployment {{deployment}} region {{region}} override for {{namespace}}: unable to query deployment"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720546",
+      "CodeName": "CreateDeploymentConflict",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{name}} for namespace {{namespace}}: deployment already exists"
+    },
+    {
+      "Attributes": [
+        "detail",
+        "name",
+        "namespace"
+      ],
+      "Code": "720547",
+      "CodeName": "CreateDeploymentQueryError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create config deployment {{name}} for namespace {{namespace}}: unable to query {{detail}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720548",
+      "CodeName": "GetAllDeploymentSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "all deployment for namespace {{namespace}} queried"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720549",
+      "CodeName": "GetAllDeploymentInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to get all deployments for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720550",
+      "CodeName": "GetAllDeploymentMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to get all deployments for namespace {{namespace}}: malformed request: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720551",
+      "CodeName": "DeleteDeploymentInvalidRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete config deployment {{name}} for namespace {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "region"
+      ],
+      "Code": "720552",
+      "CodeName": "CreateRegionOverrideNotAllowed",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to create deployment {{deployment}} region {{region}} override for {{namespace}}: enable region overrides set to false in deployment configuration"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace"
+      ],
+      "Code": "720553",
+      "CodeName": "UpdateDeploymentUnprocessableEntity",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to update config deployment: {{deployment}} for {{namespace}}: data conflicts {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720561",
+      "CodeName": "DeleteCreatingServerCountQueueSuccess",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "deployment {{deployment}} version {{version}} for namespace {{namespace}} creating server count queue deleted"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720562",
+      "CodeName": "DeleteCreatingServerCountQueueMalformedRequest",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete creating server count queue in deployment {{deployment}} version {{version}} for namespace {{namespace}}: malformed request {{details}}"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "namespace",
+        "version"
+      ],
+      "Code": "720563",
+      "CodeName": "DeleteCreatingServerCountQueueInternalServerError",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete creating server count queue in deployment {{deployment}} version {{version}} for namespace {{namespace}}: internal server error"
+    },
+    {
+      "Attributes": [
+        "deployment",
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720564",
+      "CodeName": "DeleteCreatingServerCountQueueNotFound",
+      "Section": "deployment",
+      "Service": "dsmc",
+      "Text": "unable to delete creating server count queue in deployment {{deployment}} version {{version}} for namespace {{namespace}}: not found {{details}}"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720601",
+      "CodeName": "CreatePodConfigSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "pod config {{name}} for namespace {{namespace}} created"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720602",
+      "CodeName": "CreatePodConfigMalformedRequest",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to create pod config {{name}} for namespace {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720603",
+      "CodeName": "CreatePodConfigInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to create pod config {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720604",
+      "CodeName": "GetPodConfigSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "pod config {{name}} for namespace {{namespace}} queried"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720605",
+      "CodeName": "GetPodConfigNotFound",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to get pod config {{name}} for namespace {{namespace}}: Not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720606",
+      "CodeName": "GetPodConfigInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to get pod config {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720607",
+      "CodeName": "DeletePodConfigSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "pod config {{name}} for namespace {{namespace}} deleted"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720608",
+      "CodeName": "DeletePodConfigNotFound",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to delete pod config {{name}} for namespace {{namespace}}: Not found"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720609",
+      "CodeName": "DeletePodConfigInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to delete pod config {{name}} for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720610",
+      "CodeName": "UpdatePodConfigMalformedRequest",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to update pod config {{name}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720611",
+      "CodeName": "UpdatePodConfigInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to update pod config {{name}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720612",
+      "CodeName": "UpdatePodConfigNotFound",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to update pod config {{name}} for {{namespace}}: pod config not found"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720613",
+      "CodeName": "GetAllPodConfigSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "all pod config in {{namespace}} queried"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720614",
+      "CodeName": "GetAllPodConfigInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to get all pod configs for namespace {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720615",
+      "CodeName": "CreatePodConfigQueryError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to create pod config {{name}} for namespace {{namespace}}: unable to query pod config"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720616",
+      "CodeName": "CreatePodConfigConflict",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to create pod config {{name}} for namespace {{namespace}}: pod config already exists"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720617",
+      "CodeName": "UpdatePodConfigQueryError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to update pod config {{name}} for {{namespace}}: unable to query pod config"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720618",
+      "CodeName": "UpdatePodConfigSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "pod config {{name}} for {{namespace}} updated"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720619",
+      "CodeName": "DeletePodConfigQueryError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to delete pod config {{name}} for namespace {{namespace}}: unable to query {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace"
+      ],
+      "Code": "720620",
+      "CodeName": "GetAllPodConfigMalformedRequest",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to get all pod configs for namespace {{namespace}}: malformed request: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720621",
+      "CodeName": "DeletePodConfigInUse",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to delete pod config {{name}} for namespace {{namespace}}: pod config in use by: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720622",
+      "CodeName": "DeletePodConfigInvalidRequest",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to delete pod config {{name}} for namespace {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "name",
+        "namespace"
+      ],
+      "Code": "720623",
+      "CodeName": "UpdatePodConfigConflict",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to update pod config {{name}} for {{namespace}}: pod config with same name already exist"
+    },
+    {
+      "Attributes": [
+        "details",
+        "name",
+        "namespace"
+      ],
+      "Code": "720624",
+      "CodeName": "UpdatePodConfigNameInUse",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to rename pod config {{name}} for namespace {{namespace}}: pod config in use by: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "720625",
+      "CodeName": "GetLowestInstanceSpecSuccess",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "Lowest instance spec retrieved successfully"
+    },
+    {
+      "Attributes": [],
+      "Code": "720626",
+      "CodeName": "GetLowestInstanceSpecInternalServerError",
+      "Section": "podconfig",
+      "Service": "dsmc",
+      "Text": "unable to get lowest instance spec: internal server error"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720701",
+      "CodeName": "DeleteImageSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720702",
+      "CodeName": "DeleteImageMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to delete image version {{version}} for {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720703",
+      "CodeName": "DeleteImageInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to delete image version {{version}} for {{namespace}}: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720704",
+      "CodeName": "ListImageSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720705",
+      "CodeName": "GetImageDetailSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720706",
+      "CodeName": "GetImageDetailNotFound",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to query image version {{version}} for {{namespace}}: image not found"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720707",
+      "CodeName": "CreateImageSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720708",
+      "CodeName": "CreateImageMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720709",
+      "CodeName": "CreateImageConflict",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: image version is conflict"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720710",
+      "CodeName": "UpdateImageSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720711",
+      "CodeName": "UpdateImageMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720712",
+      "CodeName": "UpdateImageNotFound",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: version not found"
+    },
+    {
+      "Attributes": [
+        "details",
+        "namespace",
+        "version"
+      ],
+      "Code": "720713",
+      "CodeName": "DeleteImageInUse",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to delete image version {{version}} for {{namespace}}: image in use by: {{details}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720721",
+      "CodeName": "ImportImageUnableToParseForm",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to import images: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720722",
+      "CodeName": "ImportImageUnableToReadFile",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to import images: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720723",
+      "CodeName": "ImportImageUnableToUnmarshalImage",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to import images: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720724",
+      "CodeName": "ImportImageSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "details",
+        "error"
+      ],
+      "Code": "720725",
+      "CodeName": "ImportImageMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to import images: {{details}} {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720732",
+      "CodeName": "GetImageLimitSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "error"
+      ],
+      "Code": "720733",
+      "CodeName": "GetImageLimitMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to get image limit: malformed request. {{error}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720740",
+      "CodeName": "CreateImagePatchSuccees",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720741",
+      "CodeName": "CreateImagePatchMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image patch, {{version}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720742",
+      "CodeName": "CreateImagePatchConflict",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image patch, {{version}} patch {{patchVersion}} for {{namespace}}: image patch version is conflict"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720743",
+      "CodeName": "CreateImagePatchInvalidRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image patch, {{version}} patch {{patchVersion}} for {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "error",
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720744",
+      "CodeName": "CreateImagePatchQueryExistingError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image patch, {{version}} patch {{patchVersion}} for {{namespace}}: error on querying existing patch images {{error}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720745",
+      "CodeName": "CreateImagePatchInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image patch, {{version}} patch {{patchVersion}} for {{namespace}}: storing to DB error"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720749",
+      "CodeName": "GetImagePatchesInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to get image patches, {{version}} for {{namespace}}: query to DB error"
+    },
+    {
+      "Attributes": [],
+      "Code": "720750",
+      "CodeName": "GetImagePatchesSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{message}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720751",
+      "CodeName": "DeleteImagePatchInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to delete image patch, {{version}} patch {{patchVersion}} for {{namespace}}: query to DB error"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720752",
+      "CodeName": "DeleteImagePatchMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to delete image patch, {{version}} patch {{patchVersion}} for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720753",
+      "CodeName": "DeleteImagePatchSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720754",
+      "CodeName": "GetImagePatchInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to query image patch, {{version}} patch {{patchVersion}} for {{namespace}}: query to DB error"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "patchVersion",
+        "version"
+      ],
+      "Code": "720755",
+      "CodeName": "GetImagePatchNotFound",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to query image patch, {{version}} patch {{patchVersion}} for {{namespace}}: not found"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720756",
+      "CodeName": "GetImagePatchSuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "720757",
+      "CodeName": "CreateRepositorySuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720758",
+      "CodeName": "CreateRepositoryMalformedRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "repository"
+      ],
+      "Code": "720759",
+      "CodeName": "CreateRepositoryConflict",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository {{repository}} for {{namespace}}: repository version is conflict"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "repository"
+      ],
+      "Code": "720760",
+      "CodeName": "CreateRepositoryInvalidRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository {{repository}} for {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "repository"
+      ],
+      "Code": "720761",
+      "CodeName": "CreateRepositoryQueryExistingError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository {{repository}} for {{namespace}}: error on querying existing repositories"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "repository"
+      ],
+      "Code": "720762",
+      "CodeName": "CreateRepositoryRemoveOlderError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository {{repository}} for {{namespace}}: image count reached max, error on removing old image"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "repository"
+      ],
+      "Code": "720763",
+      "CodeName": "CreateRepositoryInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create repository {{repository}} for {{namespace}}: storing to DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720764",
+      "CodeName": "GetRepositoryInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to get repository for {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720765",
+      "CodeName": "GetRepositoryNotFound",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to get repository for {{namespace}}: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "720766",
+      "CodeName": "GetRepositorySuccess",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "repository retrieved"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720773",
+      "CodeName": "CreateImageInvalidRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720774",
+      "CodeName": "CreateImageQueryExistingError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: error on querying existing images"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720775",
+      "CodeName": "CreateImageRemoveOlderError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: image count reached max, error on removing old image"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720776",
+      "CodeName": "CreateImageInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: storing to DB error"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720777",
+      "CodeName": "UpdateImageInvalidRequest",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720778",
+      "CodeName": "UpdateImageQueryExistingError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: error on querying existing version"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720779",
+      "CodeName": "UpdateImageInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: error on updating record in DB"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720780",
+      "CodeName": "UpdateImageInsertPatchInternalError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to update image {{version}} for {{namespace}}: error on updating record in DB"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720781",
+      "CodeName": "CreateImageNotExistInContainerRegistryError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: the image is not exist in docker registry"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720782",
+      "CodeName": "CreateImageCheckingImageInContainerRegistryError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to create image {{version}} for {{namespace}}: error on checking image in container registry"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720784",
+      "CodeName": "ListImageInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to list images for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "version"
+      ],
+      "Code": "720785",
+      "CodeName": "GetImageDetailInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to query image version {{version}} for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720787",
+      "CodeName": "ExportImageInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to export image for {{namespace}}: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720788",
+      "CodeName": "ExportImageUnableWriteResponse",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to export image for {{namespace}}: failed write response"
+    },
+    {
+      "Attributes": [],
+      "Code": "720789",
+      "CodeName": "ImportImageInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to import image: DB error"
+    },
+    {
+      "Attributes": [],
+      "Code": "720790",
+      "CodeName": "GetImageLimitInternalServerError",
+      "Section": "image",
+      "Service": "dsmc",
+      "Text": "unable to get image limit: DB error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720801",
+      "CodeName": "CreateWorkerConfigurationSuccess",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "worker configuration for the {{namespace}} namespace has been successfully created"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720802",
+      "CodeName": "CreateWorkerConfigurationConflict",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to create a worker configuration for the {{namespace}} namespace: worker configuration already exists"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720803",
+      "CodeName": "CreateWorkerConfigurationInvalidRequest",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to create a worker configuration for the {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720804",
+      "CodeName": "CreateWorkerConfigurationInternalServerError",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to create a worker configuration for the {{namespace}}: internal server error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720805",
+      "CodeName": "UpdateWorkerConfigurationSuccess",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "worker configuration for the {{namespace}} namespace has been successfully updated"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720806",
+      "CodeName": "UpdateWorkerConfigurationInvalidRequest",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to update a worker configuration for the {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720807",
+      "CodeName": "UpdateWorkerConfigurationInternalServerError",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to update a worker configuration for the {{namespace}}: internal server error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720808",
+      "CodeName": "UpdateWorkerConfigurationNotFound",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to update a worker configuration for the {{namespace}}: configuration not found"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720809",
+      "CodeName": "GetWorkerConfigurationSuccess",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "worker configuration for the {{namespace}} namespace has been successfully updated"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720810",
+      "CodeName": "GetWorkerConfigurationInvalidRequest",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to find a worker configuration for the {{namespace}}: invalid request"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720811",
+      "CodeName": "GetWorkerConfigurationInternalServerError",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to find a worker configuration for the {{namespace}}: internal server error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720812",
+      "CodeName": "GetWorkerConfigurationNotFound",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to find a worker configuration for the {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720813",
+      "CodeName": "DeleteWorkerConfigurationSuccess",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "worker configuration for the {{namespace}} namespace has been successfully deleted"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720814",
+      "CodeName": "DeleteWorkerConfigurationInternalServerError",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to delete a worker configuration for the {{namespace}}: internal server error"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "720815",
+      "CodeName": "DeleteWorkerConfigurationNotFound",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to delete a worker configuration for the {{namespace}}: configuration not found"
+    },
+    {
+      "Attributes": [
+        "details",
+        "image",
+        "namespace"
+      ],
+      "Code": "720816",
+      "CodeName": "CreateSessionImageNotFoundError",
+      "Section": "worker",
+      "Service": "dsmc",
+      "Text": "unable to create session in {{namespace}} image {{image}} not found: {{details}}"
+    }
+  ],
   "x-version": {
-    "buildDate": "unknown",
-    "gitHash": "60d2e47ebd90bbc40784c672ad168abde28ab99d",
+    "buildDate": "2024-06-18T04:29:18+00:00",
+    "gitHash": "be7a558436877e1c6ce17c8e095cc74ff03a2e5e",
     "name": "justice-dedicated-server-manager-controller-service",
-    "revisionID": "6.4.7",
-    "version": "6.4.7",
-    "version-roles-seeding": "0.0.3"
+    "revisionID": "6.8.2",
+    "version": "6.8.2",
+    "version-roles-seeding": "1.0.26"
   }
 }

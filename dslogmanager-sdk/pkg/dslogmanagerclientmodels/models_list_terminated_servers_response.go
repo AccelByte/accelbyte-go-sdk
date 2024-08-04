@@ -22,7 +22,7 @@ type ModelsListTerminatedServersResponse struct {
 
 	// data
 	// Required: true
-	Data []*ModelsNotifPayloadServerStatusChange `json:"data"`
+	Data []*ModelsNotifPayloadServerStatusChangeResponse `json:"data"`
 
 	// paging
 	// Required: true

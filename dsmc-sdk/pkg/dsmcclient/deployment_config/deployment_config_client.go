@@ -58,8 +58,12 @@ type ClientService interface {
 	DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, error)
 	UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, *UpdateOverrideRegionOverrideBadRequest, *UpdateOverrideRegionOverrideUnauthorized, *UpdateOverrideRegionOverrideNotFound, *UpdateOverrideRegionOverrideInternalServerError, error)
 	UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, error)
+	DeleteCreatingServerCountQueue(params *DeleteCreatingServerCountQueueParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCreatingServerCountQueueOK, *DeleteCreatingServerCountQueueBadRequest, *DeleteCreatingServerCountQueueUnauthorized, *DeleteCreatingServerCountQueueNotFound, *DeleteCreatingServerCountQueueInternalServerError, error)
+	DeleteCreatingServerCountQueueShort(params *DeleteCreatingServerCountQueueParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCreatingServerCountQueueOK, error)
 	GetAllDeploymentClient(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, *GetAllDeploymentClientBadRequest, *GetAllDeploymentClientUnauthorized, *GetAllDeploymentClientInternalServerError, error)
 	GetAllDeploymentClientShort(params *GetAllDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentClientOK, error)
+	GetDeploymentClient(params *GetDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentClientOK, *GetDeploymentClientBadRequest, *GetDeploymentClientUnauthorized, *GetDeploymentClientNotFound, *GetDeploymentClientInternalServerError, error)
+	GetDeploymentClientShort(params *GetDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentClientOK, error)
 	CreateDeploymentClient(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, *CreateDeploymentClientBadRequest, *CreateDeploymentClientUnauthorized, *CreateDeploymentClientConflict, *CreateDeploymentClientInternalServerError, error)
 	CreateDeploymentClientShort(params *CreateDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentClientCreated, error)
 	DeleteDeploymentClient(params *DeleteDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentClientNoContent, *DeleteDeploymentClientBadRequest, *DeleteDeploymentClientUnauthorized, *DeleteDeploymentClientNotFound, *DeleteDeploymentClientInternalServerError, error)
@@ -1824,6 +1828,130 @@ func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionO
 }
 
 /*
+Deprecated: 2022-08-10 - Use DeleteCreatingServerCountQueueShort instead.
+
+DeleteCreatingServerCountQueue delete creating server count deployment queue
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint deletes the deployment creating server count queue in a namespace in all registered region for the selected version
+*/
+func (a *Client) DeleteCreatingServerCountQueue(params *DeleteCreatingServerCountQueueParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCreatingServerCountQueueOK, *DeleteCreatingServerCountQueueBadRequest, *DeleteCreatingServerCountQueueUnauthorized, *DeleteCreatingServerCountQueueNotFound, *DeleteCreatingServerCountQueueInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteCreatingServerCountQueueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteCreatingServerCountQueue",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/versions/{version}/queues",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteCreatingServerCountQueueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteCreatingServerCountQueueOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *DeleteCreatingServerCountQueueBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *DeleteCreatingServerCountQueueUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *DeleteCreatingServerCountQueueNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *DeleteCreatingServerCountQueueInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteCreatingServerCountQueueShort delete creating server count deployment queue
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint deletes the deployment creating server count queue in a namespace in all registered region for the selected version
+*/
+func (a *Client) DeleteCreatingServerCountQueueShort(params *DeleteCreatingServerCountQueueParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCreatingServerCountQueueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteCreatingServerCountQueueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteCreatingServerCountQueue",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/versions/{version}/queues",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteCreatingServerCountQueueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteCreatingServerCountQueueOK:
+		return v, nil
+	case *DeleteCreatingServerCountQueueBadRequest:
+		return nil, v
+	case *DeleteCreatingServerCountQueueUnauthorized:
+		return nil, v
+	case *DeleteCreatingServerCountQueueNotFound:
+		return nil, v
+	case *DeleteCreatingServerCountQueueInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetAllDeploymentClientShort instead.
 
 GetAllDeploymentClient get all deployments for client
@@ -1939,6 +2067,130 @@ func (a *Client) GetAllDeploymentClientShort(params *GetAllDeploymentClientParam
 	case *GetAllDeploymentClientUnauthorized:
 		return nil, v
 	case *GetAllDeploymentClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetDeploymentClientShort instead.
+
+GetDeploymentClient get deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated server deployment in a namespace
+*/
+func (a *Client) GetDeploymentClient(params *GetDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentClientOK, *GetDeploymentClientBadRequest, *GetDeploymentClientUnauthorized, *GetDeploymentClientNotFound, *GetDeploymentClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetDeploymentClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDeploymentClientOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetDeploymentClientBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetDeploymentClientUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetDeploymentClientNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetDeploymentClientInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetDeploymentClientShort get deployment for client
+Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get a dedicated server deployment in a namespace
+*/
+func (a *Client) GetDeploymentClientShort(params *GetDeploymentClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeploymentClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetDeploymentClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeploymentClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDeploymentClientOK:
+		return v, nil
+	case *GetDeploymentClientBadRequest:
+		return nil, v
+	case *GetDeploymentClientUnauthorized:
+		return nil, v
+	case *GetDeploymentClientNotFound:
+		return nil, v
+	case *GetDeploymentClientInternalServerError:
 		return nil, v
 
 	default:

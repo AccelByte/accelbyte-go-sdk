@@ -57,6 +57,12 @@ func (o *PublicPatchUpdatePartyReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewPublicPatchUpdatePartyConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicPatchUpdatePartyInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -323,6 +329,59 @@ func (o *PublicPatchUpdatePartyNotFound) GetPayload() *sessionclientmodels.Respo
 }
 
 func (o *PublicPatchUpdatePartyNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(sessionclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicPatchUpdatePartyConflict creates a PublicPatchUpdatePartyConflict with default headers values
+func NewPublicPatchUpdatePartyConflict() *PublicPatchUpdatePartyConflict {
+	return &PublicPatchUpdatePartyConflict{}
+}
+
+/*PublicPatchUpdatePartyConflict handles this case with default header values.
+
+  Conflict
+*/
+type PublicPatchUpdatePartyConflict struct {
+	Payload *sessionclientmodels.ResponseError
+}
+
+func (o *PublicPatchUpdatePartyConflict) Error() string {
+	return fmt.Sprintf("[PATCH /session/v1/public/namespaces/{namespace}/parties/{partyId}][%d] publicPatchUpdatePartyConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *PublicPatchUpdatePartyConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicPatchUpdatePartyConflict) GetPayload() *sessionclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *PublicPatchUpdatePartyConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

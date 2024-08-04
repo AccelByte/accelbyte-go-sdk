@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.22.4"
+    "version": "1.22.5"
   },
   "schemes": [
     "https"
@@ -32,7 +32,7 @@
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/seasonpass"
+    "url": "https://stage.accelbyte.io/seasonpass"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -3433,6 +3433,9 @@
           },
           "description": "message variables",
           "type": "object"
+        },
+        "requiredPermission": {
+          "$ref": "#/definitions/Permission"
         }
       },
       "required": [
@@ -4238,6 +4241,18 @@
         },
         "passItemId": {
           "description": "pass item id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Permission": {
+      "properties": {
+        "action": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "resource": {
           "type": "string"
         }
       },
@@ -5091,21 +5106,21 @@
   },
   "x-docs": {
     "alias": "seasonpass",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/seasonpass/swagger.json"
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-06-14T09:13:20+00:00",
-    "buildID": "1.22.4",
+    "buildDate": "2024-07-23T06:45:06+00:00",
+    "buildID": "1.22.5",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.217-205.860.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.219-208.866.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "2a95bb53e0",
-    "gitTag": "1.22.4",
+    "gitHash": "3143c5020e",
+    "gitTag": "1.22.5",
     "name": "justice-seasonpass-service",
-    "realm": "demo",
-    "version": "1.22.4",
+    "realm": "staging",
+    "version": "1.22.5",
     "version-roles-seeding": "1.2.37"
   }
 }

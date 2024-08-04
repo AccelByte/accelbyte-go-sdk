@@ -1094,6 +1094,32 @@ func (aaa *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkGetOrDefaultByUserIDShort instead.
+func (aaa *UserStatisticService) BulkGetOrDefaultByUserID(input *user_statistic.BulkGetOrDefaultByUserIDParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.UserStatistic.BulkGetOrDefaultByUserID(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use BulkResetUserStatItemValuesShort instead.
 func (aaa *UserStatisticService) BulkResetUserStatItemValues(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2385,6 +2411,36 @@ func (aaa *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statist
 	}
 
 	ok, err := aaa.Client.UserStatistic.BulkUpdateUserStatItemShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserStatisticService) BulkGetOrDefaultByUserIDShort(input *user_statistic.BulkGetOrDefaultByUserIDParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUserStatistic != nil {
+		input.XFlightId = tempFlightIdUserStatistic
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UserStatistic.BulkGetOrDefaultByUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

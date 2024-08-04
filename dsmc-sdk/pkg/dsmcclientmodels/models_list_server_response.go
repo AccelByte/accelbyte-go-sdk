@@ -23,7 +23,7 @@ type ModelsListServerResponse struct {
 	Paging *ModelsPagingCursor `json:"paging"`
 
 	// servers
-	Servers []*ModelsServer `json:"servers,omitempty"`
+	Servers []*ModelsServerDetailsResponse `json:"servers,omitempty"`
 }
 
 // Validate validates this Models list server response

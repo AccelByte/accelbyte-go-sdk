@@ -2772,6 +2772,35 @@ func (aaa *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUse
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminListAllDistinctPlatformAccountsV3Short instead.
+func (aaa *UsersService) AdminListAllDistinctPlatformAccountsV3(input *users.AdminListAllDistinctPlatformAccountsV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminListAllDistinctPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetListJusticePlatformAccountsShort instead.
 func (aaa *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2885,6 +2914,32 @@ func (aaa *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatform
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetUserLinkHistoriesV3Short instead.
+func (aaa *UsersService) AdminGetUserLinkHistoriesV3(input *users.AdminGetUserLinkHistoriesV3Params) (*iamclientmodels.ModelUserPlatformLinkHistories, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminGetUserLinkHistoriesV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminPlatformUnlinkV3Short instead.
 func (aaa *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2979,6 +3034,35 @@ func (aaa *UsersService) AdminDeleteUserLinkingHistoryByPlatformIDV3(input *user
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDeleteUserLinkingHistoryByPlatformIDV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminDeleteUserLinkingRestrictionByPlatformIDV3Short instead.
+func (aaa *UsersService) AdminDeleteUserLinkingRestrictionByPlatformIDV3(input *users.AdminDeleteUserLinkingRestrictionByPlatformIDV3Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Users.AdminDeleteUserLinkingRestrictionByPlatformIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -7560,6 +7644,36 @@ func (aaa *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminG
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) AdminListAllDistinctPlatformAccountsV3Short(input *users.AdminListAllDistinctPlatformAccountsV3Params) (*iamclientmodels.AccountcommonDistinctPlatformResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.AdminListAllDistinctPlatformAccountsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7680,6 +7794,36 @@ func (aaa *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPla
 	return nil
 }
 
+func (aaa *UsersService) AdminGetUserLinkHistoriesV3Short(input *users.AdminGetUserLinkHistoriesV3Params) (*iamclientmodels.ModelUserPlatformLinkHistories, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.AdminGetUserLinkHistoriesV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -7793,6 +7937,36 @@ func (aaa *UsersService) AdminDeleteUserLinkingHistoryByPlatformIDV3Short(input 
 	}
 
 	_, err := aaa.Client.Users.AdminDeleteUserLinkingHistoryByPlatformIDV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *UsersService) AdminDeleteUserLinkingRestrictionByPlatformIDV3Short(input *users.AdminDeleteUserLinkingRestrictionByPlatformIDV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Users.AdminDeleteUserLinkingRestrictionByPlatformIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -176,6 +176,7 @@
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync/multiServiceLabels` | PUT | PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../services-api/pkg/service/platform/dlc.go) | [PublicSyncPsnDlcInventoryWithMultipleServiceLabelsShort](../../samples/cli/cmd/platform/dlc/publicSyncPsnDlcInventoryWithMultipleServiceLabels.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync` | PUT | SyncSteamDLCShort | [SyncSteamDLCShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncSteamDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncSteamDLCShort](../../samples/cli/cmd/platform/dlc/syncSteamDLC.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync` | PUT | SyncXboxDLCShort | [SyncXboxDLCShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [SyncXboxDLCShort](../../services-api/pkg/service/platform/dlc.go) | [SyncXboxDLCShort](../../samples/cli/cmd/platform/dlc/syncXboxDLC.go) |
+| `/platform/public/users/me/dlc/content` | GET | PublicGetMyDLCContentShort | [PublicGetMyDLCContentShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [PublicGetMyDLCContentShort](../../services-api/pkg/service/platform/dlc.go) | [PublicGetMyDLCContentShort](../../samples/cli/cmd/platform/dlc/publicGetMyDLCContent.go) |
 
 ### Entitlement Wrapper:  [Entitlement](../../services-api/pkg/service/platform/entitlement.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -247,7 +248,10 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/preCheck` | POST | PreCheckFulfillItemShort | [PreCheckFulfillItemShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [PreCheckFulfillItemShort](../../services-api/pkg/service/platform/fulfillment.go) | [PreCheckFulfillItemShort](../../samples/cli/cmd/platform/fulfillment/preCheckFulfillItem.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards` | POST | FulfillRewardsShort | [FulfillRewardsShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [FulfillRewardsShort](../../services-api/pkg/service/platform/fulfillment.go) | [FulfillRewardsShort](../../samples/cli/cmd/platform/fulfillment/fulfillRewards.go) |
 | `/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code` | POST | PublicRedeemCodeShort | [PublicRedeemCodeShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [PublicRedeemCodeShort](../../services-api/pkg/service/platform/fulfillment.go) | [PublicRedeemCodeShort](../../samples/cli/cmd/platform/fulfillment/publicRedeemCode.go) |
+| `/platform/v2/admin/namespaces/{namespace}/fulfillments` | GET | QueryFulfillmentsShort | [QueryFulfillmentsShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [QueryFulfillmentsShort](../../services-api/pkg/service/platform/fulfillment.go) | [QueryFulfillmentsShort](../../samples/cli/cmd/platform/fulfillment/queryFulfillments.go) |
 | `/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards` | POST | FulfillRewardsV2Short | [FulfillRewardsV2Short](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [FulfillRewardsV2Short](../../services-api/pkg/service/platform/fulfillment.go) | [FulfillRewardsV2Short](../../samples/cli/cmd/platform/fulfillment/fulfillRewardsV2.go) |
+| `/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}` | PUT | FulfillItemsShort | [FulfillItemsShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [FulfillItemsShort](../../services-api/pkg/service/platform/fulfillment.go) | [FulfillItemsShort](../../samples/cli/cmd/platform/fulfillment/fulfillItems.go) |
+| `/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/revoke` | PUT | RevokeItemsShort | [RevokeItemsShort](../../platform-sdk/pkg/platformclient/fulfillment/fulfillment_client.go) | [RevokeItemsShort](../../services-api/pkg/service/platform/fulfillment.go) | [RevokeItemsShort](../../samples/cli/cmd/platform/fulfillment/revokeItems.go) |
 
 ### Clawback Wrapper:  [Clawback](../../services-api/pkg/service/platform/clawback.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -753,7 +757,9 @@
 | `FieldValidationError` | [FieldValidationError ](../../platform-sdk/pkg/platformclientmodels/field_validation_error.go) |
 | `FixedPeriodRotationConfig` | [FixedPeriodRotationConfig ](../../platform-sdk/pkg/platformclientmodels/fixed_period_rotation_config.go) |
 | `FulFillItemPayload` | [FulFillItemPayload ](../../platform-sdk/pkg/platformclientmodels/ful_fill_item_payload.go) |
+| `FulfillBundledItemResult` | [FulfillBundledItemResult ](../../platform-sdk/pkg/platformclientmodels/fulfill_bundled_item_result.go) |
 | `FulfillCodeRequest` | [FulfillCodeRequest ](../../platform-sdk/pkg/platformclientmodels/fulfill_code_request.go) |
+| `FulfillItemResult` | [FulfillItemResult ](../../platform-sdk/pkg/platformclientmodels/fulfill_item_result.go) |
 | `FulfillmentError` | [FulfillmentError ](../../platform-sdk/pkg/platformclientmodels/fulfillment_error.go) |
 | `FulfillmentHistoryInfo` | [FulfillmentHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_history_info.go) |
 | `FulfillmentHistoryPagingSlicedResult` | [FulfillmentHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/fulfillment_history_paging_sliced_result.go) |
@@ -763,6 +769,10 @@
 | `FulfillmentScriptCreate` | [FulfillmentScriptCreate ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_create.go) |
 | `FulfillmentScriptInfo` | [FulfillmentScriptInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_info.go) |
 | `FulfillmentScriptUpdate` | [FulfillmentScriptUpdate ](../../platform-sdk/pkg/platformclientmodels/fulfillment_script_update.go) |
+| `FulfillmentStateInfo` | [FulfillmentStateInfo ](../../platform-sdk/pkg/platformclientmodels/fulfillment_state_info.go) |
+| `FulfillmentV2Request` | [FulfillmentV2Request ](../../platform-sdk/pkg/platformclientmodels/fulfillment_v2_request.go) |
+| `FulfillmentV2RequestItem` | [FulfillmentV2RequestItem ](../../platform-sdk/pkg/platformclientmodels/fulfillment_v2_request_item.go) |
+| `FulfillmentV2Result` | [FulfillmentV2Result ](../../platform-sdk/pkg/platformclientmodels/fulfillment_v2_result.go) |
 | `FullAppInfo` | [FullAppInfo ](../../platform-sdk/pkg/platformclientmodels/full_app_info.go) |
 | `FullCategoryInfo` | [FullCategoryInfo ](../../platform-sdk/pkg/platformclientmodels/full_category_info.go) |
 | `FullItemInfo` | [FullItemInfo ](../../platform-sdk/pkg/platformclientmodels/full_item_info.go) |
@@ -950,6 +960,7 @@
 | `RevokeEntitlement` | [RevokeEntitlement ](../../platform-sdk/pkg/platformclientmodels/revoke_entitlement.go) |
 | `RevokeEntitlementPayload` | [RevokeEntitlementPayload ](../../platform-sdk/pkg/platformclientmodels/revoke_entitlement_payload.go) |
 | `RevokeEntry` | [RevokeEntry ](../../platform-sdk/pkg/platformclientmodels/revoke_entry.go) |
+| `RevokeFulfillmentV2Result` | [RevokeFulfillmentV2Result ](../../platform-sdk/pkg/platformclientmodels/revoke_fulfillment_v2_result.go) |
 | `RevokeItem` | [RevokeItem ](../../platform-sdk/pkg/platformclientmodels/revoke_item.go) |
 | `RevokeItemSummary` | [RevokeItemSummary ](../../platform-sdk/pkg/platformclientmodels/revoke_item_summary.go) |
 | `RevokeResult` | [RevokeResult ](../../platform-sdk/pkg/platformclientmodels/revoke_result.go) |
@@ -972,8 +983,11 @@
 | `SectionUpdate` | [SectionUpdate ](../../platform-sdk/pkg/platformclientmodels/section_update.go) |
 | `ServicePluginConfigInfo` | [ServicePluginConfigInfo ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_info.go) |
 | `ServicePluginConfigUpdate` | [ServicePluginConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/service_plugin_config_update.go) |
+| `SimpleDLCRewardItem` | [SimpleDLCRewardItem ](../../platform-sdk/pkg/platformclientmodels/simple_dlc_reward_item.go) |
 | `SimpleEntitlement` | [SimpleEntitlement ](../../platform-sdk/pkg/platformclientmodels/simple_entitlement.go) |
 | `SimpleUserDLC` | [SimpleUserDLC ](../../platform-sdk/pkg/platformclientmodels/simple_user_dlc.go) |
+| `SimpleUserDLCRewardContent` | [SimpleUserDLCRewardContent ](../../platform-sdk/pkg/platformclientmodels/simple_user_dlc_reward_content.go) |
+| `SimpleUserDLCRewardContentsResponse` | [SimpleUserDLCRewardContentsResponse ](../../platform-sdk/pkg/platformclientmodels/simple_user_dlc_reward_contents_response.go) |
 | `SimpleWallet` | [SimpleWallet ](../../platform-sdk/pkg/platformclientmodels/simple_wallet.go) |
 | `Slide` | [Slide ](../../platform-sdk/pkg/platformclientmodels/slide.go) |
 | `StackableEntitlementInfo` | [StackableEntitlementInfo ](../../platform-sdk/pkg/platformclientmodels/stackable_entitlement_info.go) |

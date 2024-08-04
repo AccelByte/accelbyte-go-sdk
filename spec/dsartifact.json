@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Artifact Service",
     "title": "justice-ds-artifact-manager",
-    "version": "1.11.4"
+    "version": "1.11.5"
   },
   "schemes": [
     "https"
@@ -1677,12 +1677,441 @@
     "host": "https://stage.accelbyte.io",
     "path": "/dsartifact/apidocs/api.json"
   },
+  "x-messages": [
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20001",
+      "CodeName": "UnauthorizedAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unauthorized access"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20003",
+      "CodeName": "ForbiddenAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20007",
+      "CodeName": "TooManyRequests",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20008",
+      "CodeName": "UserNotFound",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20013",
+      "CodeName": "InsufficientPermissions",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20019",
+      "CodeName": "UnableToParseRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20021",
+      "CodeName": "InvalidPaginationParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20022",
+      "CodeName": "TokenIsNotUserToken",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "810101",
+      "CodeName": "ListTerminatedServerSuccess",
+      "Section": "list terminated server",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810102",
+      "CodeName": "ListTerminatedServerDBError",
+      "Section": "list terminated server",
+      "Service": "dsam",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810201",
+      "CodeName": "DownloadServerArtifactSuccess",
+      "Section": "download server artifact",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810202",
+      "CodeName": "DownloadServerArtifactDBError",
+      "Section": "download server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810203",
+      "CodeName": "DownloadServerArtifactMalformedRequest",
+      "Section": "download server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810204",
+      "CodeName": "DownloadServerArtifactNotFound",
+      "Section": "download server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810301",
+      "CodeName": "CheckServerArtifactExistenceSuccess",
+      "Section": "check server artifact",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810302",
+      "CodeName": "CheckServerArtifactExistenceDBError",
+      "Section": "check server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }} : {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810303",
+      "CodeName": "CheckServerArtifactExistenceMalformedRequest",
+      "Section": "check server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810304",
+      "CodeName": "CheckServerArtifactExistenceNotFound",
+      "Section": "check server artifact",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810401",
+      "CodeName": "SetActiveQueueSuccess",
+      "Section": "set active queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810402",
+      "CodeName": "SetActiveQueueMalformedRequest",
+      "Section": "set active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810501",
+      "CodeName": "GetActiveQueueSuccess",
+      "Section": "get active queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810502",
+      "CodeName": "GetActiveQueueMalformedRequest",
+      "Section": "get active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810503",
+      "CodeName": "GetActiveQueueNotFound",
+      "Section": "get active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810601",
+      "CodeName": "DeleteActiveQueueSuccess",
+      "Section": "delete active queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810602",
+      "CodeName": "DeleteActiveQueueMalformedRequest",
+      "Section": "delete active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810603",
+      "CodeName": "DeleteActiveQueueNotFound",
+      "Section": "delete active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810701",
+      "CodeName": "ListQueueSuccess",
+      "Section": "list queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810702",
+      "CodeName": "ListQueueMalformedRequest",
+      "Section": "list queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810703",
+      "CodeName": "ListQueueNotFound",
+      "Section": "list queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810801",
+      "CodeName": "ListAllQueueSuccess",
+      "Section": "list all pending queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810802",
+      "CodeName": "ListAllQueueMalformedRequest",
+      "Section": "list all pending queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "810901",
+      "CodeName": "ListAllActiveQueueSuccess",
+      "Section": "list all active queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "810902",
+      "CodeName": "ListAllActiveQueueMalformedRequest",
+      "Section": "list all active queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "811001",
+      "CodeName": "DeleteQueueSuccess",
+      "Section": "delete queue",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "811002",
+      "CodeName": "DeleteQueueNotFound",
+      "Section": "delete queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "811003",
+      "CodeName": "DeleteQueueMalformedRequest",
+      "Section": "delete queue",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "811101",
+      "CodeName": "ReportFailedUploadSuccess",
+      "Section": "report failed upload",
+      "Service": "dsam",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "811102",
+      "CodeName": "ReportFailedUploadQueueNotFound",
+      "Section": "report failed upload",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "error"
+      ],
+      "Code": "811103",
+      "CodeName": "ReportFailedUploadMalformedRequest",
+      "Section": "report failed upload",
+      "Service": "dsam",
+      "Text": "unable to {{ action }}: {{ error }}"
+    }
+  ],
   "x-version": {
-    "buildDate": "2024-05-16T03:41:48+00:00",
-    "gitHash": "bf4c0ccc7223229e69fec69afb3bacb5c90aa426",
+    "buildDate": "2024-07-05T02:58:20+00:00",
+    "gitHash": "3a82ad9f573bc24076f8f7505aa99946ee273760",
     "name": "justice-ds-artifact-manager",
-    "revisionID": "1.11.4",
-    "version": "1.11.4",
+    "revisionID": "1.11.5",
+    "version": "1.11.5",
     "version-roles-seeding": "0.0.3"
   }
 }

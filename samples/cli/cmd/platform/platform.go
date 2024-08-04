@@ -504,8 +504,12 @@ func init() {
 	PlatformCmd.AddCommand(view.PublicListViewsCmd)
 	PlatformCmd.AddCommand(wallet.PublicGetWalletCmd)
 	PlatformCmd.AddCommand(wallet.PublicListUserWalletTransactionsCmd)
+	PlatformCmd.AddCommand(dlc.PublicGetMyDLCContentCmd)
+	PlatformCmd.AddCommand(fulfillment.QueryFulfillmentsCmd)
 	PlatformCmd.AddCommand(item.QueryItemsV2Cmd)
 	PlatformCmd.AddCommand(store.ImportStore1Cmd)
 	PlatformCmd.AddCommand(store.ExportStore1Cmd)
 	PlatformCmd.AddCommand(fulfillment.FulfillRewardsV2Cmd)
+	PlatformCmd.AddCommand(fulfillment.FulfillItemsCmd)
+	PlatformCmd.AddCommand(fulfillment.RevokeItemsCmd)
 }

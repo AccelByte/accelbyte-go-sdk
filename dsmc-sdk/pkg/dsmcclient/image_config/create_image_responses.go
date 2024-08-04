@@ -45,6 +45,12 @@ func (o *CreateImageReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewCreateImageNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewCreateImageConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -184,6 +190,59 @@ func (o *CreateImageUnauthorized) GetPayload() *dsmcclientmodels.ResponseError {
 }
 
 func (o *CreateImageUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(dsmcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateImageNotFound creates a CreateImageNotFound with default headers values
+func NewCreateImageNotFound() *CreateImageNotFound {
+	return &CreateImageNotFound{}
+}
+
+/*CreateImageNotFound handles this case with default header values.
+
+  the image is not exist in the container registry
+*/
+type CreateImageNotFound struct {
+	Payload *dsmcclientmodels.ResponseError
+}
+
+func (o *CreateImageNotFound) Error() string {
+	return fmt.Sprintf("[POST /dsmcontroller/admin/images][%d] createImageNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *CreateImageNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreateImageNotFound) GetPayload() *dsmcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *CreateImageNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -23,6 +23,9 @@ type RevocationRequest struct {
 	// source meta info, like DLC transaction id, order no.
 	Meta interface{} `json:"meta,omitempty"`
 
+	// reason why the entries need to be revoked
+	Reason string `json:"reason,omitempty"`
+
 	// revoke entries
 	RevokeEntries []*RevokeEntry `json:"revokeEntries,omitempty"`
 

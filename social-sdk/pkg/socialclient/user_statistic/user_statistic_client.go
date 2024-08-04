@@ -102,6 +102,8 @@ type ClientService interface {
 	AdminListUsersStatItemsShort(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, error)
 	BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, *BulkUpdateUserStatItemBadRequest, *BulkUpdateUserStatItemUnauthorized, *BulkUpdateUserStatItemForbidden, *BulkUpdateUserStatItemUnprocessableEntity, *BulkUpdateUserStatItemInternalServerError, error)
 	BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error)
+	BulkGetOrDefaultByUserID(params *BulkGetOrDefaultByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetOrDefaultByUserIDOK, *BulkGetOrDefaultByUserIDUnauthorized, *BulkGetOrDefaultByUserIDForbidden, *BulkGetOrDefaultByUserIDUnprocessableEntity, *BulkGetOrDefaultByUserIDInternalServerError, error)
+	BulkGetOrDefaultByUserIDShort(params *BulkGetOrDefaultByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetOrDefaultByUserIDOK, error)
 	BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesBadRequest, *BulkResetUserStatItemValuesUnauthorized, *BulkResetUserStatItemValuesForbidden, *BulkResetUserStatItemValuesUnprocessableEntity, *BulkResetUserStatItemValuesInternalServerError, error)
 	BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error)
 	DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, *DeleteUserStatItems2InternalServerError, error)
@@ -4426,13 +4428,13 @@ func (a *Client) BulkFetchOrDefaultStatItems1Short(params *BulkFetchOrDefaultSta
 /*
 Deprecated: 2022-08-10 - Use AdminListUsersStatItemsShort instead.
 
-AdminListUsersStatItems admin list user's statitems
+AdminListUsersStatItems (legacy) admin list user's statitems
 Admin list all statItems of user
-NOTE:
-                    * If stat code does not exist, will ignore this stat code.
-                    * If stat item does not exist, will return default value
+NOTE: Legacy endpoint , please use POST /v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk/getOrDefault
+                      * If stat code does not exist, will ignore this stat code.
+                      * If stat item does not exist, will return default value
 Other detail info:
-                    *  Returns : stat items
+                      *  Returns : stat items
 */
 func (a *Client) AdminListUsersStatItems(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, *AdminListUsersStatItemsBadRequest, *AdminListUsersStatItemsUnauthorized, *AdminListUsersStatItemsForbidden, *AdminListUsersStatItemsNotFound, *AdminListUsersStatItemsUnprocessableEntity, *AdminListUsersStatItemsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4498,13 +4500,13 @@ func (a *Client) AdminListUsersStatItems(params *AdminListUsersStatItemsParams, 
 }
 
 /*
-AdminListUsersStatItemsShort admin list user's statitems
+AdminListUsersStatItemsShort (legacy) admin list user's statitems
 Admin list all statItems of user
-NOTE:
-                  * If stat code does not exist, will ignore this stat code.
-                  * If stat item does not exist, will return default value
+NOTE: Legacy endpoint , please use POST /v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk/getOrDefault
+                      * If stat code does not exist, will ignore this stat code.
+                      * If stat item does not exist, will return default value
 Other detail info:
-                  *  Returns : stat items
+                      *  Returns : stat items
 */
 func (a *Client) AdminListUsersStatItemsShort(params *AdminListUsersStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -4703,6 +4705,132 @@ func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParam
 }
 
 /*
+Deprecated: 2022-08-10 - Use BulkGetOrDefaultByUserIDShort instead.
+
+BulkGetOrDefaultByUserID bulk get user's statitems value by user id and multiple stat codes
+Bulk get user's statitems value for given namespace and user by multiple stat codes.
+Will return default value if player doesn't have the stat.
+Other detail info:
++ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
++ *Max stat codes*: 20
++ *Returns*: list of user's stat item values
+*/
+func (a *Client) BulkGetOrDefaultByUserID(params *BulkGetOrDefaultByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetOrDefaultByUserIDOK, *BulkGetOrDefaultByUserIDUnauthorized, *BulkGetOrDefaultByUserIDForbidden, *BulkGetOrDefaultByUserIDUnprocessableEntity, *BulkGetOrDefaultByUserIDInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetOrDefaultByUserIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetOrDefaultByUserId",
+		Method:             "POST",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetOrDefaultByUserIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetOrDefaultByUserIDOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *BulkGetOrDefaultByUserIDUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *BulkGetOrDefaultByUserIDForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *BulkGetOrDefaultByUserIDUnprocessableEntity:
+		return nil, nil, nil, v, nil, nil
+
+	case *BulkGetOrDefaultByUserIDInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+BulkGetOrDefaultByUserIDShort bulk get user's statitems value by user id and multiple stat codes
+Bulk get user's statitems value for given namespace and user by multiple stat codes.
+Will return default value if player doesn't have the stat.
+Other detail info:
++ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)
++ *Max stat codes*: 20
++ *Returns*: list of user's stat item values
+*/
+func (a *Client) BulkGetOrDefaultByUserIDShort(params *BulkGetOrDefaultByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetOrDefaultByUserIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetOrDefaultByUserIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetOrDefaultByUserId",
+		Method:             "POST",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk/getOrDefault",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetOrDefaultByUserIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetOrDefaultByUserIDOK:
+		return v, nil
+	case *BulkGetOrDefaultByUserIDUnauthorized:
+		return nil, v
+	case *BulkGetOrDefaultByUserIDForbidden:
+		return nil, v
+	case *BulkGetOrDefaultByUserIDUnprocessableEntity:
+		return nil, v
+	case *BulkGetOrDefaultByUserIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use BulkResetUserStatItemValuesShort instead.
 
 BulkResetUserStatItemValues bulk reset user's statitem values
@@ -4837,7 +4965,7 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                  *  Returns : no content
+                      *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, *DeleteUserStatItems2UnprocessableEntity, *DeleteUserStatItems2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4907,7 +5035,7 @@ Otherwise, it will delete all stat items related to the user Id.
 
 Delete user's statItems given stat code.
 Other detail info:
-                    *  Returns : no content
+                        *  Returns : no content
 */
 func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5256,10 +5384,10 @@ Deprecated: 2022-08-10 - Use PublicQueryUserStatItems2Short instead.
 PublicQueryUserStatItems2 public list user's statitems
 Public list all statItems of user.
 NOTE:
-                    * If stat code does not exist, will ignore this stat code.
-                    * If stat item does not exist, will return default value
+                        * If stat code does not exist, will ignore this stat code.
+                        * If stat item does not exist, will return default value
 Other detail info:
-                    *  Returns : stat items
+                        *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, *PublicQueryUserStatItems2BadRequest, *PublicQueryUserStatItems2Unauthorized, *PublicQueryUserStatItems2Forbidden, *PublicQueryUserStatItems2NotFound, *PublicQueryUserStatItems2UnprocessableEntity, *PublicQueryUserStatItems2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5328,10 +5456,10 @@ func (a *Client) PublicQueryUserStatItems2(params *PublicQueryUserStatItems2Para
 PublicQueryUserStatItems2Short public list user's statitems
 Public list all statItems of user.
 NOTE:
-                  * If stat code does not exist, will ignore this stat code.
-                  * If stat item does not exist, will return default value
+                      * If stat code does not exist, will ignore this stat code.
+                      * If stat item does not exist, will return default value
 Other detail info:
-                  *  Returns : stat items
+                      *  Returns : stat items
 */
 func (a *Client) PublicQueryUserStatItems2Short(params *PublicQueryUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems2OK, error) {
 	// TODO: Validate the params before sending

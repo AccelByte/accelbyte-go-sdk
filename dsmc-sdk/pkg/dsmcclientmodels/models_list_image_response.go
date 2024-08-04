@@ -22,7 +22,7 @@ type ModelsListImageResponse struct {
 
 	// images
 	// Required: true
-	Images []*ModelsImageRecord `json:"images"`
+	Images []*ModelsImageRecordResponse `json:"images"`
 
 	// paging
 	// Required: true

@@ -29,7 +29,8 @@ type ModelsServer struct {
 	AlternateIps []string `json:"alternate_ips,omitempty"`
 
 	// artifact_path
-	ArtifactPath string `json:"artifact_path,omitempty"`
+	// Required: true
+	ArtifactPath *string `json:"artifact_path"`
 
 	// cpu_limit
 	// Required: true
@@ -69,6 +70,10 @@ type ModelsServer struct {
 	// is_override_game_version
 	// Required: true
 	IsOverrideGameVersion *bool `json:"is_override_game_version"`
+
+	// is_override_region
+	// Required: true
+	IsOverrideRegion *bool `json:"is_override_region"`
 
 	// job_id
 	// Required: true
@@ -130,6 +135,11 @@ type ModelsServer struct {
 	// termination_reason
 	// Required: true
 	TerminationReason *string `json:"termination_reason"`
+
+	// ulimit_file_size
+	// Required: true
+	// Format: int32
+	UlimitFileSize *int32 `json:"ulimit_file_size"`
 }
 
 // Validate validates this Models server
@@ -137,6 +147,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAllocationID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateArtifactPath(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateCPULimit(formats); err != nil {
@@ -158,6 +171,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateIsOverrideGameVersion(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsOverrideRegion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateJobID(formats); err != nil {
@@ -199,6 +215,9 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	if err := m.validateTerminationReason(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateUlimitFileSize(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
@@ -209,6 +228,15 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 func (m *ModelsServer) validateAllocationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("allocation_id", "body", m.AllocationID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateArtifactPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("artifact_path", "body", m.ArtifactPath); err != nil {
 		return err
 	}
 
@@ -276,6 +304,15 @@ func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 func (m *ModelsServer) validateIsOverrideGameVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("is_override_game_version", "body", m.IsOverrideGameVersion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateIsOverrideRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("is_override_region", "body", m.IsOverrideRegion); err != nil {
 		return err
 	}
 
@@ -397,6 +434,15 @@ func (m *ModelsServer) validateStatus(formats strfmt.Registry) error {
 func (m *ModelsServer) validateTerminationReason(formats strfmt.Registry) error {
 
 	if err := validate.Required("termination_reason", "body", m.TerminationReason); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateUlimitFileSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("ulimit_file_size", "body", m.UlimitFileSize); err != nil {
 		return err
 	}
 

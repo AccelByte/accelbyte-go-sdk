@@ -22,7 +22,7 @@ type ModelsListImagePatchesResponse struct {
 
 	// images
 	// Required: true
-	Images []*ModelsPatchImageRecord `json:"images"`
+	Images []*ModelsPatchImageRecordResponse `json:"images"`
 }
 
 // Validate validates this Models list image patches response

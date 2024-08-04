@@ -44,6 +44,10 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	ClientID *string `json:"ClientId"`
 
+	// a flag indicates whether enable server license validation, only available on ps5, ps4, xbl
+	// Required: true
+	EnableServerLicenseValidation *bool `json:"EnableServerLicenseValidation"`
+
 	// environment
 	// Required: true
 	Environment *string `json:"Environment"`
@@ -55,6 +59,9 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// GenericOauthFlow is a flag that indicate this client is using generic oauth/open id flow or not
 	// Required: true
 	GenericOauthFlow *bool `json:"GenericOauthFlow"`
+
+	// a flag indicates whether need to include puid in access token claim
+	IncludePUID bool `json:"IncludePUID"`
 
 	// isactive
 	// Required: true
@@ -148,6 +155,9 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	if err := m.validateClientID(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateEnableServerLicenseValidation(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateEnvironment(formats); err != nil {
 		res = append(res, err)
 	}
@@ -239,6 +249,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateAppID(formats s
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateClientID(formats strfmt.Registry) error {
 
 	if err := validate.Required("ClientId", "body", m.ClientID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateEnableServerLicenseValidation(formats strfmt.Registry) error {
+
+	if err := validate.Required("EnableServerLicenseValidation", "body", m.EnableServerLicenseValidation); err != nil {
 		return err
 	}
 

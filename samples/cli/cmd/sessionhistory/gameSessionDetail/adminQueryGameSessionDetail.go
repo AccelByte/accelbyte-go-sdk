@@ -26,19 +26,23 @@ var AdminQueryGameSessionDetailCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		endDate, _ := cmd.Flags().GetString("endDate")
 		gameSessionID, _ := cmd.Flags().GetString("gameSessionID")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		order, _ := cmd.Flags().GetString("order")
 		orderBy, _ := cmd.Flags().GetString("orderBy")
+		startDate, _ := cmd.Flags().GetString("startDate")
 		userID, _ := cmd.Flags().GetString("userID")
 		input := &game_session_detail.AdminQueryGameSessionDetailParams{
 			Namespace:     namespace,
+			EndDate:       &endDate,
 			GameSessionID: &gameSessionID,
 			Limit:         &limit,
 			Offset:        &offset,
 			Order:         &order,
 			OrderBy:       &orderBy,
+			StartDate:     &startDate,
 			UserID:        &userID,
 		}
 		ok, errOK := gameSessionDetailService.AdminQueryGameSessionDetailShort(input)
@@ -57,10 +61,12 @@ var AdminQueryGameSessionDetailCmd = &cobra.Command{
 func init() {
 	AdminQueryGameSessionDetailCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminQueryGameSessionDetailCmd.MarkFlagRequired("namespace")
+	AdminQueryGameSessionDetailCmd.Flags().String("endDate", "", "End date")
 	AdminQueryGameSessionDetailCmd.Flags().String("gameSessionID", "", "Game session ID")
 	AdminQueryGameSessionDetailCmd.Flags().Int64("limit", 20, "Limit")
 	AdminQueryGameSessionDetailCmd.Flags().Int64("offset", 0, "Offset")
 	AdminQueryGameSessionDetailCmd.Flags().String("order", "", "Order")
 	AdminQueryGameSessionDetailCmd.Flags().String("orderBy", "", "Order by")
+	AdminQueryGameSessionDetailCmd.Flags().String("startDate", "", "Start date")
 	AdminQueryGameSessionDetailCmd.Flags().String("userID", "", "User ID")
 }

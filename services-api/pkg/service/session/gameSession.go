@@ -316,7 +316,7 @@ func (aaa *GameSessionService) UpdateGameSession(input *game_session.UpdateGameS
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.UpdateGameSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.GameSession.UpdateGameSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -328,6 +328,9 @@ func (aaa *GameSessionService) UpdateGameSession(input *game_session.UpdateGameS
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -368,7 +371,7 @@ func (aaa *GameSessionService) PatchUpdateGameSession(input *game_session.PatchU
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PatchUpdateGameSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.GameSession.PatchUpdateGameSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -380,6 +383,9 @@ func (aaa *GameSessionService) PatchUpdateGameSession(input *game_session.PatchU
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -670,6 +676,35 @@ func (aaa *GameSessionService) AppendTeamGameSession(input *game_session.AppendT
 	}
 
 	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGameSessionCancelShort instead.
+func (aaa *GameSessionService) PublicGameSessionCancel(input *game_session.PublicGameSessionCancelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.PublicGameSessionCancel(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicQueryMyGameSessionsShort instead.
@@ -1383,6 +1418,36 @@ func (aaa *GameSessionService) AppendTeamGameSessionShort(input *game_session.Ap
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *GameSessionService) PublicGameSessionCancelShort(input *game_session.PublicGameSessionCancelParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdGameSession != nil {
+		input.XFlightId = tempFlightIdGameSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.GameSession.PublicGameSessionCancelShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *GameSessionService) PublicQueryMyGameSessionsShort(input *game_session.PublicQueryMyGameSessionsParams) (*sessionclientmodels.ApimodelsGameSessionQueryResponse, error) {

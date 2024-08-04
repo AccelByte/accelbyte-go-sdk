@@ -26,6 +26,9 @@ type ModelsMatch struct {
 	// matchattributes
 	MatchAttributes interface{} `json:"MatchAttributes,omitempty"`
 
+	// pivotid
+	PivotID string `json:"PivotID,omitempty"`
+
 	// regionpreference
 	RegionPreference []string `json:"RegionPreference,omitempty"`
 
@@ -36,7 +39,11 @@ type ModelsMatch struct {
 	Teams []*ModelsTeam `json:"Teams,omitempty"`
 
 	// tickets
-	Tickets []*ModelsTicket `json:"Tickets,omitempty"`
+	Tickets []*ModelsMatchTicket `json:"Tickets,omitempty"`
+
+	// timestamp
+	// Format: date-time
+	Timestamp *strfmt.DateTime `json:"Timestamp,omitempty"`
 }
 
 // Validate validates this Models match

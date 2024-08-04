@@ -106,7 +106,7 @@ type AdminQueryPartyDetailParams struct {
 	*/
 	Order *string
 	/*OrderBy
-	  Order result by specific attribute. Supported: expiredAt (default)
+	  Order result by specific attribute. Supported: createdAt (default)
 
 	*/
 	OrderBy *string

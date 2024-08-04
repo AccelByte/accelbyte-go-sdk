@@ -74,7 +74,7 @@ type PublicForceLinkPlatformWithProgressionParams struct {
 	*/
 	Namespace string
 	/*UserID
-	  Current user ID
+	  Current user ID. Should match the one in the access token
 
 	*/
 	UserID string

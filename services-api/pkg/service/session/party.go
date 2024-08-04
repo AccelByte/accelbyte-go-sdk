@@ -145,7 +145,7 @@ func (aaa *PartyService) PublicUpdateParty(input *party.PublicUpdatePartyParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicUpdateParty(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Party.PublicUpdateParty(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -157,6 +157,9 @@ func (aaa *PartyService) PublicUpdateParty(input *party.PublicUpdatePartyParams)
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -174,7 +177,7 @@ func (aaa *PartyService) PublicPatchUpdateParty(input *party.PublicPatchUpdatePa
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicPatchUpdateParty(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Party.PublicPatchUpdateParty(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -186,6 +189,9 @@ func (aaa *PartyService) PublicPatchUpdateParty(input *party.PublicPatchUpdatePa
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -372,6 +378,35 @@ func (aaa *PartyService) PublicPartyReject(input *party.PublicPartyRejectParams)
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicPartyReject(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicPartyCancelShort instead.
+func (aaa *PartyService) PublicPartyCancel(input *party.PublicPartyCancelParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicPartyCancel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -852,6 +887,36 @@ func (aaa *PartyService) PublicPartyRejectShort(input *party.PublicPartyRejectPa
 	}
 
 	_, err := aaa.Client.Party.PublicPartyRejectShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *PartyService) PublicPartyCancelShort(input *party.PublicPartyCancelParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdParty != nil {
+		input.XFlightId = tempFlightIdParty
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Party.PublicPartyCancelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

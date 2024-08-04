@@ -104,6 +104,7 @@
 | `/social/v2/admin/namespaces/{namespace}/statitems/value/bulk/getOrDefault` | GET | BulkFetchOrDefaultStatItems1Short | [BulkFetchOrDefaultStatItems1Short](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [BulkFetchOrDefaultStatItems1Short](../../services-api/pkg/service/social/userStatistic.go) | [BulkFetchOrDefaultStatItems1Short](../../samples/cli/cmd/social/userStatistic/bulkFetchOrDefaultStatItems1.go) |
 | `/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk` | GET | AdminListUsersStatItemsShort | [AdminListUsersStatItemsShort](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [AdminListUsersStatItemsShort](../../services-api/pkg/service/social/userStatistic.go) | [AdminListUsersStatItemsShort](../../samples/cli/cmd/social/userStatistic/adminListUsersStatItems.go) |
 | `/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk` | PUT | BulkUpdateUserStatItemShort | [BulkUpdateUserStatItemShort](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [BulkUpdateUserStatItemShort](../../services-api/pkg/service/social/userStatistic.go) | [BulkUpdateUserStatItemShort](../../samples/cli/cmd/social/userStatistic/bulkUpdateUserStatItem.go) |
+| `/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk/getOrDefault` | POST | BulkGetOrDefaultByUserIdShort | [BulkGetOrDefaultByUserIdShort](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [BulkGetOrDefaultByUserIdShort](../../services-api/pkg/service/social/userStatistic.go) | [BulkGetOrDefaultByUserIdShort](../../samples/cli/cmd/social/userStatistic/bulkGetOrDefaultByUserId.go) |
 | `/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk` | PUT | BulkResetUserStatItemValuesShort | [BulkResetUserStatItemValuesShort](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [BulkResetUserStatItemValuesShort](../../services-api/pkg/service/social/userStatistic.go) | [BulkResetUserStatItemValuesShort](../../samples/cli/cmd/social/userStatistic/bulkResetUserStatItemValues.go) |
 | `/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems` | DELETE | DeleteUserStatItems2Short | [DeleteUserStatItems2Short](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [DeleteUserStatItems2Short](../../services-api/pkg/service/social/userStatistic.go) | [DeleteUserStatItems2Short](../../samples/cli/cmd/social/userStatistic/deleteUserStatItems2.go) |
 | `/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value` | PUT | UpdateUserStatItemValueShort | [UpdateUserStatItemValueShort](../../social-sdk/pkg/socialclient/user_statistic/user_statistic_client.go) | [UpdateUserStatItemValueShort](../../services-api/pkg/service/social/userStatistic.go) | [UpdateUserStatItemValueShort](../../samples/cli/cmd/social/userStatistic/updateUserStatItemValue.go) |
@@ -152,6 +153,7 @@
 | `BulkStatItemReset` | [BulkStatItemReset ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_reset.go) |
 | `BulkStatItemUpdate` | [BulkStatItemUpdate ](../../social-sdk/pkg/socialclientmodels/bulk_stat_item_update.go) |
 | `BulkStatOperationResult` | [BulkStatOperationResult ](../../social-sdk/pkg/socialclientmodels/bulk_stat_operation_result.go) |
+| `BulkUserStatItemByStatCodes` | [BulkUserStatItemByStatCodes ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_by_stat_codes.go) |
 | `BulkUserStatItemInc` | [BulkUserStatItemInc ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_inc.go) |
 | `BulkUserStatItemReset` | [BulkUserStatItemReset ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_reset.go) |
 | `BulkUserStatItemUpdate` | [BulkUserStatItemUpdate ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_update.go) |
@@ -165,6 +167,7 @@
 | `GlobalStatItemPagingSlicedResult` | [GlobalStatItemPagingSlicedResult ](../../social-sdk/pkg/socialclientmodels/global_stat_item_paging_sliced_result.go) |
 | `NamespaceSlotConfigInfo` | [NamespaceSlotConfigInfo ](../../social-sdk/pkg/socialclientmodels/namespace_slot_config_info.go) |
 | `Paging` | [Paging ](../../social-sdk/pkg/socialclientmodels/paging.go) |
+| `Permission` | [Permission ](../../social-sdk/pkg/socialclientmodels/permission.go) |
 | `SlotConfigUpdate` | [SlotConfigUpdate ](../../social-sdk/pkg/socialclientmodels/slot_config_update.go) |
 | `SlotInfo` | [SlotInfo ](../../social-sdk/pkg/socialclientmodels/slot_info.go) |
 | `SlotMetadataUpdate` | [SlotMetadataUpdate ](../../social-sdk/pkg/socialclientmodels/slot_metadata_update.go) |

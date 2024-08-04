@@ -130,7 +130,7 @@ type ItemUpdate struct {
 	// Enum: ['ACTIVE', 'INACTIVE']
 	Status string `json:"status,omitempty"`
 
-	// Tags, allowed characters from a-zA-Z0-9:_- with length range from 1 to 30, should start and end in upper/lowercase/number, an item has max 5 tags.
+	// Tags, allowed characters from a-zA-Z0-9:_- with length range from 1 to 30, should start and end in upper/lowercase/number, an item has max 20 tags.
 	// Unique: true
 	Tags []string `json:"tags"`
 

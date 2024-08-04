@@ -52,6 +52,8 @@ type ClientService interface {
 	UpdateUserProfileStatusShort(params *UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileStatusOK, error)
 	PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfilePublicInfoByIdsParams) (*PublicGetUserProfilePublicInfoByIdsOK, *PublicGetUserProfilePublicInfoByIdsBadRequest, error)
 	PublicGetUserProfilePublicInfoByIdsShort(params *PublicGetUserProfilePublicInfoByIdsParams) (*PublicGetUserProfilePublicInfoByIdsOK, error)
+	PublicBulkGetUserProfilePublicInfo(params *PublicBulkGetUserProfilePublicInfoParams) (*PublicBulkGetUserProfilePublicInfoOK, *PublicBulkGetUserProfilePublicInfoBadRequest, error)
+	PublicBulkGetUserProfilePublicInfoShort(params *PublicBulkGetUserProfilePublicInfoParams) (*PublicBulkGetUserProfilePublicInfoOK, error)
 	PublicGetUserProfileInfoByPublicID(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, *PublicGetUserProfileInfoByPublicIDBadRequest, *PublicGetUserProfileInfoByPublicIDNotFound, error)
 	PublicGetUserProfileInfoByPublicIDShort(params *PublicGetUserProfileInfoByPublicIDParams) (*PublicGetUserProfileInfoByPublicIDOK, error)
 	GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyProfileInfoOK, *GetMyProfileInfoBadRequest, *GetMyProfileInfoUnauthorized, *GetMyProfileInfoForbidden, *GetMyProfileInfoNotFound, error)
@@ -1405,6 +1407,111 @@ func (a *Client) PublicGetUserProfilePublicInfoByIdsShort(params *PublicGetUserP
 	case *PublicGetUserProfilePublicInfoByIdsOK:
 		return v, nil
 	case *PublicGetUserProfilePublicInfoByIdsBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicBulkGetUserProfilePublicInfoShort instead.
+
+PublicBulkGetUserProfilePublicInfo bulk get user profile public info by ids
+Bulk get user public profile by ids.
+Other detail info:
+
+  * Returns : user public profiles
+*/
+func (a *Client) PublicBulkGetUserProfilePublicInfo(params *PublicBulkGetUserProfilePublicInfoParams) (*PublicBulkGetUserProfilePublicInfoOK, *PublicBulkGetUserProfilePublicInfoBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkGetUserProfilePublicInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkGetUserProfilePublicInfo",
+		Method:             "POST",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/profiles/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkGetUserProfilePublicInfoReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkGetUserProfilePublicInfoOK:
+		return v, nil, nil
+
+	case *PublicBulkGetUserProfilePublicInfoBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicBulkGetUserProfilePublicInfoShort bulk get user profile public info by ids
+Bulk get user public profile by ids.
+Other detail info:
+
+  * Returns : user public profiles
+*/
+func (a *Client) PublicBulkGetUserProfilePublicInfoShort(params *PublicBulkGetUserProfilePublicInfoParams) (*PublicBulkGetUserProfilePublicInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkGetUserProfilePublicInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkGetUserProfilePublicInfo",
+		Method:             "POST",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/profiles/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkGetUserProfilePublicInfoReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkGetUserProfilePublicInfoOK:
+		return v, nil
+	case *PublicBulkGetUserProfilePublicInfoBadRequest:
 		return nil, v
 
 	default:

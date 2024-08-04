@@ -67,12 +67,15 @@ func (aaa *ImageConfigService) CreateImage(input *image_config.CreateImageParams
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := aaa.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := aaa.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if conflict != nil {
 		return conflict
@@ -85,32 +88,6 @@ func (aaa *ImageConfigService) CreateImage(input *image_config.CreateImageParams
 	}
 
 	return nil
-}
-
-// Deprecated: 2022-01-10 - please use ImportImagesShort instead.
-func (aaa *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ImageConfig.ImportImages(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use CreateImagePatchShort instead.
@@ -189,32 +166,6 @@ func (aaa *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams
 	}
 
 	return nil
-}
-
-// Deprecated: 2022-01-10 - please use ExportImagesShort instead.
-func (aaa *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	token, err := aaa.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ImageConfig.ExportImages(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
-	}
-	if notFound != nil {
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use GetImageLimitShort instead.
@@ -510,36 +461,6 @@ func (aaa *ImageConfigService) CreateImageShort(input *image_config.CreateImageP
 	return nil
 }
 
-func (aaa *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-	if tempFlightIdImageConfig != nil {
-		input.XFlightId = tempFlightIdImageConfig
-	} else if aaa.FlightIdRepository != nil {
-		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
-	}
-
-	ok, err := aaa.Client.ImageConfig.ImportImagesShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
 func (aaa *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -628,36 +549,6 @@ func (aaa *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageP
 	}
 
 	return nil
-}
-
-func (aaa *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	authInfoWriter := input.AuthInfoWriter
-	if authInfoWriter == nil {
-		security := [][]string{
-			{"bearer"},
-		}
-		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
-	}
-	if input.RetryPolicy == nil {
-		input.RetryPolicy = &utils.Retry{
-			MaxTries:   utils.MaxTries,
-			Backoff:    utils.NewConstantBackoff(0),
-			Transport:  aaa.Client.Runtime.Transport,
-			RetryCodes: utils.RetryCodes,
-		}
-	}
-	if tempFlightIdImageConfig != nil {
-		input.XFlightId = tempFlightIdImageConfig
-	} else if aaa.FlightIdRepository != nil {
-		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
-	}
-
-	ok, err := aaa.Client.ImageConfig.ExportImagesShort(input, authInfoWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
 }
 
 func (aaa *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {

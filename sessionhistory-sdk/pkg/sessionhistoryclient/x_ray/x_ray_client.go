@@ -66,6 +66,8 @@ type ClientService interface {
 	QueryTotalMatchmakingExpiredShort(params *QueryTotalMatchmakingExpiredParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTotalMatchmakingExpiredOK, error)
 	QueryTotalMatchmakingMatchTicket(params *QueryTotalMatchmakingMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTotalMatchmakingMatchTicketOK, *QueryTotalMatchmakingMatchTicketBadRequest, *QueryTotalMatchmakingMatchTicketUnauthorized, *QueryTotalMatchmakingMatchTicketForbidden, *QueryTotalMatchmakingMatchTicketNotFound, *QueryTotalMatchmakingMatchTicketInternalServerError, error)
 	QueryTotalMatchmakingMatchTicketShort(params *QueryTotalMatchmakingMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTotalMatchmakingMatchTicketOK, error)
+	CreateXrayTicketObservability(params *CreateXrayTicketObservabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CreateXrayTicketObservabilityOK, *CreateXrayTicketObservabilityBadRequest, *CreateXrayTicketObservabilityUnauthorized, *CreateXrayTicketObservabilityForbidden, *CreateXrayTicketObservabilityInternalServerError, error)
+	CreateXrayTicketObservabilityShort(params *CreateXrayTicketObservabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CreateXrayTicketObservabilityOK, error)
 	QueryXrayTimelineByTicketID(params *QueryXrayTimelineByTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*QueryXrayTimelineByTicketIDOK, *QueryXrayTimelineByTicketIDBadRequest, *QueryXrayTimelineByTicketIDUnauthorized, *QueryXrayTimelineByTicketIDForbidden, *QueryXrayTimelineByTicketIDNotFound, *QueryXrayTimelineByTicketIDInternalServerError, error)
 	QueryXrayTimelineByTicketIDShort(params *QueryXrayTimelineByTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*QueryXrayTimelineByTicketIDOK, error)
 	QueryXrayTimelineByUserID(params *QueryXrayTimelineByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*QueryXrayTimelineByUserIDOK, *QueryXrayTimelineByUserIDBadRequest, *QueryXrayTimelineByUserIDUnauthorized, *QueryXrayTimelineByUserIDForbidden, *QueryXrayTimelineByUserIDNotFound, *QueryXrayTimelineByUserIDInternalServerError, error)
@@ -2245,6 +2247,174 @@ func (a *Client) QueryTotalMatchmakingMatchTicketShort(params *QueryTotalMatchma
 	case *QueryTotalMatchmakingMatchTicketNotFound:
 		return nil, v
 	case *QueryTotalMatchmakingMatchTicketInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CreateXrayTicketObservabilityShort instead.
+
+CreateXrayTicketObservability create ticket observability request
+Create ticket observability request
+Request body details (all attributes are optional):
+Timestamp : timestamp when calling this endpoint
+Action : support one of the following value:
+1. "started"
+2. "matchFound"
+3. "matchNotFound"
+4. "flexed"
+5 "canceled"
+6. "expired"
+PartyID : ticket Party ID
+MatchID : match ID will be filled only when match found
+Namespace : ticket current namespace
+GameMode : ticket current matchpool
+ActiveAllianceRule : current active alliance ruleset
+ActiveMatchingRule : current active matching ruleset
+Function : name of the function that called the endpoint
+Iteration : total iteration before match found
+TimeToMatchSec : time to match (in seconds) will be filled only when match found
+UnmatchReason : reason when unable to find match
+RemainingTickets : remaining ticket when unable to find match
+RemainingPlayersPerTicket : remaining players when unable to find match
+UnbackfillReason : reason when unable to backfill
+IsBackfillMatch : flag to distinguish between new match and backfill match
+IsRuleSetFlexed : flag if ruleset is getting flexed
+TickID : tick id for the matchmaking tick
+SessionTickID : session tick id for differentiate session when doing matches
+*/
+func (a *Client) CreateXrayTicketObservability(params *CreateXrayTicketObservabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CreateXrayTicketObservabilityOK, *CreateXrayTicketObservabilityBadRequest, *CreateXrayTicketObservabilityUnauthorized, *CreateXrayTicketObservabilityForbidden, *CreateXrayTicketObservabilityInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateXrayTicketObservabilityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createXrayTicketObservability",
+		Method:             "POST",
+		PathPattern:        "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateXrayTicketObservabilityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateXrayTicketObservabilityOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateXrayTicketObservabilityBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateXrayTicketObservabilityUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateXrayTicketObservabilityForbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreateXrayTicketObservabilityInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CreateXrayTicketObservabilityShort create ticket observability request
+Create ticket observability request
+Request body details (all attributes are optional):
+Timestamp : timestamp when calling this endpoint
+Action : support one of the following value:
+1. "started"
+2. "matchFound"
+3. "matchNotFound"
+4. "flexed"
+5 "canceled"
+6. "expired"
+PartyID : ticket Party ID
+MatchID : match ID will be filled only when match found
+Namespace : ticket current namespace
+GameMode : ticket current matchpool
+ActiveAllianceRule : current active alliance ruleset
+ActiveMatchingRule : current active matching ruleset
+Function : name of the function that called the endpoint
+Iteration : total iteration before match found
+TimeToMatchSec : time to match (in seconds) will be filled only when match found
+UnmatchReason : reason when unable to find match
+RemainingTickets : remaining ticket when unable to find match
+RemainingPlayersPerTicket : remaining players when unable to find match
+UnbackfillReason : reason when unable to backfill
+IsBackfillMatch : flag to distinguish between new match and backfill match
+IsRuleSetFlexed : flag if ruleset is getting flexed
+TickID : tick id for the matchmaking tick
+SessionTickID : session tick id for differentiate session when doing matches
+*/
+func (a *Client) CreateXrayTicketObservabilityShort(params *CreateXrayTicketObservabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CreateXrayTicketObservabilityOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateXrayTicketObservabilityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createXrayTicketObservability",
+		Method:             "POST",
+		PathPattern:        "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateXrayTicketObservabilityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateXrayTicketObservabilityOK:
+		return v, nil
+	case *CreateXrayTicketObservabilityBadRequest:
+		return nil, v
+	case *CreateXrayTicketObservabilityUnauthorized:
+		return nil, v
+	case *CreateXrayTicketObservabilityForbidden:
+		return nil, v
+	case *CreateXrayTicketObservabilityInternalServerError:
 		return nil, v
 
 	default:

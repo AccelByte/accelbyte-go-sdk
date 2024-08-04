@@ -33,6 +33,10 @@ type ModelUserProgressionResponseMeta struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// period
+	// Required: true
+	Period *ModelUserProgressionPeriodResponseMeta `json:"period"`
+
 	// startdate
 	// Required: true
 	StartDate *string `json:"startDate"`
@@ -53,6 +57,9 @@ func (m *ModelUserProgressionResponseMeta) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePeriod(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStartDate(formats); err != nil {
@@ -90,6 +97,24 @@ func (m *ModelUserProgressionResponseMeta) validateName(formats strfmt.Registry)
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserProgressionResponseMeta) validatePeriod(formats strfmt.Registry) error {
+
+	if err := validate.Required("period", "body", m.Period); err != nil {
+		return err
+	}
+
+	if m.Period != nil {
+		if err := m.Period.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("period")
+			}
+			return err
+		}
 	}
 
 	return nil

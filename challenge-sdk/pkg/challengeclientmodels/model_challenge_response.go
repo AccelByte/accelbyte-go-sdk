@@ -58,6 +58,10 @@ type ModelChallengeResponse struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// randomizedperrotation
+	// Required: true
+	RandomizedPerRotation *bool `json:"randomizedPerRotation"`
+
 	// repeatafter
 	// Format: int32
 	RepeatAfter int32 `json:"repeatAfter,omitempty"`
@@ -108,6 +112,9 @@ func (m *ModelChallengeResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRandomizedPerRotation(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateResetConfig(formats); err != nil {
@@ -260,6 +267,15 @@ func (m *ModelChallengeResponse) validateGoalsVisibility(formats strfmt.Registry
 func (m *ModelChallengeResponse) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelChallengeResponse) validateRandomizedPerRotation(formats strfmt.Registry) error {
+
+	if err := validate.Required("randomizedPerRotation", "body", m.RandomizedPerRotation); err != nil {
 		return err
 	}
 

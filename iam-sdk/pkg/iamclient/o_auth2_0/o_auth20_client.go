@@ -1072,6 +1072,10 @@ The third party platform and platform group covered for this is:
 - snapchat
 - twitch
 - live
+
+
+**Authentication:**
+The _**userId**_ parameter should match the one in the access token.
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1146,6 +1150,10 @@ The third party platform and platform group covered for this is:
 - snapchat
 - twitch
 - live
+
+
+**Authentication:**
+The _**userId**_ parameter should match the one in the access token.
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error) {
 	// TODO: Validate the params before sending

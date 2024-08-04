@@ -33,6 +33,8 @@ type Client struct {
 type ClientService interface {
 	BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error)
 	BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*BatchDownloadServerLogsOK, error)
+	ListMetadataServers(params *ListMetadataServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListMetadataServersOK, *ListMetadataServersBadRequest, *ListMetadataServersUnauthorized, *ListMetadataServersInternalServerError, error)
+	ListMetadataServersShort(params *ListMetadataServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListMetadataServersOK, error)
 	ListAllTerminatedServers(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, *ListAllTerminatedServersBadRequest, *ListAllTerminatedServersUnauthorized, *ListAllTerminatedServersInternalServerError, error)
 	ListAllTerminatedServersShort(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, error)
 
@@ -146,6 +148,129 @@ func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsPar
 	case *BatchDownloadServerLogsBadRequest:
 		return nil, v
 	case *BatchDownloadServerLogsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ListMetadataServersShort instead.
+
+ListMetadataServers retrieve metadata servers
+```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
+
+This endpoint used to retrieve metadata servers in a namespace
+
+The namespace filter is will give result exact namespace response
+```
+*/
+func (a *Client) ListMetadataServers(params *ListMetadataServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListMetadataServersOK, *ListMetadataServersBadRequest, *ListMetadataServersUnauthorized, *ListMetadataServersInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListMetadataServersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listMetadataServers",
+		Method:             "POST",
+		PathPattern:        "/dslogmanager/servers/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListMetadataServersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListMetadataServersOK:
+		return v, nil, nil, nil, nil
+
+	case *ListMetadataServersBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *ListMetadataServersUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *ListMetadataServersInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ListMetadataServersShort retrieve metadata servers
+```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]
+
+This endpoint used to retrieve metadata servers in a namespace
+
+The namespace filter is will give result exact namespace response
+```
+*/
+func (a *Client) ListMetadataServersShort(params *ListMetadataServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListMetadataServersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListMetadataServersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listMetadataServers",
+		Method:             "POST",
+		PathPattern:        "/dslogmanager/servers/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListMetadataServersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListMetadataServersOK:
+		return v, nil
+	case *ListMetadataServersBadRequest:
+		return nil, v
+	case *ListMetadataServersUnauthorized:
+		return nil, v
+	case *ListMetadataServersInternalServerError:
 		return nil, v
 
 	default:

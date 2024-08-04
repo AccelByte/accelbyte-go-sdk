@@ -16,6 +16,14 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
+)
+
+// Get the enum in GetUserDLCParams
+const (
+	GetUserDLCFULFILLEDConstant    = "FULFILLED"
+	GetUserDLCREVOKEDConstant      = "REVOKED"
+	GetUserDLCREVOKEFAILEDConstant = "REVOKE_FAILED"
 )
 
 // Get the enum in GetUserDLCParams
@@ -77,6 +85,10 @@ type GetUserDLCParams struct {
 	Namespace string
 	/*UserID*/
 	UserID string
+	/*IncludeAllNamespaces*/
+	IncludeAllNamespaces *bool
+	/*Status*/
+	Status *string
 	/*Type*/
 	Type *string
 
@@ -167,6 +179,28 @@ func (o *GetUserDLCParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithIncludeAllNamespaces adds the includeAllNamespaces to the get user dlc params
+func (o *GetUserDLCParams) WithIncludeAllNamespaces(includeAllNamespaces *bool) *GetUserDLCParams {
+	o.SetIncludeAllNamespaces(includeAllNamespaces)
+	return o
+}
+
+// SetIncludeAllNamespaces adds the includeAllNamespaces to the get user dlc params
+func (o *GetUserDLCParams) SetIncludeAllNamespaces(includeAllNamespaces *bool) {
+	o.IncludeAllNamespaces = includeAllNamespaces
+}
+
+// WithStatus adds the status to the get user dlc params
+func (o *GetUserDLCParams) WithStatus(status *string) *GetUserDLCParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the get user dlc params
+func (o *GetUserDLCParams) SetStatus(status *string) {
+	o.Status = status
+}
+
 // WithType adds the typeVar to the get user dlc params
 func (o *GetUserDLCParams) WithType(typeVar *string) *GetUserDLCParams {
 	o.SetType(typeVar)
@@ -194,6 +228,38 @@ func (o *GetUserDLCParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.IncludeAllNamespaces != nil {
+
+		// query param includeAllNamespaces
+		var qrIncludeAllNamespaces bool
+		if o.IncludeAllNamespaces != nil {
+			qrIncludeAllNamespaces = *o.IncludeAllNamespaces
+		}
+		qIncludeAllNamespaces := swag.FormatBool(qrIncludeAllNamespaces)
+		if qIncludeAllNamespaces != "" {
+			if err := r.SetQueryParam("includeAllNamespaces", qIncludeAllNamespaces); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Type != nil {

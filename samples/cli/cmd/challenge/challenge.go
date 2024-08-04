@@ -43,6 +43,7 @@ func init() {
 	ChallengeCmd.AddCommand(challengeList.PublicGetScheduledGoalsCmd)
 	ChallengeCmd.AddCommand(challengeProgression.EvaluateMyProgressCmd)
 	ChallengeCmd.AddCommand(challengeProgression.PublicGetUserProgressionCmd)
+	ChallengeCmd.AddCommand(challengeProgression.PublicGetPastUserProgressionCmd)
 	ChallengeCmd.AddCommand(playerReward.PublicGetUserRewardsCmd)
 	ChallengeCmd.AddCommand(playerReward.PublicClaimUserRewardsCmd)
 }

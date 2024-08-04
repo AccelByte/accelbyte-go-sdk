@@ -8,14 +8,14 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.20.3"
+    "version": "2.20.4"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/ugc/apidocs"
+    "url": "https://stage.accelbyte.io/ugc/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -16766,15 +16766,15 @@
   },
   "x-docs": {
     "alias": "ugc",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-05-03T07:39:36+00:00",
-    "gitHash": "f46c3dfc58f8a5c3aec696d40be21142c13757c5",
+    "buildDate": "2024-07-23T06:44:57+00:00",
+    "gitHash": "2a40a376e23b8d2b34778e9d07e0560276fce0c8",
     "name": "justice-ugc-service",
-    "realm": "demo",
-    "version": "2.20.3",
+    "realm": "staging",
+    "version": "2.20.4",
     "version-roles-seeding": "1.0.21"
   }
 }

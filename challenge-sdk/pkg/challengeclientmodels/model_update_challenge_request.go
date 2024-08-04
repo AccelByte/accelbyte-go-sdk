@@ -46,6 +46,9 @@ type ModelUpdateChallengeRequest struct {
 	// name
 	Name string `json:"name,omitempty"`
 
+	// randomizedperrotation
+	RandomizedPerRotation bool `json:"randomizedPerRotation"`
+
 	// repeatafter
 	// Format: int32
 	RepeatAfter int32 `json:"repeatAfter,omitempty"`

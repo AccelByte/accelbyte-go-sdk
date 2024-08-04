@@ -93,7 +93,39 @@ func (aaa *ChallengeProgressionService) PublicGetUserProgression(input *challeng
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.PublicGetUserProgression(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.PublicGetUserProgression(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetPastUserProgressionShort instead.
+func (aaa *ChallengeProgressionService) PublicGetPastUserProgression(input *challenge_progression.PublicGetPastUserProgressionParams) (*challengeclientmodels.ModelUserProgressionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.PublicGetPastUserProgression(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -196,6 +228,36 @@ func (aaa *ChallengeProgressionService) PublicGetUserProgressionShort(input *cha
 	}
 
 	ok, err := aaa.Client.ChallengeProgression.PublicGetUserProgressionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ChallengeProgressionService) PublicGetPastUserProgressionShort(input *challenge_progression.PublicGetPastUserProgressionParams) (*challengeclientmodels.ModelUserProgressionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdChallengeProgression != nil {
+		input.XFlightId = tempFlightIdChallengeProgression
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.ChallengeProgression.PublicGetPastUserProgressionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

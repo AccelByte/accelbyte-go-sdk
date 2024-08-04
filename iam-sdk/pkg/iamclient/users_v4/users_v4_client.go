@@ -551,6 +551,8 @@ Deprecated: 2022-08-10 - Use AdminCreateTestUsersV4Short instead.
 
 AdminCreateTestUsersV4 [test facility only]create test users
 Create test users and not send verification code email.
+Enter the number of test users you want to create in the count field.
+The maximum value of the user count is 100.
 */
 func (a *Client) AdminCreateTestUsersV4(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, *AdminCreateTestUsersV4BadRequest, *AdminCreateTestUsersV4InternalServerError, *AdminCreateTestUsersV4NotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -609,6 +611,8 @@ func (a *Client) AdminCreateTestUsersV4(params *AdminCreateTestUsersV4Params, au
 /*
 AdminCreateTestUsersV4Short [test facility only]create test users
 Create test users and not send verification code email.
+Enter the number of test users you want to create in the count field.
+The maximum value of the user count is 100.
 */
 func (a *Client) AdminCreateTestUsersV4Short(params *AdminCreateTestUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTestUsersV4Created, error) {
 	// TODO: Validate the params before sending
@@ -4664,6 +4668,8 @@ Supported platform:
 
 Note:
 **nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+If the request body exceed the max limitation, the max count will be in response body's messageVariables: "messageVariables": {"maxCount": "100"}
 */
 func (a *Client) PublicListUserIDByPlatformUserIDsV4(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, *PublicListUserIDByPlatformUserIDsV4BadRequest, *PublicListUserIDByPlatformUserIDsV4Unauthorized, *PublicListUserIDByPlatformUserIDsV4Forbidden, *PublicListUserIDByPlatformUserIDsV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4755,6 +4761,8 @@ Supported platform:
 
 Note:
 **nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+If the request body exceed the max limitation, the max count will be in response body's messageVariables: "messageVariables": {"maxCount": "100"}
 */
 func (a *Client) PublicListUserIDByPlatformUserIDsV4Short(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, error) {
 	// TODO: Validate the params before sending

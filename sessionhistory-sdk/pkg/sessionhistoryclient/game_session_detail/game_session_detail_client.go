@@ -48,6 +48,8 @@ type ClientService interface {
 	AdminQueryTicketDetailShort(params *AdminQueryTicketDetailParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTicketDetailOK, error)
 	AdminTicketDetailGetByTicketID(params *AdminTicketDetailGetByTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTicketDetailGetByTicketIDOK, *AdminTicketDetailGetByTicketIDBadRequest, *AdminTicketDetailGetByTicketIDUnauthorized, *AdminTicketDetailGetByTicketIDForbidden, *AdminTicketDetailGetByTicketIDInternalServerError, error)
 	AdminTicketDetailGetByTicketIDShort(params *AdminTicketDetailGetByTicketIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTicketDetailGetByTicketIDOK, error)
+	PublicQueryGameSessionMe(params *PublicQueryGameSessionMeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionMeOK, *PublicQueryGameSessionMeBadRequest, *PublicQueryGameSessionMeUnauthorized, *PublicQueryGameSessionMeForbidden, *PublicQueryGameSessionMeTooManyRequests, *PublicQueryGameSessionMeInternalServerError, error)
+	PublicQueryGameSessionMeShort(params *PublicQueryGameSessionMeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionMeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1099,6 +1101,127 @@ func (a *Client) AdminTicketDetailGetByTicketIDShort(params *AdminTicketDetailGe
 	case *AdminTicketDetailGetByTicketIDForbidden:
 		return nil, v
 	case *AdminTicketDetailGetByTicketIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicQueryGameSessionMeShort instead.
+
+PublicQueryGameSessionMe get all game sessions history for current user.
+Get all game sessions history for current user.
+*/
+func (a *Client) PublicQueryGameSessionMe(params *PublicQueryGameSessionMeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionMeOK, *PublicQueryGameSessionMeBadRequest, *PublicQueryGameSessionMeUnauthorized, *PublicQueryGameSessionMeForbidden, *PublicQueryGameSessionMeTooManyRequests, *PublicQueryGameSessionMeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryGameSessionMeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryGameSessionMe",
+		Method:             "GET",
+		PathPattern:        "/sessionhistory/v1/public/namespaces/{namespace}/users/me/gamesessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryGameSessionMeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryGameSessionMeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicQueryGameSessionMeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicQueryGameSessionMeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicQueryGameSessionMeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicQueryGameSessionMeTooManyRequests:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicQueryGameSessionMeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicQueryGameSessionMeShort get all game sessions history for current user.
+Get all game sessions history for current user.
+*/
+func (a *Client) PublicQueryGameSessionMeShort(params *PublicQueryGameSessionMeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryGameSessionMeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryGameSessionMeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryGameSessionMe",
+		Method:             "GET",
+		PathPattern:        "/sessionhistory/v1/public/namespaces/{namespace}/users/me/gamesessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryGameSessionMeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryGameSessionMeOK:
+		return v, nil
+	case *PublicQueryGameSessionMeBadRequest:
+		return nil, v
+	case *PublicQueryGameSessionMeUnauthorized:
+		return nil, v
+	case *PublicQueryGameSessionMeForbidden:
+		return nil, v
+	case *PublicQueryGameSessionMeTooManyRequests:
+		return nil, v
+	case *PublicQueryGameSessionMeInternalServerError:
 		return nil, v
 
 	default:

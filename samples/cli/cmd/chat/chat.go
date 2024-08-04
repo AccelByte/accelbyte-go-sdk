@@ -54,6 +54,8 @@ func init() {
 	ChatCmd.AddCommand(topic.PublicUnbanTopicMembersCmd)
 	ChatCmd.AddCommand(topic.PublicUnmuteUserCmd)
 	ChatCmd.AddCommand(config.AdminGetAllConfigV1Cmd)
+	ChatCmd.AddCommand(config.AdminGetLogConfigCmd)
+	ChatCmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)
 	ChatCmd.AddCommand(config.AdminGetConfigV1Cmd)
 	ChatCmd.AddCommand(config.AdminUpdateConfigV1Cmd)
 	ChatCmd.AddCommand(config.ExportConfigCmd)

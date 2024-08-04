@@ -20,7 +20,8 @@ type AccountcommonAllowedPermission struct {
 
 	// allowedactions
 	// Required: true
-	AllowedActions []int64 `json:"allowedActions"`
+	// Format: int32
+	AllowedActions []int32 `json:"allowedActions"`
 
 	// resource
 	// Required: true

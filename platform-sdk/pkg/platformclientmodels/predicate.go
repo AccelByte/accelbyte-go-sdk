@@ -24,6 +24,9 @@ type Predicate struct {
 	// Format: int32
 	AnyOf int32 `json:"anyOf,omitempty"`
 
+	// code
+	Code string `json:"code,omitempty"`
+
 	// comparison
 	// Enum: ['excludes', 'includes', 'is', 'isGreaterThan', 'isGreaterThanOrEqual', 'isLessThan', 'isLessThanOrEqual', 'isNot']
 	Comparison string `json:"comparison,omitempty"`
@@ -32,7 +35,7 @@ type Predicate struct {
 	Name string `json:"name,omitempty"`
 
 	// predicate type
-	// Enum: ['EntitlementPredicate', 'SeasonPassPredicate', 'SeasonTierPredicate']
+	// Enum: ['EntitlementPredicate', 'SeasonPassPredicate', 'SeasonTierPredicate', 'StatisticCodePredicate']
 	PredicateType string `json:"predicateType,omitempty"`
 
 	// value, pass check value when predicateType is SeasonTierPredicate
@@ -104,7 +107,7 @@ var predicateTypePredicateTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ENTITLEMENTPREDICATE", "SEASONPASSPREDICATE", "SEASONTIERPREDICATE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ENTITLEMENTPREDICATE", "SEASONPASSPREDICATE", "SEASONTIERPREDICATE", "STATISTICCODEPREDICATE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -122,6 +125,9 @@ const (
 
 	// PredicatePredicateTypeSEASONTIERPREDICATE captures enum value "SEASONTIERPREDICATE"
 	PredicatePredicateTypeSEASONTIERPREDICATE string = "SEASONTIERPREDICATE"
+
+	// PredicatePredicateTypeSTATISTICCODEPREDICATE captures enum value "STATISTICCODEPREDICATE"
+	PredicatePredicateTypeSTATISTICCODEPREDICATE string = "STATISTICCODEPREDICATE"
 )
 
 // prop value enum

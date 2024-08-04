@@ -3,14 +3,14 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.35.9"
+    "version": "3.35.15"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/lobby/apidocs"
+    "url": "https://stage.accelbyte.io/lobby/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -4975,6 +4975,89 @@
         ]
       }
     },
+    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/unblock": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Bulk unblock player in a namespace by list of user id",
+        "operationId": "adminBulkUnblockPlayersV1",
+        "parameters": [
+          {
+            "description": "list of unblocked player request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ListUnblockPlayerRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin bulk unblock players by list user id",
+        "tags": [
+          "player"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
     "/lobby/v1/admin/profanity/namespaces/{namespace}/filters/debug": {
       "post": {
         "consumes": [
@@ -6976,6 +7059,78 @@
             "description": "Comma separated value of userIds",
             "in": "query",
             "name": "userIds",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "return only number of players for each availability status",
+            "in": "query",
+            "name": "countOnly",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/handlers.GetUsersPresenceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query users presence",
+        "tags": [
+          "presence"
+        ],
+        "x-errorCodes": {},
+        "x-security": []
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Query users presence with given namespace and userIds.",
+        "operationId": "UsersPresenceHandlerV2",
+        "parameters": [
+          {
+            "description": "request user presence",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.RequestUserPresence"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
@@ -9364,6 +9519,16 @@
         "testTargetUserIDs"
       ]
     },
+    "model.RequestUserPresence": {
+      "properties": {
+        "userIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
     "model.TemplateContent": {
       "properties": {
         "draft": {
@@ -10210,6 +10375,19 @@
         "listBlockedUserId"
       ]
     },
+    "models.ListUnblockPlayerRequest": {
+      "properties": {
+        "listUnblockUserId": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "listUnblockUserId"
+      ]
+    },
     "models.PartyData": {
       "properties": {
         "custom_attribute": {
@@ -10408,16 +10586,4901 @@
   },
   "x-docs": {
     "alias": "lobby",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/lobby/apidocs/api.json"
   },
+  "x-messages": [
+    {
+      "Attributes": [],
+      "Code": "1000",
+      "CodeName": "WSNormalClosure",
+      "Section": "websocket spec",
+      "Service": "websocket",
+      "Text": "lobby websocket closed normally"
+    },
+    {
+      "Attributes": [],
+      "Code": "3101",
+      "CodeName": "DisconnectSenderBrokenPipe",
+      "Section": "disconnect with reconnect (sender)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to failed to send message to client (broken pipe)"
+    },
+    {
+      "Attributes": [],
+      "Code": "3102",
+      "CodeName": "DisconnectSenderUnhandledError",
+      "Section": "disconnect with reconnect (sender)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to unhandled error in sending message to client"
+    },
+    {
+      "Attributes": [],
+      "Code": "3103",
+      "CodeName": "DisconnectSenderUnableToPing",
+      "Section": "disconnect with reconnect (sender)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to unable to send ping"
+    },
+    {
+      "Attributes": [],
+      "Code": "3120",
+      "CodeName": "DisconnectReaderIOTimeout",
+      "Section": "disconnect with reconnect (reader)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to server-side I/O timeout"
+    },
+    {
+      "Attributes": [],
+      "Code": "3121",
+      "CodeName": "DisconnectReaderUnexpectedEOF",
+      "Section": "disconnect with reconnect (reader)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to server-side unexpected EOF"
+    },
+    {
+      "Attributes": [],
+      "Code": "3122",
+      "CodeName": "DisconnectReaderUnhandledCloseError",
+      "Section": "disconnect with reconnect (reader)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to unknown/unhandled close error"
+    },
+    {
+      "Attributes": [],
+      "Code": "3130",
+      "CodeName": "DisconnectConnIOTimeout",
+      "Section": "disconnect with reconnect (connection issue)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to connection IO Timeout"
+    },
+    {
+      "Attributes": [],
+      "Code": "3131",
+      "CodeName": "DisconnectConnResetByPeer",
+      "Section": "disconnect with reconnect (connection issue)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to connection reset by peer"
+    },
+    {
+      "Attributes": [],
+      "Code": "3132",
+      "CodeName": "DisconnectConnClosed",
+      "Section": "disconnect with reconnect (connection issue)",
+      "Service": "lobby disconnect (with reconnect)",
+      "Text": "Disconnect WS due to use of closed connection"
+    },
+    {
+      "Attributes": [],
+      "Code": "4000",
+      "CodeName": "DisconnectServerShutdown",
+      "Section": "disconnect without reconnect (general)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS due to ServerShutdown"
+    },
+    {
+      "Attributes": [],
+      "Code": "4005",
+      "CodeName": "DisconnectNoStatus",
+      "Section": "disconnect without reconnect (general)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnected WS but no status received"
+    },
+    {
+      "Attributes": [],
+      "Code": "4020",
+      "CodeName": "DisconnectTokenRevokedCode",
+      "Section": "disconnect without reconnect (iam related)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS due to TokenRevokedCode"
+    },
+    {
+      "Attributes": [],
+      "Code": "4021",
+      "CodeName": "DisconnectDueToIAMLoggedOut",
+      "Section": "disconnect without reconnect (iam related)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS because logged out from IAM service"
+    },
+    {
+      "Attributes": [],
+      "Code": "4022",
+      "CodeName": "DisconnectDueToIAMDisconnect",
+      "Section": "disconnect without reconnect (iam related)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS because IAM service requested disconnect"
+    },
+    {
+      "Attributes": [],
+      "Code": "4040",
+      "CodeName": "DisconnectDueToFastReconnect",
+      "Section": "disconnect without reconnect (multiple connect)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS due to FastReconnect"
+    },
+    {
+      "Attributes": [],
+      "Code": "4041",
+      "CodeName": "DisconnectDueToMultipleSessions",
+      "Section": "disconnect without reconnect (multiple connect)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS due to Multiple Sessions Login"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "4042",
+      "CodeName": "DisconnectFromExternalReconnect",
+      "Section": "disconnect without reconnect (multiple connect)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS due to ExternalReconnect, msg: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "4060",
+      "CodeName": "DisconnectDueCCULimiter",
+      "Section": "disconnect without reconnect (other)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS caused by CCU limit adjustment"
+    },
+    {
+      "Attributes": [],
+      "Code": "4098",
+      "CodeName": "DisconnectDelayedLost",
+      "Section": "disconnect without reconnect (other)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Delayed disconnect with unknown error code"
+    },
+    {
+      "Attributes": [],
+      "Code": "4099",
+      "CodeName": "DisconnectUnknownError",
+      "Section": "disconnect without reconnect (other)",
+      "Service": "lobby disconnects (no reconnect)",
+      "Text": "Disconnect WS because unknown error"
+    },
+    {
+      "Attributes": [
+        "userID"
+      ],
+      "Code": "11221",
+      "CodeName": "PartyInfoUnableGetUserRegistry",
+      "Section": "get user party info",
+      "Service": "lobby",
+      "Text": "unable to get user registry. UserID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "partyID"
+      ],
+      "Code": "11222",
+      "CodeName": "PartyInfoUnableGetUserPartyInfo",
+      "Section": "get user party info",
+      "Service": "lobby",
+      "Text": "unable to get party info. PartyID: {{partyID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11223",
+      "CodeName": "PartyInfoSuccessGetUserPartyInfoEmpty",
+      "Section": "get user party info",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11224",
+      "CodeName": "PartyInfoSuccessGetUserPartyInfo",
+      "Section": "get user party info",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "userID"
+      ],
+      "Code": "11225",
+      "CodeName": "ChangeRegionUnableGetUserRegistry",
+      "Section": "get user party info",
+      "Service": "lobby",
+      "Text": "unable to get user registry. UserID: {{userID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11231",
+      "CodeName": "PartyCreationUnableGetUserRegistry",
+      "Section": "party creation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11232",
+      "CodeName": "PartyCreationAlreadyInParty",
+      "Section": "party creation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11233",
+      "CodeName": "PartyCreationUnableCreateParty",
+      "Section": "party creation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11234",
+      "CodeName": "PartyCreationSuccessCreateParty",
+      "Section": "party creation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11235",
+      "CodeName": "PartyCreationUnableToGenerateCode",
+      "Section": "party creation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11241",
+      "CodeName": "PartyLeaveUnableGetUserRegistry",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11242",
+      "CodeName": "PartyLeavePartyIsNil",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11243",
+      "CodeName": "PartyLeavePartyNotFound",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11244",
+      "CodeName": "PartyLeaveUserNotInParty",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11245",
+      "CodeName": "PartyLeaveUnableToLeaveParty",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11246",
+      "CodeName": "PartyLeaveSuccessLeaveParty",
+      "Section": "party leave",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11251",
+      "CodeName": "PartyInviteUnableGetUserRegistry",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11252",
+      "CodeName": "PartyInviteInviteeNotFound",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11253",
+      "CodeName": "PartyInviteNotInParty",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11254",
+      "CodeName": "PartyInviteInviteeInParty",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11255",
+      "CodeName": "PartyInviteUnableInviteToParty",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11256",
+      "CodeName": "PartyInviteSuccessInviteToParty",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11257",
+      "CodeName": "PartyInviteInviteeAlreadyInvited",
+      "Section": "party invite",
+      "Service": "lobby",
+      "Text": "invitee already invited a party too recently"
+    },
+    {
+      "Attributes": [],
+      "Code": "11271",
+      "CodeName": "PartyKickUnableGetUserRegistry",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11272",
+      "CodeName": "PartyKickNotInParty",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11273",
+      "CodeName": "PartyKickNotLeader",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11274",
+      "CodeName": "PartyKickKickeeNotInParty",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11275",
+      "CodeName": "PartyKickUnableKickUser",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11276",
+      "CodeName": "PartyKickSuccessKickUser",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11277",
+      "CodeName": "PartyKickKickOwnSelf",
+      "Section": "party kick",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11281",
+      "CodeName": "PersonalChatUnableGetUserRegistry",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11282",
+      "CodeName": "PersonalChatSenderBanned",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11283",
+      "CodeName": "PersonalChatReceiverBanned",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11284",
+      "CodeName": "PersonalChatReceiverNotFound",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11285",
+      "CodeName": "PersonalChatUnableSaveChat",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11286",
+      "CodeName": "PersonalChatSuccessSendChat",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11287",
+      "CodeName": "PersonalChatUnableGetBlocked",
+      "Section": "personal chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11291",
+      "CodeName": "PartyChatUnableGetUserRegistry",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11292",
+      "CodeName": "PartyChatSenderBanned",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11293",
+      "CodeName": "PartyChatPartyNotFound",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11294",
+      "CodeName": "PartyChatUnableSaveChat",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11295",
+      "CodeName": "PartyChatReceiverBanned",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11296",
+      "CodeName": "PartyChatReceiverNotFound",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11297",
+      "CodeName": "PartyChatSuccessSendChat",
+      "Section": "party chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11301",
+      "CodeName": "ListFriendsUnableGetUserRegistry",
+      "Section": "list friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11303",
+      "CodeName": "ListFriendsUnableGetOnlineFiends",
+      "Section": "list friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11304",
+      "CodeName": "ListFriendsSuccessGetOnlineFriends",
+      "Section": "list friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11305",
+      "CodeName": "ListFriendsUnableGetAllOnlineUsers",
+      "Section": "list friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11311",
+      "CodeName": "ListNotificationUnableGetUserRegistry",
+      "Section": "get all notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11312",
+      "CodeName": "ListNotificationUnableGetUserNotification",
+      "Section": "get all notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11313",
+      "CodeName": "ListNotificationSuccessGetUserNotification",
+      "Section": "get all notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11314",
+      "CodeName": "ListNotificationUnableDeleteUserNotification",
+      "Section": "get all notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11321",
+      "CodeName": "ProccessNotificationUnableUnmarshalPayload",
+      "Section": "process notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11322",
+      "CodeName": "ProccessNotificationUnableGetUserRegistry",
+      "Section": "process notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11323",
+      "CodeName": "ProccessNotificationUserNotFound",
+      "Section": "process notification",
+      "Service": "lobby",
+      "Text": "user not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11324",
+      "CodeName": "ProccessNotificationSuccessSend",
+      "Section": "process notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11325",
+      "CodeName": "ProccessNotificationSuccessSendBroadcastNamespace",
+      "Section": "process notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11330",
+      "CodeName": "SetUserStatusSuccessSetStatus",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11331",
+      "CodeName": "SetUserStatusUnableSetStatus",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11332",
+      "CodeName": "SetUserStatusUnableGetUserRegistry",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11333",
+      "CodeName": "SetUserStatusUnableGetFriendsList",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11334",
+      "CodeName": "ResetUserStatusUnableGetFriendsList",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11335",
+      "CodeName": "ResetUserStatusUnableResetStatus",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11336",
+      "CodeName": "ResetUserStatusSuccess",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11337",
+      "CodeName": "ResetUserStatusUnableToGetBlockedUser",
+      "Section": "set user status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11341",
+      "CodeName": "ListFriendsPresenceUnableGetUserRegistry",
+      "Section": "list friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11343",
+      "CodeName": "ListFriendsPresenceUnableGetOnlineFiends",
+      "Section": "list friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11344",
+      "CodeName": "ListFriendsPresenceUnableGetFriendsPresence",
+      "Section": "list friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11345",
+      "CodeName": "ListFriendsPresenceSuccessGetFriendsPresence",
+      "Section": "list friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11346",
+      "CodeName": "RequestPresenceDataByUserIDsBadRequest",
+      "Section": "list friends presence",
+      "Service": "lobby",
+      "Text": "unable to request presence data: unable to parse request"
+    },
+    {
+      "Attributes": [],
+      "Code": "11351",
+      "CodeName": "NotifyFriendsUnableGetFiends",
+      "Section": "notify friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11352",
+      "CodeName": "NotifyFriendsUnableMarshalPayload",
+      "Section": "notify friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11353",
+      "CodeName": "NotifyFriendsUnableUnmarshalPayload",
+      "Section": "notify friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11354",
+      "CodeName": "NotifyFriendsUserNotFound",
+      "Section": "notify friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11355",
+      "CodeName": "NotifyFriendsUnableNotifyFriends",
+      "Section": "notify friends presence",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "partyID",
+        "userID"
+      ],
+      "Code": "11370",
+      "CodeName": "PartyPromoteLeaderSuccess",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "party member with id {{userID}} promoted to leader of the party {{partyID}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11371",
+      "CodeName": "PartyPromoteLeaderUnableToGetUserRegistry",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "unable to get user: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11372",
+      "CodeName": "PartyPromoteLeaderUnableToGetPartyInfo",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "unable to get party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11373",
+      "CodeName": "PartyPromoteLeaderUserPartyNotFound",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11374",
+      "CodeName": "PartyPromoteLeaderUserNotLeader",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "user need to be a leader to promote another member"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11375",
+      "CodeName": "PartyPromoteLeaderUnableToPromoteLeader",
+      "Section": "party promote member as leader",
+      "Service": "lobby",
+      "Text": "unable to promote member to leader: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "code",
+        "partyID",
+        "userID"
+      ],
+      "Code": "11380",
+      "CodeName": "GeneratePartyCodeSuccess",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "party leader with id {{userID}} generated code {{code}} for party {{partyID}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11381",
+      "CodeName": "GeneratePartyCodeUserNotFound",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "unable to get user: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11382",
+      "CodeName": "GeneratePartyCodeUnableToGetPartyInfo",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "unable to get party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11383",
+      "CodeName": "GeneratePartyCodeUserPartyNotFound",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11384",
+      "CodeName": "GeneratePartyCodeUserNotLeader",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "user need to be a leader to generate code"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11385",
+      "CodeName": "GeneratePartyCodeUnableToGenerateCode",
+      "Section": "generate party code",
+      "Service": "lobby",
+      "Text": "unable to generate code: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "code",
+        "partyID"
+      ],
+      "Code": "11390",
+      "CodeName": "GetPartyCodeSuccess",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "party {{partyID}} queried party code {{code}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11391",
+      "CodeName": "GetPartyCodeUserNotFound",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "unable to get user: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11392",
+      "CodeName": "GetPartyCodeUnableToGetPartyInfo",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "unable to get party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11393",
+      "CodeName": "GetPartyCodeUserPartyNotFound",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11394",
+      "CodeName": "GetPartyCodeUserNotLeader",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "user need to be a leader to get code"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11395",
+      "CodeName": "GetPartyCodeUnableToGetCode",
+      "Section": "get party code",
+      "Service": "lobby",
+      "Text": "unable to get code: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11400",
+      "CodeName": "FreeNotificationSuccess",
+      "Section": "send free form notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11401",
+      "CodeName": "FreeNotificationInvalidRequestBody",
+      "Section": "send free form notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11402",
+      "CodeName": "FreeNotificationInvalidQueryParam",
+      "Section": "send free form notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11403",
+      "CodeName": "FreeNotificationUnablePublishNotification",
+      "Section": "send free form notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11404",
+      "CodeName": "FreeNotificationUserNotFound",
+      "Section": "send free form notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11410",
+      "CodeName": "GetNotificationsSuccess",
+      "Section": "get notifications",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11411",
+      "CodeName": "GetNotificationsUserNotFound",
+      "Section": "get notifications",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11412",
+      "CodeName": "GetNotificationsUnableToGetNotifications",
+      "Section": "get notifications",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11413",
+      "CodeName": "GetNotificationsUnableToWriteResponse",
+      "Section": "get notifications",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11414",
+      "CodeName": "GetNotificationsInvalidRequestBody",
+      "Section": "get notifications",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11420",
+      "CodeName": "TemplateNotificationSuccess",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11421",
+      "CodeName": "TemplateNotificationInvalidQueryParam",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11422",
+      "CodeName": "TemplateNotificationInvalidRequestBody",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11423",
+      "CodeName": "TemplateNotificationUnableLoadTemplate",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11424",
+      "CodeName": "TemplateNotificationTemplateNotFound",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11425",
+      "CodeName": "TemplateNotificationUnableParseTemplate",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11426",
+      "CodeName": "TemplateNotificationIncompleteTemplateContext",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11427",
+      "CodeName": "TemplateNotificationUnableRenderTemplate",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11428",
+      "CodeName": "TemplateNotificationUserNotFound",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11429",
+      "CodeName": "TemplateNotificationUnablePublishNotification",
+      "Section": "send templated notification",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11430",
+      "CodeName": "CreateTemplateSuccess",
+      "Section": "create template",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11431",
+      "CodeName": "CreateTemplateInvalidRequestBody",
+      "Section": "create template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11432",
+      "CodeName": "CreateTemplateInvalidTemplateInput",
+      "Section": "create template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11433",
+      "CodeName": "CreateTemplateAlreadyExist",
+      "Section": "create template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11434",
+      "CodeName": "CreateTemplateUnableSaveTemplate",
+      "Section": "create template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11440",
+      "CodeName": "PublishTemplateSuccess",
+      "Section": "publish template",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11441",
+      "CodeName": "PublishTemplateUnableLoadTemplate",
+      "Section": "publish template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11442",
+      "CodeName": "PublishTemplateNotFound",
+      "Section": "publish template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11443",
+      "CodeName": "PublishTemplateUnableSaveTemplate",
+      "Section": "publish template",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11450",
+      "CodeName": "GetNamespaceTemplateSuccess",
+      "Section": "get namespace templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11451",
+      "CodeName": "GetNamespaceTemplateUnableLoadTemplate",
+      "Section": "get namespace templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11452",
+      "CodeName": "GetNamespaceTemplateNotFound",
+      "Section": "get namespace templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11453",
+      "CodeName": "GetNamespaceTemplateUnableWriteResponse",
+      "Section": "get namespace templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11460",
+      "CodeName": "GetSlugTemplateSuccess",
+      "Section": "get slug templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11461",
+      "CodeName": "GetSlugTemplateUnableWriteResponse",
+      "Section": "get slug templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11462",
+      "CodeName": "GetSlugTemplateUnableLoad",
+      "Section": "get slug templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11463",
+      "CodeName": "GetSlugTemplateNotFound",
+      "Section": "get slug templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11464",
+      "CodeName": "GetSlugTemplateInvalidRequestBody",
+      "Section": "get slug templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11470",
+      "CodeName": "GetLanguageTemplateSuccess",
+      "Section": "get language templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11471",
+      "CodeName": "GetLanguageTemplateUnableWriteResponse",
+      "Section": "get language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11472",
+      "CodeName": "GetLanguageTemplateUnableLoadTemplate",
+      "Section": "get language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11473",
+      "CodeName": "GetLanguageTemplateNotFound",
+      "Section": "get language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11480",
+      "CodeName": "UpdateLanguageTemplateSuccess",
+      "Section": "update language templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11481",
+      "CodeName": "UpdateLanguageTemplateUnableWriteResponse",
+      "Section": "update language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11482",
+      "CodeName": "UpdateLanguageUnableLoadtemplate",
+      "Section": "update language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11483",
+      "CodeName": "UpdateLanguageNotFound",
+      "Section": "update language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11484",
+      "CodeName": "UpdateLanguageInvalidTemplateBody",
+      "Section": "update language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11490",
+      "CodeName": "DeleteSlugTemplateSuccess",
+      "Section": "delete slug templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11491",
+      "CodeName": "DeleteSlugUnableToDelete",
+      "Section": "delete slug templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11500",
+      "CodeName": "DeleteLanguageTemplateSuccess",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11501",
+      "CodeName": "DeleteLanguageUnableToDelete",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11505",
+      "CodeName": "SuccessSendToUsers",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11506",
+      "CodeName": "UnableSendToUsers",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11507",
+      "CodeName": "OtherFeatureBanNotification",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": "user banned from some feature"
+    },
+    {
+      "Attributes": [],
+      "Code": "11508",
+      "CodeName": "OtherFeatureUnbanNotification",
+      "Section": "delete language templates",
+      "Service": "lobby",
+      "Text": "user unbanned from some feature"
+    },
+    {
+      "Attributes": [],
+      "Code": "11510",
+      "CodeName": "CreateTopicSuccess",
+      "Section": "create topic",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11511",
+      "CodeName": "CreateTopicInvalidRequestBody",
+      "Section": "create topic",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11512",
+      "CodeName": "CreateTopicAlreadyExist",
+      "Section": "create topic",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11513",
+      "CodeName": "CreateTopicUnableSaveTopic",
+      "Section": "create topic",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11520",
+      "CodeName": "GetTopicByNamespaceSuccess",
+      "Section": "get topic by namespace",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11521",
+      "CodeName": "GetTopicByNamespaceInvalidRequestBody",
+      "Section": "get topic by namespace",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11522",
+      "CodeName": "GetTopicByNamespaceUnableLoadTopic",
+      "Section": "get topic by namespace",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11523",
+      "CodeName": "GetTopicByNamespaceNotFound",
+      "Section": "get topic by namespace",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11524",
+      "CodeName": "GetTopicByNamespaceUnableWriteResponse",
+      "Section": "get topic by namespace",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11530",
+      "CodeName": "GetTopicByTopicNameSuccess",
+      "Section": "get topic by topic name",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11531",
+      "CodeName": "GetTopicByTopicNameInvalidRequestBody",
+      "Section": "get topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11532",
+      "CodeName": "GetTopicByTopicNameUnableLoadTopic",
+      "Section": "get topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11533",
+      "CodeName": "GetTopicByTopicNameNotFound",
+      "Section": "get topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11534",
+      "CodeName": "GetTopicByTopicNameUnableWriteResponse",
+      "Section": "get topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11540",
+      "CodeName": "UpdateTopicByTopicNameSuccess",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11541",
+      "CodeName": "UpdateTopicByTopicNameInvalidRequestBody",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11542",
+      "CodeName": "UpdateTopicByTopicNameUnableUpdateTopic",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11543",
+      "CodeName": "UpdateTopicByTopicNameNotFound",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11550",
+      "CodeName": "DeleteTopicByTopicNameSuccess",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11551",
+      "CodeName": "DeleteTopicByTopicNameInvalidRequestBody",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11552",
+      "CodeName": "DeleteTopicByTopicNameUnableDeleteTopic",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11553",
+      "CodeName": "DeleteTopicByTopicNameNotFound",
+      "Section": "update topic by topic name",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "partyID",
+        "userID"
+      ],
+      "Code": "11560",
+      "CodeName": "DeletePartyCodeSuccess",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "party leader with id {{userID}} removed code for party {{partyID}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11561",
+      "CodeName": "DeletePartyCodeUserNotFound",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "unable to get user: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11562",
+      "CodeName": "DeletePartyCodeUnableToGetPartyInfo",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "unable to get party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11563",
+      "CodeName": "DeletePartyCodeUserPartyNotFound",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11564",
+      "CodeName": "DeletePartyCodeUserNotLeader",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "user need to be a leader to delete code"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "11565",
+      "CodeName": "DeletePartyCodeUnableToDeleteCode",
+      "Section": "remove party code",
+      "Service": "lobby",
+      "Text": "unable to delete code: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11590",
+      "CodeName": "RequesterMaxFriendsLimitReached",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "requester max friends limit reached"
+    },
+    {
+      "Attributes": [],
+      "Code": "11591",
+      "CodeName": "RequesteeMaxFriendsLimitReached",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "requestee max friends limit reached"
+    },
+    {
+      "Attributes": [],
+      "Code": "11592",
+      "CodeName": "NativeFriendSyncInvalidRequestBody",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "invalid request body"
+    },
+    {
+      "Attributes": [],
+      "Code": "11593",
+      "CodeName": "NativeFriendSyncSuccess",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "sync success"
+    },
+    {
+      "Attributes": [],
+      "Code": "11594",
+      "CodeName": "NativeUserBlockSyncInvalidRequestBody",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "invalid request body"
+    },
+    {
+      "Attributes": [],
+      "Code": "11595",
+      "CodeName": "NativeUserBlockSyncSuccess",
+      "Section": "friends other",
+      "Service": "lobby",
+      "Text": "sync success"
+    },
+    {
+      "Attributes": [],
+      "Code": "11600",
+      "CodeName": "StartMatchmakingSuccess",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11601",
+      "CodeName": "StartMatchmakingUnableToPush",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11602",
+      "CodeName": "StartMatchmakingUnableToFindUserRegistry",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11603",
+      "CodeName": "StartMatchmakingUserNotInParty",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11604",
+      "CodeName": "StartMatchmakingUnableToFindUserParty",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11605",
+      "CodeName": "StartMatchmakingNotPartyLeader",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11606",
+      "CodeName": "StartMatchmakingUnableToStoreMMStatus",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11607",
+      "CodeName": "StartMatchmakingMemberBanned",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11608",
+      "CodeName": "StartMatchmakingUnableToQueryEQU8",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11609",
+      "CodeName": "StartMatchmakingChannelListNotFound",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11610",
+      "CodeName": "CancelMatchmakingSuccess",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11611",
+      "CodeName": "CancelMatchmakingUnableToFindUserParty",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11612",
+      "CodeName": "CancelMatchmakingUnableToGetPartyInfo",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11613",
+      "CodeName": "CancelMatchmakingNotPartyLeader",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11614",
+      "CodeName": "CancelMatchmakingUnableToPushCancelRequest",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11615",
+      "CodeName": "CancelMatchmakingNotInParty",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11616",
+      "CodeName": "CancelMatchmakingUnableToStoreMMStatus",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11617",
+      "CodeName": "CancelMatchmakingInvalidTicketID",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11618",
+      "CodeName": "CancelMatchmakingChannelListNotFound",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11619",
+      "CodeName": "CancelMatchmakingInvalidChannel",
+      "Section": "cancel matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11620",
+      "CodeName": "MatchmakingSuccess",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11623",
+      "CodeName": "MatchmakingUnableToFindParty",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11624",
+      "CodeName": "MatchmakingPartyNotFound",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11626",
+      "CodeName": "SuccessNotifyCancelledMatchmaking",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11627",
+      "CodeName": "MatchmakingUnablePrepareReadyConsent",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11628",
+      "CodeName": "MatchmakingSuccessPrepareReadyConsent",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11629",
+      "CodeName": "MatchmakingUnableSaveMMResult",
+      "Section": "listen matchmaking result",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11630",
+      "CodeName": "SetReadyConsentSuccess",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11631",
+      "CodeName": "SetReadyConsentUnableGetUserRegistry",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11632",
+      "CodeName": "SetReadyConsentNotFound",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11633",
+      "CodeName": "SetReadyConsentUnableSetReadyConsent",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11634",
+      "CodeName": "SetReadyConsentUnableGetMMResult",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11635",
+      "CodeName": "SetReadyConsentSuccessGetMMResult",
+      "Section": "set ready consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11640",
+      "CodeName": "UserRejectFriendRejectItSelf",
+      "Section": "user reject friend request",
+      "Service": "lobby",
+      "Text": "user and friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11641",
+      "CodeName": "UserRejectFriendUnableReject",
+      "Section": "user reject friend request",
+      "Service": "lobby",
+      "Text": "unable to reject a friend request"
+    },
+    {
+      "Attributes": [],
+      "Code": "11642",
+      "CodeName": "UserRejectFriendSuccess",
+      "Section": "user reject friend request",
+      "Service": "lobby",
+      "Text": "successfully reject a friend request"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11643",
+      "CodeName": "UserRejectFriendNoIncoming",
+      "Section": "user reject friend request",
+      "Service": "lobby",
+      "Text": "no incoming friend request for {{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11650",
+      "CodeName": "UserUnfriendItSelf",
+      "Section": "user unfriend",
+      "Service": "lobby",
+      "Text": "user and friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendId"
+      ],
+      "Code": "11651",
+      "CodeName": "UserUnfriendUnableUnfriend",
+      "Section": "user unfriend",
+      "Service": "lobby",
+      "Text": "unable to unfriend friendId:{{friendId}}"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11652",
+      "CodeName": "UserUnfriendSuccess",
+      "Section": "user unfriend",
+      "Service": "lobby",
+      "Text": "successfully unfriend friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11653",
+      "CodeName": "UserUnfriendNotAFriend",
+      "Section": "user unfriend",
+      "Service": "lobby",
+      "Text": "can not unfriend, friendId:{{friendID}} is not a friend"
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11660",
+      "CodeName": "UserGetFriendshipStatusGetItSelf",
+      "Section": "user get friendship status",
+      "Service": "lobby",
+      "Text": "user and friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendId"
+      ],
+      "Code": "11661",
+      "CodeName": "UserGetFriendshipStatusUnableGetStatus",
+      "Section": "user get friendship status",
+      "Service": "lobby",
+      "Text": "unable to get a friendship status for friendId:{{friendId}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11662",
+      "CodeName": "UserGetFriendshipStatusSuccess",
+      "Section": "user get friendship status",
+      "Service": "lobby",
+      "Text": "successfully get a friendship status"
+    },
+    {
+      "Attributes": [],
+      "Code": "11670",
+      "CodeName": "StartMatchmakingAlreadyHasTicket",
+      "Section": "matchmaking with ticket ID",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11671",
+      "CodeName": "StartMatchmakingUnableToStoreTicketID",
+      "Section": "matchmaking with ticket ID",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11680",
+      "CodeName": "UnableClearPartyMatchmaking",
+      "Section": "clear party matchmaking",
+      "Service": "lobby",
+      "Text": "unable to clear party matchmaking status"
+    },
+    {
+      "Attributes": [],
+      "Code": "11681",
+      "CodeName": "ClearPartyMatchmakingSuccess",
+      "Section": "clear party matchmaking",
+      "Service": "lobby",
+      "Text": "success clearing party matchmaking status"
+    },
+    {
+      "Attributes": [],
+      "Code": "11682",
+      "CodeName": "ClearPartyMatchmakingUnableGetUserRegistry",
+      "Section": "clear party matchmaking",
+      "Service": "lobby",
+      "Text": "unable to clear party matchmaking status, user not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11690",
+      "CodeName": "SetRejectConsentSuccess",
+      "Section": "set reject consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11691",
+      "CodeName": "SetRejectConsentUnableGetUserRegistry",
+      "Section": "set reject consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11692",
+      "CodeName": "SetRejectConsentNotFound",
+      "Section": "set reject consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11693",
+      "CodeName": "SetRejectConsentUnableSetRejectConsent",
+      "Section": "set reject consent",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11700",
+      "CodeName": "FriendRequestSuccess",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11701",
+      "CodeName": "FriendRequestUnableRequestFriends",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11702",
+      "CodeName": "FriendRequestInvalidRequestBody",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11703",
+      "CodeName": "FriendRequestConflictFriendship",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11704",
+      "CodeName": "FriendRequestUnableGetUserRegistry",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11705",
+      "CodeName": "FriendRequestFriendRegistryNotFound",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11706",
+      "CodeName": "FriendRequestUnableGetFriendRegistry",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11707",
+      "CodeName": "FriendRequestNotifSuccess",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11708",
+      "CodeName": "FriendRequestFriendNotFoundFromApi",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11709",
+      "CodeName": "FriendRequestUnableGetFriendFromApi",
+      "Section": "friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11710",
+      "CodeName": "ListIncomingFriendsSuccess",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11711",
+      "CodeName": "ListIncomingFriendsUnableGetListIncoming",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11712",
+      "CodeName": "ListIncomingFriendsUnableToWriteResponse",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11713",
+      "CodeName": "ListIncomingFriendsUnableGetUserRegistry",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11714",
+      "CodeName": "ListIncomingFriendsDataNotFound",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11715",
+      "CodeName": "ListIncomingFriendsInvalidRequestBody",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11716",
+      "CodeName": "ListIncomingFriendsUnableGet",
+      "Section": "list incoming friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11720",
+      "CodeName": "ListOutgoingFriendsSuccess",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11721",
+      "CodeName": "ListOutgoingFriendsUnableGetListOutgoing",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11722",
+      "CodeName": "ListOutgoingFriendsUnableToWriteResponse",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11723",
+      "CodeName": "ListOutgoingFriendsUnableGetUserRegistry",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11724",
+      "CodeName": "ListOutgoingFriendsDataNotFound",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11725",
+      "CodeName": "ListOutgoingFriendsInvalidRequestBody",
+      "Section": "list outgoing friends",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11730",
+      "CodeName": "AcceptFriendSuccess",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11731",
+      "CodeName": "AcceptFriendUnableAcceptFriends",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "11731",
+      "CodeName": "AcceptFriendUnableAcceptFriendsV1",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11732",
+      "CodeName": "AcceptFriendInvalidRequestBody",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "11732",
+      "CodeName": "AcceptFriendInvalidRequestBodyV1",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11733",
+      "CodeName": "AcceptFriendDataNotFound",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11734",
+      "CodeName": "AcceptFriendUnableGetUserRegistry",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11735",
+      "CodeName": "AcceptFriendRequestorNotFound",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11736",
+      "CodeName": "AcceptFriendUnableGetRequestorRegistry",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11737",
+      "CodeName": "AcceptFriendNotifSuccess",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11738",
+      "CodeName": "AcceptFriendRequestCountRelationshipFailed",
+      "Section": "accept friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11740",
+      "CodeName": "RejectFriendSuccess",
+      "Section": "reject friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11741",
+      "CodeName": "RejectFriendUnableRejectFriends",
+      "Section": "reject friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11742",
+      "CodeName": "RejectFriendInvalidRequestBody",
+      "Section": "reject friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11743",
+      "CodeName": "RejectFriendDataNotFound",
+      "Section": "reject friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11744",
+      "CodeName": "RejectFriendUnableGetUserRegistry",
+      "Section": "reject friend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11750",
+      "CodeName": "CancelFriendSuccess",
+      "Section": "cancel friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11751",
+      "CodeName": "CancelFriendUnableCancelFriends",
+      "Section": "cancel friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11752",
+      "CodeName": "CancelFriendInvalidRequestBody",
+      "Section": "cancel friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11753",
+      "CodeName": "CancelFriendDataNotFound",
+      "Section": "cancel friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11754",
+      "CodeName": "CancelFriendUnableGetUserRegistry",
+      "Section": "cancel friend request",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11760",
+      "CodeName": "UnfriendSuccess",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11761",
+      "CodeName": "UnfriendUnableUnfriend",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11762",
+      "CodeName": "UnfriendInvalidRequestBody",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11763",
+      "CodeName": "UnfriendDataNotFound",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11764",
+      "CodeName": "UnfriendUnableGetUserRegistry",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11765",
+      "CodeName": "UnfriendUnableGetTargetRegistry",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11766",
+      "CodeName": "UnfriendNotifSuccess",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11767",
+      "CodeName": "UnfriendRequestCountRelationshipFailed",
+      "Section": "unfriend",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11770",
+      "CodeName": "ListOfFriendsSuccess",
+      "Section": "list of friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11771",
+      "CodeName": "ListOfFriendsUnableGetListOfFriends",
+      "Section": "list of friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11773",
+      "CodeName": "ListOfFriendsUnableGetUserRegistry",
+      "Section": "list of friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11780",
+      "CodeName": "GetFriendshipStatusSuccess",
+      "Section": "get friendship status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11781",
+      "CodeName": "GetFriendshipStatusUnableGetFriendshipStatus",
+      "Section": "get friendship status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11783",
+      "CodeName": "GetFriendshipStatusUnableGetUserRegistry",
+      "Section": "get friendship status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11784",
+      "CodeName": "GetFriendshipStatusInvalidRequestBody",
+      "Section": "get friendship status",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11790",
+      "CodeName": "GetFriendsSuccess",
+      "Section": "get friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11791",
+      "CodeName": "GetFriendsInvalidRequestBody",
+      "Section": "get friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11792",
+      "CodeName": "GetFriendsDataNotFound",
+      "Section": "get friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11793",
+      "CodeName": "GetFriendsUnableGetListOfFriends",
+      "Section": "get friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11794",
+      "CodeName": "GetFriendsUnableToWriteResponse",
+      "Section": "get friends",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11810",
+      "CodeName": "BlockPlayerSuccess",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11811",
+      "CodeName": "PlayerBlockRequestInvalidRequestBody",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11812",
+      "CodeName": "PlayerBlockRequestUnableGetUserRegistry",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "blockedUserID",
+        "blockerUserID"
+      ],
+      "Code": "11813",
+      "CodeName": "PlayerBlockRequestUnableBlockPlayer",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": "unable to block player. BlockerUserID: {{blockerUserID}}, BlockedUserID: {{blockedUserID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11814",
+      "CodeName": "PlayerUnblockRequestInvalidRequestBody",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11815",
+      "CodeName": "PlayerUnblockRequestUnableGetUserRegistry",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11816",
+      "CodeName": "PlayerUnblockRequestUnableBlockPlayer",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11817",
+      "CodeName": "PlayerBlocked",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11818",
+      "CodeName": "PlayerBlockedUnableGet",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11819",
+      "CodeName": "PlayerGetBlocedUnableGetUserRegistry",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11820",
+      "CodeName": "JoinDefaultChannelSuccess",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11821",
+      "CodeName": "JoinDefaultChannelErrGetDefaultChannel",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11822",
+      "CodeName": "JoinDefaultChannelErrCreateChannels",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11823",
+      "CodeName": "JoinDefaultChannelErrEmptyChannels",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11824",
+      "CodeName": "JoinDefaultChannelErrAddUserToChannel",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11825",
+      "CodeName": "JoinDefaultChannelErrGetUserRegistry",
+      "Section": "join default channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11830",
+      "CodeName": "ExitAllChannelSuccess",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11831",
+      "CodeName": "ExitAllChannelErrGetUserRegistry",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11832",
+      "CodeName": "ExitAllChannelErrGetChannels",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11833",
+      "CodeName": "ExitAllChannelErrRemoveUser",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11840",
+      "CodeName": "SendChatChannelSuccess",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11841",
+      "CodeName": "SendChatChannelError",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11842",
+      "CodeName": "SendChatUnableGetUserRegistry",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11843",
+      "CodeName": "SendChatChannelToChannel",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11844",
+      "CodeName": "SendChatChannelBroadcastChannelChat",
+      "Section": "exit channel",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11851",
+      "CodeName": "ProfanityVerifyError",
+      "Section": "profanity filter",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11861",
+      "CodeName": "SetSessionAttributeInvalidRequestBody",
+      "Section": "profanity filter",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11870",
+      "CodeName": "GetNamespaceConfigSuccess",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11871",
+      "CodeName": "GetNamespaceConfigDBError",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to query config to DB"
+    },
+    {
+      "Attributes": [],
+      "Code": "11872",
+      "CodeName": "UpdateNamespaceConfigSuccess",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11873",
+      "CodeName": "UpdateNamespaceConfigBadRequest",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to parse request body"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "11874",
+      "CodeName": "UpdateNamespaceConfigValidationError",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11875",
+      "CodeName": "UpdateNamespaceConfigInternalError",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to update namespace config"
+    },
+    {
+      "Attributes": [],
+      "Code": "11876",
+      "CodeName": "ExportNamespaceConfigWriteJsonError",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to write config to json file"
+    },
+    {
+      "Attributes": [],
+      "Code": "11877",
+      "CodeName": "ExportNamespaceConfigSuccess",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11878",
+      "CodeName": "ImportNamespaceConfigSuccess",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11879",
+      "CodeName": "SetPartyLimitConfigNotFound",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to set party limit size, lobby config not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "11880",
+      "CodeName": "ChannelChatSenderBanned",
+      "Section": "send channel chat",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11881",
+      "CodeName": "ChannelChatBanNotification",
+      "Section": "send channel chat",
+      "Service": "lobby",
+      "Text": "user banned from chat"
+    },
+    {
+      "Attributes": [],
+      "Code": "11882",
+      "CodeName": "ChannelChatUnbanNotification",
+      "Section": "send channel chat",
+      "Service": "lobby",
+      "Text": "user unbanned from chat"
+    },
+    {
+      "Attributes": [],
+      "Code": "11911",
+      "CodeName": "PartyRejectSuccessRejectParty",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11912",
+      "CodeName": "PartyRejectUnableGetUserRegistry",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11913",
+      "CodeName": "PartyRejectPartyNotFound",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11914",
+      "CodeName": "PartyRejectInvalidInvitationToken",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11915",
+      "CodeName": "PartyRejectNotInvited",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "11916",
+      "CodeName": "PartyRejectUnableRejectParty",
+      "Section": "reject party invitation",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11940",
+      "CodeName": "UserGetFriendsSuccess",
+      "Section": "user get friend",
+      "Service": "lobby",
+      "Text": "Successfully get user friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11941",
+      "CodeName": "UserGetFriendsUnableGetList",
+      "Section": "user get friend",
+      "Service": "lobby",
+      "Text": "unable to get user friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11950",
+      "CodeName": "UserGetIncomingFriendsSuccess",
+      "Section": "user get incoming friends",
+      "Service": "lobby",
+      "Text": "Successfully get incoming friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11951",
+      "CodeName": "UserGetIncomingFriendsUnableGetList",
+      "Section": "user get incoming friends",
+      "Service": "lobby",
+      "Text": "unable to get incoming friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11960",
+      "CodeName": "UserGetOutgoingFriendsSuccess",
+      "Section": "user get outgoing friends",
+      "Service": "lobby",
+      "Text": "Successfully get outgoing friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "11961",
+      "CodeName": "UserGetOutgoingFriendsUnableGetList",
+      "Section": "user get outgoing friends",
+      "Service": "lobby",
+      "Text": "unable to get outgoing friends for userId {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11970",
+      "CodeName": "UserRequestFriendRequestItSelf",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "user and requested friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11971",
+      "CodeName": "UserRequestFriendUnableRequestAFriend",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "unable to request a friend"
+    },
+    {
+      "Attributes": [],
+      "Code": "11972",
+      "CodeName": "UserRequestFriendSuccess",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "successfully request a friend"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11973",
+      "CodeName": "UserRequestFriendOutgoingExist",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "can not request friend, outgoing request already exist for friendId: {{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11974",
+      "CodeName": "UserRequestFriendIncomingExist",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "can not request friend, incoming request already exist from friendId: {{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11980",
+      "CodeName": "UserAcceptFriendAcceptItSelf",
+      "Section": "user accept friend",
+      "Service": "lobby",
+      "Text": "user and friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11981",
+      "CodeName": "UserAcceptFriendUnableAcceptAFriend",
+      "Section": "user accept friend",
+      "Service": "lobby",
+      "Text": "unable to accept a friend"
+    },
+    {
+      "Attributes": [],
+      "Code": "11982",
+      "CodeName": "UserAcceptFriendSuccess",
+      "Section": "user accept friend",
+      "Service": "lobby",
+      "Text": "successfully accept a friend"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11983",
+      "CodeName": "UserAcceptFriendNoIncoming",
+      "Section": "user accept friend",
+      "Service": "lobby",
+      "Text": "no incoming friend request from {{friendID}}"
+    },
+    {
+      "Attributes": [
+        "friendID",
+        "userID"
+      ],
+      "Code": "11990",
+      "CodeName": "UserCancelFriendCancelItSelf",
+      "Section": "user cancel friend request",
+      "Service": "lobby",
+      "Text": "user and friendId are equal, userId:{{userID}}, friendId:{{friendID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "11991",
+      "CodeName": "UserCancelFriendUnableCancel",
+      "Section": "user cancel friend request",
+      "Service": "lobby",
+      "Text": "unable to cancel a friend request"
+    },
+    {
+      "Attributes": [],
+      "Code": "11992",
+      "CodeName": "UserCancelFriendSuccess",
+      "Section": "user cancel friend request",
+      "Service": "lobby",
+      "Text": "successfully cancel a friend request"
+    },
+    {
+      "Attributes": [
+        "friendID"
+      ],
+      "Code": "11993",
+      "CodeName": "UserCancelFriendNoOutgoing",
+      "Section": "user cancel friend request",
+      "Service": "lobby",
+      "Text": "no outgoing friend request for {{friendID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "12001",
+      "CodeName": "MatchmakingBanNotification",
+      "Section": "matchmaking ban",
+      "Service": "lobby",
+      "Text": "user banned from matchmaking"
+    },
+    {
+      "Attributes": [],
+      "Code": "12002",
+      "CodeName": "MatchmakingUnbanNotification",
+      "Section": "matchmaking ban",
+      "Service": "lobby",
+      "Text": "user unbanned from matchmaking"
+    },
+    {
+      "Attributes": [],
+      "Code": "12110",
+      "CodeName": "GetThirdPartyConfigSuccess",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "providerName"
+      ],
+      "Code": "12111",
+      "CodeName": "ThirdPartyConfigNotFound",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": "unable to get {{providerName}} config"
+    },
+    {
+      "Attributes": [],
+      "Code": "12112",
+      "CodeName": "CreateThirdPartyConfigSuccess",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "12113",
+      "CodeName": "DeleteThirdPartyConfigSuccess",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "12114",
+      "CodeName": "UpdateThirdPartyConfigSuccess",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "12115",
+      "CodeName": "CreateThirdPartyConfigConflict",
+      "Section": "third party config",
+      "Service": "lobby",
+      "Text": "unable create steam config: steam config already exist for namespace: {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: -"
+    },
+    {
+      "Attributes": [],
+      "Code": "20001",
+      "CodeName": "UnauthorizedAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unauthorized access"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20003",
+      "CodeName": "ForbiddenAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20007",
+      "CodeName": "TooManyRequests",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20008",
+      "CodeName": "UserNotFound",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20013",
+      "CodeName": "InsufficientPermissions",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20019",
+      "CodeName": "UnableToParseRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20021",
+      "CodeName": "InvalidPaginationParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20022",
+      "CodeName": "TokenIsNotUserToken",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20023",
+      "CodeName": "InvalidPaginationLimitParam",
+      "Section": "general",
+      "Service": "general",
+      "Text": "invalid limit, must be a positive and valid number"
+    },
+    {
+      "Attributes": [],
+      "Code": "20024",
+      "CodeName": "InvalidPaginationOffsetParam",
+      "Section": "general",
+      "Service": "general",
+      "Text": "invalid offset, must be a positive and valid number"
+    },
+    {
+      "Attributes": [],
+      "Code": "20025",
+      "CodeName": "InvalidRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "invalid request body, please check the documentation"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20026",
+      "CodeName": "InvalidTimeParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50231",
+      "CodeName": "NotificationTemplateNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "missingContext",
+        "reason",
+        "userID"
+      ],
+      "Code": "50232",
+      "CodeName": "IncompleteNotificationContext",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, missing context: {{missingContext}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50233",
+      "CodeName": "NotificationTemplateAlreadyExist",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50234",
+      "CodeName": "NotificationTemplateSlugNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50235",
+      "CodeName": "NotificationTemplateLocalizationNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50237",
+      "CodeName": "NotificationTopicNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50239",
+      "CodeName": "StoredNotificationNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "reason",
+        "userID"
+      ],
+      "Code": "50241",
+      "CodeName": "OnlineUserNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "112101",
+      "CodeName": "LobbyConnectionUnableToUpgrade",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "112102",
+      "CodeName": "LobbyConnectionUnableToRegisterUser",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112103",
+      "CodeName": "LobbyConnectionSuccessRegisterUser",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "registered new user"
+    },
+    {
+      "Attributes": [],
+      "Code": "112104",
+      "CodeName": "LobbyConnectionSuccessUnregisterUser",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "unregistered user"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "112105",
+      "CodeName": "LobbyConnectionMultipleLoginAttempt",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "112106",
+      "CodeName": "LobbyConnectionUnableCheckConnectedUser",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "112107",
+      "CodeName": "LobbyConnectionUnableToValidateSession",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112108",
+      "CodeName": "LobbyConnectionInvalidSession",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112109",
+      "CodeName": "LobbyConnectionUnableToGetBlockedPlayer",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "unable to get blocked player from database"
+    },
+    {
+      "Attributes": [],
+      "Code": "112110",
+      "CodeName": "LobbyConnectionUnableToQueryConfig",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "unable to query lobby config"
+    },
+    {
+      "Attributes": [],
+      "Code": "112111",
+      "CodeName": "LobbyConnectionUnableToQueryCCU",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "unable to query lobby CCU"
+    },
+    {
+      "Attributes": [],
+      "Code": "112112",
+      "CodeName": "LobbyConnectionCCULimitReached",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "lobby CCU limit reached"
+    },
+    {
+      "Attributes": [],
+      "Code": "112113",
+      "CodeName": "LobbyDisconnectErrGetUserRegistry",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "unable to get user registry while closing connection"
+    },
+    {
+      "Attributes": [],
+      "Code": "112114",
+      "CodeName": "LobbyConnectionUnableStopOld",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "multiple connect but unable to stop old lobby connection"
+    },
+    {
+      "Attributes": [],
+      "Code": "112115",
+      "CodeName": "PartyNotFoundUnregister",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "party not found while unregistering user"
+    },
+    {
+      "Attributes": [],
+      "Code": "112120",
+      "CodeName": "LobbyUserConnectionRequested",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "user requested connected"
+    },
+    {
+      "Attributes": [],
+      "Code": "112121",
+      "CodeName": "LobbyConnectionSuccessUpdateUserRegistry",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "updated user in registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "112122",
+      "CodeName": "FailedToUnregisterDelayed",
+      "Section": "connection",
+      "Service": "lobby",
+      "Text": "failed to run delayed unregister"
+    },
+    {
+      "Attributes": [],
+      "Code": "112601",
+      "CodeName": "PartyJoinUnableGetUserRegistry",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112602",
+      "CodeName": "PartyJoinPartyNotFound",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112603",
+      "CodeName": "PartyJoinInvalidInvitationToken",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112604",
+      "CodeName": "PartyJoinNotInvited",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112605",
+      "CodeName": "PartyJoinAlreadyInParty",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112606",
+      "CodeName": "PartyJoinPartyFull",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112607",
+      "CodeName": "PartyJoinUnableJoinParty",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112608",
+      "CodeName": "PartyJoinSuccessJoinParty",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112609",
+      "CodeName": "PartyJoinUnableToQuery",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "112610",
+      "CodeName": "PartyJoinBlocked",
+      "Section": "party join",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "partyID",
+        "userID"
+      ],
+      "Code": "115700",
+      "CodeName": "JoinViaPartyCodeSuccess",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "user {{userID}} joined party {{partyID}} via code"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "115701",
+      "CodeName": "JoinViaPartyCodeUserNotFound",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "unable to get user: {{errMessage}}"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "115702",
+      "CodeName": "JoinViaPartyCodeUnableToGetPartyInfo",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "unable to get party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "115703",
+      "CodeName": "JoinViaPartyCodeUserPartyNotFound",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "115704",
+      "CodeName": "JoinViaPartyCodeUserHasParty",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "user already has a party"
+    },
+    {
+      "Attributes": [],
+      "Code": "115705",
+      "CodeName": "JoinViaPartyCodeUserAlreadyMember",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "user is already member"
+    },
+    {
+      "Attributes": [],
+      "Code": "115706",
+      "CodeName": "JoinViaPartyCodePartyFull",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "party is full"
+    },
+    {
+      "Attributes": [],
+      "Code": "115707",
+      "CodeName": "JoinPartyIsMatchmaking",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "party is in matchmaking queue"
+    },
+    {
+      "Attributes": [],
+      "Code": "115708",
+      "CodeName": "JoinViaPartyCodeInvalidCode",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "invalid party code"
+    },
+    {
+      "Attributes": [
+        "errMessage"
+      ],
+      "Code": "115709",
+      "CodeName": "JoinViaPartyCodeUnableToJoin",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "unable to join party: {{errMessage}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "115710",
+      "CodeName": "JoinViaPartyCodeBlocked",
+      "Section": "join via party code",
+      "Service": "lobby",
+      "Text": "unable to join party: user blocks or blocked by one of members"
+    },
+    {
+      "Attributes": [
+        "partyID",
+        "topic",
+        "userID"
+      ],
+      "Code": "115800",
+      "CodeName": "SendPartyNotifSuccess",
+      "Section": "party notif",
+      "Service": "lobby",
+      "Text": "user {{userID}} sent party notif to party {{partyID}} with topic {{topic}}"
+    },
+    {
+      "Attributes": [
+        "userID"
+      ],
+      "Code": "115801",
+      "CodeName": "SendPartyNotifUserNotFound",
+      "Section": "party notif",
+      "Service": "lobby",
+      "Text": "unable to send party notif: user {{userID}} not found"
+    },
+    {
+      "Attributes": [
+        "userID"
+      ],
+      "Code": "115802",
+      "CodeName": "SendPartyNotifNotInParty",
+      "Section": "party notif",
+      "Service": "lobby",
+      "Text": "unable to send party notif: user {{userID}} is not in party"
+    },
+    {
+      "Attributes": [
+        "userID"
+      ],
+      "Code": "115803",
+      "CodeName": "SendPartyNotifUnableToQueryParty",
+      "Section": "party notif",
+      "Service": "lobby",
+      "Text": "unable to send party notif: unable to query party for user {{userID}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "116010",
+      "CodeName": "StartMatchmakingInvalidChannel",
+      "Section": "start matchmaking",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118000",
+      "CodeName": "CreateDSSuccess",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118001",
+      "CodeName": "CreateDSFailed",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118002",
+      "CodeName": "WaitDSRetry",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118003",
+      "CodeName": "WaitDSFailed",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118004",
+      "CodeName": "WaitDSSuccess",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118005",
+      "CodeName": "ClaimDSFailed",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118006",
+      "CodeName": "ClaimDSSuccess",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118007",
+      "CodeName": "NotifyDSSuccess",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118008",
+      "CodeName": "JoinDSSuccess",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118009",
+      "CodeName": "CreateDSUserNotFound",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118010",
+      "CodeName": "CreateDSUserBanned",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118011",
+      "CodeName": "CreateDSUnableToQueryEQU8",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118012",
+      "CodeName": "QueryJoinableDSFailed",
+      "Section": "dsm",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118110",
+      "CodeName": "UnblockPlayerSuccess",
+      "Section": "players",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118710",
+      "CodeName": "GlobalConfigDocumentNotFound",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "unable to get global config"
+    },
+    {
+      "Attributes": [],
+      "Code": "118711",
+      "CodeName": "GlobalConfigDocumentFound",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "success to get global config"
+    },
+    {
+      "Attributes": [],
+      "Code": "118712",
+      "CodeName": "GlobalConfigDocumentDeleted",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "success to delete global config"
+    },
+    {
+      "Attributes": [],
+      "Code": "118713",
+      "CodeName": "GlobalConfigDocumentSuccessUpsert",
+      "Section": "config",
+      "Service": "lobby",
+      "Text": "success to upsert global config"
+    },
+    {
+      "Attributes": [],
+      "Code": "118900",
+      "CodeName": "SetSessionAttributeSuccess",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "118901",
+      "CodeName": "SetSessionAttributeUnableToQueryRegistry",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to query user from registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "118902",
+      "CodeName": "SetSessionAttributeUserNotFound",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "user not found in registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "118903",
+      "CodeName": "SetSessionAttributeEmptyKey",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "key is empty"
+    },
+    {
+      "Attributes": [],
+      "Code": "118904",
+      "CodeName": "SetSessionAttributeUnableToBroadcast",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to broadcast to sync user"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118910",
+      "CodeName": "SetSessionAttributeRESTSuccess",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "updated attributes for user {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118911",
+      "CodeName": "SetSessionAttributeRESTUnableToQueryRegistry",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to update session attribute for user {{userId}} in namespace {{namespace}}: unable to query user from registry"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118912",
+      "CodeName": "SetSessionAttributeRESTUserNotFound",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to update session attribute for user {{userId}} in namespace {{namespace}}: user not found in registry"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118913",
+      "CodeName": "SetSessionAttributeRESTEmptyKey",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to update session attribute for user {{userId}} in namespace {{namespace}}: key is empty"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118914",
+      "CodeName": "SetSessionAttributeRESTMalformedRequest",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to update session attribute for user {{userId}} in namespace {{namespace}}: malformed request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "118915",
+      "CodeName": "SetSessionAttributeRESTUnableToBroadcast",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to update session attribute for user {{userId}} in namespace {{namespace}}: unable to broadcast to sync user"
+    },
+    {
+      "Attributes": [],
+      "Code": "118916",
+      "CodeName": "SetSessionAttributeInternalError",
+      "Section": "set session attribute",
+      "Service": "lobby",
+      "Text": "unable to set session attribute"
+    },
+    {
+      "Attributes": [],
+      "Code": "119000",
+      "CodeName": "AdminGetUserPartySuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119001",
+      "CodeName": "AdminGetUserPartyInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119002",
+      "CodeName": "AdminGetUserPartyNotFound",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "119003",
+      "CodeName": "AdminGetUserPartyByIDSuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119004",
+      "CodeName": "AdminGetUserPartyByIDInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119005",
+      "CodeName": "AdminGetUserPartyByIDNotFound",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "119006",
+      "CodeName": "UpdatePartyDataByIDSuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119007",
+      "CodeName": "UpdatePartyDataByIDInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119008",
+      "CodeName": "UpdatePartyDataByIDNotFound",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "119009",
+      "CodeName": "UpdatePartyDataByIDNotOwnParty",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: user is not in party"
+    },
+    {
+      "Attributes": [],
+      "Code": "119010",
+      "CodeName": "UpdatePartyDataByIDBadRequest",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: unable to parse request"
+    },
+    {
+      "Attributes": [],
+      "Code": "119011",
+      "CodeName": "AdminListAllPartySuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119012",
+      "CodeName": "AdminListAllPartyInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to list party data: {{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119013",
+      "CodeName": "AdminListAllPartyBadRequest",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to list party data: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119014",
+      "CodeName": "PublicGetUserPartySuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119015",
+      "CodeName": "PublicGetUserPartyInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119016",
+      "CodeName": "PublicGetUserPartyNotFound",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to get party data: party not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "119017",
+      "CodeName": "UpdatePartyDataByIDOutdatedData",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: timestamp in request is older than current data"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119018",
+      "CodeName": "UpdatePartyDataOnlyLeader",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to update party data: this attribute can only be updated by leader: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119020",
+      "CodeName": "AdminJoinPartyOk",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119021",
+      "CodeName": "AdminJoinPartyInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to join party: {{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119022",
+      "CodeName": "UpdatePartyLimitInvalidLimitValue",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to set party limit size: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119023",
+      "CodeName": "UpdatePartyLimitUserIsNotLeader",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to set party limit size: user is not leader"
+    },
+    {
+      "Attributes": [],
+      "Code": "119024",
+      "CodeName": "UpdatePartyLimitMustGreaterThanMemberCount",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to set party limit size: party limit size must be greater than or equal to current member counts"
+    },
+    {
+      "Attributes": [],
+      "Code": "119025",
+      "CodeName": "UpdatePartyLimitSuccess",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "successfully update party limit"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119026",
+      "CodeName": "UpdatePartyLimitInternalError",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "internal server error: {{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "119027",
+      "CodeName": "AdminJoinPartyNotFound",
+      "Section": "party",
+      "Service": "lobby",
+      "Text": "unable to join party: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "119200",
+      "CodeName": "GetSessionAttributeSuccess",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "119201",
+      "CodeName": "GetSessionAttributeUnableToQueryRegistry",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "unable to query user from registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "119202",
+      "CodeName": "GetSessionAttributeUserNotFound",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "user not found in registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "119203",
+      "CodeName": "GetSessionAttributeKeyEmpty",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "key is empty"
+    },
+    {
+      "Attributes": [
+        "attribute",
+        "namespace",
+        "userId"
+      ],
+      "Code": "119210",
+      "CodeName": "GetSessionAttributeRESTSuccess",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "queried attribute {{attribute}} for user {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "attribute",
+        "namespace",
+        "userId"
+      ],
+      "Code": "119211",
+      "CodeName": "GetSessionAttributeRESTUnableToQueryRegistry",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "unable to query session attribute {{attribute}} for user {{userId}} in namespace {{namespace}}: unable to query user from registry"
+    },
+    {
+      "Attributes": [
+        "attribute",
+        "namespace",
+        "userId"
+      ],
+      "Code": "119212",
+      "CodeName": "GetSessionAttributeRESTUserNotFound",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "unable to query session attribute {{attribute}} for user {{userId}} in namespace {{namespace}}: user not found in registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "119213",
+      "CodeName": "GetSessionAttributeInternalError",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "unable to get session attribute"
+    },
+    {
+      "Attributes": [
+        "attribute",
+        "namespace",
+        "userId"
+      ],
+      "Code": "119214",
+      "CodeName": "GetSessionAttributeRESTAttributeNotFound",
+      "Section": "get session attribute",
+      "Service": "lobby",
+      "Text": "unable to query session attribute {{attribute}} for user {{userId}} in namespace {{namespace}}: attribute not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "119300",
+      "CodeName": "GetAllSessionAttributeSuccess",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "119301",
+      "CodeName": "GetAllSessionAttributeUnableToQueryRegistry",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "unable to query user from registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "119302",
+      "CodeName": "GetAllSessionAttributeUserNotFound",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "user not found in registry"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "119310",
+      "CodeName": "GetAllSessionAttributeRESTSuccess",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "queried attributes for user {{userId}} in namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "119311",
+      "CodeName": "GetAllSessionAttributeRESTUnableToQueryRegistry",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "unable to query session attributes for user {{userId}} in namespace {{namespace}}: unable to query user from registry"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "userId"
+      ],
+      "Code": "119312",
+      "CodeName": "GetAllSessionAttributeRESTUserNotFound",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "unable to query session attributes for user {{userId}} in namespace {{namespace}}: user not found in registry"
+    },
+    {
+      "Attributes": [],
+      "Code": "119313",
+      "CodeName": "GetAllSessionAttributeInternalError",
+      "Section": "get all session attributes",
+      "Service": "lobby",
+      "Text": "unable to get all session attributes"
+    },
+    {
+      "Attributes": [],
+      "Code": "120101",
+      "CodeName": "RefreshTokenInvalidToken",
+      "Section": "refresh token",
+      "Service": "lobby",
+      "Text": "unable to refresh user token: invalid token"
+    },
+    {
+      "Attributes": [],
+      "Code": "120102",
+      "CodeName": "RefreshTokenUserNotFound",
+      "Section": "refresh token",
+      "Service": "lobby",
+      "Text": "refresh token: connected user not found, ban flags won\u0026#39;t be updated"
+    },
+    {
+      "Attributes": [],
+      "Code": "120103",
+      "CodeName": "RefreshTokenUserRegistryUpdateFailed",
+      "Section": "refresh token",
+      "Service": "lobby",
+      "Text": "refresh token: user registry update failed"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120200",
+      "CodeName": "SendPartyFreeFormNotificationSuccess",
+      "Section": "send freeform notification to party",
+      "Service": "lobby",
+      "Text": "freeform notification sent to party {{partyID}}, namespace {{namespace}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120201",
+      "CodeName": "SendPartyFreeFormNotificationUnableToParseRequest",
+      "Section": "send freeform notification to party",
+      "Service": "lobby",
+      "Text": "unable to send freeform notification to party {{partyID}}, namespace {{namespace}}: unable to parse request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120202",
+      "CodeName": "SendPartyFreeFormNotificationUnableToQueryParty",
+      "Section": "send freeform notification to party",
+      "Service": "lobby",
+      "Text": "unable to send freeform notification to party {{partyID}}, namespace {{namespace}}: unable to query party"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120203",
+      "CodeName": "SendPartyFreeFormNotificationPartyNotFound",
+      "Section": "send freeform notification to party",
+      "Service": "lobby",
+      "Text": "unable to send freeform notification to party {{partyID}}, namespace {{namespace}}: party not found"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120204",
+      "CodeName": "SendPartyFreeFormNotificationSendError",
+      "Section": "send freeform notification to party",
+      "Service": "lobby",
+      "Text": "unable to send freeform notification to party {{partyID}}, namespace {{namespace}}: unable to send notification"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug"
+      ],
+      "Code": "120300",
+      "CodeName": "SendPartyTemplatedNotificationSuccess",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "templated notification sent to party {{partyID}}, namespace {{namespace}}, template slug {{slug}} and language {{language}}"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120301",
+      "CodeName": "SendPartyTemplatedNotificationUnableToParseRequest",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to parse request"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120302",
+      "CodeName": "SendPartyTemplatedNotificationUnableToQueryParty",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to query party"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120303",
+      "CodeName": "SendPartyTemplatedNotificationPartyNotFound",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: party not found"
+    },
+    {
+      "Attributes": [
+        "namespace",
+        "partyID"
+      ],
+      "Code": "120304",
+      "CodeName": "SendPartyTemplatedNotificationSendError",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to send notification"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug"
+      ],
+      "Code": "120305",
+      "CodeName": "SendPartyTemplatedNotificationUnableToLoadTemplate",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to load notification template slug {{slug}} and language {{language}}"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug"
+      ],
+      "Code": "120306",
+      "CodeName": "SendPartyTemplatedNotificationTemplateNotFound",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: template slug {{slug}} and language {{language}} not found"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug"
+      ],
+      "Code": "120307",
+      "CodeName": "SendPartyTemplatedNotificationUnableToParseTemplate",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to parse template slug {{slug}} and language {{language}}"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug",
+        "tag"
+      ],
+      "Code": "120308",
+      "CodeName": "SendPartyTemplatedNotificationIncompleteTemplateTag",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: incomplete tag {{tag}} for template slug {{slug}} and language {{language}}"
+    },
+    {
+      "Attributes": [
+        "language",
+        "namespace",
+        "partyID",
+        "slug"
+      ],
+      "Code": "120309",
+      "CodeName": "SendPartyTemplatedNotificationUnableToRender",
+      "Section": "send templated notification to party",
+      "Service": "lobby",
+      "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to render template slug {{slug}} and language {{language}}"
+    }
+  ],
   "x-version": {
-    "buildDate": "2024-06-12T07:54:36+00:00",
-    "gitHash": "6a03c7a69be8cede0d1029c7c67b6e4effdf26b5",
+    "buildDate": "2024-07-19T09:54:01+00:00",
+    "gitHash": "071129e1faa6da7bf118574d6126a3fc966edd90",
     "name": "justice-lobby-server",
-    "revisionID": "3.35.9",
-    "version": "3.35.9",
+    "revisionID": "3.35.15",
+    "version": "3.35.15",
     "version-justice": "3.45.0",
-    "version-roles-seeding": "1.2.36"
+    "version-roles-seeding": "1.2.52"
   }
 }

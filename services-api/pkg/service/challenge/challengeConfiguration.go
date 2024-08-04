@@ -212,7 +212,10 @@ func (aaa *ChallengeConfigurationService) AdminRandomizeChallenge(input *challen
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminRandomizeChallenge(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminRandomizeChallenge(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

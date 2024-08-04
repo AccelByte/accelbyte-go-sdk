@@ -29,6 +29,10 @@ type MatchmakerTicket struct {
 	// Required: true
 	IsActive *bool `json:"IsActive"`
 
+	// ispivot
+	// Required: true
+	IsPivot *bool `json:"IsPivot"`
+
 	// latencies
 	// Required: true
 	Latencies map[string]int64 `json:"Latencies"`
@@ -76,6 +80,9 @@ func (m *MatchmakerTicket) Validate(formats strfmt.Registry) error {
 	if err := m.validateIsActive(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateIsPivot(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateMatchPool(formats); err != nil {
 		res = append(res, err)
 	}
@@ -117,6 +124,15 @@ func (m *MatchmakerTicket) validateCreatedAt(formats strfmt.Registry) error {
 func (m *MatchmakerTicket) validateIsActive(formats strfmt.Registry) error {
 
 	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MatchmakerTicket) validateIsPivot(formats strfmt.Registry) error {
+
+	if err := validate.Required("IsPivot", "body", m.IsPivot); err != nil {
 		return err
 	}
 

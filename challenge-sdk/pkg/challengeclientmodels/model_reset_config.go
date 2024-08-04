@@ -17,15 +17,15 @@ import (
 // swagger:model Model reset config.
 type ModelResetConfig struct {
 
-	// resetdate
+	// valid value are 1 to 31, default to 1 for MONTHLY rotation
 	// Format: int32
 	ResetDate int32 `json:"resetDate,omitempty"`
 
-	// resetday
+	// valid value are 1 (Monday) to 7 (Sunday), default to 1 for WEEKLY rotation
 	// Format: int32
 	ResetDay int32 `json:"resetDay,omitempty"`
 
-	// format hh:mm, must be in UTC timezone
+	// format hh:mm, must be in UTC timezone, default '00:00' for all rotation
 	ResetTime string `json:"resetTime,omitempty"`
 }
 

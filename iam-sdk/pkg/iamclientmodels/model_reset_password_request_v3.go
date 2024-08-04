@@ -26,6 +26,9 @@ type ModelResetPasswordRequestV3 struct {
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
 
+	// languagetag
+	LanguageTag string `json:"languageTag,omitempty"`
+
 	// newpassword
 	// Required: true
 	NewPassword *string `json:"newPassword"`

@@ -61,7 +61,7 @@ Deprecated: 2022-08-10 - Use GetStatsShort instead.
 GetStats list stats
 List stats by pagination.
 Other detail info:
-                  *  Returns : stats
+                      *  Returns : stats
 */
 func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, *GetStatsUnauthorized, *GetStatsForbidden, *GetStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -121,7 +121,7 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 GetStatsShort list stats
 List stats by pagination.
 Other detail info:
-                  *  Returns : stats
+                      *  Returns : stats
 */
 func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -176,10 +176,10 @@ Deprecated: 2022-08-10 - Use CreateStatShort instead.
 CreateStat create stat
 Create stat.
 Other detail info:
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
-                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
+                      *  Returns : created stat template
+                      * default minimum value is 0
+                      * default maximum value is 1.7976931348623157e+308
+                      * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, *CreateStatBadRequest, *CreateStatUnauthorized, *CreateStatForbidden, *CreateStatNotFound, *CreateStatConflict, *CreateStatUnprocessableEntity, *CreateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -251,10 +251,10 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 CreateStatShort create stat
 Create stat.
 Other detail info:
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
-                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
+                      *  Returns : created stat template
+                      * default minimum value is 0
+                      * default maximum value is 1.7976931348623157e+308
+                      * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatCreated, error) {
 	// TODO: Validate the params before sending
@@ -544,7 +544,7 @@ Deprecated: 2022-08-10 - Use QueryStatsShort instead.
 QueryStats query stats by keyword
 Query stats by keyword.
 Other detail info:
-                  *  Returns : stats
+                      *  Returns : stats
 */
 func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, *QueryStatsUnauthorized, *QueryStatsForbidden, *QueryStatsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -604,7 +604,7 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 QueryStatsShort query stats by keyword
 Query stats by keyword.
 Other detail info:
-                  *  Returns : stats
+                      *  Returns : stats
 */
 func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -659,7 +659,7 @@ Deprecated: 2022-08-10 - Use GetStatShort instead.
 GetStat get stat by statcode
 Get stat by statCode.
 Other detail info:
-                  *  Returns : stat info
+                      *  Returns : stat info
 */
 func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, *GetStatUnauthorized, *GetStatForbidden, *GetStatNotFound, *GetStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -722,7 +722,7 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 GetStatShort get stat by statcode
 Get stat by statCode.
 Other detail info:
-                  *  Returns : stat info
+                      *  Returns : stat info
 */
 func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error) {
 	// TODO: Validate the params before sending
@@ -895,9 +895,9 @@ Deprecated: 2022-08-10 - Use UpdateStatShort instead.
 UpdateStat update stat
 Update stat.
 Other detail info:
-                  *  Returns : updated stat
-                  *  Field globalAggregationMethod will be ignored when the stat is not set as global
-                  *  Field globalAggregationMethod is not updatable when the stat status is TIED
+                      *  Returns : updated stat
+                      *  Field globalAggregationMethod will be ignored when the stat is not set as global
+                      *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -963,9 +963,9 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 UpdateStatShort update stat
 Update stat.
 Other detail info:
-                  *  Returns : updated stat
-                  *  Field globalAggregationMethod will be ignored when the stat is not set as global
-                  *  Field globalAggregationMethod is not updatable when the stat status is TIED
+                      *  Returns : updated stat
+                      *  Field globalAggregationMethod will be ignored when the stat is not set as global
+                      *  Field globalAggregationMethod is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending
@@ -1145,10 +1145,10 @@ Deprecated: 2022-08-10 - Use CreateStat1Short instead.
 CreateStat1 create stat
 Create stat.
 Other detail info:
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
-                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
+                      *  Returns : created stat template
+                      * default minimum value is 0
+                      * default maximum value is 1.7976931348623157e+308
+                      * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, *CreateStat1BadRequest, *CreateStat1Unauthorized, *CreateStat1Forbidden, *CreateStat1NotFound, *CreateStat1Conflict, *CreateStat1UnprocessableEntity, *CreateStat1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1220,10 +1220,10 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 CreateStat1Short create stat
 Create stat.
 Other detail info:
-                  *  Returns : created stat template
-                  * default minimum value is 0
-                  * default maximum value is 1.7976931348623157e+308
-                  * Field globalAggregationMethod will be ignored when setAsGlobal field is false
+                      *  Returns : created stat template
+                      * default minimum value is 0
+                      * default maximum value is 1.7976931348623157e+308
+                      * Field globalAggregationMethod will be ignored when setAsGlobal field is false
 */
 func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateStat1Created, error) {
 	// TODO: Validate the params before sending

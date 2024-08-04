@@ -8,14 +8,14 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.30.0"
+    "version": "2.30.2"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/leaderboard/apidocs"
+    "url": "https://stage.accelbyte.io/leaderboard/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -6843,15 +6843,15 @@
   },
   "x-docs": {
     "alias": "leaderboard",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-06-14T09:12:07+00:00",
-    "gitHash": "5c9f4533b5226dd0ac388fff8ff1e284dd3d9702",
+    "buildDate": "2024-07-23T06:43:14+00:00",
+    "gitHash": "ee74e166b9c707bafffdb59397dfc1e33bc07351",
     "name": "justice-leaderboard-service",
-    "realm": "demo",
-    "version": "2.30.0",
+    "realm": "staging",
+    "version": "2.30.2",
     "version-roles-seeding": "1.2.32"
   }
 }

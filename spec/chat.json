@@ -3,14 +3,14 @@
   "info": {
     "description": "Justice Chat Service",
     "title": "justice-chat-service",
-    "version": "demo"
+    "version": "staging"
   },
   "schemes": [
     "https"
   ],
   "externalDocs": {
     "description": "API Docs",
-    "url": "https://demo.accelbyte.io/chat/apidocs"
+    "url": "https://stage.accelbyte.io/chat/apidocs"
   },
   "securityDefinitions": {
     "HasPermission": {
@@ -202,6 +202,13 @@
             },
             "name": "topic",
             "type": "array"
+          },
+          {
+            "description": "unfiltered chat messages",
+            "in": "query",
+            "name": "unfiltered",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1085,6 +1092,13 @@
             "in": "query",
             "name": "startCreatedAt",
             "type": "integer"
+          },
+          {
+            "description": "unfiltered chat messages",
+            "in": "query",
+            "name": "unfiltered",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2695,6 +2709,86 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:*:CHAT:CONFIG [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/chat/v1/admin/config/log": {
+      "get": {
+        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetLogConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Log Configuration",
+        "tags": [
+          "config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateLogConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/logconfig.Configuration"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Log Configuration",
+        "tags": [
+          "config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:LOG [UPDATE]"
             ]
           }
         ]
@@ -5421,6 +5515,26 @@
         "Text"
       ]
     },
+    "logconfig.Configuration": {
+      "properties": {
+        "logLevel": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "socketLogEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      }
+    },
     "message.ActionAddUserToTopicResult": {
       "properties": {
         "processed": {
@@ -7137,15 +7251,2792 @@
   },
   "x-docs": {
     "alias": "chat",
-    "host": "https://demo.accelbyte.io",
+    "host": "https://stage.accelbyte.io",
     "path": "/chat/apidocs/api.json"
   },
+  "x-messages": [
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20000",
+      "CodeName": "InternalServerErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20001",
+      "CodeName": "UnauthorizedAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unauthorized access"
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20002",
+      "CodeName": "ValidationErrorV1",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20003",
+      "CodeName": "ForbiddenAccess",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "20007",
+      "CodeName": "TooManyRequests",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20008",
+      "CodeName": "UserNotFound",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20013",
+      "CodeName": "InsufficientPermissions",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "action",
+        "details",
+        "reason",
+        "userID"
+      ],
+      "Code": "20019",
+      "CodeName": "UnableToParseRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "unable to {{action}}: {{reason}}, userID: {{userID}}, details: {{details}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20021",
+      "CodeName": "InvalidPaginationParameters",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20022",
+      "CodeName": "TokenIsNotUserToken",
+      "Section": "general",
+      "Service": "general",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20023",
+      "CodeName": "UnableWriteResponse",
+      "Section": "general",
+      "Service": "general",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "20024",
+      "CodeName": "DatabaseError",
+      "Section": "general",
+      "Service": "general",
+      "Text": "query failed: {{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "20025",
+      "CodeName": "InvalidRequestBody",
+      "Section": "general",
+      "Service": "general",
+      "Text": "invalid request body, please check the documentation"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "51001",
+      "CodeName": "ChatConnectionUnableToUpgrade",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "51002",
+      "CodeName": "ChatConnectionUnableToRegisterUser",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "51003",
+      "CodeName": "ChatConnectionSuccessRegisterUser",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "51004",
+      "CodeName": "ChatConnectionSuccessUnregisterUser",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "51005",
+      "CodeName": "ChatConnectionMultipleLoginAttempt",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "51006",
+      "CodeName": "ChatConnectionUnableCheckConnectedUser",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "51007",
+      "CodeName": "ChatConnectionUnableToValidateSession",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "51008",
+      "CodeName": "ChatConnectionInvalidSession",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "51009",
+      "CodeName": "ChatConnectionUnableToGetBlockedPlayer",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to get blocked player from storage"
+    },
+    {
+      "Attributes": [],
+      "Code": "510010",
+      "CodeName": "ChatConnectionUnableToPushUserStatus",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to push user status"
+    },
+    {
+      "Attributes": [],
+      "Code": "510011",
+      "CodeName": "ChatConnectionUnableToQueryConfig",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to connect user, unable to query config"
+    },
+    {
+      "Attributes": [],
+      "Code": "510012",
+      "CodeName": "ChatConnectionCCULimitReached",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to connect user, because ccu limit reached"
+    },
+    {
+      "Attributes": [],
+      "Code": "510013",
+      "CodeName": "ChatConnectionUnableToGetBannedAtTopics",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to get banned at topics"
+    },
+    {
+      "Attributes": [],
+      "Code": "510021",
+      "CodeName": "ChatStopConnectionUnableToRemoveUserFromShard",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to remove user from shard"
+    },
+    {
+      "Attributes": [],
+      "Code": "510031",
+      "CodeName": "ChatProcessCommandUnableGetUserRegistry",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510050",
+      "CodeName": "GetNamespaceConfigSuccess",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510051",
+      "CodeName": "GetNamespaceConfigDBError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to query config to DB"
+    },
+    {
+      "Attributes": [],
+      "Code": "510052",
+      "CodeName": "UpdateNamespaceConfigSuccess",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510053",
+      "CodeName": "UpdateNamespaceConfigBadRequest",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to parse request body"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510054",
+      "CodeName": "UpdateNamespaceConfigValidationError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510055",
+      "CodeName": "UpdateNamespaceConfigInternalError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to update namespace config"
+    },
+    {
+      "Attributes": [],
+      "Code": "510056",
+      "CodeName": "ExportNamespaceConfigWriteJsonError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to write config to json file"
+    },
+    {
+      "Attributes": [],
+      "Code": "510057",
+      "CodeName": "ExportNamespaceConfigSuccess",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510058",
+      "CodeName": "ImportNamespaceConfigSuccess",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510059",
+      "CodeName": "UpdateNamespaceConfigFilterGrpcError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to connect to grpc target"
+    },
+    {
+      "Attributes": [],
+      "Code": "510061",
+      "CodeName": "UpdateNamespaceConfigFilterCsmError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "unable to get response from csm service."
+    },
+    {
+      "Attributes": [],
+      "Code": "510062",
+      "CodeName": "UpdateNamespaceConfigFilterCsmUrlError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "missing service URL. please check the csm service."
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510063",
+      "CodeName": "UpdateNamespaceConfigFilterCsmUrlSchemeError",
+      "Section": "chat connection",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510100",
+      "CodeName": "CreateTopicSuccess",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510101",
+      "CodeName": "CreateTopicInvalidRequestBody",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510102",
+      "CodeName": "CreateTopicAlreadyExist",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510103",
+      "CodeName": "CreateTopicUnableSaveTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to save new topic"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510104",
+      "CodeName": "CreateTopicUnableGetChatConfig",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510105",
+      "CodeName": "CreateTopicExceedShardLimit",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510106",
+      "CodeName": "CreateTopicCreateTopicFromAPI",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510107",
+      "CodeName": "CreateTopicUnableAddUserToShard",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510109",
+      "CodeName": "CreateTopicCannotCreatePersonalTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "cannot create personal topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510110",
+      "CodeName": "CreateTopicInvalidRequester",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510111",
+      "CodeName": "CreateTopicValidationPersonalTopicNeedTwoMember",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "PERSONAL topic need exactly 2 members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510112",
+      "CodeName": "CreateTopicValidationPersonalTopicRequesterNeedInMember",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "PERSONAL topic need members with requester id"
+    },
+    {
+      "Attributes": [],
+      "Code": "510113",
+      "CodeName": "CreateTopicValidationPersonalTopicUnableToCheckExistingTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to check existing personal topic"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510114",
+      "CodeName": "CreateTopicValidationPersonalTopicAlreadyExist",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510115",
+      "CodeName": "CreateTopicValidationGroupTopicCannotHaveZeroAdmin",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "PERSONAL topic need members with requester id"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510116",
+      "CodeName": "CreateTopicValidationGroupTopicAdminNotInMember",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510117",
+      "CodeName": "CreateTopicValidationGroupTopicShardLimitExceedLimit",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "shard limit exceeding the basic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510118",
+      "CodeName": "CreateTopicValidationGroupTopicUnableGetConfig",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable get config"
+    },
+    {
+      "Attributes": [],
+      "Code": "510119",
+      "CodeName": "CreateTopicUnableSaveTopicShard",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to save new topic shard"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510120",
+      "CodeName": "CreateTopicUnableSaveAddUserToTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510121",
+      "CodeName": "CreateTopicUnableSaveAddUserToShard",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510122",
+      "CodeName": "CreateTopicManualOperationDisabled",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to create topic manually. operation disabled"
+    },
+    {
+      "Attributes": [],
+      "Code": "510130",
+      "CodeName": "UpdateTopicByTopicNameSuccess",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510131",
+      "CodeName": "UpdateTopicByTopicNameInvalidRequestBody",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510132",
+      "CodeName": "UpdateTopicByTopicNameUnableUpdateTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510133",
+      "CodeName": "UpdateTopicByTopicNameNotFound",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510134",
+      "CodeName": "UpdateTopicUnableWriteResponse",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510135",
+      "CodeName": "UpdateTopicInvalidRequester",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510136",
+      "CodeName": "UpdateTopicUnableSaveUpdatedTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to save updated topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510137",
+      "CodeName": "UpdateTopicUnableLoadTopicMember",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to load topic member"
+    },
+    {
+      "Attributes": [],
+      "Code": "510140",
+      "CodeName": "DeleteTopicByTopicNameSuccess",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510141",
+      "CodeName": "DeleteTopicByTopicNameInvalidRequestBody",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510142",
+      "CodeName": "DeleteTopicByTopicNameUnableDeleteTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510143",
+      "CodeName": "DeleteTopicByTopicNameNotFound",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "510144",
+      "CodeName": "DeleteTopicUnableWriteResponse",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "510145",
+      "CodeName": "DeleteTopicInvalidRequester",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510146",
+      "CodeName": "DeleteTopicUnableDeleteTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to save deleted topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510147",
+      "CodeName": "DeleteTopicUnableLoadTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510148",
+      "CodeName": "DeleteTopicUnableLoadTopicMember",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to load topic member"
+    },
+    {
+      "Attributes": [],
+      "Code": "510149",
+      "CodeName": "DeleteTopicUnableRemoveUserFromTopic",
+      "Section": "create topic",
+      "Service": "chat",
+      "Text": "unable to remove user from topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510410",
+      "CodeName": "LoadTopicsSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510411",
+      "CodeName": "LoadTopicsUnableWriteResponse",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510412",
+      "CodeName": "LoadTopicsInvalidRequester",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510413",
+      "CodeName": "LoadTopicsUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510420",
+      "CodeName": "LoadTopicByIdSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510421",
+      "CodeName": "LoadTopicByIdUnableWriteResponse",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510422",
+      "CodeName": "LoadTopicByIdInvalidRequester",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510423",
+      "CodeName": "LoadTopicByIdUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510424",
+      "CodeName": "LoadTopicByIdUnableLoadTopicMembers",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510430",
+      "CodeName": "LoadTopicMembersSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510431",
+      "CodeName": "LoadTopicMembersUnableWriteResponse",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510432",
+      "CodeName": "LoadTopicMembersUnableLoadTopicMembers",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510440",
+      "CodeName": "LoadTopicShardsSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510441",
+      "CodeName": "LoadTopicShardsUnableWriteResponse",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510450",
+      "CodeName": "LoadUserTopicsSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510451",
+      "CodeName": "LoadUserTopicsUnableWriteResponse",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510452",
+      "CodeName": "LoadUserTopicsUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510453",
+      "CodeName": "LoadUserTopicsUnableLoadTopicMembers",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510460",
+      "CodeName": "LoadPublicTopicsSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510461",
+      "CodeName": "LoadPublicTopicsInvalidRequester",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510462",
+      "CodeName": "LoadPublicTopicsUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510470",
+      "CodeName": "LoadTopicsByReferenceSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510471",
+      "CodeName": "LoadTopicsByReferenceUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510480",
+      "CodeName": "LoadPartyTopicsSuccess",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510481",
+      "CodeName": "LoadPartyTopicsUnableLoadTopic",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510491",
+      "CodeName": "IsMemberOfTopicUnableLoadTopicMembers",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable load topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510492",
+      "CodeName": "ValidateTopicAdminUnableToLoadDatabase",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable to validate topic admin"
+    },
+    {
+      "Attributes": [],
+      "Code": "510493",
+      "CodeName": "ValidatePersonalTopicUnableToLoadDatabase",
+      "Section": "load topic",
+      "Service": "chat",
+      "Text": "unable to validate personal topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510510",
+      "CodeName": "LoadChannelTopicsSuccess",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510511",
+      "CodeName": "LoadChannelTopicsUnableWriteResponse",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510512",
+      "CodeName": "LoadChannelTopicsUnableToLoadChannelTopic",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "unable to load channel topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510513",
+      "CodeName": "LoadChannelTopicsUnableToCountChannelTopic",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "unable to load channel topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510521",
+      "CodeName": "LoadChannelTopicSummaryUnableWriteResponse",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510530",
+      "CodeName": "LoadChannelTopicByIdSuccess",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510531",
+      "CodeName": "LoadChannelTopicByIdUnableWriteResponse",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510532",
+      "CodeName": "LoadChannelTopicByIdNotFound",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "510533",
+      "CodeName": "LoadChannelTopicByIdUnableToLoadChannelTopic",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "unable to load channel topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "510540",
+      "CodeName": "LoadChannelTopicMembersSuccess",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "510541",
+      "CodeName": "LoadChannelTopicMembersUnableWriteResponse",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "510542",
+      "CodeName": "LoadChannelTopicMembersUnableToLoadChannelTopicMember",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "unable to load channel topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "510543",
+      "CodeName": "LoadChannelTopicMembersUnableToCountChannelTopicMember",
+      "Section": "load channel topic",
+      "Service": "chat",
+      "Text": "unable to count channel topic members"
+    },
+    {
+      "Attributes": [],
+      "Code": "511100",
+      "CodeName": "AddUserToTopicSuccess",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511101",
+      "CodeName": "AddUserToTopicUnableLoadTopic",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511102",
+      "CodeName": "AddUserToTopicCannotAddUserToPersonalTopic",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511103",
+      "CodeName": "AddUserToTopicUserAlreadyMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511104",
+      "CodeName": "AddUserToTopicUnableRestoreMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511105",
+      "CodeName": "AddUserToTopicUnableAddMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511106",
+      "CodeName": "AddUserToTopicUnableAddMemberToShard",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511107",
+      "CodeName": "AddUserToTopicUnableCheckExistingUser",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511108",
+      "CodeName": "AddUserToTopicInvalidRequestBody",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": "invalid request body"
+    },
+    {
+      "Attributes": [],
+      "Code": "511109",
+      "CodeName": "AddUserToTopicUnableWriteResponse",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "511110",
+      "CodeName": "AddUserToTopicInvalidSender",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": "cannot write respond"
+    },
+    {
+      "Attributes": [],
+      "Code": "511120",
+      "CodeName": "JoinTopicSuccess",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511121",
+      "CodeName": "JoinTopicUnableLoadTopic",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511122",
+      "CodeName": "JoinTopicCannotAddUserToPersonalTopic",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511123",
+      "CodeName": "JoinTopicUserAlreadyMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511124",
+      "CodeName": "JoinTopicUnableRestoreMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511125",
+      "CodeName": "JoinTopicUnableAddMember",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511126",
+      "CodeName": "JoinTopicUnableAddMemberToShard",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511127",
+      "CodeName": "JoinTopicUnableCheckExistingUser",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511128",
+      "CodeName": "JoinTopicCannotJoinPrivateTopic",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511129",
+      "CodeName": "JoinTopicInvalidSender",
+      "Section": "topic member add",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511210",
+      "CodeName": "RemoveUserFromTopicSuccess",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511211",
+      "CodeName": "RemoveUserFromTopicUnableLoadTopic",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511212",
+      "CodeName": "RemoveUserFromTopicCannotRemoveUserFromPersonalTopic",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511213",
+      "CodeName": "RemoveUserFromTopicUnableRemoveMember",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511214",
+      "CodeName": "RemoveUserFromTopicUserNotMember",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511215",
+      "CodeName": "RemoveUserFromTopicInvalidRequestBody",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511216",
+      "CodeName": "RemoveUserFromTopicUnableWriteResponse",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511217",
+      "CodeName": "RemoveUserFromTopicInvalidSender",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511220",
+      "CodeName": "QuitTopicSuccess",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "511221",
+      "CodeName": "QuitTopicInvalidSender",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512000",
+      "CodeName": "ChatSendMessageSuccessSendChat",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512001",
+      "CodeName": "ChatSendMessageUnableGetUserRegistry",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512002",
+      "CodeName": "ChatSendMessageSenderBanned",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512003",
+      "CodeName": "ChatSendMessageReceiverBanned",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512004",
+      "CodeName": "ChatSendMessageReceiverNotFound",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512005",
+      "CodeName": "ChatSendMessageUnableSaveChat",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "512006",
+      "CodeName": "ChatSendMessageUnableGetBlocked",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512007",
+      "CodeName": "ChatSendMessageAdminCannotSendToPersonalTopic",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "admin cannot send message to personal topic"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512008",
+      "CodeName": "ChatSendMessageInvalidRequestBody",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512009",
+      "CodeName": "CreateTopicUnableWriteResponse",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512010",
+      "CodeName": "ChatSendMessageSenderUnauthorized",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512011",
+      "CodeName": "ChatSendMessageUnableGetMutedUser",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512012",
+      "CodeName": "ChatSendMessageUnableGetConfig",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "512013",
+      "CodeName": "ChatSendMessageUnableGetSpamBurst",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512014",
+      "CodeName": "ChatSendMessageUnableSetMuteUser",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512015",
+      "CodeName": "ChatSendMessageUnableGetTopic",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512016",
+      "CodeName": "ChatSendMessageUnableGetTopicMember",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512017",
+      "CodeName": "ChatSendMessageSenderMuted",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512018",
+      "CodeName": "ChatSendMessageUnableGetShardTopicMember",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512019",
+      "CodeName": "ChatSendMessageSenderProfanitfyBlocked",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "512100",
+      "CodeName": "ReadChatSuccess",
+      "Section": "read chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512101",
+      "CodeName": "ReadChatUnableSaveReadChatFlag",
+      "Section": "read chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512102",
+      "CodeName": "ReadChatUnableGetUserRegistry",
+      "Section": "read chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512210",
+      "CodeName": "UserLoadChatHistorySuccess",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512211",
+      "CodeName": "UserLoadChatHistorySenderIsMuted",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512212",
+      "CodeName": "UserLoadChatHistoryUnableCheckMutedUser",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512213",
+      "CodeName": "UserLoadChatHistorySenderNotAuthorized",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512214",
+      "CodeName": "UserLoadChatHistoryUnableGetUserRegistry",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512215",
+      "CodeName": "UserLoadChatHistorySenderBanned",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512216",
+      "CodeName": "UserLoadChatHistoryUnableLoadChatHistory",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512217",
+      "CodeName": "UserLoadChatHistorySenderNotMemberOfTopic",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512218",
+      "CodeName": "UserLoadChatHistorySenderNotMemberOfTopicInternalError",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512221",
+      "CodeName": "LoadChatHistoryTopicNotFound",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512222",
+      "CodeName": "LoadChatHistoryUnableLoadTopic",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512223",
+      "CodeName": "LoadChatHistoryUnableLoadChannelTopic",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512224",
+      "CodeName": "LoadChatHistoryUnableLoadChatHistory",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512230",
+      "CodeName": "PaginatedLoadChatHistorySuccess",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512231",
+      "CodeName": "PaginatedLoadChatHistoryTopicNotFound",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512232",
+      "CodeName": "PaginatedLoadChatHistoryUnableLoadTopic",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512233",
+      "CodeName": "PaginatedLoadChatHistoryUnableLoadChatTotalData",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512234",
+      "CodeName": "PaginatedLoadChatHistoryUnableLoadChatHistory",
+      "Section": "load chat message",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512310",
+      "CodeName": "DeleteChatsuccess",
+      "Section": "admin chat history",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512311",
+      "CodeName": "DeleteChatRecordNotFound",
+      "Section": "admin chat history",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "512312",
+      "CodeName": "DeleteChatInternalDatabaseError",
+      "Section": "admin chat history",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513110",
+      "CodeName": "BanSuccess",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513111",
+      "CodeName": "BanUnableGetUserRegistry",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513112",
+      "CodeName": "BanUnableSaveBan",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513113",
+      "CodeName": "BanInvalidRequestBody",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513114",
+      "CodeName": "BanUnableWriteResponse",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "513115",
+      "CodeName": "BanAlreadyBanned",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513116",
+      "CodeName": "BanUserNotMemberOfTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "513117",
+      "CodeName": "BanCannotBanPersonalTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513118",
+      "CodeName": "BanUnableToBanUserFromShard",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513119",
+      "CodeName": "BanUnableToSendNotifToUser",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513120",
+      "CodeName": "BanUnableLoadTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513121",
+      "CodeName": "BanUnableLoadTopicMember",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513122",
+      "CodeName": "BanUnableRemoveUserFromShard",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513123",
+      "CodeName": "BanUnableLoadShardMember",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513130",
+      "CodeName": "UnbanSuccess",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513131",
+      "CodeName": "UnbanUnableGetUserRegistry",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513132",
+      "CodeName": "UnbanUnableSaveUnban",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513133",
+      "CodeName": "UnbanInvalidRequestBody",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513134",
+      "CodeName": "UnbanUnableWriteResponse",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513135",
+      "CodeName": "UnbanUserNotMemberOfTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "513136",
+      "CodeName": "UnbanUnableToAddUserToShard",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513137",
+      "CodeName": "UnbanUnableToSendNotifToUser",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513138",
+      "CodeName": "UnbanUnableLoadTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513139",
+      "CodeName": "UnbanUnableLoadTopicMember",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513140",
+      "CodeName": "UnbanCannotUnbanPersonalTopic",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "513141",
+      "CodeName": "UnbanUserNotBanned",
+      "Section": "ban",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "513210",
+      "CodeName": "BlockSuccess",
+      "Section": "block",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513211",
+      "CodeName": "BlockUnableGetUserRegistry",
+      "Section": "block",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513212",
+      "CodeName": "BlockUnableSaveBlock",
+      "Section": "block",
+      "Service": "chat",
+      "Text": "unable to block user"
+    },
+    {
+      "Attributes": [],
+      "Code": "513213",
+      "CodeName": "BlockAlreadyBlocked",
+      "Section": "block",
+      "Service": "chat",
+      "Text": "unable to block user: already blocked"
+    },
+    {
+      "Attributes": [],
+      "Code": "513220",
+      "CodeName": "UnblockSuccess",
+      "Section": "block",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513221",
+      "CodeName": "UnblockUnableGetUserRegistry",
+      "Section": "block",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513222",
+      "CodeName": "UnblockUnableSaveUnblock",
+      "Section": "block",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513300",
+      "CodeName": "MuteUserSuccess",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513301",
+      "CodeName": "MuteUserNotMember",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513302",
+      "CodeName": "MuteUserInternalError",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513305",
+      "CodeName": "UnmuteUserSuccess",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513306",
+      "CodeName": "UnmuteUserNotMember",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "513307",
+      "CodeName": "UnmuteUserInternalError",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514110",
+      "CodeName": "AddUserToAllActiveShardSuccess",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514111",
+      "CodeName": "AddUserToAllActiveShardInvalidRequester",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "requester invalid: not found"
+    },
+    {
+      "Attributes": [],
+      "Code": "514112",
+      "CodeName": "AddUserToAllActiveShardUnableLoadTopic",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "514113",
+      "CodeName": "AddUserToAllActiveShardUnableToAddUser",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "514120",
+      "CodeName": "AddUserToShardSuccess",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514121",
+      "CodeName": "AddUserToShardUnableToAddUserToShard",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "unable to add user to shard"
+    },
+    {
+      "Attributes": [],
+      "Code": "514122",
+      "CodeName": "AddUserToShardUnableLoadConfig",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "unable load topic"
+    },
+    {
+      "Attributes": [],
+      "Code": "514123",
+      "CodeName": "AddUserToShardUnableLoadShardCapacity",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "unable load shard capacity"
+    },
+    {
+      "Attributes": [],
+      "Code": "514124",
+      "CodeName": "AddUserToShardUnableSaveNewShard",
+      "Section": "add user to shard",
+      "Service": "chat",
+      "Text": "unable create new shard"
+    },
+    {
+      "Attributes": [],
+      "Code": "514210",
+      "CodeName": "RemoveUserFromAllShardSuccess",
+      "Section": "remove user from shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514211",
+      "CodeName": "RemoveUserFromAllShardUnableToRemoveUser",
+      "Section": "remove user from shard",
+      "Service": "chat",
+      "Text": "unable to remove user"
+    },
+    {
+      "Attributes": [],
+      "Code": "514220",
+      "CodeName": "RemoveUserFromShardSuccess",
+      "Section": "remove user from shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514221",
+      "CodeName": "RemoveUserFromShardUnableToRemoveUser",
+      "Section": "remove user from shard",
+      "Service": "chat",
+      "Text": "unable to remove user"
+    },
+    {
+      "Attributes": [],
+      "Code": "514310",
+      "CodeName": "CreateNewTopicShardSuccess",
+      "Section": "create shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514311",
+      "CodeName": "CreateNewTopicShardUnableSaveNewShard",
+      "Section": "create shard",
+      "Service": "chat",
+      "Text": "unable to save new shard"
+    },
+    {
+      "Attributes": [],
+      "Code": "514312",
+      "CodeName": "CreateNewTopicShardUnableSaveCacheShard",
+      "Section": "create shard",
+      "Service": "chat",
+      "Text": "unable to save cache shard"
+    },
+    {
+      "Attributes": [],
+      "Code": "514410",
+      "CodeName": "LoadShardMembersSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514411",
+      "CodeName": "LoadShardMembersUnableLoadData",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "unable load data"
+    },
+    {
+      "Attributes": [],
+      "Code": "514420",
+      "CodeName": "LoadTopicShardCapacitySuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514421",
+      "CodeName": "LoadTopicShardCapacityUnableLoadData",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "unable load data"
+    },
+    {
+      "Attributes": [],
+      "Code": "514430",
+      "CodeName": "LoadChannelTopicSummarySuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514431",
+      "CodeName": "LoadChannelTopicSummaryUnableLoadData",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "unable load data"
+    },
+    {
+      "Attributes": [],
+      "Code": "514440",
+      "CodeName": "LoadChannelTopicShardsByIDSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514441",
+      "CodeName": "LoadChannelTopicShardsByIDUnableLoadData",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "unable load data"
+    },
+    {
+      "Attributes": [],
+      "Code": "514450",
+      "CodeName": "ProfanityReadEntityError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "unable to read body request"
+    },
+    {
+      "Attributes": [],
+      "Code": "514451",
+      "CodeName": "ProfanityInsertDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514452",
+      "CodeName": "ProfanityInsertSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514453",
+      "CodeName": "ProfanityUpdateDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514454",
+      "CodeName": "ProfanityUpdateSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514455",
+      "CodeName": "ProfanityQueryDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514456",
+      "CodeName": "ProfanityQuerySuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514457",
+      "CodeName": "ProfanityValidationError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": "validation error"
+    },
+    {
+      "Attributes": [],
+      "Code": "514458",
+      "CodeName": "ProfanityRecordNotFound",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514460",
+      "CodeName": "ModerationGetSnapshotDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514461",
+      "CodeName": "ModerationGetSnapshotRecordNotFound",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514462",
+      "CodeName": "ModerationGetSnapshotSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514463",
+      "CodeName": "ModerationGetSnapshotInternalError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514464",
+      "CodeName": "ModerationDeleteSnapshotRecordNotFound",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514465",
+      "CodeName": "ModerationDeleteSnapshotDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514466",
+      "CodeName": "ModerationDeleteSnapshotSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514467",
+      "CodeName": "ModerationDeleteSnapshotInternalError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514470",
+      "CodeName": "TopicLogDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514471",
+      "CodeName": "TopicLogSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514472",
+      "CodeName": "TopicLogInternalError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514480",
+      "CodeName": "QueryUsersTopicDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514481",
+      "CodeName": "QueryUsersTopicSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514482",
+      "CodeName": "QueryUsersTopicInternalError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514490",
+      "CodeName": "QueryTopicsDatabaseError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514491",
+      "CodeName": "QueryTopicsSuccess",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514492",
+      "CodeName": "QueryTopicsInternalError",
+      "Section": "load shard",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514500",
+      "CodeName": "GetDictionaryGroupDatabaseError",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514501",
+      "CodeName": "GetDictionaryGroupSuccess",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514502",
+      "CodeName": "GetDictionaryGroupInternalError",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514510",
+      "CodeName": "ExportDictionaryDatabaseError",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514511",
+      "CodeName": "ExportDictionarySuccess",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514512",
+      "CodeName": "ImportDictionaryDatabaseError",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514513",
+      "CodeName": "ImportDictionarySuccess",
+      "Section": "dictionary",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514600",
+      "CodeName": "SyncSystemMessageInvalidRequester",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514601",
+      "CodeName": "SyncSystemMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514610",
+      "CodeName": "QuerySystemMessageInvalidRequester",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514611",
+      "CodeName": "QuerySystemMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514620",
+      "CodeName": "GetSystemMessageStatsInvalidRequester",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514621",
+      "CodeName": "GetSystemMessageStatsSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514630",
+      "CodeName": "UpdateSystemMessagesInvalidRequester",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514631",
+      "CodeName": "UpdateSystemMessagesSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514640",
+      "CodeName": "DeleteSystemMessagesInvalidRequester",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514641",
+      "CodeName": "DeleteSystemMessagesSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514650",
+      "CodeName": "SaveInboxMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514651",
+      "CodeName": "UpdateInboxMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514652",
+      "CodeName": "UnsendInboxMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514653",
+      "CodeName": "SendInboxMessageSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514654",
+      "CodeName": "UpdateInboxMessageInvalidNamespace",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "status"
+      ],
+      "Code": "514655",
+      "CodeName": "UnsendInboxMessageFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": "unable to unsend a message in the status {{ status }}"
+    },
+    {
+      "Attributes": [
+        "status"
+      ],
+      "Code": "514656",
+      "CodeName": "SendInboxMessageFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": "unable to send a message in the status {{ status }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "514657",
+      "CodeName": "GetInboxUsersSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "514658",
+      "CodeName": "GetInboxUsersUnableWriteResponse",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
+      "Attributes": [],
+      "Code": "514660",
+      "CodeName": "GetInboxStatsInternalError",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514661",
+      "CodeName": "GetInboxStatsSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "status"
+      ],
+      "Code": "514662",
+      "CodeName": "DeleteInboxMessageFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": "unable to delete a message in the status {{ status }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "514670",
+      "CodeName": "AddInboxCategorySuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514671",
+      "CodeName": "AddInboxCategoryFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514680",
+      "CodeName": "GetInboxCategoriesSuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514681",
+      "CodeName": "GetInboxCategoriesFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514690",
+      "CodeName": "UpdateInboxCategorySuccess",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514691",
+      "CodeName": "UpdateInboxCategoriesFailed",
+      "Section": "inbox",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514700",
+      "CodeName": "PublicBanTopicMembersSuccess",
+      "Section": "public ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514701",
+      "CodeName": "PublicBanTopicMembersInvalidRequestBody",
+      "Section": "public ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514710",
+      "CodeName": "PublicUnbanTopicMembersSuccess",
+      "Section": "public ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514711",
+      "CodeName": "PublicUnbanTopicMembersInvalidRequestBody",
+      "Section": "public ban",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514800",
+      "CodeName": "PublicGetUserMutedTopicsSuccess",
+      "Section": "public get muted",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
+      "Code": "514801",
+      "CodeName": "PublicGetUserMutedTopicsError",
+      "Section": "public get muted",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [
+        "err"
+      ],
+      "Code": "514900",
+      "CodeName": "GroupServiceError",
+      "Section": "external group service",
+      "Service": "chat",
+      "Text": "unable to request Group Service. Err: {{ err }}"
+    },
+    {
+      "Attributes": [
+        "namespace"
+      ],
+      "Code": "514901",
+      "CodeName": "GroupServiceNamespaceNotFound",
+      "Section": "external group service",
+      "Service": "chat",
+      "Text": "unable to locate namespace. Namespace: {{ namespace }}"
+    },
+    {
+      "Attributes": [],
+      "Code": "515004",
+      "CodeName": "ResourceNotFound",
+      "Section": "general",
+      "Service": "chat",
+      "Text": "resource not found."
+    }
+  ],
   "x-version": {
-    "buildDate": "2024-06-07T07:00:22+00:00",
-    "gitHash": "ef38159a0a2579f9d148c33495b4616d9674a1b9",
+    "buildDate": "2024-07-17T04:14:24+00:00",
+    "gitHash": "aeab65c4bcb315d51f6011c67d519ed6cbfd5221",
     "name": "justice-chat-service",
-    "revisionID": "0.4.30",
-    "version": "0.4.30",
+    "revisionID": "0.4.31",
+    "version": "0.4.31",
     "version-roles-seeding": "1.2.15"
   }
 }

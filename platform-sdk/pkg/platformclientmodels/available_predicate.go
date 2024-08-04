@@ -24,7 +24,7 @@ type AvailablePredicate struct {
 	AvailableComparisons []*AvailableComparison `json:"availableComparisons,omitempty"`
 
 	// available predicate type
-	// Enum: ['EntitlementPredicate', 'SeasonPassPredicate', 'SeasonTierPredicate']
+	// Enum: ['EntitlementPredicate', 'SeasonPassPredicate', 'SeasonTierPredicate', 'StatisticCodePredicate']
 	PredicateType string `json:"predicateType,omitempty"`
 
 	// whether show any of on config page
@@ -49,7 +49,7 @@ var availablePredicateTypePredicateTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ENTITLEMENTPREDICATE", "SEASONPASSPREDICATE", "SEASONTIERPREDICATE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ENTITLEMENTPREDICATE", "SEASONPASSPREDICATE", "SEASONTIERPREDICATE", "STATISTICCODEPREDICATE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -67,6 +67,9 @@ const (
 
 	// AvailablePredicatePredicateTypeSEASONTIERPREDICATE captures enum value "SEASONTIERPREDICATE"
 	AvailablePredicatePredicateTypeSEASONTIERPREDICATE string = "SEASONTIERPREDICATE"
+
+	// AvailablePredicatePredicateTypeSTATISTICCODEPREDICATE captures enum value "STATISTICCODEPREDICATE"
+	AvailablePredicatePredicateTypeSTATISTICCODEPREDICATE string = "STATISTICCODEPREDICATE"
 )
 
 // prop value enum

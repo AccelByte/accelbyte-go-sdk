@@ -115,6 +115,11 @@ type AdminTopicChatHistoryParams struct {
 
 	*/
 	StartCreatedAt *int64
+	/*Unfiltered
+	  unfiltered chat messages
+
+	*/
+	Unfiltered *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -291,6 +296,17 @@ func (o *AdminTopicChatHistoryParams) SetStartCreatedAt(startCreatedAt *int64) {
 	o.StartCreatedAt = startCreatedAt
 }
 
+// WithUnfiltered adds the unfiltered to the admin topic chat history params
+func (o *AdminTopicChatHistoryParams) WithUnfiltered(unfiltered *bool) *AdminTopicChatHistoryParams {
+	o.SetUnfiltered(unfiltered)
+	return o
+}
+
+// SetUnfiltered adds the unfiltered to the admin topic chat history params
+func (o *AdminTopicChatHistoryParams) SetUnfiltered(unfiltered *bool) {
+	o.Unfiltered = unfiltered
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminTopicChatHistoryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -431,6 +447,22 @@ func (o *AdminTopicChatHistoryParams) WriteToRequest(r runtime.ClientRequest, re
 		qStartCreatedAt := swag.FormatInt64(qrStartCreatedAt)
 		if qStartCreatedAt != "" {
 			if err := r.SetQueryParam("startCreatedAt", qStartCreatedAt); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Unfiltered != nil {
+
+		// query param unfiltered
+		var qrUnfiltered bool
+		if o.Unfiltered != nil {
+			qrUnfiltered = *o.Unfiltered
+		}
+		qUnfiltered := swag.FormatBool(qrUnfiltered)
+		if qUnfiltered != "" {
+			if err := r.SetQueryParam("unfiltered", qUnfiltered); err != nil {
 				return err
 			}
 		}

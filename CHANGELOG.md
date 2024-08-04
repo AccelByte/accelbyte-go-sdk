@@ -1,3 +1,30 @@
+<a name="v0.72.0"></a>
+## [v0.72.0]
+### chore
+- **:** regenerate to add pattern validation in model
+- **:** regenerate to add pattern validation in params
+- **:** add simple http call
+- **makefile:** increase lint timeout to 20m
+### test
+- **:** pattern validation
+- **:** add simple http call
+- **nightly:** integration - delay sending packets due to db eventual consistency
+- **integration:** group - clear user group member first
+- **generate:** integration - delay sending packets due to db eventual consistency
+- **integration:** platform check store
+### ci
+- **generate:** use stage_extend-sdk
+- **:** use extend-builder-batch
+- **:** update commitlint
+- **:** use extend-builder-ci for all stages
+- **:** disable lint-mod-outdated
+- **:** configurable slack channel env var
+### fix
+- **validator:** fix permissions validity check
+### docs
+- **:** update links
+
+
 <a name="v0.71.0"></a>
 ## [v0.71.0]
 ### docs

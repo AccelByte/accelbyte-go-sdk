@@ -97,6 +97,7 @@
 | `PassCreate` | [PassCreate ](../../seasonpass-sdk/pkg/seasonpassclientmodels/pass_create.go) |
 | `PassInfo` | [PassInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/pass_info.go) |
 | `PassUpdate` | [PassUpdate ](../../seasonpass-sdk/pkg/seasonpassclientmodels/pass_update.go) |
+| `Permission` | [Permission ](../../seasonpass-sdk/pkg/seasonpassclientmodels/permission.go) |
 | `ReasonTagsResult` | [ReasonTagsResult ](../../seasonpass-sdk/pkg/seasonpassclientmodels/reason_tags_result.go) |
 | `RewardCreate` | [RewardCreate ](../../seasonpass-sdk/pkg/seasonpassclientmodels/reward_create.go) |
 | `RewardCurrency` | [RewardCurrency ](../../seasonpass-sdk/pkg/seasonpassclientmodels/reward_currency.go) |

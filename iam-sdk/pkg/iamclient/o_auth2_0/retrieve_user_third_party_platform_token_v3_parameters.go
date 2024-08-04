@@ -75,7 +75,7 @@ type RetrieveUserThirdPartyPlatformTokenV3Params struct {
 	*/
 	PlatformID string
 	/*UserID
-	  UserId
+	  UserId. Should match the one in the access token
 
 	*/
 	UserID string

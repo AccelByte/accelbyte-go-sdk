@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	ListServerClient(params *ListServerClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerClientOK, *ListServerClientUnauthorized, *ListServerClientInternalServerError, error)
 	ListServerClientShort(params *ListServerClientParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerClientOK, error)
+	CountServerDetailedClient(params *CountServerDetailedClientParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedClientOK, *CountServerDetailedClientUnauthorized, *CountServerDetailedClientInternalServerError, error)
+	CountServerDetailedClientShort(params *CountServerDetailedClientParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedClientOK, error)
 	ServerHeartbeat(params *ServerHeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHeartbeatAccepted, *ServerHeartbeatBadRequest, *ServerHeartbeatUnauthorized, *ServerHeartbeatNotFound, *ServerHeartbeatInternalServerError, error)
 	ServerHeartbeatShort(params *ServerHeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*ServerHeartbeatAccepted, error)
 	DeregisterLocalServer(params *DeregisterLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeregisterLocalServerNoContent, *DeregisterLocalServerBadRequest, *DeregisterLocalServerUnauthorized, *DeregisterLocalServerInternalServerError, error)
@@ -161,6 +163,120 @@ func (a *Client) ListServerClientShort(params *ListServerClientParams, authInfo 
 	case *ListServerClientUnauthorized:
 		return nil, v
 	case *ListServerClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CountServerDetailedClientShort instead.
+
+CountServerDetailedClient get detailed count of managed servers in a region
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint counts all of dedicated servers in a region managed by this service.
+*/
+func (a *Client) CountServerDetailedClient(params *CountServerDetailedClientParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedClientOK, *CountServerDetailedClientUnauthorized, *CountServerDetailedClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountServerDetailedClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CountServerDetailedClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/servers/count/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountServerDetailedClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountServerDetailedClientOK:
+		return v, nil, nil, nil
+
+	case *CountServerDetailedClientUnauthorized:
+		return nil, v, nil, nil
+
+	case *CountServerDetailedClientInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CountServerDetailedClientShort get detailed count of managed servers in a region
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]
+
+Required scope: social
+
+This endpoint counts all of dedicated servers in a region managed by this service.
+*/
+func (a *Client) CountServerDetailedClientShort(params *CountServerDetailedClientParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountServerDetailedClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CountServerDetailedClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/servers/count/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountServerDetailedClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountServerDetailedClientOK:
+		return v, nil
+	case *CountServerDetailedClientUnauthorized:
+		return nil, v
+	case *CountServerDetailedClientInternalServerError:
 		return nil, v
 
 	default:

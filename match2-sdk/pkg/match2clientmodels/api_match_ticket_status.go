@@ -18,6 +18,9 @@ import (
 // swagger:model Api match ticket status.
 type APIMatchTicketStatus struct {
 
+	// isactive
+	IsActive bool `json:"isActive"`
+
 	// matchfound
 	// Required: true
 	MatchFound *bool `json:"matchFound"`

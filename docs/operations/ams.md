@@ -68,6 +68,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/ams/v1/admin/namespaces/{namespace}/images` | GET | ImageListShort | [ImageListShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageListShort](../../services-api/pkg/service/ams/images.go) | [ImageListShort](../../samples/cli/cmd/ams/images/imageList.go) |
+| `/ams/v1/admin/namespaces/{namespace}/images-storage` | GET | ImagesStorageShort | [ImagesStorageShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImagesStorageShort](../../services-api/pkg/service/ams/images.go) | [ImagesStorageShort](../../samples/cli/cmd/ams/images/imagesStorage.go) |
 | `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | GET | ImageGetShort | [ImageGetShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageGetShort](../../services-api/pkg/service/ams/images.go) | [ImageGetShort](../../samples/cli/cmd/ams/images/imageGet.go) |
 | `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | DELETE | ImageMarkForDeletionShort | [ImageMarkForDeletionShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImageMarkForDeletionShort](../../services-api/pkg/service/ams/images.go) | [ImageMarkForDeletionShort](../../samples/cli/cmd/ams/images/imageMarkForDeletion.go) |
 | `/ams/v1/admin/namespaces/{namespace}/images/{imageID}` | PATCH | ImagePatchShort | [ImagePatchShort](../../ams-sdk/pkg/amsclient/images/images_client.go) | [ImagePatchShort](../../services-api/pkg/service/ams/images.go) | [ImagePatchShort](../../samples/cli/cmd/ams/images/imagePatch.go) |
@@ -140,6 +141,7 @@
 | `api.ImageDetails` | [ApiImageDetails ](../../ams-sdk/pkg/amsclientmodels/api_image_details.go) |
 | `api.ImageList` | [ApiImageList ](../../ams-sdk/pkg/amsclientmodels/api_image_list.go) |
 | `api.ImageListItem` | [ApiImageListItem ](../../ams-sdk/pkg/amsclientmodels/api_image_list_item.go) |
+| `api.ImageStorage` | [ApiImageStorage ](../../ams-sdk/pkg/amsclientmodels/api_image_storage.go) |
 | `api.ImageUpdate` | [ApiImageUpdate ](../../ams-sdk/pkg/amsclientmodels/api_image_update.go) |
 | `api.InstanceTypeDescriptionResponse` | [ApiInstanceTypeDescriptionResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_description_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |

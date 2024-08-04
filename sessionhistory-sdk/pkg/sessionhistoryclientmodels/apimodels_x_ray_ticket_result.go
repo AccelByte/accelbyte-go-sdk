@@ -18,17 +18,39 @@ import (
 // swagger:model Apimodels X ray ticket result.
 type ApimodelsXRayTicketResult struct {
 
+	// elapsedtime
+	// Required: true
+	// Format: double
+	ElapsedTime *float64 `json:"elapsedTime"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
+
+	// isbackfill
+	IsBackfill bool `json:"isBackfill"`
+
+	// ispivot
+	IsPivot bool `json:"isPivot"`
 
 	// matchpool
 	// Required: true
 	Matchpool *string `json:"matchpool"`
 
+	// memberattributes
+	MemberAttributes interface{} `json:"memberAttributes,omitempty"`
+
 	// podname
 	// Required: true
 	PodName *string `json:"podName"`
+
+	// reason
+	// Required: true
+	Reason *string `json:"reason"`
+
+	// region
+	// Required: true
+	Region *string `json:"region"`
 
 	// tickid
 	// Required: true
@@ -46,12 +68,19 @@ type ApimodelsXRayTicketResult struct {
 	// Required: true
 	// Format: date-time
 	Timestamp strfmt.DateTime `json:"timestamp"`
+
+	// totalplayers
+	// Format: int32
+	TotalPlayers int32 `json:"totalPlayers,omitempty"`
 }
 
 // Validate validates this Apimodels X ray ticket result
 func (m *ApimodelsXRayTicketResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateElapsedTime(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +88,12 @@ func (m *ApimodelsXRayTicketResult) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePodName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateReason(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRegion(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTickID(formats); err != nil {
@@ -77,6 +112,15 @@ func (m *ApimodelsXRayTicketResult) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsXRayTicketResult) validateElapsedTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("elapsedTime", "body", m.ElapsedTime); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -101,6 +145,24 @@ func (m *ApimodelsXRayTicketResult) validateMatchpool(formats strfmt.Registry) e
 func (m *ApimodelsXRayTicketResult) validatePodName(formats strfmt.Registry) error {
 
 	if err := validate.Required("podName", "body", m.PodName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsXRayTicketResult) validateReason(formats strfmt.Registry) error {
+
+	if err := validate.Required("reason", "body", m.Reason); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsXRayTicketResult) validateRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("region", "body", m.Region); err != nil {
 		return err
 	}
 

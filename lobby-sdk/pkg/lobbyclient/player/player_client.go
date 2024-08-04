@@ -46,6 +46,8 @@ type ClientService interface {
 	AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error)
 	AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error)
 	AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error)
+	AdminBulkUnblockPlayersV1(params *AdminBulkUnblockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnblockPlayersV1NoContent, *AdminBulkUnblockPlayersV1BadRequest, *AdminBulkUnblockPlayersV1Unauthorized, *AdminBulkUnblockPlayersV1Forbidden, *AdminBulkUnblockPlayersV1InternalServerError, error)
+	AdminBulkUnblockPlayersV1Short(params *AdminBulkUnblockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnblockPlayersV1NoContent, error)
 	PublicPlayerBlockPlayersV1(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, *PublicPlayerBlockPlayersV1BadRequest, *PublicPlayerBlockPlayersV1Unauthorized, *PublicPlayerBlockPlayersV1Forbidden, *PublicPlayerBlockPlayersV1NotFound, *PublicPlayerBlockPlayersV1InternalServerError, error)
 	PublicPlayerBlockPlayersV1Short(params *PublicPlayerBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlayerBlockPlayersV1Created, error)
 	PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, *PublicGetPlayerBlockedPlayersV1BadRequest, *PublicGetPlayerBlockedPlayersV1Unauthorized, *PublicGetPlayerBlockedPlayersV1Forbidden, *PublicGetPlayerBlockedPlayersV1NotFound, *PublicGetPlayerBlockedPlayersV1InternalServerError, error)
@@ -1004,6 +1006,122 @@ func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Par
 	case *AdminBulkBlockPlayersV1Forbidden:
 		return nil, v
 	case *AdminBulkBlockPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminBulkUnblockPlayersV1Short instead.
+
+AdminBulkUnblockPlayersV1 admin bulk unblock players by list user id
+Bulk unblock player in a namespace by list of user id
+*/
+func (a *Client) AdminBulkUnblockPlayersV1(params *AdminBulkUnblockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnblockPlayersV1NoContent, *AdminBulkUnblockPlayersV1BadRequest, *AdminBulkUnblockPlayersV1Unauthorized, *AdminBulkUnblockPlayersV1Forbidden, *AdminBulkUnblockPlayersV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUnblockPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkUnblockPlayersV1",
+		Method:             "DELETE",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/unblock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUnblockPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUnblockPlayersV1NoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBulkUnblockPlayersV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBulkUnblockPlayersV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBulkUnblockPlayersV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBulkUnblockPlayersV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkUnblockPlayersV1Short admin bulk unblock players by list user id
+Bulk unblock player in a namespace by list of user id
+*/
+func (a *Client) AdminBulkUnblockPlayersV1Short(params *AdminBulkUnblockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnblockPlayersV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUnblockPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkUnblockPlayersV1",
+		Method:             "DELETE",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/unblock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUnblockPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUnblockPlayersV1NoContent:
+		return v, nil
+	case *AdminBulkUnblockPlayersV1BadRequest:
+		return nil, v
+	case *AdminBulkUnblockPlayersV1Unauthorized:
+		return nil, v
+	case *AdminBulkUnblockPlayersV1Forbidden:
+		return nil, v
+	case *AdminBulkUnblockPlayersV1InternalServerError:
 		return nil, v
 
 	default:

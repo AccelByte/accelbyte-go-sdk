@@ -35,6 +35,7 @@ var AdminTopicChatHistoryCmd = &cobra.Command{
 		senderUserId, _ := cmd.Flags().GetString("senderUserId")
 		shardId, _ := cmd.Flags().GetString("shardId")
 		startCreatedAt, _ := cmd.Flags().GetInt64("startCreatedAt")
+		unfiltered, _ := cmd.Flags().GetBool("unfiltered")
 		input := &topic_.AdminTopicChatHistoryParams{
 			Namespace:      namespace,
 			Topic:          topic,
@@ -46,6 +47,7 @@ var AdminTopicChatHistoryCmd = &cobra.Command{
 			SenderUserID:   &senderUserId,
 			ShardID:        &shardId,
 			StartCreatedAt: &startCreatedAt,
+			Unfiltered:     &unfiltered,
 		}
 		ok, errOK := topicService.AdminTopicChatHistoryShort(input)
 		if errOK != nil {
@@ -73,4 +75,5 @@ func init() {
 	AdminTopicChatHistoryCmd.Flags().String("senderUserId", "", "Sender user id")
 	AdminTopicChatHistoryCmd.Flags().String("shardId", "", "Shard id")
 	AdminTopicChatHistoryCmd.Flags().Int64("startCreatedAt", 0, "Start created at")
+	AdminTopicChatHistoryCmd.Flags().Bool("unfiltered", false, "Unfiltered")
 }

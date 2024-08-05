@@ -1,10 +1,13 @@
 <a name="v0.72.0"></a>
 ## [v0.72.0]
+### docs
+- **migrations:** add migration-guide-v0.71-to-v0.72.md
 ### chore
 - **:** regenerate to add pattern validation in model
 - **:** regenerate to add pattern validation in params
 - **:** add simple http call
 - **makefile:** increase lint timeout to 20m
+- **:** update CHANGELOG.md and go sum getting started
 ### test
 - **:** pattern validation
 - **:** add simple http call

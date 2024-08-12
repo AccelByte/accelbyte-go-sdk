@@ -239,9 +239,31 @@ For more details, see [repository](samples/cli/pkg/repository) for the interface
 
 ### Interacting with AccelByte Gaming Services WebSocket Endpoints
 
-To interact with AccelByte Gaming Services services which use WebSocket endpoints e.g. AccelByte Gaming Services Lobby Service, client should implement `connectionutils/ConnectionManager` interface. 
+To interact with AccelByte Gaming Services services which use WebSocket endpoints e.g. AccelByte Gaming Services Lobby Service, use an existing Initialisation code or implement custom `connectionutils/ConnectionManager` interface.
+`ConnectionManager` manages WebSocket connection that save, get and close the WebSocket connection. In other words, client should maintain WebSocket connection using `ConnectionManager`.
 
-`ConnectionManager` manages WebSocket connection that save, get and close the WebSocket connection. In other words, client should maintain WebSocket connection using `ConnectionManager`. For reference, see [samples/cli/pkg/utils/connectionManager.go](samples/cli/pkg/utils/connectionManager.go).
+```go
+connMgr = &connectionutils.WSConnection{Base: &connectionutils.BaseWebSocketClient{}} // one of the way is to implement the initialization of ConnectionManager so it can be used for notificationService wrapper
+connection, err := connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, true) // True for enabling the reconnect logic
+
+connMgr.Base.Save(connection)
+
+// CASE Lobby get a notification
+err = notificationService.GetNotificationMessage()
+```
+For reference, see [connectionutils_test.go](services-api/pkg/utils/connectionutils/connectionutils_test.go).
+
+Another implementation to the custom logics for `connMgr` or `messageHandler` like below:
+```
+connMgr = &connectionutils.WSConnection{Base: &connectionutils.BaseWebSocketClient{}} // one of the way is to implement the initialization of ConnectionManager so it can be used for notificationService wrapper
+connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, messageHandler) // using custom message handler
+
+connMgr.Base.Save(connection)
+
+// CASE Lobby get a notification
+err = notificationService.GetNotificationMessage()
+```
+For reference, see [samples/cli/pkg/utils/connectionManager.go](samples/cli/pkg/utils/connectionManager.go).
 
 ### Refresh Token
 ```go

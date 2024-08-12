@@ -16,7 +16,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
@@ -30,17 +29,6 @@ var (
 		ConfigRepository:  oAuth20Service.ConfigRepository,
 		TokenRepository:   oAuth20Service.TokenRepository,
 		ConnectionManager: connMgr,
-	}
-	lobbyMessageHandler = func(dataByte []byte) {
-
-		msg := decodeWSMessage(string(dataByte))
-
-		if v, ok := msg["type"]; ok {
-			msgType = v
-		}
-		switch msgType {
-		case model.TypeNotificationMessage:
-		}
 	}
 )
 
@@ -69,7 +57,7 @@ func TestIntegrationNotification(t *testing.T) {
 	// Login User - Arrange
 	Init()
 	connMgr = &integration.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, lobbyMessageHandler)
+	connection, err := connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, true)
 	assert.Nil(t, err, "err should be nil")
 
 	connMgr.Save(connection)
